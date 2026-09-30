@@ -1,0 +1,9 @@
+{
+  "description": "Toolchain smoke fixture. Not hockey geometry; values are arbitrary test points.",
+  "units": "arbitrary",
+  "points": [
+    { "id": "A", "x": 40, "y": 20 },
+    { "id": "B", "x": -60, "y": 35 },
+    { "id": "C", "x": -25, "y": -45 }
+  ]
+}

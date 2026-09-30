@@ -1,0 +1,11 @@
+node_modules/
+.cache/
+*.tsbuildinfo
+.DS_Store
+# Bulk render outputs (review artifacts in validation/*.svg are committed)
+validation/renders/
+out/
+# Remotion: public/ holds copies of committed assets (npm run remotion:assets); renders go to out/
+public/*.glb
+# Blender auto-backups
+*.blend1

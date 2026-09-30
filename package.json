@@ -1,0 +1,58 @@
+{
+  "name": "stiga-play-off-21",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Geometry data and static diagnostics for STIGA Play Off 21 shot videos",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "smoke": "node scripts/smoke.ts",
+    "validate": "node scripts/validate-geometry.ts",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "check": "npm run typecheck && npm run validate && npm test",
+    "trace:board": "node scripts/trace-board.ts",
+    "render:board": "node scripts/render-board-overlay.ts",
+    "trace:slots": "node scripts/trace-slots.ts",
+    "render:tracks06": "node scripts/render-tracks-overlay.ts validation/06-straight-tracks.svg \"06 - Defender and centre slots\" W-LD,W-RD,W-C,E-LD,E-RD,E-C",
+    "render:tracks07": "node scripts/render-tracks-overlay.ts validation/07-winger-tracks.svg \"07 - Winger slots\" W-LW,W-RW,E-LW,E-RW --samples",
+    "trace:goals": "node scripts/trace-goals.ts",
+    "render:goals08": "node scripts/render-goals-overlay.ts",
+    "render:pose09": "node scripts/render-pose-debug.ts",
+    "contacts:define": "node scripts/define-contacts.ts",
+    "render:contacts10": "node scripts/render-contacts.ts",
+    "blender:rink": "/root/venvs/blender/bin/python assets/blender/build_rink.py && /root/venvs/blender/bin/python assets/blender/verify_rink.py",
+    "blender:hardware": "/root/venvs/blender/bin/python assets/blender/build_hardware.py",
+    "blender:skater-lower": "/root/venvs/blender/bin/python assets/blender/build_skater_lower.py",
+    "blender:skater-body": "/root/venvs/blender/bin/python assets/blender/build_skater_body.py",
+    "goalie:define": "node scripts/define-goalie.ts",
+    "blender:goalie": "/root/venvs/blender/bin/python assets/blender/build_goalie.py",
+    "assembly:poses": "node scripts/assembly-poses.ts",
+    "blender:assembly": "/root/venvs/blender/bin/python assets/blender/build_assembly.py",
+    "blender:materials": "/root/venvs/blender/bin/python assets/blender/make_ice_texture.py && /root/venvs/blender/bin/python assets/blender/drop_sponsors.py && /root/venvs/blender/bin/python assets/blender/build_materials.py",
+    "blender:appearance": "/root/venvs/blender/bin/python assets/blender/build_appearance.py && /root/venvs/blender/bin/python assets/blender/render_appearance.py",
+    "remotion:assets": "mkdir -p public && cp assets/scene/full_static_appearance.glb public/",
+    "remotion:studio": "npm run remotion:assets && remotion studio remotion/index.ts",
+    "remotion:stills": "npm run remotion:assets && for c in oblique overhead side checks; do remotion still remotion/index.ts static-$c out/19-$c.png --frame=0 --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell --gl=swangle; done",
+    "review:20": "node scripts/review-reprojection.ts && python3 scripts/review-sheet.py"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.4",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@types/three": "0.186.0",
+    "jpeg-js": "0.4.4",
+    "typescript": "7.0.2"
+  },
+  "dependencies": {
+    "@react-three/fiber": "9.4.0",
+    "@remotion/cli": "4.0.531",
+    "@remotion/three": "4.0.531",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.531",
+    "three": "0.186.1"
+  }
+}

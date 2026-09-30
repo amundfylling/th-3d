@@ -1,0 +1,129 @@
+{
+  "source_image_id": "stiga_se_fi_overhead",
+  "variant": "Sweden vs Finland 71-1145-01 (current gallery artwork); bare-sheet print NOT used",
+  "texel_mm": 0.179597,
+  "size_px": [
+    4708,
+    2616
+  ],
+  "uv": "planar from world mm: u = (x - x0) / (x1 - x0), v = (y - y0) / (y1 - y0) over the inner-boundary bounds",
+  "bounds_mm": [
+    -422.7,
+    -234.9,
+    422.7,
+    234.92
+  ],
+  "rectification": "inverse of the ASSUMED preview similarity (map.overhead.preview), bicubic; lens bow up to about 10 px and keystone not corrected (docs/board-trace.md)",
+  "masked_fraction_of_ice": 0.2614,
+  "masked_regions": [
+    "cutout.E",
+    "cutout.W",
+    "figure.E-C",
+    "figure.E-G",
+    "figure.E-LD",
+    "figure.E-LW",
+    "figure.E-RD",
+    "figure.E-RW",
+    "figure.W-C",
+    "figure.W-G",
+    "figure.W-LD",
+    "figure.W-LW",
+    "figure.W-RD",
+    "figure.W-RW",
+    "goal.E",
+    "goal.W",
+    "puck",
+    "slot.E-C",
+    "slot.E-G",
+    "slot.E-LD",
+    "slot.E-LW",
+    "slot.E-RD",
+    "slot.E-RW",
+    "slot.W-C",
+    "slot.W-G",
+    "slot.W-LD",
+    "slot.W-LW",
+    "slot.W-RD",
+    "slot.W-RW",
+    "box.E-RW",
+    "box.E-LW",
+    "box.goal.W+W-G",
+    "box.E-C",
+    "box.E-LD+W-RD",
+    "box.W-LD+E-RD",
+    "box.puck",
+    "box.W-C",
+    "box.goal.E+E-G",
+    "box.W-LW",
+    "box.W-RW"
+  ],
+  "reconstruction": "OpenCV Telea inpainting, radius 12 px, after filling outside-ice texels with the median ice colour; line bands near masks also inpainted, then straight markings redrawn only across gaps bounded by line presence in the original: masked texels are RECONSTRUCTED, not original print",
+  "redrawn_lines": {
+    "goal_line.W": {
+      "width_px": 12,
+      "colour_rgb": [
+        231,
+        128,
+        113
+      ],
+      "redrawn_texels": 17392,
+      "absent_samples": 1
+    },
+    "blue_line.W": {
+      "width_px": 26,
+      "colour_rgb": [
+        6,
+        58,
+        133
+      ],
+      "redrawn_texels": 29482,
+      "absent_samples": 1
+    },
+    "centre_line": {
+      "width_px": 26,
+      "colour_rgb": [
+        221,
+        34,
+        17
+      ],
+      "redrawn_texels": 21270,
+      "absent_samples": 142
+    },
+    "blue_line.E": {
+      "width_px": 24,
+      "colour_rgb": [
+        63,
+        88,
+        152
+      ],
+      "redrawn_texels": 30282,
+      "absent_samples": 1
+    },
+    "goal_line.E": {
+      "width_px": 13,
+      "colour_rgb": [
+        238,
+        147,
+        135
+      ],
+      "redrawn_texels": 19219,
+      "absent_samples": 0
+    }
+  },
+  "centre_disc": {
+    "centre_tex_px": [
+      2347.4,
+      1304.3
+    ],
+    "radius_px": 340.1,
+    "radius_mm": 61.08,
+    "restored_texels": 3120581
+  },
+  "known_gaps": [
+    "Byggmax crease logos (both goals) partly reconstructed under goals/goalies",
+    "Gorilla logo (top-left) partly reconstructed under E-RW",
+    "WD-40 logo edge under W-RW",
+    "photo lighting/shading and board reflections along the ice edge remain baked in",
+    "lens bow/keystone not corrected (<= about 16 px)"
+  ]
+}

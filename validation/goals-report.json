@@ -1,0 +1,51 @@
+{
+  "homography_curve_rms_px": 2.663,
+  "goal.W": {
+    "cutout_bare_area_px": 28399,
+    "cutout_vertices": 42,
+    "cutout_front_edge_minus_goal_line_px": -8.5,
+    "post_tops_px": {
+      "pos_y": [
+        1202.94,
+        2534.19
+      ],
+      "neg_y": [
+        1195.62,
+        3038.69
+      ]
+    },
+    "mouth_between_post_tops_px": 504.6,
+    "post_tops_minus_goal_line_px": {
+      "pos_y": -15.5,
+      "neg_y": -24.2
+    },
+    "behind_goal_px": {
+      "board_to_cutout_back": 497.3,
+      "board_to_cage_back_elevated": 461.2
+    }
+  },
+  "goal.E": {
+    "cutout_bare_area_px": 31453,
+    "cutout_vertices": 45,
+    "cutout_front_edge_minus_goal_line_px": 5.6,
+    "post_tops_px": {
+      "pos_y": [
+        4484.08,
+        2557.58
+      ],
+      "neg_y": [
+        4471.66,
+        3041.49
+      ]
+    },
+    "mouth_between_post_tops_px": 484.1,
+    "post_tops_minus_goal_line_px": {
+      "pos_y": 65.6,
+      "neg_y": 52.2
+    },
+    "behind_goal_px": {
+      "board_to_cutout_back": 503.2,
+      "board_to_cage_back_elevated": 470.6
+    }
+  }
+}

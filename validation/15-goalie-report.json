@@ -1,0 +1,85 @@
+{
+  "blender": "4.5.14 LTS",
+  "origin": "goalie fixture axis at the ice plane (debug pivot, assume.debug_contacts.W-G)",
+  "pivot_world_mm": [
+    -252.967,
+    -12.356
+  ],
+  "heading_deg": 0,
+  "world_contacts_mm": {
+    "contact.W-G.stick_blade": [
+      [
+        -250.127,
+        5.254,
+        0
+      ],
+      [
+        -250.017,
+        -28.326,
+        0
+      ],
+      [
+        -250.017,
+        -28.326,
+        5
+      ],
+      [
+        -250.127,
+        5.254,
+        5
+      ],
+      [
+        -250.127,
+        5.254,
+        0
+      ]
+    ],
+    "contact.W-G.stick_shaft": [
+      [
+        -250.127,
+        -19.856,
+        5
+      ],
+      [
+        -253.467,
+        -19.856,
+        18
+      ]
+    ],
+    "contact.W-G.pad.left": [
+      [
+        -266.967,
+        -14.356,
+        0
+      ],
+      [
+        -254.967,
+        -14.356,
+        0
+      ]
+    ],
+    "contact.W-G.pad.right": [
+      [
+        -259.967,
+        -36.356,
+        0
+      ],
+      [
+        -247.967,
+        -36.356,
+        0
+      ]
+    ]
+  },
+  "top_silhouette_iou": 0.7944,
+  "iou_threshold": 0.75,
+  "height_mm": 52.8,
+  "height_target_mm": "53.0 +- 15% (assumed)",
+  "body_zmin_mm": 0.303,
+  "evidence_by_view": {
+    "top": "EVIDENCE: overhead (identity certain)",
+    "side": "EVIDENCE: side A profile (identity certain; pose differs)",
+    "oblique": "EVIDENCE: oblique A (identity certain; pose differs)"
+  },
+  "pass": true
+}

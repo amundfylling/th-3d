@@ -1,0 +1,81 @@
+{
+  "iteration": "05 (delegated review evidence)",
+  "source_image_id": "stiga_se_fi_overhead",
+  "dark_strip_vs_radius": {
+    "samples": 720,
+    "correlation_width_vs_radius": 0.463,
+    "bins": [
+      {
+        "radius_px": "1200-1500",
+        "n": 236,
+        "median_width_px": 11,
+        "median_width_per_1000px_radius": 8.12
+      },
+      {
+        "radius_px": "1500-2000",
+        "n": 160,
+        "median_width_px": 12.5,
+        "median_width_per_1000px_radius": 7.38
+      },
+      {
+        "radius_px": "2000-2500",
+        "n": 324,
+        "median_width_px": 17.5,
+        "median_width_per_1000px_radius": 7.33
+      }
+    ],
+    "reading": "Width grows in proportion to distance from the image centre (constant width per 1000 px radius), as a vertical board face does under a central camera. A flat shadow or trim on the ice would not scale this way. So the strip is the lower board face and its ice-side edge is the board base."
+  },
+  "marking_straightness": {
+    "radial_model": "r_d = r (1 - k r^2) about the image centre, k fitted so the model reproduces the top board sagitta alone",
+    "k_per_px2": 2.635225486982495e-9,
+    "lines": [
+      {
+        "line": "goal_line.W",
+        "mean_x_offset_from_image_centre_px": -1600,
+        "samples": 237,
+        "measured_sagitta_px": -1.27,
+        "quadratic_rms_px": 2.61,
+        "barrel_predicted_sagitta_px": -6.8
+      },
+      {
+        "line": "blue_line.W",
+        "mean_x_offset_from_image_centre_px": -544,
+        "samples": 226,
+        "measured_sagitta_px": -0.1,
+        "quadratic_rms_px": 0.59,
+        "barrel_predicted_sagitta_px": -2.31
+      },
+      {
+        "line": "centre_line",
+        "mean_x_offset_from_image_centre_px": -4,
+        "samples": 170,
+        "measured_sagitta_px": 0.49,
+        "quadratic_rms_px": 0.39,
+        "barrel_predicted_sagitta_px": -0.02
+      },
+      {
+        "line": "blue_line.E",
+        "mean_x_offset_from_image_centre_px": 532,
+        "samples": 225,
+        "measured_sagitta_px": 0.58,
+        "quadratic_rms_px": 0.84,
+        "barrel_predicted_sagitta_px": 2.28
+      },
+      {
+        "line": "goal_line.E",
+        "mean_x_offset_from_image_centre_px": 1603,
+        "samples": 238,
+        "measured_sagitta_px": 3.2,
+        "quadratic_rms_px": 3.17,
+        "barrel_predicted_sagitta_px": 6.87
+      }
+    ],
+    "sign": "Sagitta = middle minus chord along x; negative = middle toward -x.",
+    "goal_line_measured_over_predicted": [
+      0.19,
+      0.47
+    ],
+    "reading": "Marking lines bow with the lens-model sign but clearly less than predicted: lens distortion explains only part of the board-side bow; the rest is attributed to the boards themselves (not separable without a calibrated photo)."
+  }
+}

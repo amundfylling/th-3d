@@ -1,0 +1,106 @@
+{
+  "decision": "D6 (user, 2026-09-30): drop the sponsors",
+  "removed": [
+    "centre_disc",
+    "crease.E",
+    "crease.W",
+    "faceoff.E.neg_y",
+    "faceoff.E.pos_y",
+    "faceoff.W.neg_y",
+    "faceoff.W.pos_y",
+    "logo.gigant",
+    "logo.gorilla",
+    "logo.scandic",
+    "logo.wd40"
+  ],
+  "wiped_fraction_of_ice": 0.2642,
+  "ice_shade_fit": {
+    "model": "cubic polynomial per channel over clean ice + inpainted local residual (1/4 res)",
+    "residual_std_rgb": [
+      5.46,
+      5.2,
+      5.85
+    ]
+  },
+  "fitted_markings_tex_px": {
+    "faceoff.W.pos_y": {
+      "centre": [
+        1216.0,
+        530.6
+      ],
+      "r": 285.7,
+      "width": 16.9,
+      "n": 15960
+    },
+    "faceoff.E.pos_y": {
+      "centre": [
+        3464.1,
+        526.2
+      ],
+      "r": 287.5,
+      "width": 12.1,
+      "n": 10720
+    },
+    "faceoff.W.neg_y": {
+      "centre": [
+        1227.5,
+        2080.9
+      ],
+      "r": 286.3,
+      "width": 12.2,
+      "n": 10162
+    },
+    "faceoff.E.neg_y": {
+      "centre": [
+        3473.7,
+        2082.7
+      ],
+      "r": 287.5,
+      "width": 16.2,
+      "n": 17093
+    },
+    "crease.W": {
+      "centre": [
+        760.2,
+        1304.5
+      ],
+      "r": 414.1,
+      "width": 11.2,
+      "n": 12931
+    },
+    "crease.E": {
+      "centre": [
+        3939.8,
+        1308.1
+      ],
+      "r": 416.0,
+      "width": 11.6,
+      "n": 12626
+    },
+    "referee_crease": {
+      "centre": [
+        2353.4,
+        2607.8
+      ],
+      "r": 188.3,
+      "width": 10.7,
+      "n": 6671
+    }
+  },
+  "faceoff_circle_radius_mm_preview": 51.5,
+  "crease_radius_mm_preview": 74.54,
+  "line_texels_redrawn_in_wiped_regions": {
+    "goal_line.W": 15211,
+    "blue_line.W": 0,
+    "centre_line": 20185,
+    "blue_line.E": 0,
+    "goal_line.E": 17297
+  },
+  "inferences": [
+    "centre red line continued across the former sponsor disc (gap existed only because of the disc)",
+    "crease interiors left plain ice (their sponsor-yellow fill removed; the game's real crease colour is not evidenced)",
+    "face-off circle centre spots not drawn (hidden under logos in the reference; not evidenced)",
+    "all four face-off rings drawn in one red (centre-line colour); reference rings were tinted by their sponsor fills"
+  ],
+  "boards": "boards were already plain placeholders; no board sponsor artwork exists in the model"
+}

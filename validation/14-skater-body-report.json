@@ -1,0 +1,18 @@
+{
+  "blender": "4.5.14 LTS",
+  "top_silhouette_iou": 0.816,
+  "iou_threshold": 0.75,
+  "height_mm": 56.8,
+  "height_target_mm": "approx. 57 +- 10% (catalog nominal, datum unknown)",
+  "body_zmin_mm": 1.502,
+  "lower_asset_preserved": true,
+  "resolution_mm": 0.25,
+  "evidence_by_view": {
+    "front": "NO W-RD evidence (provisional)",
+    "back": "NO W-RD evidence (provisional)",
+    "left": "NO W-RD evidence (provisional)",
+    "right": "NO W-RD evidence (provisional)",
+    "overhead": "EVIDENCE: official overhead, no. 4 (silhouette IoU below)"
+  },
+  "pass": true
+}
