@@ -41,7 +41,8 @@ export interface WorldPolyline {
   note?: string;
 }
 
-export type SourceKind = "reference_image" | "catalog_statement" | "document" | "user_measurement";
+/** user_statement: a setup choice or convention stated by the user (not a measurement). */
+export type SourceKind = "reference_image" | "catalog_statement" | "document" | "user_measurement" | "user_statement";
 
 export interface Source {
   id: string;

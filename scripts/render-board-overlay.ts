@@ -113,7 +113,7 @@ const e = report.error_estimate_px;
 const pc = report.projection_checks;
 const pm = report.preview_mapping_assumed;
 const notes = [
-  `Iteration 05 - PROVISIONAL inner board boundary (ice-contact edge). Geometry version ${g.geometry_version}. Awaiting user visual review.`,
+  `Iteration 05 - PROVISIONAL inner board boundary (ice-contact edge). Geometry version ${g.geometry_version}. AI review under the user's delegation accepted it (docs/decisions.md D1-D3); no personal user approval is claimed.`,
   `Source: ${img.source_id} = ${img.local_path}, ${W} x ${H} px, SHA-256 ${img.sha256}. Embedded unchanged; drawn at native size (1 unit = 1 source pixel, u right, v down).`,
   `Magenta solid: detected edge (${report.samples.detected_and_consistent}/${report.samples.total} rays). Orange dashed: interpolated between neighbouring detected points where the edge is disturbed (${trace.inferred_segments.length} segments; assumption assume.board_occlusion_fill).`,
   `Blue circles: landmarks where markings meet the long boards; labels give ID and source-pixel coordinates.`,

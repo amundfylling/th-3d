@@ -1,6 +1,6 @@
 {
   "schema": "stiga-play-off-21-geometry",
-  "geometry_version": "0.2.0",
+  "geometry_version": "0.3.0",
   "updated": "2026-09-30",
   "coordinate_system": {
     "world": "Right-handed, rink-centred, calibrated geometry only. See docs/geometry.md.",
@@ -86,6 +86,12 @@
       "kind": "reference_image",
       "title": "Bare ice sheet, older artwork",
       "index_id": "stiga_ca_bare_ice_sheet"
+    },
+    {
+      "id": "user_statement_2026_09_30",
+      "kind": "user_statement",
+      "title": "User answers of 2026-09-30 after iteration 05",
+      "note": "Goal setup: played without goal inserts (answer 5). Team-side / left-right naming: any convention, kept consistent (answer 4). Board-trace review decisions delegated to the AI (answers 1-3); see docs/decisions.md."
     }
   ],
   "source_images": [
@@ -108,7 +114,7 @@
     {
       "id": "assume.board_edge_is_ice_contact",
       "statement": "The ice-side edge of the near-black strip at the base of the boards is the ice contact boundary.",
-      "reason": "The strip (median 14.8 px wide) could be a base trim, a gap over the loose sheet or a shadow; the photograph does not show which.",
+      "reason": "The strip (median 14.8 px wide) widens in proportion to distance from the image centre (validation/05-evidence-check.json), as the lower part of a vertical board face does under a central camera; its ice-side edge is then the board base. Its material (trim or printed band) is not visible, and a small gap over the loose sheet cannot be excluded.",
       "affects": [
         "trace.board_inner.overhead",
         "board.inner_boundary"
@@ -7635,16 +7641,17 @@
     }
   ],
   "goal_setup": {
-    "configuration": "unknown",
+    "configuration": "ithf_no_insert_no_cup",
     "candidates": [
       "retail_with_deflector_insert",
       "ithf_no_insert_no_cup"
     ],
     "source_ids": [
       "stiga_manual_a06_p02",
-      "ithf_rules_summary"
+      "ithf_rules_summary",
+      "user_statement_2026_09_30"
     ],
-    "note": "Retail assembly places a white insert/deflector (7111-0526-11) in the goal; ITHF rules 3.3 (per guide) remove inserts and goal cups but keep the plexiglass screens. Use the setup of the user's demonstration once stated."
+    "note": "User plays without goal inserts (ITHF-style setup): no white insert/deflector (7111-0526-11) and no goal cups; plexiglass end screens kept. ITHF rule 3.3 is known only from the guide's summary. Whether any other ITHF setup detail applies is not stated."
   },
   "goals": [
     {

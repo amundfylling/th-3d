@@ -47,7 +47,6 @@ const MARKING_SEEDS: { id: string; kind: "red" | "blue"; x: number; what: string
 ];
 const CATALOG_PLAYING_LENGTH_MM = 845;
 const CATALOG_PLAYING_WIDTH_MM = 457;
-const GEOMETRY_VERSION = "0.2.0";
 // ------------------------------------------------------------------------------------------------
 
 const GEOMETRY = "data/geometry.json";
@@ -447,7 +446,7 @@ const assumptions: Assumption[] = [
   {
     id: "assume.board_edge_is_ice_contact",
     statement: "The ice-side edge of the near-black strip at the base of the boards is the ice contact boundary.",
-    reason: `The strip (median ${round(stripMedian, 1)} px wide) could be a base trim, a gap over the loose sheet or a shadow; the photograph does not show which.`,
+    reason: `The strip (median ${round(stripMedian, 1)} px wide) widens in proportion to distance from the image centre (validation/05-evidence-check.json), as the lower part of a vertical board face does under a central camera; its ice-side edge is then the board base. Its material (trim or printed band) is not visible, and a small gap over the loose sheet cannot be excluded.`,
     affects: [TRACE_ID, "board.inner_boundary"],
     replace_with: "Close-up or measurement of the installed board base on the user's game.",
   },
@@ -481,7 +480,6 @@ const landmarks: Landmark[] = landmarkFits.map((l) => ({
   description: `Where the ${MARKING_SEEDS.find((m) => l.id.includes(m.id))!.what} meets the ${l.side} long board (ice-contact edge); line centre extrapolated from ${l.offsets} offsets 15-60 px inside.`,
   visibility: "visible",
 }));
-geometry.geometry_version = GEOMETRY_VERSION;
 geometry.assumptions = [...geometry.assumptions.filter((a) => !assumptions.some((b) => b.id === a.id)), ...assumptions];
 geometry.landmarks = [...geometry.landmarks.filter((l) => !l.id.startsWith("lm.board.")), ...landmarks];
 geometry.image_traces = [

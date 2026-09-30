@@ -73,7 +73,7 @@ export const geometrySchema: Check<GeometryFile> = obj({
   sources: arr(
     obj({
       id: nonEmptyStr,
-      kind: lit("reference_image", "catalog_statement", "document", "user_measurement"),
+      kind: lit("reference_image", "catalog_statement", "document", "user_measurement", "user_statement"),
       title: nonEmptyStr,
       index_id: opt(nonEmptyStr),
       url: opt(nullable(str)),

@@ -99,7 +99,7 @@ export function validateGeometry(data: unknown, ctx: ValidationContext): Validat
       if (!s.index_id) err(p, `reference_image must name an index_id`);
       if (!images.has(s.id)) err(p, `reference_image source has no source_images entry`);
     }
-    if (s.kind === "user_measurement" && s.via) err(p, "a user measurement cannot be second-hand (via)");
+    if ((s.kind === "user_measurement" || s.kind === "user_statement") && s.via) err(p, "a user measurement or statement cannot be second-hand (via)");
   });
   g.source_images.forEach((img, i) => {
     const p = `$.source_images[${i}]`;
@@ -244,8 +244,11 @@ export function validateGeometry(data: unknown, ctx: ValidationContext): Validat
   });
 
   // Goal setup: a chosen configuration must be one of the candidates.
-  if (g.goal_setup.configuration !== "unknown" && !g.goal_setup.candidates.includes(g.goal_setup.configuration))
-    err("$.goal_setup", "configuration must be one of the candidates");
+  if (g.goal_setup.configuration !== "unknown") {
+    if (!g.goal_setup.candidates.includes(g.goal_setup.configuration)) err("$.goal_setup", "configuration must be one of the candidates");
+    if (!g.goal_setup.source_ids.some((id) => ["user_statement", "user_measurement"].includes(sources.get(id)?.kind ?? "")))
+      err("$.goal_setup", "a chosen configuration must cite the user's statement or measurement");
+  }
 
   return { ok: errors.length === 0, errors };
 }

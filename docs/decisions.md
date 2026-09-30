@@ -1,0 +1,13 @@
+# Decision log
+
+Decisions that change how evidence is read. "User" means you stated it. "AI review
+(delegated)" means you asked the AI to decide, and it decided from the recorded evidence.
+Neither counts as a physical measurement.
+
+| ID | Date | Decision | Basis | Recorded in |
+| --- | --- | --- | --- | --- |
+| D1 | 2026-09-30 | **Board trace corners accepted** as the provisional inner boundary. | AI review (delegated by user answer 1). The four corner insets of `validation/05-board-overlay.svg` were inspected: the line follows the board base continuously. Circle-fit RMS is at most 0.70 px. Only 2 short interpolated stretches, both at marking/corner joints. | `docs/board-trace.md` |
+| D2 | 2026-09-30 | **The ice-side edge of the dark base strip is the ice-contact boundary** (the trace stays as it is). | AI review (delegated, answer 2). The strip's apparent width scales with distance from the image centre (7.3–8.1 px per 1000 px radius, correlation 0.46), which is what a vertical board face looks like under a central camera. A flat shadow would not scale that way. The strip's material is still unseen. | `validation/05-evidence-check.json`, `assume.board_edge_is_ice_contact` |
+| D3 | 2026-09-30 | **Bow and sheet rotation are kept as observations; nothing is corrected.** The trace keeps the detected (bowed) points. No lens correction. The preview mapping stays a uniform similarity with a 16.5 px bound. Later track traces follow the printed sheet, which appears rotated about 0.3 deg relative to the boards, and are not "straightened" to the board axis. | AI review (delegated, answer 3). The printed marking lines bow with the lens-model sign but only 19–47% of the predicted amount, so lens distortion explains only part of the up-to-10 px board bow. The rest is attributed to the boards. The two cannot be separated without a calibrated photo. | `validation/05-evidence-check.json`, `docs/board-trace.md` |
+| D4 | 2026-09-30 | **The team/position convention stays as defined.** W defends -x, E defends +x. Left and right are seen by a player facing the goal they attack. The reference variant has Finland = W and Sweden = E. | User (answer 4: "does not matter, be consistent"). | `docs/geometry.md`, `data/geometry.json` teams |
+| D5 | 2026-09-30 | **Goal setup: without inserts** (`ithf_no_insert_no_cup`). No white insert/deflector and no goal cups; plexiglass end screens kept. | User (answer 5). | `data/geometry.json` `goal_setup`, source `user_statement_2026_09_30` |

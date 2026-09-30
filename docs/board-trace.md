@@ -1,6 +1,8 @@
 # Iteration 05: provisional inner board boundary
 
-**Status:** provisional trace, still needs your visual review. It is not calibrated and no millimetre accuracy is claimed.
+**Status:** provisional trace, not calibrated; no millimetre accuracy is claimed. AI review under the user's delegation accepted it on 2026-09-30 (`docs/decisions.md` D1-D3). No personal user approval.
+
+Evidence for the review decisions: `validation/05-evidence-check.json`, from `scripts/check-board-evidence.ts`.
 
 | Item | Path |
 | --- | --- |

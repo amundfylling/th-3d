@@ -85,3 +85,7 @@ test("board trace stays provisional: pixel trace traced, world outline and mappi
 rejects("board outline promoted to measured without measurement", (g) => {
   g.board.inner_boundary.world.status = "measured";
 }, /stronger than its mapping|requires a user_measurement/);
+
+rejects("goal setup chosen without the user's statement", (g) => {
+  g.goal_setup.source_ids = g.goal_setup.source_ids.filter((id: string) => id !== "user_statement_2026_09_30");
+}, /must cite the user's statement/);

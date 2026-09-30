@@ -2,11 +2,12 @@
 
 ## Current position
 
-- Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30). Implemented and
-  checked by me; **your visual review of the board overlay has NOT been received** - treat the trace as
-  provisional until you accept it.
-- Next iteration: **06 - Trace the defenders and centres** (not started; needs your go-ahead).
-- Geometry version: `0.2.0` (`data/geometry.json`). Board boundary traced in pixels; no tracks, meshes or movement.
+- Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
+  decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
+  AI review accepted the trace from recorded evidence. No personal user approval is claimed.
+- Next iteration: **06 - Trace the defenders and centres** (not started; waiting for the user's instruction to proceed).
+- Geometry version: `0.3.0` (`data/geometry.json`). Board boundary traced in pixels; goal setup = without inserts
+  (user). No tracks, meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Verification status
@@ -21,6 +22,7 @@
 | Blender | Not installed in this environment. |
 | Geometry contract (iteration 04) | `npm run check` passes: typecheck (incl. tsc cross-check that runtime schema matches the interfaces; a removed field was confirmed to fail), `npm run validate` (schema + policy + reference hashes), 15 policy tests (canonical file valid; 12 invalid mutations rejected; similarity-uniformity helper). |
 | Board trace (iteration 05) | 1431/1440 rays detected and consistent; 2 short interpolated stretches. Fit RMS <= 2.73 px (long sides bow outward up to 10.1 px; quadratic RMS <= 0.49 px); corner radii 610-625 px. Trace uncertainty 21 px (dominated by the ~15 px dark strip at the board base); uniform-mapping bound 16.5 px. Rerun reproduces byte-identical outputs. Overlay rendered in headless Chromium and inspected by me (corners, landmark, gap insets). |
+| Post-05 review evidence | `npm run` not needed: `node scripts/check-board-evidence.ts` -> `validation/05-evidence-check.json`. Strip width 7.3-8.1 px per 1000 px radius (vertical board face). Marking lines bow 19% / 47% of the lens-model prediction (lens explains only part of the board bow). `npm run check` passes (18 tests). |
 | Dimensional accuracy | Nothing measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
 
 ## Key decisions
@@ -52,12 +54,14 @@
 - Observations to carry forward: long sides bow outward (lens or real boards, unresolved); every marking line
   leans ~0.35 deg relative to the board axis (sheet possibly rotated in the boards); ~0.5% keystone left-right.
 - Image decoding in TypeScript uses jpeg-js (devDependency).
+- Goal setup: without inserts or goal cups, screens kept (user, D5). Team/position convention unchanged (user: keep it consistent, D4).
 - Planned structure: `references/`, `data/`, `src/model/`, `assets/`, `validation/`, `docs/`.
 
-## Before iteration 06 (user)
+## Before iteration 06
 
-- Review `validation/05-board-overlay.svg`, especially the four corner insets, and accept or correct the trace.
-- Decide whether the ice-side edge of the dark base strip is the right boundary (or the far side of the strip).
+- Board-trace review: done by AI review under delegation (D1-D3). The user may still override it.
+- Iteration 06 traces tracks in the same overhead. Per D3, tracks follow the printed sheet (possibly rotated ~0.3 deg
+  in the boards) and are not straightened to the board axis.
 
 ## Missing inputs (most important first)
 
@@ -69,7 +73,7 @@
 3. Travel stops and rod push/pull + twist recordings per control type (goalie, wing with link 7A,
    defence, centre).
 4. Puck thickness, diameter, rim profile, mass; goal size, posts, clearance.
-5. The user's actual teams/artwork and the goal configuration used (retail insert or ITHF setup).
+5. The user's actual teams/artwork. (Goal configuration now known: without inserts, D5.)
 6. Blocked downloads: full manual A06 (`d.otto.de`), ITHF rules (`www.ithf.info`), the 1001 x 603
    older-artwork overhead (`www.stigacanada.ca`; not in the PDF). Allow these hosts in the cloud
    environment's network settings, or upload the files to `references/originals/`.
@@ -79,6 +83,7 @@
 - **`validation/05-board-overlay.svg`** - main artifact of iteration 05 (unchanged photo at native size, trace,
   landmark IDs with pixel coordinates, 9 zoom insets, notes). Numbers: `validation/05-board-report.json`.
 - `docs/board-trace.md` - trace method, checks, error estimate, assumptions.
+- `docs/decisions.md` - decision log (D1-D5); `validation/05-evidence-check.json` - evidence for D2/D3.
 - `data/geometry.json` - canonical geometry (iteration 04; all physical unknowns null).
 - `docs/geometry.md` - coordinate system, IDs, evidence policy, Blender/glTF/Three adapter.
 - `validation/03-smoke.svg` - toolchain smoke diagnostic (iteration 03; not hockey geometry).
@@ -97,3 +102,4 @@
 | 03 | 2026-09-30 | package.json, package-lock.json, tsconfig.json, .gitignore, scripts/smoke.ts, data/fixtures/smoke.json, validation/03-smoke.svg, README.md, docs/tools.md | Environment inspected; `npm ci` clean reinstall; `npm run typecheck` pass (and fails on a probe error); `npm run smoke` pass; SVG screenshot in headless Chromium viewed |
 | 04 | 2026-09-30 | src/model/{geometry,geometry-schema,check,validate}.ts, data/geometry.json, scripts/validate-geometry.ts, tests/geometry.test.ts, docs/geometry.md | `npm run check` (typecheck, validate, 15 tests) pass; schema-drift probe fails as intended |
 | 05 | 2026-09-30 | scripts/trace-board.ts, scripts/render-board-overlay.ts, src/model/{fit,raster}.ts, data/geometry.json 0.2.0 (trace, 10 landmarks, 4 assumptions, preview mapping), validation/05-board-{overlay.svg,report.json}, docs/board-trace.md; jpeg-js added | `npm run check` (typecheck, validate, 17 tests) pass; tracer rerun byte-identical; source photo hash unchanged; overlay screenshot inspected (main view + insets); user visual approval not received |
+| 05+ | 2026-09-30 | User answers recorded: goal setup without inserts, convention kept, review delegated. scripts/check-board-evidence.ts, validation/05-evidence-check.json, docs/decisions.md; `user_statement` source kind; geometry 0.3.0 | Evidence script run; trace rerun (points unchanged); overlay re-rendered; `npm run check` 18/18 pass |

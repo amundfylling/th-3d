@@ -5,8 +5,9 @@ Canonical data: `data/geometry.json`. Schema: `src/model/geometry.ts` (types) an
 structure. Evidence policy: `src/model/validate.ts`. Run `npm run validate`, or `npm run check`
 for typecheck, validation and policy tests together.
 
-`geometry_version` follows semver. Bump the minor version when geometry values change, and the
-major version when the structure changes. Later motion traces must record the version they were
+`geometry_version` follows semver. Bump the minor version when geometry values change or the
+structure is extended compatibly (0.3.0 added the `user_statement` source kind). Bump the major
+version for breaking structural changes. Later motion traces must record the version they were
 fitted against.
 
 ## Coordinate system
@@ -29,7 +30,8 @@ not an assumption.
   teams replace this.
 - Positions are G, LD, RD, C, LW and RW. Left and right are seen by a player facing the goal they
   attack, so for W, left is +y and for E, left is -y. This convention still has to be checked
-  against the rod labelling on the user's table.
+  against the rod labelling on the user's table. The user asked only that it be applied consistently
+  (docs/decisions.md D4).
 - IDs are stable: player `W-LD`, fixture path `path.W-LD`, figure asset `fig.W-LD`, goals
   `goal.W`/`goal.E`, screens `screen.W`/`screen.E`, markings such as `blue_line.E` and
   `faceoff_circle.W.pos_y`.
@@ -38,7 +40,8 @@ not an assumption.
 ## Evidence policy (enforced by `npm run validate`)
 
 1. Every quantity has a `unit`, a `status` (`measured`, `catalog_nominal`, `traced`, `assumed` or
-   `unknown`) and `source_ids`.
+   `unknown`) and `source_ids`. A setup choice stated by the user (for example the goal setup) cites a
+   `user_statement` source. That is not a measurement.
 2. `status: "unknown"` if and only if `value` is null. Absent dimensions stay null.
 3. `uncertainty` is null when not stated. Zero or negative is rejected.
 4. `measured` requires a `user_measurement` source. `catalog_nominal` requires a catalog or
