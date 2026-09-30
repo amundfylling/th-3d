@@ -26,6 +26,20 @@
 
 Numbers and the list of masked regions: `validation/17-ice-texture-report.json`. Mask overlay: `validation/17-ice-texture-mask.png`.
 
+### Sponsors dropped (user decision D6)
+
+```sh
+/root/venvs/blender/bin/python assets/blender/drop_sponsors.py   # after make_ice_texture.py; about 45 s
+```
+
+`make_ice_texture.py` now writes the reference-variant print to `assets/rink/textures/ice_basecolor_reference.png`
+(kept for traceability). `drop_sponsors.py` writes the sponsor-free `ice_basecolor.png`, which the materials use.
+
+- **Removed (26% of the ice wiped):** the four face-off circle fills and logos, both crease fills (including the part behind the goal line), the centre disc, the Scandic, Gigant, WD-40 and Gorilla logos, and the coloured smudges those fills had left nearby.
+- **Fill:** a cubic polynomial ice shade fitted to clean ice, plus the local residual inpainted at quarter resolution. There is no visible seam, even at 2.5× contrast.
+- **Markings.** Face-off rings (r ≈ 286 texels = 51.5 mm at the preview scale) and crease arcs (r ≈ 415 texels = 74.5 mm) are redrawn from circles fitted to their own red pixels. Hash marks and the four spots keep their original pixels. The lines are redrawn where they crossed wiped areas, and the centre line is continued across the former disc (inferred).
+- **Report and before/after:** `validation/drop-sponsors-report.json`, `validation/drop-sponsors-compare.png`.
+
 ### Materials
 
 | Part | Material |
@@ -42,8 +56,8 @@ Numbers and the list of masked regions: `validation/17-ice-texture-report.json`.
 
 ### Texture gaps and material mismatches
 
-- **Byggmax crease logos** (both goals): the lettering is lost and the area is reconstructed. Also the Gorilla logo (partly) and the WD-40 edge.
-- **Boards:** sponsor band and black top rail not reconstructed (placeholder grey). Only the side photos show the boards frontally, with perspective, and the ends are not seen.
+- **Sponsor artwork:** removed at the user's request (D6). The ice now carries hockey markings only.
+- **Boards:** plain placeholder grey. There are no sponsors, by the user's choice. The black top rail is not reconstructed. Only the side photos show the boards frontally, with perspective, and the ends are not seen.
 - **Housing:** the "PLAY OFF 21 / STIGA" print and the legs are not modelled.
 - **Baked-in photo effects:** lighting, vignetting and board reflections near the ice edge remain in the texture.
 - **Colours and screens:** the goal and housing colours include photo lighting; the gloss is assumed. Screen thickness, profile and clips are not modelled.

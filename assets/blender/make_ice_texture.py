@@ -6,7 +6,7 @@
 2. Mask what must not be baked into the ice: 12 figures and their shadows, both goal cages and shadows,
    the puck and its shadow, and the slot/cut-out bands (holes in the geometry).
 3. Reconstruct masked texels with OpenCV Telea inpainting (reported as reconstructed, not original print).
-Outputs: assets/rink/textures/ice_basecolor.png, validation/17-ice-texture-mask.png,
+Outputs: assets/rink/textures/ice_basecolor_reference.png (then drop_sponsors.py -> ice_basecolor.png), validation/17-ice-texture-mask.png,
 validation/17-ice-texture-report.json.
 """
 import json
@@ -187,7 +187,7 @@ for name, ln in lines.items():
     line_report[name] = {"width_px": ln["w"], "colour_rgb": ln["col"].tolist(), "redrawn_texels": int(sel.sum()), "absent_samples": int((pres == 0).sum())}
 out[inside == 0] = (200, 200, 200)  # outside the ice (never visible on the ice mesh)
 (REPO / "assets" / "rink" / "textures").mkdir(parents=True, exist_ok=True)
-Image.fromarray(out).save(REPO / "assets" / "rink" / "textures" / "ice_basecolor.png", optimize=True)
+Image.fromarray(out).save(REPO / "assets" / "rink" / "textures" / "ice_basecolor_reference.png", optimize=True)
 viz = out.copy()
 viz[mask_inpaint > 0] = (0.5 * viz[mask_inpaint > 0] + 0.5 * np.array([255, 0, 255])).astype(np.uint8)
 Image.fromarray(viz).resize((W // 3, H // 3)).save(REPO / "validation" / "17-ice-texture-mask.png")

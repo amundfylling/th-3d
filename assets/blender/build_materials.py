@@ -119,17 +119,17 @@ sheet.save(VAL / "17-overhead-vs-reference.png")
 
 report = {
     "geometry_unchanged": geometry_unchanged,
-    "ice_texture": "assets/rink/textures/ice_basecolor.png (validation/17-ice-texture-report.json)",
+    "ice_texture": "assets/rink/textures/ice_basecolor.png - sponsor-free (D6; validation/drop-sponsors-report.json), from ice_basecolor_reference.png (validation/17-ice-texture-report.json)",
     "uv": "planar from world mm over the inner-boundary bounds; 1 texel = %.6f mm" % tex_rep["texel_mm"],
     "goal_red_srgb_from_photo": [int(v) for v in goal_srgb],
     "housing_black_srgb_from_side_a": [int(v) for v in housing_srgb],
-    "boards": "PLACEHOLDER light grey: board sponsor artwork not reconstructed",
+    "boards": "PLACEHOLDER light grey; no sponsors (user decision D6)",
     "screens": "clear plastic, transmission 1, IOR 1.49 (assumed)",
     "light": "sun 2.2 at (30, 5, 25) deg + grey world 0.55; Cycles, fixed seed",
     "gaps_and_mismatches": [
-        "board sponsor band and black top rail not reconstructed (placeholder grey walls)",
+        "boards plain placeholder grey (sponsors dropped by user decision D6); black top rail not reconstructed",
         "housing 'PLAY OFF 21 / STIGA' print and legs not modelled",
-        "ice: masked areas are reconstructed (26% of the ice), incl. parts of the Byggmax crease logos, Gorilla and WD-40 logos",
+        "ice: sponsor artwork dropped (D6, drop_sponsors.py); figure/goal areas reconstructed (iteration 17)",
         "ice: photo lighting, vignetting and board reflections near the edge remain baked into the texture",
         "ice: lens bow/keystone not corrected (<= about 16 px = about 3 mm at the preview scale)",
         "goal colour from the overhead includes photo lighting; plastic gloss assumed",
