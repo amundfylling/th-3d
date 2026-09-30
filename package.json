@@ -16,7 +16,8 @@
     "trace:board": "node scripts/trace-board.ts",
     "render:board": "node scripts/render-board-overlay.ts",
     "trace:slots": "node scripts/trace-slots.ts",
-    "render:tracks06": "node scripts/render-tracks-overlay.ts validation/06-straight-tracks.svg \"06 - Defender and centre slots\" W-LD,W-RD,W-C,E-LD,E-RD,E-C"
+    "render:tracks06": "node scripts/render-tracks-overlay.ts validation/06-straight-tracks.svg \"06 - Defender and centre slots\" W-LD,W-RD,W-C,E-LD,E-RD,E-C",
+    "render:tracks07": "node scripts/render-tracks-overlay.ts validation/07-winger-tracks.svg \"07 - Winger slots\" W-LW,W-RW,E-LW,E-RW --samples"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

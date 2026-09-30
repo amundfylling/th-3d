@@ -15,7 +15,11 @@
       ],
       "minContrast": 50,
       "extend": 120,
-      "passes": 3
+      "passes": 3,
+      "lateralTol": [
+        8,
+        4
+      ]
     },
     "bare": {
       "step": 4,
@@ -28,7 +32,11 @@
       ],
       "minContrast": 10,
       "extend": 30,
-      "passes": 3
+      "passes": 3,
+      "lateralTol": [
+        4,
+        2
+      ]
     }
   },
   "paths": {
@@ -38,147 +46,235 @@
         "length_px": 2319.6,
         "width_px": 39.39,
         "rms": 0.093,
-        "max": 0.577,
-        "detectedFraction": 0.99
+        "max": 0.573,
+        "detectedFraction": 0.997
       },
       "bare": {
-        "length_px": 1209.8,
-        "width_px": 17,
-        "rms": 0.242,
-        "max": 1.821,
-        "detectedFraction": 0.967
+        "length_px": 1209.7,
+        "width_px": 17.06,
+        "rms": 0.221,
+        "max": 1.107,
+        "detectedFraction": 0.964
       },
       "homography_curve_residual_px": {
-        "rms": 3.78,
-        "max": 8.76,
-        "n": 291
+        "rms": 3.47,
+        "max": 6.18,
+        "n": 290
       }
     },
     "path.W-RD": {
       "iteration": "06",
       "overhead": {
         "length_px": 1320.2,
-        "width_px": 40.25,
+        "width_px": 40.27,
         "rms": 0.046,
         "max": 0.23,
-        "detectedFraction": 0.903
+        "detectedFraction": 0.897
       },
       "bare": {
         "length_px": 667.4,
-        "width_px": 15.59,
-        "rms": 0.288,
-        "max": 1.915,
-        "detectedFraction": 0.927
+        "width_px": 15.63,
+        "rms": 0.215,
+        "max": 1.116,
+        "detectedFraction": 0.915
       },
       "homography_curve_residual_px": {
-        "rms": 0.84,
-        "max": 2.02,
-        "n": 163
+        "rms": 0.86,
+        "max": 1.83,
+        "n": 164
       }
     },
     "path.W-C": {
       "iteration": "06",
       "overhead": {
-        "length_px": 1359.7,
-        "width_px": 39.73,
-        "rms": 0.621,
-        "max": 3.19,
-        "detectedFraction": 0.544
+        "length_px": 1374.8,
+        "width_px": 39.83,
+        "rms": 0.096,
+        "max": 0.762,
+        "detectedFraction": 0.843
       },
       "bare": {
-        "length_px": 409.9,
-        "width_px": 16.37,
-        "rms": 0.346,
-        "max": 1.728,
-        "detectedFraction": 0.962
+        "length_px": 406.3,
+        "width_px": 16.36,
+        "rms": 0.288,
+        "max": 1.139,
+        "detectedFraction": 0.961
       },
       "homography_curve_residual_px": {
-        "rms": 2.55,
-        "max": 6.25,
-        "n": 100
+        "rms": 2.15,
+        "max": 6.72,
+        "n": 101
       }
     },
     "path.E-LD": {
       "iteration": "06",
       "overhead": {
-        "length_px": 2338.1,
-        "width_px": 39.98,
-        "rms": 0.168,
-        "max": 1.891,
-        "detectedFraction": 0.993
+        "length_px": 2388.3,
+        "width_px": 40,
+        "rms": 0.262,
+        "max": 2.603,
+        "detectedFraction": 0.97
       },
       "bare": {
         "length_px": 1255.7,
-        "width_px": 17.02,
-        "rms": 0.158,
-        "max": 1.029,
+        "width_px": 17.03,
+        "rms": 0.159,
+        "max": 1.04,
         "detectedFraction": 0.914
       },
       "homography_curve_residual_px": {
-        "rms": 1.06,
-        "max": 3.22,
-        "n": 302
+        "rms": 2.4,
+        "max": 23.35,
+        "n": 309
       }
     },
     "path.E-RD": {
       "iteration": "06",
       "overhead": {
-        "length_px": 1330.3,
+        "length_px": 1330.4,
         "width_px": 39.39,
         "rms": 0.058,
-        "max": 0.335,
+        "max": 0.332,
         "detectedFraction": 0.928
       },
       "bare": {
         "length_px": 699.3,
-        "width_px": 16.77,
-        "rms": 0.164,
-        "max": 1.103,
-        "detectedFraction": 0.924
+        "width_px": 16.86,
+        "rms": 0.146,
+        "max": 0.808,
+        "detectedFraction": 0.936
       },
       "homography_curve_residual_px": {
-        "rms": 2.66,
-        "max": 4.03,
-        "n": 170
+        "rms": 2.22,
+        "max": 3.61,
+        "n": 171
       }
     },
     "path.E-C": {
       "iteration": "06",
       "overhead": {
-        "length_px": 1380.3,
-        "width_px": 39.42,
-        "rms": 0.149,
-        "max": 0.959,
-        "detectedFraction": 0.747
+        "length_px": 1293.9,
+        "width_px": 39.38,
+        "rms": 0.122,
+        "max": 0.656,
+        "detectedFraction": 0.994
       },
       "bare": {
-        "length_px": 702,
+        "length_px": 701.8,
         "width_px": 15.72,
-        "rms": 0.308,
-        "max": 1.349,
-        "detectedFraction": 0.557
+        "rms": 0.2,
+        "max": 0.606,
+        "detectedFraction": 0.563
       },
       "homography_curve_residual_px": {
-        "rms": 1.91,
-        "max": 4.22,
-        "n": 172
+        "rms": 2.18,
+        "max": 4.37,
+        "n": 161
+      }
+    },
+    "path.E-RW": {
+      "iteration": "07",
+      "overhead": {
+        "length_px": 2430.3,
+        "width_px": 38.94,
+        "rms": 0.246,
+        "max": 1.725,
+        "detectedFraction": 0.934
+      },
+      "bare": {
+        "length_px": 1257.7,
+        "width_px": 15.7,
+        "rms": 0.182,
+        "max": 1.039,
+        "detectedFraction": 0.939
+      },
+      "homography_curve_residual_px": {
+        "rms": 4.11,
+        "max": 11.41,
+        "n": 305
+      }
+    },
+    "path.W-LW": {
+      "iteration": "07",
+      "overhead": {
+        "length_px": 2664.6,
+        "width_px": 38.19,
+        "rms": 0.318,
+        "max": 2.622,
+        "detectedFraction": 0.991
+      },
+      "bare": {
+        "length_px": 1422.9,
+        "width_px": 17.02,
+        "rms": 0.236,
+        "max": 1.303,
+        "detectedFraction": 0.949
+      },
+      "homography_curve_residual_px": {
+        "rms": 2.69,
+        "max": 5.59,
+        "n": 343
+      }
+    },
+    "path.E-LW": {
+      "iteration": "07",
+      "overhead": {
+        "length_px": 2743.2,
+        "width_px": 38.27,
+        "rms": 0.313,
+        "max": 2.406,
+        "detectedFraction": 0.956
+      },
+      "bare": {
+        "length_px": 1360.5,
+        "width_px": 15.76,
+        "rms": 0.144,
+        "max": 0.898,
+        "detectedFraction": 0.956
+      },
+      "homography_curve_residual_px": {
+        "rms": 1.34,
+        "max": 4.41,
+        "n": 339
+      }
+    },
+    "path.W-RW": {
+      "iteration": "07",
+      "overhead": {
+        "length_px": 2401.2,
+        "width_px": 39.18,
+        "rms": 0.204,
+        "max": 1.892,
+        "detectedFraction": 0.95
+      },
+      "bare": {
+        "length_px": 1300.3,
+        "width_px": 15.72,
+        "rms": 0.152,
+        "max": 0.901,
+        "detectedFraction": 0.954
+      },
+      "homography_curve_residual_px": {
+        "rms": 2.73,
+        "max": 6.27,
+        "n": 309
       }
     }
   },
   "homography_bare_to_overhead": {
     "matrix": [
-      2.022895195,
-      -0.01513789046,
-      326.9235624,
-      0.06595387636,
-      2.00865015,
-      1088.66751,
-      0.00001455503015,
-      -0.000006228552337,
+      2.042951037,
+      -0.02328152694,
+      327.1887288,
+      0.07133008021,
+      2.02786169,
+      1080.369408,
+      0.00001635949168,
+      -0.000002923868707,
       1
     ],
-    "initial_from_visible_ends": 5,
-    "curve_rms_px": 2.434
+    "initial_from_visible_ends": 10,
+    "curve_rms_px": 2.689
   },
   "end_checks": [
     {
@@ -189,11 +285,11 @@
         2237.12
       ],
       "predicted": [
-        677.26,
-        2232.39
+        675.03,
+        2230.99
       ],
-      "extension_px": -5.1,
-      "lateral_px": 4.7,
+      "extension_px": -2.9,
+      "lateral_px": 6.1,
       "occluder": null
     },
     {
@@ -204,11 +300,11 @@
         2342.31
       ],
       "predicted": [
-        3037.73,
-        2399.53
+        3046.39,
+        2399.7
       ],
-      "extension_px": 86.8,
-      "lateral_px": 14,
+      "extension_px": 94.2,
+      "lateral_px": 9.6,
       "occluder": "Finland figure"
     },
     {
@@ -219,11 +315,11 @@
         3313
       ],
       "predicted": [
-        1114.69,
-        3311.48
+        1109.23,
+        3311.4
       ],
-      "extension_px": 8.5,
-      "lateral_px": 1.5,
+      "extension_px": 14,
+      "lateral_px": 1.6,
       "occluder": null
     },
     {
@@ -231,44 +327,44 @@
       "end": "end",
       "observed": [
         2443.12,
-        3285.93
+        3285.94
       ],
       "predicted": [
-        2441.24,
-        3286.88
+        2440.95,
+        3285.76
       ],
-      "extension_px": -1.9,
-      "lateral_px": 0.9,
+      "extension_px": -2.2,
+      "lateral_px": -0.2,
       "occluder": null
     },
     {
       "pid": "path.W-C",
       "end": "end",
       "observed": [
-        3850.93,
-        2815.96
+        3868.8,
+        2829.1
       ],
       "predicted": [
-        3880.69,
-        2820.94
+        3886.94,
+        2821.47
       ],
-      "extension_px": 27.9,
-      "lateral_px": 11.4,
+      "extension_px": 18.5,
+      "lateral_px": -6.6,
       "occluder": "Finland figure"
     },
     {
       "pid": "path.E-LD",
       "end": "start",
       "observed": [
-        2653.52,
-        3247.94
+        2631.67,
+        3202.08
       ],
       "predicted": [
-        2582.6,
-        3193.99
+        2583.21,
+        3194.14
       ],
-      "extension_px": 88.5,
-      "lateral_px": 10.3,
+      "extension_px": 23.9,
+      "lateral_px": -42.9,
       "occluder": "Sweden figure"
     },
     {
@@ -276,60 +372,180 @@
       "end": "end",
       "observed": [
         4970.26,
-        3362.92
+        3362.95
       ],
       "predicted": [
-        4972.39,
-        3365.26
+        4971.87,
+        3364.26
       ],
-      "extension_px": 2.1,
-      "lateral_px": 2.4,
+      "extension_px": 1.6,
+      "lateral_px": 1.3,
       "occluder": null
     },
     {
       "pid": "path.E-RD",
       "end": "start",
       "observed": [
-        3185.91,
-        2307.56
+        3185.88,
+        2307.36
       ],
       "predicted": [
-        3177.16,
-        2308.58
+        3187.03,
+        2308.74
       ],
-      "extension_px": 8.8,
-      "lateral_px": -0.7,
+      "extension_px": -1.1,
+      "lateral_px": -1.4,
       "occluder": "Sweden figure"
     },
     {
       "pid": "path.E-RD",
       "end": "end",
       "observed": [
-        4515.91,
+        4515.92,
         2279.5
       ],
       "predicted": [
-        4520.69,
-        2274.84
+        4533.26,
+        2275.7
       ],
-      "extension_px": 4.8,
-      "lateral_px": -4.6,
+      "extension_px": 17.4,
+      "lateral_px": -3.7,
       "occluder": null
     },
     {
       "pid": "path.E-C",
       "end": "start",
       "observed": [
-        1755.72,
-        2773.28
+        1841.21,
+        2760.89
       ],
       "predicted": [
-        1744.34,
-        2773.04
+        1745.19,
+        2773.27
       ],
-      "extension_px": 11.2,
-      "lateral_px": 1.8,
+      "extension_px": 96.8,
+      "lateral_px": 0,
       "occluder": "Sweden figure"
+    },
+    {
+      "pid": "path.E-RW",
+      "end": "start",
+      "observed": [
+        799.67,
+        1867.48
+      ],
+      "predicted": [
+        744.29,
+        1911.04
+      ],
+      "extension_px": 70.4,
+      "lateral_px": -2.9,
+      "occluder": "Sweden figure"
+    },
+    {
+      "pid": "path.E-RW",
+      "end": "end",
+      "observed": [
+        3207.1,
+        1735.71
+      ],
+      "predicted": [
+        3199.75,
+        1739.74
+      ],
+      "extension_px": -7.5,
+      "lateral_px": 3.7,
+      "occluder": null
+    },
+    {
+      "pid": "path.W-LW",
+      "end": "start",
+      "observed": [
+        3245.95,
+        1908.44
+      ],
+      "predicted": [
+        3246.52,
+        1909.85
+      ],
+      "extension_px": -0.1,
+      "lateral_px": -1.5,
+      "occluder": null
+    },
+    {
+      "pid": "path.W-LW",
+      "end": "end",
+      "observed": [
+        4943.26,
+        2910.81
+      ],
+      "predicted": [
+        4944.49,
+        3001.46
+      ],
+      "extension_px": 90.7,
+      "lateral_px": 0.4,
+      "occluder": "Finland figure no. 26"
+    },
+    {
+      "pid": "path.E-LW",
+      "end": "start",
+      "observed": [
+        697.18,
+        2589.34
+      ],
+      "predicted": [
+        703.72,
+        2588.64
+      ],
+      "extension_px": -0.6,
+      "lateral_px": 6.6,
+      "occluder": null
+    },
+    {
+      "pid": "path.E-LW",
+      "end": "end",
+      "observed": [
+        2383.13,
+        3681.4
+      ],
+      "predicted": [
+        2383.7,
+        3682.09
+      ],
+      "extension_px": 0.3,
+      "lateral_px": 0.8,
+      "occluder": null
+    },
+    {
+      "pid": "path.W-RW",
+      "end": "start",
+      "observed": [
+        2421.64,
+        3854.13
+      ],
+      "predicted": [
+        2427.78,
+        3853.9
+      ],
+      "extension_px": -6.1,
+      "lateral_px": 0.1,
+      "occluder": null
+    },
+    {
+      "pid": "path.W-RW",
+      "end": "end",
+      "observed": [
+        4809.54,
+        3758.5
+      ],
+      "predicted": [
+        4907.48,
+        3686.05
+      ],
+      "extension_px": 120.2,
+      "lateral_px": -19.8,
+      "occluder": "Finland figure"
     }
   ],
   "end_check_note": "extension_px > 0: the bare sheet places the slot end further on than the overhead shows (expected where a figure covers the end). For visible ends it measures the disagreement between the two photographs."

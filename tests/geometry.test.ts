@@ -93,6 +93,7 @@ rejects("goal setup chosen without the user's statement", (g) => {
 // ---- Iteration 06+: slot traces --------------------------------------------------------------
 const TRACED_BY_ITERATION: Record<string, string[]> = {
   "06": ["W-LD", "W-RD", "W-C", "E-LD", "E-RD", "E-C"],
+  "07": ["W-LW", "W-RW", "E-LW", "E-RW"],
 };
 
 test("slot paths: expected set traced in both photographs, with identity evidence", () => {
@@ -118,7 +119,7 @@ test("slot paths: expected set traced in both photographs, with identity evidenc
 test("slot paths: each team traced independently (no mirrored copies)", () => {
   const g = load();
   const pts = (p: string) => g.image_traces.find((t: any) => t.id === `trace.slot.${p}.overhead`).points_px;
-  for (const [a, b] of [["W-LD", "E-LD"], ["W-RD", "E-RD"], ["W-C", "E-C"]] as const) {
+  for (const [a, b] of [["W-LD", "E-LD"], ["W-RD", "E-RD"], ["W-C", "E-C"], ["W-LW", "E-LW"], ["W-RW", "E-RW"]] as const) {
     const pa = pts(a), pb = pts(b);
     assert.notEqual(pa.length === pb.length && pa.every((q: number[], i: number) => q[0] === pb[i]?.[0]), true);
     // A point-mirror about the image of the rink centre would map one onto the other exactly; require independent data.
@@ -126,5 +127,13 @@ test("slot paths: each team traced independently (no mirrored copies)", () => {
     const mirrored = pa.map((q: [number, number]) => [2 * c[0] - q[0], 2 * c[1] - q[1]] as [number, number]);
     const exact = mirrored.every((q: [number, number]) => pb.some((r: [number, number]) => Math.hypot(r[0] - q[0], r[1] - q[1]) < 1e-6));
     assert.equal(exact, false, `${b} is not a mirror copy of ${a}`);
+  }
+});
+
+test("slot paths: notes state no tangent-facing and no rod-travel = arc-length assumption", () => {
+  const g = load();
+  for (const f of g.fixture_paths.filter((x: any) => x.image_trace_ids.length > 0)) {
+    assert.match(f.note, /NOT assumed to follow the slot tangent/);
+    assert.match(f.note, /NOT assumed equal to arc length/);
   }
 });

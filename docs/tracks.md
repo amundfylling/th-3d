@@ -44,7 +44,7 @@ team's path.
 5. **Homography.** A bare-to-overhead homography is fitted to all curves, starting from the ends visible in both images and refined by closest-point iterations. Points beyond an occluded end are ignored. It predicts the slot ends hidden under figures in the overhead (`assume.bare_sheet_same_slot_layout`).
 6. **Curve representation.** A polyline through the smoothed centres at the section spacing. The fit error is the RMS and max distance of the raw section centres from it (`stats.fit_rms_px`, `fit_max_px`).
 
-## Results, iteration 06
+## Results, iteration 06 (first run, superseded by the table below)
 
 - **Slot width:** 39.4–40.3 px in the overhead and 15.6–17.0 px in the bare sheet.
 - **Fit error:** RMS 0.05–0.62 px (overhead).
@@ -56,3 +56,77 @@ team's path.
   - the black printed logo box that touches W-C and E-C inside the centre disc;
   - the white printed bands in the bare sheet that hide the W-C start and E-C end.
 - **Limits:** each `visible_slot_limits` value is an arc length in overhead **pixels**. A mm centreline (`centreline`) exists only through the ASSUMED preview scale.
+
+## Winger identity (iteration 07)
+
+| Path | Slot | Figure on it (overhead) |
+| --- | --- | --- |
+| W-LW | Upper slot from the centre region along the top, around the top-right corner and down behind the E goal | Finland no. 26, on its lower end behind the E goal |
+| W-RW | Lower slot from the centre region along the bottom, curving up into the bottom-right corner | Finland, at the curved right end |
+| E-LW | Lower slot running down behind the W goal, around the bottom-left corner and along the bottom | Sweden no. 92 beside its top end; the stick crosses the slot |
+| E-RW | Upper slot from the W corner (curve at the top-left) along the top | Sweden, at the curved left end |
+
+The two left-wing rods (W-LW, E-LW) carry link 7A in the manual (7111-9073-01). What it does to the
+figure's motion is unknown.
+
+## Current results: all 10 outfield slots (after iteration 07)
+
+Tracer changes in iteration 07. They apply to all slots, and 06 was re-traced and re-reviewed:
+- **Edge scan:** outward from the core, bridging short light reflection streaks inside a dark slot (W-RW, E-RW).
+- **Lateral-consistency filter from the second pass:** a quadratic fit of the neighbours' offsets, which rejects sections that jump onto a figure standing over a slot.
+- **Gap filling:** interpolates the sideways offset along the guide, so curves are kept across gaps.
+- **Bare-sheet seeds:** the curve seeds for W-LW, E-LW and W-RW were replaced by measured white-run centres; the ones I first read off the grid were 20–50 px out.
+
+Curve representation: a polyline at an 8 px spacing in the overhead and 4 px in the bare sheet. That
+is about 45 points per quarter circle on the corner curves (radius about 300–450 px). The fit error
+is the distance of the raw section centres from the stored polyline.
+
+| Path | Overhead length px | Width px | Fit RMS / max px | Detected | Bare->overhead residual RMS / max px |
+| --- | --- | --- | --- | --- | --- |
+| W-LD | 2319.6 | 39.39 | 0.09 / 0.57 | 100% | 3.47 / 6.18 |
+| W-RD | 1320.2 | 40.27 | 0.05 / 0.23 | 90% | 0.86 / 1.83 |
+| W-C | 1374.8 | 39.83 | 0.1 / 0.76 | 84% | 2.15 / 6.72 |
+| E-LD | 2388.3 | 40 | 0.26 / 2.6 | 97% | 2.4 / 23.35 |
+| E-RD | 1330.4 | 39.39 | 0.06 / 0.33 | 93% | 2.22 / 3.61 |
+| E-C | 1293.9 | 39.38 | 0.12 / 0.66 | 99% | 2.18 / 4.37 |
+| E-RW | 2430.3 | 38.94 | 0.25 / 1.73 | 93% | 4.11 / 11.41 |
+| W-LW | 2664.6 | 38.19 | 0.32 / 2.62 | 99% | 2.69 / 5.59 |
+| E-LW | 2743.2 | 38.27 | 0.31 / 2.41 | 96% | 1.34 / 4.41 |
+| W-RW | 2401.2 | 39.18 | 0.2 / 1.89 | 95% | 2.73 / 6.27 |
+
+Bare-to-overhead homography over all 10 curves: RMS **2.689 px**.
+
+| End | Overhead | Bare-predicted along (px) | Across (px) |
+| --- | --- | --- | --- |
+| W-LD start | visible | -2.9 | 6.1 |
+| W-LD end | hidden: Finland figure | 94.2 | 9.6 |
+| W-RD start | visible | 14 | 1.6 |
+| W-RD end | visible | -2.2 | -0.2 |
+| W-C end | hidden: Finland figure | 18.5 | -6.6 |
+| E-LD start | hidden: Sweden figure | 23.9 | -42.9 |
+| E-LD end | visible | 1.6 | 1.3 |
+| E-RD start | hidden: Sweden figure | -1.1 | -1.4 |
+| E-RD end | visible | 17.4 | -3.7 |
+| E-C start | hidden: Sweden figure | 96.8 | 0 |
+| E-RW start | hidden: Sweden figure | 70.4 | -2.9 |
+| E-RW end | visible | -7.5 | 3.7 |
+| W-LW start | visible | -0.1 | -1.5 |
+| W-LW end | hidden: Finland figure no. 26 | 90.7 | 0.4 |
+| E-LW start | visible | -0.6 | 6.6 |
+| E-LW end | visible | 0.3 | 0.8 |
+| W-RW start | visible | -6.1 | 0.1 |
+| W-RW end | hidden: Finland figure | 120.2 | -19.8 |
+
+Reading the table:
+- For **visible ends**, the along/across values measure the disagreement between the two photographs. They stay within 17 px.
+- For **hidden ends**, the along value is how much further the slot runs under the figure.
+- **Explicit difference:** at the curved E-LD start under the Sweden figure, the two photographs disagree by up to 23 px, and the predicted hidden end sits 43 px across the slot. That end position is therefore uncertain by that much.
+
+## Where usable travel still needs a hardware recording
+
+None of the ten `usable_stops` can come from photographs. Each needs a push/pull recording of its rod
+to the physical stops. The most important:
+1. **Ends hidden under figures** in the reference photo: W-LD end, W-C end, E-LD start, E-RD start, E-C start, E-RW start, W-LW end (behind the E goal), W-RW end. The slot end is only predicted, and a stop may sit short of the slot end.
+2. **Behind-goal and corner sections** of W-LW and E-LW, and the corner curves of E-RW and W-RW. The relation between rod displacement and position along a curve is not linear arc length, and the left-wing link 7A may change it.
+3. **Figure rotation along every path:** twist-to-rotation transfer, rotation limits and backlash. Rotation is not assumed to follow the slot tangent.
+4. **Where the figures stand relative to the slot:** in the overhead, several figures stand beside their slot (for example Sweden no. 92 about 80 px to the left of E-LW). The fixture axis may therefore be offset from the slot centreline (`fixture_axis_path` stays unknown).

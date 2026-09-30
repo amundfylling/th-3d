@@ -22,6 +22,8 @@ export interface SlotTraceParams {
   extend: number;
   /** Guide refinement passes. */
   passes: number;
+  /** Max sideways jump (px) of a section centre from the median of its neighbours: [first pass, later passes]. */
+  lateralTol: [number, number];
 }
 
 export interface Section {
@@ -59,7 +61,11 @@ const sub = (a: Vec2, b: Vec2): Vec2 => [a[0] - b[0], a[1] - b[1]];
 const add = (a: Vec2, b: Vec2): Vec2 => [a[0] + b[0], a[1] + b[1]];
 const mul = (a: Vec2, k: number): Vec2 => [a[0] * k, a[1] * k];
 const len = (a: Vec2): number => Math.hypot(a[0], a[1]);
-const unit = (a: Vec2): Vec2 => mul(a, 1 / len(a));
+const unit = (a: Vec2): Vec2 => {
+  const l = len(a);
+  if (!(l > 0)) throw new Error("zero-length direction in slot trace");
+  return mul(a, 1 / l);
+};
 const median = (a: number[]): number => [...a].sort((x, y) => x - y)[Math.floor(a.length / 2)]!;
 
 /** Resamples a polyline at a fixed arc-length spacing (first and last points kept). */
@@ -126,9 +132,33 @@ function measure(signal: Signal, guide: Vec2, normal: Vec2, tangent: Vec2, p: Sl
   if (contrast < p.minContrast) return { ...base, contrast, reject: "low contrast" };
   const thrL = (core + sideL) / 2;
   const thrR = (core + sideR) / 2;
-  let l = -1, r = -1;
-  for (let i = iCore; i > 0; i--) if (vals[i - 1]! < thrL) { l = i - 1; break; }
-  for (let i = iCore; i < n - 1; i++) if (vals[i + 1]! < thrR) { r = i + 1; break; }
+  // Edges: scan outward from the core to the first drop below the mid level. A short light interruption
+  // (a reflection streak inside the dark slot, < 0.35 slot widths) is bridged only if the signal
+  // returns above the mid level and the run stays within 1.3 expected widths; a neighbouring dark
+  // object separated by a light gap is therefore not merged into the slot.
+  const bridge = Math.round((0.35 * p.expectedWidth) / ds);
+  const maxRun = (1.3 * p.expectedWidth) / ds;
+  const scan = (dir: 1 | -1, thr: number): number => {
+    let i = iCore;
+    for (;;) {
+      const j = i + dir;
+      if (j < 0 || j >= n) return -1;
+      if (vals[j]! < thr) {
+        let k = j;
+        let back = -1;
+        for (let m = 1; m <= bridge; m++) {
+          k = j + dir * m;
+          if (k < 0 || k >= n) break;
+          if (vals[k]! >= thr) { back = k; break; }
+        }
+        if (back >= 0 && Math.abs(back - iCore) < maxRun) { i = back; continue; }
+        return j;
+      }
+      i = j;
+    }
+  };
+  const l = scan(-1, thrL);
+  const r = scan(1, thrR);
   if (l < 0 || r < 0) return { ...base, contrast, reject: "run touches window edge" };
   const eL = offs[l]! + (ds * (thrL - vals[l]!)) / (vals[l + 1]! - vals[l]!);
   const eR = offs[r - 1]! + (ds * (vals[r - 1]! - thrR)) / (vals[r - 1]! - vals[r]!);
@@ -137,6 +167,62 @@ function measure(signal: Signal, guide: Vec2, normal: Vec2, tangent: Vec2, p: Sl
     return { ...base, contrast, width, reject: `width ${width.toFixed(1)} px` };
   const mid = (eL + eR) / 2;
   return { ...base, ok: true, centre: add(guide, mul(normal, mid)), width, contrast };
+}
+
+/**
+ * Centre for a rejected section: the guide point shifted sideways by the offset interpolated between
+ * the nearest accepted sections. Unlike a straight chord between centres, this keeps the guide's
+ * curvature across a gap on a curve.
+ */
+function fillFromGuide(sections: Section[], i: number): Vec2 {
+  const off = (s: Section): number => (s.centre![0] - s.guide[0]) * s.normal[0] + (s.centre![1] - s.guide[1]) * s.normal[1];
+  let j0 = i - 1; while (!sections[j0]!.ok) j0--;
+  let j1 = i + 1; while (!sections[j1]!.ok) j1++;
+  const f = (i - j0) / (j1 - j0);
+  const o = off(sections[j0]!) * (1 - f) + off(sections[j1]!) * f;
+  const s = sections[i]!;
+  return add(s.guide, mul(s.normal, o));
+}
+
+/** Least-squares quadratic through (x, y), evaluated at x = 0 (robust to smooth curvature). */
+function quadraticAtZero(xs: number[], ys: number[]): number {
+  const S = (f: (x: number, y: number) => number): number => xs.reduce((acc, x, i) => acc + f(x, ys[i]!), 0);
+  const m = [S((x) => x ** 4), S((x) => x ** 3), S((x) => x ** 2), S((x) => x ** 3), S((x) => x ** 2), S((x) => x), S((x) => x ** 2), S((x) => x), xs.length];
+  const rhs = [S((x, y) => x * x * y), S((x, y) => x * y), S((_, y) => y)];
+  const det3 = (q: number[]): number => q[0]! * (q[4]! * q[8]! - q[5]! * q[7]!) - q[1]! * (q[3]! * q[8]! - q[5]! * q[6]!) + q[2]! * (q[3]! * q[7]! - q[4]! * q[6]!);
+  const D = det3(m);
+  if (Math.abs(D) < 1e-9) return ys.reduce((a, b) => a + b, 0) / ys.length;
+  return det3(m.map((v, j) => (j % 3 === 2 ? rhs[Math.floor(j / 3)]! : v))) / D;
+}
+
+/**
+ * Rejects accepted sections whose centre jumps sideways (e.g. onto a dark part of a figure standing
+ * over the slot): compared with the median offset of accepted neighbours within +-6 sections, and,
+ * after the first pass, against a cap on the offset from the guide itself.
+ */
+function rejectLateralOutliers(sections: Section[], tol: number, cap: number): void {
+  const off = (s: Section): number => (s.centre![0] - s.guide[0]) * s.normal[0] + (s.centre![1] - s.guide[1]) * s.normal[1];
+  for (let round = 0; round < 2; round++) {
+    const offsets = sections.map((s) => (s.ok ? off(s) : NaN));
+    sections.forEach((s, i) => {
+      if (!s.ok) return;
+      if (Math.abs(offsets[i]!) > cap) {
+        s.ok = false;
+        s.reject = `offset ${offsets[i]!.toFixed(1)} px from guide`;
+        return;
+      }
+      const xs: number[] = [];
+      const ys: number[] = [];
+      for (let j = Math.max(0, i - 6); j <= Math.min(sections.length - 1, i + 6); j++)
+        if (j !== i && !Number.isNaN(offsets[j]!)) { xs.push(j - i); ys.push(offsets[j]!); }
+      if (xs.length < 6) return;
+      const pred = quadraticAtZero(xs, ys);
+      if (Math.abs(offsets[i]! - pred) > tol) {
+        s.ok = false;
+        s.reject = `lateral jump ${(offsets[i]! - pred).toFixed(1)} px`;
+      }
+    });
+  }
 }
 
 /** Finds where the slot stops along `dir` from `from` (sub-pixel), using the centreline signal. */
@@ -152,6 +238,7 @@ function findEnd(signal: Signal, from: Vec2, dir: Vec2, width: number, maxDist: 
     const v = signal(from[0] + t * dir[0], from[1] + t * dir[1]);
     if (v < thr) {
       const tt = t - ds + (ds * (prev - thr)) / (prev - v);
+      if (!Number.isFinite(tt)) break;
       return { point: add(from, mul(dir, tt)), refined: core - outside > 0 && tt < maxDist - width };
     }
     prev = v;
@@ -174,6 +261,8 @@ export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams): Slo
       const t = tans[i]!;
       return measure(signal, g, [-t[1], t[0]], t, pp);
     });
+    // The first pass follows the coarse seed chords, so the lateral test starts once the guide follows the slot.
+    if (pass > 0) rejectLateralOutliers(sections, p.lateralTol[1], 0.15 * p.expectedWidth);
     // The slot is the run of accepted sections that covers the seed's middle, allowing gaps.
     const okIdx = sections.map((s, i) => (s.ok ? i : -1)).filter((i) => i >= 0);
     if (okIdx.length < 3) throw new Error("slot not found near seed");
@@ -191,16 +280,7 @@ export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams): Slo
     span = [a, b];
     // New guide: detected centres in the span, gaps linearly interpolated, then smoothed.
     const pts: Vec2[] = [];
-    for (let i = a; i <= b; i++) {
-      const s = sections[i]!;
-      if (s.ok) pts.push(s.centre!);
-      else {
-        let j0 = i - 1; while (!sections[j0]!.ok) j0--;
-        let j1 = i + 1; while (!sections[j1]!.ok) j1++;
-        const f = (i - j0) / (j1 - j0);
-        pts.push(add(sections[j0]!.centre!, mul(sub(sections[j1]!.centre!, sections[j0]!.centre!), f)));
-      }
-    }
+    for (let i = a; i <= b; i++) pts.push(sections[i]!.ok ? sections[i]!.centre! : fillFromGuide(sections, i));
     const smoothed = smooth(pts, 3);
     if (pass < p.passes - 1) {
       // Later passes: tight search around the refined guide and a width within +-25% of the median,
@@ -221,16 +301,8 @@ export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams): Slo
   const pts: Vec2[] = [];
   const detected: boolean[] = [];
   inSpan.forEach((s, i) => {
-    if (s.ok) {
-      pts.push(s.centre!);
-      detected.push(true);
-    } else {
-      let j0 = i - 1; while (!inSpan[j0]!.ok) j0--;
-      let j1 = i + 1; while (!inSpan[j1]!.ok) j1++;
-      const f = (i - j0) / (j1 - j0);
-      pts.push(add(inSpan[j0]!.centre!, mul(sub(inSpan[j1]!.centre!, inSpan[j0]!.centre!), f)));
-      detected.push(false);
-    }
+    pts.push(s.ok ? s.centre! : fillFromGuide(inSpan, i));
+    detected.push(s.ok);
   });
   const centre = smooth(pts, 2);
   const widthMedian = median(inSpan.filter((s) => s.ok).map((s) => s.width!));

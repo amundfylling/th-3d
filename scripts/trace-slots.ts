@@ -23,9 +23,9 @@ const seeds = JSON.parse(readFileSync("data/slot-seeds.json", "utf8")) as { imag
 // ---- Operator parameters ------------------------------------------------------------------------
 const PARAMS: Record<ImageKey, SlotTraceParams> = {
   // Overhead: dark slots (~37 px) on light ice/print. Signal = 255 - max(R,G,B).
-  overhead: { step: 8, halfWindow: 60, searchRadius: 40, expectedWidth: 37, widthRange: [0.7, 1.35], minContrast: 50, extend: 120, passes: 3 },
+  overhead: { step: 8, halfWindow: 60, searchRadius: 40, expectedWidth: 37, widthRange: [0.7, 1.35], minContrast: 50, extend: 120, passes: 3, lateralTol: [8, 4] },
   // Bare sheet: white cut-outs (~17 px) on a light grey sheet. Signal = min(R,G,B).
-  bare: { step: 4, halfWindow: 30, searchRadius: 20, expectedWidth: 17, widthRange: [0.6, 1.5], minContrast: 10, extend: 30, passes: 3 },
+  bare: { step: 4, halfWindow: 30, searchRadius: 20, expectedWidth: 17, widthRange: [0.6, 1.5], minContrast: 10, extend: 30, passes: 3, lateralTol: [4, 2] },
 };
 const SIGNAL: Record<ImageKey, (r: number, g: number, b: number) => number> = {
   overhead: (r, g, b) => 255 - Math.max(r, g, b),
@@ -229,8 +229,8 @@ for (const [pid, seed] of Object.entries(seeds.paths)) {
     image_trace_ids: traceIds,
     visible_slot_limits: { start: limit("start", 0), end: limit("end", lengthPx) },
     note: [
-      fp.note,
-      "Visible slot centreline only: the fixture axis may be offset from it and the usable travel stops (usable_stops) are unknown until the rods are recorded.",
+      fp.control_rod.has_link ? "Manual shows link 7A (7111-9073-01) on the left-wing rod; its effect on figure motion is unknown." : undefined,
+      "Visible slot centreline only: the fixture axis may be offset from it and the usable travel stops (usable_stops) are unknown until the rods are recorded. The figure's rotation is NOT assumed to follow the slot tangent, and rod displacement is NOT assumed equal to arc length along the slot.",
     ].filter(Boolean).join(" "),
   };
   Object.assign(fp, updated);
