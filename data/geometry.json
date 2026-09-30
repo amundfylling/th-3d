@@ -158,6 +158,16 @@
         "fixture_paths.*.centreline"
       ],
       "replace_with": "Overhead of the user's empty installed rink with scale markers."
+    },
+    {
+      "id": "assume.fixture_axis_on_slot_centreline",
+      "statement": "For previews, each figure's fixture rotation axis runs along its visible slot centreline (offset [0, 0] mm) at ice level.",
+      "reason": "The real axis position relative to the slot is unknown; in the overhead several figures stand beside their slot, so an offset is likely.",
+      "affects": [
+        "src/model/pose.ts previews",
+        "fixture_paths.*.fixture_axis_path"
+      ],
+      "replace_with": "Measured fixture-axis position (loose and installed figure, iteration 10 inputs)."
     }
   ],
   "landmarks": [
