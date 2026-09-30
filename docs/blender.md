@@ -80,3 +80,21 @@ Known cosmetic defect: a small shading notch where the crossbar meets the +y pos
 5. **Slot width and edge profile at the ice surface.** The width comes from the overhead at the preview scale (6.8–7.2 mm). The puck can catch in a slot or be deflected by it.
 6. **Ice-sheet step at the board base and screen gaps.** They affect rebounds along the boards and ends.
 7. **Board height and wall thickness** (preview 30 / 9 mm). They set rebound heights and whether the puck can leave the rink.
+
+## Representative skater, lower part (iteration 13)
+
+```sh
+/root/venvs/blender/bin/python assets/blender/build_skater_lower.py   # about 1.5 min
+```
+
+- **Output:** `assets/figures/skater_W-RD_lower.blend/.glb`. It is **one rigid object**, `SkaterLower.W-RD`, with no skeleton and no separate stick.
+- **Origin:** the fixture axis at the ice plane (preview origin height 0). +x is the figure's heading and +y its left.
+- **Built from** `figure_assets[fig.W-RD].contact_shapes`, which are PROVISIONAL debug geometry (`assume.debug_contacts.W-RD`):
+  - blade: 1.2 mm thick, thickened toward the figure so the stored outer face is on the surface;
+  - shaft: 64-sided rod, radius 1.3 mm, starting where the stored line reaches z = r so it does not cut the ice;
+  - skates: 2.5 × 3 mm blocks.
+  The build sizes are in `preview_parameters`.
+- **Check** (`validation/13-skater-lower-report.json`): BVH distance from the stored contact polylines to the mesh is at most 0.0016 mm (tolerance 0.01), and nothing is below the ice.
+  - The first run failed: the shaft had 0.025 mm facet error with 16 sides, and the rod dipped 1 mm under the ice. Both were fixed in the build; the tolerance was not changed.
+- **Stills:** `validation/13-contacts-top.png` and `13-contacts-side.png` (side seen from behind the figure). They show the pivot axes (red +x, green +y, black z), orange contact outlines, and the puck on the blade's forward face.
+- **Visible limitation:** the debug blade is 4 mm high against a 12 mm preview puck. Both are unmeasured.

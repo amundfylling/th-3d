@@ -1,0 +1,34 @@
+{
+  "blender": "4.5.14 LTS",
+  "origin": "fixture axis at the ice plane (preview originHeightMm = 0)",
+  "source": "figure_assets[fig.W-RD].contact_shapes (status assumed, provisional)",
+  "build_sizes_mm": {
+    "blade_thickness": 1.2,
+    "shaft_radius": 1.3,
+    "skate_width": 2.5,
+    "skate_height": 3.0,
+    "blade_height": 4
+  },
+  "contact_on_surface_max_mm": {
+    "blade_face": 0.0,
+    "shaft_axis_to_surface_minus_radius": 0.0016,
+    "skate_left_on_bottom_face": 0.0,
+    "skate_right_on_bottom_face": 0.0
+  },
+  "tolerance_mm": 0.01,
+  "bounds_mm_xyz_min_max": [
+    -6.0,
+    -6.25,
+    0.0,
+    6.0,
+    42.59,
+    21.018
+  ],
+  "shaft_built_from_mm": [
+    3.497,
+    30.176,
+    1.3
+  ],
+  "nothing_below_ice": true,
+  "pass": true
+}
