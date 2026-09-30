@@ -1,0 +1,7 @@
+node_modules/
+.cache/
+*.tsbuildinfo
+.DS_Store
+# Bulk render outputs (review artifacts in validation/*.svg are committed)
+validation/renders/
+out/

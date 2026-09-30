@@ -1,0 +1,18 @@
+{
+  "name": "stiga-play-off-21",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Geometry data and static diagnostics for STIGA Play Off 21 shot videos",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "smoke": "node scripts/smoke.ts"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.4",
+    "typescript": "7.0.2"
+  }
+}

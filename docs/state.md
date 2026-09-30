@@ -2,8 +2,8 @@
 
 ## Current position
 
-- Last completed iteration: **02 - Recover the original reference assets** (2026-09-30).
-- Next iteration: **03 - Bootstrap the smallest useful tooling**.
+- Last completed iteration: **03 - Bootstrap the smallest useful tooling** (2026-09-30).
+- Next iteration: **04 - Establish one geometry data contract**.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Verification status
@@ -14,7 +14,8 @@
 | Embedded images | All 10 extracted to `references/originals/` (7 JPEG byte-identical to the PDF's DCT streams, 3 lossless PNG). Native sizes verified against captions. SHA-256 in `references/index.json`. |
 | View identities | Confirmed by viewing each image (downscaled previews) plus two native-resolution crops. |
 | Remote originals | **Not obtained.** Network policy blocks `stigasports.centracdn.net`, `www.stigasports.com`, `www.stigacanada.ca`, `d.otto.de`, `www.ithf.info` (curl CONNECT 403; WebFetch EGRESS_BLOCKED). Byte identity with remote files unverified. |
-| Builds / renders / tests | None exist; none run. |
+| Tooling (iteration 03) | `npm ci`, `npm run typecheck`, `npm run smoke` all run and pass (clean reinstall from lockfile). Typecheck confirmed to fail on a deliberate type error. Smoke SVG rendered in headless Chromium and viewed. |
+| Blender | Not installed in this environment. |
 | Dimensional accuracy | Nothing measured. All sizes are `catalog_nominal` or `unknown`. |
 
 ## Key decisions
@@ -28,6 +29,8 @@
 - The PDF-embedded gallery images (5154-5636 px) are the working originals; remote downloads are only
   needed for byte-identity verification, not for tracing.
 - Figures are rigid; motion data stays separate from camera and presentation (see CLAUDE.md).
+- Tooling: npm + TypeScript 7.0.2 typecheck only; Node 22.18+ runs `.ts` directly (erasable syntax,
+  `.ts` import extensions). No tsx/ts-node, Remotion, bundler or test framework yet. See `docs/tools.md`.
 - Planned structure: `references/`, `data/`, `src/model/`, `assets/`, `validation/`, `docs/`.
 
 ## Missing inputs (most important first)
@@ -47,6 +50,8 @@
 
 ## Review artifacts
 
+- `validation/03-smoke.svg` - toolchain smoke diagnostic (iteration 03; not hockey geometry).
+- `docs/tools.md` - environment findings; `README.md` - working commands.
 - `references/index.json` - source catalogue (main artifact of iteration 02).
 - `references/originals/` - the ten recovered images.
 - `docs/reference.md` - reference brief, now with recovered assets and manual page numbers.
@@ -58,3 +63,4 @@
 | --- | --- | --- | --- |
 | 01 | 2026-09-30 | CLAUDE.md, docs/reference.md, docs/state.md | PDF text/link/image-object extraction; page renders viewed; PDF SHA-256 recorded, file unchanged |
 | 02 | 2026-09-30 | 10 PDF-embedded images in references/originals/, references/index.json, manual pages 2/18 in docs/reference.md | Byte comparison of extracted JPEGs vs decoded PDF streams (7/7 identical); decoded sizes vs captions (10/10 match); SHA-256 computed; JSON parse check; previews and 2 native crops viewed; download attempts for 5 hosts (all blocked); PDF SHA-256 unchanged |
+| 03 | 2026-09-30 | package.json, package-lock.json, tsconfig.json, .gitignore, scripts/smoke.ts, data/fixtures/smoke.json, validation/03-smoke.svg, README.md, docs/tools.md | Environment inspected; `npm ci` clean reinstall; `npm run typecheck` pass (and fails on a probe error); `npm run smoke` pass; SVG screenshot in headless Chromium viewed |
