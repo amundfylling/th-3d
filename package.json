@@ -25,7 +25,8 @@
     "render:contacts10": "node scripts/render-contacts.ts",
     "blender:rink": "/root/venvs/blender/bin/python assets/blender/build_rink.py && /root/venvs/blender/bin/python assets/blender/verify_rink.py",
     "blender:hardware": "/root/venvs/blender/bin/python assets/blender/build_hardware.py",
-    "blender:skater-lower": "/root/venvs/blender/bin/python assets/blender/build_skater_lower.py"
+    "blender:skater-lower": "/root/venvs/blender/bin/python assets/blender/build_skater_lower.py",
+    "blender:skater-body": "/root/venvs/blender/bin/python assets/blender/build_skater_body.py"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

@@ -5,25 +5,23 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Batch run (docs/autonomous-run.md) in progress. Last completed: **13 - Model one skater's blade and feet**. Next: **14**.
+- Batch run (docs/autonomous-run.md) in progress. Last completed: **14 - Complete that skater's rigid body shape**. Next: **15**.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Active iteration (batch run, docs/autonomous-run.md)
 
-**14 - Complete that skater's rigid body shape.** Repair count: 0/3. (Checklist written when started.)
+**15 - Model one goalie separately.** Repair count: 0/3. (Checklist written when started.)
 
-Iteration 13 closed after 2 repair cycles:
-1. The numerical check failed (shaft facet error 0.025 mm; shaft 1 mm below the ice). Fixed in the build; tolerance unchanged.
-2. The side close-up hid the blade behind the skate, then behind the puck. Camera now looks from behind the figure.
-
-All items passed:
-- [x] One rigid object at the fixture axis (ice plane), built from the canonical provisional contacts; no skeleton.
-- [x] Statuses: contacts assumed/provisional; build sizes in preview_parameters.
-- [x] Contacts on the surface <= 0.0016 mm; GLB bounds match the converted extents (tests).
-- [x] .blend and GLB saved; no torso, head or uniform.
-- [x] Top and side close-ups with axes, outlines and a puck, AI-reviewed.
+Iteration 14 closed after 1 repair cycle (metaball calibration: disjoint blobs, IoU 0.40 -> 0.816). All items passed:
+- [x] One rigid object Skater.W-RD = body proxy + vertex-identical iteration-13 lower asset; origin at the fixture axis; no armature.
+- [x] Neutral clay; .blend and GLB.
+- [x] Top-silhouette IoU 0.816 >= 0.75; height 56.8 mm within 57 +- 10%.
+- [x] View sheet with evidence labels (only the overhead evidenced), AI-reviewed; defects listed in docs/figures.md.
+- [x] Provisional status recorded in data (inventory) and docs; not claimed as the physical piece.
+- [x] Mold sharing: evidence shows different molds -> variants needed.
+- [x] Skate-lobe conflict recorded (contacts unchanged).
 
 ## Verification status
 
@@ -98,6 +96,7 @@ All items passed:
 
 ## Review artifacts
 
+- **`validation/14-view-sheet.png`**, `14-silhouette-top.png` - iteration 14 (assets/figures/skater_W-RD). Docs: `docs/figures.md`.
 - **`validation/13-contacts-top.png`**, `13-contacts-side.png` - iteration 13 (assets/figures/skater_W-RD_lower).
 - **`validation/12-goal-oblique.png`**, `12-puck-side.png`, `12-overview.png` - iteration 12 (assets/goal, screen, puck, scene/static_hardware).
 - **`validation/11-rink-overhead.png`**, `11-rink-side.png` - iteration 11 clay rink (assets/rink/rink.blend, rink.glb). Docs: `docs/blender.md`.
@@ -136,4 +135,5 @@ All items passed:
 | 10 | 2026-09-30 | scripts/define-contacts.ts, render-contacts.ts; schema (provisional contact shapes, inventory); fig.W-RD inventory + provisional contacts; W-RD stick left; validation/10-skater-contacts.svg; docs/contacts.md; tests/contacts.test.ts | `npm run check` 37/37; sheet AI-reviewed; 1 presentation repair |
 | 11 | 2026-09-30 | assets/blender/stiga_blender.py, build_rink.py, verify_rink.py; assets/rink/rink.blend + rink.glb; preview_parameters (schema + data); slot tracer fixes (Hermite gaps, curve-following hidden ends, goalie seeds); validation/11-*; docs/blender.md; tests/rink-asset.test.ts | `npm run check` 40/40; stills AI-reviewed; 2 repair cycles |
 | 12 | 2026-09-30 | assets/blender/build_hardware.py; assets/goal, screen, puck, scene/static_hardware (.blend/.glb); hardware preview_parameters; 'ratio' unit; side A and puck sources; geometry 0.5.0; validation/12-*; tests/hardware-assets.test.ts | `npm run check` 46/46; 3 stills AI-reviewed; 2 repair cycles |
-| 13 | 2026-09-30 | assets/blender/build_skater_lower.py; assets/figures/skater_W-RD_lower.blend/.glb; contact build sizes; validation/13-*; tests/skater-lower.test.ts | `npm run check` 49/49; close-ups AI-reviewed; 2 repair cycles |
+| 13 | 2026-09-30 | assets/blender/build_skater_lower.py; assets/figures/skater_W-RD_lower.blend/.glb; contact build sizes; validation/13-*; tests/skater-lower.test.ts | `npm run check` 52/52; close-ups AI-reviewed; 2 repair cycles |
+| 14 | 2026-09-30 | assets/blender/build_skater_body.py; assets/figures/skater_W-RD.blend/.glb; traced top silhouette (trace.figure.W-RD...); W-RD inventory (body proxy, mold sharing, skate conflict); validation/14-*; docs/figures.md; tests/skater-body.test.ts | `npm run check` pass; silhouette IoU 0.816; view sheet AI-reviewed; 1 repair cycle |

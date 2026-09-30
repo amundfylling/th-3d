@@ -76,7 +76,9 @@ const inventory: InventoryItem[] = [
   { item: "feet / skates", status: "unknown", evidence: "Hidden under the body in the top view; visible but unscaled and unidentifiable per figure in the side views." },
   { item: "contact heights (blade, skates, ice clearance)", status: "unknown", evidence: "No scaled side view of a loose or installed figure." },
   { item: "figure height", status: "catalog_nominal", evidence: "Approx. 57 mm (STIGA Canada), height datum unspecified." },
-  { item: "mold shared with other skaters", status: "unknown", evidence: "Several skaters look alike in the gallery, but positions and handedness differ; not established." },
+  { item: "mold shared with other skaters", status: "unknown", evidence: "Side and oblique photos show Finland skaters with clearly different molded poses (deep crouch, low stickhandling, skating stride); jersey numbers are not consistent across photos. W-RD's mold is NOT shown to be shared; other positions need their own variants." },
+  { item: "body shape (torso, arms, legs, head)", status: "assumed", evidence: "Iteration 14 proxy (assets/figures/skater_W-RD.*): matched to the traced top silhouette (trace.figure.W-RD.overhead.top_silhouette, IoU 0.82) and catalog height; front, back and side views have no W-RD evidence." },
+  { item: "skate position vs top silhouette", status: "unknown", evidence: "CONFLICT: the top silhouette shows a right-leg lobe reaching y about -24 mm (pivot-local), while the debug skate placeholders sit at +-5 mm. Contacts left unchanged pending measurement." },
 ];
 
 g.assumptions = g.assumptions.filter((a) => a.id !== ASSUMPTION);
