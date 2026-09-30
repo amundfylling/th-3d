@@ -30,7 +30,8 @@
     "goalie:define": "node scripts/define-goalie.ts",
     "blender:goalie": "/root/venvs/blender/bin/python assets/blender/build_goalie.py",
     "assembly:poses": "node scripts/assembly-poses.ts",
-    "blender:assembly": "/root/venvs/blender/bin/python assets/blender/build_assembly.py"
+    "blender:assembly": "/root/venvs/blender/bin/python assets/blender/build_assembly.py",
+    "blender:materials": "/root/venvs/blender/bin/python assets/blender/make_ice_texture.py && /root/venvs/blender/bin/python assets/blender/build_materials.py"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

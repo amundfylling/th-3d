@@ -5,21 +5,28 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Batch run (docs/autonomous-run.md) in progress. Last completed: **16 - Assemble the full game in one static pose**. Next: **17**.
+- Batch run (docs/autonomous-run.md) in progress. Last completed: **17 - Finish the rink surfaces and artwork**. Next: **18**.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Active iteration (batch run, docs/autonomous-run.md)
 
-**17 - Finish the rink surfaces and artwork.** Repair count: 0/3. (Checklist written when started.)
+**18 - Finish figure and puck appearance.** Repair count: 0/3. (Checklist written when started.)
 
-Iteration 16 closed after 1 repair cycle (placeholder capsules below the ice). All items passed:
-- [x] 12 figures placed by skaterPose/goaliePose (TS -> Blender), reference-overhead positions, theta 0.
-- [x] Molds reused only for W-RD and W-G; 10 marked placeholders (missing variants).
-- [x] Team E by proper rotation; goals, screens and puck preserved.
-- [x] Rods, handles and supports not added (positions unevidenced), documented.
-- [x] Counts, assignments, axes, units and intersections checked (tests); overhead-labelled and oblique renders AI-reviewed against the reference overhead.
+Iteration 17 closed after 3 successful texture repair cycles plus 1 failed run:
+1. Stick and figure remnants -> operator boxes.
+2. Board-colour bleed and broken markings -> ice pre-fill, line redraw.
+3. Line-colour wedges and centre-disc bulges -> band masking, presence-aware redraw, circle fit on the outer edge, two-source inpainting.
+- Failed run: the OpenCV install upgraded NumPy and broke bpy; the benchmark cameras were missing from the saved scene. Fixed by pinning numpy<2 and recreating the cameras with identical parameters.
+- Interpretation recorded: the batch stop rule ("3 failed repair cycles") is read as 3 UNSUCCESSFUL cycles; every cycle above fixed its defect.
+
+All items passed:
+- [x] Ice artwork from 71-1145-01 only; rectification and UVs calibrated (0.1796 mm/texel); geometry unchanged (Blender vertex check and GLB bounds test).
+- [x] Figures, goals, puck, shadows and slot bands masked and reconstructed (26%, reported).
+- [x] Materials: black housing, red goals (photo-sampled), clear screens, printed ice; boards are a placeholder.
+- [x] Iteration-16 overhead and oblique cameras rendered with a fixed light; AI-reviewed side by side with the reference.
+- [x] Gaps and mismatches recorded (docs/materials.md).
 
 ## Verification status
 
@@ -94,6 +101,7 @@ Iteration 16 closed after 1 repair cycle (placeholder capsules below the ice). A
 
 ## Review artifacts
 
+- **`validation/17-overhead-vs-reference.png`**, `17-oblique.png` - iteration 17 (assets/scene/full_static_materials, ice texture). Docs: `docs/materials.md`.
 - **`validation/16-overhead-labelled.png`**, `16-oblique.png` - iteration 16 (assets/scene/full_static).
 - **`validation/15-goalie-oblique.png`**, `15-goalie-side.png`, `15-goalie-top.png` - iteration 15 (assets/figures/goalie_W-G).
 - **`validation/14-view-sheet.png`**, `14-silhouette-top.png` - iteration 14 (assets/figures/skater_W-RD). Docs: `docs/figures.md`.
@@ -139,3 +147,4 @@ Iteration 16 closed after 1 repair cycle (placeholder capsules below the ice). A
 | 14 | 2026-09-30 | assets/blender/build_skater_body.py; assets/figures/skater_W-RD.blend/.glb; traced top silhouette (trace.figure.W-RD...); W-RD inventory (body proxy, mold sharing, skate conflict); validation/14-*; docs/figures.md; tests/skater-body.test.ts | `npm run check` pass; silhouette IoU 0.816; view sheet AI-reviewed; 1 repair cycle |
 | 15 | 2026-09-30 | scripts/define-goalie.ts; assets/blender/build_goalie.py; shared metaball/silhouette helpers; assets/figures/goalie_W-G.*; W-G traces/contacts/inventory; goalie_height preview; validation/15-*; tests/goalie.test.ts | `npm run check` pass; IoU 0.794; renders AI-reviewed; 1 repair cycle |
 | 16 | 2026-09-30 | scripts/assembly-poses.ts; assets/blender/build_assembly.py; assets/scene/full_static.*; validation/16-*; tests/assembly.test.ts | `npm run check` pass; renders AI-reviewed; 1 repair cycle |
+| 17 | 2026-09-30 | assets/blender/make_ice_texture.py, build_materials.py; assets/rink/textures/ice_basecolor.png; assets/scene/full_static_materials.*; validation/17-*; docs/materials.md; tests/materials.test.ts; venv pinned numpy<2 + opencv 4.10 | `npm run check` pass; renders AI-reviewed; 3 repair cycles + 1 failed run (all fixed) |

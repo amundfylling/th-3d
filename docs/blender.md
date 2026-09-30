@@ -4,11 +4,11 @@
 
 - **Blender** 4.5.14 LTS, as the PyPI module `bpy`, in `/root/venvs/blender` (Python 3.11.15).
   - It is not a desktop install: blender.org download hosts are blocked by the network policy.
-  - Extra packages in the venv: `shapely` 2.1.2, `mapbox_earcut`, `numpy`, `pillow`.
+  - Extra packages in the venv: `shapely` 2.1.2, `mapbox_earcut`, `numpy<2` (1.26.4, required by bpy 4.5), `pillow`, `opencv-python-headless<4.11` (4.10.0).
 - **Setup** in a fresh container:
   ```sh
   python3 -m venv /root/venvs/blender
-  /root/venvs/blender/bin/pip install "bpy==4.5.*" shapely mapbox_earcut numpy pillow
+  /root/venvs/blender/bin/pip install "bpy==4.5.*" shapely mapbox_earcut "numpy<2" pillow "opencv-python-headless<4.11"
   ```
 - **Rendering:** Cycles on the CPU (4 cores), fixed seed, OpenImageDenoise. There is no GPU. EEVEE is not used.
 

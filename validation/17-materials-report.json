@@ -1,0 +1,27 @@
+{
+  "geometry_unchanged": true,
+  "ice_texture": "assets/rink/textures/ice_basecolor.png (validation/17-ice-texture-report.json)",
+  "uv": "planar from world mm over the inner-boundary bounds; 1 texel = 0.179597 mm",
+  "goal_red_srgb_from_photo": [
+    179,
+    38,
+    47
+  ],
+  "housing_black_srgb_from_side_a": [
+    46,
+    50,
+    59
+  ],
+  "boards": "PLACEHOLDER light grey: board sponsor artwork not reconstructed",
+  "screens": "clear plastic, transmission 1, IOR 1.49 (assumed)",
+  "light": "sun 2.2 at (30, 5, 25) deg + grey world 0.55; Cycles, fixed seed",
+  "gaps_and_mismatches": [
+    "board sponsor band and black top rail not reconstructed (placeholder grey walls)",
+    "housing 'PLAY OFF 21 / STIGA' print and legs not modelled",
+    "ice: masked areas are reconstructed (26% of the ice), incl. parts of the Byggmax crease logos, Gorilla and WD-40 logos",
+    "ice: photo lighting, vignetting and board reflections near the edge remain baked into the texture",
+    "ice: lens bow/keystone not corrected (<= about 16 px = about 3 mm at the preview scale)",
+    "goal colour from the overhead includes photo lighting; plastic gloss assumed",
+    "screen thickness, edge profile and mounting clips not modelled"
+  ]
+}
