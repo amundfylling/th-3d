@@ -59,3 +59,22 @@ node scripts/define-goalie.ts                                      # evidence, t
   - Test: contacts placed by `goaliePose` at the pivot's path parameter equal the contacts of the asset placed in the render scene, within 1.5 mm.
 - **Renders:** `validation/15-goalie-top.png`, `15-goalie-side.png` (near boards hidden for this render; repair 1), `15-goalie-oblique.png`. The goalie is shown in its goal region with the puck beside its stick.
 - **Remaining defects (AI review):** a smooth mass proxy, with no flat pad faces, mask cage or blocker/catcher detail. The pivot and contacts are debug values.
+
+## Full static assembly (iteration 16)
+
+```sh
+node scripts/assembly-poses.ts                                     # 12 poses from skaterPose/goaliePose
+/root/venvs/blender/bin/python assets/blender/build_assembly.py    # scene, checks, renders (about 2.5 min)
+```
+
+- **Poses** (`validation/16-assembly-poses.json`): each figure stands where it stands in the official overhead.
+  - Rule: the midpoint of the slot stretch its figure hides; the iteration-10/15 pivots for W-RD and W-G; for E-LW, just beyond its visible start.
+  - Each reference point lies within 0.71 mm of its own path; all figures at theta 0 (home heading).
+  - Team E is placed by a 180° proper rotation (det +1).
+  - This is a debug pose, **not** a measured or control-derived pose.
+- **Assets.** `Skater.W-RD` and `Goalie.W-G` are used only for W-RD and W-G. The other 10 figures are generic **placeholders** (capsule, head and nose; team-tinted for debugging): **missing mold variants**, because evidence shows the skater molds differ and a shared goalie mold is not established.
+- **Scene:** `assets/scene/full_static.blend/.glb` (rink, goals, screens, puck, 12 figures).
+- **Checks** (`validation/16-assembly-report.json`): 10 skaters and 2 goalies; vertical mounting axes; det +1; no figure-figure, figure-goal, figure-board, figure-screen or figure-puck intersections (world-space BVH overlap); nothing below the ice.
+  - Repair 1: the placeholder capsules dipped 1–4 mm below the ice.
+- **Renders:** `validation/16-overhead-labelled.png` (fixture axes, headings, labels) and `16-oblique.png`.
+- **Rods, handles, supports:** **not added**. Their positions along the housing ends are only visible obliquely and are not evidenced at the needed accuracy. No static rod pose would prove the control mapping anyway.

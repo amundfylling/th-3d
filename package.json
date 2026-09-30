@@ -28,7 +28,9 @@
     "blender:skater-lower": "/root/venvs/blender/bin/python assets/blender/build_skater_lower.py",
     "blender:skater-body": "/root/venvs/blender/bin/python assets/blender/build_skater_body.py",
     "goalie:define": "node scripts/define-goalie.ts",
-    "blender:goalie": "/root/venvs/blender/bin/python assets/blender/build_goalie.py"
+    "blender:goalie": "/root/venvs/blender/bin/python assets/blender/build_goalie.py",
+    "assembly:poses": "node scripts/assembly-poses.ts",
+    "blender:assembly": "/root/venvs/blender/bin/python assets/blender/build_assembly.py"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

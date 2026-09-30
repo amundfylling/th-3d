@@ -5,22 +5,21 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Batch run (docs/autonomous-run.md) in progress. Last completed: **15 - Model one goalie separately**. Next: **16**.
+- Batch run (docs/autonomous-run.md) in progress. Last completed: **16 - Assemble the full game in one static pose**. Next: **17**.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Active iteration (batch run, docs/autonomous-run.md)
 
-**16 - Assemble the full game in one static pose.** Repair count: 0/3. (Checklist written when started.)
+**17 - Finish the rink surfaces and artwork.** Repair count: 0/3. (Checklist written when started.)
 
-Iteration 15 closed after 1 repair cycle (the near boards hid the goalie in the side render). All items passed:
-- [x] Goalie W-G: own inventory, traces, provisional contacts and origin; stick side traced (left); nothing resized from the skater.
-- [x] Rigid Goalie.W-G .blend/.glb; no armature.
-- [x] goaliePose placement == asset placement within 1.5 mm (test); goalie adapter rejects skater paths (existing test).
-- [x] No clearance measured (test).
-- [x] IoU 0.794, height 52.8 mm; top/side/oblique renders with a puck and the goal, AI-reviewed.
-- [x] Evidence per view recorded (identity certain).
+Iteration 16 closed after 1 repair cycle (placeholder capsules below the ice). All items passed:
+- [x] 12 figures placed by skaterPose/goaliePose (TS -> Blender), reference-overhead positions, theta 0.
+- [x] Molds reused only for W-RD and W-G; 10 marked placeholders (missing variants).
+- [x] Team E by proper rotation; goals, screens and puck preserved.
+- [x] Rods, handles and supports not added (positions unevidenced), documented.
+- [x] Counts, assignments, axes, units and intersections checked (tests); overhead-labelled and oblique renders AI-reviewed against the reference overhead.
 
 ## Verification status
 
@@ -95,6 +94,7 @@ Iteration 15 closed after 1 repair cycle (the near boards hid the goalie in the 
 
 ## Review artifacts
 
+- **`validation/16-overhead-labelled.png`**, `16-oblique.png` - iteration 16 (assets/scene/full_static).
 - **`validation/15-goalie-oblique.png`**, `15-goalie-side.png`, `15-goalie-top.png` - iteration 15 (assets/figures/goalie_W-G).
 - **`validation/14-view-sheet.png`**, `14-silhouette-top.png` - iteration 14 (assets/figures/skater_W-RD). Docs: `docs/figures.md`.
 - **`validation/13-contacts-top.png`**, `13-contacts-side.png` - iteration 13 (assets/figures/skater_W-RD_lower).
@@ -138,3 +138,4 @@ Iteration 15 closed after 1 repair cycle (the near boards hid the goalie in the 
 | 13 | 2026-09-30 | assets/blender/build_skater_lower.py; assets/figures/skater_W-RD_lower.blend/.glb; contact build sizes; validation/13-*; tests/skater-lower.test.ts | `npm run check` 52/52; close-ups AI-reviewed; 2 repair cycles |
 | 14 | 2026-09-30 | assets/blender/build_skater_body.py; assets/figures/skater_W-RD.blend/.glb; traced top silhouette (trace.figure.W-RD...); W-RD inventory (body proxy, mold sharing, skate conflict); validation/14-*; docs/figures.md; tests/skater-body.test.ts | `npm run check` pass; silhouette IoU 0.816; view sheet AI-reviewed; 1 repair cycle |
 | 15 | 2026-09-30 | scripts/define-goalie.ts; assets/blender/build_goalie.py; shared metaball/silhouette helpers; assets/figures/goalie_W-G.*; W-G traces/contacts/inventory; goalie_height preview; validation/15-*; tests/goalie.test.ts | `npm run check` pass; IoU 0.794; renders AI-reviewed; 1 repair cycle |
+| 16 | 2026-09-30 | scripts/assembly-poses.ts; assets/blender/build_assembly.py; assets/scene/full_static.*; validation/16-*; tests/assembly.test.ts | `npm run check` pass; renders AI-reviewed; 1 repair cycle |
