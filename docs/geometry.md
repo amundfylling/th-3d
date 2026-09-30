@@ -56,6 +56,11 @@ not an assumption.
 8. References are pinned. Each `source_images` entry must match `references/index.json` and the
    file's actual SHA-256.
 
+## Current image-to-world mappings
+
+- `map.overhead.preview` (iteration 05): an ASSUMED uniform-scale similarity for `stiga_se_fi_overhead`,
+  with the scale taken from the catalog length of approx. 845 mm. It is for previews only. See `docs/board-trace.md`.
+
 ## Coordinate adapter: world to Blender, glTF and Three.js
 
 Convert units and axes once, at the export boundary. Never convert per object or per frame.

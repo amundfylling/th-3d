@@ -17,9 +17,11 @@ npm run smoke       # data/fixtures/smoke.json -> validation/03-smoke.svg
 npm run validate    # data/geometry.json against schema, evidence policy and references/index.json
 npm test            # evidence-policy tests (node:test)
 npm run check       # typecheck + validate + test
+npm run trace:board # iteration 05: trace inner board boundary -> data/geometry.json, validation/05-board-report.json (~20 s)
+npm run render:board # validation/05-board-overlay.svg from the canonical data
 ```
 
-Geometry conventions and evidence policy: `docs/geometry.md`.
+Geometry conventions and evidence policy: `docs/geometry.md`. Board trace: `docs/board-trace.md`.
 
 TypeScript files must use erasable syntax only (no enums, namespaces or parameter properties) and
 import local modules with their `.ts` extension, because Node strips types without compiling.

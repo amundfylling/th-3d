@@ -67,3 +67,21 @@ test("isUniformSimilarity accepts rotation+reflection with one scale", () => {
   assert.ok(isUniformSimilarity([s * Math.cos(t), s * Math.sin(t), 1, s * Math.sin(t), -s * Math.cos(t), 2, 0, 0, 1]));
   assert.ok(!isUniformSimilarity([s, 0, 0, 0, -1.01 * s, 0, 0, 0, 1]));
 });
+
+test("board trace stays provisional: pixel trace traced, world outline and mapping assumed", () => {
+  const g = load();
+  const trace = g.image_traces.find((t: any) => t.id === "trace.board_inner.overhead");
+  assert.ok(trace, "board trace present");
+  assert.equal(trace.status, "traced");
+  assert.ok(trace.uncertainty_px > 0);
+  const map = g.image_to_world.find((m: any) => m.id === "map.overhead.preview");
+  assert.equal(map.status, "assumed");
+  assert.equal(map.model, "similarity");
+  assert.ok(isUniformSimilarity(map.matrix));
+  assert.equal(g.board.inner_boundary.world.status, "assumed");
+  assert.equal(g.board.inner_boundary.corner_radius.value, null);
+});
+
+rejects("board outline promoted to measured without measurement", (g) => {
+  g.board.inner_boundary.world.status = "measured";
+}, /stronger than its mapping|requires a user_measurement/);

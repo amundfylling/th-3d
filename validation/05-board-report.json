@@ -1,0 +1,329 @@
+{
+  "iteration": "05",
+  "source_image_id": "stiga_se_fi_overhead",
+  "source_sha256": "35e59e01c299fca695161760bcff1e7b8a9a79430a200fa1c4a50ecaeca8fea1",
+  "parameters": {
+    "SEED": [
+      2818,
+      1650
+    ],
+    "BARRIER_MAX_CHANNEL": 90,
+    "MIN_INSIDE_LEVEL": 130,
+    "MIN_EDGE_CONTRAST": 80,
+    "LOCAL_WINDOW": 8,
+    "LOCAL_OUTLIER_PX": 2,
+    "MAX_FILL_GAP_RAYS": 40,
+    "RAYS": 1440,
+    "STORE_EVERY": 2,
+    "CORNER_SEED_PX": 650,
+    "MARKING_SEEDS": [
+      {
+        "id": "goal_line.W",
+        "kind": "red",
+        "x": 1208,
+        "what": "W goal line"
+      },
+      {
+        "id": "blue_line.W",
+        "kind": "blue",
+        "x": 2267,
+        "what": "W blue line"
+      },
+      {
+        "id": "centre_line",
+        "kind": "red",
+        "x": 2806,
+        "what": "centre red line"
+      },
+      {
+        "id": "blue_line.E",
+        "kind": "blue",
+        "x": 3342,
+        "what": "E blue line"
+      },
+      {
+        "id": "goal_line.E",
+        "kind": "red",
+        "x": 4420,
+        "what": "E goal line"
+      }
+    ]
+  },
+  "ice_region": {
+    "area_px": 10959481,
+    "bbox_px": [
+      468,
+      1488,
+      5176,
+      4107
+    ],
+    "centre_px": [
+      2822.5,
+      2798
+    ]
+  },
+  "samples": {
+    "total": 1440,
+    "redetected_around_model": 0,
+    "ok_quality": 1437,
+    "detected_and_consistent": 1431,
+    "filled": 9,
+    "stored": 720
+  },
+  "fits_px": {
+    "top": {
+      "rms": 2.732,
+      "max_abs": 7.57,
+      "inliers": 422,
+      "outliers": 0
+    },
+    "bottom": {
+      "rms": 1.837,
+      "max_abs": 5.45,
+      "inliers": 423,
+      "outliers": 2
+    },
+    "left": {
+      "rms": 0.715,
+      "max_abs": 1.55,
+      "inliers": 129,
+      "outliers": 0
+    },
+    "right": {
+      "rms": 0.54,
+      "max_abs": 1.19,
+      "inliers": 130,
+      "outliers": 0
+    },
+    "top_left": {
+      "rms": 0.701,
+      "max_abs": 2.09,
+      "inliers": 82,
+      "outliers": 0
+    },
+    "top_right": {
+      "rms": 0.515,
+      "max_abs": 1.22,
+      "inliers": 84,
+      "outliers": 0
+    },
+    "bottom_right": {
+      "rms": 0.58,
+      "max_abs": 1.54,
+      "inliers": 82,
+      "outliers": 0
+    },
+    "bottom_left": {
+      "rms": 0.445,
+      "max_abs": 1.45,
+      "inliers": 80,
+      "outliers": 3
+    }
+  },
+  "corner_radius_px": {
+    "top_left": 610.5,
+    "top_right": 624.2,
+    "bottom_right": 613,
+    "bottom_left": 624.6
+  },
+  "corner_tangency_gap_px": {
+    "top_left": [
+      6.28,
+      3.56
+    ],
+    "top_right": [
+      6.09,
+      1.93
+    ],
+    "bottom_right": [
+      4.21,
+      2.91
+    ],
+    "bottom_left": [
+      1.58,
+      2.33
+    ]
+  },
+  "dark_strip_width_px": {
+    "median": 14.75,
+    "min": 4.75,
+    "max": 40
+  },
+  "projection_checks": {
+    "top_vs_bottom_angle_deg": 0.2205,
+    "left_vs_right_angle_deg": 0.0591,
+    "top_vs_left_deviation_from_90_deg": 0.0533,
+    "bottom_vs_right_deviation_from_90_deg": 0.2146,
+    "width_px_at_left_mid_right": [
+      2603.83,
+      2610.19,
+      2616.56
+    ],
+    "length_px_at_top_mid_bottom": [
+      4705.82,
+      4704.99,
+      4704.15
+    ],
+    "long_axis_angle_to_image_x_deg": 0.1915
+  },
+  "side_bow_px": {
+    "top": {
+      "sagitta_px": -10.1,
+      "linear_rms_px": 2.732,
+      "quadratic_rms_px": 0.235
+    },
+    "bottom": {
+      "sagitta_px": -6.59,
+      "linear_rms_px": 1.837,
+      "quadratic_rms_px": 0.486
+    },
+    "left": {
+      "sagitta_px": -2.26,
+      "linear_rms_px": 0.715,
+      "quadratic_rms_px": 0.223
+    },
+    "right": {
+      "sagitta_px": -1.74,
+      "linear_rms_px": 0.54,
+      "quadratic_rms_px": 0.132
+    }
+  },
+  "side_bow_note": "Positive sagitta: middle of the side lies inward of its ends; negative: bulges outward. A systematic outward bow on both long sides is consistent with lens barrel distortion or physically bowed boards; the photograph cannot separate them. The trace keeps detected points, so the bow is preserved.",
+  "marking_checks_px": {
+    "centre_line_angle_to_long_axis_deg": 89.585,
+    "centre_line_offset_from_boundary_centre_px": -9.11,
+    "blue_line_asymmetry_about_centre_line_top_px": 0.97,
+    "blue_line_asymmetry_about_centre_line_bottom_px": -4.64,
+    "blue_line.W_top_minus_bottom_along_axis_px": -17.47,
+    "blue_line.E_top_minus_bottom_along_axis_px": -14.73,
+    "goal_line_asymmetry_about_centre_line_top_px": 15.86,
+    "goal_line_asymmetry_about_centre_line_bottom_px": 8.33,
+    "goal_line.W_top_minus_bottom_along_axis_px": -15.94,
+    "goal_line.E_top_minus_bottom_along_axis_px": -14.34
+  },
+  "landmarks": [
+    {
+      "id": "lm.board.goal_line.W.top",
+      "px": [
+        1215.51,
+        1489.55
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0.14,
+      "marking_width_px": 12
+    },
+    {
+      "id": "lm.board.goal_line.W.bottom",
+      "px": [
+        1222.75,
+        4093.64
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0,
+      "marking_width_px": 12
+    },
+    {
+      "id": "lm.board.blue_line.W.top",
+      "px": [
+        2269.79,
+        1491.05
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0.15,
+      "marking_width_px": 26
+    },
+    {
+      "id": "lm.board.blue_line.W.bottom",
+      "px": [
+        2278.54,
+        4099.2
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0.26,
+      "marking_width_px": 27
+    },
+    {
+      "id": "lm.board.centre_line.top",
+      "px": [
+        2807.9,
+        1491.81
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0.13,
+      "marking_width_px": 26
+    },
+    {
+      "id": "lm.board.centre_line.bottom",
+      "px": [
+        2818.09,
+        4102.04
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0.14,
+      "marking_width_px": 25
+    },
+    {
+      "id": "lm.board.blue_line.E.top",
+      "px": [
+        3347,
+        1492.58
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0.13,
+      "marking_width_px": 26
+    },
+    {
+      "id": "lm.board.blue_line.E.bottom",
+      "px": [
+        3353,
+        4104.86
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0.13,
+      "marking_width_px": 25
+    },
+    {
+      "id": "lm.board.goal_line.E.top",
+      "px": [
+        4416.16,
+        1494.09
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0.21,
+      "marking_width_px": 13
+    },
+    {
+      "id": "lm.board.goal_line.E.bottom",
+      "px": [
+        4421.75,
+        4110.48
+      ],
+      "offsets_used": 10,
+      "line_fit_spread_px": 0,
+      "marking_width_px": 12
+    }
+  ],
+  "extents_px": {
+    "length": 4704.99,
+    "width": 2610.19,
+    "aspect": 1.8025,
+    "catalog_aspect_845_457": 1.849
+  },
+  "error_estimate_px": {
+    "edge_localisation_rms_worst_straight": 2.732,
+    "boundary_definition_dark_strip_median": 14.75,
+    "trace_uncertainty_px": 21,
+    "rule": "ceil(median dark-strip width + 2 x worst straight-side RMS). The strip term dominates: the true contact line may lie anywhere across the strip.",
+    "similarity_mapping_bound_px": 16.46,
+    "similarity_mapping_bound_rule": "max |side sagitta| + half the width change from left to right (keystone). Bounds how far the uniform-scale mapping can misplace ice-plane points given the bow and keystone seen here; lens distortion and board shape are not separated."
+  },
+  "preview_mapping_assumed": {
+    "mapping_id": "map.overhead.preview",
+    "mm_per_px": 0.179597,
+    "implied_width_mm": 468.78,
+    "catalog_width_mm": 457,
+    "width_discrepancy_mm": 11.78,
+    "trace_uncertainty_mm_under_assumed_scale": 3.77,
+    "note": "All mm values here depend on assume.preview_scale_catalog_length and are NOT calibrated."
+  }
+}
