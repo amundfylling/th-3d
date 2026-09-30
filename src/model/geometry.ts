@@ -89,6 +89,8 @@ export interface ImageTrace {
   method: string;
   /** Index ranges of points that are occluded or inferred rather than seen. */
   inferred_segments: { from: number; to: number; reason: string; assumption_id?: string }[];
+  /** Numeric summary of the trace (widths, fit errors, lengths), in the units named by each key. */
+  stats?: Record<string, number>;
   note?: string;
 }
 
@@ -152,6 +154,8 @@ export type Position = "G" | "LD" | "RD" | "C" | "LW" | "RW";
 
 export interface Team {
   id: "W" | "E";
+  /** Display label: W is team A, E is team B. */
+  label?: "A" | "B";
   defends_goal_id: string;
   attacks_toward: "+x" | "-x";
   /** Which reference-variant team occupies this side in a named image; the user's setup may differ. */
@@ -172,10 +176,14 @@ export interface FixturePath {
   id: string;
   player_id: string;
   control_rod: { part_number: string | null; has_link: boolean; source_ids: string[] };
-  /** Slot centreline on the ice plane; null until traced. */
+  /** Visible slot centreline on the ice plane (from image traces); null until traced. */
   centreline: WorldPolyline | null;
+  /** Path of the fixture rotation axis. Only a measurement can supply it; it may differ from the slot centreline. */
+  fixture_axis_path: WorldPolyline | null;
+  /** Why this slot belongs to this player (e.g. the figure standing on it in a named image). */
+  identity_evidence?: { source_ids: string[]; description: string };
   image_trace_ids: string[];
-  /** Arc-length positions (mm along centreline) of the visible slot ends. */
+  /** Arc-length positions along the centreline of the visible slot ends (unit as stated: image px or mm). */
   visible_slot_limits: { start: Quantity; end: Quantity };
   /** Arc-length positions (mm) of the physical travel stops; only measurement can fill these. */
   usable_stops: { start: Quantity; end: Quantity };

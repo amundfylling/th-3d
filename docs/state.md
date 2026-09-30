@@ -5,10 +5,24 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Next iteration: **06 - Trace the defenders and centres** (not started; waiting for the user's instruction to proceed).
-- Geometry version: `0.3.0` (`data/geometry.json`). Board boundary traced in pixels; goal setup = without inserts
-  (user). No tracks, meshes or movement.
+- Batch run (docs/autonomous-run.md) in progress. Last completed: **06 - Trace the defenders and centres**. Next: **07**.
+- Geometry version: `0.4.0` (`data/geometry.json`). Board boundary and 6 defender/centre slots traced in pixels;
+  goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
+
+## Active iteration (batch run, docs/autonomous-run.md)
+
+**07 - Trace the four winger paths.** Repair count: 0/3. (Checklist written when started.)
+
+Iteration 06 closed with 2 repair cycles (tracer ran into white print in the bare sheet; one
+wrong occlusion hint). All acceptance items passed:
+- [x] 6 paths traced independently in both photographs; test proves no mirrored copies.
+- [x] Team A = W (Finland in the reference), team B = E; IDs `path.<team>-<role>`.
+- [x] Centreline points, polyline representation, fit error, end landmarks with visibility, inferred segments, provenance in data/geometry.json.
+- [x] `fixture_axis_path` null (new field; validator only accepts a measured one), `usable_stops` unknown; visible limits in image px.
+- [x] `npm run check` 20/20.
+- [x] AI review of validation/06-straight-tracks.svg: every trace on its slot, diagonal centre routes kept, visible ends on slot caps, hidden ends marked with bare-sheet predictions.
+- [x] Identity from the figure on each slot; homography RMS 2.43 px; visible-end agreement <= 8.5 px.
 
 ## Verification status
 
@@ -19,10 +33,11 @@
 | View identities | Confirmed by viewing each image (downscaled previews) plus two native-resolution crops. |
 | Remote originals | **Not obtained.** Network policy blocks `stigasports.centracdn.net`, `www.stigasports.com`, `www.stigacanada.ca`, `d.otto.de`, `www.ithf.info` (curl CONNECT 403; WebFetch EGRESS_BLOCKED). Byte identity with remote files unverified. |
 | Tooling (iteration 03) | `npm ci`, `npm run typecheck`, `npm run smoke` all run and pass (clean reinstall from lockfile). Typecheck confirmed to fail on a deliberate type error. Smoke SVG rendered in headless Chromium and viewed. |
-| Blender | Not installed in this environment. |
 | Geometry contract (iteration 04) | `npm run check` passes: typecheck (incl. tsc cross-check that runtime schema matches the interfaces; a removed field was confirmed to fail), `npm run validate` (schema + policy + reference hashes), 15 policy tests (canonical file valid; 12 invalid mutations rejected; similarity-uniformity helper). |
 | Board trace (iteration 05) | 1431/1440 rays detected and consistent; 2 short interpolated stretches. Fit RMS <= 2.73 px (long sides bow outward up to 10.1 px; quadratic RMS <= 0.49 px); corner radii 610-625 px. Trace uncertainty 21 px (dominated by the ~15 px dark strip at the board base); uniform-mapping bound 16.5 px. Rerun reproduces byte-identical outputs. Overlay rendered in headless Chromium and inspected by me (corners, landmark, gap insets). |
 | Post-05 review evidence | `node scripts/check-board-evidence.ts` -> `validation/05-evidence-check.json`. Strip width 7.3-8.1 px per 1000 px radius (vertical board face). Marking lines bow 19% / 47% of the lens-model prediction (lens explains only part of the board bow). `npm run check` passes (18 tests). |
+| Slot traces (iteration 06) | 6 paths x 2 photos. Overhead fit RMS 0.05-0.62 px, width 39-40 px; bare->overhead homography curve RMS 2.43 px; visible ends agree <= 8.5 px. Overlay rendered and AI-reviewed (all ends inset). 20/20 tests incl. identity and no-mirror checks. |
+| Blender | bpy 4.5.14 LTS installed from PyPI in /root/venvs/blender (python 3.11); not yet used. |
 | Dimensional accuracy | Nothing measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
 
 ## Key decisions
@@ -80,6 +95,7 @@
 
 ## Review artifacts
 
+- **`validation/06-straight-tracks.svg`** - iteration 06 (both photos, 6 colour-coded paths, 12 end insets, evidence table). Method: `docs/tracks.md`.
 - **`validation/05-board-overlay.svg`** - main artifact of iteration 05 (unchanged photo at native size, trace,
   landmark IDs with pixel coordinates, 9 zoom insets, notes). Numbers: `validation/05-board-report.json`.
 - `docs/board-trace.md` - trace method, checks, error estimate, assumptions.
@@ -103,3 +119,4 @@
 | 04 | 2026-09-30 | src/model/{geometry,geometry-schema,check,validate}.ts, data/geometry.json, scripts/validate-geometry.ts, tests/geometry.test.ts, docs/geometry.md | `npm run check` (typecheck, validate, 15 tests) pass; schema-drift probe fails as intended |
 | 05 | 2026-09-30 | scripts/trace-board.ts, scripts/render-board-overlay.ts, src/model/{fit,raster}.ts, data/geometry.json 0.2.0 (trace, 10 landmarks, 4 assumptions, preview mapping), validation/05-board-{overlay.svg,report.json}, docs/board-trace.md; jpeg-js added | `npm run check` (typecheck, validate, 17 tests) pass; tracer rerun byte-identical; source photo hash unchanged; overlay screenshot inspected (main view + insets); user visual approval not received |
 | 05+ | 2026-09-30 | User answers recorded: goal setup without inserts, convention kept, review delegated. scripts/check-board-evidence.ts, validation/05-evidence-check.json, docs/decisions.md; `user_statement` source kind; geometry 0.3.0 | Evidence script run; trace rerun (points unchanged); overlay re-rendered; `npm run check` 18/18 pass |
+| 06 | 2026-09-30 | slot tracer (src/model/slot-trace.ts, homography.ts, scripts/trace-slots.ts, render-tracks-overlay.ts), data/slot-seeds.json, 12 slot traces + 24 end landmarks, geometry 0.4.0 (fixture_axis_path, identity_evidence, team label, trace stats), validation/06-straight-tracks.svg, slots-report.json, docs/tracks.md | `npm run check` 20/20; overlay AI-reviewed; 2 repair cycles |

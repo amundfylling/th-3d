@@ -1,0 +1,71 @@
+{
+  "description": "Operator seeds for slot tracing (scripts/trace-slots.ts). Seeds are rough routes read from gridded views of each image (docs/tracks.md); they fix slot identity and direction only. Centrelines, widths and ends are measured by the tracer. 'start' is the end nearer -x (image left). 'occluded' lists overhead ends hidden under the figure standing on the slot, from visual inspection. 'occluded_bare' lists bare-sheet ends that cannot be seen because the slot runs inside a white printed area.",
+  "images": {
+    "overhead": "stiga_se_fi_overhead",
+    "bare": "stiga_ca_bare_ice_sheet"
+  },
+  "paths": {
+    "path.W-LD": {
+      "iteration": "06",
+      "identity": "Upper long slot in the W half (image y ~2230), ending in a downward curve near the centre line. A white/blue Finland (team W) figure stands at its curved end; the upper side (+y) is W's left.",
+      "occluded": {
+        "end": "Finland figure"
+      },
+      "overhead": [[690, 2233], [2500, 2230], [2750, 2240], [2880, 2285], [2975, 2355]],
+      "bare": [[179, 570], [1255, 555], [1309, 578], [1364, 618]]
+    },
+    "path.W-RD": {
+      "iteration": "06",
+      "identity": "Lower straight slot in the W half (image y ~3300). A Finland figure stands at its right end; the lower side (-y) is W's right.",
+      "occluded": {
+        "middle": "Finland figure standing over the slot near its right end (the end itself is visible just beyond the figure)"
+      },
+      "overhead": [[1133, 3310], [2350, 3287]],
+      "bare": [[406, 1100], [1055, 1073]]
+    },
+    "path.W-C": {
+      "iteration": "06",
+      "identity": "Lower diagonal centre slot, crossing the grey centre disc into the E half. A Finland figure stands at its right end.",
+      "occluded": {
+        "end": "Finland figure",
+        "middle": "puck lying on the slot near (3333, 2857); black printed logo box touching the slot inside the grey centre disc"
+      },
+      "overhead": [[2517, 2983], [3867, 2817]],
+      "bare": [[1091, 887], [1800, 835]],
+      "occluded_bare": {
+        "start": "white printed band of the centre disc"
+      }
+    },
+    "path.E-LD": {
+      "iteration": "06",
+      "identity": "Lower long slot in the E half (image y ~3360), starting with a curve just left of the centre line. A yellow Sweden (team E) figure stands at its curved left end; the lower side (-y) is E's left (E attacks -x).",
+      "occluded": {
+        "start": "Sweden figure"
+      },
+      "overhead": [[2633, 3217], [2733, 3273], [2933, 3343], [4967, 3360]],
+      "bare": [[1136, 1033], [1200, 1073], [1273, 1095], [2364, 1100]]
+    },
+    "path.E-RD": {
+      "iteration": "06",
+      "identity": "Upper straight slot in the E half (image y ~2280). A Sweden figure stands at its left end; the upper side (+y) is E's right.",
+      "occluded": {
+        "start": "Sweden figure"
+      },
+      "overhead": [[3267, 2293], [4500, 2273]],
+      "bare": [[1445, 582], [2120, 556]]
+    },
+    "path.E-C": {
+      "iteration": "06",
+      "identity": "Upper diagonal centre slot, from the W half into the grey centre disc. A Sweden figure stands at its left end.",
+      "occluded": {
+        "start": "Sweden figure",
+        "middle": "black printed logo box touching the slot inside the grey centre disc"
+      },
+      "overhead": [[1800, 2767], [3117, 2600]],
+      "bare": [[714, 822], [1409, 736]],
+      "occluded_bare": {
+        "end": "white printed band of the centre disc"
+      }
+    }
+  }
+}

@@ -105,3 +105,13 @@ export function obj<S extends Shape>(shape: S): Check<ObjectOf<S>> {
     return ok;
   };
 }
+
+/** Object used as a string-keyed map of values. */
+export function rec<T>(value: Check<T>): Check<Record<string, T>> {
+  return (v, p, e): v is Record<string, T> => {
+    if (typeof v !== "object" || v === null || Array.isArray(v)) return fail(e, p, "expected object");
+    let ok = true;
+    for (const [k, x] of Object.entries(v)) if (!value(x, `${p}.${k}`, e)) ok = false;
+    return ok;
+  };
+}

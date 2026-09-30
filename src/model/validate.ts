@@ -239,8 +239,20 @@ export function validateGeometry(data: unknown, ctx: ValidationContext): Validat
     else if (f.player_id !== pl.id) err(p, `fixture path "${f.id}" belongs to "${f.player_id}"`);
     if (pl.stick_handedness !== "unknown" && pl.handedness_source_ids.length === 0) err(p, "stick handedness needs a source");
   });
+  const traceOwner = new Map<string, string>();
   g.fixture_paths.forEach((f, i) => {
-    if (!players.has(f.player_id)) err(`$.fixture_paths[${i}]`, `unknown player "${f.player_id}"`);
+    const p = `$.fixture_paths[${i}]`;
+    if (!players.has(f.player_id)) err(p, `unknown player "${f.player_id}"`);
+    if (f.fixture_axis_path && !f.fixture_axis_path.source_ids.some((id) => sources.get(id)?.kind === "user_measurement"))
+      err(p, "fixture_axis_path can only come from a user measurement (the slot centreline is not the fixture axis)");
+    for (const tid of f.image_trace_ids) {
+      const t = traces.get(tid);
+      if (t && t.feature !== "slot_centreline") err(p, `trace "${tid}" is not a slot_centreline trace`);
+      const owner = traceOwner.get(tid);
+      if (owner) err(p, `trace "${tid}" is also used by ${owner}`);
+      traceOwner.set(tid, f.id);
+    }
+    if (f.image_trace_ids.length > 0 && !f.identity_evidence) err(p, "a traced path needs identity_evidence");
   });
 
   // Goal setup: a chosen configuration must be one of the candidates.

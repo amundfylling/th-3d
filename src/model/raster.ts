@@ -78,3 +78,18 @@ export function floodFill(r: Raster, seed: [number, number], minMaxChannel: numb
   }
   return mask;
 }
+
+/** Bilinear interpolation of any per-pixel scalar at pixel-centre coordinates (u, v). */
+export function bilinear(r: Raster, u: number, v: number, f: (rr: number, g: number, b: number) => number): number {
+  const x = u - 0.5;
+  const y = v - 0.5;
+  const x0 = Math.max(0, Math.min(r.width - 2, Math.floor(x)));
+  const y0 = Math.max(0, Math.min(r.height - 2, Math.floor(y)));
+  const fx = Math.min(1, Math.max(0, x - x0));
+  const fy = Math.min(1, Math.max(0, y - y0));
+  const at = (xx: number, yy: number): number => {
+    const i = (yy * r.width + xx) * 4;
+    return f(r.data[i]!, r.data[i + 1]!, r.data[i + 2]!);
+  };
+  return at(x0, y0) * (1 - fx) * (1 - fy) + at(x0 + 1, y0) * fx * (1 - fy) + at(x0, y0 + 1) * (1 - fx) * fy + at(x0 + 1, y0 + 1) * fx * fy;
+}

@@ -7,6 +7,11 @@ around the actual hardware, not a generic hockey table.
 Work proceeds in numbered iterations from `Claude_Code_Stiga_Iteration_Prompts.md`.
 There are no animated shots before iteration 23.
 
+## Active batch
+
+An autonomous batch (iterations 06-20) is authorised. Its policy is in `docs/autonomous-run.md` and
+overrides rule 1's "stop after each iteration" for that batch only. Read it after `docs/state.md`.
+
 ## Key files
 
 - `docs/state.md` - handoff: last/next iteration, verification status, decisions, missing inputs.

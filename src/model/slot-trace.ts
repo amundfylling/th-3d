@@ -1,0 +1,293 @@
+// Guided tracing of a slot (the cut in the ice sheet that a figure's fixture runs in) in one photograph.
+// An operator seed polyline fixes the slot's identity and rough route; the centreline, width and ends
+// are measured from the image. Occluded stretches (figures, puck) become explicit gaps.
+import type { Vec2 } from "./fit.ts";
+
+/** Slot signal at a pixel-centre coordinate: high inside the slot, low on the surrounding surface. */
+export type Signal = (u: number, v: number) => number;
+
+export interface SlotTraceParams {
+  /** Spacing of cross-sections along the slot (px). */
+  step: number;
+  /** Half-length of each cross-section profile (px). */
+  halfWindow: number;
+  /** Max offset of the slot centre from the current guide curve (px). */
+  searchRadius: number;
+  expectedWidth: number;
+  /** Accepted width range as fractions of expectedWidth. */
+  widthRange: [number, number];
+  /** Minimum core-minus-surroundings signal contrast. */
+  minContrast: number;
+  /** How far the guide is extended beyond each seed end to look for the real slot end (px). */
+  extend: number;
+  /** Guide refinement passes. */
+  passes: number;
+}
+
+export interface Section {
+  /** Position of the section on the guide curve. */
+  guide: Vec2;
+  normal: Vec2;
+  tangent: Vec2;
+  ok: boolean;
+  centre?: Vec2;
+  width?: number;
+  contrast?: number;
+  reject?: string;
+}
+
+export interface SlotEnd {
+  point: Vec2;
+  /** Sub-pixel crossing found along the tangent (true) or only the last good section (false). */
+  refined: boolean;
+}
+
+export interface SlotTrace {
+  sections: Section[];
+  /** Index range [first, last] of accepted sections forming the slot. */
+  span: [number, number];
+  start: SlotEnd;
+  end: SlotEnd;
+  /** Smoothed centreline from start to end (gaps interpolated), densely sampled at `step`. */
+  centreline: Vec2[];
+  /** For each centreline point: detected (true) or interpolated across a gap (false). */
+  detected: boolean[];
+  widthMedian: number;
+}
+
+const sub = (a: Vec2, b: Vec2): Vec2 => [a[0] - b[0], a[1] - b[1]];
+const add = (a: Vec2, b: Vec2): Vec2 => [a[0] + b[0], a[1] + b[1]];
+const mul = (a: Vec2, k: number): Vec2 => [a[0] * k, a[1] * k];
+const len = (a: Vec2): number => Math.hypot(a[0], a[1]);
+const unit = (a: Vec2): Vec2 => mul(a, 1 / len(a));
+const median = (a: number[]): number => [...a].sort((x, y) => x - y)[Math.floor(a.length / 2)]!;
+
+/** Resamples a polyline at a fixed arc-length spacing (first and last points kept). */
+export function resample(poly: Vec2[], step: number): Vec2[] {
+  const out: Vec2[] = [poly[0]!];
+  let carry = 0;
+  for (let i = 1; i < poly.length; i++) {
+    const a = poly[i - 1]!, b = poly[i]!;
+    const d = len(sub(b, a));
+    let t = step - carry;
+    while (t <= d) {
+      out.push(add(a, mul(sub(b, a), t / d)));
+      t += step;
+    }
+    carry = d - (t - step);
+  }
+  const last = poly[poly.length - 1]!;
+  if (len(sub(last, out[out.length - 1]!)) > step * 0.25) out.push(last);
+  return out;
+}
+
+export const polylineLength = (poly: Vec2[]): number => poly.slice(1).reduce((s, p, i) => s + len(sub(p, poly[i]!)), 0);
+
+function tangents(poly: Vec2[]): Vec2[] {
+  return poly.map((_, i) => {
+    const a = poly[Math.max(0, i - 2)]!, b = poly[Math.min(poly.length - 1, i + 2)]!;
+    return unit(sub(b, a));
+  });
+}
+
+function smooth(poly: Vec2[], half: number): Vec2[] {
+  return poly.map((_, i) => {
+    let sx = 0, sy = 0, n = 0;
+    for (let j = Math.max(0, i - half); j <= Math.min(poly.length - 1, i + half); j++) {
+      sx += poly[j]![0];
+      sy += poly[j]![1];
+      n++;
+    }
+    // Keep the ends anchored so smoothing does not shorten the slot.
+    return i === 0 || i === poly.length - 1 ? poly[i]! : ([sx / n, sy / n] as Vec2);
+  });
+}
+
+/** Measures one cross-section: the slot run nearest the guide, with sub-pixel edges. */
+function measure(signal: Signal, guide: Vec2, normal: Vec2, tangent: Vec2, p: SlotTraceParams): Section {
+  const ds = 0.5;
+  const n = Math.round((2 * p.halfWindow) / ds) + 1;
+  const offs: number[] = [];
+  const vals: number[] = [];
+  for (let i = 0; i < n; i++) {
+    const o = -p.halfWindow + i * ds;
+    offs.push(o);
+    vals.push(signal(guide[0] + o * normal[0], guide[1] + o * normal[1]));
+  }
+  const outer = Math.max(4, Math.round(n * 0.12));
+  const sideL = median(vals.slice(0, outer));
+  const sideR = median(vals.slice(n - outer));
+  // Core: maximum within the search radius of the guide.
+  let iCore = -1;
+  for (let i = 0; i < n; i++) if (Math.abs(offs[i]!) <= p.searchRadius && (iCore < 0 || vals[i]! > vals[iCore]!)) iCore = i;
+  const core = vals[iCore]!;
+  const base: Section = { guide, normal, tangent, ok: false };
+  const contrast = core - Math.max(sideL, sideR);
+  if (contrast < p.minContrast) return { ...base, contrast, reject: "low contrast" };
+  const thrL = (core + sideL) / 2;
+  const thrR = (core + sideR) / 2;
+  let l = -1, r = -1;
+  for (let i = iCore; i > 0; i--) if (vals[i - 1]! < thrL) { l = i - 1; break; }
+  for (let i = iCore; i < n - 1; i++) if (vals[i + 1]! < thrR) { r = i + 1; break; }
+  if (l < 0 || r < 0) return { ...base, contrast, reject: "run touches window edge" };
+  const eL = offs[l]! + (ds * (thrL - vals[l]!)) / (vals[l + 1]! - vals[l]!);
+  const eR = offs[r - 1]! + (ds * (vals[r - 1]! - thrR)) / (vals[r - 1]! - vals[r]!);
+  const width = eR - eL;
+  if (width < p.expectedWidth * p.widthRange[0] || width > p.expectedWidth * p.widthRange[1])
+    return { ...base, contrast, width, reject: `width ${width.toFixed(1)} px` };
+  const mid = (eL + eR) / 2;
+  return { ...base, ok: true, centre: add(guide, mul(normal, mid)), width, contrast };
+}
+
+/** Finds where the slot stops along `dir` from `from` (sub-pixel), using the centreline signal. */
+function findEnd(signal: Signal, from: Vec2, dir: Vec2, width: number, maxDist: number): SlotEnd {
+  const ds = 0.5;
+  const core = median([0, 1, 2, 3, 4].map((k) => signal(from[0] - k * dir[0], from[1] - k * dir[1])));
+  const beyond: number[] = [];
+  for (let t = maxDist - 10; t <= maxDist; t += 1) beyond.push(signal(from[0] + t * dir[0], from[1] + t * dir[1]));
+  const outside = median(beyond);
+  const thr = (core + outside) / 2;
+  let prev = core;
+  for (let t = ds; t <= maxDist; t += ds) {
+    const v = signal(from[0] + t * dir[0], from[1] + t * dir[1]);
+    if (v < thr) {
+      const tt = t - ds + (ds * (prev - thr)) / (prev - v);
+      return { point: add(from, mul(dir, tt)), refined: core - outside > 0 && tt < maxDist - width };
+    }
+    prev = v;
+  }
+  return { point: from, refined: false };
+}
+
+export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams): SlotTrace {
+  // Extend the seed along its end tangents so the real ends can be found beyond it.
+  const t0 = unit(sub(seed[0]!, seed[1]!));
+  const t1 = unit(sub(seed[seed.length - 1]!, seed[seed.length - 2]!));
+  let guideLine = resample([add(seed[0]!, mul(t0, p.extend)), ...seed, add(seed[seed.length - 1]!, mul(t1, p.extend))], p.step);
+  let sections: Section[] = [];
+  let span: [number, number] = [0, 0];
+  let passParams = p;
+  for (let pass = 0; pass < p.passes; pass++) {
+    const tans = tangents(guideLine);
+    const pp = passParams;
+    sections = guideLine.map((g, i) => {
+      const t = tans[i]!;
+      return measure(signal, g, [-t[1], t[0]], t, pp);
+    });
+    // The slot is the run of accepted sections that covers the seed's middle, allowing gaps.
+    const okIdx = sections.map((s, i) => (s.ok ? i : -1)).filter((i) => i >= 0);
+    if (okIdx.length < 3) throw new Error("slot not found near seed");
+    const mid = Math.round(sections.length / 2);
+    const maxGap = Math.round(400 / p.step);
+    let a = okIdx.reduce((best, i) => (Math.abs(i - mid) < Math.abs(best - mid) ? i : best), okIdx[0]!);
+    let b = a;
+    // Walk outward from the middle, bridging gaps up to maxGap sections.
+    let k = okIdx.indexOf(a);
+    while (k > 0 && okIdx[k]! - okIdx[k - 1]! <= maxGap) k--;
+    a = okIdx[k]!;
+    k = okIdx.indexOf(b);
+    while (k < okIdx.length - 1 && okIdx[k + 1]! - okIdx[k]! <= maxGap) k++;
+    b = okIdx[k]!;
+    span = [a, b];
+    // New guide: detected centres in the span, gaps linearly interpolated, then smoothed.
+    const pts: Vec2[] = [];
+    for (let i = a; i <= b; i++) {
+      const s = sections[i]!;
+      if (s.ok) pts.push(s.centre!);
+      else {
+        let j0 = i - 1; while (!sections[j0]!.ok) j0--;
+        let j1 = i + 1; while (!sections[j1]!.ok) j1++;
+        const f = (i - j0) / (j1 - j0);
+        pts.push(add(sections[j0]!.centre!, mul(sub(sections[j1]!.centre!, sections[j0]!.centre!), f)));
+      }
+    }
+    const smoothed = smooth(pts, 3);
+    if (pass < p.passes - 1) {
+      // Later passes: tight search around the refined guide and a width within +-25% of the median,
+      // so the trace cannot wander onto printed features beside or beyond the slot.
+      const w = median(sections.slice(a, b + 1).filter((x) => x.ok).map((x) => x.width!));
+      passParams = { ...p, searchRadius: Math.max(4, 0.3 * p.expectedWidth), expectedWidth: w, widthRange: [0.75, 1.25] };
+      // Restart the extensions from the seed ends (not from anything found beyond them).
+      const sA = closestOnPolyline(smoothed, seed[0]!).s;
+      const sB = closestOnPolyline(smoothed, seed[seed.length - 1]!).s;
+      const kept = clip(smoothed, Math.min(sA, sB), Math.max(sA, sB));
+      const e0 = unit(sub(kept[0]!, kept[Math.min(4, kept.length - 1)]!));
+      const e1 = unit(sub(kept[kept.length - 1]!, kept[Math.max(0, kept.length - 5)]!));
+      guideLine = resample([add(kept[0]!, mul(e0, p.extend)), ...kept, add(kept[kept.length - 1]!, mul(e1, p.extend))], p.step);
+    }
+  }
+  const [a, b] = span;
+  const inSpan = sections.slice(a, b + 1);
+  const pts: Vec2[] = [];
+  const detected: boolean[] = [];
+  inSpan.forEach((s, i) => {
+    if (s.ok) {
+      pts.push(s.centre!);
+      detected.push(true);
+    } else {
+      let j0 = i - 1; while (!inSpan[j0]!.ok) j0--;
+      let j1 = i + 1; while (!inSpan[j1]!.ok) j1++;
+      const f = (i - j0) / (j1 - j0);
+      pts.push(add(inSpan[j0]!.centre!, mul(sub(inSpan[j1]!.centre!, inSpan[j0]!.centre!), f)));
+      detected.push(false);
+    }
+  });
+  const centre = smooth(pts, 2);
+  const widthMedian = median(inSpan.filter((s) => s.ok).map((s) => s.width!));
+  const dirStart = unit(sub(centre[0]!, centre[Math.min(3, centre.length - 1)]!));
+  const dirEnd = unit(sub(centre[centre.length - 1]!, centre[Math.max(0, centre.length - 4)]!));
+  const start = findEnd(signal, centre[0]!, dirStart, widthMedian, p.step * 3 + widthMedian);
+  const end = findEnd(signal, centre[centre.length - 1]!, dirEnd, widthMedian, p.step * 3 + widthMedian);
+  return {
+    sections,
+    span,
+    start,
+    end,
+    centreline: [start.point, ...centre, end.point],
+    detected: [start.refined, ...detected, end.refined],
+    widthMedian,
+  };
+}
+
+/** Part of a polyline between arc-length positions s0 <= s1. */
+function clip(poly: Vec2[], s0: number, s1: number): Vec2[] {
+  const out: Vec2[] = [];
+  let acc = 0;
+  for (let i = 0; i < poly.length; i++) {
+    if (i > 0) acc += len(sub(poly[i]!, poly[i - 1]!));
+    if (acc >= s0 && acc <= s1) out.push(poly[i]!);
+  }
+  return out.length >= 5 ? out : poly;
+}
+
+/** Douglas-Peucker simplification; returns kept points. */
+export function simplify(poly: Vec2[], tol: number): Vec2[] {
+  if (poly.length <= 2) return poly;
+  const [a, b] = [poly[0]!, poly[poly.length - 1]!];
+  const ab = sub(b, a);
+  const L = len(ab) || 1;
+  let iMax = 0, dMax = 0;
+  for (let i = 1; i < poly.length - 1; i++) {
+    const d = Math.abs(ab[0] * (a[1] - poly[i]![1]) - ab[1] * (a[0] - poly[i]![0])) / L;
+    if (d > dMax) { dMax = d; iMax = i; }
+  }
+  if (dMax <= tol) return [a, b];
+  return [...simplify(poly.slice(0, iMax + 1), tol).slice(0, -1), ...simplify(poly.slice(iMax), tol)];
+}
+
+/** Distance from a point to a polyline, and the arc-length position of the closest point. */
+export function closestOnPolyline(poly: Vec2[], p: Vec2): { dist: number; s: number; point: Vec2 } {
+  let best = { dist: Infinity, s: 0, point: poly[0]! };
+  let acc = 0;
+  for (let i = 1; i < poly.length; i++) {
+    const a = poly[i - 1]!, b = poly[i]!;
+    const ab = sub(b, a);
+    const L2 = ab[0] ** 2 + ab[1] ** 2;
+    const t = L2 === 0 ? 0 : Math.max(0, Math.min(1, ((p[0] - a[0]) * ab[0] + (p[1] - a[1]) * ab[1]) / L2));
+    const q = add(a, mul(ab, t));
+    const d = len(sub(p, q));
+    if (d < best.dist) best = { dist: d, s: acc + t * Math.sqrt(L2), point: q };
+    acc += Math.sqrt(L2);
+  }
+  return best;
+}

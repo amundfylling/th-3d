@@ -89,3 +89,42 @@ rejects("board outline promoted to measured without measurement", (g) => {
 rejects("goal setup chosen without the user's statement", (g) => {
   g.goal_setup.source_ids = g.goal_setup.source_ids.filter((id: string) => id !== "user_statement_2026_09_30");
 }, /must cite the user's statement/);
+
+// ---- Iteration 06+: slot traces --------------------------------------------------------------
+const TRACED_BY_ITERATION: Record<string, string[]> = {
+  "06": ["W-LD", "W-RD", "W-C", "E-LD", "E-RD", "E-C"],
+};
+
+test("slot paths: expected set traced in both photographs, with identity evidence", () => {
+  const g = load();
+  const expected = Object.values(TRACED_BY_ITERATION).flat();
+  for (const p of expected) {
+    const f = g.fixture_paths.find((x: any) => x.id === `path.${p}`);
+    assert.ok(f, `path.${p} exists`);
+    assert.deepEqual([...f.image_trace_ids].sort(), [`trace.slot.${p}.bare`, `trace.slot.${p}.overhead`]);
+    assert.ok(f.identity_evidence?.description, `${p} identity evidence`);
+    // The figure named in the evidence belongs to the team that owns the path in the reference variant.
+    const team = g.teams.find((t: any) => t.id === p.split("-")[0]);
+    assert.ok(f.identity_evidence.description.includes(team.reference_variant.team), `${p} evidence names ${team.reference_variant.team}`);
+    assert.equal(f.fixture_axis_path, null, "fixture axis stays unknown");
+    assert.equal(f.usable_stops.start.status, "unknown");
+    assert.equal(f.usable_stops.end.status, "unknown");
+    assert.equal(f.centreline.status, "assumed", "mm centreline only via the assumed preview scale");
+  }
+  const traced = g.fixture_paths.filter((f: any) => f.image_trace_ids.length > 0).map((f: any) => f.id.replace("path.", "")).sort();
+  assert.deepEqual(traced, [...expected].sort(), "no other paths traced yet");
+});
+
+test("slot paths: each team traced independently (no mirrored copies)", () => {
+  const g = load();
+  const pts = (p: string) => g.image_traces.find((t: any) => t.id === `trace.slot.${p}.overhead`).points_px;
+  for (const [a, b] of [["W-LD", "E-LD"], ["W-RD", "E-RD"], ["W-C", "E-C"]] as const) {
+    const pa = pts(a), pb = pts(b);
+    assert.notEqual(pa.length === pb.length && pa.every((q: number[], i: number) => q[0] === pb[i]?.[0]), true);
+    // A point-mirror about the image of the rink centre would map one onto the other exactly; require independent data.
+    const c: [number, number] = [2822.5, 2798];
+    const mirrored = pa.map((q: [number, number]) => [2 * c[0] - q[0], 2 * c[1] - q[1]] as [number, number]);
+    const exact = mirrored.every((q: [number, number]) => pb.some((r: [number, number]) => Math.hypot(r[0] - q[0], r[1] - q[1]) < 1e-6));
+    assert.equal(exact, false, `${b} is not a mirror copy of ${a}`);
+  }
+});

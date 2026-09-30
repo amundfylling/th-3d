@@ -35,6 +35,9 @@ not an assumption.
 - IDs are stable: player `W-LD`, fixture path `path.W-LD`, figure asset `fig.W-LD`, goals
   `goal.W`/`goal.E`, screens `screen.W`/`screen.E`, markings such as `blue_line.E` and
   `faceoff_circle.W.pos_y`.
+- `fixture_paths.*.centreline` is the VISIBLE SLOT centreline. `fixture_axis_path` is separate and can only come from a
+  measurement. `visible_slot_limits` are the slot ends (currently arc lengths in overhead image px). `usable_stops` are the
+  physical travel stops (unknown). Team labels: W = A, E = B (docs/tracks.md).
 - Assets are per player. `mold_group` stays null until shared molds are evidenced.
 
 ## Evidence policy (enforced by `npm run validate`)

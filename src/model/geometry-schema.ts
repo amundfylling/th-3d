@@ -1,6 +1,6 @@
 // Runtime schema for data/geometry.json. The `Check<GeometryFile>` annotation makes tsc verify that
 // this schema and the interfaces in geometry.ts describe the same structure.
-import { arr, bool, lit, nonEmptyStr, nullable, num, obj, opt, str, tuple, union, type Check } from "./check.ts";
+import { arr, bool, lit, nonEmptyStr, nullable, num, obj, opt, rec, str, tuple, union, type Check } from "./check.ts";
 import {
   EVIDENCE_STATUSES,
   GOAL_CONFIGURATIONS,
@@ -112,6 +112,7 @@ export const geometrySchema: Check<GeometryFile> = obj({
       inferred_segments: arr(
         obj({ from: num, to: num, reason: nonEmptyStr, assumption_id: opt(nonEmptyStr) }),
       ),
+      stats: opt(rec(num)),
       note: opt(str),
     }),
   ),
@@ -163,6 +164,7 @@ export const geometrySchema: Check<GeometryFile> = obj({
   teams: arr(
     obj({
       id: team,
+      label: opt(lit("A", "B")),
       defends_goal_id: nonEmptyStr,
       attacks_toward: lit("+x", "-x"),
       reference_variant: opt(obj({ team: nonEmptyStr, source_ids: ids, status, note: opt(str) })),
@@ -185,6 +187,8 @@ export const geometrySchema: Check<GeometryFile> = obj({
       player_id: nonEmptyStr,
       control_rod: obj({ part_number: nullable(nonEmptyStr), has_link: bool, source_ids: ids }),
       centreline: nullable(worldPolyline),
+      fixture_axis_path: nullable(worldPolyline),
+      identity_evidence: opt(obj({ source_ids: ids, description: nonEmptyStr })),
       image_trace_ids: ids,
       visible_slot_limits: range,
       usable_stops: range,
