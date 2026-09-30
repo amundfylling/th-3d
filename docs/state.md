@@ -5,25 +5,25 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Batch run (docs/autonomous-run.md) in progress. Last completed: **11 - Build only the static rink asset in Blender**. Next: **12**.
-- Geometry version: `0.4.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
+- Batch run (docs/autonomous-run.md) in progress. Last completed: **12 - Add goal hardware and the puck**. Next: **13**.
+- Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Active iteration (batch run, docs/autonomous-run.md)
 
-**12 - Add goal hardware and the puck.** Repair count: 0/3. (Checklist written when started.)
+**13 - Model one skater's blade and feet.** Repair count: 0/3. (Checklist written when started.)
 
-Iteration 11 closed after 2 repair cycles:
-1. The render review exposed kinks in the goalie slots. The slot tracer now uses Hermite gap filling that ignores the guide, extends hidden ends along the mapped bare curve joined continuously, and seeds the goalie slots only over their fully visible parts. All slots were re-traced, 06-08 overlays re-rendered, 08 re-inspected.
-2. The render scale check first measured the lit still (board shadows made that invalid). It was replaced by an unlit ID render; tolerance unchanged.
+Iteration 12 closed after 2 repair cycles:
+1. The goal outline was irregular: shapely ring ordering. It is now built as an exact parametric U-outline.
+2. The puck origin was at its centre, not the documented bottom centre. The new test caught it: the first side render showed the puck half sunk into the ice, which my first review missed. Fixed in the build; test unchanged.
 
 All items passed:
-- [x] Headless route: bpy 4.5.14 LTS; command and setup in docs/blender.md.
-- [x] Ice with 12 slot and 2 goal cut-out holes, inner boards and housing from canonical data. Unmeasured dimensions in `preview_parameters` (validator: always assumed); physical values unknown; no averaging.
-- [x] Clay only; assets/rink/rink.blend, rink.glb, build script. mm->m in stiga_blender.m(); +Y up done once by the exporter (tests).
-- [x] Overhead and side stills AI-reviewed.
-- [x] Scale: GLB bounds vs data (tests), ID-render extent within 0.2 mm, slots 100% on holes; implied housing 877 x 502 mm reported against both catalog claims.
+- [x] Goal (no insert/cup), end screen and puck as reusable .blend/.glb with documented origins.
+- [x] Dimensions measured from traces where possible (mouth, depth: elevated, preview scale) or explicit preview_parameters with evidence notes; the manual drawing and pack sizes are not used as geometry.
+- [x] Assembled into the rink; the rink meshes are unchanged (test compares the GLB bounds with the iteration-11 GLB).
+- [x] Oblique goal close-up, side puck/ice view and overview AI-reviewed against the oblique/side photos.
+- [x] Unresolved clearances listed (docs/blender.md).
 
 ## Verification status
 
@@ -98,6 +98,7 @@ All items passed:
 
 ## Review artifacts
 
+- **`validation/12-goal-oblique.png`**, `12-puck-side.png`, `12-overview.png` - iteration 12 (assets/goal, screen, puck, scene/static_hardware).
 - **`validation/11-rink-overhead.png`**, `11-rink-side.png` - iteration 11 clay rink (assets/rink/rink.blend, rink.glb). Docs: `docs/blender.md`.
 - **`validation/10-skater-contacts.svg`** - iteration 10 (critical checkpoint; provisional contacts). Docs: `docs/contacts.md`.
 - **`validation/09-pose-debug.svg`** - iteration 09 (static sample poses). Docs: `docs/pose.md`.
@@ -133,3 +134,4 @@ All items passed:
 | 09 | 2026-09-30 | src/model/pose.ts, paths.ts, coordinates.ts; tests/pose.test.ts; assumption assume.fixture_axis_on_slot_centreline; validation/09-pose-debug.svg; docs/pose.md | `npm run check` 33/33; debug SVG AI-reviewed; 1 presentation repair |
 | 10 | 2026-09-30 | scripts/define-contacts.ts, render-contacts.ts; schema (provisional contact shapes, inventory); fig.W-RD inventory + provisional contacts; W-RD stick left; validation/10-skater-contacts.svg; docs/contacts.md; tests/contacts.test.ts | `npm run check` 37/37; sheet AI-reviewed; 1 presentation repair |
 | 11 | 2026-09-30 | assets/blender/stiga_blender.py, build_rink.py, verify_rink.py; assets/rink/rink.blend + rink.glb; preview_parameters (schema + data); slot tracer fixes (Hermite gaps, curve-following hidden ends, goalie seeds); validation/11-*; docs/blender.md; tests/rink-asset.test.ts | `npm run check` 40/40; stills AI-reviewed; 2 repair cycles |
+| 12 | 2026-09-30 | assets/blender/build_hardware.py; assets/goal, screen, puck, scene/static_hardware (.blend/.glb); hardware preview_parameters; 'ratio' unit; side A and puck sources; geometry 0.5.0; validation/12-*; tests/hardware-assets.test.ts | `npm run check` 46/46; 3 stills AI-reviewed; 2 repair cycles |

@@ -51,3 +51,32 @@ and goals are not in this asset.
 - **GLB:** the ice extent equals the canonical boundary within 0.1 mm; ice top at Y = 0; board top at the preview height.
 - **Unlit orthographic render** (0.507 mm/px): the ice extent matches the data within **0.2 mm** (tolerance 2 px = 1.0 mm). 100% of the sampled centreline points of all 12 slots fall on hole pixels.
 - **Corrected check:** a first version measured the lit still. Board shadows darken the ice edge there, so that check was invalid. It was replaced by the unlit ID render; the tolerance was not relaxed.
+
+## Goal, end screen, puck (iteration 12)
+
+```sh
+/root/venvs/blender/bin/python assets/blender/build_hardware.py   # about 4.5 min, 4 Cycles renders
+```
+
+| Asset | Origin and axes | Geometry source |
+| --- | --- | --- |
+| `assets/goal/goal.blend/.glb` | Mouth centre on the ice (goal line, z 0). +x out of the goal into the rink, +z up. | Mouth width 88.8 mm: the mean of the post-top spacings, W 90.6 / E 86.9 mm (elevated points, preview scale). Depth 51.6 mm from the elevated cage outlines. Height 50, post radius 1.5, bar radius 0.9 mm, top at 0.6 of the depth: `preview_parameters`. Configuration: no insert, no goal cup (user D5). |
+| `assets/screen/end_screen.blend/.glb` | End-centre of the W end, on the ice, outside the boards. | Follows the board outline, offset by wall + ½ screen thickness. Catalog approx. 622 mm treated as the developed length (datum unknown) and approx. 70 mm height. Thickness 2 mm (preview). |
+| `assets/puck/puck.blend/.glb` | Bottom centre (ice contact), +z up. | Diameter approx. 25.4 mm (catalog nominal). Thickness 12 mm and edge radius 2 mm are preview values (evidence note in the data). |
+| `assets/scene/static_hardware.blend/.glb` | World | The rink, plus goals at the traced goal-line centres (W, and E rotated 180°), screens at both ends (E by rotation; it sits 2.6 mm from the E board face), and the puck at its reference-photo position on the W-C slot. |
+
+Stills: `validation/12-goal-oblique.png`, `12-puck-side.png`, `12-overview.png`. Numbers:
+`validation/12-hardware-report.json`. The tests check the asset origins and dimensions, and that the
+rink meshes in the assembled scene are unchanged.
+
+Known cosmetic defect: a small shading notch where the crossbar meets the +y post.
+
+### Unresolved clearances that affect contact accuracy
+
+1. **Puck thickness and rim profile.** They set the contact height on the blade and whether the puck rides over a slot edge. Preview 12 mm, unknown.
+2. **Blade height and bottom above the ice** (iteration 10 unknowns). Together with the puck thickness they decide whether a blade can reach under or over the puck.
+3. **Goal opening height and width at ice level, post diameter, crossbar height.** They decide what counts as a goal and where the puck bounces off the frame. The mouth width comes from elevated post tops only.
+4. **Goal position relative to the goal line and cut-out at ice level.** Only elevated features were traced.
+5. **Slot width and edge profile at the ice surface.** The width comes from the overhead at the preview scale (6.8–7.2 mm). The puck can catch in a slot or be deflected by it.
+6. **Ice-sheet step at the board base and screen gaps.** They affect rebounds along the boards and ends.
+7. **Board height and wall thickness** (preview 30 / 9 mm). They set rebound heights and whether the puck can leave the rink.

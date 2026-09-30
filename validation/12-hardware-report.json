@@ -1,0 +1,53 @@
+{
+  "goal": {
+    "mouth_width_mm": 88.78,
+    "mouth_width_per_goal_mm": {
+      "W": 90.62,
+      "E": 86.94
+    },
+    "depth_mm": 51.57,
+    "depth_per_goal_mm": {
+      "W": 51.85,
+      "E": 51.3
+    },
+    "height_mm": 50.0,
+    "post_radius_mm": 1.5,
+    "bar_radius_mm": 0.9,
+    "top_depth_fraction": 0.6,
+    "configuration": "ithf_no_insert_no_cup",
+    "placement_mm": {
+      "W": [
+        -287.9,
+        0.91
+      ],
+      "E": [
+        286.79,
+        0.53
+      ]
+    }
+  },
+  "screen": {
+    "length_mm_catalog": 622,
+    "height_mm_catalog": 70,
+    "thickness_mm": 2.0,
+    "origin_W_mm": [
+      -432.56,
+      -0.02
+    ],
+    "E_end_max_gap_to_board_face_mm": 2.59
+  },
+  "puck": {
+    "diameter_mm_catalog": 25.4,
+    "thickness_mm_preview": 12.0,
+    "edge_radius_mm": 2.0,
+    "reference_position_px": [
+      3332.2,
+      2873.8
+    ],
+    "reference_position_mm": [
+      91.65,
+      -13.49
+    ]
+  },
+  "rink_meshes_unchanged": true
+}

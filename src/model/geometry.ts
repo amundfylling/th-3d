@@ -5,7 +5,7 @@
 export const EVIDENCE_STATUSES = ["measured", "catalog_nominal", "traced", "assumed", "unknown"] as const;
 export type EvidenceStatus = (typeof EVIDENCE_STATUSES)[number];
 
-export const UNITS = ["mm", "deg", "g", "px", "mm_per_px"] as const;
+export const UNITS = ["mm", "deg", "g", "px", "mm_per_px", "ratio"] as const;
 export type Unit = (typeof UNITS)[number];
 
 /**

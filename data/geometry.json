@@ -1,6 +1,6 @@
 {
   "schema": "stiga-play-off-21-geometry",
-  "geometry_version": "0.4.0",
+  "geometry_version": "0.5.0",
   "updated": "2026-09-30",
   "coordinate_system": {
     "world": "Right-handed, rink-centred, calibrated geometry only. See docs/geometry.md.",
@@ -92,6 +92,18 @@
       "kind": "user_statement",
       "title": "User answers of 2026-09-30 after iteration 05",
       "note": "Goal setup: played without goal inserts (answer 5). Team-side / left-right naming: any convention, kept consistent (answer 4). Board-trace review decisions delegated to the AI (answers 1-3); see docs/decisions.md."
+    },
+    {
+      "id": "stiga_se_fi_side_a",
+      "kind": "reference_image",
+      "title": "Side A, 71-1145-01",
+      "index_id": "stiga_se_fi_side_a"
+    },
+    {
+      "id": "stiga_ca_puck",
+      "kind": "reference_image",
+      "title": "Puck close-up",
+      "index_id": "stiga_ca_puck"
     }
   ],
   "source_images": [
@@ -108,6 +120,20 @@
       "sha256": "a88ec1bb02262972ef81adedb05a3b2111a578735e7f9a90fe822bff31f24044",
       "width_px": 2554,
       "height_px": 1617
+    },
+    {
+      "source_id": "stiga_se_fi_side_a",
+      "local_path": "references/originals/stiga-sports-71-1145-01-side-a.jpg",
+      "sha256": "61c1da0e402070fa1955cb1f0aaf856193a684eda73f6202c98f278c7669a643",
+      "width_px": 5210,
+      "height_px": 5210
+    },
+    {
+      "source_id": "stiga_ca_puck",
+      "local_path": "references/originals/stiga-canada-puck.jpg",
+      "sha256": "cfd5d476a0dc89a7ec1f4f4a5216cf8def7a14cf86c428e8d04d980d8459ebdf",
+      "width_px": 1000,
+      "height_px": 863
     }
   ],
   "assumptions": [
@@ -37410,6 +37436,77 @@
       "source_ids": [],
       "assumption_id": "assume.preview_build_dimensions",
       "note": "Catalog overall height approx. 83 mm (datum unspecified) minus the 30 mm preview board height; used only to give the housing a plausible depth. Legs, rods and handles are not modelled here."
+    },
+    "goal_height": {
+      "value": 50,
+      "unit": "mm",
+      "status": "assumed",
+      "uncertainty": null,
+      "source_ids": [
+        "stiga_se_fi_side_a",
+        "stiga_se_fi_overhead"
+      ],
+      "assumption_id": "assume.preview_build_dimensions",
+      "note": "Side A: goal about 290 px tall, about as tall as a catalog approx. 57 mm figure at a similar distance; perspective and datum unknown. Preview 50 mm (plausible range about 42-58 mm)."
+    },
+    "goal_post_radius": {
+      "value": 1.5,
+      "unit": "mm",
+      "status": "assumed",
+      "uncertainty": null,
+      "source_ids": [],
+      "assumption_id": "assume.preview_build_dimensions",
+      "note": "Posts look like thin moulded rods in the photos; not measurable. Preview 1.5 mm."
+    },
+    "goal_bar_radius": {
+      "value": 0.9,
+      "unit": "mm",
+      "status": "assumed",
+      "uncertainty": null,
+      "source_ids": [],
+      "assumption_id": "assume.preview_build_dimensions",
+      "note": "Cage mesh bars are thinner than the posts in the photos; not measurable. Preview 0.9 mm."
+    },
+    "goal_top_depth_fraction": {
+      "value": 0.6,
+      "unit": "ratio",
+      "status": "assumed",
+      "uncertainty": null,
+      "source_ids": [
+        "stiga_se_fi_side_a"
+      ],
+      "assumption_id": "assume.preview_build_dimensions",
+      "note": "Side views: the top frame reaches back only part of the bottom footprint (the back slopes). Preview: 0.6 of the footprint depth."
+    },
+    "puck_thickness": {
+      "value": 12,
+      "unit": "mm",
+      "status": "assumed",
+      "uncertainty": null,
+      "source_ids": [
+        "stiga_ca_puck",
+        "stiga_canada_catalog"
+      ],
+      "assumption_id": "assume.preview_build_dimensions",
+      "note": "Puck close-up (stiga_ca_puck): top ellipse minor/major about 0.82 (view elevation about 55 deg) and visible side band about 0.33 of the diameter, giving thickness about 0.4-0.6 x diameter = 10-15 mm; perspective not corrected. Preview 12 mm. Measure with a caliper."
+    },
+    "puck_edge_radius": {
+      "value": 2,
+      "unit": "mm",
+      "status": "assumed",
+      "uncertainty": null,
+      "source_ids": [],
+      "assumption_id": "assume.preview_build_dimensions",
+      "note": "Rounded rim visible in the close-up; not measurable. Preview 2 mm."
+    },
+    "screen_thickness": {
+      "value": 2,
+      "unit": "mm",
+      "status": "assumed",
+      "uncertainty": null,
+      "source_ids": [],
+      "assumption_id": "assume.preview_build_dimensions",
+      "note": "Plexiglass sheet; not measurable. Preview 2 mm."
     }
   },
   "goal_setup": {
