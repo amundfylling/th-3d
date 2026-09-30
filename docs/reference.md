@@ -1,7 +1,8 @@
 # Reference brief
 
-Iteration 01, 2026-09-30. Everything here comes from the one PDF in the repository.
-None of the linked web sources was fetched in this iteration.
+Created in iteration 01, updated in iteration 02 (2026-09-30). Everything here comes from the one
+PDF in the repository. None of the linked web sources could be fetched (network policy blocks
+every linked host); see `references/index.json` -> `not_obtained`.
 
 ## Document identity
 
@@ -28,8 +29,8 @@ Page numbers are guide pages (1-8). "Manual p. N" means a page of the STIGA manu
 | 7 | Manual A06 p. 18: exploded view and parts list | 1273 x 1800 | OTTO-hosted manual PDF |
 | 8 | Manual A06 p. 2: assembly steps; ITHF goal configuration; capture priorities | 1132 x 1600 | OTTO-hosted manual PDF; ITHF Tournament Rules |
 
-The pixel sizes are read from the PDF image-object dictionaries and match the guide's
-captions. Iteration 02 extracts and verifies the images themselves.
+Iteration 02 extracted all ten images to `references/originals/` and verified their decoded
+pixel sizes against the captions (all match). See "Recovered reference assets" below.
 
 ### Hyperlinks extracted from the PDF
 
@@ -40,6 +41,55 @@ captions. Iteration 02 extracts and verifies the images themselves.
 | Official overhead original | https://stigasports.centracdn.net/client/dynamic/images/4501_fd13c1ad70-71-1145-01_top-original.jpg | 2 |
 | STIGA manual A06 (OTTO-hosted) | https://d.otto.de/files/e1d0d65f-539e-4c0d-bcbf-fb4163cc1813.pdf | 7, 8 |
 | ITHF Tournament Rules | https://www.ithf.info/stiga/ithf/docs/TournamentRules.pdf | 8 |
+
+## Recovered reference assets (iteration 02)
+
+Catalogue: `references/index.json` (stable IDs, SHA-256, native size, view, variant/artwork, limitations).
+
+| ID | Local file | Native px | Provenance |
+| --- | --- | --- | --- |
+| `stiga_se_fi_overhead` | `references/originals/stiga-sports-71-1145-01-overhead.jpg` | 5636 x 5636 | pdf_embedded, guide p. 2 |
+| `stiga_se_fi_oblique_a` | `references/originals/stiga-sports-71-1145-01-oblique-a.jpg` | 5154 x 5154 | pdf_embedded, guide p. 3 |
+| `stiga_se_fi_oblique_b` | `references/originals/stiga-sports-71-1145-01-oblique-b.jpg` | 5192 x 5192 | pdf_embedded, guide p. 3 |
+| `stiga_se_fi_side_a` | `references/originals/stiga-sports-71-1145-01-side-a.jpg` | 5210 x 5210 | pdf_embedded, guide p. 4 |
+| `stiga_se_fi_side_b` | `references/originals/stiga-sports-71-1145-01-side-b.jpg` | 5208 x 5208 | pdf_embedded, guide p. 4 |
+| `stiga_ca_bare_ice_sheet` | `references/originals/stiga-canada-bare-ice-sheet.jpg` | 2554 x 1617 | pdf_embedded, guide p. 5 - **older artwork** |
+| `stiga_ca_puck` | `references/originals/stiga-canada-puck.jpg` | 1000 x 863 | pdf_embedded, guide p. 6 |
+| `stiga_ca_team_pack_finland` | `references/originals/stiga-canada-finland-team-pack.png` | 800 x 600 RGBA | pdf_embedded, guide p. 6 |
+| `stiga_manual_a06_p02` | `references/originals/stiga-manual-a06-p02-assembly.png` | 1132 x 1600 | pdf_embedded, guide p. 8 |
+| `stiga_manual_a06_p18` | `references/originals/stiga-manual-a06-p18-specification.png` | 1273 x 1800 | pdf_embedded, guide p. 7 |
+
+- The seven JPEGs are the PDF's own DCT streams with only the ASCII85 wrapper removed; their bytes were
+  checked identical to the decoded embedded streams. Nothing was resampled or recompressed.
+- The three PNGs hold the PDF's lossless (Flate) pixels; the team pack's alpha comes from its SMask.
+- Byte identity with the remote originals is **unverified** (no download succeeded).
+- The five gallery views are square frames with large white margins; the rink occupies roughly
+  24-52% of each frame (`content_bbox_px` in the index).
+- Camera sides: Oblique A and Side B look from the same long side (far boards: seko ... Gevalia,
+  Texstar); Oblique B and Side A look from the other (far boards: Divello, Sievi, Fumex, Coca-Cola).
+  Both long sides of the housing carry the "PLAY OFF 21 / STIGA" print.
+- The side views are slightly elevated, not orthographic: the ice surface is visible.
+- At native resolution jersey numbers, "SVERIGE"/"FINLAND" lettering and stick shafts are legible.
+- Installed rink (current gallery) and bare sheet (older Canada catalog) carry different artwork and
+  are kept as separate sources.
+
+### Not obtained (network blocked)
+
+| Item | URL / host | Why it matters |
+| --- | --- | --- |
+| Remote overhead original | `stigasports.centracdn.net` (URL above) | Byte-identity check only; the embedded 5636 px JPEG suffices for tracing |
+| Direct URLs of obliques/sides | `www.stigasports.com` product page | Source association is page-level only |
+| Canada catalog images and the 1001 x 603 older-artwork overhead | `www.stigacanada.ca` | Overhead is not embedded in the PDF at all |
+| Complete manual A06 (20 pages per guide) | `d.otto.de` | Only pages 2 and 18 available; p. 17 figure variants missing |
+| ITHF Tournament Rules | `www.ithf.info` | Section 3.3 known only from the guide's summary |
+
+## Manufacturer manual page numbers
+
+- Manual A06 **page 2**: supplied parts and assembly (seven steps). Verified by the page badge "2"
+  printed on the embedded image.
+- Manual A06 **page 18**: specification, exploded view and parts list. Verified by the page badge "18".
+- Page 17 (figure variants) and the 20-page total are the guide's claims only; not verified because
+  the complete manual could not be downloaded.
 
 ## Model and variant
 
@@ -140,9 +190,9 @@ pivot offsets, gear ratios, backlash, contact surfaces or travel stops.
 
 ## Visual content not fully inspected
 
-- The five gallery images and the bare sheet were viewed only as page renders at about 110 dpi,
-  not at their native 5000+ pixel resolution. Fine detail (slot ends, figure handedness, stick
-  sides) was not examined.
+- Iteration 02 viewed all ten extracted images as downscaled previews (max 1400 px) and spot-checked
+  two native-resolution crops (overhead goal area, Side A figures). The full native frames have not
+  been examined region by region; slot ends, stick sides and handedness remain unchecked.
 - The puck and team-pack photos were viewed only at page-render size.
 - Manual p. 2 (guide p. 8) was viewed at page-render size; manual p. 18 was examined at native
   resolution for the parts table.

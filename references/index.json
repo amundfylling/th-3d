@@ -1,0 +1,472 @@
+{
+  "schema_version": 1,
+  "generated": "2026-09-30",
+  "iteration": "02",
+  "notes": [
+    "pdf_embedded = extracted from the reference PDF without resampling; pdf_embedded JPEGs are byte-identical to the PDF's DCT streams.",
+    "downloaded_original = fetched from the public URL. None succeeded in this environment; see status.",
+    "byte_identity_with_remote is 'unverified' for every asset because no remote original could be fetched.",
+    "Original PDF is preserved unchanged at the repository root."
+  ],
+  "reference_pdf": {
+    "path": "Stiga_Play_Off_21_References.pdf",
+    "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+    "identity": "STIGA Play Off 21 reference guide, 8 pages, researched 2026-09-30"
+  },
+  "sources": [
+    {
+      "id": "stiga_se_fi_overhead",
+      "title": "Official overhead",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-sports-71-1145-01-overhead.jpg",
+      "sha256": "35e59e01c299fca695161760bcff1e7b8a9a79430a200fa1c4a50ecaeca8fea1",
+      "bytes": 852163,
+      "format": "jpeg",
+      "native_width_px": 5636,
+      "native_height_px": 5636,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 2,
+        "image_xref": 6,
+        "stream_encoding": "JPEG (DCTDecode) stream; ASCII85 layer removed only. Extracted bytes verified identical to the decoded embedded stream."
+      },
+      "public_url": "https://stigasports.centracdn.net/client/dynamic/images/4501_fd13c1ad70-71-1145-01_top-original.jpg",
+      "public_url_kind": "direct_image",
+      "source_page_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "byte_identity_with_remote": "unverified",
+      "view": "Top-down view of the installed rink with figures, goals, rods slots and end screens. Near-overhead perspective: end screens and boards appear flared. Board sponsors 'Divello ... Coca-Cola ... Comfort, Skrotsmart' along image-top long side; 'seko ... kry, Gevalia, Delicato, Texstar' along image-bottom long side (text inverted). Red goal-counter strips on image-top right and image-bottom left.",
+      "variant": "Sweden vs Finland, 71-1145-01",
+      "artwork": "current STIGA Sports gallery artwork (2026 guide)",
+      "limitations": [
+        "Perspective photograph, not a dimensioned orthographic plan; match camera projection before tracing.",
+        "Large white margins: subject occupies only part of the square frame (see content_bbox_px, threshold RGB<240).",
+        "Figures, goals and the centre puck disc hide parts of the tracks."
+      ],
+      "content_bbox_px": [
+        100,
+        1304,
+        5532,
+        4365
+      ],
+      "jpeg": "progressive JFIF, no EXIF, no ICC profile"
+    },
+    {
+      "id": "stiga_se_fi_oblique_a",
+      "title": "Oblique A",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-sports-71-1145-01-oblique-a.jpg",
+      "sha256": "d954e41ebf2eed94a0b18a655dd99760a94f9a75b26d027b470f8207a0b27629",
+      "bytes": 518314,
+      "format": "jpeg",
+      "native_width_px": 5154,
+      "native_height_px": 5154,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 3,
+        "image_xref": 9,
+        "stream_encoding": "JPEG (DCTDecode) stream; ASCII85 layer removed only. Extracted bytes verified identical to the decoded embedded stream."
+      },
+      "public_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "public_url_kind": "product_page",
+      "source_page_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "byte_identity_with_remote": "unverified",
+      "view": "Elevated three-quarter view from the image-top long side of the overhead (far boards show seko ... kry, Gevalia, Delicato, Texstar). Same camera side as Side B. Near long side of housing carries 'PLAY OFF 21 / STIGA' print.",
+      "variant": "Sweden vs Finland, 71-1145-01",
+      "artwork": "current STIGA Sports gallery artwork (2026 guide)",
+      "limitations": [
+        "Perspective photograph, not a dimensioned orthographic plan; match camera projection before tracing.",
+        "Large white margins: subject occupies only part of the square frame (see content_bbox_px, threshold RGB<240).",
+        "The PDF links only the product page, not this image's direct URL; the direct gallery URL was not resolved (network blocked)."
+      ],
+      "content_bbox_px": [
+        121,
+        1636,
+        5043,
+        3535
+      ],
+      "jpeg": "progressive JFIF, no EXIF, no ICC profile"
+    },
+    {
+      "id": "stiga_se_fi_oblique_b",
+      "title": "Oblique B",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-sports-71-1145-01-oblique-b.jpg",
+      "sha256": "1b747e74ef6b618ed0724ae2006d82bd7224549139beb24e38aecdeec967a4f5",
+      "bytes": 525204,
+      "format": "jpeg",
+      "native_width_px": 5192,
+      "native_height_px": 5192,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 3,
+        "image_xref": 10,
+        "stream_encoding": "JPEG (DCTDecode) stream; ASCII85 layer removed only. Extracted bytes verified identical to the decoded embedded stream."
+      },
+      "public_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "public_url_kind": "product_page",
+      "source_page_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "byte_identity_with_remote": "unverified",
+      "view": "Elevated three-quarter view from the image-bottom long side of the overhead (far boards show Divello, Sievi, Fumex, Coca-Cola ... Comfort, Skrotsmart, Monitor ERP, Flex). Same camera side as Side A. Near long side also carries 'PLAY OFF 21 / STIGA' print, so both long sides are printed.",
+      "variant": "Sweden vs Finland, 71-1145-01",
+      "artwork": "current STIGA Sports gallery artwork (2026 guide)",
+      "limitations": [
+        "Perspective photograph, not a dimensioned orthographic plan; match camera projection before tracing.",
+        "Large white margins: subject occupies only part of the square frame (see content_bbox_px, threshold RGB<240).",
+        "The PDF links only the product page, not this image's direct URL; the direct gallery URL was not resolved (network blocked)."
+      ],
+      "content_bbox_px": [
+        104,
+        1630,
+        5086,
+        3550
+      ],
+      "jpeg": "progressive JFIF, no EXIF, no ICC profile"
+    },
+    {
+      "id": "stiga_se_fi_side_a",
+      "title": "Side A",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-sports-71-1145-01-side-a.jpg",
+      "sha256": "61c1da0e402070fa1955cb1f0aaf856193a684eda73f6202c98f278c7669a643",
+      "bytes": 428308,
+      "format": "jpeg",
+      "native_width_px": 5210,
+      "native_height_px": 5210,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 4,
+        "image_xref": 13,
+        "stream_encoding": "JPEG (DCTDecode) stream; ASCII85 layer removed only. Extracted bytes verified identical to the decoded embedded stream."
+      },
+      "public_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "public_url_kind": "product_page",
+      "source_page_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "byte_identity_with_remote": "unverified",
+      "view": "Long-side profile at slightly elevated camera height; far boards show Divello, Sievi, Fumex, Coca-Cola, Malmbergs, Comfort. Same long side as Oblique B. Rod handles visible at both short ends.",
+      "variant": "Sweden vs Finland, 71-1145-01",
+      "artwork": "current STIGA Sports gallery artwork (2026 guide)",
+      "limitations": [
+        "Perspective photograph, not a dimensioned orthographic plan; match camera projection before tracing.",
+        "Large white margins: subject occupies only part of the square frame (see content_bbox_px, threshold RGB<240).",
+        "Not a true orthographic elevation: the ice surface is visible, so heights are foreshortened and relative only.",
+        "The PDF links only the product page, not this image's direct URL; the direct gallery URL was not resolved (network blocked)."
+      ],
+      "content_bbox_px": [
+        89,
+        2067,
+        5095,
+        3382
+      ],
+      "jpeg": "progressive JFIF, no EXIF, no ICC profile"
+    },
+    {
+      "id": "stiga_se_fi_side_b",
+      "title": "Side B",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-sports-71-1145-01-side-b.jpg",
+      "sha256": "70ee44406bc2dc1fb68b678b952a46532265004f56a0e2599a69f2ed894cb295",
+      "bytes": 420517,
+      "format": "jpeg",
+      "native_width_px": 5208,
+      "native_height_px": 5208,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 4,
+        "image_xref": 14,
+        "stream_encoding": "JPEG (DCTDecode) stream; ASCII85 layer removed only. Extracted bytes verified identical to the decoded embedded stream."
+      },
+      "public_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "public_url_kind": "product_page",
+      "source_page_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "byte_identity_with_remote": "unverified",
+      "view": "Long-side profile from the opposite side to Side A; far boards show seko, Liqui Moly, Container Poolen, Cedecor, kry, Gevalia, Delicato, Texstar. Same long side as Oblique A.",
+      "variant": "Sweden vs Finland, 71-1145-01",
+      "artwork": "current STIGA Sports gallery artwork (2026 guide)",
+      "limitations": [
+        "Perspective photograph, not a dimensioned orthographic plan; match camera projection before tracing.",
+        "Large white margins: subject occupies only part of the square frame (see content_bbox_px, threshold RGB<240).",
+        "Not a true orthographic elevation: the ice surface is visible, so heights are foreshortened and relative only.",
+        "The PDF links only the product page, not this image's direct URL; the direct gallery URL was not resolved (network blocked)."
+      ],
+      "content_bbox_px": [
+        88,
+        1900,
+        5080,
+        3198
+      ],
+      "jpeg": "progressive JFIF, no EXIF, no ICC profile"
+    },
+    {
+      "id": "stiga_ca_bare_ice_sheet",
+      "title": "Bare ice sheet (older artwork)",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-canada-bare-ice-sheet.jpg",
+      "sha256": "a88ec1bb02262972ef81adedb05a3b2111a578735e7f9a90fe822bff31f24044",
+      "bytes": 140530,
+      "format": "jpeg",
+      "native_width_px": 2554,
+      "native_height_px": 1617,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 5,
+        "image_xref": 17,
+        "stream_encoding": "JPEG (DCTDecode) stream; ASCII85 layer removed only. Extracted bytes verified identical to the decoded embedded stream."
+      },
+      "public_url": "https://www.stigacanada.ca/stiga-playoff-21-hockey-table-game-can-swe/",
+      "public_url_kind": "product_page",
+      "source_page_url": "https://www.stigacanada.ca/stiga-playoff-21-hockey-table-game-can-swe/",
+      "byte_identity_with_remote": "unverified",
+      "view": "Loose ice sheet photographed from above at a slight angle, no boards, figures or goals; exposes slot topology and goalie slots with cut-outs behind the goal lines.",
+      "variant": "Canada vs Sweden catalog variant (variant number not stated)",
+      "artwork": "OLDER sponsor artwork (Corvara, Svetruck, Pantamera, V75, Lidl, Byggmax, Scandic). Differs from the current 71-1145-01 gallery artwork; do not share artwork with the installed-rink model.",
+      "limitations": [
+        "Use for slot topology only, not final scale or artwork.",
+        "The sheet's outer edge may extend beneath the boards; it is not necessarily the playable boundary.",
+        "Perspective and physical travel stops uncalibrated.",
+        "2554 x 1617 px; lower resolution than the gallery views.",
+        "The PDF links only the catalog page; the direct image URL was not resolved (network blocked)."
+      ],
+      "content_bbox_px": [
+        72,
+        152,
+        2486,
+        1481
+      ],
+      "jpeg": "baseline JFIF with ICC profile described as 'c2' (compact profile; assumed sRGB-equivalent, unverified)"
+    },
+    {
+      "id": "stiga_ca_puck",
+      "title": "Puck",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-canada-puck.jpg",
+      "sha256": "cfd5d476a0dc89a7ec1f4f4a5216cf8def7a14cf86c428e8d04d980d8459ebdf",
+      "bytes": 30321,
+      "format": "jpeg",
+      "native_width_px": 1000,
+      "native_height_px": 863,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 6,
+        "image_xref": 20,
+        "stream_encoding": "JPEG (DCTDecode) stream; ASCII85 layer removed only. Extracted bytes verified identical to the decoded embedded stream."
+      },
+      "public_url": "https://www.stigacanada.ca/stiga-playoff-21-hockey-table-game-can-swe/",
+      "public_url_kind": "product_page",
+      "source_page_url": "https://www.stigacanada.ca/stiga-playoff-21-hockey-table-game-can-swe/",
+      "byte_identity_with_remote": "unverified",
+      "view": "Close three-quarter view of a single black puck with embossed STIGA logo and rounded rim.",
+      "variant": "not variant-specific (manual part 7111-9079-01 assumed, unverified)",
+      "artwork": "n/a",
+      "limitations": [
+        "No scale: diameter, thickness and rim profile must be measured on the actual puck.",
+        "The PDF links only the catalog page; the direct image URL was not resolved (network blocked)."
+      ],
+      "content_bbox_px": [
+        57,
+        32,
+        944,
+        840
+      ],
+      "jpeg": "baseline JFIF with ICC profile 'c2' (assumed sRGB-equivalent, unverified)"
+    },
+    {
+      "id": "stiga_ca_team_pack_finland",
+      "title": "Team pack in blister packaging (identified as Finland by the guide)",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-canada-finland-team-pack.png",
+      "sha256": "66f05c76116ec2e4116e2d5c50d04cd54f420ac4b480c560d9bb035cbf9c462f",
+      "bytes": 897949,
+      "format": "png",
+      "native_width_px": 800,
+      "native_height_px": 600,
+      "mode": "RGBA",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 6,
+        "image_xref": 21,
+        "stream_encoding": "Raw 8-bit RGB pixels (FlateDecode, lossless); saved as PNG without resampling. Alpha channel taken from the embedded SMask (xref 22) and combined into RGBA."
+      },
+      "public_url": "https://www.stigacanada.ca/stiga-playoff-21-hockey-table-game-can-swe/",
+      "public_url_kind": "product_page",
+      "source_page_url": "https://www.stigacanada.ca/stiga-playoff-21-hockey-table-game-can-swe/",
+      "byte_identity_with_remote": "unverified",
+      "view": "Front of retail blister card 'PLAY OFF HOCKEYLAG': five skaters and one goalie, white/blue uniforms, sticks held across the body.",
+      "variant": "Finland team (per guide; no flag or team name legible at this resolution)",
+      "artwork": "Team pack retail card",
+      "limitations": [
+        "800 x 600 px only.",
+        "Packaging obscures and distorts surfaces; cannot replace loose-figure close-ups.",
+        "Remote original format unknown; the PDF stored decoded pixels, so this PNG is not a byte copy of any remote file.",
+        "The PDF links only the catalog page; the direct image URL was not resolved (network blocked)."
+      ]
+    },
+    {
+      "id": "stiga_manual_a06_p02",
+      "title": "STIGA manual A06, page 2 (assembly)",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-manual-a06-p02-assembly.png",
+      "sha256": "050bb21af4cc2102abe3a50ece79db3313c7d37b09b0f2bb104e8f92eb36c1f8",
+      "bytes": 146111,
+      "format": "png",
+      "native_width_px": 1132,
+      "native_height_px": 1600,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 8,
+        "image_xref": 28,
+        "stream_encoding": "Raw 8-bit RGB pixels (FlateDecode, lossless); saved as PNG without resampling."
+      },
+      "public_url": "https://d.otto.de/files/e1d0d65f-539e-4c0d-bcbf-fb4163cc1813.pdf",
+      "public_url_kind": "manual_pdf",
+      "source_page_url": "https://d.otto.de/files/e1d0d65f-539e-4c0d-bcbf-fb4163cc1813.pdf",
+      "byte_identity_with_remote": "unverified",
+      "view": "Manufacturer line drawing, seven assembly steps, header 'PLAY OFF 21  71-1145-XX'; page badge '2'. Shows white insert/deflector inside the goal.",
+      "variant": "family 71-1145-XX",
+      "artwork": "line drawing",
+      "limitations": [
+        "Not a scale drawing.",
+        "Rasterised page, 1132 x 1600 px; not the vector manual.",
+        "Complete manual not obtained (network blocked)."
+      ]
+    },
+    {
+      "id": "stiga_manual_a06_p18",
+      "title": "STIGA manual A06, page 18 (specification / parts list)",
+      "provenance": "pdf_embedded",
+      "local_path": "references/originals/stiga-manual-a06-p18-specification.png",
+      "sha256": "ffac360dca8c8dc95948a8a6e4aa742e2cd71cde886bd9c81fc802043ae49a35",
+      "bytes": 267888,
+      "format": "png",
+      "native_width_px": 1273,
+      "native_height_px": 1800,
+      "mode": "RGB",
+      "pdf": {
+        "path": "Stiga_Play_Off_21_References.pdf",
+        "sha256": "1c7355ef63d28a4c34adbb1983b29ed3ca4d8bae0e3d85ca8714117335d9a4cc",
+        "page": 7,
+        "image_xref": 25,
+        "stream_encoding": "Raw 8-bit RGB pixels (FlateDecode, lossless); saved as PNG without resampling."
+      },
+      "public_url": "https://d.otto.de/files/e1d0d65f-539e-4c0d-bcbf-fb4163cc1813.pdf",
+      "public_url_kind": "manual_pdf",
+      "source_page_url": "https://d.otto.de/files/e1d0d65f-539e-4c0d-bcbf-fb4163cc1813.pdf",
+      "byte_identity_with_remote": "unverified",
+      "view": "Exploded view with numbered parts 1-17 and bilingual GB/FR parts table (Play Off and Stanley Cup quantity columns); page badge '18'.",
+      "variant": "family 71-1145-XX (table also covers Stanley Cup)",
+      "artwork": "line drawing",
+      "limitations": [
+        "Exploded view is not a scale drawing.",
+        "Rasterised page, 1273 x 1800 px.",
+        "Complete manual not obtained (network blocked)."
+      ]
+    }
+  ],
+  "not_obtained": [
+    {
+      "id": "stiga_se_fi_overhead_remote",
+      "title": "Official overhead, remote original",
+      "provenance": "downloaded_original",
+      "status": {
+        "status": "failed",
+        "attempted": "2026-09-30",
+        "reason": "Cloud environment egress proxy rejected CONNECT (HTTP 403, organization network policy); WebFetch also reported EGRESS_BLOCKED for the STIGA page hosts."
+      },
+      "public_url": "https://stigasports.centracdn.net/client/dynamic/images/4501_fd13c1ad70-71-1145-01_top-original.jpg",
+      "required_host": "stigasports.centracdn.net",
+      "purpose": "Verify byte identity / resolution of stiga_se_fi_overhead. Not needed for tracing: the embedded JPEG is already 5636 x 5636."
+    },
+    {
+      "id": "stiga_se_fi_gallery_page",
+      "title": "STIGA Sports product gallery page",
+      "provenance": "downloaded_original",
+      "status": {
+        "status": "failed",
+        "attempted": "2026-09-30",
+        "reason": "Cloud environment egress proxy rejected CONNECT (HTTP 403, organization network policy); WebFetch also reported EGRESS_BLOCKED for the STIGA page hosts."
+      },
+      "public_url": "https://www.stigasports.com/sv/product/play-off-21-sweden-vs-finland",
+      "required_host": "www.stigasports.com (gallery images likely on stigasports.centracdn.net)",
+      "purpose": "Resolve direct URLs of Oblique A/B and Side A/B and confirm their gallery order."
+    },
+    {
+      "id": "stiga_ca_catalog_page",
+      "title": "STIGA Canada detailed catalog page",
+      "provenance": "downloaded_original",
+      "status": {
+        "status": "failed",
+        "attempted": "2026-09-30",
+        "reason": "Cloud environment egress proxy rejected CONNECT (HTTP 403, organization network policy); WebFetch also reported EGRESS_BLOCKED for the STIGA page hosts."
+      },
+      "public_url": "https://www.stigacanada.ca/stiga-playoff-21-hockey-table-game-can-swe/",
+      "required_host": "www.stigacanada.ca",
+      "purpose": "Resolve direct URLs of the bare sheet, puck and team pack, and locate the older-artwork overhead."
+    },
+    {
+      "id": "stiga_ca_overhead_older_artwork",
+      "title": "Overhead photograph of older Canada/Sweden artwork (1001 x 603 per guide p. 6)",
+      "provenance": "downloaded_original",
+      "status": {
+        "status": "failed",
+        "attempted": "2026-09-30",
+        "reason": "Cloud environment egress proxy rejected CONNECT (HTTP 403, organization network policy); WebFetch also reported EGRESS_BLOCKED for the STIGA page hosts.",
+        "note": "Not embedded in the PDF despite the guide's 'Also included' note; no direct URL is known."
+      },
+      "public_url": null,
+      "source_page_url": "https://www.stigacanada.ca/stiga-playoff-21-hockey-table-game-can-swe/",
+      "required_host": "www.stigacanada.ca",
+      "purpose": "Older-artwork installed-rink reference; keep separate from the current gallery."
+    },
+    {
+      "id": "stiga_manual_a06_full",
+      "title": "STIGA Play Off 21 manual A06, complete (20 pages per guide)",
+      "provenance": "downloaded_original",
+      "status": {
+        "status": "failed",
+        "attempted": "2026-09-30",
+        "reason": "Cloud environment egress proxy rejected CONNECT (HTTP 403, organization network policy); WebFetch also reported EGRESS_BLOCKED for the STIGA page hosts."
+      },
+      "public_url": "https://d.otto.de/files/e1d0d65f-539e-4c0d-bcbf-fb4163cc1813.pdf",
+      "required_host": "d.otto.de",
+      "purpose": "Full assembly/parts pages and p. 17 figure variants; only pages 2 and 18 are available (pdf_embedded)."
+    },
+    {
+      "id": "ithf_tournament_rules",
+      "title": "ITHF Tournament Rules (valid from 8 September 2025)",
+      "provenance": "downloaded_original",
+      "status": {
+        "status": "failed",
+        "attempted": "2026-09-30",
+        "reason": "Cloud environment egress proxy rejected CONNECT (HTTP 403, organization network policy); WebFetch also reported EGRESS_BLOCKED for the STIGA page hosts."
+      },
+      "public_url": "https://www.ithf.info/stiga/ithf/docs/TournamentRules.pdf",
+      "required_host": "www.ithf.info",
+      "purpose": "Verify section 3.3 goal configuration (insert/cup removal). Only the guide's summary is available."
+    }
+  ],
+  "missing_views": [
+    "Loose skater (each position, both teams) front, back, left, right, top and underside, orthographic-ish, with a scale.",
+    "Loose goalie with scale, including underside/fixture.",
+    "Close-ups of the figure fixture: pivot/pin, base, skate soles and ice clearance, installed and removed.",
+    "Blade close-ups showing offset from pivot, blade profile and stick-side (handedness) per position.",
+    "Installed figures at ice level, perpendicular to their tracks.",
+    "Empty installed rink, perpendicular overhead with scale markers in both directions.",
+    "Goal with and without insert/deflector, with scale; the user's actual goal setup."
+  ]
+}
