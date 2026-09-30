@@ -47,3 +47,29 @@ Numbers and the list of masked regions: `validation/17-ice-texture-report.json`.
 - **Housing:** the "PLAY OFF 21 / STIGA" print and the legs are not modelled.
 - **Baked-in photo effects:** lighting, vignetting and board reflections near the ice edge remain in the texture.
 - **Colours and screens:** the goal and housing colours include photo lighting; the gloss is assumed. Screen thickness, profile and clips are not modelled.
+
+## Figures and puck (iteration 18)
+
+```sh
+/root/venvs/blender/bin/python assets/blender/build_appearance.py   # materials on assets and scene (about 1 min)
+/root/venvs/blender/bin/python assets/blender/render_appearance.py  # review renders (about 8 min)
+```
+
+- **Team choice:** the documented reference variant, Finland = W (white/blue), Sweden = E (yellow/blue). The user's own teams have not been supplied.
+- **Colours** are sampled from tight boxes on the figures in the official overhead (`validation/18-colour-samples.json`, with pixel boxes). One earlier attempt sampled the side photos and picked up a blue board and the ice; it was replaced. Both whites use the brightest sample (230, 226, 225), because the W-RD jersey sample is shaded.
+- **Assignment by face.**
+  - Body faces take the colour of their nearest layout element: helmet, gloves, pants and skates blue; jersey, sleeves and socks white; face and neck skin.
+  - Separate mesh islands are classified by position: the skater's blade and shaft are metal, the skate blocks blue, the goalie stick tan (overhead sample).
+  - Puck: black (roughness 0.55). Placeholders: team two-tone, still placeholders.
+- **Geometry unchanged:** vertex positions checked in Blender for both assets and the scene, plus GLB bounds in the tests.
+- **Renders** with the iteration-17 benchmark light:
+  - intended output `validation/18-oblique-1080p.png` (1920 × 1080);
+  - close-ups `18-skater-front/side/back.png`, `18-blade-puck.png`, `18-goalie-front.png`. Cameras are inside the rink; the first side camera was hidden by the boards (repair 1).
+
+**Remaining visual defects (AI review)**
+1. **At the intended output**, figures are about 60–90 px tall. Colours read correctly, but the proxy bodies look like smooth toys, not the moulded STIGA figures (no pad and helmet edges, no jersey seams).
+2. **Stair-stepped colour boundaries**, because colours are assigned per face (visible in close-ups).
+3. **No decals:** numbers (W-RD no. 4), FINLAND lettering, helmet and mask details, stripes and the puck logo are unresolved and not invented.
+4. **Placeholders:** 10 of 12 figures are generic placeholders.
+5. **Debug geometry visible:** the skate blocks and the lifted right leg of W-RD (iteration-14 conflict) show in the close-ups.
+6. **Photo lighting:** the whites and blues come from photo pixels that include lighting, so the albedo is approximate.

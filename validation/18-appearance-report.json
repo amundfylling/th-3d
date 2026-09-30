@@ -1,0 +1,59 @@
+{
+  "colours_srgb": {
+    "fin_blue": [
+      56,
+      129,
+      190
+    ],
+    "white": [
+      230,
+      226,
+      225
+    ],
+    "skin": [
+      200,
+      148,
+      135
+    ],
+    "metal": [
+      143,
+      148,
+      151
+    ],
+    "swe_yellow": [
+      203,
+      156,
+      4
+    ],
+    "swe_blue": [
+      49,
+      99,
+      152
+    ],
+    "tan": [
+      229,
+      159,
+      116
+    ],
+    "goalie_blue": [
+      74,
+      115,
+      158
+    ]
+  },
+  "colour_sources": "validation/18-colour-samples.json",
+  "geometry_unchanged": {
+    "skater_vertices": 98902,
+    "goalie_vertices": 108514,
+    "scene": true
+  },
+  "unresolved_decals": [
+    "jersey numbers (W-RD no. 4; goalie number unseen)",
+    "'FINLAND' lettering on the backs",
+    "Sweden lettering/numbers (placeholders)",
+    "puck STIGA logo emboss",
+    "helmet/mask details, face features",
+    "stripe patterns on sleeves/socks"
+  ],
+  "placeholders": "team two-tone (Finland white/blue, Sweden yellow/blue); still placeholders"
+}

@@ -1,0 +1,83 @@
+{
+  "finland_blue": {
+    "srgb": [
+      56,
+      129,
+      190
+    ],
+    "n_px": 997,
+    "source": "stiga_se_fi_overhead px (2445, 3315, 2470, 3355) (overhead W-RD helmet)"
+  },
+  "finland_white": {
+    "srgb": [
+      207,
+      207,
+      205
+    ],
+    "n_px": 725,
+    "source": "stiga_se_fi_overhead px (2325, 3290, 2350, 3320) (overhead W-RD jersey)"
+  },
+  "skin": {
+    "srgb": [
+      200,
+      148,
+      135
+    ],
+    "n_px": 102,
+    "source": "stiga_se_fi_overhead px (2398, 3322, 2410, 3352) (overhead W-RD face/neck)"
+  },
+  "stick_metal": {
+    "srgb": [
+      143,
+      148,
+      151
+    ],
+    "n_px": 875,
+    "source": "stiga_se_fi_overhead px (2390, 3080, 2402, 3230) (overhead W-RD stick shaft)"
+  },
+  "sweden_yellow": {
+    "srgb": [
+      203,
+      156,
+      4
+    ],
+    "n_px": 1195,
+    "source": "stiga_se_fi_overhead px (1690, 2740, 1740, 2790) (overhead E-C no.21 jersey)"
+  },
+  "sweden_blue": {
+    "srgb": [
+      49,
+      99,
+      152
+    ],
+    "n_px": 590,
+    "source": "stiga_se_fi_overhead px (1680, 2700, 1770, 2800) (overhead E-C no.21 helmet/gloves)"
+  },
+  "goalie_tan": {
+    "srgb": [
+      229,
+      159,
+      116
+    ],
+    "n_px": 2029,
+    "source": "stiga_se_fi_overhead px (1421, 2763, 1438, 2950) (overhead W-G stick)"
+  },
+  "goalie_blue": {
+    "srgb": [
+      74,
+      115,
+      158
+    ],
+    "n_px": 1130,
+    "source": "stiga_se_fi_overhead px (1395, 2955, 1430, 3040) (overhead W-G pads)"
+  },
+  "goalie_white": {
+    "srgb": [
+      230,
+      226,
+      225
+    ],
+    "n_px": 3117,
+    "source": "stiga_se_fi_overhead px (1300, 2860, 1340, 3000) (overhead W-G jersey)"
+  }
+}
