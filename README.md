@@ -21,6 +21,8 @@ npm run trace:board # iteration 05: trace inner board boundary -> data/geometry.
 npm run render:board # validation/05-board-overlay.svg from the canonical data
 ```
 
+Remotion stills: `npm run remotion:stills` (docs/remotion.md). Blender builds: docs/blender.md.
+
 Geometry conventions and evidence policy: `docs/geometry.md`. Board trace: `docs/board-trace.md`.
 
 TypeScript files must use erasable syntax only (no enums, namespaces or parameter properties) and

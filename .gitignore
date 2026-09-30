@@ -5,3 +5,5 @@ node_modules/
 # Bulk render outputs (review artifacts in validation/*.svg are committed)
 validation/renders/
 out/
+# Remotion: public/ holds copies of committed assets (npm run remotion:assets); renders go to out/
+public/*.glb
