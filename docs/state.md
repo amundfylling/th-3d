@@ -43,6 +43,8 @@ Iteration 20 closed without repair cycles:
 
 ## Key decisions
 
+- Sponsors dropped (user, D6, 2026-09-30): the ice carries hockey markings only; the reference print is kept as `assets/rink/textures/ice_basecolor_reference.png`.
+
 - Target family 71-1145-XX; Sweden/Finland 71-1145-01 public gallery is the reference variant until
   the user supplies their own parts/teams/artwork.
 - Conflicting overall lengths (960 vs 940 mm) are kept separate, not averaged. The approx. 845 x 457 mm
@@ -149,3 +151,4 @@ Iteration 20 closed without repair cycles:
 | 18 | 2026-09-30 | assets/blender/build_appearance.py, render_appearance.py; materials on skater_W-RD, goalie_W-G, puck; assets/scene/full_static_appearance.*; validation/18-*; tests/appearance.test.ts | `npm run check` pass; renders AI-reviewed; 1 repair cycle |
 | 19 | 2026-09-30 | remotion/ (index, Root, StaticInspection, cameras, checks); pinned remotion 4.0.531, react 19.2.0, three 0.186.1, R3F 9.4.0; tsconfig JSX/DOM; validation/19/*; docs/remotion.md; tests/remotion-setup.test.ts | typecheck + 83 tests pass; 4 Remotion stills rendered and AI-reviewed; import checks PASS; 2 repair cycles |
 | 20 | 2026-09-30 | scripts/review-reprojection.ts, png-read.ts, review-sheet.py; validation/20-review-sheet.png, 20-reprojection.json; docs/review.md; reprojection test | `npm run check` 84/84; review sheet AI-reviewed; 0 repair cycles |
+| D6 | 2026-09-30 | Sponsors dropped from the ice (assets/blender/drop_sponsors.py); the 17-20 renders, Remotion stills and review sheet regenerated; .blend1 backups untracked | `npm run check` 85/85; renders AI-reviewed; Remotion import checks PASS |
