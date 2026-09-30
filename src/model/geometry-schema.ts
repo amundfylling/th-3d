@@ -216,8 +216,13 @@ export const geometrySchema: Check<GeometryFile> = obj({
           status,
           source_ids: ids,
           uncertainty_mm: nullable(num),
+          provisional: opt(bool),
+          assumption_id: opt(nonEmptyStr),
+          note: opt(str),
         }),
       ),
+      inventory: opt(arr(obj({ item: nonEmptyStr, status, evidence: nonEmptyStr }))),
+      note: opt(str),
     }),
   ),
   goal_setup: obj({

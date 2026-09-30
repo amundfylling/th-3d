@@ -1,0 +1,26 @@
+{
+  "player": "W-RD",
+  "pivot_px": [
+    2375.96,
+    3287.13
+  ],
+  "pivot_along_slot_uncertainty_mm": 12.06,
+  "heading_deg": 0.19,
+  "mm_per_px_assumed": 0.179597,
+  "hands_local_mm": [
+    4.32,
+    6.67,
+    20
+  ],
+  "tip_local_mm": [
+    3.06,
+    42.59,
+    0
+  ],
+  "blade_start_local_mm": [
+    3.44,
+    31.81,
+    0
+  ],
+  "contact_uncertainty_mm": 13
+}

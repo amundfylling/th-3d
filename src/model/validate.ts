@@ -255,6 +255,16 @@ export function validateGeometry(data: unknown, ctx: ValidationContext): Validat
     if (f.image_trace_ids.length > 0 && !f.identity_evidence) err(p, "a traced path needs identity_evidence");
   });
 
+  // Contact shapes: assumed (provisional) geometry must name its assumption and be flagged provisional.
+  g.figure_assets.forEach((a, i) => {
+    a.contact_shapes.forEach((c, j) => {
+      const p = `$.figure_assets[${i}].contact_shapes[${j}]`;
+      if (c.status === "assumed" && (!c.assumption_id || c.provisional !== true)) err(p, "assumed contact geometry needs assumption_id and provisional: true");
+      if (c.provisional && c.status !== "assumed") err(p, "provisional contact geometry must have status assumed");
+      if (c.uncertainty_mm !== null && !(c.uncertainty_mm > 0)) err(p, "uncertainty_mm must be null or > 0");
+    });
+  });
+
   // Goal setup: a chosen configuration must be one of the candidates.
   if (g.goal_setup.configuration !== "unknown") {
     if (!g.goal_setup.candidates.includes(g.goal_setup.configuration)) err("$.goal_setup", "configuration must be one of the candidates");

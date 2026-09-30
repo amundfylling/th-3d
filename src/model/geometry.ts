@@ -203,6 +203,17 @@ export interface ContactShape {
   status: EvidenceStatus;
   source_ids: string[];
   uncertainty_mm: number | null;
+  /** True for debug geometry that stands in for unmeasured contacts; never physical evidence. */
+  provisional?: boolean;
+  assumption_id?: string;
+  note?: string;
+}
+
+/** One line of a figure's contact-evidence inventory. */
+export interface InventoryItem {
+  item: string;
+  status: EvidenceStatus;
+  evidence: string;
 }
 
 export interface FigureAsset {
@@ -214,6 +225,8 @@ export interface FigureAsset {
   blade_offset_from_pivot: Quantity;
   ice_clearance: Quantity;
   contact_shapes: ContactShape[];
+  inventory?: InventoryItem[];
+  note?: string;
 }
 
 export interface Goal {

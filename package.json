@@ -20,7 +20,9 @@
     "render:tracks07": "node scripts/render-tracks-overlay.ts validation/07-winger-tracks.svg \"07 - Winger slots\" W-LW,W-RW,E-LW,E-RW --samples",
     "trace:goals": "node scripts/trace-goals.ts",
     "render:goals08": "node scripts/render-goals-overlay.ts",
-    "render:pose09": "node scripts/render-pose-debug.ts"
+    "render:pose09": "node scripts/render-pose-debug.ts",
+    "contacts:define": "node scripts/define-contacts.ts",
+    "render:contacts10": "node scripts/render-contacts.ts"
   },
   "devDependencies": {
     "@types/node": "22.20.4",
