@@ -1,0 +1,160 @@
+"""Fit a pinhole camera per photo/frame to a figure mold and report silhouette IoU (camera-matched overlays).
+
+    /root/venvs/blender/bin/python scripts/fit-figure-views.py skater|goalie [--mesh out/figures/<kind>.npz] [--out DIR]
+The mold mesh comes from assets/blender/preview_molds.py or build_figures.py (npz: verts mm, tris,
+labels). Per view the camera azimuth/elevation/roll, aim (pan/tilt), distance and (video) focal length are
+optimised to maximise the IoU between the model silhouette (metal stick excluded) and the segmented photo
+(scripts/figure_views.py). Scale is not observable here (distance absorbs it).
+Outputs (default validation/players): <kind>-fit.json and <kind>-fit.png (per view: photo | red = photo only,
+blue = model only | shaded model render at the fitted camera).
+"""
+import argparse
+import json
+import math
+import sys
+from pathlib import Path
+
+import numpy as np
+from PIL import Image, ImageDraw
+from scipy.optimize import minimize
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import figure_views as fv  # noqa: E402
+
+F_PHOTO = 26 * math.hypot(4284, 5712) / 43.27  # iPhone 15, 26 mm (35 mm-equivalent, diagonal) -> px
+F_VIDEO = (2600.0, 3600.0)  # 4K video: stabilisation crop unknown -> fitted in this range
+# view id: (initial camera azimuth deg (0 = camera in front of the figure, +90 = on the figure's LEFT),
+#           initial elevation deg, exclusion polygons in work px, include warm pixels)
+VIEWS = {
+    "skater": {
+        "skater-video-t00.00": (-10, 40, [], True),
+        "skater-video-t03.00": (-60, 35, [], False),
+        "skater-video-t04.50": (-85, 30, [], False),
+        "skater-video-t06.00": (-150, 35, [], True),
+        "skater-video-t07.25": (180, 35, [], True),
+        "skater-video-t08.50": (150, 35, [], True),
+        "skater-video-t10.75": (20, 40, [], True),
+    },
+    "goalie": {
+        "goalie-photo-front": (0, 25, [], True),
+        "goalie-photo-front-oblique": (-20, 25, [], True),
+        "goalie-photo-back": (180, 45, [], True),
+        "goalie-photo-side": (-90, 30, [], True),
+        "goalie-video-t00.50": (-10, 45, [], True),
+        "goalie-video-t05.00": (-90, 45, [], True),
+        "goalie-video-t07.75": (180, 45, [], True),
+        "goalie-video-t12.25": (-10, 20, [], True),
+    },
+}
+
+
+PREV = {}
+
+
+def fit_view(mesh, view_id, init, work_px=420):
+    az0, el0, excl, warm = init
+    rgb, s, crop, full = fv.load_view(view_id, work_px)
+    ref = fv.figure_mask(rgb, include_warm=warm, exclude_polys=excl)
+    verts, tris, labels, keys = mesh
+    keep = labels != list(keys).index("stick_metal")
+    if not warm:  # a finger touches the figure: drop warm pixels (skin, finger) from both masks
+        keep &= labels != list(keys).index("skin")
+    target = fv.TARGET["skater" if view_id.startswith("skater") else "goalie"]
+    video = "video" in view_id
+    f0 = 3000.0 if video else F_PHOTO
+    ys, xs = np.nonzero(ref)
+    ref_c = np.array([xs.mean(), ys.mean()])
+    ref_h = ys.max() - ys.min()
+    size_mm = verts[:, 2].max() - verts[:, 2].min()
+
+    def mask_of(p):
+        return fv.model_mask(verts, tris, keep, p, target, ref.shape, full, crop, s)
+
+    def aligned(az, el, roll=0.0):
+        # distance from the apparent height, then pan/tilt to put the model centroid on the photo centroid
+        dist = f0 * s * size_mm / ref_h
+        # aim at the photo centroid (full-frame px) first: pan > 0 moves the image left, tilt > 0 moves it up
+        fx, fy = crop[0] + ref_c[0] / s - full[0] / 2, crop[1] + ref_c[1] / s - full[1] / 2
+        p = [az, el, roll, -math.atan2(fx, f0), -math.atan2(fy, f0), dist, f0]
+        for _ in range(4):
+            m = mask_of(p)
+            if m.sum() < 10:
+                break
+            yy, xx = np.nonzero(m)
+            du, dv = (ref_c - [xx.mean(), yy.mean()]) / s
+            p[3] -= math.atan2(du, f0)
+            p[4] -= math.atan2(dv, f0)
+            p[5] *= (yy.max() - yy.min()) / ref_h
+        return p
+
+    best = None
+    prev = PREV.get(view_id)
+    if prev is not None:
+        p = list(prev)
+        p[6] = f0 if not video else p[6]
+        best = (fv.iou(mask_of(p), ref), p)
+    for daz in ((-30, -15, 0, 15, 30) if prev is None else ()):
+        for delv in (-15, 0, 15):
+            p = aligned(math.radians(az0 + daz), math.radians(min(max(el0 + delv, 5), 85)))
+            sc = fv.iou(mask_of(p), ref)
+            if best is None or sc > best[0]:
+                best = (sc, p)
+    x0 = np.array(best[1])
+    scl = np.array([0.05, 0.05, 0.05, 0.01, 0.01, 0.03 * x0[5], 0.03 * x0[6]])
+
+    def cost(z):
+        p = x0 + z * scl
+        if not video:
+            p[6] = f0
+        else:
+            p[6] = min(max(p[6], F_VIDEO[0]), F_VIDEO[1])
+        return 1 - fv.iou(mask_of(p), ref)
+
+    r = minimize(cost, np.zeros(7), method="Powell", options={"xtol": 1e-3, "ftol": 1e-4, "maxfev": 1500})
+    p = x0 + r.x * scl
+    p[6] = f0 if not video else min(max(p[6], F_VIDEO[0]), F_VIDEO[1])
+    mod = mask_of(p)
+    col = fv.shaded_render(verts, tris, labels, keys, p, target, ref.shape, full, crop, s)
+    return {"iou": round(fv.iou(mod, ref), 4), "camera": {"azimuth_deg": round(math.degrees(p[0]), 2), "elevation_deg": round(math.degrees(p[1]), 2),
+            "roll_deg": round(math.degrees(p[2]), 2), "pan_deg": round(math.degrees(p[3]), 2), "tilt_deg": round(math.degrees(p[4]), 2),
+            "distance_mold_mm": round(p[5], 2), "focal_px": round(p[6], 1)}, "params": p.tolist()}, np.concatenate([fv.overlay(rgb, ref, mod), col], 1), rgb
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("kind")
+    ap.add_argument("--mesh")
+    ap.add_argument("--out", default=str(fv.REPO / "validation" / "players"))
+    ap.add_argument("--only")
+    ap.add_argument("--reuse", action="store_true", help="start from the cameras in the previous <kind>-fit.json")
+    a = ap.parse_args()
+    prevf = Path(a.out) / f"{a.kind}-fit.json"
+    if a.reuse and prevf.exists():
+        PREV.update({k: v["params"] for k, v in json.loads(prevf.read_text())["views"].items()})
+    d = np.load(a.mesh or fv.REPO / "out" / "figures" / f"{a.kind}.npz")
+    mesh = (d["verts"], d["tris"], d["labels"], [str(k) for k in d["keys"]])
+    out = Path(a.out)
+    out.mkdir(parents=True, exist_ok=True)
+    res, tiles = {}, []
+    for vid, init in VIEWS[a.kind].items():
+        if a.only and a.only not in vid:
+            continue
+        r, viz, rgb = fit_view(mesh, vid, init)
+        res[vid] = r
+        print(vid, r["iou"], r["camera"])
+        pair = Image.fromarray(np.concatenate([rgb, viz], 1))
+        ImageDraw.Draw(pair).text((6, 6), f"{vid}  IoU {r['iou']:.3f}", fill=(255, 255, 255))
+        tiles.append(pair)
+    W = max(t.width for t in tiles)
+    H = max(t.height for t in tiles)
+    cols = 2
+    sheet = Image.new("RGB", (W * cols, H * math.ceil(len(tiles) / cols)), "black")
+    for i, t in enumerate(tiles):
+        sheet.paste(t, ((i % cols) * W, (i // cols) * H))
+    sheet.save(out / f"{a.kind}-fit.png")
+    summary = {"kind": a.kind, "mean_iou": round(float(np.mean([r["iou"] for r in res.values()])), 4), "views": res}
+    (out / f"{a.kind}-fit.json").write_text(json.dumps(summary, indent=2) + "\n")
+    print("mean IoU", summary["mean_iou"])
+
+
+main()

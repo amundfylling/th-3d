@@ -1,0 +1,1273 @@
+{
+ "description": "Rigid STIGA Play Off figure molds (docs/players.md). Figure-local MOLD units (~mm before the fitted scale in 'scale'): origin = mounting (fixture) axis at the underside of the mount socket (ice plane), +z up the axis, +x = facing direction, +y = the figure's LEFT. Body = metaball parts (ellipsoids, capsules, rounded boxes; surface at the stated semi-axes/radius). Shapes are operator readings of the user's photos/videos refined by camera-matched silhouette fits (scripts/fit-figure-views.py, scripts/fit-figure-shape.py): status traced; hidden details (bore, blade thickness) assumed.",
+ "skater": {
+  "parts": {
+   "helmet": {
+    "material": "blue",
+    "ellipsoids": {
+     "shell": {
+      "centre": [
+       7.78,
+       -1.44,
+       43.52
+      ],
+      "semi_axes": [
+       4.81,
+       4.01,
+       4.31
+      ]
+     },
+     "brim": {
+      "centre": [
+       10.17,
+       -2.33,
+       42.74
+      ],
+      "semi_axes": [
+       1.6,
+       3.8,
+       1.8
+      ]
+     }
+    },
+    "capsules": {}
+   },
+   "face": {
+    "material": "skin",
+    "ellipsoids": {
+     "face": {
+      "centre": [
+       9.46,
+       -2.28,
+       40.02
+      ],
+      "semi_axes": [
+       2.6,
+       3.0,
+       3.0
+      ]
+     },
+     "nose": {
+      "centre": [
+       12.15,
+       -2.4,
+       40.25
+      ],
+      "semi_axes": [
+       0.9,
+       0.8,
+       1.1
+      ]
+     },
+     "chin": {
+      "centre": [
+       10.2,
+       -2.4,
+       37.68
+      ],
+      "semi_axes": [
+       1.8,
+       2.3,
+       1.3
+      ]
+     }
+    },
+    "capsules": {
+     "neck": {
+      "a": [
+       3.4,
+       -2.4,
+       36.4
+      ],
+      "b": [
+       6.99,
+       -2.43,
+       40.22
+      ],
+      "radius": 2.6
+     }
+    }
+   },
+   "collar": {
+    "material": "blue",
+    "ellipsoids": {},
+    "capsules": {
+     "collar": {
+      "a": [
+       2.22,
+       -2.07,
+       35.2
+      ],
+      "b": [
+       4.02,
+       -2.07,
+       38.76
+      ],
+      "radius": 3.62
+     }
+    }
+   },
+   "torso": {
+    "material": "kit",
+    "ellipsoids": {
+     "chest": {
+      "centre": [
+       -1.17,
+       -4.13,
+       31.56
+      ],
+      "semi_axes": [
+       6.02,
+       9.83,
+       7.22
+      ]
+     },
+     "belly": {
+      "centre": [
+       -2.93,
+       -5.05,
+       25.98
+      ],
+      "semi_axes": [
+       5.43,
+       8.64,
+       5.02
+      ]
+     },
+     "shoulder_l": {
+      "centre": [
+       -0.58,
+       4.51,
+       36.23
+      ],
+      "semi_axes": [
+       4.0,
+       4.2,
+       3.6
+      ]
+     },
+     "shoulder_r": {
+      "centre": [
+       -0.58,
+       -12.66,
+       36.2
+      ],
+      "semi_axes": [
+       4.0,
+       4.2,
+       3.6
+      ]
+     }
+    },
+    "capsules": {
+     "arm_l_upper": {
+      "a": [
+       -0.31,
+       5.13,
+       35.35
+      ],
+      "b": [
+       2.4,
+       8.5,
+       27.14
+      ],
+      "radius": 3.1
+     },
+     "arm_r_upper": {
+      "a": [
+       -0.43,
+       -13.46,
+       36.27
+      ],
+      "b": [
+       1.73,
+       -18.69,
+       33.95
+      ],
+      "radius": 3.1
+     }
+    }
+   },
+   "sleeves": {
+    "material": "blue",
+    "ellipsoids": {},
+    "capsules": {
+     "arm_l_fore": {
+      "a": [
+       2.4,
+       8.5,
+       27.14
+      ],
+      "b": [
+       5.75,
+       6.37,
+       18.97
+      ],
+      "radius": 2.79
+     },
+     "arm_r_fore": {
+      "a": [
+       1.73,
+       -18.69,
+       33.95
+      ],
+      "b": [
+       6.2,
+       -8.74,
+       28.23
+      ],
+      "radius": 3.0
+     }
+    }
+   },
+   "gloves": {
+    "material": "blue",
+    "ellipsoids": {
+     "glove_l": {
+      "centre": [
+       5.7,
+       5.6,
+       17.0
+      ],
+      "semi_axes": [
+       3.0,
+       2.8,
+       3.0
+      ]
+     },
+     "glove_r": {
+      "centre": [
+       7.4,
+       -3.4,
+       26.2
+      ],
+      "semi_axes": [
+       3.2,
+       3.0,
+       3.2
+      ]
+     },
+     "cuff_r": {
+      "centre": [
+       6.2,
+       -6.8,
+       27.6
+      ],
+      "semi_axes": [
+       2.8,
+       3.4,
+       3.4
+      ]
+     }
+    },
+    "capsules": {}
+   },
+   "pants": {
+    "material": "blue",
+    "ellipsoids": {
+     "hips": {
+      "centre": [
+       -3.02,
+       -4.44,
+       21.73
+      ],
+      "semi_axes": [
+       5.41,
+       8.42,
+       3.81
+      ]
+     },
+     "butt": {
+      "centre": [
+       -6.18,
+       -4.03,
+       21.18
+      ],
+      "semi_axes": [
+       3.0,
+       7.2,
+       3.8
+      ]
+     }
+    },
+    "capsules": {
+     "thigh_l": {
+      "a": [
+       -1.95,
+       1.58,
+       21.05
+      ],
+      "b": [
+       1.4,
+       1.6,
+       15.8
+      ],
+      "radius": 3.7
+     },
+     "thigh_r": {
+      "a": [
+       -3.13,
+       -7.94,
+       20.95
+      ],
+      "b": [
+       -2.8,
+       -10.76,
+       14.39
+      ],
+      "radius": 3.71
+     }
+    }
+   },
+   "socks": {
+    "material": "kit",
+    "ellipsoids": {},
+    "capsules": {
+     "shin_l": {
+      "a": [
+       1.79,
+       1.52,
+       15.2
+      ],
+      "b": [
+       0.19,
+       0.79,
+       7.65
+      ],
+      "radius": 3.0
+     },
+     "shin_r": {
+      "a": [
+       -3.22,
+       -10.8,
+       14.2
+      ],
+      "b": [
+       -8.8,
+       -14.6,
+       6.2
+      ],
+      "radius": 2.91
+     }
+    }
+   },
+   "boots": {
+    "material": "blue",
+    "ellipsoids": {
+     "boot_l": {
+      "centre": [
+       1.04,
+       0.45,
+       5.54
+      ],
+      "semi_axes": [
+       5.0,
+       3.0,
+       2.4
+      ]
+     }
+    },
+    "capsules": {
+     "tongue_l": {
+      "a": [
+       1.46,
+       0.45,
+       6.8
+      ],
+      "b": [
+       1.25,
+       0.61,
+       9.6
+      ],
+      "radius": 2.8
+     },
+     "boot_r": {
+      "a": [
+       -12.6,
+       -13.89,
+       4.3
+      ],
+      "b": [
+       -6.79,
+       -16.01,
+       3.71
+      ],
+      "radius": 2.4
+     },
+     "tongue_r": {
+      "a": [
+       -9.2,
+       -14.8,
+       4.4
+      ],
+      "b": [
+       -9.13,
+       -14.76,
+       7.48
+      ],
+      "radius": 2.5
+     }
+    }
+   }
+  },
+  "socket": {
+   "r_bottom": 5.6,
+   "r_top": 3.4,
+   "height": 4.2,
+   "flare": 1.2,
+   "bore": [
+    3.0,
+    2.0,
+    3.0
+   ]
+  },
+  "runner": {
+   "a": [
+    -13.6,
+    -13.8
+   ],
+   "b": [
+    -5.0,
+    -17.0
+   ],
+   "height": 2.0,
+   "thickness": 0.9
+  },
+  "stick": {
+   "shaft": [
+    [
+     7.5,
+     -5.0,
+     28.0
+    ],
+    [
+     3.1,
+     20.2,
+     1.6
+    ],
+    [
+     3.0,
+     21.0,
+     0.9
+    ]
+   ],
+   "shaft_r": 0.75,
+   "blade": [
+    [
+     3.0,
+     21.0
+    ],
+    [
+     2.2,
+     40.2
+    ]
+   ],
+   "blade_h": 3.0,
+   "blade_t": 0.9
+  }
+ },
+ "goalie": {
+  "parts": {
+   "mask": {
+    "material": "blue",
+    "ellipsoids": {
+     "shell": {
+      "centre": [
+       0.8,
+       5.0,
+       42.0
+      ],
+      "semi_axes": [
+       4.6,
+       4.2,
+       5.0
+      ]
+     },
+     "cage": {
+      "centre": [
+       4.0,
+       5.0,
+       40.6
+      ],
+      "semi_axes": [
+       2.2,
+       3.5,
+       3.8
+      ]
+     }
+    },
+    "capsules": {
+     "strap": {
+      "a": [
+       -3.1,
+       5.0,
+       43.8
+      ],
+      "b": [
+       -3.3,
+       5.0,
+       38.8
+      ],
+      "radius": 0.9
+     }
+    }
+   },
+   "throat": {
+    "material": "skin",
+    "ellipsoids": {
+     "throat": {
+      "centre": [
+       2.8,
+       5.0,
+       36.8
+      ],
+      "semi_axes": [
+       2.2,
+       2.8,
+       1.8
+      ]
+     }
+    },
+    "capsules": {
+     "neck": {
+      "a": [
+       -0.6,
+       5.0,
+       35.4
+      ],
+      "b": [
+       1.6,
+       5.0,
+       38.6
+      ],
+      "radius": 2.7
+     }
+    }
+   },
+   "collar": {
+    "material": "blue",
+    "ellipsoids": {},
+    "capsules": {
+     "collar": {
+      "a": [
+       -1.0,
+       5.0,
+       34.6
+      ],
+      "b": [
+       1.2,
+       5.0,
+       36.6
+      ],
+      "radius": 3.9
+     }
+    }
+   },
+   "torso": {
+    "material": "kit",
+    "ellipsoids": {
+     "chest": {
+      "centre": [
+       -0.6,
+       5.0,
+       29.0
+      ],
+      "semi_axes": [
+       6.0,
+       10.2,
+       7.4
+      ]
+     },
+     "back": {
+      "centre": [
+       -2.4,
+       5.0,
+       23.6
+      ],
+      "semi_axes": [
+       4.4,
+       8.4,
+       6.0
+      ]
+     },
+     "shoulder_l": {
+      "centre": [
+       -0.4,
+       14.4,
+       32.2
+      ],
+      "semi_axes": [
+       4.4,
+       4.6,
+       4.4
+      ]
+     },
+     "shoulder_r": {
+      "centre": [
+       -0.4,
+       -4.4,
+       32.2
+      ],
+      "semi_axes": [
+       4.4,
+       4.6,
+       4.4
+      ]
+     }
+    },
+    "capsules": {}
+   },
+   "pants": {
+    "material": "blue",
+    "ellipsoids": {
+     "hips": {
+      "centre": [
+       -2.2,
+       5.0,
+       17.8
+      ],
+      "semi_axes": [
+       5.0,
+       9.0,
+       4.6
+      ]
+     }
+    },
+    "capsules": {}
+   },
+   "socks": {
+    "material": "kit",
+    "ellipsoids": {},
+    "capsules": {
+     "leg_l": {
+      "a": [
+       -2.0,
+       9.8,
+       14.6
+      ],
+      "b": [
+       -1.2,
+       10.0,
+       6.0
+      ],
+      "radius": 3.1
+     },
+     "leg_r": {
+      "a": [
+       -2.0,
+       0.2,
+       14.6
+      ],
+      "b": [
+       -1.2,
+       0.0,
+       7.0
+      ],
+      "radius": 3.1
+     }
+    }
+   },
+   "skates": {
+    "material": "blue",
+    "ellipsoids": {
+     "boot_l": {
+      "centre": [
+       0.2,
+       10.0,
+       3.0
+      ],
+      "semi_axes": [
+       4.4,
+       2.8,
+       2.8
+      ]
+     },
+     "boot_r": {
+      "centre": [
+       0.4,
+       0.0,
+       6.0
+      ],
+      "semi_axes": [
+       4.2,
+       2.8,
+       2.2
+      ]
+     }
+    },
+    "capsules": {}
+   },
+   "catcher": {
+    "material": "blue",
+    "ellipsoids": {
+     "catcher": {
+      "centre": [
+       3.2,
+       17.6,
+       21.4
+      ],
+      "semi_axes": [
+       4.0,
+       3.4,
+       5.4
+      ]
+     },
+     "catcher_web": {
+      "centre": [
+       5.4,
+       16.8,
+       24.2
+      ],
+      "semi_axes": [
+       2.2,
+       2.8,
+       3.0
+      ]
+     }
+    },
+    "capsules": {}
+   },
+   "blocker_peg": {
+    "material": "blue",
+    "ellipsoids": {},
+    "capsules": {
+     "peg": {
+      "a": [
+       5.6,
+       -10.0,
+       24.2
+      ],
+      "b": [
+       5.0,
+       -12.8,
+       27.0
+      ],
+      "radius": 0.9
+     }
+    }
+   },
+   "arm_pads": {
+    "material": "blue",
+    "ellipsoids": {},
+    "capsules": {
+     "arm_l": {
+      "a": [
+       -0.2,
+       15.4,
+       31.0
+      ],
+      "b": [
+       2.4,
+       17.2,
+       24.0
+      ],
+      "radius": 3.6
+     },
+     "arm_r": {
+      "a": [
+       -0.2,
+       -5.4,
+       31.0
+      ],
+      "b": [
+       2.8,
+       -7.0,
+       24.4
+      ],
+      "radius": 3.6
+     }
+    }
+   },
+   "pad_ribs": {
+    "material": "blue",
+    "ellipsoids": {},
+    "capsules": {
+     "rib_r0": {
+      "a": [
+       5.9,
+       -3.0999999999999996,
+       2.2
+      ],
+      "b": [
+       5.9,
+       -3.0999999999999996,
+       20.4
+      ],
+      "radius": 0.75
+     },
+     "rib_r1": {
+      "a": [
+       5.9,
+       -0.9000000000000001,
+       2.2
+      ],
+      "b": [
+       5.9,
+       -0.9000000000000001,
+       20.4
+      ],
+      "radius": 0.75
+     },
+     "rib_r2": {
+      "a": [
+       5.9,
+       1.3,
+       2.2
+      ],
+      "b": [
+       5.9,
+       1.3,
+       20.4
+      ],
+      "radius": 0.75
+     },
+     "rib_r3": {
+      "a": [
+       5.9,
+       3.5,
+       2.2
+      ],
+      "b": [
+       5.9,
+       3.5,
+       20.4
+      ],
+      "radius": 0.75
+     },
+     "rib_l0": {
+      "a": [
+       5.9,
+       6.7,
+       2.2
+      ],
+      "b": [
+       5.9,
+       6.7,
+       20.4
+      ],
+      "radius": 0.75
+     },
+     "rib_l1": {
+      "a": [
+       5.9,
+       8.9,
+       2.2
+      ],
+      "b": [
+       5.9,
+       8.9,
+       20.4
+      ],
+      "radius": 0.75
+     },
+     "rib_l2": {
+      "a": [
+       5.9,
+       11.1,
+       2.2
+      ],
+      "b": [
+       5.9,
+       11.1,
+       20.4
+      ],
+      "radius": 0.75
+     },
+     "rib_l3": {
+      "a": [
+       5.9,
+       13.3,
+       2.2
+      ],
+      "b": [
+       5.9,
+       13.3,
+       20.4
+      ],
+      "radius": 0.75
+     }
+    }
+   },
+   "blocker_holes": {
+    "material": "socket_bore",
+    "ellipsoids": {
+     "dot0": {
+      "centre": [
+       7.3500000000000005,
+       -10.2,
+       16.2
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot1": {
+      "centre": [
+       7.3500000000000005,
+       -5.4,
+       16.2
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot2": {
+      "centre": [
+       7.3500000000000005,
+       -10.2,
+       17.56
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot3": {
+      "centre": [
+       7.3500000000000005,
+       -5.4,
+       17.56
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot4": {
+      "centre": [
+       7.3500000000000005,
+       -10.2,
+       18.92
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot5": {
+      "centre": [
+       7.3500000000000005,
+       -5.4,
+       18.92
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot6": {
+      "centre": [
+       7.3500000000000005,
+       -10.2,
+       20.28
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot7": {
+      "centre": [
+       7.3500000000000005,
+       -5.4,
+       20.28
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot8": {
+      "centre": [
+       7.3500000000000005,
+       -10.2,
+       21.64
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot9": {
+      "centre": [
+       7.3500000000000005,
+       -5.4,
+       21.64
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot10": {
+      "centre": [
+       7.3500000000000005,
+       -10.2,
+       23.0
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     },
+     "dot11": {
+      "centre": [
+       7.3500000000000005,
+       -5.4,
+       23.0
+      ],
+      "semi_axes": [
+       0.3,
+       0.38,
+       0.38
+      ]
+     }
+    },
+    "capsules": {}
+   },
+   "head_back": {
+    "material": "skin",
+    "ellipsoids": {
+     "nape_l": {
+      "centre": [
+       -3.1,
+       7.0,
+       41.0
+      ],
+      "semi_axes": [
+       0.9,
+       1.1,
+       2.4
+      ]
+     },
+     "nape_r": {
+      "centre": [
+       -3.1,
+       3.0,
+       41.0
+      ],
+      "semi_axes": [
+       0.9,
+       1.1,
+       2.4
+      ]
+     }
+    },
+    "capsules": {}
+   }
+  },
+  "boxes": {
+   "pad_l": {
+    "material": "blue",
+    "centre": [
+     3.2,
+     10.0,
+     11.2
+    ],
+    "half_size": [
+     2.8,
+     4.8,
+     11.2
+    ],
+    "rot_z_deg": 0.0
+   },
+   "pad_r": {
+    "material": "blue",
+    "centre": [
+     3.2,
+     0.2,
+     11.2
+    ],
+    "half_size": [
+     2.8,
+     4.8,
+     11.2
+    ],
+    "rot_z_deg": 0.0
+   },
+   "blocker": {
+    "material": "blue",
+    "centre": [
+     6.2,
+     -7.8,
+     19.6
+    ],
+    "half_size": [
+     1.2,
+     3.4,
+     4.6
+    ],
+    "rot_z_deg": 0.0
+   },
+   "blocker_glove": {
+    "material": "blue",
+    "centre": [
+     3.6,
+     -7.0,
+     20.6
+    ],
+    "half_size": [
+     2.4,
+     2.6,
+     2.8
+    ],
+    "rot_z_deg": 0.0
+   }
+  },
+  "socket": {
+   "r_bottom": 5.4,
+   "r_top": 3.6,
+   "height": 4.2,
+   "flare": 1.2,
+   "bore": [
+    3.0,
+    2.0,
+    3.0
+   ]
+  },
+  "stick": {
+   "paddle": [
+    [
+     6.8,
+     -6.0,
+     16.0
+    ],
+    [
+     7.8,
+     3.0,
+     1.4
+    ]
+   ],
+   "paddle_w": 4.4,
+   "paddle_t": 1.4,
+   "blade": [
+    [
+     7.8,
+     1.8
+    ],
+    [
+     7.8,
+     27.0
+    ]
+   ],
+   "blade_h": 2.8,
+   "blade_t": 2.4
+  }
+ },
+ "teams": {
+  "W": {
+   "kit": "FIN",
+   "country_print": "FINLAND",
+   "note": "Team W = Finland (reference variant, decision D4)."
+  },
+  "E": {
+   "kit": "SWE",
+   "country_print": "SVERIGE",
+   "note": "Team E = Sweden (reference variant; the user's own Sweden figures supply the mold)."
+  }
+ },
+ "prints": {
+  "W-G": {
+   "number": "31",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ],
+   "note": "Mostly hidden under the mask in the overhead; read as 31 (low confidence)."
+  },
+  "W-LD": {
+   "number": "5",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ]
+  },
+  "W-RD": {
+   "number": "4",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ]
+  },
+  "W-C": {
+   "number": "64",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ]
+  },
+  "W-LW": {
+   "number": "26",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ]
+  },
+  "W-RW": {
+   "number": null,
+   "status": "unknown",
+   "source_ids": [],
+   "note": "Number hidden in the overhead: the country name only."
+  },
+  "E-G": {
+   "number": "30",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead",
+    "user_players_media"
+   ],
+   "note": "Overhead reference goalie no. 30; the user's Sweden goalie is also no. 30."
+  },
+  "E-LD": {
+   "number": "5",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ]
+  },
+  "E-RD": {
+   "number": "2",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ]
+  },
+  "E-C": {
+   "number": "21",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ],
+   "note": "The user's Sweden skater (photos/videos) is also no. 21."
+  },
+  "E-LW": {
+   "number": "92",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ]
+  },
+  "E-RW": {
+   "number": "13",
+   "status": "traced",
+   "source_ids": [
+    "stiga_se_fi_overhead"
+   ],
+   "note": "Read as 13 (low confidence)."
+  }
+ },
+ "prints_note": "Back prints per player: country name (team kit) over the jersey number. Numbers are the OFFICIAL OVERHEAD reference variant; the user's own figures' numbers are unknown except Sweden skater no. 21 and goalie no. 30 (user media). Fonts approximate the moulded print (DejaVu Sans Bold name, DejaVu Serif Bold numbers)."
+}

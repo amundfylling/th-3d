@@ -6,7 +6,8 @@
     "pdf_embedded = extracted from the reference PDF without resampling; pdf_embedded JPEGs are byte-identical to the PDF's DCT streams.",
     "downloaded_original = fetched from the public URL. None succeeded in this environment; see status.",
     "byte_identity_with_remote is 'unverified' for every asset because no remote original could be fetched.",
-    "Original PDF is preserved unchanged at the repository root."
+    "Original PDF is preserved unchanged at the repository root.",
+    "user_upload = file uploaded by the user to references/players_images (main branch); decoded/cropped stills in references/derived/players (manifest.json, scripts/extract-player-frames.py)."
   ],
   "reference_pdf": {
     "path": "Stiga_Play_Off_21_References.pdf",
@@ -375,6 +376,217 @@
         "Exploded view is not a scale drawing.",
         "Rasterised page, 1273 x 1800 px.",
         "Complete manual not obtained (network blocked)."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2564",
+      "title": "User photo IMG_2564 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2564 2.HEIC",
+      "sha256": "55620953d2b31fb16187816a8fab77d491f8fdabc1b73be829a394033bc91674",
+      "bytes": 2175908,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-front: front, camera slightly above",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2565",
+      "title": "User photo IMG_2565 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2565 2.HEIC",
+      "sha256": "d2f84ab58bb75a31d358808a96dad60ded2c771ff08f9bb24c395b73b04cb4d6",
+      "bytes": 2117219,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-front-oblique: front, turned slightly to the goalie's right",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2566",
+      "title": "User photo IMG_2566 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2566 2.HEIC",
+      "sha256": "e4c3f7df372b2143d50ce1bcdebb563a53f1330a2618c697db40d06665f99931",
+      "bytes": 2579493,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-back: back, from above",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2567",
+      "title": "User photo IMG_2567 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2567 2.HEIC",
+      "sha256": "2c3c8d7910a5a9648177ab632c153bd0d85e894333874102017eb4628e5acb79",
+      "bytes": 2857118,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-top: near top-down, back up",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2568",
+      "title": "User photo IMG_2568 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2568 2.HEIC",
+      "sha256": "f364ea21a4e155d4c408197605184e13504b60c91e19520a5e4458d5b5a56156",
+      "bytes": 2078610,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-underside: lying face down, feet toward camera: mount socket under the right skate",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2569",
+      "title": "User photo IMG_2569 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2569 2.HEIC",
+      "sha256": "5e86fcfbd966ff5b949280acb5d5a26fd05ccde726d52ae48556cbc4edf197a4",
+      "bytes": 2704187,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-lying-side: lying on its side",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2570",
+      "title": "User photo IMG_2570 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2570 2.HEIC",
+      "sha256": "d1b3ef65b2afb2a7ab08a370ed2d775dc507597f34ee22e3ba28b654784a3d97",
+      "bytes": 2536203,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-lying-back: lying face down, from above: back print",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2571",
+      "title": "User photo IMG_2571 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2571 2.HEIC",
+      "sha256": "da493a0d0976de5096faf39cb612b0e51a4cb023934e75b0c52190539d40fd90",
+      "bytes": 2463638,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-lying-back-2: lying face down, oblique: back print",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2572",
+      "title": "User photo IMG_2572 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2572 2.HEIC",
+      "sha256": "ed3b2aa0c8d3f6707e15fab9ca5e8acbf1df397a71d7b6d387036784d9c956f3",
+      "bytes": 2443213,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-side: standing, goalie's right side",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_video_2573",
+      "title": "User video IMG_2573_under25MB(1).mp4 - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "bytes": 23501204,
+      "format": "mp4 (HEVC Main 10, HLG BT.2020, 30 fps)",
+      "native_width_px": 2160,
+      "native_height_px": 3840,
+      "mode": "yuv420p10le",
+      "camera": "iPhone 15 back camera (video; focal length not recorded)",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-video-t00.50: front from above (turntable); goalie-video-t05.00: side from above (turntable); goalie-video-t07.75: back from above (turntable); goalie-video-t12.25: front, low camera; goalie-video-t16.75: near top-down",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink.",
+        "Frames 0-11 s: phone nearly still, figure turned on the table by a finger (turntable); later frames hand-held."
+      ]
+    },
+    {
+      "id": "user_skater_video_2574",
+      "title": "User video IMG_2574_under25MB(1).mp4 - Sweden skater no. 21 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "bytes": 23979511,
+      "format": "mp4 (HEVC Main 10, HLG BT.2020, 30 fps)",
+      "native_width_px": 2160,
+      "native_height_px": 3840,
+      "mode": "yuv420p10le",
+      "camera": "iPhone 15 back camera (video; focal length not recorded)",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "skater-video-t00.00: front-left from above (turntable); skater-video-t01.50: turntable; skater-video-t03.00: turntable; skater-video-t04.50: turntable, profile; skater-video-t06.00: turntable, back-left; skater-video-t07.25: turntable, back; skater-video-t08.50: turntable, back-right; skater-video-t09.75: turntable, right; skater-video-t10.75: turntable, front-right; skater-video-t11.75: held, underside of the left skate: mount socket; skater-video-t13.25: front, camera high; skater-video-t14.50: front, camera high; skater-video-t22.60: held, front: socket under the left skate, stick",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink.",
+        "Frames 0-11 s: phone nearly still, figure turned on the table by a finger (turntable); later frames hand-held."
       ]
     }
   ],
