@@ -1,0 +1,88 @@
+{
+  "image": "validation/19/19-overhead.png",
+  "output_mm_per_px": 0.485,
+  "slots": {
+    "W-G": {
+      "n": 26,
+      "onDark": 0.885,
+      "meanOffsetPx": 1.67,
+      "maxOffsetPx": 8.25
+    },
+    "W-LD": {
+      "n": 148,
+      "onDark": 0.98,
+      "meanOffsetPx": 0.514,
+      "maxOffsetPx": 2.5
+    },
+    "W-RD": {
+      "n": 79,
+      "onDark": 0.911,
+      "meanOffsetPx": 1.026,
+      "maxOffsetPx": 11
+    },
+    "W-C": {
+      "n": 85,
+      "onDark": 0.953,
+      "meanOffsetPx": 0.727,
+      "maxOffsetPx": 9.75
+    },
+    "W-LW": {
+      "n": 170,
+      "onDark": 0.982,
+      "meanOffsetPx": 0.615,
+      "maxOffsetPx": 9.75
+    },
+    "W-RW": {
+      "n": 156,
+      "onDark": 0.981,
+      "meanOffsetPx": 0.758,
+      "maxOffsetPx": 9.75
+    },
+    "E-G": {
+      "n": 27,
+      "onDark": 0.926,
+      "meanOffsetPx": 0.864,
+      "maxOffsetPx": 7.25
+    },
+    "E-LD": {
+      "n": 149,
+      "onDark": 0.987,
+      "meanOffsetPx": 0.549,
+      "maxOffsetPx": 2.75
+    },
+    "E-RD": {
+      "n": 81,
+      "onDark": 0.988,
+      "meanOffsetPx": 0.558,
+      "maxOffsetPx": 3
+    },
+    "E-C": {
+      "n": 85,
+      "onDark": 0.976,
+      "meanOffsetPx": 0.593,
+      "maxOffsetPx": 2.25
+    },
+    "E-LW": {
+      "n": 168,
+      "onDark": 0.994,
+      "meanOffsetPx": 0.527,
+      "maxOffsetPx": 3
+    },
+    "E-RW": {
+      "n": 154,
+      "onDark": 0.987,
+      "meanOffsetPx": 0.665,
+      "maxOffsetPx": 3
+    }
+  },
+  "slot_summary": {
+    "min_on_dark": 0.885,
+    "worst_mean_offset_px": 1.67
+  },
+  "ice_edge": {
+    "samples": 15,
+    "median_abs_offset_px": 0.75,
+    "p90_abs_offset_px": 11.25
+  },
+  "scope": "Pipeline reprojection only (canonical data -> Blender -> GLB -> Remotion). Physical accuracy is limited by the ASSUMED preview scale and the 21 px (~3.8 mm) trace uncertainty; it is not measured."
+}

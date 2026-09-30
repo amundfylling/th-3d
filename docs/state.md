@@ -5,25 +5,23 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Batch run (docs/autonomous-run.md) in progress. Last completed: **19 - Integrate a static 3D scene in Remotion**. Next: **20**.
+- Batch run 06-20 complete. Last completed: **20 - Review the model and incorporate calibration** (2026-09-30). Next: **21** (blocked on user review feedback + a real shot recording).
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
-## Active iteration (batch run, docs/autonomous-run.md)
+## Batch run result (docs/autonomous-run.md)
 
-**20 - Review the model and incorporate calibration.** Repair count: 0/3. (Checklist written when started.)
+**Batch 06-20 finished 2026-09-30: all iterations completed with recorded verification. Stopped after 20 as instructed.**
+No motion reconstruction or animated shots were started. **Next: iteration 21 requires the user's review feedback and a real shot recording.**
 
-Iteration 19 closed after 2 repair cycles:
-1. The full Chromium refuses Remotion's headless mode -> chrome-headless-shell.
-2. The default R3F camera was captured -> the camera is passed via ThreeCanvas `camera` and the render is held until the checks run.
-
-All items passed:
-- [x] Minimal Remotion entry; exact pins; all @remotion/* at 4.0.531 (lockfile test); existing tooling passes.
-- [x] Static inspection compositions: overhead, side, oblique (+ checks); frame 0 == frame 29 pixel-identical.
-- [x] Local GLB via staticFile/useLoader, waited for (Suspense + delayRender).
-- [x] Adapter used once; basis point, blade orientation and units checks PASS in the rendered frame.
-- [x] Typecheck; 4 real PNGs rendered through Remotion (headless shell, --gl=swangle) and AI-reviewed against the Blender stills.
+Iteration 20 closed without repair cycles:
+- [x] Intake recorded: nothing supplied; checks re-run (84/84 tests, validate).
+- [x] Reprojection check: slots mean offset <= 1.7 px, ice edge median 0.75 px (pipeline consistency only).
+- [x] Review sheet validation/20-review-sheet.png (matched overhead; side/oblique qualitative; blade/puck provisional), AI-reviewed; geometry and appearance reported separately.
+- [x] Output 1920x1080 proposed; the one-output-pixel claim is explicitly NOT supported.
+- [x] Remotion/Three judged below photorealism; a bounded Cycles benchmark task specified, not started, no pipeline switch.
+- [x] Four separate statuses and the required inputs in docs/review.md; user approval NOT recorded.
 
 ## Verification status
 
@@ -98,6 +96,7 @@ All items passed:
 
 ## Review artifacts
 
+- **`validation/20-review-sheet.png`** - iteration 20 main artifact. Review: `docs/review.md`.
 - **`validation/19/19-checks.png`**, `19-overhead.png`, `19-side.png`, `19-oblique.png` - iteration 19 Remotion stills. Docs: `docs/remotion.md`.
 - **`validation/18-oblique-1080p.png`** and `18-*` close-ups - iteration 18 (assets/scene/full_static_appearance).
 - **`validation/17-overhead-vs-reference.png`**, `17-oblique.png` - iteration 17 (assets/scene/full_static_materials, ice texture). Docs: `docs/materials.md`.
@@ -149,3 +148,4 @@ All items passed:
 | 17 | 2026-09-30 | assets/blender/make_ice_texture.py, build_materials.py; assets/rink/textures/ice_basecolor.png; assets/scene/full_static_materials.*; validation/17-*; docs/materials.md; tests/materials.test.ts; venv pinned numpy<2 + opencv 4.10 | `npm run check` pass; renders AI-reviewed; 3 repair cycles + 1 failed run (all fixed) |
 | 18 | 2026-09-30 | assets/blender/build_appearance.py, render_appearance.py; materials on skater_W-RD, goalie_W-G, puck; assets/scene/full_static_appearance.*; validation/18-*; tests/appearance.test.ts | `npm run check` pass; renders AI-reviewed; 1 repair cycle |
 | 19 | 2026-09-30 | remotion/ (index, Root, StaticInspection, cameras, checks); pinned remotion 4.0.531, react 19.2.0, three 0.186.1, R3F 9.4.0; tsconfig JSX/DOM; validation/19/*; docs/remotion.md; tests/remotion-setup.test.ts | typecheck + 83 tests pass; 4 Remotion stills rendered and AI-reviewed; import checks PASS; 2 repair cycles |
+| 20 | 2026-09-30 | scripts/review-reprojection.ts, png-read.ts, review-sheet.py; validation/20-review-sheet.png, 20-reprojection.json; docs/review.md; reprojection test | `npm run check` 84/84; review sheet AI-reviewed; 0 repair cycles |

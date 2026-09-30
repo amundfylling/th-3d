@@ -36,3 +36,10 @@ test("assembly checks: no intersections, nothing below the ice, vertical axes, m
   const acc = gltf.accessors[gltf.meshes[ice.mesh].primitives[0].attributes.POSITION];
   assert.ok(Math.abs(acc.max[0] - acc.min[0] - 0.8454) < 0.001, "ice length in metres");
 });
+
+test("iteration 20 reprojection: pipeline consistent to ~2 output px (slots) and ~1 px (ice edge median)", () => {
+  const r = JSON.parse(readFileSync("validation/20-reprojection.json", "utf8"));
+  assert.ok(r.slot_summary.worst_mean_offset_px <= 2, JSON.stringify(r.slot_summary));
+  assert.ok(r.ice_edge.median_abs_offset_px <= 1, JSON.stringify(r.ice_edge));
+  assert.match(r.scope, /not measured/);
+});
