@@ -246,11 +246,18 @@ function findEnd(signal: Signal, from: Vec2, dir: Vec2, width: number, maxDist: 
   return { point: from, refined: false };
 }
 
-export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams): SlotTrace {
+/**
+ * `hidden` marks ends the operator saw covered by an object (a figure over the slot end). Those ends
+ * are not searched beyond the seed and get no sub-pixel end: the observed end is the last accepted
+ * cross-section, so dark parts of the covering object are never mistaken for slot.
+ */
+export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams, hidden: { start?: boolean; end?: boolean } = {}): SlotTrace {
+  const extStart = hidden.start ? 0 : p.extend;
+  const extEnd = hidden.end ? 0 : p.extend;
   // Extend the seed along its end tangents so the real ends can be found beyond it.
   const t0 = unit(sub(seed[0]!, seed[1]!));
   const t1 = unit(sub(seed[seed.length - 1]!, seed[seed.length - 2]!));
-  let guideLine = resample([add(seed[0]!, mul(t0, p.extend)), ...seed, add(seed[seed.length - 1]!, mul(t1, p.extend))], p.step);
+  let guideLine = resample([add(seed[0]!, mul(t0, extStart)), ...seed, add(seed[seed.length - 1]!, mul(t1, extEnd))], p.step);
   let sections: Section[] = [];
   let span: [number, number] = [0, 0];
   let passParams = p;
@@ -293,7 +300,7 @@ export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams): Slo
       const kept = clip(smoothed, Math.min(sA, sB), Math.max(sA, sB));
       const e0 = unit(sub(kept[0]!, kept[Math.min(4, kept.length - 1)]!));
       const e1 = unit(sub(kept[kept.length - 1]!, kept[Math.max(0, kept.length - 5)]!));
-      guideLine = resample([add(kept[0]!, mul(e0, p.extend)), ...kept, add(kept[kept.length - 1]!, mul(e1, p.extend))], p.step);
+      guideLine = resample([add(kept[0]!, mul(e0, extStart)), ...kept, add(kept[kept.length - 1]!, mul(e1, extEnd))], p.step);
     }
   }
   const [a, b] = span;
@@ -308,8 +315,8 @@ export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams): Slo
   const widthMedian = median(inSpan.filter((s) => s.ok).map((s) => s.width!));
   const dirStart = unit(sub(centre[0]!, centre[Math.min(3, centre.length - 1)]!));
   const dirEnd = unit(sub(centre[centre.length - 1]!, centre[Math.max(0, centre.length - 4)]!));
-  const start = findEnd(signal, centre[0]!, dirStart, widthMedian, p.step * 3 + widthMedian);
-  const end = findEnd(signal, centre[centre.length - 1]!, dirEnd, widthMedian, p.step * 3 + widthMedian);
+  const start = hidden.start ? { point: centre[0]!, refined: false } : findEnd(signal, centre[0]!, dirStart, widthMedian, p.step * 3 + widthMedian);
+  const end = hidden.end ? { point: centre[centre.length - 1]!, refined: false } : findEnd(signal, centre[centre.length - 1]!, dirEnd, widthMedian, p.step * 3 + widthMedian);
   return {
     sections,
     span,
@@ -345,6 +352,19 @@ export function simplify(poly: Vec2[], tol: number): Vec2[] {
   }
   if (dMax <= tol) return [a, b];
   return [...simplify(poly.slice(0, iMax + 1), tol).slice(0, -1), ...simplify(poly.slice(iMax), tol)];
+}
+
+/** Douglas-Peucker for a closed outline: split at the point farthest from the first, simplify both halves. */
+export function simplifyClosed(poly: Vec2[], tol: number): Vec2[] {
+  if (poly.length <= 3) return poly;
+  let iFar = 0, dFar = -1;
+  poly.forEach((p, i) => {
+    const d = len(sub(p, poly[0]!));
+    if (d > dFar) { dFar = d; iFar = i; }
+  });
+  const a = simplify(poly.slice(0, iFar + 1), tol);
+  const b = simplify([...poly.slice(iFar), poly[0]!], tol);
+  return [...a.slice(0, -1), ...b.slice(0, -1)];
 }
 
 /** Distance from a point to a polyline, and the arc-length position of the closest point. */

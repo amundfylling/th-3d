@@ -15,6 +15,7 @@ interface Seed {
   identity: string;
   occluded: { start?: string; end?: string; middle?: string };
   occluded_bare?: { start?: string; end?: string };
+  exclude_from_homography?: string;
   overhead: Vec2[];
   bare: Vec2[];
 }
@@ -59,7 +60,8 @@ for (const [pid, seed] of Object.entries(seeds.paths)) {
   fitErr[pid] = {} as Record<ImageKey, { rms: number; max: number; detectedFraction: number }>;
   for (const k of ["overhead", "bare"] as ImageKey[]) {
     const r = rasters[k];
-    const t = traceSlot((u, v) => bilinear(r, u, v, SIGNAL[k]), seed[k], PARAMS[k]);
+    const hidden = k === "overhead" ? { start: !!seed.occluded.start, end: !!seed.occluded.end } : { start: !!seed.occluded_bare?.start, end: !!seed.occluded_bare?.end };
+    const t = traceSlot((u, v) => bilinear(r, u, v, SIGNAL[k]), seed[k], PARAMS[k], hidden);
     traces[pid][k] = t;
     const raw = t.sections.slice(t.span[0], t.span[1] + 1).filter((s) => s.ok).map((s) => s.centre!);
     const d = raw.map((p) => closestOnPolyline(t.centreline, p).dist);
@@ -76,15 +78,21 @@ for (const [pid, seed] of Object.entries(seeds.paths)) {
 const src: Vec2[] = [];
 const dst: Vec2[] = [];
 for (const [pid, seed] of Object.entries(seeds.paths)) {
+  if (seed.exclude_from_homography) continue;
   if (!seed.occluded.start && !seed.occluded_bare?.start) { src.push(traces[pid]!.bare.start.point); dst.push(traces[pid]!.overhead.start.point); }
   if (!seed.occluded.end && !seed.occluded_bare?.end) { src.push(traces[pid]!.bare.end.point); dst.push(traces[pid]!.overhead.end.point); }
 }
 const h0: H = fitHomography(src, dst);
 const { h, residuals } = fitHomographyToCurves(
   h0,
-  Object.keys(seeds.paths).map((pid) => ({ id: pid, src: traces[pid]!.bare.centreline, dst: traces[pid]!.overhead.centreline })),
+  Object.keys(seeds.paths).filter((pid) => !seeds.paths[pid]!.exclude_from_homography).map((pid) => ({ id: pid, src: traces[pid]!.bare.centreline, dst: traces[pid]!.overhead.centreline })),
 );
-const allRes = Object.values(residuals);
+// Residuals for excluded slots are still measured against the fitted homography.
+{
+  const { residuals: all } = fitHomographyToCurves(h, Object.keys(seeds.paths).map((pid) => ({ id: pid, src: traces[pid]!.bare.centreline, dst: traces[pid]!.overhead.centreline })), 0);
+  for (const [k, v] of Object.entries(all)) if (!residuals[k]) residuals[k] = v;
+}
+const allRes = Object.entries(residuals).filter(([k]) => !seeds.paths[k]!.exclude_from_homography).map(([, v]) => v);
 const hRms = Math.sqrt(allRes.reduce((s, r) => s + r.rms ** 2 * r.n, 0) / allRes.reduce((s, r) => s + r.n, 0));
 console.log(`homography bare->overhead: curve RMS ${round(hRms, 2)} px`);
 
@@ -166,7 +174,7 @@ for (const [pid, seed] of Object.entries(seeds.paths)) {
     for (const s of inferred) {
       const atEnd = s.from === 0 || s.to === t.detected.length - 1;
       s.reason = atEnd
-        ? "End point taken from the last accepted cross-section (sub-pixel end not found)."
+        ? "End point is the last accepted cross-section (end hidden, or sub-pixel end not found)."
         : `Slot hidden or disturbed (${k === "overhead" ? [seed.occluded.middle, seed.occluded.start, seed.occluded.end].filter(Boolean).join("; ") || "figure, stick or print" : "printed features or low contrast"}); centre interpolated linearly between accepted cross-sections.`;
     }
     const e = fitErr[pid]![k];
@@ -252,7 +260,12 @@ const report = {
       },
     ]),
   ),
-  homography_bare_to_overhead: { matrix: h.map((v) => Number(v.toPrecision(10))), initial_from_visible_ends: src.length, curve_rms_px: round(hRms, 3) },
+  homography_bare_to_overhead: {
+    matrix: h.map((v) => Number(v.toPrecision(10))),
+    initial_from_visible_ends: src.length,
+    curve_rms_px: round(hRms, 3),
+    excluded: Object.fromEntries(Object.entries(seeds.paths).filter(([, s]) => s.exclude_from_homography).map(([k, s]) => [k, s.exclude_from_homography])),
+  },
   end_checks: endChecks.map((c) => ({ ...c, observed: rp(c.observed), predicted: rp(c.predicted), extension_px: round(c.extension_px, 1), lateral_px: round(c.lateral_px, 1) })),
   end_check_note: "extension_px > 0: the bare sheet places the slot end further on than the overhead shows (expected where a figure covers the end). For visible ends it measures the disagreement between the two photographs.",
 };

@@ -94,6 +94,7 @@ rejects("goal setup chosen without the user's statement", (g) => {
 const TRACED_BY_ITERATION: Record<string, string[]> = {
   "06": ["W-LD", "W-RD", "W-C", "E-LD", "E-RD", "E-C"],
   "07": ["W-LW", "W-RW", "E-LW", "E-RW"],
+  "08": ["W-G", "E-G"],
 };
 
 test("slot paths: expected set traced in both photographs, with identity evidence", () => {
@@ -136,4 +137,37 @@ test("slot paths: notes state no tangent-facing and no rod-travel = arc-length a
     assert.match(f.note, /NOT assumed to follow the slot tangent/);
     assert.match(f.note, /NOT assumed equal to arc length/);
   }
+});
+
+test("route inventory: 10 outfield + 2 goalie routes, travel still unmeasured", () => {
+  const g = load();
+  const traced = g.fixture_paths.filter((f: any) => f.image_trace_ids.length === 2);
+  assert.equal(traced.length, 12);
+  assert.equal(traced.filter((f: any) => f.id.endsWith("-G")).length, 2);
+  for (const f of traced) {
+    assert.equal(f.usable_stops.start.value, null);
+    assert.equal(f.usable_stops.end.value, null);
+    assert.equal(f.rotation_range.min.value, null);
+    assert.equal(f.fixture_axis_path, null);
+  }
+  // Goalie routes use their own slots and rods, not a skater path.
+  for (const t of ["W", "E"]) {
+    const gp = g.fixture_paths.find((f: any) => f.id === `path.${t}-G`);
+    assert.equal(gp.control_rod.part_number, "7111-9083-02");
+    assert.ok(gp.identity_evidence.description.includes("goalie"));
+  }
+});
+
+test("goal regions: traced as data with elevated features labelled and dimensions unknown", () => {
+  const g = load();
+  for (const t of ["W", "E"]) {
+    const goal = g.goals.find((x: any) => x.id === `goal.${t}`);
+    assert.deepEqual([...goal.image_trace_ids].sort(), [`trace.goal.${t}.cage.overhead`, `trace.goal.${t}.cutout.bare`, `trace.goal.${t}.cutout.overhead`]);
+    for (const q of ["width", "height", "depth"]) assert.equal(goal[q].value, null, `${t} goal ${q} unknown`);
+    const cage = g.image_traces.find((x: any) => x.id === `trace.goal.${t}.cage.overhead`);
+    assert.equal(cage.feature, "goal_cage_outline_elevated");
+    assert.equal(g.image_traces.find((x: any) => x.id === `trace.goal.${t}.cutout.overhead`).status, "assumed");
+    for (const id of goal.landmark_ids) assert.match(g.landmarks.find((l: any) => l.id === id).description, /ELEVATED/);
+  }
+  assert.equal(g.goal_setup.configuration, "ithf_no_insert_no_cup");
 });

@@ -224,6 +224,11 @@ export interface Goal {
   height: Quantity;
   depth: Quantity;
   source_ids: string[];
+  /** Image traces of the goal region (ice cut-out, elevated cage outline). */
+  image_trace_ids?: string[];
+  /** Landmarks of the goal (post tops, which are elevated). */
+  landmark_ids?: string[];
+  note?: string;
 }
 
 export const GOAL_CONFIGURATIONS = ["retail_with_deflector_insert", "ithf_no_insert_no_cup"] as const;

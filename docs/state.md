@@ -5,23 +5,24 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Batch run (docs/autonomous-run.md) in progress. Last completed: **07 - Trace the four winger paths**. Next: **08**.
-- Geometry version: `0.4.0` (`data/geometry.json`). Board boundary and 10 outfield slots traced in pixels;
+- Batch run (docs/autonomous-run.md) in progress. Last completed: **08 - Add goalie paths and goal regions**. Next: **09**.
+- Geometry version: `0.4.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Active iteration (batch run, docs/autonomous-run.md)
 
-**08 - Add goalie paths and goal regions.** Repair count: 0/3. (Checklist written when started.)
+**09 - Implement the fixture-pose mathematics.** Repair count: 0/3. (Checklist written when started.)
 
-Iteration 07 closed after 2 repair cycles on one tracer defect: reflection streaks, figure parts
-over slots, corner gap filling, and inaccurate bare-sheet curve seeds. All items passed:
-- [x] 4 winger paths traced independently in both photographs, including corners and behind-goal runs. Tests: 10 paths, no mirror copies, mechanism notes.
-- [x] Curve detail: 8 px / 4 px polylines; fit RMS <= 0.32 px (wingers); documented in docs/tracks.md.
-- [x] Differences explicit: homography RMS 2.69 px; visible ends agree <= 17 px; E-LD start disagreement (23 px, 43 px across) recorded.
-- [x] No tangent-facing and no rod = arc-length assumption (notes plus test).
-- [x] AI review of validation/07-winger-tracks.svg (sample points every 25 cross-sections, 8 end insets) and a re-review of 06 after re-tracing.
-- [x] Hardware-recording needs listed in docs/tracks.md.
+Iteration 08 closed after 2 repair cycles: wrong goalie seeds (measured instead); hidden ends are no
+longer searched past, which made all hidden-end predictions consistent. All items passed:
+- [x] W-G and E-G traced independently in both photographs, with goalie identity evidence and goalie rod; tests.
+- [x] Goal regions as data: ice cut-outs (bare traced, overhead mapped), elevated cage outlines, elevated post tops, behind-goal space.
+- [x] Goal configuration in data (user: without inserts); reference-photo observation recorded separately.
+- [x] Unknowns unknown (goal and goalie dimensions, pivots, stops); tests.
+- [x] AI review of validation/08-goals-and-goalies.svg.
+- [x] Inventory 10 + 2 stated; measured travel explicitly not established.
+- Recorded difference: goalie slots sit about 7 px apart between the references (excluded from the fit).
 
 ## Verification status
 
@@ -35,7 +36,7 @@ over slots, corner gap filling, and inaccurate bare-sheet curve seeds. All items
 | Geometry contract (iteration 04) | `npm run check` passes: typecheck (incl. tsc cross-check that runtime schema matches the interfaces; a removed field was confirmed to fail), `npm run validate` (schema + policy + reference hashes), 15 policy tests (canonical file valid; 12 invalid mutations rejected; similarity-uniformity helper). |
 | Board trace (iteration 05) | 1431/1440 rays detected and consistent; 2 short interpolated stretches. Fit RMS <= 2.73 px (long sides bow outward up to 10.1 px; quadratic RMS <= 0.49 px); corner radii 610-625 px. Trace uncertainty 21 px (dominated by the ~15 px dark strip at the board base); uniform-mapping bound 16.5 px. Rerun reproduces byte-identical outputs. Overlay rendered in headless Chromium and inspected by me (corners, landmark, gap insets). |
 | Post-05 review evidence | `node scripts/check-board-evidence.ts` -> `validation/05-evidence-check.json`. Strip width 7.3-8.1 px per 1000 px radius (vertical board face). Marking lines bow 19% / 47% of the lens-model prediction (lens explains only part of the board bow). `npm run check` passes (18 tests). |
-| Slot traces (iterations 06-07) | 10 outfield paths x 2 photos. Overhead fit RMS <= 0.6 px, width 38-40 px; bare->overhead homography curve RMS 2.69 px; visible ends agree <= 17 px. Overlays 06 and 07 rendered and AI-reviewed (all ends inset). 21/21 tests. |
+| Slot traces (iterations 06-08) | 12 paths x 2 photos. Overhead fit RMS <= 0.74 px, width 38-40 px; bare->overhead homography over 10 outfield slots RMS 2.54 px (goalie slots excluded: symmetric ~7 px offset); every hidden end extends forward (+22 to +167 px). Goal cut-outs mapped onto goal lines within 8 px. Overlays 06/07/08 AI-reviewed. 23/23 tests. |
 | Blender | bpy 4.5.14 LTS installed from PyPI in /root/venvs/blender (python 3.11); not yet used. |
 | Dimensional accuracy | Nothing measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
 
@@ -94,6 +95,7 @@ over slots, corner gap filling, and inaccurate bare-sheet curve seeds. All items
 
 ## Review artifacts
 
+- **`validation/08-goals-and-goalies.svg`** - iteration 08 (12-route inventory, goal regions, unresolved dimensions). Docs: `docs/goals.md`.
 - **`validation/07-winger-tracks.svg`** - iteration 07 (4 wingers, sample points, end insets).
 - **`validation/06-straight-tracks.svg`** - iteration 06 (both photos, 6 colour-coded paths, 12 end insets, evidence table). Method: `docs/tracks.md`.
 - **`validation/05-board-overlay.svg`** - main artifact of iteration 05 (unchanged photo at native size, trace,
@@ -121,3 +123,4 @@ over slots, corner gap filling, and inaccurate bare-sheet curve seeds. All items
 | 05+ | 2026-09-30 | User answers recorded: goal setup without inserts, convention kept, review delegated. scripts/check-board-evidence.ts, validation/05-evidence-check.json, docs/decisions.md; `user_statement` source kind; geometry 0.3.0 | Evidence script run; trace rerun (points unchanged); overlay re-rendered; `npm run check` 18/18 pass |
 | 06 | 2026-09-30 | slot tracer (src/model/slot-trace.ts, homography.ts, scripts/trace-slots.ts, render-tracks-overlay.ts), data/slot-seeds.json, 12 slot traces + 24 end landmarks, geometry 0.4.0 (fixture_axis_path, identity_evidence, team label, trace stats), validation/06-straight-tracks.svg, slots-report.json, docs/tracks.md | `npm run check` 20/20; overlay AI-reviewed; 2 repair cycles |
 | 07 | 2026-09-30 | 4 winger traces (both photos), tracer robustness fixes (06 re-traced), measured bare curve seeds, validation/07-winger-tracks.svg, recording-needs list in docs/tracks.md | `npm run check` 21/21; overlays 06 and 07 AI-reviewed; 2 repair cycles |
+| 08 | 2026-09-30 | goalie slot traces, hidden-end handling (all traces refreshed), goal regions (scripts/trace-goals.ts, render-goals-overlay.ts), Goal schema traces/landmarks, validation/08-goals-and-goalies.svg, goals-report.json, docs/goals.md | `npm run check` 23/23; overlays 06-08 re-rendered, 08 AI-reviewed; 2 repair cycles |

@@ -1,5 +1,5 @@
 {
-  "description": "Operator seeds for slot tracing (scripts/trace-slots.ts). Seeds are rough routes read from gridded views of each image; on bare-sheet curves they were replaced by measured white-run centres (docs/tracks.md); they fix slot identity and direction only. Centrelines, widths and ends are measured by the tracer. 'start' is the end nearer -x (image left). 'occluded' lists overhead ends hidden under the figure standing on the slot, from visual inspection. 'occluded_bare' lists bare-sheet ends that cannot be seen because the slot runs inside a white printed area.",
+  "description": "Operator seeds for slot tracing (scripts/trace-slots.ts). Seeds are rough routes read from gridded views of each image; on bare-sheet curves they were replaced by measured white-run centres (docs/tracks.md); they fix slot identity and direction only. Centrelines, widths and ends are measured by the tracer. 'start' is the end nearer -x (image left). 'occluded' lists overhead ends hidden under the figure standing on the slot, from visual inspection. 'occluded_bare' lists bare-sheet ends that cannot be seen because the slot runs inside a white printed area. 'exclude_from_homography' removes a slot from the bare->overhead fit, with the recorded reason.",
   "images": {
     "overhead": "stiga_se_fi_overhead",
     "bare": "stiga_ca_bare_ice_sheet"
@@ -102,6 +102,26 @@
       },
       "overhead": [[2440, 3858], [3500, 3835], [4500, 3808], [4620, 3795], [4720, 3770], [4780, 3745]],
       "bare": [[1065, 1340], [1600, 1339], [2100, 1339], [2200, 1336], [2250, 1323], [2300, 1296], [2332, 1270]]
+    },
+    "path.W-G": {
+      "iteration": "08",
+      "identity": "Short vertical goalie slot in the W crease, in front of goal.W. The Finland (team W) goalie stands over its lower part (pads beside the slot). The slot runs about 3 deg off the image vertical (measured dark-pixel centres).",
+      "occluded": {
+        "end": "Finland goalie"
+      },
+      "overhead": [[1426, 2532], [1419, 2660], [1414, 2760], [1405, 2900], [1400, 2990]],
+      "bare": [[543, 712], [543, 912]],
+      "exclude_from_homography": "Measured 2026-09-30: after the fit, the mapped bare goalie slot lies +7.5 px (toward the rink centre) along x from the overhead slot, symmetric in both goals, while neighbouring slots agree within 1-4 px. Cause unresolved (older sheet version, or slot-wall visibility). Excluded from the fit so this systematic difference does not bias it; residuals still reported."
+    },
+    "path.E-G": {
+      "iteration": "08",
+      "identity": "Short vertical goalie slot in the E crease, in front of goal.E. The Sweden (team E) goalie stands over its upper part. The slot runs about 3 deg off the image vertical (measured dark-pixel centres).",
+      "occluded": {
+        "start": "Sweden goalie"
+      },
+      "overhead": [[4240, 2620], [4230, 2760], [4218, 2860], [4212, 2960], [4208, 3060]],
+      "bare": [[1969, 728], [1968, 935]],
+      "exclude_from_homography": "Measured 2026-09-30: after the fit, the mapped bare goalie slot lies -7.1 px (toward the rink centre) along x from the overhead slot, symmetric in both goals, while neighbouring slots agree within 1-4 px. Cause unresolved (older sheet version, or slot-wall visibility). Excluded from the fit so this systematic difference does not bias it; residuals still reported."
     }
   }
 }

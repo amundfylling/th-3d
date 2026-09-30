@@ -235,6 +235,9 @@ export const geometrySchema: Check<GeometryFile> = obj({
       height: quantity,
       depth: quantity,
       source_ids: ids,
+      image_trace_ids: opt(ids),
+      landmark_ids: opt(ids),
+      note: opt(str),
     }),
   ),
   end_screens: arr(
