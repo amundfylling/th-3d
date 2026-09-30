@@ -5,23 +5,22 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Batch run (docs/autonomous-run.md) in progress. Last completed: **14 - Complete that skater's rigid body shape**. Next: **15**.
+- Batch run (docs/autonomous-run.md) in progress. Last completed: **15 - Model one goalie separately**. Next: **16**.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Active iteration (batch run, docs/autonomous-run.md)
 
-**15 - Model one goalie separately.** Repair count: 0/3. (Checklist written when started.)
+**16 - Assemble the full game in one static pose.** Repair count: 0/3. (Checklist written when started.)
 
-Iteration 14 closed after 1 repair cycle (metaball calibration: disjoint blobs, IoU 0.40 -> 0.816). All items passed:
-- [x] One rigid object Skater.W-RD = body proxy + vertex-identical iteration-13 lower asset; origin at the fixture axis; no armature.
-- [x] Neutral clay; .blend and GLB.
-- [x] Top-silhouette IoU 0.816 >= 0.75; height 56.8 mm within 57 +- 10%.
-- [x] View sheet with evidence labels (only the overhead evidenced), AI-reviewed; defects listed in docs/figures.md.
-- [x] Provisional status recorded in data (inventory) and docs; not claimed as the physical piece.
-- [x] Mold sharing: evidence shows different molds -> variants needed.
-- [x] Skate-lobe conflict recorded (contacts unchanged).
+Iteration 15 closed after 1 repair cycle (the near boards hid the goalie in the side render). All items passed:
+- [x] Goalie W-G: own inventory, traces, provisional contacts and origin; stick side traced (left); nothing resized from the skater.
+- [x] Rigid Goalie.W-G .blend/.glb; no armature.
+- [x] goaliePose placement == asset placement within 1.5 mm (test); goalie adapter rejects skater paths (existing test).
+- [x] No clearance measured (test).
+- [x] IoU 0.794, height 52.8 mm; top/side/oblique renders with a puck and the goal, AI-reviewed.
+- [x] Evidence per view recorded (identity certain).
 
 ## Verification status
 
@@ -96,6 +95,7 @@ Iteration 14 closed after 1 repair cycle (metaball calibration: disjoint blobs, 
 
 ## Review artifacts
 
+- **`validation/15-goalie-oblique.png`**, `15-goalie-side.png`, `15-goalie-top.png` - iteration 15 (assets/figures/goalie_W-G).
 - **`validation/14-view-sheet.png`**, `14-silhouette-top.png` - iteration 14 (assets/figures/skater_W-RD). Docs: `docs/figures.md`.
 - **`validation/13-contacts-top.png`**, `13-contacts-side.png` - iteration 13 (assets/figures/skater_W-RD_lower).
 - **`validation/12-goal-oblique.png`**, `12-puck-side.png`, `12-overview.png` - iteration 12 (assets/goal, screen, puck, scene/static_hardware).
@@ -137,3 +137,4 @@ Iteration 14 closed after 1 repair cycle (metaball calibration: disjoint blobs, 
 | 12 | 2026-09-30 | assets/blender/build_hardware.py; assets/goal, screen, puck, scene/static_hardware (.blend/.glb); hardware preview_parameters; 'ratio' unit; side A and puck sources; geometry 0.5.0; validation/12-*; tests/hardware-assets.test.ts | `npm run check` 46/46; 3 stills AI-reviewed; 2 repair cycles |
 | 13 | 2026-09-30 | assets/blender/build_skater_lower.py; assets/figures/skater_W-RD_lower.blend/.glb; contact build sizes; validation/13-*; tests/skater-lower.test.ts | `npm run check` 52/52; close-ups AI-reviewed; 2 repair cycles |
 | 14 | 2026-09-30 | assets/blender/build_skater_body.py; assets/figures/skater_W-RD.blend/.glb; traced top silhouette (trace.figure.W-RD...); W-RD inventory (body proxy, mold sharing, skate conflict); validation/14-*; docs/figures.md; tests/skater-body.test.ts | `npm run check` pass; silhouette IoU 0.816; view sheet AI-reviewed; 1 repair cycle |
+| 15 | 2026-09-30 | scripts/define-goalie.ts; assets/blender/build_goalie.py; shared metaball/silhouette helpers; assets/figures/goalie_W-G.*; W-G traces/contacts/inventory; goalie_height preview; validation/15-*; tests/goalie.test.ts | `npm run check` pass; IoU 0.794; renders AI-reviewed; 1 repair cycle |

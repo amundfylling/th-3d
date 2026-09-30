@@ -35,3 +35,27 @@ Remaining defects (AI review):
 
 - **Other skaters.** The side and oblique photos show Finland skaters with clearly different molded poses (deep crouch with the stick across, low stickhandling, skating stride). Jersey numbers are not consistent between photos.
 - **Consequence.** W-RD's mold is **not** shown to be shared; each other outfield position needs its own variant. Until evidenced, iteration 16 must use distinct proxies marked as missing variants.
+
+## Goalie W-G (Finland), iteration 15
+
+```sh
+node scripts/define-goalie.ts                                      # evidence, traces, provisional contacts -> data
+/root/venvs/blender/bin/python assets/blender/build_goalie.py      # asset, checks, renders (about 3 min)
+```
+
+- **Identity is certain in all three views:** there is only one Finland goalie. Overhead (top), side A (profile) and oblique A all show W-G; the pose differs between photos.
+- **Own geometry.** Traced top silhouette and stick strip (`trace.figure.W-G.overhead.*`); provisional contacts (`assume.debug_contacts.W-G`):
+  - stick blade: a vertical plate across the front, ice to 5 mm, along the traced strip;
+  - shaft: to the blocker hand;
+  - pad contacts: under the traced pad lobes.
+  Nothing is resized from the skater.
+- **Pivot and origin.** Debug pivot at the midpoint of the covered W-G slot stretch (±20 mm along the slot), heading 0 (faces +x). The asset origin is that pivot at the ice plane.
+- **Stick side:** mostly toward the goalie's left (+y), traced. Recorded as `stick_handedness: left` (convention: the side the blade extends to).
+- **Height:** 53 mm, **assumed** from the side-A size ratio against a skater. The catalog 57 mm is not stated to apply to goalies.
+- **Checks** (`validation/15-goalie-report.json`):
+  - top-silhouette IoU **0.794** (≥ 0.75, body and stick);
+  - height 52.8 mm (53 ± 15%);
+  - body above the ice (lowest point 0.3 mm).
+  - Test: contacts placed by `goaliePose` at the pivot's path parameter equal the contacts of the asset placed in the render scene, within 1.5 mm.
+- **Renders:** `validation/15-goalie-top.png`, `15-goalie-side.png` (near boards hidden for this render; repair 1), `15-goalie-oblique.png`. The goalie is shown in its goal region with the puck beside its stick.
+- **Remaining defects (AI review):** a smooth mass proxy, with no flat pad faces, mask cage or blocker/catcher detail. The pivot and contacts are debug values.

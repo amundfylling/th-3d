@@ -182,3 +182,86 @@ def save_blend(path: Path) -> None:
 
 def union(shapes):
     return unary_union(list(shapes))
+
+
+# ---- Calibrated metaball bodies (docs/figures.md) --------------------------------------------------
+METABALL_SURFACE = 0.575  # isolated element surface at 0.575 x radius x size (threshold 0.6, stiffness 2)
+
+
+def metaball_mesh(name: str, balls: dict, capsules: dict, res_mm: float = 0.25):
+    """Smooth body mesh (metres) from ellipsoids {name: (centre_mm, semi_axes_mm)} and capsules
+    {name: (a_mm, b_mm, radius_mm)}. Built in millimetre units because Blender clamps metaball
+    resolution to >= 0.005 units, then scaled by MM_TO_M."""
+    from mathutils import Vector
+    mb = bpy.data.metaballs.new(name + "Meta")
+    mb.resolution = res_mm
+    mb.render_resolution = res_mm
+    mb.threshold = 0.6
+    ob = bpy.data.objects.new(name + "Meta", mb)
+    bpy.context.scene.collection.objects.link(ob)
+    for c, r in balls.values():
+        e = mb.elements.new(type="ELLIPSOID")
+        e.co = c
+        e.radius = 1.0
+        e.size_x, e.size_y, e.size_z = [v / METABALL_SURFACE for v in r]
+        e.stiffness = 2.0
+    for a, b, r in capsules.values():
+        va, vb = Vector(a), Vector(b)
+        d = vb - va
+        e = mb.elements.new(type="CAPSULE")
+        e.co = (va + vb) / 2
+        e.radius = r / METABALL_SURFACE
+        e.size_x = d.length / 2
+        e.rotation = Vector((1, 0, 0)).rotation_difference(d.normalized())
+        e.stiffness = 2.0
+    bpy.ops.object.select_all(action="DESELECT")
+    bpy.context.view_layer.objects.active = ob
+    ob.select_set(True)
+    bpy.ops.object.convert(target="MESH")
+    body = bpy.context.view_layer.objects.active
+    body.name = name
+    for v in body.data.vertices:
+        v.co = v.co * MM_TO_M
+    body.data.update()
+    return body
+
+
+def silhouette_iou(obj, polygons_local_mm, centre_mm, n_px: int, mm_per_px: float, out_png: Path, render_png: Path) -> float:
+    """Orthographic top render of `obj` (black emission) vs the union of reference polygons (local mm)."""
+    from PIL import Image, ImageDraw
+    mat = bpy.data.materials.new("silhouette")
+    mat.use_nodes = True
+    nt = mat.node_tree
+    nt.nodes.clear()
+    em = nt.nodes.new("ShaderNodeEmission")
+    em.inputs["Color"].default_value = (0, 0, 0, 1)
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    nt.links.new(em.outputs["Emission"], out.inputs["Surface"])
+    saved = list(obj.data.materials)
+    obj.data.materials.clear()
+    obj.data.materials.append(mat)
+    hidden = [o for o in bpy.context.scene.objects if o is not obj and o.type == "MESH" and not o.hide_render]
+    for o in hidden:
+        o.hide_render = True
+    set_world(1.0)
+    cam = ortho_camera("SilTop", (m(centre_mm[0]), m(centre_mm[1]), 0.5), (0, 0, 0), m(n_px * mm_per_px))
+    render(cam, render_png, (n_px, n_px), 1)
+    rend = np.asarray(Image.open(render_png).convert("L")) < 128
+    ref_img = Image.new("L", (n_px, n_px), 0)
+    to_px = lambda p: ((p[0] - centre_mm[0]) / mm_per_px + n_px / 2, n_px / 2 - (p[1] - centre_mm[1]) / mm_per_px)
+    for poly in polygons_local_mm:
+        ImageDraw.Draw(ref_img).polygon([to_px(p) for p in poly], fill=255)
+    ref = np.asarray(ref_img) > 0
+    iou = float((rend & ref).sum() / (rend | ref).sum())
+    viz = np.full((n_px, n_px, 3), 255, np.uint8)
+    viz[ref & ~rend] = (230, 60, 60)
+    viz[rend & ~ref] = (60, 90, 230)
+    viz[rend & ref] = (120, 120, 120)
+    Image.fromarray(viz).resize((n_px * 3, n_px * 3), Image.NEAREST).save(out_png)
+    obj.data.materials.clear()
+    for s_ in saved:
+        obj.data.materials.append(s_)
+    for o in hidden:
+        o.hide_render = False
+    bpy.data.objects.remove(cam)
+    return iou

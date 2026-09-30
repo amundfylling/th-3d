@@ -213,6 +213,15 @@
         "figure_assets.fig.W-RD.contact_shapes"
       ],
       "replace_with": "Scaled photographs or measurements of the loose and installed figure: fixture axis, blade outline and offset, skate contacts, ice clearance (docs/contacts.md)."
+    },
+    {
+      "id": "assume.debug_contacts.W-G",
+      "statement": "Debug goalie contacts for W-G: pivot at the midpoint of the covered W-G slot stretch, heading 0 deg; stick blade = vertical plate along the traced tan strip, ice to 5 mm; shaft to the blocker hand at -0.5, -7.5, 18 mm; pad contacts under the traced pad lobes at {\"left\":[-8,-2],\"right\":[-1,-24]}; preview scale.",
+      "reason": "No loose-goalie views or measurements; a labelled stand-in is needed to exercise the goalie pose adapter and build the asset.",
+      "affects": [
+        "figure_assets.fig.W-G.contact_shapes"
+      ],
+      "replace_with": "Scaled photographs or measurements of the loose and installed goalie (fixture axis, stick outline, pad contacts, ice clearance)."
     }
   ],
   "landmarks": [
@@ -3817,6 +3826,162 @@
         }
       ],
       "note": "Ice-contact edge of the installed boards (inner base). Not the board top rail, not the outer housing, not the loose sheet perimeter (hidden under the boards)."
+    },
+    {
+      "id": "trace.figure.W-G.overhead.stick",
+      "source_image_id": "stiga_se_fi_overhead",
+      "feature": "goalie_stick_top_elevated",
+      "closed": true,
+      "points_px": [
+        [
+          1421,
+          2763
+        ],
+        [
+          1438,
+          2763
+        ],
+        [
+          1438,
+          2950
+        ],
+        [
+          1421,
+          2950
+        ]
+      ],
+      "landmark_ids": [],
+      "status": "traced",
+      "uncertainty_px": 5,
+      "method": "Operator trace of the tan stick strip (same crop).",
+      "inferred_segments": [],
+      "note": "Goalie stick seen from above: a narrow strip along y in front of the body = a paddle/blade standing on edge across the front."
+    },
+    {
+      "id": "trace.figure.W-G.overhead.top_silhouette",
+      "source_image_id": "stiga_se_fi_overhead",
+      "feature": "figure_top_silhouette_elevated",
+      "closed": true,
+      "points_px": [
+        [
+          1340,
+          2842
+        ],
+        [
+          1348,
+          2825
+        ],
+        [
+          1360,
+          2815
+        ],
+        [
+          1378,
+          2812
+        ],
+        [
+          1390,
+          2818
+        ],
+        [
+          1392,
+          2835
+        ],
+        [
+          1388,
+          2852
+        ],
+        [
+          1400,
+          2862
+        ],
+        [
+          1415,
+          2870
+        ],
+        [
+          1417,
+          2900
+        ],
+        [
+          1416,
+          2950
+        ],
+        [
+          1430,
+          2952
+        ],
+        [
+          1432,
+          2975
+        ],
+        [
+          1420,
+          2995
+        ],
+        [
+          1410,
+          3020
+        ],
+        [
+          1408,
+          3040
+        ],
+        [
+          1400,
+          3045
+        ],
+        [
+          1395,
+          3030
+        ],
+        [
+          1380,
+          3020
+        ],
+        [
+          1365,
+          3025
+        ],
+        [
+          1345,
+          3025
+        ],
+        [
+          1320,
+          3018
+        ],
+        [
+          1302,
+          3000
+        ],
+        [
+          1293,
+          2975
+        ],
+        [
+          1291,
+          2940
+        ],
+        [
+          1293,
+          2905
+        ],
+        [
+          1300,
+          2875
+        ],
+        [
+          1318,
+          2855
+        ]
+      ],
+      "landmark_ids": [],
+      "status": "traced",
+      "uncertainty_px": 5,
+      "method": "Operator trace on a 3x contrast-enhanced crop with a 10 px grid (white jersey vs yellow print). Body only; the stick is traced separately.",
+      "inferred_segments": [],
+      "note": "Top-view silhouette of the Finland goalie (W-G). ELEVATED body, near-orthographic view. 'FINLAND' on the back faces -x: the goalie faces +x."
     },
     {
       "id": "trace.figure.W-RD.overhead.top_silhouette",
@@ -30232,8 +30397,10 @@
       "position": "G",
       "asset_id": "fig.W-G",
       "fixture_path_id": "path.W-G",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "W-LD",
@@ -37016,7 +37183,177 @@
         "uncertainty": null,
         "source_ids": []
       },
-      "contact_shapes": []
+      "contact_shapes": [
+        {
+          "id": "contact.W-G.stick_blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                2.84,
+                17.61,
+                0
+              ],
+              [
+                2.95,
+                -15.97,
+                0
+              ],
+              [
+                2.95,
+                -15.97,
+                5
+              ],
+              [
+                2.84,
+                17.61,
+                5
+              ],
+              [
+                2.84,
+                17.61,
+                0
+              ]
+            ]
+          },
+          "status": "assumed",
+          "source_ids": [
+            "stiga_se_fi_overhead",
+            "stiga_se_fi_side_a"
+          ],
+          "uncertainty_mm": 21.3,
+          "provisional": true,
+          "assumption_id": "assume.debug_contacts.W-G",
+          "note": "DEBUG goalie stick blade: vertical plate standing on edge across the front (overhead: narrow tan strip along y), ice to 5 mm (side A: wide paddle; height assumed)."
+        },
+        {
+          "id": "contact.W-G.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                2.84,
+                -7.5,
+                5
+              ],
+              [
+                -0.5,
+                -7.5,
+                18
+              ]
+            ]
+          },
+          "status": "assumed",
+          "source_ids": [
+            "stiga_se_fi_overhead",
+            "stiga_se_fi_side_a"
+          ],
+          "uncertainty_mm": 21.3,
+          "provisional": true,
+          "assumption_id": "assume.debug_contacts.W-G",
+          "note": "DEBUG shaft from the blade top up to the blocker hand at 18 mm (assumed)."
+        },
+        {
+          "id": "contact.W-G.pad.left",
+          "kind": "pad",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14,
+                -2,
+                0
+              ],
+              [
+                -2,
+                -2,
+                0
+              ]
+            ]
+          },
+          "status": "assumed",
+          "source_ids": [
+            "stiga_se_fi_overhead",
+            "stiga_se_fi_side_a"
+          ],
+          "uncertainty_mm": 21.3,
+          "provisional": true,
+          "assumption_id": "assume.debug_contacts.W-G",
+          "note": "DEBUG left leg-pad ice contact, under the traced pad lobe of the top silhouette. Real contact unknown."
+        },
+        {
+          "id": "contact.W-G.pad.right",
+          "kind": "pad",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -7,
+                -24,
+                0
+              ],
+              [
+                5,
+                -24,
+                0
+              ]
+            ]
+          },
+          "status": "assumed",
+          "source_ids": [
+            "stiga_se_fi_overhead",
+            "stiga_se_fi_side_a"
+          ],
+          "uncertainty_mm": 21.3,
+          "provisional": true,
+          "assumption_id": "assume.debug_contacts.W-G",
+          "note": "DEBUG right leg-pad ice contact, under the traced pad lobe of the top silhouette. Real contact unknown."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "identity",
+          "status": "traced",
+          "evidence": "Only one Finland goalie exists, so the overhead (top), side A (profile, crop at px 1150-1450) and oblique A (crop at px 3520-3870) all show W-G."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "unknown",
+          "evidence": "Hidden under the goalie; confined to the covered W-G slot stretch (+-20.4 mm at the preview scale). Debug pivot at its midpoint."
+        },
+        {
+          "item": "stick side",
+          "status": "traced",
+          "evidence": "Overhead: the stick stands across the front, from local y -15.97 to 17.61 mm, i.e. mostly toward the goalie's LEFT (+y)."
+        },
+        {
+          "item": "stick blade outline and height",
+          "status": "unknown",
+          "evidence": "Side A shows a wide tan L-shaped stick with the blade on the ice; unscaled."
+        },
+        {
+          "item": "pads / skates ice contact",
+          "status": "unknown",
+          "evidence": "Pads reach the ice in side A; exact contact unknown."
+        },
+        {
+          "item": "goalie height",
+          "status": "assumed",
+          "evidence": "Side A: goalie about 243 px vs about 260 px for a skater in the same photo (depths differ) -> about 0.93 x 57 mm = 53 mm; see preview_parameters.goalie_height."
+        },
+        {
+          "item": "body shape",
+          "status": "assumed",
+          "evidence": "Iteration 15 proxy matched to the traced top silhouette; profile from side A (crouched, large pads, blocker and catcher)."
+        }
+      ],
+      "note": "Goalie asset (iteration 15): its own body, stick and origin; not a resized skater. Contacts are PROVISIONAL DEBUG GEOMETRY (assume.debug_contacts.W-G); figure_height, blade offset and ice clearance remain unknown."
     },
     {
       "id": "fig.W-LD",
@@ -37699,6 +38036,18 @@
       "source_ids": [],
       "assumption_id": "assume.debug_contacts.W-RD",
       "note": "Debug build size for the W-RD skate placeholders (matches the iteration-10 debug skate height)."
+    },
+    "goalie_height": {
+      "value": 53,
+      "unit": "mm",
+      "status": "assumed",
+      "uncertainty": null,
+      "source_ids": [
+        "stiga_se_fi_side_a",
+        "stiga_canada_catalog"
+      ],
+      "assumption_id": "assume.debug_contacts.W-G",
+      "note": "Side A: goalie about 243 px vs a skater about 260 px (different depths, perspective uncorrected) x catalog approx. 57 mm. The catalog figure height is NOT stated to apply to the goalie."
     }
   },
   "goal_setup": {
