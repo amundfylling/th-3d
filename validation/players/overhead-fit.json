@@ -1,0 +1,141 @@
+{
+  "note": "Pinhole overhead camera above the ice (relief model); socket constrained to the slot centreline; preview scale ASSUMED (0.1796 mm/px).",
+  "scale_k_mm_per_mold_unit": 1.0713,
+  "camera_mm": {
+    "cx": 27.6,
+    "cy": -29.2,
+    "height": 1107.9
+  },
+  "k_profile_mean_iou": {
+    "0.9642": 0.6918,
+    "0.9909": 0.7115,
+    "1.0177": 0.727,
+    "1.0445": 0.7397,
+    "1.0713": 0.7453,
+    "1.0981": 0.7382,
+    "1.1249": 0.7274,
+    "1.1516": 0.7126,
+    "1.1784": 0.6952
+  },
+  "figures": {
+    "E-LD": {
+      "iou": 0.7926,
+      "pivot_mm": [
+        -37.59,
+        -75.51
+      ],
+      "s_mm": 6.73,
+      "heading_deg": 177.44,
+      "observation": "colour segmentation (Sweden)"
+    },
+    "E-RD": {
+      "iou": 0.7135,
+      "pivot_mm": [
+        73.77,
+        88.6
+      ],
+      "s_mm": 8.77,
+      "heading_deg": 202.08,
+      "observation": "colour segmentation (Sweden)"
+    },
+    "E-C": {
+      "iou": 0.7871,
+      "pivot_mm": [
+        -186.14,
+        4.69
+      ],
+      "s_mm": 7.9,
+      "heading_deg": 7.14,
+      "observation": "colour segmentation (Sweden)"
+    },
+    "E-LW": {
+      "iou": 0.6879,
+      "pivot_mm": [
+        -381.47,
+        22.87
+      ],
+      "s_mm": 13.18,
+      "heading_deg": 258.84,
+      "observation": "colour segmentation (Sweden)"
+    },
+    "W-RD": {
+      "iou": 0.6837,
+      "pivot_mm": [
+        -76.67,
+        -88.23
+      ],
+      "s_mm": 228.21,
+      "heading_deg": 355.73,
+      "observation": "traced silhouette (Finland), check only"
+    },
+    "W-G": {
+      "iou": 0.6943,
+      "pivot_mm": [
+        -254.57,
+        -32.71
+      ],
+      "s_mm": 82.44,
+      "heading_deg": 26.52,
+      "observation": "traced silhouette (Finland goalie), posed at the shared skater scale; goalie-only scale reported separately"
+    }
+  },
+  "goalie_only_best_scale_k": 1.1784,
+  "goalie_only_best_iou": 0.7034,
+  "stick_check": {
+    "local_mm": {
+      "E-RD": {
+        "heel": [
+          0.28,
+          21.18
+        ],
+        "toe": [
+          -0.32,
+          41.36
+        ],
+        "blade_length_mm": 20.19
+      },
+      "W-RD": {
+        "heel": [
+          -1.98,
+          21.78
+        ],
+        "toe": [
+          -3.02,
+          42.06
+        ],
+        "blade_length_mm": 20.31
+      },
+      "E-C": {
+        "heel": [
+          -10.42,
+          22.5
+        ],
+        "toe": [
+          -12.42,
+          40.3
+        ],
+        "blade_length_mm": 17.91
+      },
+      "E-LW": {
+        "heel": [
+          1.71,
+          18.39
+        ],
+        "toe": [
+          3.85,
+          31.45
+        ],
+        "blade_length_mm": 13.23
+      },
+      "E-LD": {
+        "heel": [
+          0.4,
+          23.09
+        ]
+      }
+    },
+    "mean_heel_lateral_mm": 22.14,
+    "mean_blade_length_mm": 19.47,
+    "note": "Figure frame from the fitted pivot (socket on the slot centreline) and heading; heading error rotates the heel along x."
+  }
+}

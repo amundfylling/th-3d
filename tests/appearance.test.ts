@@ -21,11 +21,12 @@ test("geometry unchanged: assets and scene", () => {
   }
 });
 
-test("colours come from recorded photo samples; decals left unresolved", () => {
+test("colours come from recorded photo samples; figures carry their own kit materials and prints", () => {
   for (const s of Object.values(samples) as any[]) assert.match(s.source, /stiga_se_fi_overhead px/);
   assert.deepEqual(rep.colours_srgb.fin_blue, samples.finland_blue.srgb);
-  assert.ok(rep.unresolved_decals.some((d: string) => /numbers/.test(d)));
-  const gltf = readGlbJson("assets/figures/skater_W-RD.glb");
-  const names = gltf.materials.map((m: any) => m.name).sort();
-  assert.deepEqual(names, ["app_fin_blue", "app_metal", "app_skin", "app_white"]);
+  assert.match(rep.figures, /own materials and per-player back prints/);
+  const gltf = readGlbJson("assets/figures/skater_FIN.glb");
+  const names = gltf.materials.map((m: any) => m.name).filter((n: string) => !n.startsWith("print_")).sort();
+  assert.deepEqual(names, ["fig_blue", "fig_kit_FIN", "fig_recess", "fig_skin", "fig_stick_metal", "fig_stick_tan"].filter((n) => gltf.materials.some((m: any) => m.name === n)));
+  assert.ok(names.includes("fig_kit_FIN") && names.includes("fig_blue") && names.includes("fig_stick_metal"));
 });

@@ -30,7 +30,13 @@ test("unknown physical values stay null", () => {
     assert.equal(f.usable_stops.start.value, null);
     assert.equal(f.usable_stops.end.value, null);
   }
-  for (const a of g.figure_assets) assert.equal(a.blade_offset_from_pivot.value, null);
+  // Figure molds (2026-09-30): the blade offset is now traced/assumed from the user's media and the overhead
+  // (never measured); the ice clearance stays unknown.
+  for (const a of g.figure_assets) {
+    assert.notEqual(a.blade_offset_from_pivot.status, "measured");
+    assert.notEqual(a.blade_offset_from_pivot.uncertainty, null);
+    assert.equal(a.ice_clearance.value, null);
+  }
   assert.equal(g.puck.thickness.value, null);
   assert.equal(g.conflicts[0].resolution, "unresolved");
 });

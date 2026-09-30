@@ -38,21 +38,22 @@ except OSError:
 
 rows = [
     [("OVERHEAD reference (official photo, same world window)", tile(ref_over)),
-     ("OVERHEAD Blender Cycles (iter. 17; clay figures)", tile("validation/17-overhead.png")),
+     ("OVERHEAD Blender Cycles (iter. 17 scene, mold figures)", tile("validation/17-overhead.png")),
      ("OVERHEAD Remotion/Three (iter. 19)", tile("validation/19/19-overhead.png"))],
     [("SIDE reference (side A) - projection NOT matched", tile("references/originals/stiga-sports-71-1145-01-side-a.jpg", (500, 2150, 4700, 2780))),
      ("OBLIQUE Blender Cycles 1920x1080 (iter. 18)", tile("validation/18-oblique-1080p.png")),
      ("OBLIQUE Remotion/Three 1920x1080 (iter. 19)", tile("validation/19/19-oblique.png"))],
     [("SIDE Remotion/Three (iter. 19)", tile("validation/19/19-side.png")),
-     ("BLADE/PUCK close-up (Cycles) - NO reference; provisional contacts", tile("validation/18-blade-puck.png", (0, 150, 1000, 712))),
+     ("BLADE/PUCK close-up (Cycles) - mold stick; puck thickness unknown", tile("validation/18-blade-puck.png", (0, 150, 1000, 712))),
      ("OBLIQUE reference (oblique B) - projection NOT matched", tile("references/originals/stiga-sports-71-1145-01-oblique-b.jpg", (100, 1650, 5100, 3500)))],
 ]
 notes = [
     "20 - MODEL REVIEW (AI review only; NO user approval recorded). Calibration intake: nothing supplied - canonical parameters unchanged.",
     f"GEOMETRY (separate from appearance): pipeline reprojection data -> Blender -> GLB -> Remotion, overhead at {rep['output_mm_per_px']} mm/px: slot centrelines mean offset <= {rep['slot_summary']['worst_mean_offset_px']} px (max offsets 7-11 px only where figures/puck cover slots);",
     f"   ice edge median {rep['ice_edge']['median_abs_offset_px']} px. Reference vs model (overhead, matched projection): markings, slots, goals and logos coincide visually; model derived from this photo, so this is consistency, not accuracy.",
-    "   ABSOLUTE accuracy: preview scale ASSUMED (845 mm catalog length); trace uncertainty 21 source px ~ 3.8 mm; lens bow <= 10 px; figure pivots/blades/stops UNMEASURED. -> NO one-output-pixel claim is supported.",
-    "APPEARANCE: Cycles - soft shadows, clear screens, printed ice read well; figures are smooth proxies (10 of 12 placeholders); boards grey placeholder; no decals.",
+    "   ABSOLUTE accuracy: preview scale ASSUMED (845 mm catalog length); trace uncertainty 21 source px ~ 3.8 mm; lens bow <= 10 px; rod stops/transfer UNMEASURED. -> NO one-output-pixel claim is supported.",
+    "FIGURES (2026-09-30): shared rigid skater/goalie molds fitted to the user's photos/videos (IoU 0.81/0.82) and the overhead (k fitted); socket axis, stick, blade, prints. Scale via the ASSUMED preview scale; not ruler-measured.",
+    "APPEARANCE: Cycles - soft shadows, clear screens, printed ice read well; boards grey placeholder.",
     "   Remotion/Three - same layout and colours but no shadows, opaque white end screens, flatter ice. Does NOT meet photorealism yet -> bounded Cycles benchmark proposed (docs/review.md).",
     "PROPOSED OUTPUT: 1920x1080 (1 px ~ 0.485 mm over the full rink in the overhead; ~0.6-1.2 mm in the oblique). Supported claim: illustrative prototype, provisional geometry.",
 ]

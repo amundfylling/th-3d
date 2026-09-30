@@ -6,6 +6,12 @@
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
 - Batch run 06-20 complete. Last completed: **20 - Review the model and incorporate calibration** (2026-09-30). Next: **21** (blocked on user review feedback + a real shot recording).
+- **Player figures (user request, done before 21, 2026-09-30):** the skater and goalie proxies and the ten
+  placeholders are replaced by two rigid STIGA molds (skater shared by all ten skaters, goalie by both goalies)
+  in Sweden/Finland kits, fitted to the user's photos/videos (`references/players_images`) and the official
+  overhead: mount socket (fixture axis) under the left skate (skater) / right skate (goalie), stick, blade,
+  skates, uniform and back prints. geometry_version **0.6.0**. Details, results and open questions:
+  `docs/players.md`. AI review only; no user approval recorded.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
@@ -39,9 +45,15 @@ Iteration 20 closed without repair cycles:
 | Pose maths (iteration 09) | 10 pose tests pass (continuity on all 12 paths, boundaries, 360 deg, known point, handedness det +1, goalie adapter, glTF adapter). Debug SVG AI-reviewed. |
 | Contacts (iteration 10) | Provisional debug contacts for W-RD only; rigidity, rotation and handedness tests pass; review sheet AI-reviewed. Real pivot, blade and skate values UNKNOWN. |
 | Blender (iteration 11) | bpy 4.5.14 LTS (PyPI) in /root/venvs/blender; Cycles CPU. Rink built headless; GLB bounds and ID-render scale checks pass (tests 40/40). See docs/blender.md. |
+| Figure molds (2026-09-30) | `npm run check` passes (73 tests: typecheck, validate, figures/assembly/appearance/Remotion tests). Silhouette IoU skater 0.808 (7 views) / goalie 0.816 (8 views); overhead k = 1.071 mm/mold unit (4 Sweden skaters, IoU 0.69-0.79); stick check within 1.5 mm; assembly without intersections; Remotion import checks pass; reprojection worst slot mean 0.80 px (check made colour-aware: figure plastic over the E-G slot, recorded in scripts/review-reprojection.ts). Renders inspected (AI review). |
 | Dimensional accuracy | Nothing measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
 
 ## Key decisions
+
+- Figures (2026-09-30): one skater mold and one goalie mold (user statement: every skater identical; teams
+  differ only in kit colour and country name). Team W = Finland kit, E = Sweden kit (D4). Figure scale from the
+  official overhead at the assumed preview scale, shared by both molds (`assume.figure_mold_scale`); the
+  iteration 13-15 proxies, debug contacts and their scripts were removed (git history keeps them).
 
 - Sponsors dropped (user, D6, 2026-09-30): the ice carries hockey markings only; the reference print is kept as `assets/rink/textures/ice_basecolor_reference.png`.
 

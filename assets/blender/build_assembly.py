@@ -34,7 +34,9 @@ def load_kit(path_obj):
     with bpy.data.libraries.load(str(sb.REPO / path), link=False) as (src, dst):
         dst.objects = [name]
     ob = dst.objects[0]
-    return ob.data  # the mesh (materials included); objects are created per player
+    me = ob.data  # the mesh (materials included); objects are created per player
+    bpy.data.objects.remove(ob)
+    return me
 
 
 meshes = {}

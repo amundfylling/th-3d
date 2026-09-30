@@ -1,6 +1,6 @@
 {
   "schema": "stiga-play-off-21-geometry",
-  "geometry_version": "0.5.0",
+  "geometry_version": "0.6.0",
   "updated": "2026-09-30",
   "coordinate_system": {
     "world": "Right-handed, rink-centred, calibrated geometry only. See docs/geometry.md.",
@@ -104,6 +104,108 @@
       "kind": "reference_image",
       "title": "Puck close-up",
       "index_id": "stiga_ca_puck"
+    },
+    {
+      "id": "user_goalie_photo_2564",
+      "kind": "reference_image",
+      "title": "User photo IMG_2564 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2564",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_photo_2565",
+      "kind": "reference_image",
+      "title": "User photo IMG_2565 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2565",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_photo_2566",
+      "kind": "reference_image",
+      "title": "User photo IMG_2566 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2566",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_photo_2567",
+      "kind": "reference_image",
+      "title": "User photo IMG_2567 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2567",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_photo_2568",
+      "kind": "reference_image",
+      "title": "User photo IMG_2568 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2568",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_photo_2569",
+      "kind": "reference_image",
+      "title": "User photo IMG_2569 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2569",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_photo_2570",
+      "kind": "reference_image",
+      "title": "User photo IMG_2570 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2570",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_photo_2571",
+      "kind": "reference_image",
+      "title": "User photo IMG_2571 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2571",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_photo_2572",
+      "kind": "reference_image",
+      "title": "User photo IMG_2572 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_photo_2572",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_goalie_video_2573",
+      "kind": "reference_image",
+      "title": "User video IMG_2573_under25MB(1).mp4 - Sweden goalie no. 30 (loose figure on a table)",
+      "index_id": "user_goalie_video_2573",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "user_skater_video_2574",
+      "kind": "reference_image",
+      "title": "User video IMG_2574_under25MB(1).mp4 - Sweden skater no. 21 (loose figure on a table)",
+      "index_id": "user_skater_video_2574",
+      "url": null,
+      "note": "User upload (references/players_images); unscaled close-up of the loose figure. Stills: references/derived/players."
+    },
+    {
+      "id": "stiga_ca_team_pack_finland",
+      "kind": "reference_image",
+      "title": "Team pack in blister packaging (identified as Finland by the guide)",
+      "index_id": "stiga_ca_team_pack_finland",
+      "url": null,
+      "note": "Blister card, all six Finland figures side by side at one depth: five identical skaters and the goalie, equally tall."
+    },
+    {
+      "id": "user_statement_2026_09_30_players",
+      "kind": "user_statement",
+      "title": "User statement of 2026-09-30 on the figures",
+      "note": "'Every player is identical, except the goalkeeper. The only difference between sweden and finland is the kit color and the country name on the back.' Photos/videos of the Sweden goalie and skater uploaded to references/players_images."
     }
   ],
   "source_images": [
@@ -134,6 +236,90 @@
       "sha256": "cfd5d476a0dc89a7ec1f4f4a5216cf8def7a14cf86c428e8d04d980d8459ebdf",
       "width_px": 1000,
       "height_px": 863
+    },
+    {
+      "source_id": "user_goalie_photo_2564",
+      "local_path": "references/players_images/IMG_2564 2.HEIC",
+      "sha256": "55620953d2b31fb16187816a8fab77d491f8fdabc1b73be829a394033bc91674",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_photo_2565",
+      "local_path": "references/players_images/IMG_2565 2.HEIC",
+      "sha256": "d2f84ab58bb75a31d358808a96dad60ded2c771ff08f9bb24c395b73b04cb4d6",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_photo_2566",
+      "local_path": "references/players_images/IMG_2566 2.HEIC",
+      "sha256": "e4c3f7df372b2143d50ce1bcdebb563a53f1330a2618c697db40d06665f99931",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_photo_2567",
+      "local_path": "references/players_images/IMG_2567 2.HEIC",
+      "sha256": "2c3c8d7910a5a9648177ab632c153bd0d85e894333874102017eb4628e5acb79",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_photo_2568",
+      "local_path": "references/players_images/IMG_2568 2.HEIC",
+      "sha256": "f364ea21a4e155d4c408197605184e13504b60c91e19520a5e4458d5b5a56156",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_photo_2569",
+      "local_path": "references/players_images/IMG_2569 2.HEIC",
+      "sha256": "5e86fcfbd966ff5b949280acb5d5a26fd05ccde726d52ae48556cbc4edf197a4",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_photo_2570",
+      "local_path": "references/players_images/IMG_2570 2.HEIC",
+      "sha256": "d1b3ef65b2afb2a7ab08a370ed2d775dc507597f34ee22e3ba28b654784a3d97",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_photo_2571",
+      "local_path": "references/players_images/IMG_2571 2.HEIC",
+      "sha256": "da493a0d0976de5096faf39cb612b0e51a4cb023934e75b0c52190539d40fd90",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_photo_2572",
+      "local_path": "references/players_images/IMG_2572 2.HEIC",
+      "sha256": "ed3b2aa0c8d3f6707e15fab9ca5e8acbf1df397a71d7b6d387036784d9c956f3",
+      "width_px": 4284,
+      "height_px": 5712
+    },
+    {
+      "source_id": "user_goalie_video_2573",
+      "local_path": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "width_px": 2160,
+      "height_px": 3840
+    },
+    {
+      "source_id": "user_skater_video_2574",
+      "local_path": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "width_px": 2160,
+      "height_px": 3840
+    },
+    {
+      "source_id": "stiga_ca_team_pack_finland",
+      "local_path": "references/originals/stiga-canada-finland-team-pack.png",
+      "sha256": "66f05c76116ec2e4116e2d5c50d04cd54f420ac4b480c560d9bb035cbf9c462f",
+      "width_px": 800,
+      "height_px": 600
     }
   ],
   "assumptions": [
@@ -206,22 +392,33 @@
       "replace_with": "Measured board height, board wall thickness, ice-sheet thickness and housing outline of the user's game."
     },
     {
-      "id": "assume.debug_contacts.W-RD",
-      "statement": "Debug contact geometry for W-RD: pivot at the midpoint of the covered slot stretch; heading 0.2 deg from the body axis; blade = last 30% of the stick's top-view projection, 4 mm high from the ice; shaft rising to 20 mm at the hands; skate placeholders 5 mm either side of the axis; preview scale.",
-      "reason": "No loose-figure views or measurements exist; a labelled stand-in is needed to exercise the pose and contact code.",
+      "id": "assume.figure_mold_scale",
+      "statement": "One scale k = 1.0713 mm per mold unit for BOTH molds: fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the preview scale. The goalie alone fits best at k = 1.1784 (hand-traced white goalie on white ice); the Finland team pack shows goalie and skaters equally tall, so the skater k is used.",
+      "reason": "The user's photos have no scale object near the figure; the overhead is the only scaled view (itself at the ASSUMED preview scale).",
       "affects": [
-        "figure_assets.fig.W-RD.contact_shapes"
+        "figure_assets.fig.W-G",
+        "figure_assets.fig.W-LD",
+        "figure_assets.fig.W-RD",
+        "figure_assets.fig.W-C",
+        "figure_assets.fig.W-LW",
+        "figure_assets.fig.W-RW",
+        "figure_assets.fig.E-G",
+        "figure_assets.fig.E-LD",
+        "figure_assets.fig.E-RD",
+        "figure_assets.fig.E-C",
+        "figure_assets.fig.E-LW",
+        "figure_assets.fig.E-RW"
       ],
-      "replace_with": "Scaled photographs or measurements of the loose and installed figure: fixture axis, blade outline and offset, skate contacts, ice clearance (docs/contacts.md)."
+      "replace_with": "Ruler measurements of one skater and the goalie: height (ice to helmet top), socket base diameter, blade length and heel offset from the socket axis."
     },
     {
-      "id": "assume.debug_contacts.W-G",
-      "statement": "Debug goalie contacts for W-G: pivot at the midpoint of the covered W-G slot stretch, heading 0 deg; stick blade = vertical plate along the traced tan strip, ice to 5 mm; shaft to the blocker hand at -0.5, -7.5, 18 mm; pad contacts under the traced pad lobes at {\"left\":[-8,-2],\"right\":[-1,-24]}; preview scale.",
-      "reason": "No loose-goalie views or measurements; a labelled stand-in is needed to exercise the goalie pose adapter and build the asset.",
+      "id": "assume.figure_mold_hidden_details",
+      "statement": "Hidden or unresolved mold details are assumed: socket bore (3 x 2 x 3 mold units), blade and runner thickness (0.9 mold units skater, 2.4 goalie blade), stick wire radius (0.75), print fonts.",
+      "reason": "Not visible or not resolvable in the user's photos/videos.",
       "affects": [
-        "figure_assets.fig.W-G.contact_shapes"
+        "data/figure-molds.json"
       ],
-      "replace_with": "Scaled photographs or measurements of the loose and installed goalie (fixture axis, stick outline, pad contacts, ice clearance)."
+      "replace_with": "Close-up measurements or scaled macro photos of the socket bore, blade and stick."
     }
   ],
   "landmarks": [
@@ -30399,6 +30596,16 @@
       "fixture_path_id": "path.W-G",
       "stick_handedness": "left",
       "handedness_source_ids": [
+        "user_goalie_photo_2564",
+        "user_goalie_photo_2565",
+        "user_goalie_photo_2566",
+        "user_goalie_photo_2567",
+        "user_goalie_photo_2568",
+        "user_goalie_photo_2569",
+        "user_goalie_photo_2570",
+        "user_goalie_photo_2571",
+        "user_goalie_photo_2572",
+        "user_goalie_video_2573",
         "stiga_se_fi_overhead"
       ]
     },
@@ -30408,8 +30615,11 @@
       "position": "LD",
       "asset_id": "fig.W-LD",
       "fixture_path_id": "path.W-LD",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "W-RD",
@@ -30419,6 +30629,7 @@
       "fixture_path_id": "path.W-RD",
       "stick_handedness": "left",
       "handedness_source_ids": [
+        "user_skater_video_2574",
         "stiga_se_fi_overhead"
       ]
     },
@@ -30428,8 +30639,11 @@
       "position": "C",
       "asset_id": "fig.W-C",
       "fixture_path_id": "path.W-C",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "W-LW",
@@ -30437,8 +30651,11 @@
       "position": "LW",
       "asset_id": "fig.W-LW",
       "fixture_path_id": "path.W-LW",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "W-RW",
@@ -30446,8 +30663,11 @@
       "position": "RW",
       "asset_id": "fig.W-RW",
       "fixture_path_id": "path.W-RW",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "E-G",
@@ -30455,8 +30675,20 @@
       "position": "G",
       "asset_id": "fig.E-G",
       "fixture_path_id": "path.E-G",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_goalie_photo_2564",
+        "user_goalie_photo_2565",
+        "user_goalie_photo_2566",
+        "user_goalie_photo_2567",
+        "user_goalie_photo_2568",
+        "user_goalie_photo_2569",
+        "user_goalie_photo_2570",
+        "user_goalie_photo_2571",
+        "user_goalie_photo_2572",
+        "user_goalie_video_2573",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "E-LD",
@@ -30464,8 +30696,11 @@
       "position": "LD",
       "asset_id": "fig.E-LD",
       "fixture_path_id": "path.E-LD",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "E-RD",
@@ -30473,8 +30708,11 @@
       "position": "RD",
       "asset_id": "fig.E-RD",
       "fixture_path_id": "path.E-RD",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "E-C",
@@ -30482,8 +30720,11 @@
       "position": "C",
       "asset_id": "fig.E-C",
       "fixture_path_id": "path.E-C",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "E-LW",
@@ -30491,8 +30732,11 @@
       "position": "LW",
       "asset_id": "fig.E-LW",
       "fixture_path_id": "path.E-LW",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     },
     {
       "id": "E-RW",
@@ -30500,8 +30744,11 @@
       "position": "RW",
       "asset_id": "fig.E-RW",
       "fixture_path_id": "path.E-RW",
-      "stick_handedness": "unknown",
-      "handedness_source_ids": []
+      "stick_handedness": "left",
+      "handedness_source_ids": [
+        "user_skater_video_2574",
+        "stiga_se_fi_overhead"
+      ]
     }
   ],
   "fixture_paths": [
@@ -37160,73 +37407,111 @@
     {
       "id": "fig.W-G",
       "kind": "goalie",
-      "mold_group": null,
+      "mold_group": "mold.goalie",
       "figure_height": {
-        "value": null,
+        "value": 50.35,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": [],
-        "note": "The catalog figure height (approx. 57 mm) is not stated to apply to the goalie."
+        "status": "assumed",
+        "uncertainty": 3,
+        "source_ids": [
+          "user_goalie_photo_2564",
+          "user_goalie_photo_2565",
+          "user_goalie_photo_2566",
+          "user_goalie_photo_2567",
+          "user_goalie_photo_2568",
+          "user_goalie_photo_2569",
+          "user_goalie_photo_2570",
+          "user_goalie_photo_2571",
+          "user_goalie_photo_2572",
+          "user_goalie_video_2573",
+          "stiga_se_fi_overhead",
+          "stiga_ca_team_pack_finland",
+          "user_statement_2026_09_30_players"
+        ],
+        "assumption_id": "assume.figure_mold_scale",
+        "note": "Ice to mask top at the shared mold scale; the goalie-only overhead fit (k = 1.1784) would give 55.4 mm."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 8.58,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "status": "assumed",
+        "uncertainty": 3,
+        "source_ids": [
+          "user_goalie_photo_2564",
+          "user_goalie_photo_2565",
+          "user_goalie_photo_2566",
+          "user_goalie_photo_2567",
+          "user_goalie_photo_2568",
+          "user_goalie_photo_2569",
+          "user_goalie_photo_2570",
+          "user_goalie_photo_2571",
+          "user_goalie_photo_2572",
+          "user_goalie_video_2573",
+          "stiga_se_fi_overhead"
+        ],
+        "assumption_id": "assume.figure_mold_scale",
+        "note": "Axis to blade heel at the shared mold scale; the goalie blade runs 27 mm across the front toward the goalie's left."
       },
       "ice_clearance": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
-        "source_ids": []
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
       "contact_shapes": [
         {
-          "id": "contact.W-G.stick_blade",
+          "id": "contact.W-G.blade",
           "kind": "blade",
           "frame": "pivot_local",
           "geometry": {
             "type": "polyline",
             "points_mm": [
               [
-                2.84,
-                17.61,
+                8.36,
+                1.93,
                 0
               ],
               [
-                2.95,
-                -15.97,
+                8.36,
+                28.93,
                 0
               ],
               [
-                2.95,
-                -15.97,
-                5
+                8.36,
+                28.93,
+                3
               ],
               [
-                2.84,
-                17.61,
-                5
+                8.36,
+                1.93,
+                3
               ],
               [
-                2.84,
-                17.61,
+                8.36,
+                1.93,
                 0
               ]
             ]
           },
-          "status": "assumed",
+          "status": "traced",
           "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
             "stiga_se_fi_overhead",
-            "stiga_se_fi_side_a"
+            "stiga_ca_team_pack_finland"
           ],
-          "uncertainty_mm": 21.3,
-          "provisional": true,
-          "assumption_id": "assume.debug_contacts.W-G",
-          "note": "DEBUG goalie stick blade: vertical plate standing on edge across the front (overhead: narrow tan strip along y), ice to 5 mm (side A: wide paddle; height assumed)."
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (tan plastic), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
         },
         {
           "id": "contact.W-G.stick_shaft",
@@ -37236,26 +37521,146 @@
             "type": "polyline",
             "points_mm": [
               [
-                2.84,
-                -7.5,
-                5
+                7.28,
+                -6.43,
+                17.14
               ],
               [
-                -0.5,
-                -7.5,
-                18
+                8.36,
+                3.21,
+                1.5
               ]
             ]
           },
-          "status": "assumed",
+          "status": "traced",
           "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
             "stiga_se_fi_overhead",
-            "stiga_se_fi_side_a"
+            "stiga_ca_team_pack_finland"
           ],
-          "uncertainty_mm": 21.3,
-          "provisional": true,
-          "assumption_id": "assume.debug_contacts.W-G",
-          "note": "DEBUG shaft from the blade top up to the blocker hand at 18 mm (assumed)."
+          "uncertainty_mm": 2.5,
+          "note": "Flat tan paddle from the blocker down to the heel."
+        },
+        {
+          "id": "contact.W-G.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                5.79,
+                0,
+                0
+              ],
+              [
+                5.34,
+                2.21,
+                0
+              ],
+              [
+                4.09,
+                4.09,
+                0
+              ],
+              [
+                2.21,
+                5.34,
+                0
+              ],
+              [
+                0,
+                5.79,
+                0
+              ],
+              [
+                -2.21,
+                5.34,
+                0
+              ],
+              [
+                -4.09,
+                4.09,
+                0
+              ],
+              [
+                -5.34,
+                2.21,
+                0
+              ],
+              [
+                -5.79,
+                0,
+                0
+              ],
+              [
+                -5.34,
+                -2.21,
+                0
+              ],
+              [
+                -4.09,
+                -4.09,
+                0
+              ],
+              [
+                -2.21,
+                -5.34,
+                0
+              ],
+              [
+                0,
+                -5.79,
+                0
+              ],
+              [
+                2.21,
+                -5.34,
+                0
+              ],
+              [
+                4.09,
+                -4.09,
+                0
+              ],
+              [
+                5.34,
+                -2.21,
+                0
+              ],
+              [
+                5.79,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
+            "stiga_se_fi_overhead",
+            "stiga_ca_team_pack_finland"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
         },
         {
           "id": "contact.W-G.pad.left",
@@ -37265,26 +37670,49 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14,
-                -2,
+                0.43,
+                5.57,
                 0
               ],
               [
-                -2,
-                -2,
+                6.43,
+                5.57,
+                0
+              ],
+              [
+                6.43,
+                15.86,
+                0
+              ],
+              [
+                0.43,
+                15.86,
+                0
+              ],
+              [
+                0.43,
+                5.57,
                 0
               ]
             ]
           },
-          "status": "assumed",
+          "status": "traced",
           "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
             "stiga_se_fi_overhead",
-            "stiga_se_fi_side_a"
+            "stiga_ca_team_pack_finland"
           ],
-          "uncertainty_mm": 21.3,
-          "provisional": true,
-          "assumption_id": "assume.debug_contacts.W-G",
-          "note": "DEBUG left leg-pad ice contact, under the traced pad lobe of the top silhouette. Real contact unknown."
+          "uncertainty_mm": 3,
+          "note": "Left leg-pad bottom on the ice."
         },
         {
           "id": "contact.W-G.pad.right",
@@ -37294,120 +37722,395 @@
             "type": "polyline",
             "points_mm": [
               [
-                -7,
-                -24,
+                0.43,
+                -4.93,
                 0
               ],
               [
-                5,
-                -24,
+                6.43,
+                -4.93,
+                0
+              ],
+              [
+                6.43,
+                5.36,
+                0
+              ],
+              [
+                0.43,
+                5.36,
+                0
+              ],
+              [
+                0.43,
+                -4.93,
                 0
               ]
             ]
           },
-          "status": "assumed",
+          "status": "traced",
           "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
             "stiga_se_fi_overhead",
-            "stiga_se_fi_side_a"
+            "stiga_ca_team_pack_finland"
           ],
-          "uncertainty_mm": 21.3,
-          "provisional": true,
-          "assumption_id": "assume.debug_contacts.W-G",
-          "note": "DEBUG right leg-pad ice contact, under the traced pad lobe of the top silhouette. Real contact unknown."
+          "uncertainty_mm": 3,
+          "note": "Right leg-pad bottom (over the socket side)."
         }
       ],
       "inventory": [
         {
-          "item": "identity",
+          "item": "mold identity",
           "status": "traced",
-          "evidence": "Only one Finland goalie exists, so the overhead (top), side A (profile, crop at px 1150-1450) and oblique A (crop at px 3520-3870) all show W-G."
+          "evidence": "One goalie mold per team (user statement; Finland team pack; official overhead)."
         },
         {
           "item": "mounting (fixture) axis position",
-          "status": "unknown",
-          "evidence": "Hidden under the goalie; confined to the covered W-G slot stretch (+-20.4 mm at the preview scale). Debug pivot at its midpoint."
-        },
-        {
-          "item": "stick side",
           "status": "traced",
-          "evidence": "Overhead: the stick stands across the front, from local y -15.97 to 17.61 mm, i.e. mostly toward the goalie's LEFT (+y)."
+          "evidence": "User photos: a flared socket with a rectangular key bore under the goalie's RIGHT skate; the left leg ends in a pad block."
         },
         {
-          "item": "stick blade outline and height",
-          "status": "unknown",
-          "evidence": "Side A shows a wide tan L-shaped stick with the blade on the ice; unscaled."
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Tan plastic stick: paddle from the blocker (right hand) to a heel between the pads; blade across the front toward the goalie's left, longer than the body is wide."
         },
         {
-          "item": "pads / skates ice contact",
-          "status": "unknown",
-          "evidence": "Pads reach the ice in side A; exact contact unknown."
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Blue boots under yellow/white socks; right boot on the socket."
         },
         {
-          "item": "goalie height",
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Finland white) on jersey and socks; shared blue helmet, gloves, pants, boots, pads, blocker, catcher, mask; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8161 (8 views); overhead top-view IoU 0.6943."
+        },
+        {
+          "item": "absolute scale",
           "status": "assumed",
-          "evidence": "Side A: goalie about 243 px vs about 260 px for a skater in the same photo (depths differ) -> about 0.93 x 57 mm = 53 mm; see preview_parameters.goalie_height."
-        },
-        {
-          "item": "body shape",
-          "status": "assumed",
-          "evidence": "Iteration 15 proxy matched to the traced top silhouette; profile from side A (crouched, large pads, blocker and catcher)."
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; shared with the skater mold (goalie-only fit: 1.1784)."
         }
       ],
-      "note": "Goalie asset (iteration 15): its own body, stick and origin; not a resized skater. Contacts are PROVISIONAL DEBUG GEOMETRY (assume.debug_contacts.W-G); figure_height, blade offset and ice clearance remain unknown."
+      "note": "Rigid goalie mold (data/figure-molds.json) in the Finland kit: assets/figures/goalie_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.W-LD",
       "kind": "skater",
-      "mold_group": null,
+      "mold_group": "mold.skater",
       "figure_height": {
-        "value": 57,
+        "value": 51.24,
         "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2.5,
         "source_ids": [
-          "stiga_canada_catalog"
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
-        "source_ids": []
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
-      "contact_shapes": []
+      "contact_shapes": [
+        {
+          "id": "contact.W-LD.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.W-LD.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.W-LD.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.W-LD.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Finland white) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.W-RD",
       "kind": "skater",
-      "mold_group": null,
+      "mold_group": "mold.skater",
       "figure_height": {
-        "value": 57,
+        "value": 51.24,
         "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2.5,
         "source_ids": [
-          "stiga_canada_catalog"
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": [],
-        "note": "Not measured. See the provisional debug blade in contact_shapes."
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -37415,7 +38118,7 @@
         "status": "unknown",
         "uncertainty": null,
         "source_ids": [],
-        "note": "Not measured."
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
       "contact_shapes": [
         {
@@ -37426,41 +38129,39 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.44,
-                31.81,
+                3.21,
+                22.5,
                 0
               ],
               [
-                3.06,
-                42.59,
+                2.36,
+                43.07,
                 0
               ],
               [
-                3.06,
-                42.59,
-                4
+                2.36,
+                43.07,
+                3.21
               ],
               [
-                3.44,
-                31.81,
-                4
+                3.21,
+                22.5,
+                3.21
               ],
               [
-                3.44,
-                31.81,
+                3.21,
+                22.5,
                 0
               ]
             ]
           },
-          "status": "assumed",
+          "status": "traced",
           "source_ids": [
-            "stiga_se_fi_overhead",
-            "stiga_canada_catalog"
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
           ],
-          "uncertainty_mm": 13,
-          "provisional": true,
-          "assumption_id": "assume.debug_contacts.W-RD",
-          "note": "DEBUG blade: vertical strip along the last 30% of the stick's top-view projection, from the ice (z 0) to 4 mm (assumed). Real outline, offset, lie and height unknown."
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
         },
         {
           "id": "contact.W-RD.stick_shaft",
@@ -37470,55 +38171,131 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.44,
-                31.81,
-                0
+                8.03,
+                -5.36,
+                30
               ],
               [
-                4.32,
-                6.67,
-                20
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
               ]
             ]
           },
-          "status": "assumed",
+          "status": "traced",
           "source_ids": [
-            "stiga_se_fi_overhead",
-            "stiga_canada_catalog"
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
           ],
-          "uncertainty_mm": 13,
-          "provisional": true,
-          "assumption_id": "assume.debug_contacts.W-RD",
-          "note": "DEBUG shaft: top-view projection from the hands to the blade; rises linearly to 20 mm at the hands (assumed)."
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
         },
         {
-          "id": "contact.W-RD.skate.left",
-          "kind": "skate",
+          "id": "contact.W-RD.base",
+          "kind": "base",
           "frame": "pivot_local",
           "geometry": {
             "type": "polyline",
             "points_mm": [
               [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
                 -6,
-                5,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
                 0
               ],
               [
                 6,
-                5,
+                0,
                 0
               ]
             ]
           },
-          "status": "assumed",
+          "status": "traced",
           "source_ids": [
-            "stiga_se_fi_overhead",
-            "stiga_canada_catalog"
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
           ],
-          "uncertainty_mm": 10,
-          "provisional": true,
-          "assumption_id": "assume.debug_contacts.W-RD",
-          "note": "DEBUG placeholder: skates are hidden under the body in the top view and unscaled in the side views; placed 5 mm either side of the axis at ice level. Real position and ice clearance unknown."
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
         },
         {
           "id": "contact.W-RD.skate.right",
@@ -37528,357 +38305,2698 @@
             "type": "polyline",
             "points_mm": [
               [
-                -6,
-                -5,
+                -14.57,
+                -14.78,
                 0
               ],
               [
-                6,
-                -5,
+                -5.36,
+                -18.21,
                 0
               ]
             ]
           },
-          "status": "assumed",
+          "status": "traced",
           "source_ids": [
-            "stiga_se_fi_overhead",
-            "stiga_canada_catalog"
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
           ],
-          "uncertainty_mm": 10,
-          "provisional": true,
-          "assumption_id": "assume.debug_contacts.W-RD",
-          "note": "DEBUG placeholder: skates are hidden under the body in the top view and unscaled in the side views; placed 5 mm either side of the axis at ice level. Real position and ice clearance unknown."
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
         }
       ],
       "inventory": [
         {
-          "item": "mounting (fixture) axis position",
-          "status": "unknown",
-          "evidence": "Hidden under the figure. Constrained to the covered stretch of the W-RD slot between px (2309, 3288) and the visible end cap (2443, 3286): +-12.1 mm along the slot at the preview scale. Lateral offset from the slot centreline unknown."
-        },
-        {
-          "item": "blade outline",
-          "status": "unknown",
-          "evidence": "The overhead shows only the stick's top-view projection; no loose-figure or scaled blade view exists."
-        },
-        {
-          "item": "blade offset from pivot",
-          "status": "unknown",
-          "evidence": "Debug estimate only: blade tip about 42.7 mm from the assumed pivot, on the figure's left (preview scale, assumed pivot)."
-        },
-        {
-          "item": "stick side (handedness)",
+          "item": "mold identity",
           "status": "traced",
-          "evidence": "Overhead: figure faces +x and the stick extends toward +y, i.e. the blade is on the figure's LEFT."
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
         },
         {
-          "item": "feet / skates",
-          "status": "unknown",
-          "evidence": "Hidden under the body in the top view; visible but unscaled and unidentifiable per figure in the side views."
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
         },
         {
-          "item": "contact heights (blade, skates, ice clearance)",
-          "status": "unknown",
-          "evidence": "No scaled side view of a loose or installed figure."
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
         },
         {
-          "item": "figure height",
-          "status": "catalog_nominal",
-          "evidence": "Approx. 57 mm (STIGA Canada), height datum unspecified."
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
         },
         {
-          "item": "mold shared with other skaters",
-          "status": "unknown",
-          "evidence": "Side and oblique photos show Finland skaters with clearly different molded poses (deep crouch, low stickhandling, skating stride); jersey numbers are not consistent across photos. W-RD's mold is NOT shown to be shared; other positions need their own variants."
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Finland white) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
         },
         {
-          "item": "body shape (torso, arms, legs, head)",
-          "status": "assumed",
-          "evidence": "Iteration 14 proxy (assets/figures/skater_W-RD.*): matched to the traced top silhouette (trace.figure.W-RD.overhead.top_silhouette, IoU 0.82) and catalog height; front, back and side views have no W-RD evidence."
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
         },
         {
-          "item": "skate position vs top silhouette",
-          "status": "unknown",
-          "evidence": "CONFLICT: the top silhouette shows a right-leg lobe reaching y about -24 mm (pivot-local), while the debug skate placeholders sit at +-5 mm. Contacts left unchanged pending measurement."
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
         }
       ],
-      "note": "Representative skater for iterations 10 and 13-14. Chosen because its slot is visible on BOTH sides of the figure in the overhead, which confines the hidden fixture axis to a short stretch (+-12.1 mm). Contact shapes are PROVISIONAL DEBUG GEOMETRY (assume.debug_contacts.W-RD); blade_offset_from_pivot and ice_clearance remain unknown."
+      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.W-C",
       "kind": "skater",
-      "mold_group": null,
+      "mold_group": "mold.skater",
       "figure_height": {
-        "value": 57,
+        "value": 51.24,
         "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2.5,
         "source_ids": [
-          "stiga_canada_catalog"
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
-      },
-      "ice_clearance": {
-        "value": null,
-        "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
-      },
-      "contact_shapes": []
-    },
-    {
-      "id": "fig.W-LW",
-      "kind": "skater",
-      "mold_group": null,
-      "figure_height": {
-        "value": 57,
-        "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2,
         "source_ids": [
-          "stiga_canada_catalog"
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
-      },
-      "blade_offset_from_pivot": {
-        "value": null,
-        "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
-        "value": null,
-        "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
-      },
-      "contact_shapes": []
-    },
-    {
-      "id": "fig.W-RW",
-      "kind": "skater",
-      "mold_group": null,
-      "figure_height": {
-        "value": 57,
-        "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
-        "source_ids": [
-          "stiga_canada_catalog"
-        ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
-      },
-      "blade_offset_from_pivot": {
-        "value": null,
-        "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
-      },
-      "ice_clearance": {
-        "value": null,
-        "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
-      },
-      "contact_shapes": []
-    },
-    {
-      "id": "fig.E-G",
-      "kind": "goalie",
-      "mold_group": null,
-      "figure_height": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
         "source_ids": [],
-        "note": "The catalog figure height (approx. 57 mm) is not stated to apply to the goalie."
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
+      },
+      "contact_shapes": [
+        {
+          "id": "contact.W-C.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.W-C.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.W-C.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.W-C.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Finland white) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+    },
+    {
+      "id": "fig.W-LW",
+      "kind": "skater",
+      "mold_group": "mold.skater",
+      "figure_height": {
+        "value": 51.24,
+        "unit": "mm",
+        "status": "traced",
+        "uncertainty": 2.5,
+        "source_ids": [
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
+        ],
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
-        "source_ids": []
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
-      "contact_shapes": []
+      "contact_shapes": [
+        {
+          "id": "contact.W-LW.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.W-LW.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.W-LW.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.W-LW.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Finland white) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+    },
+    {
+      "id": "fig.W-RW",
+      "kind": "skater",
+      "mold_group": "mold.skater",
+      "figure_height": {
+        "value": 51.24,
+        "unit": "mm",
+        "status": "traced",
+        "uncertainty": 2.5,
+        "source_ids": [
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
+        ],
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+      },
+      "blade_offset_from_pivot": {
+        "value": 22.73,
+        "unit": "mm",
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+      },
+      "ice_clearance": {
+        "value": null,
+        "unit": "mm",
+        "status": "unknown",
+        "uncertainty": null,
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
+      },
+      "contact_shapes": [
+        {
+          "id": "contact.W-RW.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.W-RW.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.W-RW.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.W-RW.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Finland white) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+    },
+    {
+      "id": "fig.E-G",
+      "kind": "goalie",
+      "mold_group": "mold.goalie",
+      "figure_height": {
+        "value": 50.35,
+        "unit": "mm",
+        "status": "assumed",
+        "uncertainty": 3,
+        "source_ids": [
+          "user_goalie_photo_2564",
+          "user_goalie_photo_2565",
+          "user_goalie_photo_2566",
+          "user_goalie_photo_2567",
+          "user_goalie_photo_2568",
+          "user_goalie_photo_2569",
+          "user_goalie_photo_2570",
+          "user_goalie_photo_2571",
+          "user_goalie_photo_2572",
+          "user_goalie_video_2573",
+          "stiga_se_fi_overhead",
+          "stiga_ca_team_pack_finland",
+          "user_statement_2026_09_30_players"
+        ],
+        "assumption_id": "assume.figure_mold_scale",
+        "note": "Ice to mask top at the shared mold scale; the goalie-only overhead fit (k = 1.1784) would give 55.4 mm."
+      },
+      "blade_offset_from_pivot": {
+        "value": 8.58,
+        "unit": "mm",
+        "status": "assumed",
+        "uncertainty": 3,
+        "source_ids": [
+          "user_goalie_photo_2564",
+          "user_goalie_photo_2565",
+          "user_goalie_photo_2566",
+          "user_goalie_photo_2567",
+          "user_goalie_photo_2568",
+          "user_goalie_photo_2569",
+          "user_goalie_photo_2570",
+          "user_goalie_photo_2571",
+          "user_goalie_photo_2572",
+          "user_goalie_video_2573",
+          "stiga_se_fi_overhead"
+        ],
+        "assumption_id": "assume.figure_mold_scale",
+        "note": "Axis to blade heel at the shared mold scale; the goalie blade runs 27 mm across the front toward the goalie's left."
+      },
+      "ice_clearance": {
+        "value": null,
+        "unit": "mm",
+        "status": "unknown",
+        "uncertainty": null,
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
+      },
+      "contact_shapes": [
+        {
+          "id": "contact.E-G.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.36,
+                1.93,
+                0
+              ],
+              [
+                8.36,
+                28.93,
+                0
+              ],
+              [
+                8.36,
+                28.93,
+                3
+              ],
+              [
+                8.36,
+                1.93,
+                3
+              ],
+              [
+                8.36,
+                1.93,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
+            "stiga_se_fi_overhead",
+            "stiga_ca_team_pack_finland"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (tan plastic), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.E-G.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                7.28,
+                -6.43,
+                17.14
+              ],
+              [
+                8.36,
+                3.21,
+                1.5
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
+            "stiga_se_fi_overhead",
+            "stiga_ca_team_pack_finland"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Flat tan paddle from the blocker down to the heel."
+        },
+        {
+          "id": "contact.E-G.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                5.79,
+                0,
+                0
+              ],
+              [
+                5.34,
+                2.21,
+                0
+              ],
+              [
+                4.09,
+                4.09,
+                0
+              ],
+              [
+                2.21,
+                5.34,
+                0
+              ],
+              [
+                0,
+                5.79,
+                0
+              ],
+              [
+                -2.21,
+                5.34,
+                0
+              ],
+              [
+                -4.09,
+                4.09,
+                0
+              ],
+              [
+                -5.34,
+                2.21,
+                0
+              ],
+              [
+                -5.79,
+                0,
+                0
+              ],
+              [
+                -5.34,
+                -2.21,
+                0
+              ],
+              [
+                -4.09,
+                -4.09,
+                0
+              ],
+              [
+                -2.21,
+                -5.34,
+                0
+              ],
+              [
+                0,
+                -5.79,
+                0
+              ],
+              [
+                2.21,
+                -5.34,
+                0
+              ],
+              [
+                4.09,
+                -4.09,
+                0
+              ],
+              [
+                5.34,
+                -2.21,
+                0
+              ],
+              [
+                5.79,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
+            "stiga_se_fi_overhead",
+            "stiga_ca_team_pack_finland"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.E-G.pad.left",
+          "kind": "pad",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                0.43,
+                5.57,
+                0
+              ],
+              [
+                6.43,
+                5.57,
+                0
+              ],
+              [
+                6.43,
+                15.86,
+                0
+              ],
+              [
+                0.43,
+                15.86,
+                0
+              ],
+              [
+                0.43,
+                5.57,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
+            "stiga_se_fi_overhead",
+            "stiga_ca_team_pack_finland"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Left leg-pad bottom on the ice."
+        },
+        {
+          "id": "contact.E-G.pad.right",
+          "kind": "pad",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                0.43,
+                -4.93,
+                0
+              ],
+              [
+                6.43,
+                -4.93,
+                0
+              ],
+              [
+                6.43,
+                5.36,
+                0
+              ],
+              [
+                0.43,
+                5.36,
+                0
+              ],
+              [
+                0.43,
+                -4.93,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_goalie_photo_2564",
+            "user_goalie_photo_2565",
+            "user_goalie_photo_2566",
+            "user_goalie_photo_2567",
+            "user_goalie_photo_2568",
+            "user_goalie_photo_2569",
+            "user_goalie_photo_2570",
+            "user_goalie_photo_2571",
+            "user_goalie_photo_2572",
+            "user_goalie_video_2573",
+            "stiga_se_fi_overhead",
+            "stiga_ca_team_pack_finland"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right leg-pad bottom (over the socket side)."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "One goalie mold per team (user statement; Finland team pack; official overhead)."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos: a flared socket with a rectangular key bore under the goalie's RIGHT skate; the left leg ends in a pad block."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Tan plastic stick: paddle from the blocker (right hand) to a heel between the pads; blade across the front toward the goalie's left, longer than the body is wide."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Blue boots under yellow/white socks; right boot on the socket."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Sweden yellow) on jersey and socks; shared blue helmet, gloves, pants, boots, pads, blocker, catcher, mask; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8161 (8 views); overhead top-view IoU 0.6943."
+        },
+        {
+          "item": "absolute scale",
+          "status": "assumed",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; shared with the skater mold (goalie-only fit: 1.1784)."
+        }
+      ],
+      "note": "Rigid goalie mold (data/figure-molds.json) in the Sweden kit: assets/figures/goalie_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-LD",
       "kind": "skater",
-      "mold_group": null,
+      "mold_group": "mold.skater",
       "figure_height": {
-        "value": 57,
+        "value": 51.24,
         "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2.5,
         "source_ids": [
-          "stiga_canada_catalog"
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
-        "source_ids": []
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
-      "contact_shapes": []
+      "contact_shapes": [
+        {
+          "id": "contact.E-LD.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.E-LD.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.E-LD.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.E-LD.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Sweden yellow) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-RD",
       "kind": "skater",
-      "mold_group": null,
+      "mold_group": "mold.skater",
       "figure_height": {
-        "value": 57,
+        "value": 51.24,
         "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2.5,
         "source_ids": [
-          "stiga_canada_catalog"
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
-        "source_ids": []
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
-      "contact_shapes": []
+      "contact_shapes": [
+        {
+          "id": "contact.E-RD.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.E-RD.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.E-RD.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.E-RD.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Sweden yellow) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-C",
       "kind": "skater",
-      "mold_group": null,
+      "mold_group": "mold.skater",
       "figure_height": {
-        "value": 57,
+        "value": 51.24,
         "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2.5,
         "source_ids": [
-          "stiga_canada_catalog"
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
-        "source_ids": []
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
-      "contact_shapes": []
+      "contact_shapes": [
+        {
+          "id": "contact.E-C.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.E-C.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.E-C.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.E-C.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Sweden yellow) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-LW",
       "kind": "skater",
-      "mold_group": null,
+      "mold_group": "mold.skater",
       "figure_height": {
-        "value": 57,
+        "value": 51.24,
         "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2.5,
         "source_ids": [
-          "stiga_canada_catalog"
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
-        "source_ids": []
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
-      "contact_shapes": []
+      "contact_shapes": [
+        {
+          "id": "contact.E-LW.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.E-LW.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.E-LW.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.E-LW.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Sweden yellow) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-RW",
       "kind": "skater",
-      "mold_group": null,
+      "mold_group": "mold.skater",
       "figure_height": {
-        "value": 57,
+        "value": 51.24,
         "unit": "mm",
-        "status": "catalog_nominal",
-        "uncertainty": null,
+        "status": "traced",
+        "uncertainty": 2.5,
         "source_ids": [
-          "stiga_canada_catalog"
+          "user_skater_video_2574",
+          "stiga_se_fi_overhead",
+          "user_statement_2026_09_30_players"
         ],
-        "qualifier": "approx.",
-        "note": "'Figure height'; height datum unspecified (ice, base or helmet top unknown)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": null,
+        "value": 22.73,
         "unit": "mm",
-        "status": "unknown",
-        "uncertainty": null,
-        "source_ids": []
+        "status": "traced",
+        "uncertainty": 2,
+        "source_ids": [
+          "stiga_se_fi_overhead",
+          "user_skater_video_2574"
+        ],
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
         "unit": "mm",
         "status": "unknown",
         "uncertainty": null,
-        "source_ids": []
+        "source_ids": [],
+        "note": "The socket base is drawn resting on the ice; whether the figure rides on the spindle above the ice is not visible in any view."
       },
-      "contact_shapes": []
+      "contact_shapes": [
+        {
+          "id": "contact.E-RW.blade",
+          "kind": "blade",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                3.21,
+                22.5,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                0
+              ],
+              [
+                2.36,
+                43.07,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                3.21
+              ],
+              [
+                3.21,
+                22.5,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Blade: upright plate on the ice from heel to toe (flattened metal wire), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+        },
+        {
+          "id": "contact.E-RW.stick_shaft",
+          "kind": "stick_shaft",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                8.03,
+                -5.36,
+                30
+              ],
+              [
+                3.32,
+                21.64,
+                1.71
+              ],
+              [
+                3.21,
+                22.5,
+                0.96
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 2.5,
+          "note": "Round wire shaft through both gloves to the heel."
+        },
+        {
+          "id": "contact.E-RW.base",
+          "kind": "base",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                5.54,
+                2.3,
+                0
+              ],
+              [
+                4.24,
+                4.24,
+                0
+              ],
+              [
+                2.3,
+                5.54,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                -2.3,
+                5.54,
+                0
+              ],
+              [
+                -4.24,
+                4.24,
+                0
+              ],
+              [
+                -5.54,
+                2.3,
+                0
+              ],
+              [
+                -6,
+                0,
+                0
+              ],
+              [
+                -5.54,
+                -2.3,
+                0
+              ],
+              [
+                -4.24,
+                -4.24,
+                0
+              ],
+              [
+                -2.3,
+                -5.54,
+                0
+              ],
+              [
+                0,
+                -6,
+                0
+              ],
+              [
+                2.3,
+                -5.54,
+                0
+              ],
+              [
+                4.24,
+                -4.24,
+                0
+              ],
+              [
+                5.54,
+                -2.3,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 1.5,
+          "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
+        },
+        {
+          "id": "contact.E-RW.skate.right",
+          "kind": "skate",
+          "frame": "pivot_local",
+          "geometry": {
+            "type": "polyline",
+            "points_mm": [
+              [
+                -14.57,
+                -14.78,
+                0
+              ],
+              [
+                -5.36,
+                -18.21,
+                0
+              ]
+            ]
+          },
+          "status": "traced",
+          "source_ids": [
+            "user_skater_video_2574",
+            "stiga_se_fi_overhead"
+          ],
+          "uncertainty_mm": 3,
+          "note": "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket."
+        }
+      ],
+      "inventory": [
+        {
+          "item": "mold identity",
+          "status": "traced",
+          "evidence": "User statement: every skater is identical. Supported: all ten skaters in the official overhead show the same top-view pose; the Finland team pack shows five identical skaters."
+        },
+        {
+          "item": "mounting (fixture) axis position",
+          "status": "traced",
+          "evidence": "User photos/videos: a flared cylindrical socket with a rectangular key bore under the LEFT skate (the stick side) is the mount; the figure turns about its axis."
+        },
+        {
+          "item": "stick and blade",
+          "status": "traced",
+          "evidence": "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)."
+        },
+        {
+          "item": "skates",
+          "status": "traced",
+          "evidence": "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice."
+        },
+        {
+          "item": "uniform",
+          "status": "traced",
+          "evidence": "Kit colour (Sweden yellow) on jersey and socks; shared blue helmet, gloves, pants, boots; skin face; back print country name + number (data/figure-molds.json prints)."
+        },
+        {
+          "item": "shape",
+          "status": "traced",
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+        },
+        {
+          "item": "absolute scale",
+          "status": "traced",
+          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+        }
+      ],
+      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     }
   ],
   "preview_parameters": {
@@ -38000,54 +41118,6 @@
       "source_ids": [],
       "assumption_id": "assume.preview_build_dimensions",
       "note": "Plexiglass sheet; not measurable. Preview 2 mm."
-    },
-    "blade_thickness": {
-      "value": 1.2,
-      "unit": "mm",
-      "status": "assumed",
-      "uncertainty": null,
-      "source_ids": [],
-      "assumption_id": "assume.debug_contacts.W-RD",
-      "note": "Debug build size for the provisional W-RD blade; not visible in any reference."
-    },
-    "stick_shaft_radius": {
-      "value": 1.3,
-      "unit": "mm",
-      "status": "assumed",
-      "uncertainty": null,
-      "source_ids": [],
-      "assumption_id": "assume.debug_contacts.W-RD",
-      "note": "Overhead: shaft about 12-15 px wide = 2.2-2.7 mm at the ASSUMED preview scale (elevated, magnified). Preview radius 1.3 mm."
-    },
-    "skate_width": {
-      "value": 2.5,
-      "unit": "mm",
-      "status": "assumed",
-      "uncertainty": null,
-      "source_ids": [],
-      "assumption_id": "assume.debug_contacts.W-RD",
-      "note": "Debug build size for the W-RD skate placeholders."
-    },
-    "skate_height": {
-      "value": 3,
-      "unit": "mm",
-      "status": "assumed",
-      "uncertainty": null,
-      "source_ids": [],
-      "assumption_id": "assume.debug_contacts.W-RD",
-      "note": "Debug build size for the W-RD skate placeholders (matches the iteration-10 debug skate height)."
-    },
-    "goalie_height": {
-      "value": 53,
-      "unit": "mm",
-      "status": "assumed",
-      "uncertainty": null,
-      "source_ids": [
-        "stiga_se_fi_side_a",
-        "stiga_canada_catalog"
-      ],
-      "assumption_id": "assume.debug_contacts.W-G",
-      "note": "Side A: goalie about 243 px vs a skater about 260 px (different depths, perspective uncorrected) x catalog approx. 57 mm. The catalog figure height is NOT stated to apply to the goalie."
     }
   },
   "goal_setup": {

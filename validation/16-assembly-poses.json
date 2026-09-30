@@ -1,5 +1,5 @@
 {
-  "note": "Static debug pose: each figure where it stands in the official overhead, theta 0. Not a measured or control-derived pose.",
+  "note": "Static pose: each figure where it stands in the official overhead (mold fit where available, else the hidden-stretch rule at theta 0). Not a measured or control-derived pose.",
   "figures": [
     {
       "player_id": "W-G",
@@ -7,33 +7,34 @@
       "position": "G",
       "path_id": "path.W-G",
       "asset_id": "fig.W-G",
-      "asset": "assets/figures/goalie_W-G.blend#Goalie.W-G",
+      "asset": "assets/figures/goalie_FIN.blend#Goalie.FIN",
+      "kit": "FIN",
       "state": {
-        "u_preview": 0.7461,
-        "thetaDeg": 0
+        "u_preview": 0.9917,
+        "thetaDeg": 26.52
       },
       "reference_px": [
-        1413.4,
-        2861
+        1404.1,
+        2974.3
       ],
-      "reference_rule": "iteration-15 debug pivot (covered slot stretch midpoint)",
-      "reference_to_path_mm": 0.62,
+      "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
+      "reference_to_path_mm": 0,
       "pivot_mm": [
-        -253.583,
-        -12.318,
+        -254.567,
+        -32.711,
         0
       ],
-      "heading_deg": 0,
+      "heading_deg": 26.52,
       "det": 1,
       "matrix": [
-        1,
+        0.894778555,
+        -0.446510177,
         0,
+        -254.566569929,
+        0.446510177,
+        0.894778555,
         0,
-        -253.582981354,
-        0,
-        1,
-        0,
-        -12.318032928,
+        -32.711323159,
         0,
         0,
         1,
@@ -54,7 +55,8 @@
       "position": "LD",
       "path_id": "path.W-LD",
       "asset_id": "fig.W-LD",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_FIN.blend#Skater.FIN",
+      "kit": "FIN",
       "state": {
         "u_preview": 0.9736,
         "thetaDeg": 0
@@ -101,33 +103,34 @@
       "position": "RD",
       "path_id": "path.W-RD",
       "asset_id": "fig.W-RD",
-      "asset": "assets/figures/skater_W-RD.blend#Skater.W-RD",
+      "asset": "assets/figures/skater_FIN.blend#Skater.FIN",
+      "kit": "FIN",
       "state": {
-        "u_preview": 0.9491,
-        "thetaDeg": 0
+        "u_preview": 0.96245,
+        "thetaDeg": -4.27
       },
       "reference_px": [
-        2376,
-        3287.1
+        2393.6,
+        3286.8
       ],
-      "reference_rule": "iteration-10 debug pivot (covered slot stretch midpoint)",
-      "reference_to_path_mm": 0.01,
+      "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
+      "reference_to_path_mm": 0,
       "pivot_mm": [
-        -79.836,
-        -88.298,
+        -76.672,
+        -88.232,
         0
       ],
-      "heading_deg": 0,
+      "heading_deg": -4.27,
       "det": 1,
       "matrix": [
-        1,
+        0.997224256,
+        0.074456592,
         0,
+        -76.671600464,
+        -0.074456592,
+        0.997224256,
         0,
-        -79.836322768,
-        0,
-        1,
-        0,
-        -88.298215807,
+        -88.232054365,
         0,
         0,
         1,
@@ -148,7 +151,8 @@
       "position": "C",
       "path_id": "path.W-C",
       "asset_id": "fig.W-C",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_FIN.blend#Skater.FIN",
+      "kit": "FIN",
       "state": {
         "u_preview": 0.95885,
         "thetaDeg": 0
@@ -195,7 +199,8 @@
       "position": "LW",
       "path_id": "path.W-LW",
       "asset_id": "fig.W-LW",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_FIN.blend#Skater.FIN",
+      "kit": "FIN",
       "state": {
         "u_preview": 0.9726,
         "thetaDeg": 0
@@ -242,7 +247,8 @@
       "position": "RW",
       "path_id": "path.W-RW",
       "asset_id": "fig.W-RW",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_FIN.blend#Skater.FIN",
+      "kit": "FIN",
       "state": {
         "u_preview": 0.9701,
         "thetaDeg": 0
@@ -289,7 +295,8 @@
       "position": "G",
       "path_id": "path.E-G",
       "asset_id": "fig.E-G",
-      "asset": "PLACEHOLDER goalie (missing variant)",
+      "asset": "assets/figures/goalie_SWE.blend#Goalie.SWE",
+      "kit": "SWE",
       "state": {
         "u_preview": 0.27105,
         "thetaDeg": 0
@@ -336,33 +343,34 @@
       "position": "LD",
       "path_id": "path.E-LD",
       "asset_id": "fig.E-LD",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
+      "kit": "SWE",
       "state": {
-        "u_preview": 0.02035,
-        "thetaDeg": 0
+        "u_preview": 0.01545,
+        "thetaDeg": -2.56
       },
       "reference_px": [
-        2621.5,
-        3223.1
+        2611.4,
+        3216.7
       ],
-      "reference_rule": "midpoint of the start stretch hidden by the Sweden figure (same rule)",
-      "reference_to_path_mm": 0.2,
+      "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
+      "reference_to_path_mm": 0.01,
       "pivot_mm": [
-        -35.89,
-        -76.819,
+        -37.583,
+        -75.516,
         0
       ],
-      "heading_deg": 180,
+      "heading_deg": 177.44,
       "det": 1,
       "matrix": [
-        -1,
+        -0.999001996,
+        -0.044665564,
         0,
+        -37.583094644,
+        0.044665564,
+        -0.999001996,
         0,
-        -35.890072201,
-        0,
-        -1,
-        0,
-        -76.819059456,
+        -75.515582,
         0,
         0,
         1,
@@ -383,33 +391,34 @@
       "position": "RD",
       "path_id": "path.E-RD",
       "asset_id": "fig.E-RD",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
+      "kit": "SWE",
       "state": {
-        "u_preview": 0.0428,
-        "thetaDeg": 0
+        "u_preview": 0.0367,
+        "thetaDeg": 22.08
       },
       "reference_px": [
-        3242.6,
-        2305.8
+        3234.5,
+        2305
       ],
-      "reference_rule": "midpoint of the start stretch hidden by the Sweden figure (same rule)",
-      "reference_to_path_mm": 0.2,
+      "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
+      "reference_to_path_mm": 0.01,
       "pivot_mm": [
-        75.222,
-        88.653,
+        73.765,
+        88.603,
         0
       ],
-      "heading_deg": 180,
+      "heading_deg": 202.07999999999998,
       "det": 1,
       "matrix": [
-        -1,
+        -0.926659901,
+        0.375900821,
         0,
+        73.765085659,
+        -0.375900821,
+        -0.926659901,
         0,
-        75.221872312,
-        0,
-        -1,
-        0,
-        88.652641042,
+        88.602521222,
         0,
         0,
         1,
@@ -430,33 +439,34 @@
       "position": "C",
       "path_id": "path.E-C",
       "asset_id": "fig.E-C",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
+      "kit": "SWE",
       "state": {
-        "u_preview": 0.0384,
-        "thetaDeg": 0
+        "u_preview": 0.0316,
+        "thetaDeg": -172.86
       },
       "reference_px": [
-        1795.2,
-        2766.7
+        1785.8,
+        2767.4
       ],
-      "reference_rule": "midpoint of the start stretch hidden by the Sweden figure (same rule)",
-      "reference_to_path_mm": 0.09,
+      "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
+      "reference_to_path_mm": 0,
       "pivot_mm": [
-        -184.449,
-        4.901,
+        -186.138,
+        4.693,
         0
       ],
-      "heading_deg": 180,
+      "heading_deg": 7.139999999999986,
       "det": 1,
       "matrix": [
-        -1,
+        0.992245406,
+        -0.124294225,
         0,
+        -186.137988641,
+        0.124294225,
+        0.992245406,
         0,
-        -184.448696737,
-        0,
-        -1,
-        0,
-        4.90114194,
+        4.692780382,
         0,
         0,
         1,
@@ -477,33 +487,34 @@
       "position": "LW",
       "path_id": "path.E-LW",
       "asset_id": "fig.E-LW",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
+      "kit": "SWE",
       "state": {
-        "u_preview": 0.00765,
-        "thetaDeg": 0
+        "u_preview": 0.02675,
+        "thetaDeg": 74.84
       },
       "reference_px": [
-        697.2,
-        2610
+        698.5,
+        2662.5
       ],
-      "reference_rule": "figure no. 92 stands beside the visible start end; point 20 px along the slot from it",
-      "reference_to_path_mm": 0.36,
+      "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted); heading -4 deg to clear the solid preview goal (blade under the cage in the photo)",
+      "reference_to_path_mm": 0,
       "pivot_mm": [
-        -381.373,
-        32.272,
+        -381.468,
+        22.874,
         0
       ],
-      "heading_deg": 180,
+      "heading_deg": 254.84,
       "det": 1,
       "matrix": [
-        -1,
+        -0.261515406,
+        0.965199302,
         0,
+        -381.467758647,
+        -0.965199302,
+        -0.261515406,
         0,
-        -381.372641126,
-        0,
-        -1,
-        0,
-        32.271514921,
+        22.873545732,
         0,
         0,
         1,
@@ -524,7 +535,8 @@
       "position": "RW",
       "path_id": "path.E-RW",
       "asset_id": "fig.E-RW",
-      "asset": "PLACEHOLDER skater (missing variant)",
+      "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
+      "kit": "SWE",
       "state": {
         "u_preview": 0.0283,
         "thetaDeg": 0

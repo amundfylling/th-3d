@@ -18,6 +18,12 @@ const toPx = ([x, y]: [number, number]): [number, number] => {
   const dx = x - map[2], dy = y - map[5];
   return [(map[4] * dx - map[1] * dy) / det, (-map[3] * dx + map[0] * dy) / det];
 };
+/**
+ * Heading adjustments (deg) where the fitted pose collides with our solid preview goal. E-LW: in the overhead
+ * its blade tucks under the W goal cage (it looks shortened there); the preview goal is a solid mesh, so the
+ * smallest rotation that clears it (checked in Blender, 2 deg steps) is applied and reported.
+ */
+const CLEARANCE_DEG: Record<string, number> = { "E-LW": -4 };
 /** Team kit of the reference variant (decision D4): W = Finland, E = Sweden. */
 const KIT = { W: "FIN", E: "SWE" } as const;
 const round = (v: number, d = 3): number => Math.round(v * 10 ** d) / 10 ** d;
@@ -25,7 +31,11 @@ const round = (v: number, d = 3): number => Math.round(v * 10 ** d) / 10 ** d;
 /** Where the figure stands in the reference overhead (image px) and why. */
 function referencePoint(pid: string): { px: [number, number]; rule: string; headingDeg?: number } {
   const f = fit.figures[pid];
-  if (f) return { px: toPx(f.pivot_mm), rule: "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)", headingDeg: f.heading_deg };
+  if (f) {
+    const adj = CLEARANCE_DEG[pid] ?? 0;
+    const rule = "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)" + (adj ? `; heading ${adj} deg to clear the solid preview goal (blade under the cage in the photo)` : "");
+    return { px: toPx(f.pivot_mm), rule, headingDeg: f.heading_deg + adj };
+  }
   const e = slots.end_checks.find((x) => x.pid === `path.${pid}` && x.occluder);
   if (e) return { px: [(e.observed[0] + e.predicted[0]) / 2, (e.observed[1] + e.predicted[1]) / 2], rule: `midpoint of the ${e.end} stretch hidden by the ${e.occluder} (same rule)` };
   if (pid === "E-LW") return { px: [697.2, 2610], rule: "figure no. 92 stands beside the visible start end; point 20 px along the slot from it" };

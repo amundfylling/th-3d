@@ -43,17 +43,12 @@
   },
   "colour_sources": "validation/18-colour-samples.json",
   "geometry_unchanged": {
-    "skater_vertices": 98902,
-    "goalie_vertices": 108514,
     "scene": true
   },
+  "figures": "rigid mold assets with their own materials and per-player back prints (build_figures.py, build_assembly.py); not repainted here",
   "unresolved_decals": [
-    "jersey numbers (W-RD no. 4; goalie number unseen)",
-    "'FINLAND' lettering on the backs",
-    "Sweden lettering/numbers (placeholders)",
     "puck STIGA logo emboss",
-    "helmet/mask details, face features",
-    "stripe patterns on sleeves/socks"
-  ],
-  "placeholders": "team two-tone (Finland white/blue, Sweden yellow/blue); still placeholders"
+    "face features (eyes, mouth) not painted",
+    "print fonts approximate the moulded print"
+  ]
 }

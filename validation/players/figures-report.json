@@ -1,0 +1,122 @@
+{
+  "scale_k_mm_per_mold_unit": 1.0713,
+  "scale_source": "validation/players/overhead-fit.json (4 Sweden skaters, official overhead, ASSUMED preview scale)",
+  "assets": {
+    "skater_SWE": {
+      "height_mm": 51.24,
+      "zmin_mm": 0.0,
+      "footprint_x_mm": [
+        -16.1,
+        14.0
+      ],
+      "footprint_y_mm": [
+        -23.3,
+        43.1
+      ],
+      "socket_bottom_diameter_mm": 12.0,
+      "socket_height_mm": 4.5,
+      "blade_heel_mm": [
+        3.21,
+        22.5
+      ],
+      "blade_toe_mm": [
+        2.36,
+        43.07
+      ],
+      "blade_length_mm": 20.59,
+      "blade_height_mm": 3.21,
+      "stick_zmin_mm": 0.0,
+      "stick_side": "left (+y)",
+      "triangles": 49636,
+      "decal_faces": 1258,
+      "number_on_asset_decal": "21"
+    },
+    "skater_FIN": {
+      "height_mm": 51.24,
+      "zmin_mm": 0.0,
+      "footprint_x_mm": [
+        -16.1,
+        14.0
+      ],
+      "footprint_y_mm": [
+        -23.3,
+        43.1
+      ],
+      "socket_bottom_diameter_mm": 12.0,
+      "socket_height_mm": 4.5,
+      "blade_heel_mm": [
+        3.21,
+        22.5
+      ],
+      "blade_toe_mm": [
+        2.36,
+        43.07
+      ],
+      "blade_length_mm": 20.59,
+      "blade_height_mm": 3.21,
+      "stick_zmin_mm": 0.0,
+      "stick_side": "left (+y)",
+      "triangles": 49636,
+      "decal_faces": 1258,
+      "number_on_asset_decal": "4"
+    },
+    "goalie_SWE": {
+      "height_mm": 50.35,
+      "zmin_mm": 0.0,
+      "footprint_x_mm": [
+        -7.9,
+        9.6
+      ],
+      "footprint_y_mm": [
+        -14.7,
+        28.9
+      ],
+      "socket_bottom_diameter_mm": 11.57,
+      "socket_height_mm": 4.5,
+      "blade_heel_mm": [
+        8.36,
+        1.93
+      ],
+      "blade_toe_mm": [
+        8.36,
+        28.93
+      ],
+      "blade_length_mm": 27.0,
+      "blade_height_mm": 3.0,
+      "stick_zmin_mm": 0.0,
+      "stick_side": "left (+y)",
+      "triangles": 66182,
+      "decal_faces": 1580,
+      "number_on_asset_decal": "30"
+    },
+    "goalie_FIN": {
+      "height_mm": 50.35,
+      "zmin_mm": 0.0,
+      "footprint_x_mm": [
+        -7.9,
+        9.6
+      ],
+      "footprint_y_mm": [
+        -14.7,
+        28.9
+      ],
+      "socket_bottom_diameter_mm": 11.57,
+      "socket_height_mm": 4.5,
+      "blade_heel_mm": [
+        8.36,
+        1.93
+      ],
+      "blade_toe_mm": [
+        8.36,
+        28.93
+      ],
+      "blade_length_mm": 27.0,
+      "blade_height_mm": 3.0,
+      "stick_zmin_mm": 0.0,
+      "stick_side": "left (+y)",
+      "triangles": 66182,
+      "decal_faces": 1580,
+      "number_on_asset_decal": null
+    }
+  }
+}
