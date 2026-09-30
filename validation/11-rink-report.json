@@ -1,0 +1,62 @@
+{
+  "blender": "4.5.14 LTS",
+  "command": "/root/venvs/blender/bin/python assets/blender/build_rink.py",
+  "preview_parameters_mm": {
+    "board_height": 30.0,
+    "board_wall_thickness": 9.0,
+    "ice_sheet_thickness": 1.5,
+    "housing_margin": 16.0,
+    "housing_depth_below_ice": 53.0
+  },
+  "slot_widths_mm_preview": {
+    "W-G": 6.79,
+    "W-LD": 7.07,
+    "W-RD": 7.23,
+    "W-C": 7.15,
+    "W-LW": 6.87,
+    "W-RW": 7.03,
+    "E-G": 6.83,
+    "E-LD": 7.18,
+    "E-RD": 7.08,
+    "E-C": 7.07,
+    "E-LW": 6.89,
+    "E-RW": 6.98
+  },
+  "ice_bounds_mm": [
+    -422.7,
+    -234.9,
+    422.7,
+    234.92
+  ],
+  "housing_bounds_mm": [
+    -438.7,
+    -250.9,
+    438.7,
+    250.91
+  ],
+  "implied_housing_length_mm": 877.4,
+  "implied_housing_width_mm": 501.8,
+  "catalog_overall_claims_mm": {
+    "stiga_sports": [
+      960,
+      500
+    ],
+    "stiga_canada": [
+      940,
+      502
+    ]
+  },
+  "overhead_render": {
+    "resolution": [
+      1800,
+      1000
+    ],
+    "ortho_scale_m": 0.9124957048092097,
+    "mm_per_px": 0.50694,
+    "centre_mm": [
+      -0.0,
+      0.004
+    ]
+  },
+  "ice_holes": 14
+}

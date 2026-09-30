@@ -310,6 +310,11 @@ export interface GeometryFile {
   players: Player[];
   fixture_paths: FixturePath[];
   figure_assets: FigureAsset[];
+  /**
+   * Dimensions used only to BUILD preview assets where the physical value is unknown. Every entry is
+   * status "assumed" with an assumption id; the physical quantities elsewhere stay unknown.
+   */
+  preview_parameters?: Record<string, Quantity>;
   goal_setup: GoalSetup;
   goals: Goal[];
   end_screens: EndScreen[];

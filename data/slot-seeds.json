@@ -105,21 +105,21 @@
     },
     "path.W-G": {
       "iteration": "08",
-      "identity": "Short vertical goalie slot in the W crease, in front of goal.W. The Finland (team W) goalie stands over its lower part (pads beside the slot). The slot runs about 3 deg off the image vertical (measured dark-pixel centres).",
+      "identity": "Short vertical goalie slot in the W crease, in front of goal.W. The Finland (team W) goalie stands over its lower part (pads beside the slot). The slot runs about 3 deg off the image vertical (measured dark-pixel centres). Seeds cover only the fully visible part (y <= 2762): below it the goalie's pad hides half the slot (measured dark-pixel widths).",
       "occluded": {
         "end": "Finland goalie"
       },
-      "overhead": [[1426, 2532], [1419, 2660], [1414, 2760], [1405, 2900], [1400, 2990]],
+      "overhead": [[1426, 2532], [1422, 2620], [1418, 2700], [1415, 2762]],
       "bare": [[543, 712], [543, 912]],
       "exclude_from_homography": "Measured 2026-09-30: after the fit, the mapped bare goalie slot lies +7.5 px (toward the rink centre) along x from the overhead slot, symmetric in both goals, while neighbouring slots agree within 1-4 px. Cause unresolved (older sheet version, or slot-wall visibility). Excluded from the fit so this systematic difference does not bias it; residuals still reported."
     },
     "path.E-G": {
       "iteration": "08",
-      "identity": "Short vertical goalie slot in the E crease, in front of goal.E. The Sweden (team E) goalie stands over its upper part. The slot runs about 3 deg off the image vertical (measured dark-pixel centres).",
+      "identity": "Short vertical goalie slot in the E crease, in front of goal.E. The Sweden (team E) goalie stands over its upper part. The slot runs about 3 deg off the image vertical (measured dark-pixel centres). Seeds cover only the fully visible part (y >= 2855): above it the goalie's pad hides half the slot (measured dark-pixel widths).",
       "occluded": {
         "start": "Sweden goalie"
       },
-      "overhead": [[4240, 2620], [4230, 2760], [4218, 2860], [4212, 2960], [4208, 3060]],
+      "overhead": [[4219, 2855], [4214, 2940], [4211, 3000], [4208, 3060]],
       "bare": [[1969, 728], [1968, 935]],
       "exclude_from_homography": "Measured 2026-09-30: after the fit, the mapped bare goalie slot lies -7.1 px (toward the rink centre) along x from the overhead slot, symmetric in both goals, while neighbouring slots agree within 1-4 px. Cause unresolved (older sheet version, or slot-wall visibility). Excluded from the fit so this systematic difference does not bias it; residuals still reported."
     }

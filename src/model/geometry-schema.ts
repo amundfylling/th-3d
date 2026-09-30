@@ -225,6 +225,7 @@ export const geometrySchema: Check<GeometryFile> = obj({
       note: opt(str),
     }),
   ),
+  preview_parameters: opt(rec(quantity)),
   goal_setup: obj({
     configuration: union(lit(...GOAL_CONFIGURATIONS), lit("unknown")),
     candidates: arr(lit(...GOAL_CONFIGURATIONS)),

@@ -43,8 +43,8 @@
     "path.W-LD": {
       "iteration": "06",
       "overhead": {
-        "length_px": 2294.5,
-        "width_px": 39.39,
+        "length_px": 2281.1,
+        "width_px": 39.37,
         "rms": 0.091,
         "max": 0.573,
         "detectedFraction": 0.993
@@ -52,14 +52,14 @@
       "bare": {
         "length_px": 1209.7,
         "width_px": 17.06,
-        "rms": 0.221,
-        "max": 1.107,
+        "rms": 0.22,
+        "max": 1.091,
         "detectedFraction": 0.964
       },
       "homography_curve_residual_px": {
-        "rms": 3.47,
-        "max": 6.05,
-        "n": 287
+        "rms": 3.52,
+        "max": 6.19,
+        "n": 285
       }
     },
     "path.W-RD": {
@@ -72,15 +72,15 @@
         "detectedFraction": 0.897
       },
       "bare": {
-        "length_px": 667.4,
-        "width_px": 15.63,
-        "rms": 0.215,
-        "max": 1.116,
+        "length_px": 667.3,
+        "width_px": 15.61,
+        "rms": 0.187,
+        "max": 0.901,
         "detectedFraction": 0.915
       },
       "homography_curve_residual_px": {
-        "rms": 0.85,
-        "max": 1.82,
+        "rms": 0.87,
+        "max": 1.85,
         "n": 164
       }
     },
@@ -101,31 +101,31 @@
         "detectedFraction": 0.928
       },
       "homography_curve_residual_px": {
-        "rms": 1.27,
-        "max": 2.55,
+        "rms": 1.22,
+        "max": 2.49,
         "n": 81
       }
     },
     "path.E-LD": {
       "iteration": "06",
       "overhead": {
-        "length_px": 2329.6,
+        "length_px": 2329.8,
         "width_px": 39.96,
-        "rms": 0.214,
-        "max": 2.495,
-        "detectedFraction": 0.983
+        "rms": 0.147,
+        "max": 1.222,
+        "detectedFraction": 0.98
       },
       "bare": {
-        "length_px": 1255.7,
+        "length_px": 1256,
         "width_px": 17.03,
         "rms": 0.159,
-        "max": 1.04,
+        "max": 1.028,
         "detectedFraction": 0.914
       },
       "homography_curve_residual_px": {
-        "rms": 1.13,
-        "max": 3.04,
-        "n": 300
+        "rms": 1.14,
+        "max": 3,
+        "n": 301
       }
     },
     "path.E-RD": {
@@ -139,157 +139,157 @@
       },
       "bare": {
         "length_px": 699.3,
-        "width_px": 16.86,
-        "rms": 0.146,
+        "width_px": 16.85,
+        "rms": 0.145,
         "max": 0.808,
         "detectedFraction": 0.936
       },
       "homography_curve_residual_px": {
-        "rms": 2.26,
-        "max": 3.63,
+        "rms": 2.23,
+        "max": 3.81,
         "n": 156
       }
     },
     "path.E-C": {
       "iteration": "06",
       "overhead": {
-        "length_px": 1288.8,
+        "length_px": 1288.7,
         "width_px": 39.37,
         "rms": 0.122,
-        "max": 0.658,
+        "max": 0.657,
         "detectedFraction": 0.988
       },
       "bare": {
         "length_px": 688.8,
         "width_px": 15.72,
-        "rms": 0.2,
-        "max": 0.606,
+        "rms": 0.197,
+        "max": 0.584,
         "detectedFraction": 0.563
       },
       "homography_curve_residual_px": {
-        "rms": 2.15,
-        "max": 4.32,
+        "rms": 2.51,
+        "max": 4.45,
         "n": 161
       }
     },
     "path.E-RW": {
       "iteration": "07",
       "overhead": {
-        "length_px": 2360,
+        "length_px": 2360.6,
         "width_px": 38.88,
-        "rms": 0.271,
-        "max": 2.516,
+        "rms": 0.255,
+        "max": 2.237,
         "detectedFraction": 0.923
       },
       "bare": {
-        "length_px": 1257.7,
+        "length_px": 1257.8,
         "width_px": 15.7,
-        "rms": 0.182,
-        "max": 1.039,
+        "rms": 0.181,
+        "max": 1.037,
         "detectedFraction": 0.939
       },
       "homography_curve_residual_px": {
-        "rms": 3.97,
-        "max": 10.78,
+        "rms": 4.49,
+        "max": 14.15,
         "n": 296
       }
     },
     "path.W-LW": {
       "iteration": "07",
       "overhead": {
-        "length_px": 2588.3,
+        "length_px": 2602.2,
         "width_px": 38.26,
-        "rms": 0.319,
+        "rms": 0.317,
         "max": 2.622,
         "detectedFraction": 0.988
       },
       "bare": {
-        "length_px": 1422.9,
-        "width_px": 17.02,
-        "rms": 0.236,
-        "max": 1.303,
-        "detectedFraction": 0.949
+        "length_px": 1422.8,
+        "width_px": 17.01,
+        "rms": 0.229,
+        "max": 1.304,
+        "detectedFraction": 0.947
       },
       "homography_curve_residual_px": {
-        "rms": 2.79,
-        "max": 5.72,
-        "n": 333
+        "rms": 2.77,
+        "max": 5.69,
+        "n": 335
       }
     },
     "path.E-LW": {
       "iteration": "07",
       "overhead": {
-        "length_px": 2743.2,
-        "width_px": 38.27,
-        "rms": 0.313,
-        "max": 2.406,
-        "detectedFraction": 0.956
+        "length_px": 2742.4,
+        "width_px": 38.37,
+        "rms": 0.218,
+        "max": 1.736,
+        "detectedFraction": 0.945
       },
       "bare": {
-        "length_px": 1360.5,
+        "length_px": 1360.6,
         "width_px": 15.76,
-        "rms": 0.144,
-        "max": 0.898,
+        "rms": 0.142,
+        "max": 0.897,
         "detectedFraction": 0.956
       },
       "homography_curve_residual_px": {
-        "rms": 1.21,
-        "max": 4.69,
+        "rms": 1.13,
+        "max": 3.68,
         "n": 339
       }
     },
     "path.W-RW": {
       "iteration": "07",
       "overhead": {
-        "length_px": 2378.4,
+        "length_px": 2378.3,
         "width_px": 39.17,
-        "rms": 0.205,
-        "max": 1.892,
+        "rms": 0.202,
+        "max": 1.952,
         "detectedFraction": 0.946
       },
       "bare": {
-        "length_px": 1300.3,
+        "length_px": 1300.4,
         "width_px": 15.72,
-        "rms": 0.152,
-        "max": 0.901,
+        "rms": 0.151,
+        "max": 0.884,
         "detectedFraction": 0.954
       },
       "homography_curve_residual_px": {
         "rms": 2.74,
-        "max": 6.25,
+        "max": 6.37,
         "n": 306
       }
     },
     "path.W-G": {
       "iteration": "08",
       "overhead": {
-        "length_px": 441.4,
-        "width_px": 37.94,
-        "rms": 0.243,
-        "max": 0.989,
-        "detectedFraction": 0.579
+        "length_px": 231.8,
+        "width_px": 37.78,
+        "rms": 0.04,
+        "max": 0.085,
+        "detectedFraction": 0.968
       },
       "bare": {
         "length_px": 228.3,
-        "width_px": 21.74,
-        "rms": 0.106,
-        "max": 0.251,
+        "width_px": 21.72,
+        "rms": 0.111,
+        "max": 0.317,
         "detectedFraction": 1
       },
       "homography_curve_residual_px": {
-        "rms": 11.96,
-        "max": 23.69,
-        "n": 54
+        "rms": 6.65,
+        "max": 7.21,
+        "n": 28
       }
     },
     "path.E-G": {
       "iteration": "08",
       "overhead": {
-        "length_px": 336.8,
-        "width_px": 38.09,
-        "rms": 0.743,
-        "max": 3.482,
-        "detectedFraction": 0.841
+        "length_px": 208.1,
+        "width_px": 38.05,
+        "rms": 0.045,
+        "max": 0.096,
+        "detectedFraction": 0.964
       },
       "bare": {
         "length_px": 234.6,
@@ -299,26 +299,26 @@
         "detectedFraction": 1
       },
       "homography_curve_residual_px": {
-        "rms": 10.4,
-        "max": 21.22,
-        "n": 42
+        "rms": 6.63,
+        "max": 7.02,
+        "n": 26
       }
     }
   },
   "homography_bare_to_overhead": {
     "matrix": [
-      2.042329644,
-      -0.02244217498,
-      326.2116603,
-      0.07075469817,
-      2.028484805,
-      1080.489669,
-      0.00001614183724,
-      -0.000002665942619,
+      2.043623458,
+      -0.02136464855,
+      324.6542501,
+      0.07116159623,
+      2.029869979,
+      1079.832358,
+      0.00001626659009,
+      -0.000002440528321,
       1
     ],
     "initial_from_visible_ends": 10,
-    "curve_rms_px": 2.543,
+    "curve_rms_px": 2.663,
     "excluded": {
       "path.W-G": "Measured 2026-09-30: after the fit, the mapped bare goalie slot lies +7.5 px (toward the rink centre) along x from the overhead slot, symmetric in both goals, while neighbouring slots agree within 1-4 px. Cause unresolved (older sheet version, or slot-wall visibility). Excluded from the fit so this systematic difference does not bias it; residuals still reported.",
       "path.E-G": "Measured 2026-09-30: after the fit, the mapped bare goalie slot lies -7.1 px (toward the rink centre) along x from the overhead slot, symmetric in both goals, while neighbouring slots agree within 1-4 px. Cause unresolved (older sheet version, or slot-wall visibility). Excluded from the fit so this systematic difference does not bias it; residuals still reported."
@@ -333,26 +333,26 @@
         2237.12
       ],
       "predicted": [
-        674.34,
-        2231.12
+        673.52,
+        2230.98
       ],
-      "extension_px": -2.2,
-      "lateral_px": 6,
+      "extension_px": -1.4,
+      "lateral_px": 6.1,
       "occluder": null
     },
     {
       "pid": "path.W-LD",
       "end": "end",
       "observed": [
-        2949.75,
-        2328.93
+        2938.07,
+        2322.52
       ],
       "predicted": [
-        3045.52,
-        2399.75
+        3045.46,
+        2399.76
       ],
-      "extension_px": 118.1,
-      "lateral_px": 15.7,
+      "extension_px": 131.3,
+      "lateral_px": 16.3,
       "occluder": "Finland figure"
     },
     {
@@ -363,10 +363,10 @@
         3313
       ],
       "predicted": [
-        1108.71,
+        1108.51,
         3311.32
       ],
-      "extension_px": 14.5,
+      "extension_px": 14.7,
       "lateral_px": 1.7,
       "occluder": null
     },
@@ -374,14 +374,14 @@
       "pid": "path.W-RD",
       "end": "end",
       "observed": [
-        2443.12,
-        3285.94
+        2443.13,
+        3285.95
       ],
       "predicted": [
-        2440.12,
-        3285.78
+        2440.18,
+        3285.82
       ],
-      "extension_px": -3,
+      "extension_px": -2.9,
       "lateral_px": -0.2,
       "occluder": null
     },
@@ -393,10 +393,10 @@
         2834.6
       ],
       "predicted": [
-        3887.6,
-        2819.66
+        3887.67,
+        2819.72
       ],
-      "extension_px": 116.3,
+      "extension_px": 116.4,
       "lateral_px": -1.3,
       "occluder": "Finland figure"
     },
@@ -404,30 +404,30 @@
       "pid": "path.E-LD",
       "end": "start",
       "observed": [
-        2660.9,
-        3252.26
+        2660.67,
+        3252.08
       ],
       "predicted": [
-        2582.36,
-        3194.19
+        2582.41,
+        3194.22
       ],
-      "extension_px": 97.2,
-      "lateral_px": 9.8,
+      "extension_px": 96.9,
+      "lateral_px": 9.5,
       "occluder": "Sweden figure"
     },
     {
       "pid": "path.E-LD",
       "end": "end",
       "observed": [
-        4970.25,
-        3362.97
+        4970.26,
+        3362.95
       ],
       "predicted": [
-        4971.51,
-        3364.48
+        4972.02,
+        3364.96
       ],
-      "extension_px": 1.2,
-      "lateral_px": 1.5,
+      "extension_px": 1.7,
+      "lateral_px": 2,
       "occluder": null
     },
     {
@@ -438,8 +438,8 @@
         2302.83
       ],
       "predicted": [
-        3186.19,
-        2308.77
+        3186.13,
+        2308.78
       ],
       "extension_px": 113.1,
       "lateral_px": -3.6,
@@ -453,8 +453,8 @@
         2279.5
       ],
       "predicted": [
-        4532.89,
-        2275.67
+        4532.92,
+        2275.75
       ],
       "extension_px": 17,
       "lateral_px": -3.7,
@@ -464,14 +464,14 @@
       "pid": "path.E-C",
       "end": "start",
       "observed": [
-        1846.29,
+        1846.33,
         2760.1
       ],
       "predicted": [
-        1744.37,
-        2773.34
+        1744.14,
+        2773.35
       ],
-      "extension_px": 102.8,
+      "extension_px": 103,
       "lateral_px": -0.6,
       "occluder": "Sweden figure"
     },
@@ -483,11 +483,11 @@
         1828.63
       ],
       "predicted": [
-        743.48,
-        1911.18
+        742.54,
+        1910.94
       ],
-      "extension_px": 139.5,
-      "lateral_px": -21,
+      "extension_px": 140.3,
+      "lateral_px": -20.4,
       "occluder": "Sweden figure"
     },
     {
@@ -495,14 +495,14 @@
       "end": "end",
       "observed": [
         3207,
-        1735.75
+        1735.73
       ],
       "predicted": [
-        3198.9,
-        1739.63
+        3198.75,
+        1739.54
       ],
-      "extension_px": -8.3,
-      "lateral_px": 3.5,
+      "extension_px": -8.4,
+      "lateral_px": 3.4,
       "occluder": null
     },
     {
@@ -513,56 +513,56 @@
         1908.44
       ],
       "predicted": [
-        3245.69,
-        1909.78
+        3245.57,
+        1909.73
       ],
-      "extension_px": 0.7,
-      "lateral_px": -1.2,
+      "extension_px": 0.8,
+      "lateral_px": -1.1,
       "occluder": null
     },
     {
       "pid": "path.W-LW",
       "end": "end",
       "observed": [
-        4942.49,
-        2834.56
+        4942.39,
+        2848.34
       ],
       "predicted": [
-        4944.2,
-        3001.62
+        4944.21,
+        3001.68
       ],
-      "extension_px": 167.1,
-      "lateral_px": -1.4,
+      "extension_px": 153.3,
+      "lateral_px": -2.1,
       "occluder": "Finland figure no. 26"
     },
     {
       "pid": "path.E-LW",
       "end": "start",
       "observed": [
-        697.18,
-        2589.34
+        700.76,
+        2589.23
       ],
       "predicted": [
-        703.14,
-        2588.72
+        702.5,
+        2588.68
       ],
-      "extension_px": -0.6,
-      "lateral_px": 6,
+      "extension_px": 0.7,
+      "lateral_px": 1.7,
       "occluder": null
     },
     {
       "pid": "path.E-LW",
       "end": "end",
       "observed": [
-        2383.13,
-        3681.4
+        2383.12,
+        3681.39
       ],
       "predicted": [
-        2382.92,
-        3682.03
+        2383.07,
+        3682.07
       ],
-      "extension_px": -0.4,
-      "lateral_px": 0.5,
+      "extension_px": -0.3,
+      "lateral_px": 0.6,
       "occluder": null
     },
     {
@@ -573,10 +573,10 @@
         3854.13
       ],
       "predicted": [
-        2427,
-        3853.79
+        2427.21,
+        3853.76
       ],
-      "extension_px": -5.4,
+      "extension_px": -5.6,
       "lateral_px": 0.2,
       "occluder": null
     },
@@ -584,14 +584,14 @@
       "pid": "path.W-RW",
       "end": "end",
       "observed": [
-        4789.18,
-        3768.7
+        4789.04,
+        3768.75
       ],
       "predicted": [
         4907.03,
-        3686.28
+        3686.21
       ],
-      "extension_px": 142.7,
+      "extension_px": 142.9,
       "lateral_px": -18.1,
       "occluder": "Finland figure"
     },
@@ -603,8 +603,8 @@
         2515.88
       ],
       "predicted": [
-        1434.02,
-        2513.7
+        1434.01,
+        2513.68
       ],
       "extension_px": 2.6,
       "lateral_px": 6.4,
@@ -614,42 +614,42 @@
       "pid": "path.W-G",
       "end": "end",
       "observed": [
-        1411.16,
-        2952.7
+        1415.89,
+        2747.42
       ],
       "predicted": [
-        1411.13,
-        2974.61
+        1410.82,
+        2974.63
       ],
-      "extension_px": 21.6,
-      "lateral_px": 3.8,
+      "extension_px": 227.2,
+      "lateral_px": -6.7,
       "occluder": "Finland goalie"
     },
     {
       "pid": "path.E-G",
       "end": "start",
       "observed": [
-        4237.35,
-        2744.16
+        4217.64,
+        2870.95
       ],
       "predicted": [
-        4221.58,
-        2614.77
+        4221.63,
+        2614.85
       ],
-      "extension_px": 128.3,
-      "lateral_px": -22.8,
+      "extension_px": 256,
+      "lateral_px": -9.1,
       "occluder": "Sweden goalie"
     },
     {
       "pid": "path.E-G",
       "end": "end",
       "observed": [
-        4207.1,
-        3078.74
+        4207.18,
+        3078.75
       ],
       "predicted": [
-        4200.54,
-        3077.98
+        4200.62,
+        3078.03
       ],
       "extension_px": -0.4,
       "lateral_px": 6.6,

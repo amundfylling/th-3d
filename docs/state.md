@@ -5,22 +5,25 @@
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
-- Batch run (docs/autonomous-run.md) in progress. Last completed: **10 - Define one skater's contact geometry**. Next: **11**.
+- Batch run (docs/autonomous-run.md) in progress. Last completed: **11 - Build only the static rink asset in Blender**. Next: **12**.
 - Geometry version: `0.4.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
 
 ## Active iteration (batch run, docs/autonomous-run.md)
 
-**11 - Build only the static rink asset in Blender.** Repair count: 0/3. (Checklist written when started.)
+**12 - Add goal hardware and the puck.** Repair count: 0/3. (Checklist written when started.)
 
-Iteration 10 closed with 1 presentation repair (clipped side view and notes). All items passed:
-- [x] Representative skater W-RD (Finland no. 4), reason recorded: slot visible on both sides confines the pivot to +-12.1 mm.
-- [x] Inventory in data; real contact quantities unknown; stick side traced (left).
-- [x] Provisional debug contacts stored separately (status assumed, provisional, assume.debug_contacts.W-RD); validator enforces the labels.
-- [x] Tests: rigid invariance, rotation about the axis, handedness for both teams (4 new tests).
-- [x] AI review of validation/10-skater-contacts.svg (evidence crop, 8 orientations, nominal puck, side view with unknown thickness).
-- [x] No puck velocity or collision; checkpoint warning recorded (docs/contacts.md).
+Iteration 11 closed after 2 repair cycles:
+1. The render review exposed kinks in the goalie slots. The slot tracer now uses Hermite gap filling that ignores the guide, extends hidden ends along the mapped bare curve joined continuously, and seeds the goalie slots only over their fully visible parts. All slots were re-traced, 06-08 overlays re-rendered, 08 re-inspected.
+2. The render scale check first measured the lit still (board shadows made that invalid). It was replaced by an unlit ID render; tolerance unchanged.
+
+All items passed:
+- [x] Headless route: bpy 4.5.14 LTS; command and setup in docs/blender.md.
+- [x] Ice with 12 slot and 2 goal cut-out holes, inner boards and housing from canonical data. Unmeasured dimensions in `preview_parameters` (validator: always assumed); physical values unknown; no averaging.
+- [x] Clay only; assets/rink/rink.blend, rink.glb, build script. mm->m in stiga_blender.m(); +Y up done once by the exporter (tests).
+- [x] Overhead and side stills AI-reviewed.
+- [x] Scale: GLB bounds vs data (tests), ID-render extent within 0.2 mm, slots 100% on holes; implied housing 877 x 502 mm reported against both catalog claims.
 
 ## Verification status
 
@@ -37,7 +40,7 @@ Iteration 10 closed with 1 presentation repair (clipped side view and notes). Al
 | Slot traces (iterations 06-08) | 12 paths x 2 photos. Overhead fit RMS <= 0.74 px, width 38-40 px; bare->overhead homography over 10 outfield slots RMS 2.54 px (goalie slots excluded: symmetric ~7 px offset); every hidden end extends forward (+22 to +167 px). Goal cut-outs mapped onto goal lines within 8 px. Overlays 06/07/08 AI-reviewed. 23/23 tests. |
 | Pose maths (iteration 09) | 10 pose tests pass (continuity on all 12 paths, boundaries, 360 deg, known point, handedness det +1, goalie adapter, glTF adapter). Debug SVG AI-reviewed. |
 | Contacts (iteration 10) | Provisional debug contacts for W-RD only; rigidity, rotation and handedness tests pass; review sheet AI-reviewed. Real pivot, blade and skate values UNKNOWN. |
-| Blender | bpy 4.5.14 LTS installed from PyPI in /root/venvs/blender (python 3.11); not yet used. |
+| Blender (iteration 11) | bpy 4.5.14 LTS (PyPI) in /root/venvs/blender; Cycles CPU. Rink built headless; GLB bounds and ID-render scale checks pass (tests 40/40). See docs/blender.md. |
 | Dimensional accuracy | Nothing measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
 
 ## Key decisions
@@ -95,6 +98,7 @@ Iteration 10 closed with 1 presentation repair (clipped side view and notes). Al
 
 ## Review artifacts
 
+- **`validation/11-rink-overhead.png`**, `11-rink-side.png` - iteration 11 clay rink (assets/rink/rink.blend, rink.glb). Docs: `docs/blender.md`.
 - **`validation/10-skater-contacts.svg`** - iteration 10 (critical checkpoint; provisional contacts). Docs: `docs/contacts.md`.
 - **`validation/09-pose-debug.svg`** - iteration 09 (static sample poses). Docs: `docs/pose.md`.
 - **`validation/08-goals-and-goalies.svg`** - iteration 08 (12-route inventory, goal regions, unresolved dimensions). Docs: `docs/goals.md`.
@@ -128,3 +132,4 @@ Iteration 10 closed with 1 presentation repair (clipped side view and notes). Al
 | 08 | 2026-09-30 | goalie slot traces, hidden-end handling (all traces refreshed), goal regions (scripts/trace-goals.ts, render-goals-overlay.ts), Goal schema traces/landmarks, validation/08-goals-and-goalies.svg, goals-report.json, docs/goals.md | `npm run check` 23/23; overlays 06-08 re-rendered, 08 AI-reviewed; 2 repair cycles |
 | 09 | 2026-09-30 | src/model/pose.ts, paths.ts, coordinates.ts; tests/pose.test.ts; assumption assume.fixture_axis_on_slot_centreline; validation/09-pose-debug.svg; docs/pose.md | `npm run check` 33/33; debug SVG AI-reviewed; 1 presentation repair |
 | 10 | 2026-09-30 | scripts/define-contacts.ts, render-contacts.ts; schema (provisional contact shapes, inventory); fig.W-RD inventory + provisional contacts; W-RD stick left; validation/10-skater-contacts.svg; docs/contacts.md; tests/contacts.test.ts | `npm run check` 37/37; sheet AI-reviewed; 1 presentation repair |
+| 11 | 2026-09-30 | assets/blender/stiga_blender.py, build_rink.py, verify_rink.py; assets/rink/rink.blend + rink.glb; preview_parameters (schema + data); slot tracer fixes (Hermite gaps, curve-following hidden ends, goalie seeds); validation/11-*; docs/blender.md; tests/rink-asset.test.ts | `npm run check` 40/40; stills AI-reviewed; 2 repair cycles |

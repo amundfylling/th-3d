@@ -22,7 +22,8 @@
     "render:goals08": "node scripts/render-goals-overlay.ts",
     "render:pose09": "node scripts/render-pose-debug.ts",
     "contacts:define": "node scripts/define-contacts.ts",
-    "render:contacts10": "node scripts/render-contacts.ts"
+    "render:contacts10": "node scripts/render-contacts.ts",
+    "blender:rink": "/root/venvs/blender/bin/python assets/blender/build_rink.py && /root/venvs/blender/bin/python assets/blender/verify_rink.py"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

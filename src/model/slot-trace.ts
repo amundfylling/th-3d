@@ -170,18 +170,28 @@ function measure(signal: Signal, guide: Vec2, normal: Vec2, tangent: Vec2, p: Sl
 }
 
 /**
- * Centre for a rejected section: the guide point shifted sideways by the offset interpolated between
- * the nearest accepted sections. Unlike a straight chord between centres, this keeps the guide's
- * curvature across a gap on a curve.
+ * Centre for a rejected section: cubic Hermite interpolation between the nearest accepted sections on
+ * either side, with tangents estimated from accepted sections only. It never uses the guide, which can
+ * be pulled off the slot where a covering object touched it in an earlier pass; it follows the slot's
+ * curvature on curved gaps and stays straight on straight ones.
  */
 function fillFromGuide(sections: Section[], i: number): Vec2 {
-  const off = (s: Section): number => (s.centre![0] - s.guide[0]) * s.normal[0] + (s.centre![1] - s.guide[1]) * s.normal[1];
   let j0 = i - 1; while (!sections[j0]!.ok) j0--;
   let j1 = i + 1; while (!sections[j1]!.ok) j1++;
-  const f = (i - j0) / (j1 - j0);
-  const o = off(sections[j0]!) * (1 - f) + off(sections[j1]!) * f;
-  const s = sections[i]!;
-  return add(s.guide, mul(s.normal, o));
+  const okBefore = sections.slice(0, j0 + 1).filter((s) => s.ok).slice(-5);
+  const okAfter = sections.slice(j1).filter((s) => s.ok).slice(0, 5);
+  const p0 = sections[j0]!.centre!, p1 = sections[j1]!.centre!;
+  const chord = sub(p1, p0);
+  const L = len(chord);
+  const tan = (a: Vec2, b: Vec2): Vec2 => (len(sub(b, a)) > 1e-9 ? unit(sub(b, a)) : unit(chord));
+  const t0 = okBefore.length >= 2 ? tan(okBefore[0]!.centre!, p0) : unit(chord);
+  const t1 = okAfter.length >= 2 ? tan(p1, okAfter[okAfter.length - 1]!.centre!) : unit(chord);
+  const t = (i - j0) / (j1 - j0);
+  const h00 = 2 * t ** 3 - 3 * t ** 2 + 1, h10 = t ** 3 - 2 * t ** 2 + t, h01 = -2 * t ** 3 + 3 * t ** 2, h11 = t ** 3 - t ** 2;
+  return [
+    h00 * p0[0] + h10 * L * t0[0] + h01 * p1[0] + h11 * L * t1[0],
+    h00 * p0[1] + h10 * L * t0[1] + h01 * p1[1] + h11 * L * t1[1],
+  ];
 }
 
 /** Least-squares quadratic through (x, y), evaluated at x = 0 (robust to smooth curvature). */

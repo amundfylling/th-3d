@@ -255,6 +255,11 @@ export function validateGeometry(data: unknown, ctx: ValidationContext): Validat
     if (f.image_trace_ids.length > 0 && !f.identity_evidence) err(p, "a traced path needs identity_evidence");
   });
 
+  // Preview build parameters are assumptions by definition; they can never masquerade as evidence.
+  for (const [k, q] of Object.entries(g.preview_parameters ?? {})) {
+    if (q.status !== "assumed") err(`$.preview_parameters.${k}`, "preview parameters must have status assumed");
+  }
+
   // Contact shapes: assumed (provisional) geometry must name its assumption and be flagged provisional.
   g.figure_assets.forEach((a, i) => {
     a.contact_shapes.forEach((c, j) => {

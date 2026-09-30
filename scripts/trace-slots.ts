@@ -206,13 +206,22 @@ for (const [pid, seed] of Object.entries(seeds.paths)) {
   let pts: Vec2[] = [...o.centreline];
   const usedBare: string[] = [];
   const endStatus: Record<"start" | "end", "traced" | "assumed"> = { start: "traced", end: "traced" };
+  // Hidden ends: continue along the bare-sheet curve mapped into the overhead, shifted so it joins the
+  // observed end continuously (the lateral disagreement between the photographs is not injected as a kink).
+  const mappedBare = traces[pid]!.bare.centreline.map((q) => applyH(h, q));
   for (const c of endChecks.filter((x) => x.pid === pid && x.occluder)) {
-    if (c.extension_px > 0) {
-      if (c.end === "start") pts = [c.predicted, ...pts];
-      else pts = [...pts, c.predicted];
-      usedBare.push(c.end);
-      endStatus[c.end] = "assumed";
-    }
+    if (c.extension_px <= 0) continue;
+    let k = 0, best = Infinity;
+    mappedBare.forEach((q, i) => {
+      const d = Math.hypot(q[0] - c.observed[0], q[1] - c.observed[1]);
+      if (d < best) { best = d; k = i; }
+    });
+    const shift: Vec2 = [c.observed[0] - mappedBare[k]![0], c.observed[1] - mappedBare[k]![1]];
+    const beyond = (c.end === "end" ? mappedBare.slice(k + 1) : mappedBare.slice(0, k).reverse()).map((q) => [q[0] + shift[0], q[1] + shift[1]] as Vec2);
+    if (c.end === "start") pts = [...beyond.reverse(), ...pts];
+    else pts = [...pts, ...beyond];
+    usedBare.push(c.end);
+    endStatus[c.end] = "assumed";
   }
   const lengthPx = polylineLength(pts);
   const world: WorldPolyline = {
@@ -222,7 +231,7 @@ for (const [pid, seed] of Object.entries(seeds.paths)) {
     source_ids: [seeds.images.overhead, "stiga_canada_catalog", ...(usedBare.length ? [seeds.images.bare] : [])],
     mapping_id: PREVIEW_MAP,
     uncertainty_mm: null,
-    note: `Visible slot centreline mapped with the ASSUMED preview scale.${usedBare.length ? ` ${usedBare.join(" and ")} end extended under the occluding figure to the bare-sheet prediction (${BARE_ASSUMPTION}).` : ""} Not the fixture-axis path.`,
+    note: `Visible slot centreline mapped with the ASSUMED preview scale.${usedBare.length ? ` ${usedBare.join(" and ")} end extended under the occluding figure along the bare-sheet curve, mapped by the homography and joined continuously (${BARE_ASSUMPTION}).` : ""} Not the fixture-axis path.`,
   };
   const fp = g.fixture_paths.find((f) => f.id === pid)!;
   const limit = (end: "start" | "end", value: number): Quantity =>
