@@ -12,6 +12,12 @@
   overhead: mount socket (fixture axis) under the left skate (skater) / right skate (goalie), stick, blade,
   skates, uniform and back prints. geometry_version **0.6.0**. Details, results and open questions:
   `docs/players.md`. AI review only; no user approval recorded.
+- **Figure refinement round 2 (user request, 2026-10-01):** visible-fidelity pass on the skater (arms/torso,
+  helmet, face, collar, gloves) and goalie (mask with painted skin gaps, pads, blocker, catcher), block-number
+  lettering traced from the photos, calibrated plastic colours; matched-camera close-up sheets including
+  held-out views (`validation/players/closeups-{skater,goalie}.png`). Still before iteration 21.
+- **Goalie measured (user, 2026-10-01):** height 54 mm, blade 26 x 5.5 mm recorded as `user_measurement`;
+  goalie scale and blade set from them (k 1.142); skater scale unchanged (overhead-fitted) until measured.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
@@ -46,7 +52,7 @@ Iteration 20 closed without repair cycles:
 | Contacts (iteration 10) | Provisional debug contacts for W-RD only; rigidity, rotation and handedness tests pass; review sheet AI-reviewed. Real pivot, blade and skate values UNKNOWN. |
 | Blender (iteration 11) | bpy 4.5.14 LTS (PyPI) in /root/venvs/blender; Cycles CPU. Rink built headless; GLB bounds and ID-render scale checks pass (tests 40/40). See docs/blender.md. |
 | Figure molds (2026-09-30) | `npm run check` passes (73 tests: typecheck, validate, figures/assembly/appearance/Remotion tests). Silhouette IoU skater 0.808 (7 views) / goalie 0.816 (8 views); overhead k = 1.071 mm/mold unit (4 Sweden skaters, IoU 0.69-0.79); stick check within 1.5 mm; assembly without intersections; Remotion import checks pass; reprojection worst slot mean 0.80 px (check made colour-aware: figure plastic over the E-G slot, recorded in scripts/review-reprojection.ts). Renders inspected (AI review). |
-| Dimensional accuracy | Nothing measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
+| Dimensional accuracy | Goalie height and stick blade measured by the user (2026-10-01). Everything else not measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
 
 ## Key decisions
 

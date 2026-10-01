@@ -82,10 +82,15 @@ test("all 12 assets use the shared molds; contacts identical per mold; statuses 
       assert.equal(JSON.stringify(a.contact_shapes.map((c) => [c.kind, c.geometry])), ref, `${a.id} contacts equal the mold's`);
       for (const c of a.contact_shapes) assert.equal(c.provisional, undefined);
       assert.equal(a.ice_clearance.value, null);
-      assert.notEqual(a.figure_height.status, "measured");
+      if (k === "skater") assert.notEqual(a.figure_height.status, "measured", "skater not measured yet");
     }
   }
-  for (const a of byKind("goalie")) assert.equal(a.figure_height.assumption_id, "assume.figure_mold_scale");
+  for (const a of byKind("goalie")) {
+    assert.equal(a.figure_height.status, "measured");
+    assert.equal(a.figure_height.value, 54);
+    assert.deepEqual(a.figure_height.source_ids, ["user_measurement_2026_10_01_goalie"]);
+  }
+  for (const a of byKind("skater")) assert.equal(a.figure_height.status, "traced");
   assert.ok(!g.assumptions.some((a) => a.id.startsWith("assume.debug_contacts.")), "debug contacts retired");
   for (const pl of g.players) assert.equal(pl.stick_handedness, "left");
   assert.ok(g.sources.some((s) => s.id === "user_statement_2026_09_30_players" && s.kind === "user_statement"));
@@ -128,4 +133,40 @@ test("handedness preserved for both teams (proper rotation, blade on the figure'
     const [o, f, b] = toWorld(p, [[0, 0, 0], [10, 0, 0], mid]);
     assert.ok((f![0] - o![0]) * (b![1] - o![1]) - (f![1] - o![1]) * (b![0] - o![0]) > 0, `${team} ${th}`);
   }
+});
+
+test("refinement round 2: held-out views fitted after the shape, close-up sheets and block lettering present", () => {
+  for (const kind of ["skater", "goalie"]) {
+    const h = JSON.parse(readFileSync(`validation/players/${kind}-heldout-fit.json`, "utf8"));
+    assert.equal(h.held_out, true);
+    const fitted = Object.keys(JSON.parse(readFileSync(`validation/players/${kind}-fit.json`, "utf8")).views);
+    for (const [v, r] of Object.entries(h.views) as [string, any][]) {
+      assert.ok(!fitted.includes(v), `${v} must not be a fitting view`);
+      assert.ok(r.iou >= 0.65, `held-out ${v} IoU ${r.iou}`);
+    }
+    assert.ok(readFileSync(`validation/players/closeups-${kind}.png`).length > 100000);
+  }
+  for (const k of ["blue", "kit_SWE", "kit_FIN", "skin"]) assert.equal(molds.albedo_srgb[k].length, 3);
+  const glyphs = readFileSync("assets/blender/print_glyphs.py", "utf8");
+  assert.match(glyphs, /BLOCK digits/);
+  for (const kind of ["skater", "goalie"]) assert.ok(molds.print_layout[kind].digit_h > 4);
+});
+
+test("goalie matches the user's ruler measurements; the skater keeps its own (overhead) scale", () => {
+  const m = molds.measurements.goalie;
+  assert.deepEqual([m.height_mm, m.blade_length_mm, m.blade_height_mm], [54, 26, 5.5]);
+  assert.equal(m.uncertainty_mm, null, "unstated uncertainty stays null");
+  for (const kit of KITS) {
+    const r = rep.assets[`goalie_${kit}`];
+    assert.ok(Math.abs(r.height_mm - 54) <= 0.1, `goalie height ${r.height_mm}`);
+    assert.ok(Math.abs(r.blade_length_mm - 26) <= 0.05, `blade ${r.blade_length_mm}`);
+    assert.ok(Math.abs(r.blade_height_mm - 5.5) <= 0.05, `blade height ${r.blade_height_mm}`);
+  }
+  assert.equal(rep.scales.skater, over.scale_k_mm_per_mold_unit, "skater scale from the overhead fit");
+  assert.ok(Math.abs(rep.scales.goalie - molds.goalie.scale.k_mm_per_mold_unit) < 1e-4);
+  assert.notEqual(rep.scales.goalie, rep.scales.skater);
+  const src = g.sources.find((s) => s.id === "user_measurement_2026_10_01_goalie")!;
+  assert.equal(src.kind, "user_measurement");
+  const idx = JSON.parse(readFileSync("references/index.json", "utf8")).sources.find((s: any) => s.id === "user_goalie_measurement_sketch");
+  assert.ok(idx && idx.sha256.length === 64);
 });

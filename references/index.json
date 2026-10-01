@@ -588,6 +588,23 @@
         "Perspective close-ups (camera 10-20 cm away); figure removed from the rink.",
         "Frames 0-11 s: phone nearly still, figure turned on the table by a finger (turntable); later frames hand-held."
       ]
+    },
+    {
+      "id": "user_goalie_measurement_sketch",
+      "title": "User measurement sketch of the STIGA Play Off 21 goalie (2026-10-01): endpoints of height 5,4 cm, blade length 2,6 cm, blade height 0,55 cm",
+      "provenance": "user_upload",
+      "local_path": "references/user_measurements/goalie-measurements-2026-10-01.png",
+      "sha256": "7094c58eac44b7cfe79b361b496e88f30eaa157a17d8bc7d27caf0e6ff2f5e07",
+      "bytes": 51711,
+      "format": "png",
+      "native_width_px": 277,
+      "native_height_px": 224,
+      "mode": "RGBA",
+      "uploaded": "chat attachment, 2026-10-01",
+      "view": "Front view of the goalie (official product picture style) with red measurement brackets: height from the mask top to the bottom of the figure; blade length along the lower edge from the heel bend to the toe; blade vertical height at the toe.",
+      "limitations": [
+        "Annotation of measurement endpoints only; values are the user's ruler readings in the chat message (54 mm, 26 mm, 5.5 mm), stated without uncertainty."
+      ]
     }
   ],
   "not_obtained": [

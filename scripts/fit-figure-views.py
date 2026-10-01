@@ -34,6 +34,8 @@ VIEWS = {
         "skater-video-t07.25": (180, 35, [], True),
         "skater-video-t08.50": (150, 35, [], True),
         "skater-video-t10.75": (20, 40, [], True),
+        # lying on its back, filmed from above: a near-orthographic FRONT view (modelling reference)
+        "skater-video-t13.25": (0, 8, [], True),
     },
     "goalie": {
         "goalie-photo-front": (0, 25, [], True),
@@ -51,14 +53,37 @@ VIEWS = {
 PREV = {}
 
 
+# Views NOT used for any shape fitting (held out): cameras fitted only to compare the final model.
+# Optional 5th value: initial camera roll (deg) for views of a figure lying on the table.
+HELDOUT = {
+    "skater": {
+        "skater-video-t01.50": (-5, 38, [], False),
+        "skater-video-t14.50": (10, 0, [], False),  # 1.25 s after t13.25, re-posed in the hand: similar viewpoint
+        "skater-video-t22.60": (10, 35, [], False),
+    },
+    "goalie": {
+        "goalie-video-t02.50": (-20, 45, [], False),  # rotation video, finger at the edge
+        "goalie-video-t10.00": (110, 40, [], False, 0, 20),  # left-back: back print visible; motion blur, az held within 20 deg
+        "goalie-photo-top": (180, 72, [], True),
+        "goalie-video-t16.75": (0, 72, [], True),
+        "goalie-photo-lying-back": (180, 5, [], True, 180),
+        "goalie-photo-lying-back-2": (200, 10, [], True, 60),
+        "goalie-photo-underside": (180, -55, [], True, 0),
+    },
+}
+
+
 def fit_view(mesh, view_id, init, work_px=420):
-    az0, el0, excl, warm = init
+    az0, el0, excl, warm = init[:4]
+    roll0 = math.radians(init[4]) if len(init) > 4 else 0.0
+    az_tol = init[5] if len(init) > 5 else 60.0  # deg: allowed departure from the known view direction
     rgb, s, crop, full = fv.load_view(view_id, work_px)
     ref = fv.figure_mask(rgb, include_warm=warm, exclude_polys=excl)
     verts, tris, labels, keys = mesh
     keep = labels != list(keys).index("stick_metal")
-    if not warm:  # a finger touches the figure: drop warm pixels (skin, finger) from both masks
+    if not warm:  # a finger touches the figure: drop warm pixels (skin, finger, tan stick) from both masks
         keep &= labels != list(keys).index("skin")
+        keep &= labels != list(keys).index("stick_tan")
     target = fv.TARGET["skater" if view_id.startswith("skater") else "goalie"]
     video = "video" in view_id
     f0 = 3000.0 if video else F_PHOTO
@@ -95,8 +120,8 @@ def fit_view(mesh, view_id, init, work_px=420):
         best = (fv.iou(mask_of(p), ref), p)
     for daz in ((-30, -15, 0, 15, 30) if prev is None else ()):
         for delv in (-15, 0, 15):
-            p = aligned(math.radians(az0 + daz), math.radians(min(max(el0 + delv, 5), 85)))
-            sc = fv.iou(mask_of(p), ref)
+            p = aligned(math.radians(az0 + daz), math.radians(min(max(el0 + delv, -85), 85)), roll0)
+            sc = fv.iou(mask_of(p), ref) - max(0.0, abs((math.degrees(p[0]) - az0 + 180) % 360 - 180) - az_tol) / 60
             if best is None or sc > best[0]:
                 best = (sc, p)
     x0 = np.array(best[1])
@@ -108,7 +133,12 @@ def fit_view(mesh, view_id, init, work_px=420):
             p[6] = f0
         else:
             p[6] = min(max(p[6], F_VIDEO[0]), F_VIDEO[1])
-        return 1 - fv.iou(mask_of(p), ref)
+        # the azimuth must stay within 60 deg of the known view direction: front and back silhouettes of a
+        # figure filmed flat are near mirror images, so the IoU alone can flip a view
+        flip = max(0.0, abs((math.degrees(p[0]) - az0 + 180) % 360 - 180) - az_tol) / 60
+        # a figure standing on the table is never seen from below the table plane
+        below = max(0.0, 2.0 - math.degrees(p[1])) / 20 if el0 >= 0 else 0.0
+        return 1 - fv.iou(mask_of(p), ref) + flip + below
 
     r = minimize(cost, np.zeros(7), method="Powell", options={"xtol": 1e-3, "ftol": 1e-4, "maxfev": 1500})
     p = x0 + r.x * scl
@@ -126,9 +156,10 @@ def main():
     ap.add_argument("--mesh")
     ap.add_argument("--out", default=str(fv.REPO / "validation" / "players"))
     ap.add_argument("--only")
+    ap.add_argument("--heldout", action="store_true", help="fit cameras for the held-out views -> <kind>-heldout-fit.*")
     ap.add_argument("--reuse", action="store_true", help="start from the cameras in the previous <kind>-fit.json")
     a = ap.parse_args()
-    prevf = Path(a.out) / f"{a.kind}-fit.json"
+    prevf = Path(a.out) / f"{a.kind}{'-heldout' if a.heldout else ''}-fit.json"
     if a.reuse and prevf.exists():
         PREV.update({k: v["params"] for k, v in json.loads(prevf.read_text())["views"].items()})
     d = np.load(a.mesh or fv.REPO / "out" / "figures" / f"{a.kind}.npz")
@@ -136,7 +167,8 @@ def main():
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     res, tiles = {}, []
-    for vid, init in VIEWS[a.kind].items():
+    tag = "-heldout" if a.heldout else ""
+    for vid, init in (HELDOUT if a.heldout else VIEWS)[a.kind].items():
         if a.only and a.only not in vid:
             continue
         r, viz, rgb = fit_view(mesh, vid, init)
@@ -151,9 +183,10 @@ def main():
     sheet = Image.new("RGB", (W * cols, H * math.ceil(len(tiles) / cols)), "black")
     for i, t in enumerate(tiles):
         sheet.paste(t, ((i % cols) * W, (i // cols) * H))
-    sheet.save(out / f"{a.kind}-fit.png")
+    sheet.save(out / f"{a.kind}{tag}-fit.png")
     summary = {"kind": a.kind, "mean_iou": round(float(np.mean([r["iou"] for r in res.values()])), 4), "views": res}
-    (out / f"{a.kind}-fit.json").write_text(json.dumps(summary, indent=2) + "\n")
+    summary["held_out"] = bool(a.heldout)
+    (out / f"{a.kind}{tag}-fit.json").write_text(json.dumps(summary, indent=2) + "\n")
     print("mean IoU", summary["mean_iou"])
 
 

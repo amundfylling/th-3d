@@ -206,6 +206,12 @@
       "kind": "user_statement",
       "title": "User statement of 2026-09-30 on the figures",
       "note": "'Every player is identical, except the goalkeeper. The only difference between sweden and finland is the kit color and the country name on the back.' Photos/videos of the Sweden goalie and skater uploaded to references/players_images."
+    },
+    {
+      "id": "user_measurement_2026_10_01_goalie",
+      "kind": "user_measurement",
+      "title": "User ruler measurements of the STIGA Play Off 21 goalie (2026-10-01)",
+      "note": "Height 54 mm (top of the mask to the bottom of the figure (socket underside = ice plane)); stick blade length 26 mm (along the blade's lower edge from the heel bend to the toe); blade height 5.5 mm (vertical height of the blade plank (at the toe)). Stated as 5,4 / 2,6 / 0,55 cm, uncertainty not stated. Endpoint sketch: references/user_measurements/goalie-measurements-2026-10-01.png (index id user_goalie_measurement_sketch)."
     }
   ],
   "source_images": [
@@ -393,23 +399,21 @@
     },
     {
       "id": "assume.figure_mold_scale",
-      "statement": "One scale k = 1.0713 mm per mold unit for BOTH molds: fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the preview scale. The goalie alone fits best at k = 1.1784 (hand-traced white goalie on white ice); the Finland team pack shows goalie and skaters equally tall, so the skater k is used.",
-      "reason": "The user's photos have no scale object near the figure; the overhead is the only scaled view (itself at the ASSUMED preview scale).",
+      "statement": "Skater mold scale k = 1.0723 mm per mold unit, fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the ASSUMED preview scale. The goalie no longer shares it: its scale k = 1.1422 comes from the user's measured height (54 mm).",
+      "reason": "No ruler measurement of a skater exists; the overhead is the only scaled view of the skaters (itself at the ASSUMED preview scale).",
       "affects": [
-        "figure_assets.fig.W-G",
         "figure_assets.fig.W-LD",
         "figure_assets.fig.W-RD",
         "figure_assets.fig.W-C",
         "figure_assets.fig.W-LW",
         "figure_assets.fig.W-RW",
-        "figure_assets.fig.E-G",
         "figure_assets.fig.E-LD",
         "figure_assets.fig.E-RD",
         "figure_assets.fig.E-C",
         "figure_assets.fig.E-LW",
         "figure_assets.fig.E-RW"
       ],
-      "replace_with": "Ruler measurements of one skater and the goalie: height (ice to helmet top), socket base diameter, blade length and heel offset from the socket axis."
+      "replace_with": "Ruler measurements of one skater: height (ice to helmet top), socket base diameter, blade length and heel offset from the socket axis."
     },
     {
       "id": "assume.figure_mold_hidden_details",
@@ -37409,33 +37413,20 @@
       "kind": "goalie",
       "mold_group": "mold.goalie",
       "figure_height": {
-        "value": 50.35,
+        "value": 54,
         "unit": "mm",
-        "status": "assumed",
-        "uncertainty": 3,
+        "status": "measured",
+        "uncertainty": null,
         "source_ids": [
-          "user_goalie_photo_2564",
-          "user_goalie_photo_2565",
-          "user_goalie_photo_2566",
-          "user_goalie_photo_2567",
-          "user_goalie_photo_2568",
-          "user_goalie_photo_2569",
-          "user_goalie_photo_2570",
-          "user_goalie_photo_2571",
-          "user_goalie_photo_2572",
-          "user_goalie_video_2573",
-          "stiga_se_fi_overhead",
-          "stiga_ca_team_pack_finland",
-          "user_statement_2026_09_30_players"
+          "user_measurement_2026_10_01_goalie"
         ],
-        "assumption_id": "assume.figure_mold_scale",
-        "note": "Ice to mask top at the shared mold scale; the goalie-only overhead fit (k = 1.1784) would give 55.4 mm."
+        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1527."
       },
       "blade_offset_from_pivot": {
-        "value": 8.58,
+        "value": 9.15,
         "unit": "mm",
-        "status": "assumed",
-        "uncertainty": 3,
+        "status": "traced",
+        "uncertainty": 2,
         "source_ids": [
           "user_goalie_photo_2564",
           "user_goalie_photo_2565",
@@ -37447,10 +37438,9 @@
           "user_goalie_photo_2571",
           "user_goalie_photo_2572",
           "user_goalie_video_2573",
-          "stiga_se_fi_overhead"
+          "user_measurement_2026_10_01_goalie"
         ],
-        "assumption_id": "assume.figure_mold_scale",
-        "note": "Axis to blade heel at the shared mold scale; the goalie blade runs 27 mm across the front toward the goalie's left."
+        "note": "Axis to blade heel: position traced from the photos, at the measured goalie scale; the blade (measured 26 x 5.5 mm) runs across the front toward the goalie's left."
       },
       "ice_clearance": {
         "value": null,
@@ -37469,28 +37459,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.36,
-                1.93,
+                8.91,
+                2.06,
                 0
               ],
               [
-                8.36,
-                28.93,
+                8.91,
+                28.06,
                 0
               ],
               [
-                8.36,
-                28.93,
-                3
+                8.91,
+                28.06,
+                5.5
               ],
               [
-                8.36,
-                1.93,
-                3
+                8.91,
+                2.06,
+                5.5
               ],
               [
-                8.36,
-                1.93,
+                8.91,
+                2.06,
                 0
               ]
             ]
@@ -37507,11 +37497,11 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 2.5,
-          "note": "Blade: upright plate on the ice from heel to toe (tan plastic), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+          "note": "Blade: upright tan plank on the ice, length 26 mm and height 5.5 mm MEASURED by the user; its position relative to the axis is traced from the photos."
         },
         {
           "id": "contact.W-G.stick_shaft",
@@ -37521,14 +37511,14 @@
             "type": "polyline",
             "points_mm": [
               [
-                7.28,
-                -6.43,
-                17.14
+                7.77,
+                -6.85,
+                18.28
               ],
               [
-                8.36,
-                3.21,
-                1.5
+                8.91,
+                3.43,
+                4.12
               ]
             ]
           },
@@ -37544,8 +37534,8 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 2.5,
           "note": "Flat tan paddle from the blocker down to the heel."
@@ -37558,87 +37548,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                5.79,
+                6.17,
                 0,
                 0
               ],
               [
-                5.34,
-                2.21,
+                5.7,
+                2.36,
                 0
               ],
               [
-                4.09,
-                4.09,
+                4.36,
+                4.36,
                 0
               ],
               [
-                2.21,
-                5.34,
-                0
-              ],
-              [
-                0,
-                5.79,
-                0
-              ],
-              [
-                -2.21,
-                5.34,
-                0
-              ],
-              [
-                -4.09,
-                4.09,
-                0
-              ],
-              [
-                -5.34,
-                2.21,
-                0
-              ],
-              [
-                -5.79,
-                0,
-                0
-              ],
-              [
-                -5.34,
-                -2.21,
-                0
-              ],
-              [
-                -4.09,
-                -4.09,
-                0
-              ],
-              [
-                -2.21,
-                -5.34,
+                2.36,
+                5.7,
                 0
               ],
               [
                 0,
-                -5.79,
+                6.17,
                 0
               ],
               [
-                2.21,
-                -5.34,
+                -2.36,
+                5.7,
                 0
               ],
               [
-                4.09,
-                -4.09,
+                -4.36,
+                4.36,
                 0
               ],
               [
-                5.34,
-                -2.21,
+                -5.7,
+                2.36,
                 0
               ],
               [
-                5.79,
+                -6.17,
+                0,
+                0
+              ],
+              [
+                -5.7,
+                -2.36,
+                0
+              ],
+              [
+                -4.36,
+                -4.36,
+                0
+              ],
+              [
+                -2.36,
+                -5.7,
+                0
+              ],
+              [
+                0,
+                -6.17,
+                0
+              ],
+              [
+                2.36,
+                -5.7,
+                0
+              ],
+              [
+                4.36,
+                -4.36,
+                0
+              ],
+              [
+                5.7,
+                -2.36,
+                0
+              ],
+              [
+                6.17,
                 0,
                 0
               ]
@@ -37656,8 +37646,8 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 1.5,
           "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
@@ -37670,28 +37660,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                0.43,
-                5.57,
+                0.46,
+                5.94,
                 0
               ],
               [
-                6.43,
-                5.57,
+                6.85,
+                5.94,
                 0
               ],
               [
-                6.43,
-                15.86,
+                6.85,
+                16.9,
                 0
               ],
               [
-                0.43,
-                15.86,
+                0.46,
+                16.9,
                 0
               ],
               [
-                0.43,
-                5.57,
+                0.46,
+                5.94,
                 0
               ]
             ]
@@ -37708,8 +37698,8 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 3,
           "note": "Left leg-pad bottom on the ice."
@@ -37722,28 +37712,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                0.43,
-                -4.93,
+                0.46,
+                -5.25,
                 0
               ],
               [
-                6.43,
-                -4.93,
+                6.85,
+                -5.25,
                 0
               ],
               [
-                6.43,
-                5.36,
+                6.85,
+                5.71,
                 0
               ],
               [
-                0.43,
-                5.36,
+                0.46,
+                5.71,
                 0
               ],
               [
-                0.43,
-                -4.93,
+                0.46,
+                -5.25,
                 0
               ]
             ]
@@ -37760,8 +37750,8 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 3,
           "note": "Right leg-pad bottom (over the socket side)."
@@ -37796,12 +37786,17 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8161 (8 views); overhead top-view IoU 0.6943."
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8256 (8 views); overhead top-view IoU 0.715."
         },
         {
           "item": "absolute scale",
-          "status": "assumed",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; shared with the skater mold (goalie-only fit: 1.1784)."
+          "status": "measured",
+          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1527 at the assumed preview scale."
+        },
+        {
+          "item": "measured dimensions",
+          "status": "measured",
+          "evidence": "User ruler (2026-10-01): height 54 mm, stick blade length 26 mm, blade height 5.5 mm; endpoints in references/user_measurements/goalie-measurements-2026-10-01.png. Asset: height 54 mm, blade 26 x 5.5 mm."
         }
       ],
       "note": "Rigid goalie mold (data/figure-molds.json) in the Finland kit: assets/figures/goalie_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -37811,7 +37806,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -37820,10 +37815,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -37831,7 +37826,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -37850,28 +37845,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -37892,19 +37887,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -37929,18 +37924,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -37950,16 +37945,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -37969,18 +37964,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -37990,16 +37985,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -38026,13 +38021,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -38075,12 +38070,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38090,7 +38085,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38099,10 +38094,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38110,7 +38105,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38129,28 +38124,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -38171,19 +38166,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -38208,18 +38203,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -38229,16 +38224,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -38248,18 +38243,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -38269,16 +38264,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -38305,13 +38300,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -38354,12 +38349,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38369,7 +38364,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38378,10 +38373,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38389,7 +38384,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38408,28 +38403,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -38450,19 +38445,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -38487,18 +38482,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -38508,16 +38503,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -38527,18 +38522,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -38548,16 +38543,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -38584,13 +38579,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -38633,12 +38628,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38648,7 +38643,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38657,10 +38652,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38668,7 +38663,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38687,28 +38682,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -38729,19 +38724,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -38766,18 +38761,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -38787,16 +38782,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -38806,18 +38801,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -38827,16 +38822,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -38863,13 +38858,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -38912,12 +38907,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38927,7 +38922,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38936,10 +38931,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38947,7 +38942,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38966,28 +38961,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -39008,19 +39003,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -39045,18 +39040,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -39066,16 +39061,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -39085,18 +39080,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -39106,16 +39101,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -39142,13 +39137,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -39191,12 +39186,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -39206,33 +39201,20 @@
       "kind": "goalie",
       "mold_group": "mold.goalie",
       "figure_height": {
-        "value": 50.35,
+        "value": 54,
         "unit": "mm",
-        "status": "assumed",
-        "uncertainty": 3,
+        "status": "measured",
+        "uncertainty": null,
         "source_ids": [
-          "user_goalie_photo_2564",
-          "user_goalie_photo_2565",
-          "user_goalie_photo_2566",
-          "user_goalie_photo_2567",
-          "user_goalie_photo_2568",
-          "user_goalie_photo_2569",
-          "user_goalie_photo_2570",
-          "user_goalie_photo_2571",
-          "user_goalie_photo_2572",
-          "user_goalie_video_2573",
-          "stiga_se_fi_overhead",
-          "stiga_ca_team_pack_finland",
-          "user_statement_2026_09_30_players"
+          "user_measurement_2026_10_01_goalie"
         ],
-        "assumption_id": "assume.figure_mold_scale",
-        "note": "Ice to mask top at the shared mold scale; the goalie-only overhead fit (k = 1.1784) would give 55.4 mm."
+        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1527."
       },
       "blade_offset_from_pivot": {
-        "value": 8.58,
+        "value": 9.15,
         "unit": "mm",
-        "status": "assumed",
-        "uncertainty": 3,
+        "status": "traced",
+        "uncertainty": 2,
         "source_ids": [
           "user_goalie_photo_2564",
           "user_goalie_photo_2565",
@@ -39244,10 +39226,9 @@
           "user_goalie_photo_2571",
           "user_goalie_photo_2572",
           "user_goalie_video_2573",
-          "stiga_se_fi_overhead"
+          "user_measurement_2026_10_01_goalie"
         ],
-        "assumption_id": "assume.figure_mold_scale",
-        "note": "Axis to blade heel at the shared mold scale; the goalie blade runs 27 mm across the front toward the goalie's left."
+        "note": "Axis to blade heel: position traced from the photos, at the measured goalie scale; the blade (measured 26 x 5.5 mm) runs across the front toward the goalie's left."
       },
       "ice_clearance": {
         "value": null,
@@ -39266,28 +39247,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.36,
-                1.93,
+                8.91,
+                2.06,
                 0
               ],
               [
-                8.36,
-                28.93,
+                8.91,
+                28.06,
                 0
               ],
               [
-                8.36,
-                28.93,
-                3
+                8.91,
+                28.06,
+                5.5
               ],
               [
-                8.36,
-                1.93,
-                3
+                8.91,
+                2.06,
+                5.5
               ],
               [
-                8.36,
-                1.93,
+                8.91,
+                2.06,
                 0
               ]
             ]
@@ -39304,11 +39285,11 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 2.5,
-          "note": "Blade: upright plate on the ice from heel to toe (tan plastic), outline of the fitted mold x k. Overhead check (skaters): heel ~21.9 mm left of the axis, blade ~20.2 mm long (4 figures)."
+          "note": "Blade: upright tan plank on the ice, length 26 mm and height 5.5 mm MEASURED by the user; its position relative to the axis is traced from the photos."
         },
         {
           "id": "contact.E-G.stick_shaft",
@@ -39318,14 +39299,14 @@
             "type": "polyline",
             "points_mm": [
               [
-                7.28,
-                -6.43,
-                17.14
+                7.77,
+                -6.85,
+                18.28
               ],
               [
-                8.36,
-                3.21,
-                1.5
+                8.91,
+                3.43,
+                4.12
               ]
             ]
           },
@@ -39341,8 +39322,8 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 2.5,
           "note": "Flat tan paddle from the blocker down to the heel."
@@ -39355,87 +39336,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                5.79,
+                6.17,
                 0,
                 0
               ],
               [
-                5.34,
-                2.21,
+                5.7,
+                2.36,
                 0
               ],
               [
-                4.09,
-                4.09,
+                4.36,
+                4.36,
                 0
               ],
               [
-                2.21,
-                5.34,
-                0
-              ],
-              [
-                0,
-                5.79,
-                0
-              ],
-              [
-                -2.21,
-                5.34,
-                0
-              ],
-              [
-                -4.09,
-                4.09,
-                0
-              ],
-              [
-                -5.34,
-                2.21,
-                0
-              ],
-              [
-                -5.79,
-                0,
-                0
-              ],
-              [
-                -5.34,
-                -2.21,
-                0
-              ],
-              [
-                -4.09,
-                -4.09,
-                0
-              ],
-              [
-                -2.21,
-                -5.34,
+                2.36,
+                5.7,
                 0
               ],
               [
                 0,
-                -5.79,
+                6.17,
                 0
               ],
               [
-                2.21,
-                -5.34,
+                -2.36,
+                5.7,
                 0
               ],
               [
-                4.09,
-                -4.09,
+                -4.36,
+                4.36,
                 0
               ],
               [
-                5.34,
-                -2.21,
+                -5.7,
+                2.36,
                 0
               ],
               [
-                5.79,
+                -6.17,
+                0,
+                0
+              ],
+              [
+                -5.7,
+                -2.36,
+                0
+              ],
+              [
+                -4.36,
+                -4.36,
+                0
+              ],
+              [
+                -2.36,
+                -5.7,
+                0
+              ],
+              [
+                0,
+                -6.17,
+                0
+              ],
+              [
+                2.36,
+                -5.7,
+                0
+              ],
+              [
+                4.36,
+                -4.36,
+                0
+              ],
+              [
+                5.7,
+                -2.36,
+                0
+              ],
+              [
+                6.17,
                 0,
                 0
               ]
@@ -39453,8 +39434,8 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 1.5,
           "note": "Mount socket: flared base ring on the ice, centred on the fixture axis (bore opens downward, rectangular key)."
@@ -39467,28 +39448,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                0.43,
-                5.57,
+                0.46,
+                5.94,
                 0
               ],
               [
-                6.43,
-                5.57,
+                6.85,
+                5.94,
                 0
               ],
               [
-                6.43,
-                15.86,
+                6.85,
+                16.9,
                 0
               ],
               [
-                0.43,
-                15.86,
+                0.46,
+                16.9,
                 0
               ],
               [
-                0.43,
-                5.57,
+                0.46,
+                5.94,
                 0
               ]
             ]
@@ -39505,8 +39486,8 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 3,
           "note": "Left leg-pad bottom on the ice."
@@ -39519,28 +39500,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                0.43,
-                -4.93,
+                0.46,
+                -5.25,
                 0
               ],
               [
-                6.43,
-                -4.93,
+                6.85,
+                -5.25,
                 0
               ],
               [
-                6.43,
-                5.36,
+                6.85,
+                5.71,
                 0
               ],
               [
-                0.43,
-                5.36,
+                0.46,
+                5.71,
                 0
               ],
               [
-                0.43,
-                -4.93,
+                0.46,
+                -5.25,
                 0
               ]
             ]
@@ -39557,8 +39538,8 @@
             "user_goalie_photo_2571",
             "user_goalie_photo_2572",
             "user_goalie_video_2573",
-            "stiga_se_fi_overhead",
-            "stiga_ca_team_pack_finland"
+            "user_measurement_2026_10_01_goalie",
+            "stiga_se_fi_overhead"
           ],
           "uncertainty_mm": 3,
           "note": "Right leg-pad bottom (over the socket side)."
@@ -39593,12 +39574,17 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8161 (8 views); overhead top-view IoU 0.6943."
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8256 (8 views); overhead top-view IoU 0.715."
         },
         {
           "item": "absolute scale",
-          "status": "assumed",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; shared with the skater mold (goalie-only fit: 1.1784)."
+          "status": "measured",
+          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1527 at the assumed preview scale."
+        },
+        {
+          "item": "measured dimensions",
+          "status": "measured",
+          "evidence": "User ruler (2026-10-01): height 54 mm, stick blade length 26 mm, blade height 5.5 mm; endpoints in references/user_measurements/goalie-measurements-2026-10-01.png. Asset: height 54 mm, blade 26 x 5.5 mm."
         }
       ],
       "note": "Rigid goalie mold (data/figure-molds.json) in the Sweden kit: assets/figures/goalie_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -39608,7 +39594,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -39617,10 +39603,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -39628,7 +39614,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -39647,28 +39633,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -39689,19 +39675,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -39726,18 +39712,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -39747,16 +39733,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -39766,18 +39752,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -39787,16 +39773,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -39823,13 +39809,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -39872,12 +39858,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -39887,7 +39873,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -39896,10 +39882,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -39907,7 +39893,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -39926,28 +39912,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -39968,19 +39954,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -40005,18 +39991,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -40026,16 +40012,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -40045,18 +40031,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -40066,16 +40052,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -40102,13 +40088,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -40151,12 +40137,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40166,7 +40152,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40175,10 +40161,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40186,7 +40172,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40205,28 +40191,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -40247,19 +40233,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -40284,18 +40270,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -40305,16 +40291,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -40324,18 +40310,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -40345,16 +40331,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -40381,13 +40367,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -40430,12 +40416,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40445,7 +40431,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40454,10 +40440,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40465,7 +40451,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40484,28 +40470,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -40526,19 +40512,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -40563,18 +40549,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -40584,16 +40570,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -40603,18 +40589,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -40624,16 +40610,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -40660,13 +40646,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -40709,12 +40695,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40724,7 +40710,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.15,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40733,10 +40719,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0713. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.73,
+        "value": 22.75,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40744,7 +40730,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.59 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40763,28 +40749,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ],
               [
                 2.36,
-                43.07,
+                43.11,
                 0
               ],
               [
                 2.36,
-                43.07,
-                3.21
+                43.11,
+                3.22
               ],
               [
-                3.21,
-                22.5,
-                3.21
+                3.22,
+                22.52,
+                3.22
               ],
               [
-                3.21,
-                22.5,
+                3.22,
+                22.52,
                 0
               ]
             ]
@@ -40805,19 +40791,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.03,
+                8.04,
                 -5.36,
-                30
+                30.02
               ],
               [
                 3.32,
-                21.64,
-                1.71
+                21.66,
+                1.72
               ],
               [
-                3.21,
-                22.5,
-                0.96
+                3.22,
+                22.52,
+                0.97
               ]
             ]
           },
@@ -40842,18 +40828,18 @@
                 0
               ],
               [
-                5.54,
+                5.55,
                 2.3,
                 0
               ],
               [
-                4.24,
-                4.24,
+                4.25,
+                4.25,
                 0
               ],
               [
                 2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
@@ -40863,16 +40849,16 @@
               ],
               [
                 -2.3,
-                5.54,
+                5.55,
                 0
               ],
               [
-                -4.24,
-                4.24,
+                -4.25,
+                4.25,
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 2.3,
                 0
               ],
@@ -40882,18 +40868,18 @@
                 0
               ],
               [
-                -5.54,
+                -5.55,
                 -2.3,
                 0
               ],
               [
-                -4.24,
-                -4.24,
+                -4.25,
+                -4.25,
                 0
               ],
               [
                 -2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
@@ -40903,16 +40889,16 @@
               ],
               [
                 2.3,
-                -5.54,
+                -5.55,
                 0
               ],
               [
-                4.24,
-                -4.24,
+                4.25,
+                -4.25,
                 0
               ],
               [
-                5.54,
+                5.55,
                 -2.3,
                 0
               ],
@@ -40939,13 +40925,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.57,
-                -14.78,
+                -14.58,
+                -14.8,
                 0
               ],
               [
                 -5.36,
-                -18.21,
+                -18.23,
                 0
               ]
             ]
@@ -40988,12 +40974,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8075 (7 views); overhead top-view IoU 0.7926."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0713 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement."
+          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."

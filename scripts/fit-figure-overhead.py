@@ -34,6 +34,7 @@ ov = next(s for s in g["source_images"] if s["source_id"] == "stiga_se_fi_overhe
 IMG = np.asarray(Image.open(REPO / ov["local_path"]).convert("RGB"))
 POSES = {f["player_id"]: f for f in json.loads((REPO / "validation" / "16-assembly-poses.json").read_text())["figures"]}
 PATHS = {p["player_id"]: np.array(p["centreline"]["points_mm"], float) for p in g["fixture_paths"]}
+MOLDS_DATA = json.loads((REPO / "data" / "figure-molds.json").read_text())
 TRACES = {t["id"]: np.array(t["points_px"], float) for t in g["image_traces"]}
 SKATERS = ["E-LD", "E-RD", "E-C", "E-LW"]
 WIN = 300  # px half window
@@ -203,13 +204,20 @@ def main():
         best = max(((iou_fig("W-G", s0 + ds, math.radians(dth), kg, glob[1:], mesh=go, mask=tgm)[0], s0 + ds, math.radians(dth)) for ds in np.linspace(-20, 20, 11) for dth in range(-40, 41, 10)))
         r = minimize(lambda z: -iou_fig("W-G", best[1] + z[0], best[2] + z[1] * 0.1, kg, glob[1:], mesh=go, mask=tgm)[0], [0, 0], method="Powell", options={"xtol": 0.02, "maxfev": 300})
         return -r.fun, best[1] + r.x[0], best[2] + r.x[1] * 0.1
-    kg_best = max((gfit(kg) + (kg,) for kg in np.linspace(glob[0] * 0.85, glob[0] * 1.15, 7)), key=lambda t: t[0])
+    kg_best = max((gfit(kg) + (kg,) for kg in np.linspace(glob[0] * 0.9, glob[0] * 1.25, 15)), key=lambda t: t[0])
     res["goalie_only_best_scale_k"] = round(float(kg_best[3]), 4)
     res["goalie_only_best_iou"] = round(float(kg_best[0]), 4)
-    # pose of W-G at the SHARED scale (the assets use one k for both molds; docs/players.md)
-    sc, s, th = gfit(glob[0])
-    _sc, mod = iou_fig("W-G", s, th, glob[0], glob[1:], mesh=go, mask=tgm)
-    res["figures"]["W-G"] = {"iou": round(float(sc), 4), "pivot_mm": [round(float(c), 2) for c in at(PATHS["W-G"], s)], "s_mm": round(float(s), 2), "heading_deg": round(math.degrees(th) % 360, 2), "observation": "traced silhouette (Finland goalie), posed at the shared skater scale; goalie-only scale reported separately"}
+    # Goalie scale MEASURED by the user (height 54 mm): k_g = 54 / mold height (data/figure-molds.json goalie.scale).
+    # Posed at the measured scale; the goalie-only best k at the assumed preview scale is an independent check
+    # of that preview scale (ratio measured / best ~ 1 if the preview scale is right).
+    gsc = MOLDS_DATA["goalie"].get("scale")
+    kg_use = gsc["k_mm_per_mold_unit"] if gsc else glob[0]
+    sc, s, th = gfit(kg_use)
+    _sc, mod = iou_fig("W-G", s, th, kg_use, glob[1:], mesh=go, mask=tgm)
+    res["goalie_scale_used_k"] = round(float(kg_use), 4)
+    res["goalie_scale_used_status"] = gsc["status"] if gsc else "shared skater scale"
+    res["goalie_measured_over_overhead_best"] = round(float(kg_use / kg_best[3]), 4) if gsc else None
+    res["figures"]["W-G"] = {"iou": round(float(sc), 4), "pivot_mm": [round(float(c), 2) for c in at(PATHS["W-G"], s)], "s_mm": round(float(s), 2), "heading_deg": round(math.degrees(th) % 360, 2), "observation": "traced silhouette (Finland goalie), posed at the MEASURED goalie scale; goalie-only best scale reported as a check of the preview scale"}
     tiles.append(("W-G", tgm[0], mod, tgm[1]))
     # stick check: operator-read heel/toe (on the ice) in each fitted figure frame
     ks = json.loads((REPO / "data" / "figure-keypoints.json").read_text())["overhead_sticks"]

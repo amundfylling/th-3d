@@ -28,9 +28,104 @@ def load_molds() -> dict:
 
 
 def _elements(part):
-    balls = {n: (tuple(e["centre"]), tuple(e["semi_axes"])) for n, e in part.get("ellipsoids", {}).items()}
+    balls = {n: (tuple(e["centre"]), tuple(e["semi_axes"]), tuple(e.get("rot_deg", (0, 0, 0)))) for n, e in part.get("ellipsoids", {}).items()}
     caps = {n: (tuple(e["a"]), tuple(e["b"]), e["radius"]) for n, e in part.get("capsules", {}).items()}
     return balls, caps
+
+
+def _euler_q(rot_deg):
+    from mathutils import Euler
+    return Euler([math.radians(a) for a in rot_deg], "XYZ").to_quaternion()
+
+
+def rbox(name: str, centre, half, rot_deg=(0, 0, 0), bevel: float = 0.5, segments: int = 3):
+    """Hard-surface rounded box (mm): moulded edges via a bevel; rotation XYZ Euler (deg)."""
+    verts = [(sx * half[0], sy * half[1], sz * half[2]) for sx in (-1, 1) for sy in (-1, 1) for sz in (-1, 1)]
+    faces = [(0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)]
+    ob = mesh_object(name, verts, faces)
+    ob.rotation_mode = "QUATERNION"
+    ob.rotation_quaternion = _euler_q(rot_deg)
+    ob.location = Vector(centre) * sb.MM_TO_M
+    _bevel_apply(ob, min(bevel, 0.95 * min(half)), segments)
+    return ob
+
+
+def cone(name: str, a, b, r_a: float, r_b: float, bevel: float = 0.3, n: int = 32):
+    """Truncated cone (mm) from a (radius r_a) to b (radius r_b), closed, edges bevelled (cuffs, sleeves)."""
+    va, vb = Vector(a), Vector(b)
+    d = vb - va
+    q = Vector((0, 0, 1)).rotation_difference(d.normalized())
+    verts = []
+    for z, r in ((0.0, r_a), (d.length, r_b)):
+        verts += [(r * math.cos(2 * math.pi * k / n), r * math.sin(2 * math.pi * k / n), z) for k in range(n)]
+    faces = [(k, (k + 1) % n, n + (k + 1) % n, n + k) for k in range(n)]
+    faces += [tuple(range(n))[::-1], tuple(range(n, 2 * n))]
+    ob = mesh_object(name, verts, faces)
+    ob.rotation_mode = "QUATERNION"
+    ob.rotation_quaternion = q
+    ob.location = va * sb.MM_TO_M
+    _bevel_apply(ob, min(bevel, 0.45 * min(r_a, r_b, d.length)), 2)
+    return ob
+
+
+def torus(name: str, centre, axis, R: float, r: float, scale_r=(1.0, 1.0), nu: int = 48, nv: int = 16):
+    """Smooth ring (mm) around `axis` through `centre`; scale_r stretches the ring (u, v) into an oval."""
+    a = Vector(axis).normalized()
+    q = Vector((0, 0, 1)).rotation_difference(a)
+    verts, faces = [], []
+    for i in range(nu):
+        t = 2 * math.pi * i / nu
+        cx, cy = R * scale_r[0] * math.cos(t), R * scale_r[1] * math.sin(t)
+        for j in range(nv):
+            s_ = 2 * math.pi * j / nv
+            verts.append((cx + r * math.cos(s_) * math.cos(t), cy + r * math.cos(s_) * math.sin(t), r * math.sin(s_)))
+    for i in range(nu):
+        for j in range(nv):
+            a0, a1 = i * nv + j, i * nv + (j + 1) % nv
+            b0, b1 = ((i + 1) % nu) * nv + j, ((i + 1) % nu) * nv + (j + 1) % nv
+            faces.append((a0, b0, b1, a1))
+    ob = mesh_object(name, verts, faces)
+    ob.rotation_mode = "QUATERNION"
+    ob.rotation_quaternion = q
+    ob.location = Vector(centre) * sb.MM_TO_M
+    bpy.ops.object.select_all(action="DESELECT")
+    bpy.context.view_layer.objects.active = ob
+    ob.select_set(True)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    bpy.ops.object.shade_smooth()
+    return ob
+
+
+def _bevel_apply(ob, width_mm: float, segments: int):
+    bpy.ops.object.select_all(action="DESELECT")
+    bpy.context.view_layer.objects.active = ob
+    ob.select_set(True)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    if width_mm > 0.01:
+        mod = ob.modifiers.new("bevel", "BEVEL")
+        mod.width = sb.m(width_mm)
+        mod.segments = segments
+        mod.limit_method = "NONE"
+        bpy.ops.object.modifier_apply(modifier="bevel")
+    bpy.ops.object.shade_smooth_by_angle(angle=math.radians(40))
+
+
+def build_part(prefix: str, pname: str, part: dict):
+    """All geometry of one mold part (one material): metaball elements as one smooth mesh, plus any
+    hard-surface rounded boxes and cones as separate meshes (joined later)."""
+    out = []
+    balls, caps = _elements(part)
+    if balls or caps:
+        out.append(metaball_part(f"{prefix}_{pname}", balls, caps, res_mm=part.get("res", 0.3)))
+    for n, e in part.get("rboxes", {}).items():
+        out.append(rbox(f"{prefix}_{pname}_{n}", e["centre"], e["half_size"], e.get("rot_deg", (0, 0, 0)), e.get("bevel", 0.5)))
+    for n, e in part.get("tori", {}).items():
+        out.append(torus(f"{prefix}_{pname}_{n}", e["centre"], e["axis"], e["R"], e["r"], tuple(e.get("scale_r", (1.0, 1.0)))))
+    for n, e in part.get("cones", {}).items():
+        out.append(cone(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], e.get("bevel", 0.3)))
+    for o in out:
+        o["material_key"] = part["material"]
+    return out
 
 
 # ---------------------------------------------------------------------------------------------------
@@ -41,10 +136,12 @@ def metaball_part(name: str, balls: dict, capsules: dict, cubes: dict | None = N
     mb.threshold = 0.6
     ob = bpy.data.objects.new(name + "Meta", mb)
     bpy.context.scene.collection.objects.link(ob)
-    for c, r in balls.values():
+    for c, r, *rot in balls.values():
         e = mb.elements.new(type="ELLIPSOID")
         e.co, e.radius, e.stiffness = c, 1.0, 2.0
         e.size_x, e.size_y, e.size_z = [v / sb.METABALL_SURFACE for v in r]
+        if rot and any(rot[0]):
+            e.rotation = _euler_q(rot[0])
     for a, b, r in capsules.values():
         va, vb = Vector(a), Vector(b)
         d = vb - va
@@ -178,6 +275,30 @@ def tube(name: str, pts_mm, r_mm: float, n: int = 12):
     return bpy.context.view_layer.objects.active
 
 
+def apply_paint(ob, mold: dict, slot_name) -> int:
+    """Two-colour moulding detail painted on the joined mesh (before scaling, mold units): faces of material
+    `from` whose centre, seen from `origin`, falls inside an (azimuth, elevation) polygon in degrees get
+    material `to` (e.g. the skin seen through the gaps between a goalie's mask and its back plate).
+    slot_name(key) -> material name of that key on `ob`. Returns the number of repainted faces."""
+    from shapely.geometry import Point, Polygon
+    names = [m.name for m in ob.data.materials]
+    n = 0
+    for reg in mold.get("paint", []):
+        src, dst = names.index(slot_name(reg["from"])), names.index(slot_name(reg["to"]))
+        o = Vector(reg["origin"])
+        polys = [Polygon(poly) for poly in reg["polygons_az_el_deg"]]
+        for f in ob.data.polygons:
+            if f.material_index != src:
+                continue
+            d = f.center * 1000.0 - o
+            az = math.degrees(math.atan2(d.y, d.x))
+            el = math.degrees(math.atan2(d.z, math.hypot(d.x, d.y)))
+            if any(pp.contains(Point(az, el)) for pp in polys):
+                f.material_index = dst
+                n += 1
+    return n
+
+
 def tag(ob, key: str):
     ob["material_key"] = key
     return ob
@@ -186,7 +307,7 @@ def tag(ob, key: str):
 def build_skater(mold: dict | None = None):
     """Skater mold parts (see data/figure-molds.json 'skater')."""
     m = (mold or load_molds())["skater"]
-    parts = [tag(metaball_part(f"sk_{n}", *_elements(p)), p["material"]) for n, p in m["parts"].items()]
+    parts = [o for n, p in m["parts"].items() for o in build_part("sk", n, p)]
     parts.append(tag(socket("sk_socket", m["socket"]), BLUE))
     r = m["runner"]
     parts.append(tag(blade("sk_runner", r["a"], r["b"], r["height"], r["thickness"]), METAL))
@@ -199,7 +320,7 @@ def build_skater(mold: dict | None = None):
 def build_goalie(mold: dict | None = None):
     """Goalie mold parts (see data/figure-molds.json 'goalie')."""
     m = (mold or load_molds())["goalie"]
-    parts = [tag(metaball_part(f"go_{n}", *_elements(p)), p["material"]) for n, p in m["parts"].items()]
+    parts = [o for n, p in m["parts"].items() for o in build_part("go", n, p)]
     by_mat = {}
     for n, bx in m["boxes"].items():
         by_mat.setdefault(bx["material"], {})[n] = (tuple(bx["centre"]), tuple(bx["half_size"]), bx["rot_z_deg"])

@@ -1,121 +1,129 @@
 {
-  "scale_k_mm_per_mold_unit": 1.0713,
+  "scale_k_mm_per_mold_unit": 1.0723,
   "scale_source": "validation/players/overhead-fit.json (4 Sweden skaters, official overhead, ASSUMED preview scale)",
+  "scales": {
+    "skater": 1.0723,
+    "goalie": 1.1421889791935147
+  },
+  "scale_sources": {
+    "skater": "official overhead fit (ASSUMED preview scale), status traced",
+    "goalie": "user ruler measurement: height 54 mm (data/figure-molds.json measurements), status measured"
+  },
   "assets": {
     "skater_SWE": {
-      "height_mm": 51.24,
+      "height_mm": 51.15,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.1,
-        14.0
+        15.1
       ],
       "footprint_y_mm": [
-        -23.3,
+        -22.9,
         43.1
       ],
-      "socket_bottom_diameter_mm": 12.0,
+      "socket_bottom_diameter_mm": 12.01,
       "socket_height_mm": 4.5,
       "blade_heel_mm": [
-        3.21,
-        22.5
+        3.22,
+        22.52
       ],
       "blade_toe_mm": [
         2.36,
-        43.07
+        43.11
       ],
-      "blade_length_mm": 20.59,
-      "blade_height_mm": 3.21,
+      "blade_length_mm": 20.61,
+      "blade_height_mm": 3.22,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 49636,
-      "decal_faces": 1258,
+      "triangles": 52152,
+      "decal_faces": 1359,
       "number_on_asset_decal": "21"
     },
     "skater_FIN": {
-      "height_mm": 51.24,
+      "height_mm": 51.15,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.1,
-        14.0
+        15.1
       ],
       "footprint_y_mm": [
-        -23.3,
+        -22.9,
         43.1
       ],
-      "socket_bottom_diameter_mm": 12.0,
+      "socket_bottom_diameter_mm": 12.01,
       "socket_height_mm": 4.5,
       "blade_heel_mm": [
-        3.21,
-        22.5
+        3.22,
+        22.52
       ],
       "blade_toe_mm": [
         2.36,
-        43.07
+        43.11
       ],
-      "blade_length_mm": 20.59,
-      "blade_height_mm": 3.21,
+      "blade_length_mm": 20.61,
+      "blade_height_mm": 3.22,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 49636,
-      "decal_faces": 1258,
+      "triangles": 52152,
+      "decal_faces": 1359,
       "number_on_asset_decal": "4"
     },
     "goalie_SWE": {
-      "height_mm": 50.35,
+      "height_mm": 54.0,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
-        -7.9,
-        9.6
+        -9.2,
+        10.3
       ],
       "footprint_y_mm": [
-        -14.7,
-        28.9
+        -13.9,
+        28.1
       ],
-      "socket_bottom_diameter_mm": 11.57,
-      "socket_height_mm": 4.5,
+      "socket_bottom_diameter_mm": 12.34,
+      "socket_height_mm": 4.8,
       "blade_heel_mm": [
-        8.36,
-        1.93
+        8.91,
+        2.06
       ],
       "blade_toe_mm": [
-        8.36,
-        28.93
+        8.91,
+        28.06
       ],
-      "blade_length_mm": 27.0,
-      "blade_height_mm": 3.0,
+      "blade_length_mm": 26.0,
+      "blade_height_mm": 5.5,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 66182,
-      "decal_faces": 1580,
+      "triangles": 121726,
+      "decal_faces": 1498,
       "number_on_asset_decal": "30"
     },
     "goalie_FIN": {
-      "height_mm": 50.35,
+      "height_mm": 54.0,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
-        -7.9,
-        9.6
+        -9.2,
+        10.3
       ],
       "footprint_y_mm": [
-        -14.7,
-        28.9
+        -13.9,
+        28.1
       ],
-      "socket_bottom_diameter_mm": 11.57,
-      "socket_height_mm": 4.5,
+      "socket_bottom_diameter_mm": 12.34,
+      "socket_height_mm": 4.8,
       "blade_heel_mm": [
-        8.36,
-        1.93
+        8.91,
+        2.06
       ],
       "blade_toe_mm": [
-        8.36,
-        28.93
+        8.91,
+        28.06
       ],
-      "blade_length_mm": 27.0,
-      "blade_height_mm": 3.0,
+      "blade_length_mm": 26.0,
+      "blade_height_mm": 5.5,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 66182,
-      "decal_faces": 1580,
+      "triangles": 121726,
+      "decal_faces": 1498,
       "number_on_asset_decal": null
     }
   }

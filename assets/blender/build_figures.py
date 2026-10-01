@@ -31,10 +31,15 @@ VAL = REPO / "validation" / "players"
 VIEWS = REPO / "out" / "figures" / "views"  # per-view renders (sheets go to validation/players)
 SAMPLES = json.loads((REPO / "validation" / "18-colour-samples.json").read_text())
 FIT = json.loads((VAL / "overhead-fit.json").read_text())
-K = FIT["scale_k_mm_per_mold_unit"]
 MOLDS = fm.load_molds()
-TEAMS = {"SWE": {"kit": "sweden_yellow", "name": "SVERIGE", "ink": (20, 20, 22), "outline": (240, 200, 40)},
-         "FIN": {"kit": "goalie_white", "name": "FINLAND", "ink": (28, 88, 160), "outline": (235, 235, 235)}}
+# Scale (mm per mold unit) per mold. Skater: fitted on the official overhead (ASSUMED preview scale). Goalie:
+# from the user's measured height (data/figure-molds.json measurements; set by calibrate_goalie()).
+KS = {"skater": FIT["scale_k_mm_per_mold_unit"], "goalie": FIT["scale_k_mm_per_mold_unit"]}
+if MOLDS["goalie"].get("scale"):  # measured goalie scale (calibrate_goalie, data/figure-molds.json)
+    KS["goalie"] = MOLDS["goalie"]["scale"]["k_mm_per_mold_unit"]
+K = KS["skater"]
+TEAMS = {"SWE": {"kit": "sweden_yellow", "name": "SVERIGE", "ink": (24, 22, 20), "outline": (40, 32, 18)},
+         "FIN": {"kit": "goalie_white", "name": "FINLAND", "ink": (28, 88, 160), "outline": (28, 88, 160)}}
 # Colours (sRGB) from the official overhead (validation/18-colour-samples.json). One blue for both teams: the
 # median blue of all Finland and all Sweden figures agrees within 3 levels (docs/players.md).
 COMMON = {fm.BLUE: "finland_blue", fm.SKIN: "skin", fm.METAL: "stick_metal", fm.TAN: "goalie_tan"}
@@ -64,19 +69,23 @@ def material(name, srgb, rough=0.32, metallic=0.0, coat=0.0):
 
 
 def team_materials(team):
-    t = TEAMS[team]
-    return {fm.KIT: material(f"fig_kit_{team}", SAMPLES[t["kit"]]["srgb"], 0.3, coat=0.2),
-            fm.BLUE: material("fig_blue", SAMPLES[COMMON[fm.BLUE]]["srgb"], 0.3, coat=0.2),
-            fm.SKIN: material("fig_skin", SAMPLES["skin"]["srgb"], 0.4),
-            fm.METAL: material("fig_stick_metal", SAMPLES["stick_metal"]["srgb"], 0.28, metallic=1.0),
-            fm.TAN: material("fig_stick_tan", SAMPLES["goalie_tan"]["srgb"], 0.35),
-            fm.DARK: material("fig_recess", (22, 40, 70), 0.6)}
+    A = MOLDS["albedo_srgb"]  # data/figure-molds.json: calibrated plastic albedo
+    return {fm.KIT: material(f"fig_kit_{team}", A[f"kit_{team}"], 0.32, coat=0.25),
+            fm.BLUE: material("fig_blue", A["blue"], 0.3, coat=0.25),
+            fm.SKIN: material("fig_skin", A["skin"], 0.42),
+            fm.METAL: material("fig_stick_metal", A["stick_metal"], 0.3, metallic=1.0),
+            fm.TAN: material("fig_stick_tan", A["stick_tan"], 0.4),
+            fm.DARK: material("fig_recess", A["recess"], 0.6)}
 
 
-def build_mold(kind):
-    """Joined, scaled rigid mesh (metres) with material slots keyed by the parts' material keys."""
+def build_mold(kind, scale=True):
+    """Joined, scaled rigid mesh (metres) with material slots keyed by the parts' material keys.
+    scale=False keeps mold units (x 0.001) - used to measure the mold before calibration."""
     parts = fm.build_skater(MOLDS) if kind == "skater" else fm.build_goalie(MOLDS)
+    keep_fine = {f"go_{n}" for r in MOLDS[kind].get("paint", []) for n in r.get("no_decimate", [])}
     for p in parts:
+        if p.name in keep_fine:  # painted parts keep their full resolution (clean paint edges)
+            continue
         if p.name.startswith(("sk_", "go_")) and len(p.data.vertices) > 3000:  # metaball parts only
             mod = p.modifiers.new("dec", "DECIMATE")
             mod.ratio = 0.3
@@ -95,42 +104,28 @@ def build_mold(kind):
     bpy.context.view_layer.objects.active = parts[0]
     bpy.ops.object.join()
     ob = bpy.context.view_layer.objects.active
-    for v in ob.data.vertices:
-        v.co = v.co * K
+    if MOLDS[kind].get("paint"):
+        for k in keys:  # slots must exist on the joined mesh even if unused before painting
+            if slot[k].name not in [m.name for m in ob.data.materials]:
+                ob.data.materials.append(slot[k])
+        fm.apply_paint(ob, MOLDS[kind], lambda k: f"slot_{k}")
+    if scale:
+        for v in ob.data.vertices:
+            v.co = v.co * KS[kind]
     bpy.ops.object.shade_smooth()
     ob.data.update()
     return ob
 
 
 def print_texture(kind, team, number):
-    """RGBA back print: country name arched over the number (fonts approximate the moulded print)."""
+    """RGBA back print: straight sans country name over collegiate block digits with gap + outline
+    (assets/blender/print_glyphs.py; layout data/figure-molds.json print_layout)."""
+    import print_glyphs as pg
     t = TEAMS[team]
-    W, H = 1024, 900
-    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(im)
-    fname = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 150)
-    # arched name: letters placed on a circle arc (the print follows the jersey's curvature)
-    text = t["name"]
-    R, cx, cy = 1500, W / 2, 190 + 1500
-    widths = [d.textlength(ch, font=fname) * 0.82 for ch in text]
-    total = sum(widths)
-    ang = -total / 2 / R
-    for ch, w in zip(text, widths):
-        a = ang + w / 2 / R
-        glyph = Image.new("RGBA", (200, 200), (0, 0, 0, 0))
-        ImageDraw.Draw(glyph).text((100, 100), ch, font=fname, fill=(*t["ink"], 255), anchor="mm")
-        glyph = glyph.resize((int(200 * 0.82), 200)).rotate(-math.degrees(a), resample=Image.BICUBIC)
-        x = cx + R * math.sin(a) - glyph.width / 2
-        y = cy - R * math.cos(a) - glyph.height / 2
-        im.alpha_composite(glyph, (int(x), int(y)))
-        ang += w / R
-    if number:
-        fnum = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf", 520)
-        num = Image.new("RGBA", (W, 640), (0, 0, 0, 0))
-        dn = ImageDraw.Draw(num)
-        dn.text((W / 2, 320), number, font=fnum, fill=(*t["ink"], 255), anchor="mm", stroke_width=10, stroke_fill=(*t["outline"], 255))
-        num = num.resize((int(W * 0.82), 640))
-        im.alpha_composite(num, ((W - num.width) // 2, 250))
+    L = MOLDS["print_layout"][kind]
+    size = PRINT[kind]["size"]
+    im = pg.print_image(t["name"], number, t["ink"], t["outline"], size, L["digit_h"], L["name_cap"], L["name_y"],
+                        L["name_y"] + L["name_cap"] + L["gap"], px_per_unit=72)
     TEX.mkdir(parents=True, exist_ok=True)
     p = TEX / f"print_{kind}_{team}_{number or 'blank'}.png"
     im.save(p)
@@ -140,6 +135,7 @@ def print_texture(kind, team, number):
 def decal(fig, kind, team, number, name):
     """Thin decal shell over the jersey back: kit faces facing the projector, pushed out 0.04 mm, planar UVs."""
     pr = PRINT[kind]
+    K = KS[kind]
     c = Vector(pr["centre"]) * K
     d = Vector(pr["dir"]).normalized()
     up = Vector(pr["up"])
@@ -205,6 +201,7 @@ def measure(ob, kind):
         ids = sorted({i for p, mi in zip(tri, fi) if mats[mi].startswith(prefix) for i in p})
         return V[ids]
     stick = verts_of("fig_stick_")
+    K = KS[kind]
     m = MOLDS[kind]
     s = m["stick"]
     blade = np.array(s["blade"], float) * K
@@ -225,9 +222,9 @@ def measure(ob, kind):
     }
 
 
-def cam_from_fit(view_id, kind):
+def cam_from_fit(view_id, kind, fit_json=None):
     """Blender camera reproducing a fitted photo camera (scripts/fit-figure-views.py) for the view's crop."""
-    fitv = json.loads((VAL / f"{kind}-fit.json").read_text())["views"][view_id]
+    fitv = json.loads(Path(fit_json or VAL / f"{kind}-fit.json").read_text())["views"][view_id]
     man = json.loads((REPO / "references" / "derived" / "players" / "manifest.json").read_text())["items"][view_id]
     az, el, roll, pan, tilt, dist, f = fitv["params"]
     target = np.array({"skater": [2.0, 4.0, 24.0], "goalie": [2.0, 7.0, 24.0]}[kind])
@@ -255,13 +252,45 @@ def cam_from_fit(view_id, kind):
     ob = bpy.data.objects.new("Fit_" + view_id, cam)
     bpy.context.scene.collection.objects.link(ob)
     M3 = Matrix([list(R[0]), list(-R[1]), list(-R[2])]).transposed()
-    ob.matrix_world = Matrix.Translation(Vector(C * K / 1000)) @ M3.to_4x4()
+    ob.matrix_world = Matrix.Translation(Vector(C * KS[kind] / 1000)) @ M3.to_4x4()
     return ob, (cw, ch)
+
+
+def calibrate_goalie():
+    """Goalie scale and stick blade from the user's ruler measurements: k = measured height / mold height
+    (mask top to socket underside); blade length (heel bend -> toe, lower edge) and plank height set in mold
+    units from k; the paddle meets the blade top. Writes the stick back to data/figure-molds.json."""
+    meas = MOLDS.get("measurements", {}).get("goalie")
+    if not meas:
+        return None
+    sb.reset_scene()
+    ob = build_mold("goalie", scale=False)
+    zs = [v.co.z * 1000 for v in ob.data.vertices]
+    h = max(zs) - min(zs)
+    k = meas["height_mm"] / h
+    st = MOLDS["goalie"]["stick"]
+    heel = st["blade"][0]
+    st["blade"] = [heel, [heel[0], round(heel[1] + meas["blade_length_mm"] / k, 3)]]
+    st["blade_h"] = round(meas["blade_height_mm"] / k, 3)
+    pa = st["paddle"]
+    pa[1] = [pa[1][0], round(heel[1] + 1.2, 3), round(0.75 * st["blade_h"], 3)]
+    MOLDS["goalie"]["stick"] = st
+    MOLDS["goalie"]["scale"] = {"k_mm_per_mold_unit": round(k, 5), "mold_height_units": round(h, 3), "status": "measured",
+                                "source_id": meas["source_id"], "note": "k = measured height / mold height; the blade is set from the measured length and height."}
+    import json as _j
+    data = _j.loads(fm.MOLDS_JSON.read_text())
+    data["goalie"]["stick"], data["goalie"]["scale"] = st, MOLDS["goalie"]["scale"]
+    fm.MOLDS_JSON.write_text(_j.dumps(data, indent=1) + "\n")
+    KS["goalie"] = k
+    return k
 
 
 def main():
     VAL.mkdir(parents=True, exist_ok=True)
+    kg = calibrate_goalie()
     report = {"scale_k_mm_per_mold_unit": K, "scale_source": "validation/players/overhead-fit.json (4 Sweden skaters, official overhead, ASSUMED preview scale)",
+              "scales": dict(KS), "scale_sources": {"skater": "official overhead fit (ASSUMED preview scale), status traced",
+                                                    "goalie": ("user ruler measurement: height 54 mm (data/figure-molds.json measurements), status measured" if kg else "shared skater scale")},
               "assets": {}}
     renders = []
     for kind in ("skater", "goalie"):

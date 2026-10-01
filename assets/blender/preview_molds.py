@@ -62,6 +62,12 @@ for kind in (sys.argv[1:] or ["skater", "goalie"]):
     sb.reset_scene()
     parts = fm.build_skater() if kind == "skater" else fm.build_goalie()
     ob = join(parts, f"Mold.{kind}")
+    m_ = fm.load_molds()[kind]
+    if m_.get("paint"):
+        for k in KEYS:
+            if f"prev_{k}" not in [m.name for m in ob.data.materials]:
+                ob.data.materials.append(bpy.data.materials[f"prev_{k}"])
+        fm.apply_paint(ob, m_, lambda k: f"prev_{k}")
     v = dump(ob, OUT / f"{kind}.npz")
     print(kind, "verts", len(v), "bbox mm", v.min(0).round(2), v.max(0).round(2))
     sb.set_world(0.6)

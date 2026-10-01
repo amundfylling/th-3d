@@ -4,29 +4,91 @@
   "parts": {
    "helmet": {
     "material": "blue",
+    "res": 0.2,
     "ellipsoids": {
      "shell": {
       "centre": [
-       7.78,
-       -1.44,
-       43.52
+       9.95,
+       -1.7,
+       44.1
       ],
       "semi_axes": [
-       4.81,
-       4.01,
-       4.31
+       4.1,
+       3.45,
+       3.6
+      ],
+      "rot_deg": [
+       0,
+       2,
+       0
+      ]
+     },
+     "back": {
+      "centre": [
+       7.0,
+       -1.7,
+       42.4
+      ],
+      "semi_axes": [
+       2.9,
+       3.4,
+       3.3
+      ],
+      "rot_deg": [
+       0,
+       -5,
+       0
       ]
      },
      "brim": {
       "centre": [
-       10.17,
-       -2.33,
-       42.74
+       12.2,
+       -1.7,
+       42.4
       ],
       "semi_axes": [
-       1.6,
-       3.8,
-       1.8
+       0.5,
+       3.2,
+       0.5
+      ],
+      "rot_deg": [
+       0,
+       8,
+       0
+      ]
+     },
+     "ear_l": {
+      "centre": [
+       8.96,
+       1.45,
+       41.4
+      ],
+      "semi_axes": [
+       0.95,
+       0.5,
+       1.15
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
+      ]
+     },
+     "ear_r": {
+      "centre": [
+       8.96,
+       -4.85,
+       41.4
+      ],
+      "semi_axes": [
+       0.95,
+       0.5,
+       1.15
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
       ]
      }
     },
@@ -34,76 +96,211 @@
    },
    "face": {
     "material": "skin",
+    "res": 0.18,
     "ellipsoids": {
-     "face": {
+     "forehead": {
       "centre": [
-       9.46,
-       -2.28,
-       40.02
+       11.88,
+       -1.7,
+       41.66
       ],
       "semi_axes": [
-       2.6,
-       3.0,
-       3.0
+       1.8,
+       2.25,
+       1.6
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
+      ]
+     },
+     "face": {
+      "centre": [
+       11.29,
+       -1.7,
+       39.44
+      ],
+      "semi_axes": [
+       2.15,
+       2.0,
+       3.05
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
+      ]
+     },
+     "brow": {
+      "centre": [
+       12.99,
+       -1.7,
+       40.47
+      ],
+      "semi_axes": [
+       0.45,
+       1.9,
+       0.4
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
       ]
      },
      "nose": {
       "centre": [
-       12.15,
-       -2.4,
-       40.25
+       12.99,
+       -1.7,
+       39.14
       ],
       "semi_axes": [
-       0.9,
-       0.8,
-       1.1
+       0.55,
+       0.42,
+       1.0
+      ],
+      "rot_deg": [
+       0,
+       10,
+       0
+      ]
+     },
+     "cheek_l": {
+      "centre": [
+       11.56,
+       0.0,
+       39.02
+      ],
+      "semi_axes": [
+       1.0,
+       0.65,
+       1.0
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
+      ]
+     },
+     "cheek_r": {
+      "centre": [
+       11.56,
+       -3.4,
+       39.02
+      ],
+      "semi_axes": [
+       1.0,
+       0.65,
+       1.0
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
       ]
      },
      "chin": {
       "centre": [
-       10.2,
-       -2.4,
-       37.68
+       11.25,
+       -1.7,
+       36.66
       ],
       "semi_axes": [
-       1.8,
-       2.3,
+       1.05,
+       1.25,
+       1.0
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
+      ]
+     },
+     "jaw": {
+      "centre": [
+       10.46,
+       -1.7,
+       38.04
+      ],
+      "semi_axes": [
+       1.5,
+       1.65,
        1.3
+      ],
+      "rot_deg": [
+       0,
+       20,
+       0
       ]
      }
     },
     "capsules": {
      "neck": {
       "a": [
-       3.4,
-       -2.4,
-       36.4
+       5.9,
+       -1.8,
+       37.0
       ],
       "b": [
-       6.99,
-       -2.43,
-       40.22
+       8.6,
+       -1.7,
+       39.6
       ],
-      "radius": 2.6
+      "radius": 3.0
      }
     }
    },
    "collar": {
     "material": "blue",
+    "res": 0.18,
     "ellipsoids": {},
     "capsules": {
-     "collar": {
+     "v_l": {
       "a": [
-       2.22,
-       -2.07,
-       35.2
+       8.4,
+       0.7,
+       37.0
       ],
       "b": [
-       4.02,
-       -2.07,
-       38.76
+       9.9,
+       -1.6,
+       35.2
       ],
-      "radius": 3.62
+      "radius": 0.7
+     },
+     "v_r": {
+      "a": [
+       8.4,
+       -4.1,
+       37.0
+      ],
+      "b": [
+       9.9,
+       -1.8,
+       35.2
+      ],
+      "radius": 0.7
+     }
+    },
+    "tori": {
+     "ring": {
+      "centre": [
+       6.1,
+       -1.7,
+       37.1
+      ],
+      "axis": [
+       0.5,
+       0,
+       0.87
+      ],
+      "R": 3.05,
+      "r": 0.8,
+      "scale_r": [
+       1.0,
+       1.08
+      ]
      }
     }
    },
@@ -112,210 +309,259 @@
     "ellipsoids": {
      "chest": {
       "centre": [
-       -1.17,
-       -4.13,
-       31.56
+       0.5,
+       -4.6,
+       30.8
       ],
       "semi_axes": [
-       6.02,
-       9.83,
-       7.22
+       5.9,
+       8.8,
+       6.4
       ]
      },
      "belly": {
       "centre": [
-       -2.93,
-       -5.05,
-       25.98
+       -2.7,
+       -4.9,
+       24.8
       ],
       "semi_axes": [
-       5.43,
-       8.64,
-       5.02
+       5.4,
+       7.9,
+       5.4
       ]
      },
      "shoulder_l": {
       "centre": [
-       -0.58,
-       4.51,
-       36.23
+       1.0,
+       2.4,
+       35.5
       ],
       "semi_axes": [
-       4.0,
-       4.2,
-       3.6
+       3.9,
+       3.8,
+       3.2
       ]
      },
      "shoulder_r": {
       "centre": [
-       -0.58,
-       -12.66,
-       36.2
+       1.0,
+       -12.4,
+       35.8
       ],
       "semi_axes": [
-       4.0,
+       3.9,
+       4.1,
+       3.2
+      ]
+     },
+     "traps": {
+      "centre": [
+       1.2,
+       -4.6,
+       36.0
+      ],
+      "semi_axes": [
        4.2,
-       3.6
+       7.0,
+       2.6
+      ],
+      "rot_deg": [
+       0,
+       -25,
+       0
       ]
      }
     },
     "capsules": {
      "arm_l_upper": {
       "a": [
-       -0.31,
-       5.13,
-       35.35
+       1.1,
+       3.0,
+       34.6
       ],
       "b": [
-       2.4,
-       8.5,
-       27.14
+       3.9,
+       5.9,
+       28.5
       ],
-      "radius": 3.1
+      "radius": 2.9
      },
      "arm_r_upper": {
       "a": [
-       -0.43,
-       -13.46,
-       36.27
+       1.1,
+       -13.0,
+       35.8
       ],
       "b": [
-       1.73,
-       -18.69,
-       33.95
+       3.0,
+       -18.4,
+       34.1
       ],
-      "radius": 3.1
+      "radius": 3.0
      }
     }
    },
    "sleeves": {
     "material": "blue",
     "ellipsoids": {},
-    "capsules": {
-     "arm_l_fore": {
+    "capsules": {},
+    "cones": {
+     "gauntlet_r": {
       "a": [
-       2.4,
-       8.5,
-       27.14
+       4.3,
+       -14.9,
+       33.0
       ],
       "b": [
-       5.75,
-       6.37,
-       18.97
+       6.5,
+       -6.6,
+       27.7
       ],
-      "radius": 2.79
+      "r_a": 4.6,
+      "r_b": 2.0,
+      "bevel": 0.9
      },
-     "arm_r_fore": {
+     "gauntlet_l": {
       "a": [
-       1.73,
-       -18.69,
-       33.95
+       4.4,
+       5.4,
+       27.6
       ],
       "b": [
-       6.2,
-       -8.74,
-       28.23
+       6.1,
+       2.6,
+       23.4
       ],
-      "radius": 3.0
+      "r_a": 3.8,
+      "r_b": 2.0,
+      "bevel": 0.9
      }
     }
    },
    "gloves": {
     "material": "blue",
+    "res": 0.18,
     "ellipsoids": {
-     "glove_l": {
+     "thumb_l": {
       "centre": [
-       5.7,
-       5.6,
-       17.0
+       8.0,
+       0.6,
+       23.2
       ],
       "semi_axes": [
-       3.0,
-       2.8,
-       3.0
+       1.1,
+       0.9,
+       1.3
       ]
      },
-     "glove_r": {
+     "thumb_r": {
       "centre": [
-       7.4,
-       -3.4,
-       26.2
+       8.8,
+       -2.8,
+       27.4
       ],
       "semi_axes": [
-       3.2,
-       3.0,
-       3.2
-      ]
-     },
-     "cuff_r": {
-      "centre": [
-       6.2,
-       -6.8,
-       27.6
-      ],
-      "semi_axes": [
-       2.8,
-       3.4,
-       3.4
+       1.1,
+       0.9,
+       1.3
       ]
      }
     },
-    "capsules": {}
+    "capsules": {},
+    "rboxes": {
+     "glove_l": {
+      "centre": [
+       6.7,
+       0.8,
+       22.0
+      ],
+      "half_size": [
+       2.3,
+       2.2,
+       2.7
+      ],
+      "rot_deg": [
+       -46,
+       0,
+       -7
+      ],
+      "bevel": 1.15
+     },
+     "glove_r": {
+      "centre": [
+       7.5,
+       -3.4,
+       26.3
+      ],
+      "half_size": [
+       2.4,
+       2.3,
+       2.8
+      ],
+      "rot_deg": [
+       -46,
+       0,
+       -7
+      ],
+      "bevel": 1.2
+     }
+    }
    },
    "pants": {
     "material": "blue",
     "ellipsoids": {
      "hips": {
       "centre": [
-       -3.02,
-       -4.44,
-       21.73
+       -3.0,
+       -4.4,
+       21.8
       ],
       "semi_axes": [
-       5.41,
-       8.42,
-       3.81
+       5.3,
+       7.4,
+       3.5
       ]
      },
      "butt": {
       "centre": [
-       -6.18,
-       -4.03,
-       21.18
+       -6.0,
+       -4.0,
+       21.2
       ],
       "semi_axes": [
-       3.0,
-       7.2,
-       3.8
+       2.9,
+       6.4,
+       3.6
       ]
      }
     },
     "capsules": {
      "thigh_l": {
       "a": [
-       -1.95,
-       1.58,
-       21.05
+       -1.9,
+       -0.6,
+       21.6
       ],
       "b": [
-       1.4,
-       1.6,
-       15.8
+       1.0,
+       -0.4,
+       17.6
       ],
-      "radius": 3.7
+      "radius": 3.5
      },
      "thigh_r": {
       "a": [
-       -3.13,
-       -7.94,
-       20.95
+       -3.1,
+       -7.6,
+       21.6
       ],
       "b": [
-       -2.8,
-       -10.76,
-       14.39
+       -3.0,
+       -10.0,
+       16.8
       ],
-      "radius": 3.71
+      "radius": 3.5
      }
     }
    },
@@ -325,29 +571,29 @@
     "capsules": {
      "shin_l": {
       "a": [
-       1.79,
-       1.52,
-       15.2
+       1.5,
+       -0.4,
+       17.4
       ],
       "b": [
-       0.19,
-       0.79,
-       7.65
+       0.3,
+       0.5,
+       7.7
       ],
-      "radius": 3.0
+      "radius": 2.85
      },
      "shin_r": {
       "a": [
-       -3.22,
-       -10.8,
-       14.2
+       -3.1,
+       -10.1,
+       16.6
       ],
       "b": [
        -8.8,
        -14.6,
        6.2
       ],
-      "radius": 2.91
+      "radius": 2.8
      }
     }
    },
@@ -470,45 +716,159 @@
   "parts": {
    "mask": {
     "material": "blue",
+    "res": 0.13,
     "ellipsoids": {
-     "shell": {
+     "crown": {
       "centre": [
-       0.8,
+       1.7,
        5.0,
-       42.0
+       43.7
       ],
       "semi_axes": [
-       4.6,
-       4.2,
-       5.0
+       3.3,
+       3.45,
+       3.6
+      ],
+      "rot_deg": [
+       0,
+       16,
+       0
       ]
      },
-     "cage": {
+     "plate": {
       "centre": [
-       4.0,
+       2.9,
        5.0,
-       40.6
+       40.4
       ],
       "semi_axes": [
-       2.2,
-       3.5,
-       3.8
+       2.5,
+       3.0,
+       4.1
+      ],
+      "rot_deg": [
+       0,
+       14,
+       0
+      ]
+     },
+     "chin": {
+      "centre": [
+       3.8,
+       5.0,
+       37.4
+      ],
+      "semi_axes": [
+       0.8,
+       1.2,
+       0.9
+      ]
+     },
+     "brow": {
+      "centre": [
+       4.75,
+       5.0,
+       42.3
+      ],
+      "semi_axes": [
+       0.35,
+       2.4,
+       0.4
+      ]
+     },
+     "nose": {
+      "centre": [
+       5.2,
+       5.0,
+       40.5
+      ],
+      "semi_axes": [
+       0.35,
+       0.38,
+       1.0
+      ],
+      "rot_deg": [
+       0,
+       10,
+       0
+      ]
+     },
+     "cheek_l": {
+      "centre": [
+       4.4,
+       6.8,
+       39.5
+      ],
+      "semi_axes": [
+       0.5,
+       0.7,
+       0.9
+      ]
+     },
+     "cheek_r": {
+      "centre": [
+       4.4,
+       3.2,
+       39.5
+      ],
+      "semi_axes": [
+       0.5,
+       0.7,
+       0.9
+      ]
+     },
+     "shell": {
+      "centre": [
+       -0.3,
+       5.0,
+       40.9
+      ],
+      "semi_axes": [
+       3.3,
+       3.3,
+       3.85
       ]
      }
     },
     "capsules": {
-     "strap": {
+     "strap1": {
       "a": [
-       -3.1,
+       -1.75,
        5.0,
-       43.8
+       44.5
       ],
       "b": [
-       -3.3,
+       -2.9,
        5.0,
-       38.8
+       43.47
       ],
-      "radius": 0.9
+      "radius": 0.55
+     },
+     "strap2": {
+      "a": [
+       -2.9,
+       5.0,
+       43.47
+      ],
+      "b": [
+       -3.62,
+       5.0,
+       41.88
+      ],
+      "radius": 0.55
+     },
+     "strap3": {
+      "a": [
+       -3.62,
+       5.0,
+       41.88
+      ],
+      "b": [
+       -3.6,
+       5.0,
+       39.87
+      ],
+      "radius": 0.55
      }
     }
    },
@@ -517,49 +877,83 @@
     "ellipsoids": {
      "throat": {
       "centre": [
-       2.8,
+       1.7,
        5.0,
-       36.8
+       36.4
       ],
       "semi_axes": [
-       2.2,
-       2.8,
-       1.8
+       1.3,
+       1.7,
+       1.3
       ]
      }
     },
     "capsules": {
      "neck": {
       "a": [
-       -0.6,
+       -0.4,
        5.0,
-       35.4
+       35.2
       ],
       "b": [
-       1.6,
+       1.4,
        5.0,
-       38.6
+       38.4
       ],
-      "radius": 2.7
+      "radius": 2.6
      }
     }
    },
    "collar": {
     "material": "blue",
+    "res": 0.18,
     "ellipsoids": {},
     "capsules": {
-     "collar": {
+     "v_l": {
       "a": [
-       -1.0,
-       5.0,
-       34.6
+       2.2,
+       7.6,
+       37.0
       ],
       "b": [
-       1.2,
+       4.6,
        5.0,
-       36.6
+       34.0
       ],
-      "radius": 3.9
+      "radius": 1.0
+     },
+     "v_r": {
+      "a": [
+       2.2,
+       2.4,
+       37.0
+      ],
+      "b": [
+       4.6,
+       5.0,
+       34.0
+      ],
+      "radius": 1.0
+     }
+    },
+    "tori": {
+     "ring": {
+      "centre": [
+       0.6,
+       5.0,
+       36.4
+      ],
+      "axis": [
+       0.45,
+       0,
+       0.89
+      ],
+      "R": 3.2,
+      "r": 0.95,
+      "scale_r": [
+       1.0,
+       1.1
+      ]
      }
     }
    },
@@ -580,14 +974,14 @@
      },
      "back": {
       "centre": [
-       -2.4,
+       -3.2,
        5.0,
-       23.6
+       25.0
       ],
       "semi_axes": [
-       4.4,
+       4.2,
        8.4,
-       6.0
+       5.6
       ]
      },
      "shoulder_l": {
@@ -612,6 +1006,18 @@
        4.4,
        4.6,
        4.4
+      ]
+     },
+     "back_low": {
+      "centre": [
+       -4.0,
+       5.0,
+       22.4
+      ],
+      "semi_axes": [
+       3.2,
+       8.2,
+       4.6
       ]
      }
     },
@@ -699,50 +1105,90 @@
    },
    "catcher": {
     "material": "blue",
+    "res": 0.22,
     "ellipsoids": {
-     "catcher": {
+     "mitt": {
       "centre": [
-       3.2,
-       17.6,
-       21.4
+       3.8,
+       16.6,
+       19.6
       ],
       "semi_axes": [
-       4.0,
-       3.4,
-       5.4
+       3.2,
+       3.0,
+       5.0
+      ],
+      "rot_deg": [
+       12,
+       -8,
+       0
       ]
      },
-     "catcher_web": {
+     "pocket": {
       "centre": [
-       5.4,
-       16.8,
-       24.2
+       5.7,
+       16.2,
+       20.4
       ],
       "semi_axes": [
-       2.2,
-       2.8,
+       1.5,
+       3.0,
+       4.0
+      ],
+      "rot_deg": [
+       12,
+       -8,
+       0
+      ]
+     },
+     "thumb": {
+      "centre": [
+       4.6,
+       13.8,
+       18.6
+      ],
+      "semi_axes": [
+       1.5,
+       1.2,
        3.0
+      ],
+      "rot_deg": [
+       -10,
+       0,
+       0
       ]
      }
     },
-    "capsules": {}
-   },
-   "blocker_peg": {
-    "material": "blue",
-    "ellipsoids": {},
     "capsules": {
-     "peg": {
+     "web": {
       "a": [
-       5.6,
-       -10.0,
+       6.6,
+       16.4,
        24.2
       ],
       "b": [
-       5.0,
-       -12.8,
-       27.0
+       6.8,
+       16.0,
+       16.8
       ],
-      "radius": 0.9
+      "radius": 0.8
+     }
+    },
+    "cones": {
+     "cuff": {
+      "a": [
+       1.6,
+       17.0,
+       26.0
+      ],
+      "b": [
+       3.2,
+       16.8,
+       22.6
+      ],
+      "r_a": 3.1,
+      "r_b": 2.7,
+      "bevel": 0.6
      }
     }
    },
@@ -754,319 +1200,598 @@
       "a": [
        -0.2,
        15.4,
-       31.0
+       30.6
       ],
       "b": [
-       2.4,
-       17.2,
-       24.0
+       2.0,
+       16.8,
+       25.2
       ],
-      "radius": 3.6
+      "radius": 3.4
      },
      "arm_r": {
       "a": [
        -0.2,
        -5.4,
-       31.0
+       30.6
       ],
       "b": [
-       2.8,
+       3.0,
        -7.0,
-       24.4
+       22.6
       ],
-      "radius": 3.6
+      "radius": 3.2
      }
     }
    },
    "pad_ribs": {
     "material": "blue",
+    "res": 0.2,
     "ellipsoids": {},
     "capsules": {
-     "rib_r0": {
+     "up_r0": {
       "a": [
-       5.9,
-       -3.0999999999999996,
-       2.2
+       5.75,
+       -3.1,
+       13.4
       ],
       "b": [
-       5.9,
-       -3.0999999999999996,
-       20.4
+       5.75,
+       -3.1,
+       21.4
       ],
-      "radius": 0.75
+      "radius": 0.78
      },
-     "rib_r1": {
+     "lo_r0": {
       "a": [
-       5.9,
-       -0.9000000000000001,
-       2.2
+       5.75,
+       -3.1,
+       2.6
       ],
       "b": [
-       5.9,
-       -0.9000000000000001,
-       20.4
+       5.75,
+       -3.1,
+       9.4
       ],
-      "radius": 0.75
+      "radius": 0.7
      },
-     "rib_r2": {
+     "up_r1": {
       "a": [
-       5.9,
+       5.75,
+       -0.9,
+       13.4
+      ],
+      "b": [
+       5.75,
+       -0.9,
+       21.4
+      ],
+      "radius": 0.78
+     },
+     "lo_r1": {
+      "a": [
+       5.75,
+       -0.9,
+       2.6
+      ],
+      "b": [
+       5.75,
+       -0.9,
+       9.4
+      ],
+      "radius": 0.7
+     },
+     "up_r2": {
+      "a": [
+       5.75,
        1.3,
-       2.2
+       13.4
       ],
       "b": [
-       5.9,
+       5.75,
        1.3,
-       20.4
+       21.4
       ],
-      "radius": 0.75
+      "radius": 0.78
      },
-     "rib_r3": {
+     "lo_r2": {
       "a": [
-       5.9,
+       5.75,
+       1.3,
+       2.6
+      ],
+      "b": [
+       5.75,
+       1.3,
+       9.4
+      ],
+      "radius": 0.7
+     },
+     "up_r3": {
+      "a": [
+       5.75,
        3.5,
-       2.2
+       13.4
       ],
       "b": [
-       5.9,
+       5.75,
        3.5,
-       20.4
+       21.4
       ],
-      "radius": 0.75
+      "radius": 0.78
      },
-     "rib_l0": {
+     "lo_r3": {
       "a": [
-       5.9,
+       5.75,
+       3.5,
+       2.6
+      ],
+      "b": [
+       5.75,
+       3.5,
+       9.4
+      ],
+      "radius": 0.7
+     },
+     "knee1_r": {
+      "a": [
+       5.8,
+       -3.8,
+       12.1
+      ],
+      "b": [
+       5.8,
+       4.2,
+       12.1
+      ],
+      "radius": 0.7
+     },
+     "knee2_r": {
+      "a": [
+       5.8,
+       -3.8,
+       10.5
+      ],
+      "b": [
+       5.8,
+       4.2,
+       10.5
+      ],
+      "radius": 0.6
+     },
+     "up_l0": {
+      "a": [
+       5.75,
        6.7,
-       2.2
+       13.4
       ],
       "b": [
-       5.9,
+       5.75,
        6.7,
-       20.4
+       21.4
       ],
-      "radius": 0.75
+      "radius": 0.78
      },
-     "rib_l1": {
+     "lo_l0": {
       "a": [
-       5.9,
+       5.75,
+       6.7,
+       2.6
+      ],
+      "b": [
+       5.75,
+       6.7,
+       9.4
+      ],
+      "radius": 0.7
+     },
+     "up_l1": {
+      "a": [
+       5.75,
        8.9,
-       2.2
+       13.4
       ],
       "b": [
-       5.9,
+       5.75,
        8.9,
-       20.4
+       21.4
       ],
-      "radius": 0.75
+      "radius": 0.78
      },
-     "rib_l2": {
+     "lo_l1": {
       "a": [
-       5.9,
-       11.1,
-       2.2
+       5.75,
+       8.9,
+       2.6
       ],
       "b": [
-       5.9,
-       11.1,
-       20.4
+       5.75,
+       8.9,
+       9.4
       ],
-      "radius": 0.75
+      "radius": 0.7
      },
-     "rib_l3": {
+     "up_l2": {
       "a": [
-       5.9,
-       13.3,
-       2.2
+       5.75,
+       11.1,
+       13.4
       ],
       "b": [
-       5.9,
-       13.3,
-       20.4
+       5.75,
+       11.1,
+       21.4
       ],
-      "radius": 0.75
+      "radius": 0.78
+     },
+     "lo_l2": {
+      "a": [
+       5.75,
+       11.1,
+       2.6
+      ],
+      "b": [
+       5.75,
+       11.1,
+       9.4
+      ],
+      "radius": 0.7
+     },
+     "up_l3": {
+      "a": [
+       5.75,
+       13.3,
+       13.4
+      ],
+      "b": [
+       5.75,
+       13.3,
+       21.4
+      ],
+      "radius": 0.78
+     },
+     "lo_l3": {
+      "a": [
+       5.75,
+       13.3,
+       2.6
+      ],
+      "b": [
+       5.75,
+       13.3,
+       9.4
+      ],
+      "radius": 0.7
+     },
+     "knee1_l": {
+      "a": [
+       5.8,
+       6.0,
+       12.1
+      ],
+      "b": [
+       5.8,
+       14.0,
+       12.1
+      ],
+      "radius": 0.7
+     },
+     "knee2_l": {
+      "a": [
+       5.8,
+       6.0,
+       10.5
+      ],
+      "b": [
+       5.8,
+       14.0,
+       10.5
+      ],
+      "radius": 0.6
      }
     }
    },
    "blocker_holes": {
     "material": "socket_bore",
+    "res": 0.15,
     "ellipsoids": {
-     "dot0": {
+     "d0": {
       "centre": [
-       7.3500000000000005,
-       -10.2,
-       16.2
+       7.74,
+       -10.89,
+       15.26
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot1": {
+     "d1": {
       "centre": [
-       7.3500000000000005,
-       -5.4,
-       16.2
+       7.0,
+       -7.37,
+       14.36
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot2": {
+     "d2": {
       "centre": [
-       7.3500000000000005,
-       -10.2,
-       17.56
+       7.67,
+       -10.54,
+       16.69
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot3": {
+     "d3": {
       "centre": [
-       7.3500000000000005,
-       -5.4,
-       17.56
+       6.92,
+       -7.02,
+       15.8
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot4": {
+     "d4": {
       "centre": [
-       7.3500000000000005,
-       -10.2,
-       18.92
+       7.6,
+       -10.19,
+       18.13
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot5": {
+     "d5": {
       "centre": [
-       7.3500000000000005,
-       -5.4,
-       18.92
+       6.85,
+       -6.67,
+       17.23
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot6": {
+     "d6": {
       "centre": [
-       7.3500000000000005,
-       -10.2,
-       20.28
+       7.52,
+       -9.84,
+       19.57
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot7": {
+     "d7": {
       "centre": [
-       7.3500000000000005,
-       -5.4,
-       20.28
+       6.77,
+       -6.32,
+       18.67
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot8": {
+     "d8": {
       "centre": [
-       7.3500000000000005,
-       -10.2,
-       21.64
+       7.45,
+       -9.48,
+       21.0
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot9": {
+     "d9": {
       "centre": [
-       7.3500000000000005,
-       -5.4,
-       21.64
+       6.7,
+       -5.97,
+       20.11
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot10": {
+     "d10": {
       "centre": [
-       7.3500000000000005,
-       -10.2,
-       23.0
+       7.37,
+       -9.13,
+       22.44
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      },
-     "dot11": {
+     "d11": {
       "centre": [
-       7.3500000000000005,
-       -5.4,
-       23.0
+       6.63,
+       -5.62,
+       21.54
       ],
       "semi_axes": [
-       0.3,
-       0.38,
-       0.38
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
+      ]
+     },
+     "d12": {
+      "centre": [
+       7.11,
+       -7.9,
+       22.33
+      ],
+      "semi_axes": [
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
+      ]
+     },
+     "d13": {
+      "centre": [
+       6.87,
+       -6.76,
+       22.04
+      ],
+      "semi_axes": [
+       0.25,
+       0.32,
+       0.32
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
       ]
      }
     },
     "capsules": {}
    },
-   "head_back": {
-    "material": "skin",
-    "ellipsoids": {
-     "nape_l": {
-      "centre": [
-       -3.1,
-       7.0,
-       41.0
+   "blocker": {
+    "material": "blue",
+    "ellipsoids": {},
+    "capsules": {
+     "peg": {
+      "a": [
+       6.69,
+       -9.3,
+       22.96
       ],
-      "semi_axes": [
-       0.9,
-       1.1,
-       2.4
-      ]
-     },
-     "nape_r": {
-      "centre": [
-       -3.1,
-       3.0,
-       41.0
+      "b": [
+       6.51,
+       -11.33,
+       25.92
       ],
-      "semi_axes": [
-       0.9,
-       1.1,
-       2.4
-      ]
+      "radius": 0.85
      }
     },
-    "capsules": {}
+    "rboxes": {
+     "board": {
+      "centre": [
+       6.5,
+       -8.4,
+       18.4
+      ],
+      "half_size": [
+       0.75,
+       2.6,
+       4.6
+      ],
+      "rot_deg": [
+       -14,
+       0,
+       12
+      ],
+      "bevel": 0.4
+     },
+     "hand": {
+      "centre": [
+       4.6,
+       -7.6,
+       20.4
+      ],
+      "half_size": [
+       1.8,
+       2.0,
+       2.4
+      ],
+      "rot_deg": [
+       0,
+       0,
+       12
+      ],
+      "bevel": 0.9
+     }
+    }
    }
   },
   "boxes": {
@@ -1097,34 +1822,6 @@
      11.2
     ],
     "rot_z_deg": 0.0
-   },
-   "blocker": {
-    "material": "blue",
-    "centre": [
-     6.2,
-     -7.8,
-     19.6
-    ],
-    "half_size": [
-     1.2,
-     3.4,
-     4.6
-    ],
-    "rot_z_deg": 0.0
-   },
-   "blocker_glove": {
-    "material": "blue",
-    "centre": [
-     3.6,
-     -7.0,
-     20.6
-    ],
-    "half_size": [
-     2.4,
-     2.6,
-     2.8
-    ],
-    "rot_z_deg": 0.0
    }
   },
   "socket": {
@@ -1148,7 +1845,7 @@
     [
      7.8,
      3.0,
-     1.4
+     3.611
     ]
    ],
    "paddle_w": 4.4,
@@ -1160,11 +1857,135 @@
     ],
     [
      7.8,
-     27.0
+     24.563
     ]
    ],
-   "blade_h": 2.8,
+   "blade_h": 4.815,
    "blade_t": 2.4
+  },
+  "paint": [
+   {
+    "from": "blue",
+    "to": "skin",
+    "origin": [
+     0.5,
+     5.0,
+     42.0
+    ],
+    "polygons_az_el_deg": [
+     [
+      [
+       150,
+       64
+      ],
+      [
+       126,
+       48
+      ],
+      [
+       102,
+       28
+      ],
+      [
+       93,
+       5
+      ],
+      [
+       96,
+       -18
+      ],
+      [
+       110,
+       -32
+      ],
+      [
+       140,
+       -34
+      ],
+      [
+       134,
+       -10
+      ],
+      [
+       140,
+       14
+      ],
+      [
+       150,
+       38
+      ],
+      [
+       162,
+       54
+      ],
+      [
+       170,
+       62
+      ]
+     ],
+     [
+      [
+       -150,
+       64
+      ],
+      [
+       -126,
+       48
+      ],
+      [
+       -102,
+       28
+      ],
+      [
+       -93,
+       5
+      ],
+      [
+       -96,
+       -18
+      ],
+      [
+       -110,
+       -32
+      ],
+      [
+       -140,
+       -34
+      ],
+      [
+       -134,
+       -10
+      ],
+      [
+       -140,
+       14
+      ],
+      [
+       -150,
+       38
+      ],
+      [
+       -162,
+       54
+      ],
+      [
+       -170,
+       62
+      ]
+     ]
+    ],
+    "note": "Skin seen through the gaps between the goalie mask and its back plate (crescents in the back photos IMG_2566/2567/2570, cheek gap in the side photo IMG_2572). Polygons in azimuth (0 = facing, +90 = left) / elevation about the head centre.",
+    "no_decimate": [
+     "mask"
+    ]
+   }
+  ],
+  "scale": {
+   "k_mm_per_mold_unit": 1.14219,
+   "mold_height_units": 47.278,
+   "status": "measured",
+   "source_id": "user_measurement_2026_10_01_goalie",
+   "note": "k = measured height / mold height; the blade is set from the measured length and height."
   }
  },
  "teams": {
@@ -1269,5 +2090,74 @@
    "note": "Read as 13 (low confidence)."
   }
  },
- "prints_note": "Back prints per player: country name (team kit) over the jersey number. Numbers are the OFFICIAL OVERHEAD reference variant; the user's own figures' numbers are unknown except Sweden skater no. 21 and goalie no. 30 (user media). Fonts approximate the moulded print (DejaVu Sans Bold name, DejaVu Serif Bold numbers)."
+ "prints_note": "Back prints per player: country name (team kit) over the jersey number. Numbers are the OFFICIAL OVERHEAD reference variant; the user's own figures' numbers are unknown except Sweden skater no. 21 and goalie no. 30 (user media). Fonts approximate the moulded print (DejaVu Sans Bold name, DejaVu Serif Bold numbers).",
+ "albedo_srgb": {
+  "note": "Plastic albedo (sRGB) for the figure materials. Neutral white balance from the official overhead (validation/18-colour-samples.json and medians of all figure pixels: blue (18,88,141) all-pixel, (56,129,190) lit helmet top; yellow (217,168,6)); hue and saturation checked against the user photos (warm indoor light: deep royal blue, orange-yellow, orange skin). Status: traced from photos, white balance assumed neutral in the overhead.",
+  "blue": [
+   30,
+   100,
+   182
+  ],
+  "kit_SWE": [
+   226,
+   166,
+   8
+  ],
+  "kit_FIN": [
+   232,
+   230,
+   226
+  ],
+  "skin": [
+   222,
+   150,
+   112
+  ],
+  "stick_metal": [
+   168,
+   170,
+   174
+  ],
+  "stick_tan": [
+   232,
+   160,
+   108
+  ],
+  "recess": [
+   18,
+   36,
+   66
+  ]
+ },
+ "print_layout": {
+  "note": "Back print layout in mold units on the decal sheet (sheet size = projector size in build_figures.PRINT). Block digits + sans name from assets/blender/print_glyphs.py; proportions traced from IMG_2566/IMG_2570 (goalie 30) and the skater turntable back views (21). Ink: Sweden near-black with a near-black outline; Finland blue (official overhead).",
+  "skater": {
+   "digit_h": 5.3,
+   "name_cap": 1.4,
+   "name_y": 2.4,
+   "gap": 1.25
+  },
+  "goalie": {
+   "digit_h": 7.0,
+   "name_cap": 1.9,
+   "name_y": 1.6,
+   "gap": 1.9
+  }
+ },
+ "measurements": {
+  "goalie": {
+   "source_id": "user_measurement_2026_10_01_goalie",
+   "sketch": "references/user_measurements/goalie-measurements-2026-10-01.png",
+   "height_mm": 54.0,
+   "blade_length_mm": 26.0,
+   "blade_height_mm": 5.5,
+   "uncertainty_mm": null,
+   "definitions": {
+    "height": "top of the mask to the bottom of the figure (socket underside = ice plane)",
+    "blade_length": "along the blade's lower edge from the heel bend to the toe",
+    "blade_height": "vertical height of the blade plank (at the toe)"
+   },
+   "note": "User ruler measurements of the actual figure (chat, 2026-10-01), stated as 5,4 / 2,6 / 0,55 cm. Uncertainty not stated (null). The goalie mold scale and blade are set from these; the skater keeps its own (overhead-fitted) scale until measured."
+  }
+ }
 }

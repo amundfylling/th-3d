@@ -293,6 +293,30 @@
       "file": "references/derived/players/goalie-video-t05.00.jpg",
       "sha256": "1d42176a397b1fe27c6a09fb52758a9f90b76ffebf6afc5501816ee9c8d25e9b"
     },
+    "goalie-video-t02.50": {
+      "source_file": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "source_sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "time_s": 2.5,
+      "figure": "goalie",
+      "team": "Sweden",
+      "view": "front-right from above (turntable)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        0,
+        1034,
+        1960,
+        3182
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/goalie-video-t02.50.jpg",
+      "sha256": "70799003ce980147b5e718d656b24a85caadf08028436ccf54aaaffc3342d9e6"
+    },
     "goalie-video-t07.75": {
       "source_file": "references/players_images/IMG_2573_under25MB(1).mp4",
       "source_sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
@@ -316,6 +340,30 @@
       },
       "file": "references/derived/players/goalie-video-t07.75.jpg",
       "sha256": "072bd9dc9790e1f14cfa676ee109b0e4b050a65bfef0af472e2884fde237f144"
+    },
+    "goalie-video-t10.00": {
+      "source_file": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "source_sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "time_s": 10.0,
+      "figure": "goalie",
+      "team": "Sweden",
+      "view": "left side from above (turntable)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        292,
+        1910,
+        1564,
+        3746
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/goalie-video-t10.00.jpg",
+      "sha256": "44afacd0f4c78b5195d4c8d51053632aab5b121aa8507a069462672ef56c9022"
     },
     "goalie-video-t12.25": {
       "source_file": "references/players_images/IMG_2573_under25MB(1).mp4",

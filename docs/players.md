@@ -97,16 +97,89 @@ Main artifacts: `validation/players/figures-vs-photos.png` (camera-matched rende
 `validation/players/figures-views.png` (both kits, five views), `validation/players/skater-fit.png`,
 `goalie-fit.png`, `overhead-fit.png`, `validation/16-oblique.png`, `validation/19/19-oblique.png`.
 
+## Refinement round 2 (2026-10-01): visible fidelity
+
+User review: "substantially improved, but not yet visually accurate enough" - refine the skater's arms/torso,
+helmet and face, the goalie's mask, pads and gloves, and the actual block-number lettering; show close-up
+matched-camera comparisons including views not used for fitting; prioritise visible fidelity over the
+silhouette thresholds. AI review only.
+
+**Comparison method** (`assets/blender/render_closeups.py`, `npm run players:closeups`): every fitted view and
+every HELD-OUT view is rendered with Cycles from its fitted camera at the photo crop's framing; the render's
+exposure and illuminant are matched to the photo (median figure luminance, table tint), shape and relative
+colours untouched. Feature windows (skater: head, arms/torso, back print, gloves; goalie: mask, pads, gloves,
+back print) are projected from the mold frame and cut identically from photo and render.
+Held-out views (`<kind>-heldout-fit.json`; cameras fitted only after the shape, never used to shape it):
+skater 01.50 s, 14.50 s, 22.60 s; goalie photo-top, video 16.75 s, lying-back, lying-back-2, underside.
+`skater-video-t13.25` (lying on its back, a near-orthographic front view) moved from held-out to the fitting
+set because it was used as a modelling reference for the face, gloves and gauntlets.
+Cameras: the fitted azimuth is now kept within 60 deg of the known view direction (front and back silhouettes
+of a flat-lying figure are near mirror images; one view had flipped).
+
+**Skater changes**: whole upper body moved 1.5-2 mm forward over the support leg and the shoulders lowered
+(the profile showed a more upright, forward torso); head pitched 20 deg down with a longer, narrower face (brow,
+nose, cheeks, pointed chin), lower helmet with a brim and small ear guards; thick neck and traps so the
+helmet sits close to the collar from behind; collar as a smooth ring plus front V; lower (left) hand moved
+onto the stick at the hip, rounded box gloves with thumbs, flared gauntlet cuffs on both forearms
+(hard-surface cones); narrower left side and lower jersey hem. New element types: rotated ellipsoids,
+bevelled rounded boxes, cones and tori (`assets/blender/figure_molds.py`).
+
+**Goalie changes**: egg-shaped helmet with a sculpted front mask (brow, nose, cheeks, chin) and a back strap;
+the skin seen through the gaps between mask and back plate is painted onto the mesh as crescents
+(`paint` in data/figure-molds.json, az/el polygons about the head centre; back photos IMG_2566/2567/2570, side
+IMG_2572); V collar ring; ribbed leg pads in two sections with two knee straps; flat blocker board (tilted,
+rounded rim, 14 moulded holes, handle peg) with the hand behind it; catcher with cuff, pocket, thumb and web;
+yellow jersey ends above the pads.
+
+**Lettering** (`assets/blender/print_glyphs.py`): the jersey numbers are collegiate BLOCK digits - uniform
+bars, chamfered corners, rectangular counters, short spurs - with a thin kit-colour gap and a thin dark
+outline; the country name is a straight plain sans (not arched), as on the photos. Proportions read from the
+goalie's 30 (IMG_2566): width 0.69 H, bar 0.225 H, chamfer 0.095 H. Layout per mold in `print_layout`.
+
+**Colours**: plastic albedo in `data/figure-molds.json` `albedo_srgb` (deep royal blue, orange-yellow, white,
+orange skin), hue/saturation checked on the user photos, white balance from the official overhead.
+
+## Goalie measurements (2026-10-01)
+
+The user measured the actual goalie with a ruler (endpoint sketch:
+`references/user_measurements/goalie-measurements-2026-10-01.png`, index id `user_goalie_measurement_sketch`;
+source `user_measurement_2026_10_01_goalie`, kind `user_measurement`):
+
+| Quantity | Value | Endpoints |
+| --- | --- | --- |
+| Overall height | **54 mm** | mask top to the bottom of the figure (socket underside = ice plane) |
+| Stick blade length | **26 mm** | along the blade's lower edge, heel bend to toe |
+| Stick blade height | **5.5 mm** | vertical height of the blade plank (at the toe) |
+
+Uncertainty was not stated and stays null. Effects:
+- **Goalie scale** k = 54 / mold height = **1.142 mm per mold unit** (`goalie.scale` in data/figure-molds.json,
+  status measured; `assets/blender/build_figures.py` `calibrate_goalie()`). The goalie no longer shares the
+  skater scale; `figure_height` of fig.W-G / fig.E-G is `measured` (54 mm). The asset measures 54.0 mm.
+- **Blade** rebuilt to 26.0 x 5.5 mm (it was 27.3 x 3.0 mm at the old shared scale: the measured blade is
+  shorter relative to the body and almost twice as tall); the paddle now meets the blade top.
+- **Independent check of the preview scale**: the goalie-only best fit to the traced W-G silhouette on the
+  official overhead (assumed 0.1796 mm/px) is reported in `validation/players/overhead-fit.json`
+  (`goalie_measured_over_overhead_best`); a ratio near 1 supports the assumed rink scale. The rink scale is
+  NOT changed from it (one figure, hand-traced white-on-white silhouette).
+- **Skater** dimensions stay independent (overhead-fitted, `assume.figure_mold_scale`) until measured.
+- Results: goalie asset 54.0 mm high, blade 26.0 x 5.5 mm (`validation/players/goalie-dimensions.png`);
+  goalie silhouettes mean IoU 0.826 (8 fitted views) and 0.814 (7 held-out views, incl. the rotation video);
+  overhead check: measured goalie k / goalie-only best k at the assumed preview scale = 0.991.
+- Rotation video frames 2.5 s and 10.0 s were added as held-out goalie views; camera fitting now drops the tan
+  stick (with skin) in views where a finger touches the figure, keeps a per-view azimuth tolerance and never
+  places the camera below the table.
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's
   "figure height approx. 57 mm" (datum unspecified) is 5.8 mm above the fitted skater height - not resolved.
-- **Goalie scale conflict.** The goalie alone fits the (hand-traced, white-on-white) W-G silhouette best at
-  k = 1.18 (IoU 0.70) vs the shared 1.071; the Finland team pack shows goalie and skaters equally tall, so the
-  shared k is used (`assume.figure_mold_scale`). A ruler measurement resolves it.
-- Remaining shape errors (AI review): skater right-arm path and hips in profile (IoU 0.73-0.76 at 3.0 s and
-  8.5 s); no facial features; print fonts approximate; socket bore, blade/wire thickness assumed
-  (`assume.figure_mold_hidden_details`). Metal sticks render nearly black in Remotion/Three (no environment map).
+- **Goalie scale**: resolved by the user's measurement (54 mm, 2026-10-01); see above.
+- Remaining visible differences after round 2 (AI review of the close-up sheets): skater profile (3.0 s,
+  4.5 s) still slightly too upright in the hips; skater face features softer than the moulding; goalie mask
+  crescent edges follow the mesh faces (slightly stepped in extreme close-ups); goalie pads are straight
+  blocks (the real lower pads taper toward the boots); catcher pocket simplified. Socket bore, blade/wire
+  thickness assumed (`assume.figure_mold_hidden_details`). Metal sticks render nearly black in
+  Remotion/Three (no environment map).
 - Poses: six figures (E-LD, E-RD, E-C, E-LW, W-RD, W-G) stand at their overhead-fitted pivot and heading; the
   other six use the hidden-stretch rule at theta 0. E-LW is turned -4 deg to clear the solid preview goal (its
   blade tucks under the cage in the photo). Rod travel, stops and transfer remain unknown.
@@ -114,8 +187,8 @@ Main artifacts: `validation/players/figures-vs-photos.png` (camera-matched rende
 
 ## Questions for the user
 
-1. Could you measure one skater and the goalie with a ruler: height (table to helmet top), socket base
-   diameter, and the distance from the socket centre to the stick heel and to the blade tip?
+1. Could you measure one skater with a ruler (height from the table to the helmet top, blade length and
+   height, socket base diameter, distance from the socket centre to the blade heel)? The goalie is measured.
 2. Which jersey numbers do your Sweden and Finland figures carry, per position?
 3. Is the Finland kit white with the same blue parts (as in the official pictures), and is anything printed on
    the front or sleeves?

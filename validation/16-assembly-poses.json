@@ -10,31 +10,31 @@
       "asset": "assets/figures/goalie_FIN.blend#Goalie.FIN",
       "kit": "FIN",
       "state": {
-        "u_preview": 0.9917,
-        "thetaDeg": 26.52
+        "u_preview": 1,
+        "thetaDeg": 15.42
       },
       "reference_px": [
-        1404.1,
-        2974.3
+        1403.8,
+        2978.2
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
       "reference_to_path_mm": 0,
       "pivot_mm": [
-        -254.567,
-        -32.711,
+        -254.61,
+        -33.4,
         0
       ],
-      "heading_deg": 26.52,
+      "heading_deg": 15.42,
       "det": 1,
       "matrix": [
-        0.894778555,
-        -0.446510177,
+        0.964002649,
+        -0.265892634,
         0,
-        -254.566569929,
-        0.446510177,
-        0.894778555,
+        -254.61,
+        0.265892634,
+        0.964002649,
         0,
-        -32.711323159,
+        -33.4,
         0,
         0,
         1,
@@ -106,31 +106,31 @@
       "asset": "assets/figures/skater_FIN.blend#Skater.FIN",
       "kit": "FIN",
       "state": {
-        "u_preview": 0.96245,
-        "thetaDeg": -4.27
+        "u_preview": 0.957,
+        "thetaDeg": -5.12
       },
       "reference_px": [
-        2393.6,
-        3286.8
+        2386.4,
+        3286.9
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
       "reference_to_path_mm": 0,
       "pivot_mm": [
-        -76.672,
-        -88.232,
+        -77.964,
+        -88.259,
         0
       ],
-      "heading_deg": -4.27,
+      "heading_deg": -5.12,
       "det": 1,
       "matrix": [
-        0.997224256,
-        0.074456592,
+        0.996009975,
+        0.089241975,
         0,
-        -76.671600464,
-        -0.074456592,
-        0.997224256,
+        -77.963565749,
+        -0.089241975,
+        0.996009975,
         0,
-        -88.232054365,
+        -88.259064092,
         0,
         0,
         1,
@@ -346,31 +346,31 @@
       "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
       "kit": "SWE",
       "state": {
-        "u_preview": 0.01545,
-        "thetaDeg": -2.56
+        "u_preview": 0.01825,
+        "thetaDeg": 0.78
       },
       "reference_px": [
-        2611.4,
-        3216.7
+        2616.8,
+        3220.9
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
       "reference_to_path_mm": 0.01,
       "pivot_mm": [
-        -37.583,
-        -75.516,
+        -36.616,
+        -76.26,
         0
       ],
-      "heading_deg": 177.44,
+      "heading_deg": 180.78,
       "det": 1,
       "matrix": [
-        -0.999001996,
-        -0.044665564,
+        -0.999907337,
+        0.013613148,
         0,
-        -37.583094644,
-        0.044665564,
-        -0.999001996,
+        -36.615653248,
+        -0.013613148,
+        -0.999907337,
         0,
-        -75.515582,
+        -76.26042626,
         0,
         0,
         1,
@@ -394,31 +394,31 @@
       "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
       "kit": "SWE",
       "state": {
-        "u_preview": 0.0367,
-        "thetaDeg": 22.08
+        "u_preview": 0.0398,
+        "thetaDeg": 22.81
       },
       "reference_px": [
-        3234.5,
-        2305
+        3238.6,
+        2304.8
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
       "reference_to_path_mm": 0.01,
       "pivot_mm": [
-        73.765,
-        88.603,
+        74.505,
+        88.63,
         0
       ],
-      "heading_deg": 202.07999999999998,
+      "heading_deg": 202.81,
       "det": 1,
       "matrix": [
-        -0.926659901,
-        0.375900821,
+        -0.921795503,
+        0.387676476,
         0,
-        73.765085659,
-        -0.375900821,
-        -0.926659901,
+        74.505364916,
+        -0.387676476,
+        -0.921795503,
         0,
-        88.602521222,
+        88.629527901,
         0,
         0,
         1,
@@ -442,31 +442,31 @@
       "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
       "kit": "SWE",
       "state": {
-        "u_preview": 0.0316,
-        "thetaDeg": -172.86
+        "u_preview": 0.02515,
+        "thetaDeg": -166.06
       },
       "reference_px": [
-        1785.8,
-        2767.4
+        1776.9,
+        2768.4
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
       "reference_to_path_mm": 0,
       "pivot_mm": [
-        -186.138,
-        4.693,
+        -187.74,
+        4.49,
         0
       ],
-      "heading_deg": 7.139999999999986,
+      "heading_deg": 13.939999999999998,
       "det": 1,
       "matrix": [
-        0.992245406,
-        -0.124294225,
+        0.970548534,
+        -0.240905672,
         0,
-        -186.137988641,
-        0.124294225,
-        0.992245406,
+        -187.739754598,
+        0.240905672,
+        0.970548534,
         0,
-        4.692780382,
+        4.490452051,
         0,
         0,
         1,
@@ -490,31 +490,31 @@
       "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
       "kit": "SWE",
       "state": {
-        "u_preview": 0.02675,
-        "thetaDeg": 74.84
+        "u_preview": 0.0276,
+        "thetaDeg": 70.97
       },
       "reference_px": [
-        698.5,
-        2662.5
+        698.7,
+        2664.8
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted); heading -4 deg to clear the solid preview goal (blade under the cage in the photo)",
-      "reference_to_path_mm": 0,
+      "reference_to_path_mm": 0.01,
       "pivot_mm": [
-        -381.468,
-        22.874,
+        -381.444,
+        22.456,
         0
       ],
-      "heading_deg": 254.84,
+      "heading_deg": 250.97,
       "det": 1,
       "matrix": [
-        -0.261515406,
-        0.965199302,
+        -0.326063182,
+        0.945347979,
         0,
-        -381.467758647,
-        -0.965199302,
-        -0.261515406,
+        -381.444456693,
+        -0.945347979,
+        -0.326063182,
         0,
-        22.873545732,
+        22.455566924,
         0,
         0,
         1,

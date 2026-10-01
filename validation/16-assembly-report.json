@@ -28,14 +28,14 @@
   "determinants": {
     "Figure.W-G": 1.0,
     "Figure.W-LD": 1.0,
-    "Figure.W-RD": 1.0,
+    "Figure.W-RD": 0.999999821,
     "Figure.W-C": 1.0,
     "Figure.W-LW": 1.0,
     "Figure.W-RW": 1.0,
     "Figure.E-G": 1.0,
-    "Figure.E-LD": 1.0,
+    "Figure.E-LD": 0.999999821,
     "Figure.E-RD": 1.0,
-    "Figure.E-C": 1.000000119,
+    "Figure.E-C": 0.999999821,
     "Figure.E-LW": 1.0,
     "Figure.E-RW": 1.0
   },
