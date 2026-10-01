@@ -5,8 +5,8 @@
     "W-G": {
       "n": 26,
       "onDark": 0.654,
-      "meanOffsetPx": 0.461,
-      "maxOffsetPx": 0.75
+      "meanOffsetPx": 0.513,
+      "maxOffsetPx": 1.75
     },
     "W-LD": {
       "n": 148,
@@ -23,19 +23,19 @@
     "W-C": {
       "n": 85,
       "onDark": 0.929,
-      "meanOffsetPx": 0.719,
+      "meanOffsetPx": 0.712,
       "maxOffsetPx": 6.25
     },
     "W-LW": {
       "n": 170,
       "onDark": 0.965,
-      "meanOffsetPx": 0.511,
+      "meanOffsetPx": 0.526,
       "maxOffsetPx": 3.25
     },
     "W-RW": {
       "n": 156,
       "onDark": 0.942,
-      "meanOffsetPx": 0.512,
+      "meanOffsetPx": 0.502,
       "maxOffsetPx": 5.75
     },
     "E-G": {
@@ -65,19 +65,19 @@
     "E-LW": {
       "n": 168,
       "onDark": 0.97,
-      "meanOffsetPx": 0.502,
+      "meanOffsetPx": 0.505,
       "maxOffsetPx": 1.25
     },
     "E-RW": {
       "n": 154,
       "onDark": 0.955,
-      "meanOffsetPx": 0.522,
-      "maxOffsetPx": 3.25
+      "meanOffsetPx": 0.542,
+      "maxOffsetPx": 4.75
     }
   },
   "slot_summary": {
     "min_on_dark": 0.593,
-    "worst_mean_offset_px": 0.719
+    "worst_mean_offset_px": 0.712
   },
   "ice_edge": {
     "samples": 15,

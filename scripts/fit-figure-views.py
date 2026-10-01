@@ -61,6 +61,11 @@ HELDOUT = {
         "skater-video-t01.50": (-5, 38, [], False),
         "skater-video-t14.50": (10, 0, [], False),  # 1.25 s after t13.25, re-posed in the hand: similar viewpoint
         "skater-video-t22.60": (10, 35, [], False),
+        # round-4 independent frames, inspected since: cameras fitted once on the round-3 model, frozen
+        "skater-video-t02.25": (-20, 21, [], False, 0, 40),
+        "skater-video-t05.25": (-112, 20, [], False, 0, 40),
+        "skater-video-t09.25": (83, 37, [], False, 0, 40),
+        "skater-video-t10.25": (44, 37, [], False, 0, 40),
     },
     "goalie": {
         "goalie-video-t02.50": (-20, 45, [], False),  # rotation video, finger at the edge
@@ -70,22 +75,6 @@ HELDOUT = {
         "goalie-photo-lying-back": (180, 5, [], True, 180),
         "goalie-photo-lying-back-2": (200, 10, [], True, 60),
         "goalie-photo-underside": (180, -55, [], True, 0),
-    },
-}
-
-
-# Round 4: fresh turntable frames (scripts/extract-player-frames.py) reserved as INDEPENDENT checks. Initial
-# azimuth/elevation interpolated in time between the neighbouring fitted turntable cameras. Their cameras are
-# fitted ONCE against the model before the round, then frozen (--fixed) - this favours the old shape, never the
-# new one. The former held-out views (HELDOUT) have since been inspected and count as fitting references.
-INDEPENDENT = {
-    "skater": {
-        "skater-video-t02.25": (-20, 21, [], False, 0, 40),
-        "skater-video-t05.25": (-112, 20, [], False, 0, 40),
-        "skater-video-t09.25": (83, 37, [], False, 0, 40),
-        "skater-video-t10.25": (44, 37, [], False, 0, 40),
-    },
-    "goalie": {
         "goalie-video-t03.75": (-65, 47, [], False, 0, 40),
         "goalie-video-t06.25": (-133, 49, [], False, 0, 40),
         "goalie-video-t09.00": (130, 54, [], False, 0, 40),
@@ -94,10 +83,33 @@ INDEPENDENT = {
 }
 
 
+# Fresh turntable frames (scripts/extract-player-frames.py) reserved as INDEPENDENT checks (round 5 set; the
+# round-4 set has been inspected and moved to HELDOUT with its frozen cameras). Initial
+# azimuth/elevation interpolated in time between the neighbouring fitted turntable cameras. Their cameras are
+# fitted ONCE against the model before the round, then frozen (--fixed) - this favours the old shape, never the
+# new one. The former held-out views (HELDOUT) have since been inspected and count as fitting references.
+INDEPENDENT = {
+    "skater": {
+        "skater-video-t00.75": (15, 25, [], False, 0, 40),
+        "skater-video-t03.75": (-72, 18, [], False, 0, 40),
+        "skater-video-t06.75": (-150, 22, [], False, 0, 40),
+        "skater-video-t08.00": (150, 28, [], False, 0, 40),
+    },
+    "goalie": {
+        # turntable camera height changes slowly (fitted neighbours 45-58 deg): elevation held within 15 deg
+        "goalie-video-t01.25": (-25, 40, [], False, 0, 40, 15),
+        "goalie-video-t07.25": (-172, 49, [], False, 0, 40, 15),  # replaces 4.25 s (camera fit failed: elevation ran to the bound, IoU 0.65)
+        "goalie-video-t06.75": (-168, 49, [], False, 0, 40, 15),
+        "goalie-video-t08.40": (178, 48, [], False, 0, 40, 15),
+    },
+}
+
+
 def fit_view(mesh, view_id, init, work_px=420):
     az0, el0, excl, warm = init[:4]
     roll0 = math.radians(init[4]) if len(init) > 4 else 0.0
     az_tol = init[5] if len(init) > 5 else 60.0  # deg: allowed departure from the known view direction
+    el_tol = init[6] if len(init) > 6 else None  # deg: optional bound on the elevation (turntable frames)
     rgb, s, crop, full = fv.load_view(view_id, work_px)
     ref = fv.figure_mask(rgb, include_warm=warm, exclude_polys=excl)
     verts, tris, labels, keys = mesh
@@ -159,7 +171,8 @@ def fit_view(mesh, view_id, init, work_px=420):
         flip = max(0.0, abs((math.degrees(p[0]) - az0 + 180) % 360 - 180) - az_tol) / 60
         # a figure standing on the table is never seen from below the table plane
         below = max(0.0, 2.0 - math.degrees(p[1])) / 20 if el0 >= 0 else 0.0
-        return 1 - fv.iou(mask_of(p), ref) + flip + below
+        elev = max(0.0, abs(math.degrees(p[1]) - el0) - el_tol) / 20 if el_tol is not None else 0.0
+        return 1 - fv.iou(mask_of(p), ref) + flip + below + elev
 
     if FIXED and prev is not None:
         p = x0.copy()

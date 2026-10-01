@@ -191,9 +191,32 @@ test("refinement round 4: independent fresh frames scored at frozen cameras; lof
   const go = molds.goalie;
   assert.deepEqual(Object.keys(go.boxes), [], "pads are moulded parts, not boxes");
   for (const n of ["pad_l", "pad_r"]) {
-    assert.ok(go.parts[n].mboxes.upper && go.parts[n].mboxes.knee && go.parts[n].mboxes.lower2);
-    assert.ok(go.parts[n].mboxes.lower2.half_size[1] < go.parts[n].mboxes.upper.half_size[1], "lower pad tapers toward the boot");
+    const mb = go.parts[n].mboxes;
+    const lows = Object.keys(mb).filter((k) => /^lo\d+$/.test(k)).sort((a, b) => Number(a.slice(2)) - Number(b.slice(2)));
+    assert.ok(mb.upper && mb.knee && lows.length >= 2);
+    assert.ok(mb[lows.at(-1)!].half_size[1] < mb.upper.half_size[1], "lower pad tapers toward the boot");
     assert.ok(go.pad_footprint[n].half_size.length === 3);
   }
   assert.ok(go.paint[0].refine >= 2, "skin borders refined");
+});
+
+test("refinement round 5: blocker board faces front-right and covers the pad; stick heel moved; finish data; skater scale frozen", () => {
+  const go = molds.goalie;
+  const board = go.parts.blocker.rboxes.board;
+  const [, hw, hh] = board.half_size;
+  assert.ok(hw >= 3.5 && hh >= 5.0, `board ${2 * hw} x ${2 * hh} mold units (photos ~8 x 12)`);
+  const rz = board.rot_deg[2];
+  assert.ok(rz <= -10 && rz >= -40, `board face azimuth ${rz} deg (front-right)`);
+  assert.ok(Math.abs(board.centre[1] - -3.5) < 2, "board in front of the right pad");
+  const [top, bottom] = go.stick.paddle;
+  const hand = go.parts.blocker.rboxes.hand.centre;
+  assert.ok(Math.hypot(top[0] - hand[0], top[1] - hand[1], top[2] - hand[2]) < 2.5, "paddle top held in the blocker hand");
+  assert.ok(bottom[2] < top[2]);
+  const [heel, toe] = go.stick.blade;
+  assert.ok(Math.abs(toe[1] - heel[1] - 26 / go.scale.k_mm_per_mold_unit) < 0.05, "measured blade length kept");
+  for (const k of ["plastic_roughness", "coat_weight", "coat_roughness", "metal_roughness"]) assert.equal(typeof molds.finish[k], "number");
+  assert.equal(molds.finish.status, "assumed");
+  assert.equal(over.scale_k_mm_per_mold_unit, 1.0814, "skater scale frozen for round 5");
+  const cuff = molds.skater.parts.sleeves.lofts.gauntlet_r;
+  assert.ok(cuff.subsurf >= 1 && cuff.lip >= 0.9, "softened upper cuff rim");
 });

@@ -69,6 +69,17 @@ SELECT = {
     "goalie-video-t06.25": (VIDEO_GOALIE, 6.25, "goalie", "turntable, right-back (independent check)"),
     "goalie-video-t09.00": (VIDEO_GOALIE, 9.0, "goalie", "turntable, left-back (independent check)"),
     "goalie-video-t11.00": (VIDEO_GOALIE, 11.0, "goalie", "turntable (independent check)"),
+    # Round 5 (2026-10-01): the round-4 frames above have been inspected; four fresh frames per figure are the
+    # new INDEPENDENT checks, chosen the same way (interpolated azimuth, not by looking).
+    "skater-video-t00.75": (VIDEO_SKATER, 0.75, "skater", "turntable, front (independent check, round 5)"),
+    "skater-video-t03.75": (VIDEO_SKATER, 3.75, "skater", "turntable, right (independent check, round 5)"),
+    "skater-video-t06.75": (VIDEO_SKATER, 6.75, "skater", "turntable, back-right (independent check, round 5)"),
+    "skater-video-t08.00": (VIDEO_SKATER, 8.0, "skater", "turntable, back-left (independent check, round 5)"),
+    "goalie-video-t01.25": (VIDEO_GOALIE, 1.25, "goalie", "turntable, front-right (independent check, round 5)"),
+    "goalie-video-t04.25": (VIDEO_GOALIE, 4.25, "goalie", "turntable, right (round 5; dropped: no reliable camera fit)"),
+    "goalie-video-t07.25": (VIDEO_GOALIE, 7.25, "goalie", "turntable, back-right (independent check, round 5)"),
+    "goalie-video-t06.75": (VIDEO_GOALIE, 6.75, "goalie", "turntable, back-right (independent check, round 5)"),
+    "goalie-video-t08.40": (VIDEO_GOALIE, 8.4, "goalie", "turntable, back (independent check, round 5)"),
 }
 
 # Manual crop boxes (full-frame px) where the automatic colour box misses the figure: at 12.25 s the lit

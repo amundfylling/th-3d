@@ -147,7 +147,8 @@ def cuff(name: str, a, b, r_a: float, r_b: float, oval=(1.0, 1.0), up=(0, 0, 1),
 
 
 def loft_cuff(name: str, mouth_c, mouth_n, mouth_long, mouth_r, wrist_c, wrist_r, lip: float = 0.5,
-              depth: float = 1.2, flare: float = 1.4, base: float = 0.0, n: int = 56):
+              depth: float = 1.2, flare: float = 1.4, base: float = 0.0, bulge: float = 0.0, warp: float = 0.0,
+              subsurf: int = 0, n: int = 56):
     """Moulded gauntlet cuff (mm) lofted between a wrist ring and an independently oriented oval mouth.
     The mouth ring lies in its own plane (normal `mouth_n`, long axis `mouth_long`, semi-axes mouth_r =
     (long, short)), so a broad, flat cuff can open upward while its body runs obliquely down to the wrist
@@ -155,7 +156,10 @@ def loft_cuff(name: str, mouth_c, mouth_n, mouth_long, mouth_r, wrist_c, wrist_r
     offsets blended with t**flare (trumpet). A rolled rim of thickness `lip` crowns the mouth and the
     opening is recessed `depth` mm along the cuff (the forearm sits inside). `base` > 0 closes the wrist end
     with a rounded bottom that far beyond the wrist ring (a broad cuff the glove leaves at one side). One
-    closed surface."""
+    closed surface. Round 5: `bulge` swells the sides between wrist and mouth (offset blend t**flare +
+    bulge*sin(pi t)), `warp` lifts the ends of the mouth's long axis along its normal (saddle-shaped rim
+    instead of a flat lid) and `subsurf` applies that many Catmull-Clark levels so the rim and the sides read
+    as one moulded shell."""
     M, B = Vector(mouth_c), Vector(wrist_c)
     N = Vector(mouth_n).normalized()
     Lg = Vector(mouth_long)
@@ -170,11 +174,12 @@ def loft_cuff(name: str, mouth_c, mouth_n, mouth_long, mouth_r, wrist_c, wrist_r
     phis = [2 * math.pi * k / n for k in range(n)]
     mo = [Lg * (mouth_r[0] * math.cos(p)) + Sh * (mouth_r[1] * math.sin(p)) for p in phis]
     wo = [wl * (wrist_r[0] * math.cos(p)) + ws * (wrist_r[1] * math.sin(p)) for p in phis]
+    lift = [N * (warp * math.cos(2 * p)) for p in phis]  # saddle: long-axis ends up, short-axis sides down
 
     def ring(t, shrink=1.0):
         c = B + (M - B) * t
-        f = t ** flare
-        return [c + (w + (m - w) * f) * shrink for w, m in zip(wo, mo)]
+        f = min(1.0, t ** flare + bulge * math.sin(math.pi * t))
+        return [c + (w + (m - w) * f) * shrink + lf * (t * t) for w, m, lf in zip(wo, mo, lift)]
 
     rings = []
     for k in range(5, 0, -1):  # rounded bottom below the wrist ring (quarter ellipse)
@@ -185,9 +190,9 @@ def loft_cuff(name: str, mouth_c, mouth_n, mouth_long, mouth_r, wrist_c, wrist_r
     for k in range(1, 7):  # rolled rim over the lip
         th = math.pi * k / 6
         rr = []
-        for m in mo:
+        for m, lf in zip(mo, lift):
             rd = m.normalized()
-            rr.append(M + rd * (m.length - lip / 2 + lip / 2 * math.cos(th)) + N * (lip / 2 * math.sin(th) * 0.8))
+            rr.append(M + lf + rd * (m.length - lip / 2 + lip / 2 * math.cos(th)) + N * (lip / 2 * math.sin(th) * (1.0 if subsurf else 0.8)))
         rings.append(rr)
     for k in range(1, 6):  # recessed mouth: inner wall down the cuff
         t = 1 - (depth / L) * k / 5
@@ -209,7 +214,13 @@ def loft_cuff(name: str, mouth_c, mouth_n, mouth_long, mouth_r, wrist_c, wrist_r
     bpy.ops.object.select_all(action="DESELECT")
     bpy.context.view_layer.objects.active = ob
     ob.select_set(True)
-    bpy.ops.object.shade_smooth_by_angle(angle=math.radians(50))
+    if subsurf:
+        mod = ob.modifiers.new("subsurf", "SUBSURF")
+        mod.levels = mod.render_levels = subsurf
+        bpy.ops.object.modifier_apply(modifier="subsurf")
+        bpy.ops.object.shade_smooth()
+    else:
+        bpy.ops.object.shade_smooth_by_angle(angle=math.radians(50))
     return ob
 
 
@@ -246,7 +257,8 @@ def build_part(prefix: str, pname: str, part: dict):
                         e.get("lip", 0.45), e.get("depth", 0.35), e.get("cut_deg", 0.0)))
     for n, e in part.get("lofts", {}).items():
         out.append(loft_cuff(f"{prefix}_{pname}_{n}", e["mouth_c"], e["mouth_n"], e["mouth_long"], e["mouth_r"], e["wrist_c"], e["wrist_r"],
-                             e.get("lip", 0.5), e.get("depth", 1.2), e.get("flare", 1.4), e.get("base", 0.0)))
+                             e.get("lip", 0.5), e.get("depth", 1.2), e.get("flare", 1.4), e.get("base", 0.0),
+                             e.get("bulge", 0.0), e.get("warp", 0.0), e.get("subsurf", 0)))
     for n, e in part.get("cones", {}).items():
         out.append(cone(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], e.get("bevel", 0.3)))
     for o in out:
@@ -485,6 +497,6 @@ def build_goalie(mold: dict | None = None):
         parts.append(tag(metaball_part(f"go_boxes_{k}", {}, {}, cubes), k))
     parts.append(tag(socket("go_socket", m["socket"]), BLUE))
     s = m["stick"]
-    parts.append(tag(box_between("go_paddle", s["paddle"][0], s["paddle"][1], s["paddle_w"], s["paddle_t"]), TAN))
+    parts.append(tag(box_between("go_paddle", s["paddle"][0], s["paddle"][1], s["paddle_w"], s["paddle_t"], tuple(s.get("paddle_face", (1, 0, 0)))), TAN))
     parts.append(tag(blade("go_blade", s["blade"][0], s["blade"][1], s["blade_h"], s["blade_t"]), TAN))
     return parts

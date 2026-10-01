@@ -31,6 +31,11 @@
   tapered lower), smooth refined skin borders, wider crescents, real neck below the back plate. New view policy:
   inspected views are fitting references; 8 fresh frames scored as INDEPENDENT checks. Silhouette regressions
   reported in `docs/players.md`. AI review only. Still before iteration 21.
+- **Figure refinement round 5 (user request, 2026-10-01):** goalie blocker refitted from four front views
+  (larger board turned to the front-right, hand holds the paddle behind it, stick heel moved to the photographed
+  bend); smooth tapered lower pads; softened skater cuff rim; `finish` data (roughness/clear coat) and new
+  close-up lighting (studio HDRI); Remotion figure environment map for the metal sticks. Skater scale frozen.
+  Neutral-shape and final-material before/after sheets; silhouette results in `docs/players.md`. AI review only.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.

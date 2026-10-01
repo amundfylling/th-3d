@@ -1,9 +1,9 @@
 {
   "kind": "goalie",
-  "mean_iou": 0.8139,
+  "mean_iou": 0.8038,
   "views": {
     "goalie-video-t02.50": {
-      "iou": 0.832,
+      "iou": 0.8333,
       "camera": {
         "azimuth_deg": -37.8,
         "elevation_deg": 44.89,
@@ -24,7 +24,7 @@
       ]
     },
     "goalie-video-t10.00": {
-      "iou": 0.7816,
+      "iou": 0.7503,
       "camera": {
         "azimuth_deg": 90.0,
         "elevation_deg": 58.31,
@@ -45,7 +45,7 @@
       ]
     },
     "goalie-photo-top": {
-      "iou": 0.8023,
+      "iou": 0.7863,
       "camera": {
         "azimuth_deg": 170.03,
         "elevation_deg": 76.72,
@@ -66,7 +66,7 @@
       ]
     },
     "goalie-video-t16.75": {
-      "iou": 0.7878,
+      "iou": 0.7778,
       "camera": {
         "azimuth_deg": 9.36,
         "elevation_deg": 74.13,
@@ -87,7 +87,7 @@
       ]
     },
     "goalie-photo-lying-back": {
-      "iou": 0.8115,
+      "iou": 0.7875,
       "camera": {
         "azimuth_deg": 147.55,
         "elevation_deg": 19.44,
@@ -108,7 +108,7 @@
       ]
     },
     "goalie-photo-lying-back-2": {
-      "iou": 0.8448,
+      "iou": 0.813,
       "camera": {
         "azimuth_deg": 170.26,
         "elevation_deg": 18.97,
@@ -129,7 +129,7 @@
       ]
     },
     "goalie-photo-underside": {
-      "iou": 0.8372,
+      "iou": 0.8266,
       "camera": {
         "azimuth_deg": 180.33,
         "elevation_deg": -54.71,
@@ -147,6 +147,90 @@
         -0.10583169033196677,
         184.5041407956448,
         4290.270395192974
+      ]
+    },
+    "goalie-video-t03.75": {
+      "iou": 0.8145,
+      "camera": {
+        "azimuth_deg": -65.1,
+        "elevation_deg": 62.23,
+        "roll_deg": 0.38,
+        "pan_deg": 6.67,
+        "tilt_deg": -2.59,
+        "distance_mold_mm": 98.26,
+        "focal_px": 2991.5
+      },
+      "params": [
+        -1.1362143437325078,
+        1.0861831807392557,
+        0.006629959323035527,
+        0.11633671274671777,
+        -0.045165915734236575,
+        98.26483631674013,
+        2991.488077619269
+      ]
+    },
+    "goalie-video-t06.25": {
+      "iou": 0.8373,
+      "camera": {
+        "azimuth_deg": -164.85,
+        "elevation_deg": 49.45,
+        "roll_deg": 3.15,
+        "pan_deg": 7.57,
+        "tilt_deg": -11.22,
+        "distance_mold_mm": 130.75,
+        "focal_px": 3001.1
+      },
+      "params": [
+        -2.8772226119942323,
+        0.8630380246960905,
+        0.0549720366153877,
+        0.13208729382282938,
+        -0.19588843254729804,
+        130.74785200142782,
+        3001.103340738834
+      ]
+    },
+    "goalie-video-t09.00": {
+      "iou": 0.7839,
+      "camera": {
+        "azimuth_deg": 169.97,
+        "elevation_deg": 46.96,
+        "roll_deg": -12.65,
+        "pan_deg": 0.14,
+        "tilt_deg": -14.05,
+        "distance_mold_mm": 116.8,
+        "focal_px": 2976.1
+      },
+      "params": [
+        2.966451465207299,
+        0.8196776568907267,
+        -0.22072396528299856,
+        0.0025296660699507005,
+        -0.2452307110170783,
+        116.80228944145836,
+        2976.07526663621
+      ]
+    },
+    "goalie-video-t11.00": {
+      "iou": 0.8313,
+      "camera": {
+        "azimuth_deg": 15.19,
+        "elevation_deg": 62.86,
+        "roll_deg": 0.2,
+        "pan_deg": 4.59,
+        "tilt_deg": -10.69,
+        "distance_mold_mm": 122.38,
+        "focal_px": 3002.9
+      },
+      "params": [
+        0.26511684860477375,
+        1.0970306804499148,
+        0.0035663930135587485,
+        0.08013191577981926,
+        -0.18660483538169953,
+        122.37862254776131,
+        3002.9124281785316
       ]
     }
   },

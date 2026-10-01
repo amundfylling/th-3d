@@ -306,14 +306,90 @@ band and a narrower lower section; skin borders are smooth; the neck shows below
 - Goalie blocker board: seen nearly edge-on in the front views while the photos show its face, and it is
   smaller than the real board, so the model shows pad area the real blocker covers. Not changed this round.
 
+## Refinement round 5 (2026-10-01): blocker, softer cuff, clean lower pads, finish and lighting
+
+User request: one focused round from the existing photos and videos only (no new captures): goalie blocker
+orientation, size and connection to the hand/stick first; then soften the skater's upper cuff rim and cup
+contour and remove the creases/scallops of the goalie's lower pads; then highlights, roughness and clear coat
+together with useful reflections for the metal stick. Measured goalie dimensions kept; skater scale frozen.
+
+**View policy.** The round-4 independent frames were inspected after round 4 and moved to the inspected set
+(`<kind>-heldout-fit.json`, cameras unchanged). Eight fresh turntable frames are this round's INDEPENDENT checks
+(skater 0.75/3.75/6.75/8.00 s, goalie 1.25/6.75/7.25/8.40 s), chosen by interpolated azimuth without looking,
+cameras fitted once on the round-4 model and frozen. Goalie 4.25 s was dropped before any modelling because its
+camera fit failed (elevation ran into the bound, IoU 0.65) and replaced by 7.25 s; goalie turntable fits now
+bound the elevation to +-15 deg of the neighbours' value.
+
+**Goalie blocker (shape, from four front views).** Board corners were read in photo-front, front-oblique and
+video 0.50 s / 2.50 s and fitted as one rigid rectangle through the frozen cameras (least squares, 9 px RMS).
+Result: the board is about 7.8 x 12.0 mold units (8.9 x 13.7 mm at k 1.142; was 5.2 x 9.2 units), its face
+turned to azimuth -21 deg (front-right; it was nearly edge-on to the front camera), standing upright in front of
+the right pad. Depth along the view direction is the weakly constrained coordinate: it was set so the board's
+back face clears the pad fronts and the paddle runs behind it, which costs ~6 px RMS against the corners (15 vs
+9 px). The hand block sits behind the board's upper inner corner and holds the paddle top; the peg (thumb
+guard) points out to the goalie's right as in the side photo and video 5.00 s. Stick: the heel triangulated
+from three views lies at y 7.4 (was 1.8): the blade moved 5.6 units toward the catcher side with its measured
+26 x 5.5 mm size unchanged, and the paddle now runs from the hand behind the board to that heel, its flat face
+turned to the board's direction (`stick.paddle_face`). Holes: two columns of six and a top row of three, as in
+the photos.
+
+**Goalie lower pads.** The two blended blocks and the raised roll capsules are replaced by one shin section of
+15 closely stacked rounded slices tapering linearly toward the boot (no waist crease) with three shallow carved
+grooves (no scallops). Upper pad, knee and rolls unchanged.
+
+**Skater upper cuff.** `loft_cuff` gained `bulge` (fuller sides), `warp` (saddle-shaped mouth instead of a flat
+lid) and `subsurf` (Catmull-Clark smoothing); the rim is thicker and rounded (lip 1.1) and the recess shallower,
+so the opening no longer reads as an empty cup. Same position and size as round 4. Lower cuff likewise.
+
+**Finish and lighting.** `data/figure-molds.json` `finish` (status assumed, set by comparison with the photos):
+plastic roughness 0.40 + clear coat 0.30 with coat roughness 0.12 (was 0.30 + a mirror-like coat), skin 0.45,
+metal 0.28. Close-up renders: Blender's bundled "interior" studio HDRI as world (strength 0.55, transparent
+film) plus a small 6 cm key 30 cm above, replacing the grey world and the 25 cm area light 25 cm above that
+painted broad white patches. Remotion: a procedural RoomEnvironment map on the figure materials only (metal 1.0,
+plastic 0.12) so the sticks reflect instead of rendering black; the rink keeps its iteration-19 lighting (the
+reprojection check still passes).
+
+**Comparisons.** `validation/players/closeups-before-after-neutral.png` (grey clay, same cameras and lights
+before and after: shape only) and `validation/players/closeups-before-after.png` (final materials: before =
+round-4 lighting and finish, after = round-5). Remotion: `validation/players/remotion-before-after.png`.
+
+**Silhouette IoU (frozen cameras).**
+
+| Set | before (round 4) | after (round 5) |
+| --- | --- | --- |
+| Skater, 8 fitted views | 0.8043 | 0.8028 |
+| Skater, 7 inspected | 0.7744 | 0.7724 |
+| Skater, 4 INDEPENDENT | 0.8114 | 0.8087 |
+| Goalie, 8 fitted views | 0.8289 | 0.8409 |
+| Goalie, 11 inspected | 0.8086 | 0.8038 |
+| Goalie, 4 INDEPENDENT | 0.8124 | 0.8103 |
+
+The skater changed only in the cuff rim (small regressions, within ~0.003). The goalie gains on the fitted front
+views (larger, turned blocker) and loses slightly on the inspected and independent sets - mostly back/top views
+where the moved blade and larger board now extend further than the photographed silhouette (8.40 s: 0.795 ->
+0.787). Skater scale frozen at k 1.0814 (overhead refit skipped). Goalie 54.0 mm, blade 26.0 x 5.5 mm.
+
+**AI review (not the user's).** Improved: the blocker now shows its broad dotted face in all front views and
+covers the right pad as in the photos, the paddle disappears behind it, and the blade bend sits where the photos
+show it; the lower pads are smooth and tapered; the cuff rim is rounded; highlights are small and the metal
+sticks read as metal. Still wrong / uncertain:
+- Blocker depth (distance in front of the pads) is inferred, not observed; the peg end is triangulated from two
+  views only; the photographed board corners are slightly rounder than the model's.
+- The blade's angle and the paddle's exact path are approximate (heel from three views; toe readings disagree by
+  ~3 units between views), and in the independent back views the blade end now extends past the photo.
+- Skater upper cuff: still a single funnel; the photo cuff is lumpier and its rim less regular. The lower pads'
+  grooves are inferred (the stick and blocker hide most of the shin in the photos).
+- Remotion figures are slightly lighter/less saturated than before (blue median 51,94,164 vs 39,84,156; the
+  calibrated albedo is 62,105,181).
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's
   "figure height approx. 57 mm" (datum unspecified) is 5.8 mm above the fitted skater height - not resolved.
 - **Goalie scale**: resolved by the user's measurement (54 mm, 2026-10-01); see above.
-- Remaining visible differences: see "Refinement round 4" above. Socket bore, blade/wire thickness assumed
-  (`assume.figure_mold_hidden_details`). Metal sticks render nearly black in Remotion/Three (no environment
-  map).
+- Remaining visible differences: see "Refinement round 5" above. Socket bore, blade/wire thickness assumed
+  (`assume.figure_mold_hidden_details`). Remotion metal sticks now reflect a procedural room
+  environment (round 5).
 - Poses: six figures (E-LD, E-RD, E-C, E-LW, W-RD, W-G) stand at their overhead-fitted pivot and heading; the
   other six use the hidden-stretch rule at theta 0. E-LW is turned -4 deg to clear the solid preview goal (its
   blade tucks under the cage in the photo). Rod travel, stops and transfer remain unknown.

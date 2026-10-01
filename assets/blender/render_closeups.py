@@ -32,26 +32,65 @@ FEATURES = {
     "skater": {"head": ((7.5, -2.4, 41.5), 7.5, None), "arms/torso": ((2.0, -5.0, 29.0), 15.0, None),
                "back print": ((-6.4, -4.0, 32.0), 10.0, (-1, 0, 0.4)), "gloves": ((6.6, 0.0, 22.0), 9.0, (1, 0, 0))},
     "goalie": {"mask": ((1.5, 5.0, 41.5), 7.5, None), "pads": ((3.0, 5.0, 11.5), 13.0, (1, 0, 0)),
-               "catcher": ((4.5, 17.5, 20.0), 7.5, (0.6, 0.8, 0)), "back print": ((-6.4, 5.0, 28.0), 10.0, (-1, 0, 0.2))},
+               "catcher": ((4.5, 17.5, 20.0), 7.5, (0.6, 0.8, 0)), "back print": ((-6.4, 5.0, 28.0), 10.0, (-1, 0, 0.2)),
+               "blocker": ((7.0, -3.5, 17.0), 9.5, (0.93, -0.36, 0.0))},
 }
 TILE = 300
 ONLY = None  # optional set of view ids (CLI: --views a,b)
+NEUTRAL = False  # --neutral: one grey clay material, no prints (shape only); same cameras and lights
+ASSETS = REPO / "assets" / "figures"  # --assets=DIR: render other .blend files (e.g. the previous round's)
+TAG = ""  # --tag=x: output name suffix
+LEGACY = False  # --legacy: the round-4 lighting and finish (grey world, 25 cm key; materials as saved) for before sheets
+NFEAT = 5
 FONT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 18)
 
 
 def scene_for(kind):
-    """Indoor-like light (one soft overhead key + weak fill), neutral; per view the render is then matched to
-    the photo's illuminant (table tint) and exposure (median figure luminance) - see match_photo()."""
-    bpy.ops.wm.open_mainfile(filepath=str(REPO / "assets" / "figures" / f"{kind}_SWE.blend"))
+    """Indoor-like light, neutral; per view the render is then matched to the photo's illuminant (table tint)
+    and exposure (median figure luminance) - see match_photo(). Round 5: a bundled studio HDRI world (gives the
+    glossy plastic and the metal stick something to reflect) plus a small overhead key, as in a room with
+    ceiling lights - the previous 25 cm area light 25 cm above the figure painted broad white highlights."""
+    bpy.ops.wm.open_mainfile(filepath=str(ASSETS / f"{kind}_SWE.blend"))
     for o in [o for o in bpy.data.objects if o.type in ("LIGHT", "CAMERA")]:
         bpy.data.objects.remove(o)
-    sb.set_world(0.18)
+    if LEGACY:
+        sb.set_world(0.18)
+        key = bpy.data.lights.new("Key", "AREA")
+        key.energy, key.size = 4.0, 0.25
+        ko = bpy.data.objects.new("Key", key)
+        ko.location = (0.02, 0.0, 0.25)
+        bpy.context.scene.collection.objects.link(ko)
+        return
+    sb.studio_world(0.55, "interior")
     key = bpy.data.lights.new("Key", "AREA")
-    key.energy, key.size = 4.0, 0.25
+    key.energy, key.size = 2.5, 0.06
     ko = bpy.data.objects.new("Key", key)
-    ko.location = (0.02, 0.0, 0.25)
+    ko.location = (0.06, -0.04, 0.3)
+    ko.rotation_euler = (0.2, 0.15, 0.0)
     bpy.context.scene.collection.objects.link(ko)
     bpy.context.scene.render.film_transparent = True
+    F = json.loads((REPO / "data" / "figure-molds.json").read_text())["finish"]
+    for m in bpy.data.materials:  # the data's surface finish (same values build_figures.py writes)
+        if not m.use_nodes or "Principled BSDF" not in m.node_tree.nodes:
+            continue
+        b = m.node_tree.nodes["Principled BSDF"]
+        if m.name.startswith(("fig_blue", "fig_kit_")):
+            b.inputs["Roughness"].default_value = F["plastic_roughness"]
+            b.inputs["Coat Weight"].default_value = F["coat_weight"]
+            b.inputs["Coat Roughness"].default_value = F["coat_roughness"]
+        elif m.name.startswith("fig_stick_metal"):
+            b.inputs["Roughness"].default_value = F["metal_roughness"]
+        elif m.name.startswith("fig_skin"):
+            b.inputs["Roughness"].default_value = F["skin_roughness"]
+    if NEUTRAL:
+        clay = sb.clay("neutral_clay", (0.42, 0.42, 0.42), 0.5)
+        for o in list(bpy.data.objects):
+            if o.type == "MESH":
+                if o.parent is not None:  # back-print decal
+                    o.hide_render = True
+                    continue
+                for i in range(len(o.data.materials)):
+                    o.data.materials[i] = clay
 
 
 def match_photo(ren_rgba, photo):
@@ -78,14 +117,33 @@ def match_photo(ren_rgba, photo):
     return Image.fromarray(out.astype(np.uint8))
 
 
+def _render_transparent(cam, path, res, samples):
+    """sb.render with a transparent film (the HDRI world lights and reflects but is not the backdrop)."""
+    scn = bpy.context.scene
+    scn.render.engine = "CYCLES"
+    scn.cycles.device = "CPU"
+    scn.cycles.samples = samples
+    scn.cycles.use_denoising = True
+    scn.cycles.seed = 1
+    scn.render.resolution_x, scn.render.resolution_y = res
+    scn.render.resolution_percentage = 100
+    scn.render.image_settings.file_format = "PNG"
+    scn.render.image_settings.color_mode = "RGBA"
+    scn.render.film_transparent = True
+    scn.view_settings.view_transform = "Standard"
+    scn.camera = cam
+    scn.render.filepath = str(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    bpy.ops.render.render(write_still=True)
+
+
 def render_view(kind, vid, fit_json):
     cam, (cw, ch) = bf.cam_from_fit(vid, kind, fit_json)
     s = 900 / max(cw, ch)
     res = (round(cw * s), round(ch * s))
     p = OUT / f"{kind}_{vid}.png"
     scn = bpy.context.scene
-    sb.render(cam, p, res, 64)
-    scn.render.film_transparent = True
+    _render_transparent(cam, p, res, 64)
     photo = Image.open(REPO / MAN[vid]["file"]).convert("RGB").resize(res, Image.LANCZOS)
     ren = match_photo(Image.open(p).convert("RGBA"), photo)
     feats = []
@@ -111,13 +169,22 @@ def render_view(kind, vid, fit_json):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     global ONLY
-    args = [a for a in sys.argv[1:] if not a.startswith("--views=")]
+    global NEUTRAL, ASSETS, TAG, LEGACY
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
     for a in sys.argv[1:]:
         if a.startswith("--views="):
             ONLY = set(a.split("=", 1)[1].split(","))
+        elif a == "--neutral":
+            NEUTRAL = True
+        elif a.startswith("--assets="):
+            ASSETS = Path(a.split("=", 1)[1])
+        elif a == "--legacy":
+            LEGACY = True
+        elif a.startswith("--tag="):
+            TAG = a.split("=", 1)[1]
     for kind in (args or ["skater", "goalie"]):
         scene_for(kind)
-        rows = []
+        rows, index = [], []
         for tag, fjson in (("fitted", VAL / f"{kind}-fit.json"), ("inspected", VAL / f"{kind}-heldout-fit.json"),
                            ("INDEPENDENT", VAL / f"{kind}-independent-fit.json")):
             if not fjson.exists():
@@ -128,7 +195,8 @@ def main():
                     continue
                 photo, ren, feats = render_view(kind, vid, fjson)
                 rows.append((f"{vid}  [{tag}]  IoU {fv['iou']:.3f}", photo, ren, feats))
-        W = 2 * TILE + 4 * 2 * TILE
+                index.append({"view": vid, "tag": tag, "features": [f[0] for f in feats[:NFEAT]]})
+        W = 2 * TILE + NFEAT * 2 * TILE
         sheet = Image.new("RGB", (W, len(rows) * (TILE + 34)), "white")
         d = ImageDraw.Draw(sheet)
         for i, (label, photo, ren, feats) in enumerate(rows):
@@ -138,13 +206,15 @@ def main():
                 t = im.copy()
                 t.thumbnail((TILE, TILE))
                 sheet.paste(t, (j * TILE, y + 32))
-            for k, (name, a, b) in enumerate(feats[:4]):
+            for k, (name, a, b) in enumerate(feats[:NFEAT]):
                 x = 2 * TILE + k * 2 * TILE
                 sheet.paste(a, (x, y + 32))
                 sheet.paste(b, (x + TILE, y + 32))
                 d.text((x + 6, y + 36), name, fill=(255, 255, 255), font=FONT, stroke_width=2, stroke_fill=(0, 0, 0))
-        dst = VAL / f"closeups-{kind}.png" if not ONLY else OUT / f"closeups-{kind}-partial.png"
+        suffix = ("-neutral" if NEUTRAL else "") + ("-legacy" if LEGACY else "") + (f"-{TAG}" if TAG else "")
+        dst = VAL / f"closeups-{kind}{suffix}.png" if not ONLY else OUT / f"closeups-{kind}{suffix}-partial.png"
         sheet.save(dst)
+        dst.with_suffix(".json").write_text(json.dumps({"tile": TILE, "row": TILE + 34, "rows": index}, indent=1) + "\n")
         print("wrote", dst, sheet.size)
 
 

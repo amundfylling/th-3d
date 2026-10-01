@@ -56,7 +56,7 @@ def lin(srgb):
     return tuple(np.where(c <= 0.04045, c / 12.92, ((c + 0.055) / 1.055) ** 2.4))
 
 
-def material(name, srgb, rough=0.32, metallic=0.0, coat=0.0):
+def material(name, srgb, rough=0.32, metallic=0.0, coat=0.0, coat_rough=0.03):
     m = bpy.data.materials.get(name) or bpy.data.materials.new(name)
     m.use_nodes = True
     b = m.node_tree.nodes["Principled BSDF"]
@@ -65,16 +65,19 @@ def material(name, srgb, rough=0.32, metallic=0.0, coat=0.0):
     b.inputs["Metallic"].default_value = metallic
     if coat:
         b.inputs["Coat Weight"].default_value = coat
+        b.inputs["Coat Roughness"].default_value = coat_rough
     return m
 
 
 def team_materials(team):
     A = MOLDS["albedo_srgb"]  # data/figure-molds.json: calibrated plastic albedo
-    return {fm.KIT: material(f"fig_kit_{team}", A[f"kit_{team}"], 0.32, coat=0.25),
-            fm.BLUE: material("fig_blue", A["blue"], 0.3, coat=0.25),
-            fm.SKIN: material("fig_skin", A["skin"], 0.42),
-            fm.METAL: material("fig_stick_metal", A["stick_metal"], 0.3, metallic=1.0),
-            fm.TAN: material("fig_stick_tan", A["stick_tan"], 0.4),
+    F = MOLDS["finish"]  # data/figure-molds.json: semi-gloss plastic + thin clear coat, brushed metal (round 5)
+    pr, cw, cr = F["plastic_roughness"], F["coat_weight"], F["coat_roughness"]
+    return {fm.KIT: material(f"fig_kit_{team}", A[f"kit_{team}"], pr, coat=cw, coat_rough=cr),
+            fm.BLUE: material("fig_blue", A["blue"], pr, coat=cw, coat_rough=cr),
+            fm.SKIN: material("fig_skin", A["skin"], F["skin_roughness"]),
+            fm.METAL: material("fig_stick_metal", A["stick_metal"], F["metal_roughness"], metallic=1.0),
+            fm.TAN: material("fig_stick_tan", A["stick_tan"], F["tan_roughness"]),
             fm.DARK: material("fig_recess", A["recess"], 0.6)}
 
 

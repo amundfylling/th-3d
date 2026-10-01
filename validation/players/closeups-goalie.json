@@ -1,0 +1,204 @@
+{
+ "tile": 300,
+ "row": 334,
+ "rows": [
+  {
+   "view": "goalie-photo-front",
+   "tag": "fitted",
+   "features": [
+    "mask",
+    "pads",
+    "catcher",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-photo-front-oblique",
+   "tag": "fitted",
+   "features": [
+    "mask",
+    "pads",
+    "catcher",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-photo-back",
+   "tag": "fitted",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-photo-side",
+   "tag": "fitted",
+   "features": [
+    "mask",
+    "pads",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-video-t00.50",
+   "tag": "fitted",
+   "features": [
+    "mask",
+    "pads",
+    "catcher",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-video-t05.00",
+   "tag": "fitted",
+   "features": [
+    "mask"
+   ]
+  },
+  {
+   "view": "goalie-video-t07.75",
+   "tag": "fitted",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-video-t12.25",
+   "tag": "fitted",
+   "features": [
+    "mask",
+    "pads",
+    "catcher",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-video-t02.50",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "pads",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-video-t10.00",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "catcher"
+   ]
+  },
+  {
+   "view": "goalie-photo-top",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-video-t16.75",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "pads",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-photo-lying-back",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-photo-lying-back-2",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-photo-underside",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-video-t03.75",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "pads",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-video-t06.25",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-video-t09.00",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-video-t11.00",
+   "tag": "inspected",
+   "features": [
+    "mask",
+    "pads",
+    "catcher",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-video-t01.25",
+   "tag": "INDEPENDENT",
+   "features": [
+    "mask",
+    "pads",
+    "blocker"
+   ]
+  },
+  {
+   "view": "goalie-video-t07.25",
+   "tag": "INDEPENDENT",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-video-t06.75",
+   "tag": "INDEPENDENT",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  },
+  {
+   "view": "goalie-video-t08.40",
+   "tag": "INDEPENDENT",
+   "features": [
+    "mask",
+    "back print"
+   ]
+  }
+ ]
+}

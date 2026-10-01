@@ -116,6 +116,28 @@ def add_sun(strength: float = 3.0, angle_deg=(35, 0, 30)):
     return obj
 
 
+def studio_world(strength: float = 0.6, name: str = "interior", rotate_deg: float = 0.0):
+    """Image-based world: one of Blender's bundled studio-light HDRIs (datafiles/studiolights/world/<name>.exr,
+    shipped with Blender), so glossy plastic and the metal stick have something to reflect. Not copied into
+    the repository."""
+    path = Path(bpy.utils.system_resource("DATAFILES", path="studiolights/world")) / f"{name}.exr"
+    world = bpy.data.worlds.new("StudioWorld")
+    world.use_nodes = True
+    nt = world.node_tree
+    bg = nt.nodes["Background"]
+    env = nt.nodes.new("ShaderNodeTexEnvironment")
+    env.image = bpy.data.images.load(str(path), check_existing=True)
+    mp = nt.nodes.new("ShaderNodeMapping")
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp.inputs["Rotation"].default_value[2] = math.radians(rotate_deg)
+    nt.links.new(tc.outputs["Generated"], mp.inputs["Vector"])
+    nt.links.new(mp.outputs["Vector"], env.inputs["Vector"])
+    nt.links.new(env.outputs["Color"], bg.inputs["Color"])
+    bg.inputs["Strength"].default_value = strength
+    bpy.context.scene.world = world
+    return path
+
+
 def set_world(grey: float = 0.35):
     world = bpy.data.worlds.new("World")
     world.use_nodes = True

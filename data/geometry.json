@@ -37405,7 +37405,7 @@
         "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1895."
       },
       "blade_offset_from_pivot": {
-        "value": 9.15,
+        "value": 12.28,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -37442,27 +37442,27 @@
             "points_mm": [
               [
                 8.91,
-                2.06,
+                8.45,
                 0
               ],
               [
                 8.91,
-                28.06,
+                34.45,
                 0
               ],
               [
                 8.91,
-                28.06,
+                34.45,
                 5.5
               ],
               [
                 8.91,
-                2.06,
+                8.45,
                 5.5
               ],
               [
                 8.91,
-                2.06,
+                8.45,
                 0
               ]
             ]
@@ -37493,13 +37493,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                7.77,
-                -6.85,
-                18.28
+                5.71,
+                -7.39,
+                25.15
               ],
               [
                 8.91,
-                3.43,
+                9.82,
                 4.12
               ]
             ]
@@ -37768,7 +37768,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8289 (8 views); overhead top-view IoU 0.7387."
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8409 (8 views); overhead top-view IoU 0.7387."
         },
         {
           "item": "absolute scale",
@@ -38052,7 +38052,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -38331,7 +38331,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -38610,7 +38610,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -38889,7 +38889,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -39168,7 +39168,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -39193,7 +39193,7 @@
         "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1895."
       },
       "blade_offset_from_pivot": {
-        "value": 9.15,
+        "value": 12.28,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -39230,27 +39230,27 @@
             "points_mm": [
               [
                 8.91,
-                2.06,
+                8.45,
                 0
               ],
               [
                 8.91,
-                28.06,
+                34.45,
                 0
               ],
               [
                 8.91,
-                28.06,
+                34.45,
                 5.5
               ],
               [
                 8.91,
-                2.06,
+                8.45,
                 5.5
               ],
               [
                 8.91,
-                2.06,
+                8.45,
                 0
               ]
             ]
@@ -39281,13 +39281,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                7.77,
-                -6.85,
-                18.28
+                5.71,
+                -7.39,
+                25.15
               ],
               [
                 8.91,
-                3.43,
+                9.82,
                 4.12
               ]
             ]
@@ -39556,7 +39556,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8289 (8 views); overhead top-view IoU 0.7387."
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8409 (8 views); overhead top-view IoU 0.7387."
         },
         {
           "item": "absolute scale",
@@ -39840,7 +39840,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -40119,7 +40119,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -40398,7 +40398,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -40677,7 +40677,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -40956,7 +40956,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8028 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
