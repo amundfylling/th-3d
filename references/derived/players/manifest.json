@@ -724,6 +724,198 @@
       },
       "file": "references/derived/players/skater-video-t22.60.jpg",
       "sha256": "e2425a5bdda9f5e04f630301c88c89ad039a49d567d95eb08690037bdc40e835"
+    },
+    "skater-video-t02.25": {
+      "source_file": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "source_sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "time_s": 2.25,
+      "figure": "skater",
+      "team": "Sweden",
+      "view": "turntable, front-right (independent check)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        50,
+        1728,
+        1334,
+        3552
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/skater-video-t02.25.jpg",
+      "sha256": "56e1bd7d1b54dc29360e3b9b2d19d37b49ee6fc2db16de62e8b9dcc4456894e8"
+    },
+    "skater-video-t05.25": {
+      "source_file": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "source_sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "time_s": 5.25,
+      "figure": "skater",
+      "team": "Sweden",
+      "view": "turntable, right-back (independent check)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        284,
+        1434,
+        1412,
+        3678
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/skater-video-t05.25.jpg",
+      "sha256": "121033d51fd3edc76dfc5291d7596eb1630a9a0eeaaa080c3dbb0a65972a7016"
+    },
+    "skater-video-t09.25": {
+      "source_file": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "source_sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "time_s": 9.25,
+      "figure": "skater",
+      "team": "Sweden",
+      "view": "turntable, left (independent check)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        248,
+        1456,
+        1784,
+        3472
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/skater-video-t09.25.jpg",
+      "sha256": "fa5f743c3549915f1c76729023de63e149c59e0bea3306554530fd5aeddcd33e"
+    },
+    "skater-video-t10.25": {
+      "source_file": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "source_sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "time_s": 10.25,
+      "figure": "skater",
+      "team": "Sweden",
+      "view": "turntable, front-left (independent check)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        104,
+        1592,
+        1400,
+        3176
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/skater-video-t10.25.jpg",
+      "sha256": "9c3bc36c1d76121bcc2483437dbcd1b5a5f380c4fda46a7c7241212eb18ab0bc"
+    },
+    "goalie-video-t03.75": {
+      "source_file": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "source_sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "time_s": 3.75,
+      "figure": "goalie",
+      "team": "Sweden",
+      "view": "turntable, front-right (independent check)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        0,
+        1108,
+        1520,
+        3196
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/goalie-video-t03.75.jpg",
+      "sha256": "70a7d4be3405abe3679e1515f15779336a33b62eb890e766e5891dc5f71095d8"
+    },
+    "goalie-video-t06.25": {
+      "source_file": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "source_sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "time_s": 6.25,
+      "figure": "goalie",
+      "team": "Sweden",
+      "view": "turntable, right-back (independent check)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        0,
+        1350,
+        1494,
+        3522
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/goalie-video-t06.25.jpg",
+      "sha256": "1df62f737431fee6488209284c38d1e64f066c8ec951ea82360b377cae990216"
+    },
+    "goalie-video-t09.00": {
+      "source_file": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "source_sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "time_s": 9.0,
+      "figure": "goalie",
+      "team": "Sweden",
+      "view": "turntable, left-back (independent check)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        314,
+        1590,
+        1934,
+        3618
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/goalie-video-t09.00.jpg",
+      "sha256": "c4fee068214cae6f9a6784bd23de7011995bf0fac4853ee176cb3e6c0113add2"
+    },
+    "goalie-video-t11.00": {
+      "source_file": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "source_sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "time_s": 11.0,
+      "figure": "goalie",
+      "team": "Sweden",
+      "view": "turntable (independent check)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        0,
+        1604,
+        1742,
+        3548
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/goalie-video-t11.00.jpg",
+      "sha256": "96377caddb36eb99920a2b2966c126301f22311206ef9ed9e54d76107e0a432a"
     }
   }
 }

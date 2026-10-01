@@ -4,7 +4,7 @@
   "slots": {
     "W-G": {
       "n": 26,
-      "onDark": 0.692,
+      "onDark": 0.654,
       "meanOffsetPx": 0.461,
       "maxOffsetPx": 0.75
     },
@@ -17,8 +17,8 @@
     "W-RD": {
       "n": 79,
       "onDark": 0.937,
-      "meanOffsetPx": 0.613,
-      "maxOffsetPx": 8.75
+      "meanOffsetPx": 0.5,
+      "maxOffsetPx": 0.75
     },
     "W-C": {
       "n": 85,
@@ -29,7 +29,7 @@
     "W-LW": {
       "n": 170,
       "onDark": 0.965,
-      "meanOffsetPx": 0.517,
+      "meanOffsetPx": 0.511,
       "maxOffsetPx": 3.25
     },
     "W-RW": {
@@ -53,26 +53,26 @@
     "E-RD": {
       "n": 81,
       "onDark": 0.938,
-      "meanOffsetPx": 0.593,
+      "meanOffsetPx": 0.565,
       "maxOffsetPx": 3.75
     },
     "E-C": {
       "n": 85,
       "onDark": 0.929,
-      "meanOffsetPx": 0.716,
-      "maxOffsetPx": 6.25
+      "meanOffsetPx": 0.666,
+      "maxOffsetPx": 7.25
     },
     "E-LW": {
       "n": 168,
-      "onDark": 0.958,
-      "meanOffsetPx": 0.534,
-      "maxOffsetPx": 5.75
+      "onDark": 0.97,
+      "meanOffsetPx": 0.502,
+      "maxOffsetPx": 1.25
     },
     "E-RW": {
       "n": 154,
       "onDark": 0.955,
-      "meanOffsetPx": 0.542,
-      "maxOffsetPx": 4.75
+      "meanOffsetPx": 0.522,
+      "maxOffsetPx": 3.25
     }
   },
   "slot_summary": {

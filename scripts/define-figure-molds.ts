@@ -79,7 +79,7 @@ function contacts(pid: string, kind: "skater" | "goalie"): ContactShape[] {
     return [blade, c("stick_shaft", "stick_shaft", (m.stick.shaft as number[][]).map((p) => s3(p)), 2.5, "Round wire shaft through both gloves to the heel."), base,
       c("skate.right", "skate", [s3(m.runner.a, 0), s3(m.runner.b, 0)], 3, "Right (pushing) skate runner on the ice, behind and right of the axis. The left skate stands on the mount socket.")];
   }
-  const pad = (n: string) => { const b = m.boxes[n]; const [cx, cy] = b.centre; const [hx, hy] = b.half_size; return [s3([cx - hx, cy - hy], 0), s3([cx + hx, cy - hy], 0), s3([cx + hx, cy + hy], 0), s3([cx - hx, cy + hy], 0), s3([cx - hx, cy - hy], 0)]; };
+  const pad = (n: string) => { const b = (m.pad_footprint ?? m.boxes)[n]; const [cx, cy] = b.centre; const [hx, hy] = b.half_size; return [s3([cx - hx, cy - hy], 0), s3([cx + hx, cy - hy], 0), s3([cx + hx, cy + hy], 0), s3([cx - hx, cy + hy], 0), s3([cx - hx, cy - hy], 0)]; };
   return [blade, c("stick_shaft", "stick_shaft", (m.stick.paddle as number[][]).map((p) => s3(p)), 2.5, "Flat tan paddle from the blocker down to the heel."), base,
     c("pad.left", "pad", pad("pad_l"), 3, "Left leg-pad bottom on the ice."), c("pad.right", "pad", pad("pad_r"), 3, "Right leg-pad bottom (over the socket side).")];
 }

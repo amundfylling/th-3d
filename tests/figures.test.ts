@@ -170,3 +170,30 @@ test("goalie matches the user's ruler measurements; the skater keeps its own (ov
   const idx = JSON.parse(readFileSync("references/index.json", "utf8")).sources.find((s: any) => s.id === "user_goalie_measurement_sketch");
   assert.ok(idx && idx.sha256.length === 64);
 });
+
+test("refinement round 4: independent fresh frames scored at frozen cameras; lofted cuffs, moulded pads, smooth skin edges", () => {
+  for (const kind of ["skater", "goalie"]) {
+    const ind = JSON.parse(readFileSync(`validation/players/${kind}-independent-fit.json`, "utf8"));
+    assert.equal(ind.independent, true);
+    const used = [
+      ...Object.keys(JSON.parse(readFileSync(`validation/players/${kind}-fit.json`, "utf8")).views),
+      ...Object.keys(JSON.parse(readFileSync(`validation/players/${kind}-heldout-fit.json`, "utf8")).views),
+    ];
+    assert.ok(Object.keys(ind.views).length >= 4);
+    for (const [v, r] of Object.entries(ind.views) as [string, any][]) {
+      assert.ok(!used.includes(v), `${v} must not be a fitting or inspected view`);
+      assert.ok(r.iou >= 0.65, `independent ${v} IoU ${r.iou}`);
+    }
+  }
+  const sk = molds.skater.parts;
+  assert.ok(sk.sleeves.lofts.gauntlet_r && sk.sleeves.lofts.gauntlet_l, "both gauntlets are lofted cuffs");
+  assert.ok(Object.keys(sk.gloves.mboxes).length === 2, "one moulded hand block per glove");
+  const go = molds.goalie;
+  assert.deepEqual(Object.keys(go.boxes), [], "pads are moulded parts, not boxes");
+  for (const n of ["pad_l", "pad_r"]) {
+    assert.ok(go.parts[n].mboxes.upper && go.parts[n].mboxes.knee && go.parts[n].mboxes.lower2);
+    assert.ok(go.parts[n].mboxes.lower2.half_size[1] < go.parts[n].mboxes.upper.half_size[1], "lower pad tapers toward the boot");
+    assert.ok(go.pad_footprint[n].half_size.length === 3);
+  }
+  assert.ok(go.paint[0].refine >= 2, "skin borders refined");
+});

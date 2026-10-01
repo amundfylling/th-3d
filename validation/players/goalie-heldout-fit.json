@@ -1,9 +1,9 @@
 {
   "kind": "goalie",
-  "mean_iou": 0.8164,
+  "mean_iou": 0.8139,
   "views": {
     "goalie-video-t02.50": {
-      "iou": 0.823,
+      "iou": 0.832,
       "camera": {
         "azimuth_deg": -37.8,
         "elevation_deg": 44.89,
@@ -24,7 +24,7 @@
       ]
     },
     "goalie-video-t10.00": {
-      "iou": 0.7839,
+      "iou": 0.7816,
       "camera": {
         "azimuth_deg": 90.0,
         "elevation_deg": 58.31,
@@ -45,7 +45,7 @@
       ]
     },
     "goalie-photo-top": {
-      "iou": 0.8019,
+      "iou": 0.8023,
       "camera": {
         "azimuth_deg": 170.03,
         "elevation_deg": 76.72,
@@ -66,7 +66,7 @@
       ]
     },
     "goalie-video-t16.75": {
-      "iou": 0.8046,
+      "iou": 0.7878,
       "camera": {
         "azimuth_deg": 9.36,
         "elevation_deg": 74.13,
@@ -87,7 +87,7 @@
       ]
     },
     "goalie-photo-lying-back": {
-      "iou": 0.8102,
+      "iou": 0.8115,
       "camera": {
         "azimuth_deg": 147.55,
         "elevation_deg": 19.44,
@@ -108,7 +108,7 @@
       ]
     },
     "goalie-photo-lying-back-2": {
-      "iou": 0.853,
+      "iou": 0.8448,
       "camera": {
         "azimuth_deg": 170.26,
         "elevation_deg": 18.97,
@@ -129,7 +129,7 @@
       ]
     },
     "goalie-photo-underside": {
-      "iou": 0.8384,
+      "iou": 0.8372,
       "camera": {
         "azimuth_deg": 180.33,
         "elevation_deg": -54.71,
@@ -151,5 +151,6 @@
     }
   },
   "held_out": true,
+  "note": "Former held-out views: inspected while modelling since round 3, so they are fitting references now; see <kind>-independent-fit.json for unseen frames.",
   "cameras": "fixed (scored only)"
 }

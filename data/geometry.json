@@ -399,7 +399,7 @@
     },
     {
       "id": "assume.figure_mold_scale",
-      "statement": "Skater mold scale k = 1.0864 mm per mold unit, fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the ASSUMED preview scale. The goalie no longer shares it: its scale k = 1.1422 comes from the user's measured height (54 mm).",
+      "statement": "Skater mold scale k = 1.0814 mm per mold unit, fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the ASSUMED preview scale. The goalie no longer shares it: its scale k = 1.1422 comes from the user's measured height (54 mm).",
       "reason": "No ruler measurement of a skater exists; the overhead is the only scaled view of the skaters (itself at the ASSUMED preview scale).",
       "affects": [
         "figure_assets.fig.W-LD",
@@ -37402,7 +37402,7 @@
         "source_ids": [
           "user_measurement_2026_10_01_goalie"
         ],
-        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1407."
+        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1895."
       },
       "blade_offset_from_pivot": {
         "value": 9.15,
@@ -37768,12 +37768,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8302 (8 views); overhead top-view IoU 0.7364."
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8289 (8 views); overhead top-view IoU 0.7387."
         },
         {
           "item": "absolute scale",
           "status": "measured",
-          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1407 at the assumed preview scale."
+          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1895 at the assumed preview scale."
         },
         {
           "item": "measured dimensions",
@@ -37788,7 +37788,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -37797,10 +37797,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -37808,7 +37808,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -37827,28 +37827,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -37869,19 +37869,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -37901,87 +37901,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -38003,13 +38003,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -38052,12 +38052,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38067,7 +38067,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38076,10 +38076,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38087,7 +38087,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38106,28 +38106,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -38148,19 +38148,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -38180,87 +38180,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -38282,13 +38282,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -38331,12 +38331,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38346,7 +38346,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38355,10 +38355,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38366,7 +38366,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38385,28 +38385,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -38427,19 +38427,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -38459,87 +38459,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -38561,13 +38561,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -38610,12 +38610,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38625,7 +38625,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38634,10 +38634,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38645,7 +38645,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38664,28 +38664,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -38706,19 +38706,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -38738,87 +38738,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -38840,13 +38840,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -38889,12 +38889,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38904,7 +38904,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38913,10 +38913,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38924,7 +38924,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38943,28 +38943,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -38985,19 +38985,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -39017,87 +39017,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -39119,13 +39119,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -39168,12 +39168,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -39190,7 +39190,7 @@
         "source_ids": [
           "user_measurement_2026_10_01_goalie"
         ],
-        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1407."
+        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1895."
       },
       "blade_offset_from_pivot": {
         "value": 9.15,
@@ -39556,12 +39556,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8302 (8 views); overhead top-view IoU 0.7364."
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8289 (8 views); overhead top-view IoU 0.7387."
         },
         {
           "item": "absolute scale",
           "status": "measured",
-          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1407 at the assumed preview scale."
+          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1895 at the assumed preview scale."
         },
         {
           "item": "measured dimensions",
@@ -39576,7 +39576,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -39585,10 +39585,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -39596,7 +39596,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -39615,28 +39615,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -39657,19 +39657,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -39689,87 +39689,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -39791,13 +39791,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -39840,12 +39840,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -39855,7 +39855,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -39864,10 +39864,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -39875,7 +39875,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -39894,28 +39894,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -39936,19 +39936,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -39968,87 +39968,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -40070,13 +40070,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -40119,12 +40119,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40134,7 +40134,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40143,10 +40143,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40154,7 +40154,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40173,28 +40173,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -40215,19 +40215,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -40247,87 +40247,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -40349,13 +40349,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -40398,12 +40398,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40413,7 +40413,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40422,10 +40422,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40433,7 +40433,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40452,28 +40452,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -40494,19 +40494,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -40526,87 +40526,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -40628,13 +40628,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -40677,12 +40677,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40692,7 +40692,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.84,
+        "value": 51.6,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40701,10 +40701,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0864. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.4 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 23.04,
+        "value": 22.94,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40712,7 +40712,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.78 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40731,28 +40731,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ],
               [
-                2.39,
-                43.67,
+                2.38,
+                43.47,
                 0
               ],
               [
-                2.39,
-                43.67,
-                3.26
+                2.38,
+                43.47,
+                3.24
               ],
               [
-                3.26,
-                22.81,
-                3.26
+                3.24,
+                22.71,
+                3.24
               ],
               [
-                3.26,
-                22.81,
+                3.24,
+                22.71,
                 0
               ]
             ]
@@ -40773,19 +40773,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.15,
-                -5.43,
-                30.42
+                8.11,
+                -5.41,
+                30.28
               ],
               [
-                3.37,
-                21.95,
-                1.74
+                3.35,
+                21.84,
+                1.73
               ],
               [
-                3.26,
-                22.81,
-                0.98
+                3.24,
+                22.71,
+                0.97
               ]
             ]
           },
@@ -40805,87 +40805,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.08,
+                6.06,
                 0,
                 0
               ],
               [
-                5.62,
-                2.33,
+                5.59,
+                2.32,
                 0
               ],
               [
-                4.3,
-                4.3,
+                4.28,
+                4.28,
                 0
               ],
               [
-                2.33,
-                5.62,
-                0
-              ],
-              [
-                0,
-                6.08,
-                0
-              ],
-              [
-                -2.33,
-                5.62,
-                0
-              ],
-              [
-                -4.3,
-                4.3,
-                0
-              ],
-              [
-                -5.62,
-                2.33,
-                0
-              ],
-              [
-                -6.08,
-                0,
-                0
-              ],
-              [
-                -5.62,
-                -2.33,
-                0
-              ],
-              [
-                -4.3,
-                -4.3,
-                0
-              ],
-              [
-                -2.33,
-                -5.62,
+                2.32,
+                5.59,
                 0
               ],
               [
                 0,
-                -6.08,
+                6.06,
                 0
               ],
               [
-                2.33,
-                -5.62,
+                -2.32,
+                5.59,
                 0
               ],
               [
-                4.3,
-                -4.3,
+                -4.28,
+                4.28,
                 0
               ],
               [
-                5.62,
-                -2.33,
+                -5.59,
+                2.32,
                 0
               ],
               [
-                6.08,
+                -6.06,
+                0,
+                0
+              ],
+              [
+                -5.59,
+                -2.32,
+                0
+              ],
+              [
+                -4.28,
+                -4.28,
+                0
+              ],
+              [
+                -2.32,
+                -5.59,
+                0
+              ],
+              [
+                0,
+                -6.06,
+                0
+              ],
+              [
+                2.32,
+                -5.59,
+                0
+              ],
+              [
+                4.28,
+                -4.28,
+                0
+              ],
+              [
+                5.59,
+                -2.32,
+                0
+              ],
+              [
+                6.06,
                 0,
                 0
               ]
@@ -40907,13 +40907,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.78,
-                -14.99,
+                -14.71,
+                -14.92,
                 0
               ],
               [
-                -5.43,
-                -18.47,
+                -5.41,
+                -18.38,
                 0
               ]
             ]
@@ -40956,12 +40956,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.792 (8 views); overhead top-view IoU 0.7796."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8043 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0864 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."

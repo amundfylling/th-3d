@@ -146,6 +146,73 @@ def cuff(name: str, a, b, r_a: float, r_b: float, oval=(1.0, 1.0), up=(0, 0, 1),
     return ob
 
 
+def loft_cuff(name: str, mouth_c, mouth_n, mouth_long, mouth_r, wrist_c, wrist_r, lip: float = 0.5,
+              depth: float = 1.2, flare: float = 1.4, base: float = 0.0, n: int = 56):
+    """Moulded gauntlet cuff (mm) lofted between a wrist ring and an independently oriented oval mouth.
+    The mouth ring lies in its own plane (normal `mouth_n`, long axis `mouth_long`, semi-axes mouth_r =
+    (long, short)), so a broad, flat cuff can open upward while its body runs obliquely down to the wrist
+    (`wrist_c`, semi-axes wrist_r = (along the mouth's long axis, across)). Rings in between: centre linear,
+    offsets blended with t**flare (trumpet). A rolled rim of thickness `lip` crowns the mouth and the
+    opening is recessed `depth` mm along the cuff (the forearm sits inside). `base` > 0 closes the wrist end
+    with a rounded bottom that far beyond the wrist ring (a broad cuff the glove leaves at one side). One
+    closed surface."""
+    M, B = Vector(mouth_c), Vector(wrist_c)
+    N = Vector(mouth_n).normalized()
+    Lg = Vector(mouth_long)
+    Lg = (Lg - N * Lg.dot(N)).normalized()
+    Sh = N.cross(Lg)
+    ax = (M - B).normalized()
+    L = (M - B).length
+    wl = (Lg - ax * Lg.dot(ax)).normalized()
+    ws = ax.cross(wl)
+    if ws.dot(Sh) < 0:
+        ws = -ws
+    phis = [2 * math.pi * k / n for k in range(n)]
+    mo = [Lg * (mouth_r[0] * math.cos(p)) + Sh * (mouth_r[1] * math.sin(p)) for p in phis]
+    wo = [wl * (wrist_r[0] * math.cos(p)) + ws * (wrist_r[1] * math.sin(p)) for p in phis]
+
+    def ring(t, shrink=1.0):
+        c = B + (M - B) * t
+        f = t ** flare
+        return [c + (w + (m - w) * f) * shrink for w, m in zip(wo, mo)]
+
+    rings = []
+    for k in range(5, 0, -1):  # rounded bottom below the wrist ring (quarter ellipse)
+        if base > 0:
+            th = math.pi / 2 * k / 5
+            rings.append([B - ax * (base * math.sin(th)) + w * math.cos(th) for w in wo])
+    rings += [ring(i / 14) for i in range(15)]
+    for k in range(1, 7):  # rolled rim over the lip
+        th = math.pi * k / 6
+        rr = []
+        for m in mo:
+            rd = m.normalized()
+            rr.append(M + rd * (m.length - lip / 2 + lip / 2 * math.cos(th)) + N * (lip / 2 * math.sin(th) * 0.8))
+        rings.append(rr)
+    for k in range(1, 6):  # recessed mouth: inner wall down the cuff
+        t = 1 - (depth / L) * k / 5
+        rings.append(ring(t, 1.0 - lip / max(min(mouth_r), 0.5) - 0.06 * k))
+    verts = [tuple(v) for r in rings for v in r]
+    m = len(rings)
+    faces = []
+    for i in range(m - 1):
+        for k in range(n):
+            a0, a1 = i * n + k, i * n + (k + 1) % n
+            faces.append((a0, a1, a1 + n, a0 + n))
+    c0 = len(verts)
+    verts.append(tuple(B - ax * base))
+    faces += [((k + 1) % n, k, c0) for k in range(n)]  # wrist cap
+    c1 = len(verts)
+    verts.append(tuple(B + (M - B) * (1 - depth / L)))
+    faces += [((m - 1) * n + k, (m - 1) * n + (k + 1) % n, c1) for k in range(n)]  # mouth floor
+    ob = mesh_object(name, verts, faces)
+    bpy.ops.object.select_all(action="DESELECT")
+    bpy.context.view_layer.objects.active = ob
+    ob.select_set(True)
+    bpy.ops.object.shade_smooth_by_angle(angle=math.radians(50))
+    return ob
+
+
 def _bevel_apply(ob, width_mm: float, segments: int):
     bpy.ops.object.select_all(action="DESELECT")
     bpy.context.view_layer.objects.active = ob
@@ -166,8 +233,10 @@ def build_part(prefix: str, pname: str, part: dict):
     out = []
     balls, caps = _elements(part)
     negs = {n: (tuple(e["centre"]), tuple(e["semi_axes"]), tuple(e.get("rot_deg", (0, 0, 0)))) for n, e in part.get("negative_ellipsoids", {}).items()}
-    if balls or caps:
-        out.append(metaball_part(f"{prefix}_{pname}", balls, caps, res_mm=part.get("res", 0.3), negs=negs))
+    # metaball rounded boxes (blend with the other elements): centre, half_size, XYZ rot_deg, edge round
+    mbox = {n: (tuple(e["centre"]), tuple(e["half_size"]), tuple(e.get("rot_deg", (0, 0, 0))), e.get("round", 1.0)) for n, e in part.get("mboxes", {}).items()}
+    if balls or caps or mbox:
+        out.append(metaball_part(f"{prefix}_{pname}", balls, caps, mbox, res_mm=part.get("res", 0.3), negs=negs))
     for n, e in part.get("rboxes", {}).items():
         out.append(rbox(f"{prefix}_{pname}_{n}", e["centre"], e["half_size"], e.get("rot_deg", (0, 0, 0)), e.get("bevel", 0.5)))
     for n, e in part.get("tori", {}).items():
@@ -175,6 +244,9 @@ def build_part(prefix: str, pname: str, part: dict):
     for n, e in part.get("cuffs", {}).items():
         out.append(cuff(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], tuple(e.get("oval", (1, 1))), tuple(e.get("up", (0, 0, 1))),
                         e.get("lip", 0.45), e.get("depth", 0.35), e.get("cut_deg", 0.0)))
+    for n, e in part.get("lofts", {}).items():
+        out.append(loft_cuff(f"{prefix}_{pname}_{n}", e["mouth_c"], e["mouth_n"], e["mouth_long"], e["mouth_r"], e["wrist_c"], e["wrist_r"],
+                             e.get("lip", 0.5), e.get("depth", 1.2), e.get("flare", 1.4), e.get("base", 0.0)))
     for n, e in part.get("cones", {}).items():
         out.append(cone(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], e.get("bevel", 0.3)))
     for o in out:
@@ -216,7 +288,7 @@ def metaball_part(name: str, balls: dict, capsules: dict, cubes: dict | None = N
         e = mb.elements.new(type="CUBE")
         e.co, e.radius, e.stiffness = c, rr / sb.METABALL_SURFACE, 2.0
         e.size_x, e.size_y, e.size_z = [max(h - rr, 0.05) for h in half]
-        e.rotation = Matrix.Rotation(math.radians(rot), 4, "Z").to_quaternion()
+        e.rotation = _euler_q(rot) if isinstance(rot, (tuple, list)) else Matrix.Rotation(math.radians(rot), 4, "Z").to_quaternion()
     bpy.ops.object.select_all(action="DESELECT")
     bpy.context.view_layer.objects.active = ob
     ob.select_set(True)
@@ -340,21 +412,45 @@ def apply_paint(ob, mold: dict, slot_name) -> int:
     """Two-colour moulding detail painted on the joined mesh (before scaling, mold units): faces of material
     `from` whose centre, seen from `origin`, falls inside an (azimuth, elevation) polygon in degrees get
     material `to` (e.g. the skin seen through the gaps between a goalie's mask and its back plate).
-    slot_name(key) -> material name of that key on `ob`. Returns the number of repainted faces."""
+    Faces crossed by a region boundary are first subdivided `refine` times (default 3), so the colour edge
+    follows the polygon instead of stepping along the mesh faces. slot_name(key) -> material name of that
+    key on `ob`. Returns the number of repainted faces."""
     from shapely.geometry import Point, Polygon
+    from shapely.prepared import prep
     names = [m.name for m in ob.data.materials]
     n = 0
     for reg in mold.get("paint", []):
         src, dst = names.index(slot_name(reg["from"])), names.index(slot_name(reg["to"]))
         o = Vector(reg["origin"])
-        polys = [Polygon(poly) for poly in reg["polygons_az_el_deg"]]
-        for f in ob.data.polygons:
-            if f.material_index != src:
-                continue
-            d = f.center * 1000.0 - o
+        polys = [prep(Polygon(poly)) for poly in reg["polygons_az_el_deg"]]
+
+        def inside(co):
+            d = co * 1000.0 - o
             az = math.degrees(math.atan2(d.y, d.x))
             el = math.degrees(math.atan2(d.z, math.hypot(d.x, d.y)))
-            if any(pp.contains(Point(az, el)) for pp in polys):
+            return any(pp.contains(Point(az, el)) for pp in polys)
+
+        levels = reg.get("refine", 3)
+        if levels:
+            bm = bmesh.new()
+            bm.from_mesh(ob.data)
+            for _ in range(levels):
+                flag = {}
+                edges = set()
+                for f in bm.faces:
+                    if f.material_index != src:
+                        continue
+                    fl = [flag.setdefault(v.index, inside(v.co)) for v in f.verts]
+                    if any(fl) and not all(fl):
+                        edges.update(f.edges)
+                if not edges:
+                    break
+                bmesh.ops.subdivide_edges(bm, edges=list(edges), cuts=1, use_grid_fill=True)
+                bm.verts.index_update()
+            bm.to_mesh(ob.data)
+            bm.free()
+        for f in ob.data.polygons:
+            if f.material_index == src and inside(f.center):
                 f.material_index = dst
                 n += 1
     return n

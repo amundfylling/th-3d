@@ -1,9 +1,9 @@
 {
   "kind": "skater",
-  "mean_iou": 0.7684,
+  "mean_iou": 0.7843,
   "views": {
     "skater-video-t01.50": {
-      "iou": 0.8394,
+      "iou": 0.8535,
       "camera": {
         "azimuth_deg": 16.01,
         "elevation_deg": 22.61,
@@ -24,7 +24,7 @@
       ]
     },
     "skater-video-t14.50": {
-      "iou": 0.7491,
+      "iou": 0.7806,
       "camera": {
         "azimuth_deg": 22.57,
         "elevation_deg": -11.9,
@@ -45,7 +45,7 @@
       ]
     },
     "skater-video-t22.60": {
-      "iou": 0.7168,
+      "iou": 0.7187,
       "camera": {
         "azimuth_deg": 36.56,
         "elevation_deg": 37.43,
@@ -67,5 +67,6 @@
     }
   },
   "held_out": true,
+  "note": "Former held-out views: inspected while modelling since round 3, so they are fitting references now; see <kind>-independent-fit.json for unseen frames.",
   "cameras": "fixed (scored only)"
 }

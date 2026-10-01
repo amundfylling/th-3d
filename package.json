@@ -27,6 +27,7 @@
     "players:overhead": "/root/venvs/blender/bin/python scripts/fit-figure-overhead.py",
     "blender:figures": "/root/venvs/blender/bin/python assets/blender/build_figures.py",
     "players:heldout": "/root/venvs/blender/bin/python scripts/fit-figure-views.py skater --heldout && /root/venvs/blender/bin/python scripts/fit-figure-views.py goalie --heldout",
+    "players:independent": "/root/venvs/blender/bin/python scripts/fit-figure-views.py skater --independent --fixed && /root/venvs/blender/bin/python scripts/fit-figure-views.py goalie --independent --fixed",
     "players:closeups": "/root/venvs/blender/bin/python assets/blender/render_closeups.py",
     "players:summary": "python3 scripts/closeup-summary.py && /root/venvs/blender/bin/python assets/blender/render_goalie_dims.py",
     "players:define": "node scripts/define-figure-molds.ts",

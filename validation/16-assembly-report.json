@@ -26,7 +26,7 @@
   ],
   "mounting_axes_vertical": true,
   "determinants": {
-    "Figure.W-G": 0.999999881,
+    "Figure.W-G": 1.0,
     "Figure.W-LD": 1.0,
     "Figure.W-RD": 1.0,
     "Figure.W-C": 1.0,
@@ -36,7 +36,7 @@
     "Figure.E-LD": 1.0,
     "Figure.E-RD": 1.0,
     "Figure.E-C": 1.0,
-    "Figure.E-LW": 0.999999821,
+    "Figure.E-LW": 0.99999994,
     "Figure.E-RW": 1.0
   },
   "figure_zmin_mm": {

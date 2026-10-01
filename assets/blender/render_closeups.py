@@ -1,8 +1,9 @@
 """Matched-camera close-up comparisons of the figure assets against the user's photos/videos.
 
     /root/venvs/blender/bin/python assets/blender/render_closeups.py [skater|goalie ...]
-For every fitted view (validation/players/<kind>-fit.json) and every HELD-OUT view (<kind>-heldout-fit.json:
-cameras fitted after the shape, the shape never saw these images) the Sweden asset is rendered with Cycles from
+For every fitted view (validation/players/<kind>-fit.json), every former held-out view (<kind>-heldout-fit.json,
+inspected while modelling since round 3, so now a fitting reference) and every INDEPENDENT frame
+(<kind>-independent-fit.json: fresh frames, inspected only after the round's modelling) the Sweden asset is rendered with Cycles from
 the fitted camera at the photo crop's framing. Feature windows (head, arms/torso, back print, mask, pads,
 gloves) are projected from the mold frame into both images and cut identically.
 Outputs: validation/players/closeups-<kind>.png (rows = views; full photo | full render | feature pairs),
@@ -117,7 +118,8 @@ def main():
     for kind in (args or ["skater", "goalie"]):
         scene_for(kind)
         rows = []
-        for tag, fjson in (("fitted", VAL / f"{kind}-fit.json"), ("HELD-OUT", VAL / f"{kind}-heldout-fit.json")):
+        for tag, fjson in (("fitted", VAL / f"{kind}-fit.json"), ("inspected", VAL / f"{kind}-heldout-fit.json"),
+                           ("INDEPENDENT", VAL / f"{kind}-independent-fit.json")):
             if not fjson.exists():
                 continue
             fit = json.loads(fjson.read_text())["views"]
@@ -131,7 +133,7 @@ def main():
         d = ImageDraw.Draw(sheet)
         for i, (label, photo, ren, feats) in enumerate(rows):
             y = i * (TILE + 34)
-            d.text((6, y + 6), label + "   (each pair: photo | model, same camera and crop; render exposure/tint matched to the photo)", fill=(170, 0, 0) if "HELD" in label else (0, 0, 0), font=FONT)
+            d.text((6, y + 6), label + "   (each pair: photo | model, same camera and crop; render exposure/tint matched to the photo)", fill=(170, 0, 0) if "INDEPENDENT" in label else (0, 0, 0), font=FONT)
             for j, im in enumerate((photo, ren)):
                 t = im.copy()
                 t.thumbnail((TILE, TILE))

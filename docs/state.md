@@ -26,6 +26,11 @@
   thumb ridge); blue albedo desaturated. Cameras frozen; before/after sheet
   `validation/players/closeups-before-after.png` (held-out views in red). Goalie 54 mm / 26 x 5.5 mm kept.
   Remaining mismatches and next inputs: `docs/players.md`. AI review only. Still before iteration 21.
+- **Figure refinement round 4 (user request, 2026-10-01):** skater upper cuff as a broad lofted cuff across the
+  chest, moulded gloves with shallow ridges; goalie pads rebuilt as moulded volumes (rounded upper, knee,
+  tapered lower), smooth refined skin borders, wider crescents, real neck below the back plate. New view policy:
+  inspected views are fitting references; 8 fresh frames scored as INDEPENDENT checks. Silhouette regressions
+  reported in `docs/players.md`. AI review only. Still before iteration 21.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.

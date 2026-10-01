@@ -74,6 +74,26 @@ HELDOUT = {
 }
 
 
+# Round 4: fresh turntable frames (scripts/extract-player-frames.py) reserved as INDEPENDENT checks. Initial
+# azimuth/elevation interpolated in time between the neighbouring fitted turntable cameras. Their cameras are
+# fitted ONCE against the model before the round, then frozen (--fixed) - this favours the old shape, never the
+# new one. The former held-out views (HELDOUT) have since been inspected and count as fitting references.
+INDEPENDENT = {
+    "skater": {
+        "skater-video-t02.25": (-20, 21, [], False, 0, 40),
+        "skater-video-t05.25": (-112, 20, [], False, 0, 40),
+        "skater-video-t09.25": (83, 37, [], False, 0, 40),
+        "skater-video-t10.25": (44, 37, [], False, 0, 40),
+    },
+    "goalie": {
+        "goalie-video-t03.75": (-65, 47, [], False, 0, 40),
+        "goalie-video-t06.25": (-133, 49, [], False, 0, 40),
+        "goalie-video-t09.00": (130, 54, [], False, 0, 40),
+        "goalie-video-t11.00": (60, 55, [], False, 0, 60),
+    },
+}
+
+
 def fit_view(mesh, view_id, init, work_px=420):
     az0, el0, excl, warm = init[:4]
     roll0 = math.radians(init[4]) if len(init) > 4 else 0.0
@@ -161,13 +181,15 @@ def main():
     ap.add_argument("--out", default=str(fv.REPO / "validation" / "players"))
     ap.add_argument("--only")
     ap.add_argument("--heldout", action="store_true", help="fit cameras for the held-out views -> <kind>-heldout-fit.*")
+    ap.add_argument("--independent", action="store_true", help="fresh frames reserved as independent checks -> <kind>-independent-fit.*")
     ap.add_argument("--reuse", action="store_true", help="start from the cameras in the previous <kind>-fit.json")
     ap.add_argument("--fixed", action="store_true", help="keep the stored cameras (implies --reuse): score only")
     a = ap.parse_args()
     global FIXED
     FIXED = a.fixed
     a.reuse = a.reuse or a.fixed
-    prevf = Path(a.out) / f"{a.kind}{'-heldout' if a.heldout else ''}-fit.json"
+    tag = "-independent" if a.independent else "-heldout" if a.heldout else ""
+    prevf = Path(a.out) / f"{a.kind}{tag}-fit.json"
     if a.reuse and prevf.exists():
         PREV.update({k: v["params"] for k, v in json.loads(prevf.read_text())["views"].items()})
     d = np.load(a.mesh or fv.REPO / "out" / "figures" / f"{a.kind}.npz")
@@ -175,8 +197,7 @@ def main():
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     res, tiles = {}, []
-    tag = "-heldout" if a.heldout else ""
-    for vid, init in (HELDOUT if a.heldout else VIEWS)[a.kind].items():
+    for vid, init in (INDEPENDENT if a.independent else HELDOUT if a.heldout else VIEWS)[a.kind].items():
         if a.only and a.only not in vid:
             continue
         r, viz, rgb = fit_view(mesh, vid, init)
@@ -193,7 +214,11 @@ def main():
         sheet.paste(t, ((i % cols) * W, (i // cols) * H))
     sheet.save(out / f"{a.kind}{tag}-fit.png")
     summary = {"kind": a.kind, "mean_iou": round(float(np.mean([r["iou"] for r in res.values()])), 4), "views": res}
-    summary["held_out"] = bool(a.heldout)
+    summary["held_out"] = bool(a.heldout or a.independent)
+    if a.independent:
+        summary["independent"] = True
+    elif a.heldout:
+        summary["note"] = "Former held-out views: inspected while modelling since round 3, so they are fitting references now; see <kind>-independent-fit.json for unseen frames."
     summary["cameras"] = "fixed (scored only)" if a.fixed else "fitted"
     (out / f"{a.kind}{tag}-fit.json").write_text(json.dumps(summary, indent=2) + "\n")
     print("mean IoU", summary["mean_iou"])
