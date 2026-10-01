@@ -1,9 +1,9 @@
 {
   "kind": "skater",
-  "mean_iou": 0.7952,
+  "mean_iou": 0.7684,
   "views": {
     "skater-video-t01.50": {
-      "iou": 0.8553,
+      "iou": 0.8394,
       "camera": {
         "azimuth_deg": 16.01,
         "elevation_deg": 22.61,
@@ -24,7 +24,7 @@
       ]
     },
     "skater-video-t14.50": {
-      "iou": 0.7852,
+      "iou": 0.7491,
       "camera": {
         "azimuth_deg": 22.57,
         "elevation_deg": -11.9,
@@ -45,7 +45,7 @@
       ]
     },
     "skater-video-t22.60": {
-      "iou": 0.7452,
+      "iou": 0.7168,
       "camera": {
         "azimuth_deg": 36.56,
         "elevation_deg": 37.43,
@@ -66,5 +66,6 @@
       ]
     }
   },
-  "held_out": true
+  "held_out": true,
+  "cameras": "fixed (scored only)"
 }

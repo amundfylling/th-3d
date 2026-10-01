@@ -1,8 +1,8 @@
 {
-  "scale_k_mm_per_mold_unit": 1.0866,
+  "scale_k_mm_per_mold_unit": 1.0864,
   "scale_source": "validation/players/overhead-fit.json (4 Sweden skaters, official overhead, ASSUMED preview scale)",
   "scales": {
-    "skater": 1.0866,
+    "skater": 1.0864,
     "goalie": 1.1421889791935147
   },
   "scale_sources": {
@@ -11,61 +11,61 @@
   },
   "assets": {
     "skater_SWE": {
-      "height_mm": 51.83,
+      "height_mm": 51.84,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.3,
         15.3
       ],
       "footprint_y_mm": [
-        -23.2,
+        -20.0,
         43.7
       ],
       "socket_bottom_diameter_mm": 12.17,
       "socket_height_mm": 4.56,
       "blade_heel_mm": [
         3.26,
-        22.82
+        22.81
       ],
       "blade_toe_mm": [
         2.39,
-        43.68
+        43.67
       ],
       "blade_length_mm": 20.88,
       "blade_height_mm": 3.26,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 52152,
-      "decal_faces": 1359,
+      "triangles": 64310,
+      "decal_faces": 1361,
       "number_on_asset_decal": "21"
     },
     "skater_FIN": {
-      "height_mm": 51.83,
+      "height_mm": 51.84,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.3,
         15.3
       ],
       "footprint_y_mm": [
-        -23.2,
+        -20.0,
         43.7
       ],
       "socket_bottom_diameter_mm": 12.17,
       "socket_height_mm": 4.56,
       "blade_heel_mm": [
         3.26,
-        22.82
+        22.81
       ],
       "blade_toe_mm": [
         2.39,
-        43.68
+        43.67
       ],
       "blade_length_mm": 20.88,
       "blade_height_mm": 3.26,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 52152,
-      "decal_faces": 1359,
+      "triangles": 64310,
+      "decal_faces": 1361,
       "number_on_asset_decal": "4"
     },
     "goalie_SWE": {
@@ -93,7 +93,7 @@
       "blade_height_mm": 5.5,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 121726,
+      "triangles": 129712,
       "decal_faces": 1498,
       "number_on_asset_decal": "30"
     },
@@ -122,7 +122,7 @@
       "blade_height_mm": 5.5,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 121726,
+      "triangles": 129712,
       "decal_faces": 1498,
       "number_on_asset_decal": null
     }

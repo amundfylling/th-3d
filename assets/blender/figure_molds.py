@@ -68,7 +68,7 @@ def cone(name: str, a, b, r_a: float, r_b: float, bevel: float = 0.3, n: int = 3
     return ob
 
 
-def torus(name: str, centre, axis, R: float, r: float, scale_r=(1.0, 1.0), nu: int = 48, nv: int = 16):
+def torus(name: str, centre, axis, R: float, r: float, scale_r=(1.0, 1.0), nu: int = 48, nv: int = 16, r_axial: float | None = None):
     """Smooth ring (mm) around `axis` through `centre`; scale_r stretches the ring (u, v) into an oval."""
     a = Vector(axis).normalized()
     q = Vector((0, 0, 1)).rotation_difference(a)
@@ -78,7 +78,7 @@ def torus(name: str, centre, axis, R: float, r: float, scale_r=(1.0, 1.0), nu: i
         cx, cy = R * scale_r[0] * math.cos(t), R * scale_r[1] * math.sin(t)
         for j in range(nv):
             s_ = 2 * math.pi * j / nv
-            verts.append((cx + r * math.cos(s_) * math.cos(t), cy + r * math.cos(s_) * math.sin(t), r * math.sin(s_)))
+            verts.append((cx + r * math.cos(s_) * math.cos(t), cy + r * math.cos(s_) * math.sin(t), (r_axial or r) * math.sin(s_)))
     for i in range(nu):
         for j in range(nv):
             a0, a1 = i * nv + j, i * nv + (j + 1) % nv
@@ -93,6 +93,56 @@ def torus(name: str, centre, axis, R: float, r: float, scale_r=(1.0, 1.0), nu: i
     ob.select_set(True)
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
     bpy.ops.object.shade_smooth()
+    return ob
+
+
+def cuff(name: str, a, b, r_a: float, r_b: float, oval=(1.0, 1.0), up=(0, 0, 1), lip: float = 0.45,
+         depth: float = 0.35, cut_deg: float = 0.0, n: int = 40):
+    """Moulded gauntlet cuff (mm): a flared shell from the wrist `b` (radius r_b) to the open end `a` (radius r_a),
+    oval cross-section (oval = scale along the cuff's side axis / up axis), a rounded rolled rim of thickness `lip`
+    at the open end, and a recessed mouth `depth` x length deep (the forearm sits inside). cut_deg tilts the
+    open end (the opening slants toward `up`). Built as one closed lathe surface."""
+    va, vb = Vector(a), Vector(b)
+    ax = (va - vb).normalized()  # from wrist to open end
+    L = (va - vb).length
+    u = Vector(up)
+    u = (u - ax * u.dot(ax)).normalized()
+    side = ax.cross(u).normalized()
+    # profile (r, z) along the axis from the wrist (z=0) to the open end, then over the lip and into the mouth
+    prof = []
+    for t in [i / 10 for i in range(11)]:
+        r = r_b + (r_a - r_b) * (t ** 1.4)  # slight trumpet flare
+        prof.append((r, t * L))
+    for k in range(1, 7):  # rolled rim: half circle over the lip
+        th = math.pi * k / 6
+        prof.append((r_a - lip / 2 + lip / 2 * math.cos(th), L + lip / 2 * math.sin(th) * 0.8))
+    d = depth * L
+    for t in [i / 6 for i in range(1, 7)]:
+        prof.append(((r_a - lip) - (r_a - lip - 0.55 * r_b) * t ** 0.7, L - d * t))
+    verts = []
+    for r, z in prof:
+        for k in range(n):
+            phi = 2 * math.pi * k / n
+            x, y = r * math.cos(phi) * oval[0], r * math.sin(phi) * oval[1]
+            zz = z + (math.tan(math.radians(cut_deg)) * y if z > 0.6 * L else 0.0)
+            verts.append(tuple(vb + side * x + u * y + ax * zz))
+    m = len(prof)
+    faces = []
+    for i in range(m - 1):
+        for k in range(n):
+            a0, a1 = i * n + k, i * n + (k + 1) % n
+            faces.append((a0, a1, a1 + n, a0 + n))
+    c0 = len(verts)
+    verts.append(tuple(vb))
+    faces += [((k + 1) % n, k, c0) for k in range(n)]  # wrist cap
+    c1 = len(verts)
+    verts.append(tuple(vb + ax * (L - d)))
+    faces += [((m - 1) * n + k, (m - 1) * n + (k + 1) % n, c1) for k in range(n)]  # mouth floor
+    ob = mesh_object(name, verts, faces)
+    bpy.ops.object.select_all(action="DESELECT")
+    bpy.context.view_layer.objects.active = ob
+    ob.select_set(True)
+    bpy.ops.object.shade_smooth_by_angle(angle=math.radians(50))
     return ob
 
 
@@ -115,12 +165,16 @@ def build_part(prefix: str, pname: str, part: dict):
     hard-surface rounded boxes and cones as separate meshes (joined later)."""
     out = []
     balls, caps = _elements(part)
+    negs = {n: (tuple(e["centre"]), tuple(e["semi_axes"]), tuple(e.get("rot_deg", (0, 0, 0)))) for n, e in part.get("negative_ellipsoids", {}).items()}
     if balls or caps:
-        out.append(metaball_part(f"{prefix}_{pname}", balls, caps, res_mm=part.get("res", 0.3)))
+        out.append(metaball_part(f"{prefix}_{pname}", balls, caps, res_mm=part.get("res", 0.3), negs=negs))
     for n, e in part.get("rboxes", {}).items():
         out.append(rbox(f"{prefix}_{pname}_{n}", e["centre"], e["half_size"], e.get("rot_deg", (0, 0, 0)), e.get("bevel", 0.5)))
     for n, e in part.get("tori", {}).items():
-        out.append(torus(f"{prefix}_{pname}_{n}", e["centre"], e["axis"], e["R"], e["r"], tuple(e.get("scale_r", (1.0, 1.0)))))
+        out.append(torus(f"{prefix}_{pname}_{n}", e["centre"], e["axis"], e["R"], e["r"], tuple(e.get("scale_r", (1.0, 1.0))), r_axial=e.get("r_axial")))
+    for n, e in part.get("cuffs", {}).items():
+        out.append(cuff(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], tuple(e.get("oval", (1, 1))), tuple(e.get("up", (0, 0, 1))),
+                        e.get("lip", 0.45), e.get("depth", 0.35), e.get("cut_deg", 0.0)))
     for n, e in part.get("cones", {}).items():
         out.append(cone(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], e.get("bevel", 0.3)))
     for o in out:
@@ -129,7 +183,7 @@ def build_part(prefix: str, pname: str, part: dict):
 
 
 # ---------------------------------------------------------------------------------------------------
-def metaball_part(name: str, balls: dict, capsules: dict, cubes: dict | None = None, res_mm: float = 0.3):
+def metaball_part(name: str, balls: dict, capsules: dict, cubes: dict | None = None, res_mm: float = 0.3, negs: dict | None = None):
     """Smooth part (metres) from ellipsoids, capsules and rounded boxes (mm), cf. sb.metaball_mesh."""
     mb = bpy.data.metaballs.new(name + "Meta")
     mb.resolution = mb.render_resolution = res_mm
@@ -149,9 +203,16 @@ def metaball_part(name: str, balls: dict, capsules: dict, cubes: dict | None = N
         e.co, e.radius, e.stiffness = (va + vb) / 2, r / sb.METABALL_SURFACE, 2.0
         e.size_x = d.length / 2
         e.rotation = Vector((1, 0, 0)).rotation_difference(d.normalized())
-    for c, half, rot in (cubes or {}).values():
+    for c, r, *rot in (negs or {}).values():  # carving elements (eye hollows, glove pocket)
+        e = mb.elements.new(type="ELLIPSOID")
+        e.co, e.radius, e.stiffness = c, 1.0, 2.0
+        e.size_x, e.size_y, e.size_z = [v / sb.METABALL_SURFACE for v in r]
+        e.use_negative = True
+        if rot and any(rot[0]):
+            e.rotation = _euler_q(rot[0])
+    for c, half, rot, *rnd in (cubes or {}).values():
         # Rounded box: CUBE element with a small radius; its surface ~ half + 0.575 * radius.
-        rr = 1.2
+        rr = rnd[0] if rnd else 1.2
         e = mb.elements.new(type="CUBE")
         e.co, e.radius, e.stiffness = c, rr / sb.METABALL_SURFACE, 2.0
         e.size_x, e.size_y, e.size_z = [max(h - rr, 0.05) for h in half]
@@ -323,7 +384,7 @@ def build_goalie(mold: dict | None = None):
     parts = [o for n, p in m["parts"].items() for o in build_part("go", n, p)]
     by_mat = {}
     for n, bx in m["boxes"].items():
-        by_mat.setdefault(bx["material"], {})[n] = (tuple(bx["centre"]), tuple(bx["half_size"]), bx["rot_z_deg"])
+        by_mat.setdefault(bx["material"], {})[n] = (tuple(bx["centre"]), tuple(bx["half_size"]), bx["rot_z_deg"], bx.get("round", 1.2))
     for k, cubes in by_mat.items():
         parts.append(tag(metaball_part(f"go_boxes_{k}", {}, {}, cubes), k))
     parts.append(tag(socket("go_socket", m["socket"]), BLUE))

@@ -51,6 +51,7 @@ VIEWS = {
 
 
 PREV = {}
+FIXED = False  # --fixed: score the stored cameras without refitting (consistent before/after comparisons)
 
 
 # Views NOT used for any shape fitting (held out): cameras fitted only to compare the final model.
@@ -140,8 +141,11 @@ def fit_view(mesh, view_id, init, work_px=420):
         below = max(0.0, 2.0 - math.degrees(p[1])) / 20 if el0 >= 0 else 0.0
         return 1 - fv.iou(mask_of(p), ref) + flip + below
 
-    r = minimize(cost, np.zeros(7), method="Powell", options={"xtol": 1e-3, "ftol": 1e-4, "maxfev": 1500})
-    p = x0 + r.x * scl
+    if FIXED and prev is not None:
+        p = x0.copy()
+    else:
+        r = minimize(cost, np.zeros(7), method="Powell", options={"xtol": 1e-3, "ftol": 1e-4, "maxfev": 1500})
+        p = x0 + r.x * scl
     p[6] = f0 if not video else min(max(p[6], F_VIDEO[0]), F_VIDEO[1])
     mod = mask_of(p)
     col = fv.shaded_render(verts, tris, labels, keys, p, target, ref.shape, full, crop, s)
@@ -158,7 +162,11 @@ def main():
     ap.add_argument("--only")
     ap.add_argument("--heldout", action="store_true", help="fit cameras for the held-out views -> <kind>-heldout-fit.*")
     ap.add_argument("--reuse", action="store_true", help="start from the cameras in the previous <kind>-fit.json")
+    ap.add_argument("--fixed", action="store_true", help="keep the stored cameras (implies --reuse): score only")
     a = ap.parse_args()
+    global FIXED
+    FIXED = a.fixed
+    a.reuse = a.reuse or a.fixed
     prevf = Path(a.out) / f"{a.kind}{'-heldout' if a.heldout else ''}-fit.json"
     if a.reuse and prevf.exists():
         PREV.update({k: v["params"] for k, v in json.loads(prevf.read_text())["views"].items()})
@@ -186,6 +194,7 @@ def main():
     sheet.save(out / f"{a.kind}{tag}-fit.png")
     summary = {"kind": a.kind, "mean_iou": round(float(np.mean([r["iou"] for r in res.values()])), 4), "views": res}
     summary["held_out"] = bool(a.heldout)
+    summary["cameras"] = "fixed (scored only)" if a.fixed else "fitted"
     (out / f"{a.kind}{tag}-fit.json").write_text(json.dumps(summary, indent=2) + "\n")
     print("mean IoU", summary["mean_iou"])
 

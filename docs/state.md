@@ -21,6 +21,11 @@
 - **Track fix (user, 2026-10-01):** E-RW and W-RW followed a stick lying on the slot in the official
   overhead; operator occlusion boxes in the tracer straighten them (docs/tracks.md); rink, scene, renders and
   Remotion stills regenerated.
+- **Figure refinement round 3 (user request, 2026-10-01):** moulded contours - skater gloves (fists), lathe
+  gauntlet cuffs, helmet, face, collar; goalie mask (eye hollows, ridge), skin crescents, pads, catcher (pocket,
+  thumb ridge); blue albedo desaturated. Cameras frozen; before/after sheet
+  `validation/players/closeups-before-after.png` (held-out views in red). Goalie 54 mm / 26 x 5.5 mm kept.
+  Remaining mismatches and next inputs: `docs/players.md`. AI review only. Still before iteration 21.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.

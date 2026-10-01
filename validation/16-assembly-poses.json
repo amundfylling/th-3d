@@ -11,7 +11,7 @@
       "kit": "FIN",
       "state": {
         "u_preview": 1,
-        "thetaDeg": 16.26
+        "thetaDeg": 15.67
       },
       "reference_px": [
         1403.8,
@@ -24,15 +24,15 @@
         -33.38,
         0
       ],
-      "heading_deg": 16.26,
+      "heading_deg": 15.67,
       "det": 1,
       "matrix": [
-        0.960001,
-        -0.27999657,
+        0.962833301,
+        -0.270096345,
         0,
         -254.61,
-        0.27999657,
-        0.960001,
+        0.270096345,
+        0.962833301,
         0,
         -33.38,
         0,
@@ -106,31 +106,31 @@
       "asset": "assets/figures/skater_FIN.blend#Skater.FIN",
       "kit": "FIN",
       "state": {
-        "u_preview": 0.9586,
-        "thetaDeg": -4.05
+        "u_preview": 0.9575,
+        "thetaDeg": -5.04
       },
       "reference_px": [
-        2388.4,
+        2387,
         3286.9
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
       "reference_to_path_mm": 0.01,
       "pivot_mm": [
-        -77.584,
-        -88.251,
+        -77.845,
+        -88.257,
         0
       ],
-      "heading_deg": -4.05,
+      "heading_deg": -5.04,
       "det": 1,
       "matrix": [
-        0.997502796,
-        0.070626986,
+        0.996133609,
+        0.087851197,
         0,
-        -77.584273188,
-        -0.070626986,
-        0.997502796,
+        -77.845036824,
+        -0.087851197,
+        0.996133609,
         0,
-        -88.251134631,
+        -88.256586136,
         0,
         0,
         1,
@@ -346,31 +346,31 @@
       "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
       "kit": "SWE",
       "state": {
-        "u_preview": 0.0197,
-        "thetaDeg": 1.07
+        "u_preview": 0.0179,
+        "thetaDeg": -3.34
       },
       "reference_px": [
-        2619.5,
-        3223
+        2616.1,
+        3220.3
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
-      "reference_to_path_mm": 0.01,
+      "reference_to_path_mm": 0,
       "pivot_mm": [
-        -36.121,
-        -76.641,
+        -36.743,
+        -76.163,
         0
       ],
-      "heading_deg": 181.07,
+      "heading_deg": 176.66,
       "det": 1,
       "matrix": [
-        -0.999825627,
-        0.018673938,
+        -0.998301386,
+        -0.058260987,
         0,
-        -36.120895839,
-        -0.018673938,
-        -0.999825627,
+        -36.742834215,
+        0.058260987,
+        -0.998301386,
         0,
-        -76.641345681,
+        -76.162508171,
         0,
         0,
         1,
@@ -394,31 +394,31 @@
       "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
       "kit": "SWE",
       "state": {
-        "u_preview": 0.04305,
-        "thetaDeg": 25.1
+        "u_preview": 0.0388,
+        "thetaDeg": 18.39
       },
       "reference_px": [
-        3242.9,
-        2304.7
+        3237.3,
+        2304.9
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
       "reference_to_path_mm": 0,
       "pivot_mm": [
-        75.281,
-        88.655,
+        74.266,
+        88.622,
         0
       ],
-      "heading_deg": 205.1,
+      "heading_deg": 198.39,
       "det": 1,
       "matrix": [
-        -0.905568799,
-        0.424199423,
+        -0.948931088,
+        0.315483422,
         0,
-        75.281278884,
-        -0.424199423,
-        -0.905568799,
+        74.266225398,
+        -0.315483422,
+        -0.948931088,
         0,
-        88.654557383,
+        88.621813723,
         0,
         0,
         1,
@@ -442,31 +442,31 @@
       "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
       "kit": "SWE",
       "state": {
-        "u_preview": 0.0251,
-        "thetaDeg": -166.45
+        "u_preview": 0.0264,
+        "thetaDeg": -173.3
       },
       "reference_px": [
-        1776.8,
-        2768.4
+        1778.6,
+        2768.2
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)",
       "reference_to_path_mm": 0,
       "pivot_mm": [
-        -187.752,
-        4.487,
+        -187.429,
+        4.527,
         0
       ],
-      "heading_deg": 13.550000000000011,
+      "heading_deg": 6.699999999999989,
       "det": 1,
       "matrix": [
-        0.972165831,
-        -0.234293828,
+        0.99317065,
+        -0.116670737,
         0,
-        -187.75189261,
-        0.234293828,
-        0.972165831,
+        -187.428934071,
+        0.116670737,
+        0.99317065,
         0,
-        4.486738587,
+        4.526539815,
         0,
         0,
         1,
@@ -490,31 +490,31 @@
       "asset": "assets/figures/skater_SWE.blend#Skater.SWE",
       "kit": "SWE",
       "state": {
-        "u_preview": 0.02775,
-        "thetaDeg": 71.11
+        "u_preview": 0.02015,
+        "thetaDeg": 108.63
       },
       "reference_px": [
-        698.7,
-        2665.2
+        697.9,
+        2644.5
       ],
       "reference_rule": "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted); heading -4 deg to clear the solid preview goal (blade under the cage in the photo)",
-      "reference_to_path_mm": 0,
+      "reference_to_path_mm": 0.01,
       "pivot_mm": [
-        -381.44,
-        22.382,
+        -381.589,
+        26.122,
         0
       ],
-      "heading_deg": 251.11,
+      "heading_deg": 288.63,
       "det": 1,
       "matrix": [
-        -0.32375229,
-        0.946141879,
+        0.319455516,
+        0.947601273,
         0,
-        -381.440344583,
-        -0.946141879,
-        -0.32375229,
+        -381.589414808,
+        -0.947601273,
+        0.319455516,
         0,
-        22.381805958,
+        26.121506226,
         0,
         0,
         1,

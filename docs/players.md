@@ -169,17 +169,78 @@ Uncertainty was not stated and stays null. Effects:
   stick (with skin) in views where a finger touches the figure, keeps a per-view azimuth tolerance and never
   places the camera below the table.
 
+## Refinement round 3 (2026-10-01): moulded contours
+
+User request: one bounded round toward faithful replicas - skater gloves, gauntlet cuffs and wrists (plus helmet,
+face, collar where supported), goalie mask and exposed skin, pads (rounded contours, knee) and catcher (pocket,
+thumb); geometry first, colour after; consistent cameras and lighting; held-out angles; AI review only.
+
+**Method.** Cameras frozen for the whole round (`validation/players/*-fit.json` from round 2). New
+`scripts/fit-figure-views.py --fixed` scores the silhouette at the stored cameras without refitting. The BEFORE
+close-ups were rendered from the pre-round molds with the same cameras and lights; the AFTER close-ups from the new
+molds (`scripts/closeup-before-after.py` -> `validation/players/closeups-before-after.png`). Reference crops were
+read through the fitted cameras at full resolution.
+
+**Skater (shared mold).**
+- Gloves: rebuilt as fists around the actual stick line - back of hand, palm, four knuckle/finger rolls wrapped
+  around the shaft, thumb along it, and a wrist piece entering the cuff (metaball, so the wrist blends). Chunky,
+  about cuff-mouth wide, as in the front views (t13.25, t14.50).
+- Gauntlets: new lathe `cuff` primitive - trumpet flare from wrist to an open, oval, recessed mouth with a rolled
+  rim and an oblique cut; the upper (right) cuff now opens forward at the shoulder instead of pointing sideways.
+- Helmet: ear guards removed (the face skin continues under the edge in the profile views); larger, rounder back;
+  low centre ridge (t03.00 back view).
+- Face: narrower forehead and jaw, longer face, stronger nose and chin.
+- Collar: flat band lying on the jersey (elliptical cross-section torus) with a flat V front, instead of a tube.
+
+**Goalie (shared mold; height and blade unchanged: 54.0 mm, blade 26.0 x 5.5 mm).**
+- Mask: smooth egg front with a vertical centre ridge, brow line and two shallow eye hollows (negative metaball
+  elements); cheek and nose bumps and the back strap removed (the back plate is smooth in IMG_2566).
+- Skin: narrow crescents curving from the crown to the jaw either side of the back plate, about 120 deg from the
+  facing direction, plus the nape below the plate (back, top and side photos).
+- Pads: rounder blocks; fat vertical rolls above and below a thick double knee band.
+- Catcher: boot-shaped mitt - narrow at the cuff, widening into a lobe that reaches outward and down to the knee
+  band - with a diagonal thumb ridge and a carved pocket.
+
+**Colour (after geometry).** Same-camera hue/saturation comparison over 12 views: blue hue matched within 2
+(OpenCV units) but rendered too saturated (~185 vs ~145); blue albedo changed [30,100,182] -> [62,105,181].
+Yellow left unchanged (hue within 2; the remaining saturation gap is mostly the clear-coat highlight).
+
+**Results (cameras frozen, scored with `--fixed`).**
+
+| Silhouette IoU | before (round 2) | after (round 3) |
+| --- | --- | --- |
+| Skater, 8 fitted views | 0.8076 | 0.7920 (min 0.688) |
+| Skater, 3 held-out views | 0.7952 | 0.7684 |
+| Goalie, 8 fitted views | 0.8256 | 0.8302 |
+| Goalie, 7 held-out views | 0.8139 | 0.8164 |
+
+The skater drop comes from the reshaped arms at cameras that were fitted to the old arms; it is reported, not
+optimised away (a refit would hide shape changes). Skater overhead scale k 1.0866 -> 1.0864 (height 51.84 mm,
+unchanged within 0.01 mm). Goalie: 54.0 mm, blade 26.0 x 5.5 mm (unchanged). Assembly: no intersections.
+Fidelity was judged separately from these numbers, on the before/after sheet (AI review, not the user's).
+
+**AI review of the before/after sheet.** Improved: skater gloves now read as fists with knuckles around the
+shaft; gauntlets flare to an open, rimmed mouth; the face is longer and narrower; the collar is a flat band.
+Goalie mask has eye hollows and a centre ridge; the back skin forms the "( )" crescents seen in the photos; the
+catcher reads as a boot-shaped mitt with a pocket. Still wrong (round 3):
+- Skater upper (right) gauntlet is narrower and rounder than the photo's broad, flat cuff that covers the chest;
+  held-out t22.60 shows the arm standing out from the body.
+- Skater helmet sits slightly high and has no visible visor/brim edge; face features remain softer than the
+  moulding.
+- Goalie pads changed little in appearance: the rolls read as highlight bars at the pad tops; the real lower
+  pads taper toward the boots.
+- Goalie side view: the exposed cheek skin is smaller than in the photo. Front: a small skin chin/V shows that
+  the photo does not.
+- Goalie catcher cuff is still a separate cone; the mask front is more specular than the photo.
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's
   "figure height approx. 57 mm" (datum unspecified) is 5.8 mm above the fitted skater height - not resolved.
 - **Goalie scale**: resolved by the user's measurement (54 mm, 2026-10-01); see above.
-- Remaining visible differences after round 2 (AI review of the close-up sheets): skater profile (3.0 s,
-  4.5 s) still slightly too upright in the hips; skater face features softer than the moulding; goalie mask
-  crescent edges follow the mesh faces (slightly stepped in extreme close-ups); goalie pads are straight
-  blocks (the real lower pads taper toward the boots); catcher pocket simplified. Socket bore, blade/wire
-  thickness assumed (`assume.figure_mold_hidden_details`). Metal sticks render nearly black in
-  Remotion/Three (no environment map).
+- Remaining visible differences: see "Refinement round 3" above. Socket bore, blade/wire thickness assumed
+  (`assume.figure_mold_hidden_details`). Metal sticks render nearly black in Remotion/Three (no environment
+  map).
 - Poses: six figures (E-LD, E-RD, E-C, E-LW, W-RD, W-G) stand at their overhead-fitted pivot and heading; the
   other six use the hidden-stretch rule at theta 0. E-LW is turned -4 deg to clear the solid preview goal (its
   blade tucks under the cage in the photo). Rod travel, stops and transfer remain unknown.
@@ -189,6 +250,9 @@ Uncertainty was not stated and stays null. Effects:
 
 1. Could you measure one skater with a ruler (height from the table to the helmet top, blade length and
    height, socket base diameter, distance from the socket centre to the blade heel)? The goalie is measured.
+   Also useful for the next shape round: sharp, evenly lit close-up stills (no motion blur) of one skater's
+   upper (right) gauntlet and glove from the front and from the side, a straight side photo of the goalie's
+   head (cheek skin), and a front close-up of the goalie's catcher.
 2. Which jersey numbers do your Sweden and Finland figures carry, per position?
 3. Is the Finland kit white with the same blue parts (as in the official pictures), and is anything printed on
    the front or sleeves?

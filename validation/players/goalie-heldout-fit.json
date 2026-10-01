@@ -1,9 +1,9 @@
 {
   "kind": "goalie",
-  "mean_iou": 0.8139,
+  "mean_iou": 0.8164,
   "views": {
     "goalie-video-t02.50": {
-      "iou": 0.8212,
+      "iou": 0.823,
       "camera": {
         "azimuth_deg": -37.8,
         "elevation_deg": 44.89,
@@ -24,7 +24,7 @@
       ]
     },
     "goalie-video-t10.00": {
-      "iou": 0.7901,
+      "iou": 0.7839,
       "camera": {
         "azimuth_deg": 90.0,
         "elevation_deg": 58.31,
@@ -45,7 +45,7 @@
       ]
     },
     "goalie-photo-top": {
-      "iou": 0.8116,
+      "iou": 0.8019,
       "camera": {
         "azimuth_deg": 170.03,
         "elevation_deg": 76.72,
@@ -66,7 +66,7 @@
       ]
     },
     "goalie-video-t16.75": {
-      "iou": 0.8006,
+      "iou": 0.8046,
       "camera": {
         "azimuth_deg": 9.36,
         "elevation_deg": 74.13,
@@ -87,7 +87,7 @@
       ]
     },
     "goalie-photo-lying-back": {
-      "iou": 0.7955,
+      "iou": 0.8102,
       "camera": {
         "azimuth_deg": 147.55,
         "elevation_deg": 19.44,
@@ -108,7 +108,7 @@
       ]
     },
     "goalie-photo-lying-back-2": {
-      "iou": 0.8492,
+      "iou": 0.853,
       "camera": {
         "azimuth_deg": 170.26,
         "elevation_deg": 18.97,
@@ -129,7 +129,7 @@
       ]
     },
     "goalie-photo-underside": {
-      "iou": 0.8294,
+      "iou": 0.8384,
       "camera": {
         "azimuth_deg": 180.33,
         "elevation_deg": -54.71,
@@ -150,5 +150,6 @@
       ]
     }
   },
-  "held_out": true
+  "held_out": true,
+  "cameras": "fixed (scored only)"
 }
