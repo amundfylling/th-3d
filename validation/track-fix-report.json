@@ -1,0 +1,21 @@
+{
+  "straightness_deviation": {
+    "E-RW_before": {
+      "max_mm": 2.032,
+      "rms_mm": 0.65
+    },
+    "E-RW_after": {
+      "max_mm": 0.143,
+      "rms_mm": 0.061
+    },
+    "W-RW_before": {
+      "max_mm": 0.602,
+      "rms_mm": 0.153
+    },
+    "W-RW_after": {
+      "max_mm": 0.117,
+      "rms_mm": 0.048
+    }
+  },
+  "method": "occluded_boxes_overhead in data/slot-seeds.json; sections inside are not measured and are bridged by the tracer's Hermite gap interpolation"
+}

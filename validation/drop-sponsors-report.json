@@ -13,24 +13,24 @@
     "logo.scandic",
     "logo.wd40"
   ],
-  "wiped_fraction_of_ice": 0.2642,
+  "wiped_fraction_of_ice": 0.2644,
   "ice_shade_fit": {
     "model": "cubic polynomial per channel over clean ice + inpainted local residual (1/4 res)",
     "residual_std_rgb": [
-      5.46,
-      5.2,
-      5.85
+      5.53,
+      5.29,
+      5.93
     ]
   },
   "fitted_markings_tex_px": {
     "faceoff.W.pos_y": {
       "centre": [
         1216.0,
-        530.6
+        529.7
       ],
-      "r": 285.7,
-      "width": 16.9,
-      "n": 15960
+      "r": 286.2,
+      "width": 14.9,
+      "n": 14948
     },
     "faceoff.E.pos_y": {
       "centre": [
@@ -53,20 +53,20 @@
     "faceoff.E.neg_y": {
       "centre": [
         3473.7,
-        2082.7
+        2082.9
       ],
-      "r": 287.5,
-      "width": 16.2,
-      "n": 17093
+      "r": 287.6,
+      "width": 15.9,
+      "n": 16847
     },
     "crease.W": {
       "centre": [
-        760.2,
+        760.8,
         1304.5
       ],
-      "r": 414.1,
+      "r": 413.9,
       "width": 11.2,
-      "n": 12931
+      "n": 10561
     },
     "crease.E": {
       "centre": [
@@ -75,7 +75,7 @@
       ],
       "r": 416.0,
       "width": 11.6,
-      "n": 12626
+      "n": 12623
     },
     "referee_crease": {
       "centre": [
@@ -84,11 +84,11 @@
       ],
       "r": 188.3,
       "width": 10.7,
-      "n": 6671
+      "n": 6672
     }
   },
-  "faceoff_circle_radius_mm_preview": 51.5,
-  "crease_radius_mm_preview": 74.54,
+  "faceoff_circle_radius_mm_preview": 51.53,
+  "crease_radius_mm_preview": 74.52,
   "line_texels_redrawn_in_wiped_regions": {
     "goal_line.W": 15211,
     "blue_line.W": 0,

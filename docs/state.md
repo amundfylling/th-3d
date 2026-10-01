@@ -18,6 +18,9 @@
   held-out views (`validation/players/closeups-{skater,goalie}.png`). Still before iteration 21.
 - **Goalie measured (user, 2026-10-01):** height 54 mm, blade 26 x 5.5 mm recorded as `user_measurement`;
   goalie scale and blade set from them (k 1.142); skater scale unchanged (overhead-fitted) until measured.
+- **Track fix (user, 2026-10-01):** E-RW and W-RW followed a stick lying on the slot in the official
+  overhead; operator occlusion boxes in the tracer straighten them (docs/tracks.md); rink, scene, renders and
+  Remotion stills regenerated.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.

@@ -4,9 +4,9 @@
   "slots": {
     "W-G": {
       "n": 26,
-      "onDark": 0.692,
-      "meanOffsetPx": 1.012,
-      "maxOffsetPx": 8.75
+      "onDark": 0.654,
+      "meanOffsetPx": 0.45,
+      "maxOffsetPx": 0.75
     },
     "W-LD": {
       "n": 148,
@@ -17,67 +17,67 @@
     "W-RD": {
       "n": 79,
       "onDark": 0.937,
-      "meanOffsetPx": 0.62,
-      "maxOffsetPx": 8.75
+      "meanOffsetPx": 0.513,
+      "maxOffsetPx": 1.75
     },
     "W-C": {
       "n": 85,
-      "onDark": 0.929,
-      "meanOffsetPx": 0.688,
-      "maxOffsetPx": 4.5
+      "onDark": 0.918,
+      "meanOffsetPx": 0.726,
+      "maxOffsetPx": 6.25
     },
     "W-LW": {
       "n": 170,
       "onDark": 0.965,
-      "meanOffsetPx": 0.508,
-      "maxOffsetPx": 2.75
+      "meanOffsetPx": 0.517,
+      "maxOffsetPx": 3.25
     },
     "W-RW": {
       "n": 156,
-      "onDark": 0.949,
-      "meanOffsetPx": 0.503,
-      "maxOffsetPx": 1.25
+      "onDark": 0.942,
+      "meanOffsetPx": 0.512,
+      "maxOffsetPx": 5.75
     },
     "E-G": {
       "n": 27,
       "onDark": 0.593,
-      "meanOffsetPx": 0.5,
-      "maxOffsetPx": 0.75
+      "meanOffsetPx": 1.118,
+      "maxOffsetPx": 11
     },
     "E-LD": {
       "n": 149,
       "onDark": 0.98,
-      "meanOffsetPx": 0.503,
-      "maxOffsetPx": 3
+      "meanOffsetPx": 0.507,
+      "maxOffsetPx": 3.5
     },
     "E-RD": {
       "n": 81,
-      "onDark": 0.951,
-      "meanOffsetPx": 0.587,
-      "maxOffsetPx": 3.25
+      "onDark": 0.938,
+      "meanOffsetPx": 0.571,
+      "maxOffsetPx": 4.25
     },
     "E-C": {
       "n": 85,
-      "onDark": 0.929,
+      "onDark": 0.918,
       "meanOffsetPx": 0.582,
       "maxOffsetPx": 1
     },
     "E-LW": {
       "n": 168,
-      "onDark": 0.964,
-      "meanOffsetPx": 0.517,
+      "onDark": 0.958,
+      "meanOffsetPx": 0.52,
       "maxOffsetPx": 2.25
     },
     "E-RW": {
       "n": 154,
       "onDark": 0.955,
-      "meanOffsetPx": 0.579,
-      "maxOffsetPx": 4.75
+      "meanOffsetPx": 0.515,
+      "maxOffsetPx": 3.25
     }
   },
   "slot_summary": {
     "min_on_dark": 0.593,
-    "worst_mean_offset_px": 1.012
+    "worst_mean_offset_px": 1.118
   },
   "ice_edge": {
     "samples": 15,

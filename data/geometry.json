@@ -399,7 +399,7 @@
     },
     {
       "id": "assume.figure_mold_scale",
-      "statement": "Skater mold scale k = 1.0723 mm per mold unit, fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the ASSUMED preview scale. The goalie no longer shares it: its scale k = 1.1422 comes from the user's measured height (54 mm).",
+      "statement": "Skater mold scale k = 1.0866 mm per mold unit, fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the ASSUMED preview scale. The goalie no longer shares it: its scale k = 1.1422 comes from the user's measured height (54 mm).",
       "reason": "No ruler measurement of a skater exists; the overhead is the only scaled view of the skaters (itself at the ASSUMED preview scale).",
       "affects": [
         "figure_assets.fig.W-LD",
@@ -534,6 +534,50 @@
       ],
       "uncertainty_px": 6,
       "description": "Where the E goal line meets the bottom long board (ice-contact edge); line centre extrapolated from 10 offsets 15-60 px inside.",
+      "visibility": "visible"
+    },
+    {
+      "id": "lm.goal.W.post_top.pos_y",
+      "source_image_id": "stiga_se_fi_overhead",
+      "px": [
+        1202.94,
+        2534.19
+      ],
+      "uncertainty_px": 5,
+      "description": "Top knob of the +y front post of goal.W (centroid of near-black knob pixels). ELEVATED: not the post base on the ice.",
+      "visibility": "visible"
+    },
+    {
+      "id": "lm.goal.W.post_top.neg_y",
+      "source_image_id": "stiga_se_fi_overhead",
+      "px": [
+        1195.62,
+        3038.69
+      ],
+      "uncertainty_px": 5,
+      "description": "Top knob of the -y front post of goal.W (centroid of near-black knob pixels). ELEVATED: not the post base on the ice.",
+      "visibility": "visible"
+    },
+    {
+      "id": "lm.goal.E.post_top.pos_y",
+      "source_image_id": "stiga_se_fi_overhead",
+      "px": [
+        4484.08,
+        2557.58
+      ],
+      "uncertainty_px": 5,
+      "description": "Top knob of the +y front post of goal.E (centroid of near-black knob pixels). ELEVATED: not the post base on the ice.",
+      "visibility": "visible"
+    },
+    {
+      "id": "lm.goal.E.post_top.neg_y",
+      "source_image_id": "stiga_se_fi_overhead",
+      "px": [
+        4471.66,
+        3041.49
+      ],
+      "uncertainty_px": 5,
+      "description": "Top knob of the -y front post of goal.E (centroid of near-black knob pixels). ELEVATED: not the post base on the ice.",
       "visibility": "visible"
     },
     {
@@ -816,7 +860,7 @@
       "source_image_id": "stiga_se_fi_overhead",
       "px": [
         3207,
-        1735.73
+        1735.55
       ],
       "uncertainty_px": 6.5,
       "description": "Visible end of the E-RW slot (centreline end of the rounded cut), found along the end tangent.",
@@ -947,8 +991,8 @@
       "id": "lm.slot.W-RW.overhead.end",
       "source_image_id": "stiga_se_fi_overhead",
       "px": [
-        4789.04,
-        3768.75
+        4775.37,
+        3776.28
       ],
       "uncertainty_px": null,
       "description": "Observed end of the W-RW slot where it disappears under the Finland figure; the real slot end lies further on.",
@@ -1062,50 +1106,6 @@
       ],
       "uncertainty_px": 3.8,
       "description": "Visible end of the E-G slot (centreline end of the rounded cut), found along the end tangent.",
-      "visibility": "visible"
-    },
-    {
-      "id": "lm.goal.W.post_top.pos_y",
-      "source_image_id": "stiga_se_fi_overhead",
-      "px": [
-        1202.94,
-        2534.19
-      ],
-      "uncertainty_px": 5,
-      "description": "Top knob of the +y front post of goal.W (centroid of near-black knob pixels). ELEVATED: not the post base on the ice.",
-      "visibility": "visible"
-    },
-    {
-      "id": "lm.goal.W.post_top.neg_y",
-      "source_image_id": "stiga_se_fi_overhead",
-      "px": [
-        1195.62,
-        3038.69
-      ],
-      "uncertainty_px": 5,
-      "description": "Top knob of the -y front post of goal.W (centroid of near-black knob pixels). ELEVATED: not the post base on the ice.",
-      "visibility": "visible"
-    },
-    {
-      "id": "lm.goal.E.post_top.pos_y",
-      "source_image_id": "stiga_se_fi_overhead",
-      "px": [
-        4484.08,
-        2557.58
-      ],
-      "uncertainty_px": 5,
-      "description": "Top knob of the +y front post of goal.E (centroid of near-black knob pixels). ELEVATED: not the post base on the ice.",
-      "visibility": "visible"
-    },
-    {
-      "id": "lm.goal.E.post_top.neg_y",
-      "source_image_id": "stiga_se_fi_overhead",
-      "px": [
-        4471.66,
-        3041.49
-      ],
-      "uncertainty_px": 5,
-      "description": "Top knob of the -y front post of goal.E (centroid of near-black knob pixels). ELEVATED: not the post base on the ice.",
       "visibility": "visible"
     }
   ],
@@ -6201,8 +6201,8 @@
         "fit_rms_px": 0.197,
         "fit_max_px": 0.58,
         "detected_fraction": 0.563,
-        "homography_curve_rms_px_in_overhead": 2.51,
-        "homography_curve_max_px_in_overhead": 4.45
+        "homography_curve_rms_px_in_overhead": 2.48,
+        "homography_curve_max_px_in_overhead": 4.39
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -7154,8 +7154,8 @@
         "fit_rms_px": 0.117,
         "fit_max_px": 0.36,
         "detected_fraction": 1,
-        "homography_curve_rms_px_in_overhead": 6.63,
-        "homography_curve_max_px_in_overhead": 7.02
+        "homography_curve_rms_px_in_overhead": 6.55,
+        "homography_curve_max_px_in_overhead": 6.97
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -8613,8 +8613,8 @@
         "fit_rms_px": 0.159,
         "fit_max_px": 1.03,
         "detected_fraction": 0.914,
-        "homography_curve_rms_px_in_overhead": 1.14,
-        "homography_curve_max_px_in_overhead": 3
+        "homography_curve_rms_px_in_overhead": 1.2,
+        "homography_curve_max_px_in_overhead": 2.88
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -11251,8 +11251,8 @@
         "fit_rms_px": 0.142,
         "fit_max_px": 0.9,
         "detected_fraction": 0.956,
-        "homography_curve_rms_px_in_overhead": 1.13,
-        "homography_curve_max_px_in_overhead": 3.68
+        "homography_curve_rms_px_in_overhead": 1.14,
+        "homography_curve_max_px_in_overhead": 3.75
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -13398,8 +13398,8 @@
         "fit_rms_px": 0.145,
         "fit_max_px": 0.81,
         "detected_fraction": 0.936,
-        "homography_curve_rms_px_in_overhead": 2.23,
-        "homography_curve_max_px_in_overhead": 3.81
+        "homography_curve_rms_px_in_overhead": 2.3,
+        "homography_curve_max_px_in_overhead": 3.9
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -15362,8 +15362,8 @@
         "fit_rms_px": 0.181,
         "fit_max_px": 1.04,
         "detected_fraction": 0.939,
-        "homography_curve_rms_px_in_overhead": 4.49,
-        "homography_curve_max_px_in_overhead": 14.15
+        "homography_curve_rms_px_in_overhead": 3.37,
+        "homography_curve_max_px_in_overhead": 6.43
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -15710,7 +15710,7 @@
           1773.07
         ],
         [
-          1512.88,
+          1512.89,
           1773.23
         ],
         [
@@ -15723,843 +15723,843 @@
         ],
         [
           1536.88,
-          1773.02
+          1772.95
         ],
         [
           1544.88,
-          1772.91
+          1772.79
         ],
         [
           1552.88,
-          1772.83
+          1772.62
         ],
         [
-          1560.89,
-          1772.75
+          1560.87,
+          1772.44
         ],
         [
-          1568.89,
-          1772.63
+          1568.87,
+          1772.21
         ],
         [
-          1576.87,
+          1576.86,
           1772.01
         ],
         [
-          1584.84,
-          1771.32
+          1584.86,
+          1771.85
         ],
         [
-          1592.81,
-          1770.46
+          1592.85,
+          1771.71
         ],
         [
-          1600.78,
-          1769.45
+          1600.85,
+          1771.61
         ],
         [
-          1608.75,
-          1768.28
+          1608.85,
+          1771.53
         ],
         [
-          1616.75,
-          1767.39
+          1616.85,
+          1771.48
         ],
         [
-          1624.77,
-          1766.46
-        ],
-        [
-          1632.8,
-          1765.5
-        ],
-        [
-          1640.83,
-          1764.53
-        ],
-        [
-          1648.87,
-          1763.57
-        ],
-        [
-          1656.92,
-          1762.65
-        ],
-        [
-          1664.96,
-          1761.78
-        ],
-        [
-          1673,
-          1760.99
-        ],
-        [
-          1681.03,
-          1760.3
-        ],
-        [
-          1689.06,
-          1759.73
-        ],
-        [
-          1697.07,
-          1759.31
-        ],
-        [
-          1705.07,
-          1759.05
-        ],
-        [
-          1713.06,
-          1758.97
-        ],
-        [
-          1721.03,
-          1759.1
-        ],
-        [
-          1728.98,
-          1759.46
-        ],
-        [
-          1736.9,
-          1760.07
-        ],
-        [
-          1744.8,
-          1760.95
-        ],
-        [
-          1752.65,
-          1762.28
-        ],
-        [
-          1760.46,
-          1764.11
-        ],
-        [
-          1768.34,
-          1765.52
-        ],
-        [
-          1776.25,
-          1766.72
-        ],
-        [
-          1784.12,
-          1768.36
-        ],
-        [
-          1792.06,
-          1769.45
-        ],
-        [
-          1800.06,
-          1769.98
-        ],
-        [
-          1808,
-          1770.8
-        ],
-        [
-          1815.94,
-          1771.58
-        ],
-        [
-          1823.95,
-          1771.59
-        ],
-        [
-          1831.95,
-          1771.65
-        ],
-        [
-          1839.95,
-          1771.66
-        ],
-        [
-          1847.95,
+          1624.85,
           1771.44
         ],
         [
-          1855.95,
+          1632.85,
+          1771.43
+        ],
+        [
+          1640.85,
+          1771.44
+        ],
+        [
+          1648.85,
+          1771.46
+        ],
+        [
+          1656.85,
+          1771.5
+        ],
+        [
+          1664.85,
+          1771.55
+        ],
+        [
+          1672.85,
+          1771.61
+        ],
+        [
+          1680.85,
+          1771.68
+        ],
+        [
+          1688.85,
+          1771.75
+        ],
+        [
+          1696.85,
+          1771.82
+        ],
+        [
+          1704.86,
+          1771.9
+        ],
+        [
+          1712.86,
+          1771.97
+        ],
+        [
+          1720.86,
+          1772.05
+        ],
+        [
+          1728.86,
+          1772.11
+        ],
+        [
+          1736.86,
+          1772.17
+        ],
+        [
+          1744.86,
+          1772.22
+        ],
+        [
+          1752.87,
+          1772.26
+        ],
+        [
+          1760.87,
+          1772.29
+        ],
+        [
+          1768.87,
+          1772.3
+        ],
+        [
+          1776.87,
+          1772.29
+        ],
+        [
+          1784.87,
+          1772.26
+        ],
+        [
+          1792.87,
+          1772.21
+        ],
+        [
+          1800.87,
+          1772.13
+        ],
+        [
+          1808.86,
+          1772.03
+        ],
+        [
+          1816.86,
+          1771.9
+        ],
+        [
+          1824.86,
+          1771.79
+        ],
+        [
+          1832.86,
+          1771.69
+        ],
+        [
+          1840.86,
+          1771.63
+        ],
+        [
+          1848.86,
+          1771.43
+        ],
+        [
+          1856.86,
           1771.24
         ],
         [
-          1863.94,
-          1771.05
+          1864.85,
+          1771.06
         ],
         [
-          1871.94,
-          1770.85
+          1872.85,
+          1770.86
         ],
         [
-          1879.94,
-          1770.68
-        ],
-        [
-          1887.94,
+          1880.85,
           1770.7
         ],
         [
-          1895.94,
-          1770.76
+          1888.85,
+          1770.72
         ],
         [
-          1903.94,
-          1770.82
+          1896.85,
+          1770.77
         ],
         [
-          1911.94,
-          1770.88
-        ],
-        [
-          1919.94,
-          1770.91
-        ],
-        [
-          1927.94,
-          1770.91
-        ],
-        [
-          1935.94,
-          1770.9
-        ],
-        [
-          1943.94,
-          1770.88
-        ],
-        [
-          1951.94,
-          1770.85
-        ],
-        [
-          1959.94,
+          1904.85,
           1770.81
         ],
         [
-          1967.94,
-          1770.79
+          1912.85,
+          1770.87
         ],
         [
-          1975.94,
-          1770.76
+          1920.85,
+          1770.87
         ],
         [
-          1983.94,
+          1928.85,
+          1770.87
+        ],
+        [
+          1936.85,
+          1770.88
+        ],
+        [
+          1944.85,
+          1770.86
+        ],
+        [
+          1952.85,
+          1770.83
+        ],
+        [
+          1960.85,
+          1770.8
+        ],
+        [
+          1968.85,
+          1770.77
+        ],
+        [
+          1976.85,
           1770.74
         ],
         [
-          1991.94,
-          1770.69
+          1984.85,
+          1770.71
         ],
         [
-          1999.94,
-          1770.64
+          1992.85,
+          1770.67
         ],
         [
-          2007.94,
-          1770.58
+          2000.85,
+          1770.61
         ],
         [
-          2015.94,
-          1770.52
+          2008.85,
+          1770.56
         ],
         [
-          2023.94,
-          1770.48
-        ],
-        [
-          2031.94,
-          1770.45
-        ],
-        [
-          2039.94,
-          1770.42
-        ],
-        [
-          2047.94,
-          1770.41
-        ],
-        [
-          2055.94,
-          1770.38
-        ],
-        [
-          2063.94,
-          1770.35
-        ],
-        [
-          2071.94,
-          1770.33
-        ],
-        [
-          2079.94,
-          1770.31
-        ],
-        [
-          2087.94,
-          1770.29
-        ],
-        [
-          2095.94,
-          1770.28
-        ],
-        [
-          2103.94,
-          1770.27
-        ],
-        [
-          2111.94,
-          1770.26
-        ],
-        [
-          2119.94,
-          1770.26
-        ],
-        [
-          2127.94,
-          1770.26
-        ],
-        [
-          2135.94,
-          1770.25
-        ],
-        [
-          2143.94,
-          1770.25
-        ],
-        [
-          2151.94,
-          1770.25
-        ],
-        [
-          2159.94,
-          1770.25
-        ],
-        [
-          2167.94,
-          1770.26
-        ],
-        [
-          2175.94,
-          1770.27
-        ],
-        [
-          2183.94,
-          1770.27
-        ],
-        [
-          2191.94,
-          1770.27
-        ],
-        [
-          2199.94,
-          1770.27
-        ],
-        [
-          2207.94,
-          1770.26
-        ],
-        [
-          2215.94,
-          1770.26
-        ],
-        [
-          2223.94,
-          1770.25
-        ],
-        [
-          2231.94,
-          1770.26
-        ],
-        [
-          2239.94,
-          1770.29
-        ],
-        [
-          2247.94,
-          1770.4
-        ],
-        [
-          2255.94,
+          2016.85,
           1770.5
         ],
         [
-          2263.94,
-          1770.57
+          2024.85,
+          1770.46
         ],
         [
-          2271.94,
-          1770.55
+          2032.85,
+          1770.43
         ],
         [
-          2279.94,
-          1770.49
+          2040.85,
+          1770.41
         ],
         [
-          2287.94,
+          2048.85,
+          1770.41
+        ],
+        [
+          2056.85,
+          1770.38
+        ],
+        [
+          2064.85,
+          1770.36
+        ],
+        [
+          2072.85,
+          1770.33
+        ],
+        [
+          2080.85,
+          1770.32
+        ],
+        [
+          2088.85,
+          1770.29
+        ],
+        [
+          2096.85,
+          1770.29
+        ],
+        [
+          2104.85,
+          1770.27
+        ],
+        [
+          2112.85,
+          1770.27
+        ],
+        [
+          2120.85,
+          1770.26
+        ],
+        [
+          2128.85,
+          1770.25
+        ],
+        [
+          2136.85,
+          1770.24
+        ],
+        [
+          2144.85,
+          1770.25
+        ],
+        [
+          2152.85,
+          1770.25
+        ],
+        [
+          2160.85,
+          1770.25
+        ],
+        [
+          2168.85,
+          1770.26
+        ],
+        [
+          2176.85,
+          1770.27
+        ],
+        [
+          2184.85,
+          1770.27
+        ],
+        [
+          2192.85,
+          1770.27
+        ],
+        [
+          2200.85,
+          1770.26
+        ],
+        [
+          2208.85,
+          1770.26
+        ],
+        [
+          2216.85,
+          1770.25
+        ],
+        [
+          2224.85,
+          1770.24
+        ],
+        [
+          2232.85,
+          1770.25
+        ],
+        [
+          2240.85,
           1770.34
         ],
         [
-          2295.94,
-          1770.21
+          2248.85,
+          1770.49
         ],
         [
-          2303.94,
-          1770.11
+          2256.85,
+          1770.61
         ],
         [
-          2311.94,
-          1770.05
+          2264.85,
+          1770.69
         ],
         [
-          2319.94,
+          2272.85,
+          1770.67
+        ],
+        [
+          2280.85,
+          1770.55
+        ],
+        [
+          2288.85,
+          1770.37
+        ],
+        [
+          2296.85,
+          1770.22
+        ],
+        [
+          2304.85,
+          1770.08
+        ],
+        [
+          2312.85,
+          1770.04
+        ],
+        [
+          2320.85,
           1770.01
         ],
         [
-          2327.94,
-          1769.98
-        ],
-        [
-          2335.94,
-          1769.94
-        ],
-        [
-          2343.94,
-          1769.91
-        ],
-        [
-          2351.94,
-          1769.91
-        ],
-        [
-          2359.94,
-          1769.91
-        ],
-        [
-          2367.94,
-          1770.02
-        ],
-        [
-          2375.94,
-          1770.02
-        ],
-        [
-          2383.94,
-          1770.02
-        ],
-        [
-          2391.94,
+          2328.85,
           1769.97
         ],
         [
-          2399.94,
-          1769.86
+          2336.85,
+          1769.93
         ],
         [
-          2407.93,
-          1769.57
+          2344.85,
+          1769.92
         ],
         [
-          2415.93,
-          1769.29
+          2352.85,
+          1769.9
         ],
         [
-          2423.92,
-          1768.96
+          2360.85,
+          1769.9
         ],
         [
-          2431.91,
-          1768.6
+          2368.85,
+          1769.91
         ],
         [
-          2439.91,
-          1768.25
+          2376.85,
+          1769.92
         ],
         [
-          2447.9,
-          1767.91
+          2384.85,
+          1769.91
         ],
         [
-          2455.89,
-          1767.56
+          2392.85,
+          1769.84
         ],
         [
-          2463.88,
-          1767.21
+          2400.85,
+          1769.72
         ],
         [
-          2471.88,
-          1766.87
+          2408.84,
+          1769.51
         ],
         [
-          2479.87,
-          1766.49
+          2416.84,
+          1769.21
         ],
         [
-          2487.86,
-          1766.09
+          2424.83,
+          1768.88
         ],
         [
-          2495.85,
-          1765.71
+          2432.82,
+          1768.53
         ],
         [
-          2503.84,
-          1765.35
+          2440.82,
+          1768.17
         ],
         [
-          2511.84,
-          1765.07
+          2448.81,
+          1767.85
         ],
         [
-          2519.83,
-          1764.74
+          2456.8,
+          1767.51
         ],
         [
-          2527.82,
-          1764.4
+          2464.79,
+          1767.17
         ],
         [
-          2535.81,
-          1764.07
+          2472.79,
+          1766.82
         ],
         [
-          2543.81,
-          1763.73
+          2480.78,
+          1766.43
         ],
         [
-          2551.8,
-          1763.29
+          2488.77,
+          1766.03
         ],
         [
-          2559.79,
-          1762.95
+          2496.76,
+          1765.65
         ],
         [
-          2567.78,
-          1762.6
+          2504.75,
+          1765.29
         ],
         [
-          2575.77,
-          1762.24
+          2512.74,
+          1764.97
         ],
         [
-          2583.76,
-          1761.88
+          2520.74,
+          1764.63
         ],
         [
-          2591.76,
-          1761.52
+          2528.73,
+          1764.29
         ],
         [
-          2599.75,
-          1761.17
+          2536.72,
+          1763.96
         ],
         [
-          2607.74,
-          1760.83
+          2544.72,
+          1763.63
         ],
         [
-          2615.73,
-          1760.51
+          2552.71,
+          1763.26
         ],
         [
-          2623.73,
-          1760.17
+          2560.7,
+          1762.92
         ],
         [
-          2631.72,
-          1759.83
+          2568.69,
+          1762.57
         ],
         [
-          2639.71,
-          1759.47
+          2576.68,
+          1762.21
         ],
         [
-          2647.7,
-          1759.12
+          2584.68,
+          1761.84
         ],
         [
-          2655.7,
-          1758.78
+          2592.67,
+          1761.47
         ],
         [
-          2663.69,
-          1758.43
+          2600.66,
+          1761.12
         ],
         [
-          2671.68,
-          1758.09
+          2608.65,
+          1760.79
         ],
         [
-          2679.68,
-          1757.76
+          2616.65,
+          1760.47
         ],
         [
-          2687.67,
-          1757.41
+          2624.64,
+          1760.14
         ],
         [
-          2695.66,
-          1757.07
+          2632.63,
+          1759.79
         ],
         [
-          2703.65,
-          1756.75
+          2640.62,
+          1759.44
         ],
         [
-          2711.65,
-          1756.41
+          2648.62,
+          1759.09
         ],
         [
-          2719.64,
-          1756.05
+          2656.61,
+          1758.75
         ],
         [
-          2727.63,
-          1755.7
+          2664.6,
+          1758.39
         ],
         [
-          2735.62,
-          1755.33
+          2672.59,
+          1758.05
         ],
         [
-          2743.61,
-          1754.95
+          2680.59,
+          1757.72
         ],
         [
-          2751.61,
-          1754.59
+          2688.58,
+          1757.37
         ],
         [
-          2759.6,
-          1754.26
+          2696.57,
+          1757.04
         ],
         [
-          2767.59,
-          1753.95
+          2704.57,
+          1756.72
         ],
         [
-          2775.59,
-          1753.64
+          2712.56,
+          1756.38
         ],
         [
-          2783.58,
-          1753.3
+          2720.55,
+          1756.03
         ],
         [
-          2791.57,
-          1752.96
+          2728.54,
+          1755.67
         ],
         [
-          2799.56,
-          1752.57
+          2736.54,
+          1755.3
         ],
         [
-          2807.55,
-          1752.19
+          2744.53,
+          1754.92
         ],
         [
-          2815.54,
-          1751.81
+          2752.52,
+          1754.56
         ],
         [
-          2823.54,
-          1751.49
+          2760.51,
+          1754.23
         ],
         [
-          2831.53,
-          1751.19
+          2768.51,
+          1753.92
         ],
         [
-          2839.53,
-          1750.91
+          2776.5,
+          1753.61
         ],
         [
-          2847.52,
-          1750.59
+          2784.49,
+          1753.28
         ],
         [
-          2855.51,
-          1750.26
+          2792.49,
+          1752.93
         ],
         [
-          2863.51,
-          1749.94
+          2800.48,
+          1752.54
         ],
         [
-          2871.5,
-          1749.62
+          2808.47,
+          1752.15
         ],
         [
-          2879.5,
-          1749.3
+          2816.46,
+          1751.77
         ],
         [
-          2887.49,
-          1748.99
+          2824.45,
+          1751.44
         ],
         [
-          2895.48,
-          1748.64
+          2832.44,
+          1751.13
         ],
         [
-          2903.47,
-          1748.29
+          2840.44,
+          1750.85
         ],
         [
-          2911.47,
-          1747.95
+          2848.43,
+          1750.53
         ],
         [
-          2919.46,
-          1747.61
+          2856.43,
+          1750.21
         ],
         [
-          2927.45,
-          1747.28
+          2864.42,
+          1749.9
         ],
         [
-          2935.45,
-          1746.98
+          2872.41,
+          1749.59
         ],
         [
-          2943.44,
-          1746.66
+          2880.41,
+          1749.26
         ],
         [
-          2951.43,
-          1746.33
+          2888.4,
+          1748.95
         ],
         [
-          2959.43,
-          1746
+          2896.39,
+          1748.6
         ],
         [
-          2967.42,
-          1745.67
+          2904.39,
+          1748.25
         ],
         [
-          2975.41,
-          1745.33
+          2912.38,
+          1747.91
         ],
         [
-          2983.41,
-          1744.99
+          2920.37,
+          1747.58
         ],
         [
-          2991.4,
-          1744.69
+          2928.37,
+          1747.24
         ],
         [
-          2999.39,
-          1744.38
+          2936.36,
+          1746.94
         ],
         [
-          3007.39,
-          1744.05
+          2944.35,
+          1746.62
         ],
         [
-          3015.38,
-          1743.77
+          2952.35,
+          1746.28
         ],
         [
-          3023.38,
-          1743.46
+          2960.34,
+          1745.95
         ],
         [
-          3031.37,
-          1743.13
+          2968.33,
+          1745.63
         ],
         [
-          3039.36,
-          1742.79
+          2976.33,
+          1745.28
         ],
         [
-          3047.36,
-          1742.46
+          2984.32,
+          1744.95
         ],
         [
-          3055.35,
-          1742.09
+          2992.31,
+          1744.65
         ],
         [
-          3063.34,
-          1741.75
+          3000.31,
+          1744.34
         ],
         [
-          3071.33,
-          1741.42
+          3008.3,
+          1744.01
         ],
         [
-          3079.33,
-          1741.1
+          3016.29,
+          1743.7
         ],
         [
-          3087.32,
-          1740.78
+          3024.29,
+          1743.39
         ],
         [
-          3095.31,
-          1740.46
+          3032.28,
+          1743.06
         ],
         [
-          3103.31,
-          1740.13
+          3040.27,
+          1742.72
         ],
         [
-          3111.3,
-          1739.8
+          3048.27,
+          1742.4
         ],
         [
-          3119.29,
-          1739.48
+          3056.26,
+          1742.05
         ],
         [
-          3127.29,
-          1739.16
+          3064.25,
+          1741.71
         ],
         [
-          3135.28,
-          1738.83
+          3072.25,
+          1741.39
         ],
         [
-          3143.27,
-          1738.51
+          3080.24,
+          1741.07
         ],
         [
-          3151.27,
-          1738.19
+          3088.23,
+          1740.74
         ],
         [
-          3159.26,
-          1737.89
+          3096.23,
+          1740.42
         ],
         [
-          3167.26,
-          1737.6
+          3104.22,
+          1740.09
         ],
         [
-          3175.25,
-          1737.28
+          3112.21,
+          1739.76
         ],
         [
-          3183.24,
-          1736.94
+          3120.21,
+          1739.44
         ],
         [
-          3187.24,
-          1736.78
+          3128.2,
+          1739.11
         ],
         [
-          3199.22,
-          1736.11
+          3136.19,
+          1738.77
+        ],
+        [
+          3144.19,
+          1738.45
+        ],
+        [
+          3152.18,
+          1738.13
+        ],
+        [
+          3160.17,
+          1737.84
+        ],
+        [
+          3168.17,
+          1737.56
+        ],
+        [
+          3176.16,
+          1737.23
+        ],
+        [
+          3184.15,
+          1736.86
+        ],
+        [
+          3188.15,
+          1736.69
+        ],
+        [
+          3200.13,
+          1735.92
         ],
         [
           3207,
-          1735.73
+          1735.55
         ]
       ],
       "landmark_ids": [
@@ -16578,25 +16578,20 @@
         {
           "from": 83,
           "to": 83,
-          "reason": "Slot hidden or disturbed (Sweden figure); centre interpolated linearly between accepted cross-sections."
+          "reason": "Slot hidden or disturbed (stick lying along the slot at px 1545-1830 (face-off circle top); Sweden figure; a figure's stick lies along the slot over the face-off circle top (dark wire + highlight pulled the centre up to 2.6 mm sideways; user-marked 2026-10-01)); centre interpolated linearly between accepted cross-sections."
         },
         {
-          "from": 95,
-          "to": 114,
-          "reason": "Slot hidden or disturbed (Sweden figure); centre interpolated linearly between accepted cross-sections."
-        },
-        {
-          "from": 116,
-          "to": 116,
-          "reason": "Slot hidden or disturbed (Sweden figure); centre interpolated linearly between accepted cross-sections."
+          "from": 89,
+          "to": 123,
+          "reason": "Slot hidden or disturbed (stick lying along the slot at px 1545-1830 (face-off circle top); Sweden figure; a figure's stick lies along the slot over the face-off circle top (dark wire + highlight pulled the centre up to 2.6 mm sideways; user-marked 2026-10-01)); centre interpolated linearly between accepted cross-sections."
         }
       ],
       "stats": {
-        "length_px": 2360.6,
-        "width_median_px": 38.88,
-        "fit_rms_px": 0.255,
-        "fit_max_px": 2.24,
-        "detected_fraction": 0.923
+        "length_px": 2359,
+        "width_median_px": 38.87,
+        "fit_rms_px": 0.129,
+        "fit_max_px": 1.06,
+        "detected_fraction": 0.875
       },
       "note": "Visible slot centreline in the installed overhead (primary alignment)."
     },
@@ -17020,8 +17015,8 @@
         "fit_rms_px": 0.2,
         "fit_max_px": 0.76,
         "detected_fraction": 0.928,
-        "homography_curve_rms_px_in_overhead": 1.22,
-        "homography_curve_max_px_in_overhead": 2.49
+        "homography_curve_rms_px_in_overhead": 1.33,
+        "homography_curve_max_px_in_overhead": 2.62
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -17953,8 +17948,8 @@
         "fit_rms_px": 0.111,
         "fit_max_px": 0.32,
         "detected_fraction": 1,
-        "homography_curve_rms_px_in_overhead": 6.65,
-        "homography_curve_max_px_in_overhead": 7.21
+        "homography_curve_rms_px_in_overhead": 6.46,
+        "homography_curve_max_px_in_overhead": 7.02
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -19377,8 +19372,8 @@
         "fit_rms_px": 0.22,
         "fit_max_px": 1.09,
         "detected_fraction": 0.964,
-        "homography_curve_rms_px_in_overhead": 3.52,
-        "homography_curve_max_px_in_overhead": 6.19
+        "homography_curve_rms_px_in_overhead": 3.4,
+        "homography_curve_max_px_in_overhead": 5.76
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -22046,8 +22041,8 @@
         "fit_rms_px": 0.229,
         "fit_max_px": 1.3,
         "detected_fraction": 0.947,
-        "homography_curve_rms_px_in_overhead": 2.77,
-        "homography_curve_max_px_in_overhead": 5.69
+        "homography_curve_rms_px_in_overhead": 2.71,
+        "homography_curve_max_px_in_overhead": 5.55
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -24106,8 +24101,8 @@
         "fit_rms_px": 0.187,
         "fit_max_px": 0.9,
         "detected_fraction": 0.915,
-        "homography_curve_rms_px_in_overhead": 0.87,
-        "homography_curve_max_px_in_overhead": 1.85
+        "homography_curve_rms_px_in_overhead": 0.83,
+        "homography_curve_max_px_in_overhead": 1.79
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -26163,8 +26158,8 @@
         "fit_rms_px": 0.151,
         "fit_max_px": 0.88,
         "detected_fraction": 0.954,
-        "homography_curve_rms_px_in_overhead": 2.74,
-        "homography_curve_max_px_in_overhead": 6.37
+        "homography_curve_rms_px_in_overhead": 2.57,
+        "homography_curve_max_px_in_overhead": 6.49
       },
       "note": "Slot centreline in the bare loose sheet (older artwork; topology reference, not scale)."
     },
@@ -26780,595 +26775,587 @@
         ],
         [
           3631.32,
-          3824.91
+          3824.9
         ],
         [
           3639.32,
-          3824.96
+          3824.94
         ],
         [
           3647.32,
-          3825.02
+          3824.97
         ],
         [
           3655.32,
-          3825.07
+          3825
         ],
         [
-          3663.31,
+          3663.32,
+          3825.03
+        ],
+        [
+          3671.32,
+          3825.06
+        ],
+        [
+          3679.32,
+          3825.1
+        ],
+        [
+          3687.32,
+          3825.13
+        ],
+        [
+          3695.32,
+          3825.16
+        ],
+        [
+          3703.32,
+          3825.2
+        ],
+        [
+          3711.32,
+          3825.23
+        ],
+        [
+          3719.32,
+          3825.26
+        ],
+        [
+          3727.32,
+          3825.3
+        ],
+        [
+          3735.32,
+          3825.33
+        ],
+        [
+          3743.32,
+          3825.36
+        ],
+        [
+          3751.32,
+          3825.4
+        ],
+        [
+          3759.32,
+          3825.43
+        ],
+        [
+          3767.32,
+          3825.46
+        ],
+        [
+          3775.32,
           3825.49
         ],
         [
-          3671.3,
-          3825.9
+          3783.32,
+          3825.52
         ],
         [
-          3679.3,
-          3826.31
+          3791.32,
+          3825.55
         ],
         [
-          3687.29,
-          3826.64
-        ],
-        [
-          3695.28,
-          3826.95
-        ],
-        [
-          3703.28,
-          3826.86
-        ],
-        [
-          3711.29,
-          3826.75
-        ],
-        [
-          3719.29,
-          3826.62
-        ],
-        [
-          3727.29,
-          3826.6
-        ],
-        [
-          3735.29,
-          3826.59
-        ],
-        [
-          3743.29,
-          3826.55
-        ],
-        [
-          3751.29,
-          3826.49
-        ],
-        [
-          3759.29,
-          3826.4
-        ],
-        [
-          3767.29,
-          3826.25
-        ],
-        [
-          3775.28,
-          3826.11
-        ],
-        [
-          3783.28,
-          3826
-        ],
-        [
-          3791.28,
-          3825.92
-        ],
-        [
-          3799.28,
-          3825.86
-        ],
-        [
-          3807.28,
-          3825.9
-        ],
-        [
-          3815.28,
-          3825.83
-        ],
-        [
-          3823.29,
-          3825.77
-        ],
-        [
-          3831.29,
-          3825.74
-        ],
-        [
-          3839.3,
-          3825.74
-        ],
-        [
-          3847.29,
-          3826.05
-        ],
-        [
-          3855.26,
-          3826.74
-        ],
-        [
-          3863.23,
-          3827.54
-        ],
-        [
-          3871.19,
-          3828.34
-        ],
-        [
-          3879.14,
-          3829.03
-        ],
-        [
-          3887.11,
-          3829.22
-        ],
-        [
-          3895.1,
-          3828.99
-        ],
-        [
-          3903.1,
-          3828.48
-        ],
-        [
-          3911.1,
-          3827.82
-        ],
-        [
-          3919.1,
-          3827.12
-        ],
-        [
-          3927.11,
-          3826.51
-        ],
-        [
-          3935.11,
-          3826.06
-        ],
-        [
-          3943.1,
-          3825.78
-        ],
-        [
-          3951.09,
-          3825.66
-        ],
-        [
-          3959.07,
-          3825.65
-        ],
-        [
-          3967.03,
-          3825.7
-        ],
-        [
-          3975,
-          3825.74
-        ],
-        [
-          3982.97,
-          3825.79
-        ],
-        [
-          3990.94,
-          3825.81
-        ],
-        [
-          3998.94,
-          3826.34
-        ],
-        [
-          4006.92,
-          3826.43
-        ],
-        [
-          4014.91,
-          3826.42
-        ],
-        [
-          4022.91,
-          3826.38
-        ],
-        [
-          4030.91,
-          3826.36
-        ],
-        [
-          4038.89,
-          3825.85
-        ],
-        [
-          4046.9,
-          3825.77
-        ],
-        [
-          4054.91,
-          3825.62
-        ],
-        [
-          4062.92,
-          3825.63
-        ],
-        [
-          4070.92,
-          3825.63
-        ],
-        [
-          4078.92,
+          3799.32,
           3825.58
         ],
         [
-          4086.91,
-          3825.54
+          3807.32,
+          3825.61
         ],
         [
-          4094.91,
-          3825.72
+          3815.32,
+          3825.64
         ],
         [
-          4102.91,
+          3823.32,
+          3825.66
+        ],
+        [
+          3831.32,
+          3825.69
+        ],
+        [
+          3839.32,
+          3825.71
+        ],
+        [
+          3847.32,
+          3825.73
+        ],
+        [
+          3855.32,
+          3825.76
+        ],
+        [
+          3863.32,
+          3825.78
+        ],
+        [
+          3871.32,
           3825.8
         ],
         [
-          4110.91,
-          3825.91
+          3879.32,
+          3825.81
         ],
         [
-          4118.91,
-          3826.01
+          3887.32,
+          3825.83
         ],
         [
-          4126.91,
-          3826.13
+          3895.32,
+          3825.84
         ],
         [
-          4134.91,
-          3826.15
+          3903.32,
+          3825.86
         ],
         [
-          4142.91,
-          3826.1
+          3911.32,
+          3825.87
         ],
         [
-          4150.91,
-          3826.04
+          3919.32,
+          3825.87
         ],
         [
-          4158.91,
-          3825.99
-        ],
-        [
-          4166.91,
-          3825.91
-        ],
-        [
-          4174.91,
+          3927.32,
           3825.88
         ],
         [
-          4182.91,
-          3825.9
+          3935.32,
+          3825.89
         ],
         [
-          4190.91,
-          3825.92
+          3943.32,
+          3825.89
         ],
         [
-          4198.91,
+          3951.32,
+          3825.89
+        ],
+        [
+          3959.32,
+          3825.89
+        ],
+        [
+          3967.32,
+          3825.88
+        ],
+        [
+          3975.32,
+          3825.88
+        ],
+        [
+          3983.32,
+          3825.87
+        ],
+        [
+          3991.32,
+          3825.86
+        ],
+        [
+          3999.32,
+          3825.85
+        ],
+        [
+          4007.32,
+          3825.83
+        ],
+        [
+          4015.32,
+          3825.81
+        ],
+        [
+          4023.32,
+          3825.79
+        ],
+        [
+          4031.32,
+          3825.76
+        ],
+        [
+          4039.32,
+          3825.77
+        ],
+        [
+          4047.32,
+          3825.78
+        ],
+        [
+          4055.32,
+          3825.62
+        ],
+        [
+          4063.32,
+          3825.59
+        ],
+        [
+          4071.32,
+          3825.58
+        ],
+        [
+          4079.32,
+          3825.54
+        ],
+        [
+          4087.32,
+          3825.5
+        ],
+        [
+          4095.32,
+          3825.69
+        ],
+        [
+          4103.32,
+          3825.81
+        ],
+        [
+          4111.31,
           3825.91
         ],
         [
-          4206.91,
-          3825.9
-        ],
-        [
-          4214.91,
-          3825.92
-        ],
-        [
-          4222.91,
-          3825.93
-        ],
-        [
-          4230.91,
-          3825.93
-        ],
-        [
-          4238.91,
-          3825.95
-        ],
-        [
-          4246.91,
-          3825.98
-        ],
-        [
-          4254.91,
-          3825.99
-        ],
-        [
-          4262.91,
+          4119.31,
           3826.01
         ],
         [
-          4270.91,
-          3826.06
+          4127.31,
+          3826.14
         ],
         [
-          4278.91,
-          3826.07
+          4135.31,
+          3826.16
         ],
         [
-          4286.91,
-          3826.08
+          4143.31,
+          3826.1
         ],
         [
-          4294.91,
-          3826.07
-        ],
-        [
-          4302.91,
-          3826.05
-        ],
-        [
-          4310.91,
-          3826.02
-        ],
-        [
-          4318.91,
-          3825.99
-        ],
-        [
-          4326.91,
-          3825.98
-        ],
-        [
-          4334.91,
-          3825.97
-        ],
-        [
-          4342.91,
-          3825.96
-        ],
-        [
-          4350.91,
-          3825.94
-        ],
-        [
-          4358.91,
-          3825.99
-        ],
-        [
-          4366.91,
-          3826.02
-        ],
-        [
-          4374.91,
-          3826.05
-        ],
-        [
-          4382.91,
-          3826.07
-        ],
-        [
-          4390.91,
-          3826.07
-        ],
-        [
-          4398.91,
-          3826.02
-        ],
-        [
-          4406.91,
-          3825.99
-        ],
-        [
-          4414.91,
-          3825.95
-        ],
-        [
-          4422.91,
-          3825.93
-        ],
-        [
-          4430.91,
-          3825.93
-        ],
-        [
-          4438.91,
-          3825.93
-        ],
-        [
-          4446.91,
-          3825.93
-        ],
-        [
-          4454.91,
-          3825.96
-        ],
-        [
-          4462.91,
-          3825.96
-        ],
-        [
-          4470.91,
-          3825.96
-        ],
-        [
-          4478.91,
-          3825.96
-        ],
-        [
-          4486.91,
-          3825.97
-        ],
-        [
-          4494.91,
-          3825.96
-        ],
-        [
-          4502.91,
-          3825.96
-        ],
-        [
-          4510.91,
-          3825.95
-        ],
-        [
-          4518.91,
-          3825.94
-        ],
-        [
-          4526.91,
-          3825.92
-        ],
-        [
-          4534.91,
-          3825.92
-        ],
-        [
-          4542.91,
-          3825.93
-        ],
-        [
-          4550.91,
-          3825.97
-        ],
-        [
-          4558.91,
-          3826.01
-        ],
-        [
-          4566.91,
+          4151.31,
           3826.04
         ],
         [
-          4574.91,
-          3826.02
+          4159.31,
+          3825.99
         ],
         [
-          4582.92,
+          4167.31,
+          3825.91
+        ],
+        [
+          4175.31,
+          3825.88
+        ],
+        [
+          4183.31,
           3825.9
         ],
         [
-          4590.91,
-          3825.63
+          4191.31,
+          3825.92
         ],
         [
-          4598.9,
-          3825.22
+          4199.31,
+          3825.91
         ],
         [
-          4606.89,
-          3824.67
+          4207.31,
+          3825.9
         ],
         [
-          4614.86,
-          3823.94
+          4215.31,
+          3825.92
         ],
         [
-          4622.81,
-          3823.11
+          4223.31,
+          3825.93
         ],
         [
-          4630.76,
-          3822.15
+          4231.31,
+          3825.93
         ],
         [
-          4638.69,
-          3821.07
+          4239.31,
+          3825.95
         ],
         [
-          4646.59,
-          3819.78
+          4247.31,
+          3825.98
         ],
         [
-          4654.47,
-          3818.38
+          4255.31,
+          3825.99
         ],
         [
-          4662.31,
-          3816.8
+          4263.31,
+          3826.01
         ],
         [
-          4670.13,
-          3815.07
+          4271.31,
+          3826.06
         ],
         [
-          4677.9,
-          3813.18
+          4279.31,
+          3826.08
         ],
         [
-          4685.66,
-          3811.21
+          4287.31,
+          3826.08
         ],
         [
-          4693.36,
-          3809.03
+          4295.31,
+          3826.07
         ],
         [
-          4701.03,
-          3806.74
+          4303.31,
+          3826.05
         ],
         [
-          4708.65,
-          3804.29
+          4311.31,
+          3826.01
         ],
         [
-          4716.21,
-          3801.69
+          4319.31,
+          3825.99
         ],
         [
-          4723.72,
-          3798.93
+          4327.31,
+          3825.98
         ],
         [
-          4731.19,
-          3796.05
+          4335.31,
+          3825.97
         ],
         [
-          4738.6,
-          3793.03
+          4343.31,
+          3825.96
         ],
         [
-          4745.97,
-          3789.91
+          4351.31,
+          3825.94
         ],
         [
-          4753.29,
-          3786.67
+          4359.31,
+          3825.99
         ],
         [
-          4760.56,
-          3783.33
+          4367.31,
+          3826.03
         ],
         [
-          4767.8,
-          3779.93
+          4375.31,
+          3826.05
         ],
         [
-          4774.95,
-          3776.33
+          4383.31,
+          3826.07
         ],
         [
-          4778.53,
-          3774.55
+          4391.31,
+          3826.07
         ],
         [
-          4789.04,
-          3768.75
+          4399.31,
+          3826.01
         ],
         [
-          4789.04,
-          3768.75
+          4407.31,
+          3825.98
+        ],
+        [
+          4415.31,
+          3825.94
+        ],
+        [
+          4423.31,
+          3825.92
+        ],
+        [
+          4431.31,
+          3825.92
+        ],
+        [
+          4439.31,
+          3825.93
+        ],
+        [
+          4447.31,
+          3825.92
+        ],
+        [
+          4455.31,
+          3825.95
+        ],
+        [
+          4463.31,
+          3825.96
+        ],
+        [
+          4471.31,
+          3825.96
+        ],
+        [
+          4479.31,
+          3825.96
+        ],
+        [
+          4487.31,
+          3825.97
+        ],
+        [
+          4495.31,
+          3825.96
+        ],
+        [
+          4503.31,
+          3825.96
+        ],
+        [
+          4511.31,
+          3825.95
+        ],
+        [
+          4519.31,
+          3825.94
+        ],
+        [
+          4527.31,
+          3825.92
+        ],
+        [
+          4535.31,
+          3825.92
+        ],
+        [
+          4543.31,
+          3825.93
+        ],
+        [
+          4551.31,
+          3826.01
+        ],
+        [
+          4559.31,
+          3826.05
+        ],
+        [
+          4567.31,
+          3826.07
+        ],
+        [
+          4575.32,
+          3826.04
+        ],
+        [
+          4583.32,
+          3825.9
+        ],
+        [
+          4591.31,
+          3825.58
+        ],
+        [
+          4599.3,
+          3825.17
+        ],
+        [
+          4607.28,
+          3824.62
+        ],
+        [
+          4615.26,
+          3823.91
+        ],
+        [
+          4623.21,
+          3823.07
+        ],
+        [
+          4631.16,
+          3822.1
+        ],
+        [
+          4639.09,
+          3821
+        ],
+        [
+          4646.98,
+          3819.71
+        ],
+        [
+          4654.86,
+          3818.3
+        ],
+        [
+          4662.71,
+          3816.72
+        ],
+        [
+          4670.52,
+          3814.99
+        ],
+        [
+          4678.29,
+          3813.09
+        ],
+        [
+          4686.05,
+          3811.11
+        ],
+        [
+          4693.75,
+          3808.92
+        ],
+        [
+          4701.41,
+          3806.62
+        ],
+        [
+          4709.02,
+          3804.16
+        ],
+        [
+          4716.59,
+          3801.56
+        ],
+        [
+          4724.1,
+          3798.78
+        ],
+        [
+          4731.56,
+          3795.9
+        ],
+        [
+          4738.97,
+          3792.88
+        ],
+        [
+          4746.34,
+          3789.75
+        ],
+        [
+          4753.66,
+          3786.52
+        ],
+        [
+          4760.93,
+          3783.18
+        ],
+        [
+          4764.56,
+          3781.5
+        ],
+        [
+          4775.37,
+          3776.28
+        ],
+        [
+          4775.37,
+          3776.28
         ]
       ],
       "landmark_ids": [
@@ -27380,27 +27367,22 @@
       "method": "scripts/trace-slots.ts: guided cross-sections every 8 px from the data/slot-seeds.json seed; sub-pixel edge pair per section (mid-level crossing); 3 guide passes; centreline = centres smoothed over 5 sections; ends by sub-pixel crossing along the end tangent. Curve representation: polyline through the smoothed centres at 8 px spacing.",
       "inferred_segments": [
         {
-          "from": 182,
-          "to": 189,
-          "reason": "Slot hidden or disturbed (Finland figure); centre interpolated linearly between accepted cross-sections."
+          "from": 153,
+          "to": 202,
+          "reason": "Slot hidden or disturbed (stick and the face-off circle arc along the slot at px 3640-4045 (face-off circle bottom); Finland figure; stick lying along the slot where the face-off circle arc meets its lower edge (pulled the centre up to 0.7 mm sideways; user-marked 2026-10-01)); centre interpolated linearly between accepted cross-sections."
         },
         {
-          "from": 191,
-          "to": 197,
-          "reason": "Slot hidden or disturbed (Finland figure); centre interpolated linearly between accepted cross-sections."
-        },
-        {
-          "from": 298,
-          "to": 298,
+          "from": 296,
+          "to": 296,
           "reason": "End point is the last accepted cross-section (end hidden, or sub-pixel end not found)."
         }
       ],
       "stats": {
-        "length_px": 2378.3,
-        "width_median_px": 39.17,
-        "fit_rms_px": 0.202,
-        "fit_max_px": 1.95,
-        "detected_fraction": 0.946
+        "length_px": 2362.4,
+        "width_median_px": 39.12,
+        "fit_rms_px": 0.12,
+        "fit_max_px": 0.91,
+        "detected_fraction": 0.828
       },
       "note": "Visible slot centreline in the installed overhead (primary alignment)."
     }
@@ -30846,11 +30828,11 @@
           ],
           [
             -253.19,
-            -3.56
+            -3.55
           ],
           [
             -253.32,
-            -6.46
+            -6.45
           ],
           [
             -253.44,
@@ -30858,35 +30840,35 @@
           ],
           [
             -253.58,
-            -12.27
+            -12.26
           ],
           [
             -253.76,
-            -15.17
+            -15.16
           ],
           [
             -253.91,
-            -18.07
+            -18.06
           ],
           [
-            -254.02,
-            -20.97
+            -254.01,
+            -20.96
           ],
           [
             -254.1,
-            -23.88
+            -23.87
           ],
           [
             -254.21,
-            -26.78
+            -26.77
           ],
           [
-            -254.33,
-            -28.96
+            -254.32,
+            -28.95
           ],
           [
             -254.61,
-            -33.4
+            -33.38
           ]
         ],
         "closed": false,
@@ -30917,7 +30899,7 @@
           "note": "Arc length along the overhead slot centreline (image px, not mm). start end visible."
         },
         "end": {
-          "value": 462.9,
+          "value": 462.8,
           "unit": "px",
           "status": "assumed",
           "uncertainty": null,
@@ -31561,7 +31543,7 @@
             85.27
           ],
           [
-            22.98,
+            22.99,
             83.83
           ],
           [
@@ -31570,7 +31552,7 @@
           ],
           [
             27.73,
-            80.7
+            80.71
           ],
           [
             30.03,
@@ -31581,16 +31563,16 @@
             77.35
           ],
           [
-            34.58,
+            34.59,
             75.63
           ],
           [
-            36.32,
-            74.4
+            36.33,
+            74.41
           ],
           [
             39.87,
-            72.26
+            72.27
           ]
         ],
         "closed": false,
@@ -32450,23 +32432,23 @@
             -5.19
           ],
           [
-            181.67,
+            181.68,
             -4.85
           ],
           [
-            184.42,
+            184.43,
             -4.51
           ],
           [
             187.18,
-            -4.21
+            -4.2
           ],
           [
             189.93,
-            -3.88
+            -3.87
           ],
           [
-            191.26,
+            191.27,
             -3.71
           ]
         ],
@@ -32498,7 +32480,7 @@
           "note": "Arc length along the overhead slot centreline (image px, not mm). start end visible."
         },
         "end": {
-          "value": 1393.6,
+          "value": 1393.7,
           "unit": "px",
           "status": "assumed",
           "uncertainty": null,
@@ -33226,7 +33208,7 @@
             -10.78
           ],
           [
-            380.88,
+            380.89,
             -13.61
           ],
           [
@@ -33238,28 +33220,28 @@
             -19.26
           ],
           [
-            380.99,
+            381,
             -22.08
           ],
           [
-            381,
+            381.01,
             -24.91
           ],
           [
-            381.05,
+            381.07,
             -27.73
           ],
           [
-            381.16,
-            -30.55
+            381.18,
+            -30.56
           ],
           [
-            381.25,
+            381.26,
             -33.38
           ],
           [
-            381.3,
-            -35.28
+            381.32,
+            -35.29
           ]
         ],
         "closed": false,
@@ -33663,339 +33645,339 @@
           ],
           [
             147.38,
-            -184.14
+            -184.13
           ],
           [
             150.26,
-            -184.15
+            -184.14
           ],
           [
             153.13,
-            -184.29
+            -184.14
           ],
           [
-            156,
-            -184.41
+            156.01,
+            -184.14
           ],
           [
-            158.87,
-            -184.44
+            158.88,
+            -184.14
           ],
           [
             161.75,
-            -184.39
+            -184.14
           ],
           [
-            164.62,
-            -184.37
+            164.63,
+            -184.15
           ],
           [
-            167.49,
-            -184.35
+            167.5,
+            -184.15
           ],
           [
             170.37,
-            -184.29
+            -184.15
           ],
           [
-            173.24,
-            -184.24
+            173.25,
+            -184.15
           ],
           [
-            176.11,
-            -184.2
+            176.12,
+            -184.15
           ],
           [
             178.99,
-            -184.19
+            -184.15
           ],
           [
-            181.86,
-            -184.16
+            181.87,
+            -184.15
           ],
           [
             184.74,
-            -184.21
+            -184.15
           ],
           [
-            187.6,
-            -184.47
+            187.61,
+            -184.15
           ],
           [
-            190.46,
-            -184.73
+            190.49,
+            -184.15
           ],
           [
-            193.32,
-            -184.71
+            193.36,
+            -184.14
           ],
           [
-            196.2,
-            -184.49
+            196.23,
+            -184.14
           ],
           [
-            199.07,
-            -184.24
+            199.11,
+            -184.13
           ],
           [
-            201.94,
+            201.98,
+            -184.12
+          ],
+          [
+            204.86,
+            -184.11
+          ],
+          [
+            207.73,
             -184.1
           ],
           [
-            204.81,
+            210.6,
+            -184.09
+          ],
+          [
+            213.48,
             -184.07
           ],
           [
-            207.67,
-            -184.08
-          ],
-          [
-            210.53,
-            -184.08
-          ],
-          [
-            213.41,
-            -184.18
-          ],
-          [
-            216.28,
-            -184.16
-          ],
-          [
-            219.15,
+            216.35,
             -184.06
           ],
           [
-            222.02,
-            -184.01
-          ],
-          [
-            224.9,
-            -184
-          ],
-          [
-            227.77,
-            -183.97
-          ],
-          [
-            230.64,
-            -184.01
-          ],
-          [
-            233.52,
+            219.22,
             -184.04
           ],
           [
-            236.39,
-            -184.05
+            222.1,
+            -184.01
           ],
           [
-            239.27,
-            -184.02
-          ],
-          [
-            242.14,
+            224.97,
             -183.99
           ],
           [
-            245.01,
-            -183.98
-          ],
-          [
-            247.89,
+            227.84,
             -183.97
           ],
           [
-            250.76,
+            230.72,
+            -184.01
+          ],
+          [
+            233.59,
+            -184.04
+          ],
+          [
+            236.46,
+            -184.06
+          ],
+          [
+            239.34,
+            -184.02
+          ],
+          [
+            242.21,
+            -183.99
+          ],
+          [
+            245.08,
+            -183.98
+          ],
+          [
+            247.96,
+            -183.97
+          ],
+          [
+            250.83,
             -183.96
           ],
           [
-            253.63,
+            253.7,
             -183.96
           ],
           [
-            256.51,
+            256.58,
             -183.96
           ],
           [
-            259.38,
+            259.45,
             -183.95
           ],
           [
-            262.25,
+            262.33,
             -183.95
           ],
           [
-            265.13,
+            265.2,
             -183.94
           ],
           [
-            268,
+            268.07,
             -183.92
           ],
           [
-            270.87,
+            270.95,
             -183.91
           ],
           [
-            273.75,
+            273.82,
             -183.89
           ],
           [
-            276.62,
+            276.69,
             -183.89
           ],
           [
-            279.49,
+            279.57,
             -183.89
           ],
           [
-            282.37,
+            282.44,
             -183.89
           ],
           [
-            285.24,
+            285.31,
             -183.86
           ],
           [
-            288.11,
+            288.19,
             -183.84
           ],
           [
-            290.99,
+            291.06,
             -183.83
           ],
           [
-            293.86,
+            293.93,
             -183.83
           ],
           [
-            296.74,
+            296.81,
             -183.82
           ],
           [
-            299.61,
+            299.68,
             -183.81
           ],
           [
-            302.48,
+            302.55,
             -183.8
           ],
           [
-            305.36,
-            -183.79
+            305.43,
+            -183.78
           ],
           [
-            308.23,
+            308.3,
             -183.77
           ],
           [
-            311.1,
-            -183.77
+            311.18,
+            -183.78
           ],
           [
-            313.98,
-            -183.77
+            314.05,
+            -183.78
           ],
           [
-            316.85,
+            316.92,
             -183.74
           ],
           [
-            319.72,
-            -183.61
+            319.79,
+            -183.6
           ],
           [
-            322.59,
-            -183.37
+            322.66,
+            -183.36
           ],
           [
-            325.44,
-            -183.04
+            325.51,
+            -183.03
           ],
           [
-            328.28,
-            -182.6
+            328.35,
+            -182.59
           ],
           [
-            331.1,
-            -182.06
+            331.18,
+            -182.04
           ],
           [
-            333.9,
-            -181.4
+            333.97,
+            -181.38
           ],
           [
-            336.68,
-            -180.64
+            336.75,
+            -180.62
           ],
           [
-            339.42,
-            -179.78
+            339.49,
+            -179.76
           ],
           [
-            342.12,
-            -178.81
+            342.19,
+            -178.78
           ],
           [
-            344.79,
-            -177.74
+            344.86,
+            -177.72
           ],
           [
-            347.43,
-            -176.59
+            347.49,
+            -176.56
           ],
           [
-            350.03,
-            -175.37
+            349.45,
+            -175.66
           ],
           [
-            351.95,
-            -174.4
+            351.39,
+            -174.71
           ],
           [
-            353.84,
+            353.78,
             -173.35
           ],
           [
-            356.19,
+            356.14,
             -171.92
           ],
           [
-            358.49,
+            358.44,
             -170.39
           ],
           [
-            360.76,
+            360.71,
             -168.82
           ],
           [
-            362.98,
+            362.93,
             -167.17
           ],
           [
-            365.21,
+            365.16,
             -165.53
           ],
           [
-            367.39,
-            -163.83
+            367.34,
+            -163.82
           ],
           [
-            369.51,
+            369.46,
             -162.04
           ],
           [
-            371.58,
+            371.53,
             -160.2
           ],
           [
-            373.68,
+            373.63,
             -158.39
           ],
           [
-            374.9,
-            -157.34
+            374.85,
+            -157.33
           ]
         ],
         "closed": false,
@@ -34026,7 +34008,7 @@
           "note": "Arc length along the overhead slot centreline (image px, not mm). start end visible."
         },
         "end": {
-          "value": 2525.9,
+          "value": 2525.3,
           "unit": "px",
           "status": "assumed",
           "uncertainty": null,
@@ -34094,43 +34076,43 @@
       "centreline": {
         "points_mm": [
           [
-            252.42,
+            252.39,
             32.93
           ],
           [
-            252.52,
+            252.5,
             29.38
           ],
           [
-            252.49,
+            252.47,
             27.25
           ],
           [
-            252.36,
+            252.34,
             24.42
           ],
           [
-            252.24,
+            252.22,
             21.58
           ],
           [
-            252.11,
+            252.09,
             18.75
           ],
           [
-            251.97,
+            251.95,
             15.91
           ],
           [
-            251.79,
+            251.78,
             13.08
           ],
           [
-            251.65,
+            251.64,
             10.24
           ],
           [
-            251.56,
+            251.55,
             7.4
           ],
           [
@@ -34138,19 +34120,19 @@
             4.57
           ],
           [
-            251.3,
+            251.29,
             1.73
           ],
           [
-            251.11,
+            251.1,
             -1.1
           ],
           [
-            251,
+            250.99,
             -3.94
           ],
           [
-            250.9,
+            250.89,
             -6.78
           ],
           [
@@ -34314,7 +34296,7 @@
       "centreline": {
         "points_mm": [
           [
-            -42.97,
+            -42.98,
             -71.47
           ],
           [
@@ -34334,7 +34316,7 @@
             -78.67
           ],
           [
-            -31.11,
+            -31.12,
             -80.3
           ],
           [
@@ -35023,15 +35005,15 @@
         "points_mm": [
           [
             65,
-            88.32
+            88.31
           ],
           [
-            69.32,
+            69.31,
             88.43
           ],
           [
             71.41,
-            88.51
+            88.5
           ],
           [
             74.21,
@@ -35462,16 +35444,16 @@
             3.66
           ],
           [
-            -190.19,
+            -190.18,
             4.17
           ],
           [
-            -188.06,
+            -188.05,
             4.45
           ],
           [
             -185.21,
-            4.81
+            4.8
           ],
           [
             -182.37,
@@ -36691,11 +36673,11 @@
       "centreline": {
         "points_mm": [
           [
-            -373.2,
-            156.9
+            -373.19,
+            156.91
           ],
           [
-            -370,
+            -369.99,
             160
           ],
           [
@@ -36704,19 +36686,19 @@
           ],
           [
             -366.21,
-            163.37
+            163.38
           ],
           [
-            -364.01,
+            -364,
             165.26
           ],
           [
-            -361.74,
-            167.05
+            -361.73,
+            167.06
           ],
           [
             -359.4,
-            168.76
+            168.77
           ],
           [
             -357.03,
@@ -36900,427 +36882,427 @@
           ],
           [
             -231.44,
-            183.12
+            183.13
           ],
           [
             -228.56,
-            183.16
+            183.2
           ],
           [
             -225.69,
-            183.21
+            183.29
           ],
           [
             -222.82,
+            183.36
+          ],
+          [
+            -219.95,
+            183.41
+          ],
+          [
+            -217.07,
             183.45
           ],
           [
-            -219.96,
-            183.8
-          ],
-          [
-            -217.09,
-            184.18
-          ],
-          [
-            -214.21,
-            184.53
+            -214.2,
+            183.46
           ],
           [
             -211.33,
-            184.88
+            183.47
           ],
           [
-            -208.44,
-            185.22
+            -208.45,
+            183.46
           ],
           [
-            -205.55,
-            185.49
+            -205.58,
+            183.45
           ],
           [
-            -202.67,
-            185.68
+            -202.71,
+            183.43
           ],
           [
-            -199.8,
-            185.75
+            -199.83,
+            183.41
           ],
           [
-            -196.94,
-            185.67
+            -196.96,
+            183.4
           ],
           [
-            -194.1,
-            185.41
+            -194.08,
+            183.39
           ],
           [
-            -191.29,
-            184.85
+            -191.21,
+            183.39
           ],
           [
-            -188.45,
-            184.4
+            -188.34,
+            183.4
           ],
           [
-            -185.61,
-            183.91
+            -185.46,
+            183.42
           ],
           [
-            -182.75,
-            183.68
+            -182.59,
+            183.46
           ],
           [
-            -179.88,
+            -179.72,
+            183.51
+          ],
+          [
+            -176.84,
             183.55
           ],
           [
-            -177.01,
-            183.55
-          ],
-          [
-            -174.13,
+            -173.97,
             183.63
           ],
           [
-            -171.26,
+            -171.1,
             183.71
           ],
           [
-            -168.39,
-            183.75
-          ],
-          [
-            -165.51,
+            -168.23,
             183.74
           ],
           [
-            -162.64,
-            183.73
-          ],
-          [
-            -159.77,
+            -165.35,
             183.74
           ],
           [
-            -156.89,
+            -162.48,
+            183.74
+          ],
+          [
+            -159.6,
+            183.74
+          ],
+          [
+            -156.73,
             183.76
           ],
           [
-            -154.02,
+            -153.86,
             183.78
           ],
           [
-            -151.15,
+            -150.98,
             183.8
           ],
           [
-            -148.27,
+            -148.11,
             183.83
           ],
           [
-            -145.4,
+            -145.24,
             183.86
           ],
           [
-            -142.53,
+            -142.36,
             183.88
           ],
           [
-            -139.65,
+            -139.49,
             183.9
           ],
           [
-            -136.78,
+            -136.62,
             183.92
           ],
           [
-            -133.91,
+            -133.74,
             183.93
           ],
           [
-            -131.03,
+            -130.87,
             183.95
           ],
           [
-            -128.16,
+            -128,
             183.96
           ],
           [
-            -125.29,
+            -125.12,
             183.97
           ],
           [
-            -122.41,
+            -122.25,
             183.98
           ],
           [
-            -119.54,
+            -119.38,
             183.99
           ],
           [
-            -116.67,
+            -116.5,
             184
           ],
           [
-            -113.79,
+            -113.63,
             184.01
           ],
           [
-            -110.92,
+            -110.75,
             184.02
           ],
           [
-            -108.04,
+            -107.88,
             184.03
           ],
           [
-            -105.17,
-            184.03
+            -105.01,
+            184.02
           ],
           [
-            -102.3,
-            184
+            -102.13,
+            183.99
           ],
           [
-            -99.42,
-            184
+            -99.26,
+            183.98
           ],
           [
-            -96.55,
+            -96.39,
             184.05
           ],
           [
-            -93.68,
-            184.1
+            -93.51,
+            184.11
           ],
           [
-            -90.8,
+            -90.64,
             184.13
           ],
           [
-            -87.93,
+            -87.77,
             184.15
           ],
           [
-            -85.06,
+            -84.89,
             184.17
           ],
           [
-            -82.18,
-            184.16
+            -82.02,
+            184.18
           ],
           [
-            -79.31,
-            184.17
+            -79.15,
+            184.19
           ],
           [
-            -76.44,
-            184.21
+            -76.27,
+            184.23
           ],
           [
-            -73.57,
-            184.32
+            -73.4,
+            184.33
           ],
           [
-            -70.69,
-            184.45
+            -70.53,
+            184.46
           ],
           [
-            -67.82,
-            184.59
+            -67.66,
+            184.6
           ],
           [
-            -64.95,
-            184.72
+            -64.79,
+            184.73
           ],
           [
-            -62.08,
-            184.86
+            -61.92,
+            184.87
           ],
           [
-            -59.21,
-            185.01
+            -59.05,
+            185.02
           ],
           [
-            -56.34,
-            185.13
+            -56.18,
+            185.15
           ],
           [
-            -53.47,
-            185.26
+            -53.31,
+            185.28
           ],
           [
-            -50.6,
-            185.39
+            -50.44,
+            185.41
           ],
           [
-            -47.73,
-            185.54
+            -47.57,
+            185.55
           ],
           [
-            -44.86,
-            185.68
+            -44.7,
+            185.69
           ],
           [
-            -41.99,
-            185.82
+            -41.83,
+            185.83
           ],
           [
-            -39.12,
-            185.95
+            -38.96,
+            185.96
           ],
           [
-            -36.25,
-            186.08
+            -36.09,
+            186.09
           ],
           [
-            -33.38,
+            -33.22,
             186.22
           ],
           [
-            -30.51,
-            186.35
+            -30.35,
+            186.36
           ],
           [
-            -27.64,
-            186.48
+            -27.48,
+            186.49
           ],
           [
-            -24.77,
-            186.61
+            -24.61,
+            186.62
           ],
           [
-            -21.9,
-            186.74
+            -21.73,
+            186.75
           ],
           [
-            -19.03,
+            -18.86,
             186.88
           ],
           [
-            -16.16,
+            -15.99,
             187.02
           ],
           [
-            -13.29,
+            -13.12,
             187.16
           ],
           [
-            -10.42,
-            187.28
+            -10.25,
+            187.29
           ],
           [
-            -7.55,
+            -7.38,
             187.41
           ],
           [
-            -4.68,
-            187.55
+            -4.51,
+            187.56
           ],
           [
-            -1.81,
+            -1.64,
             187.7
           ],
           [
-            1.06,
-            187.82
+            1.23,
+            187.83
           ],
           [
-            3.94,
-            187.94
+            4.1,
+            187.95
           ],
           [
-            6.81,
-            188.06
+            6.97,
+            188.07
           ],
           [
-            9.68,
+            9.84,
             188.19
           ],
           [
-            12.55,
-            188.31
+            12.71,
+            188.32
           ],
           [
-            15.42,
-            188.45
+            15.58,
+            188.46
           ],
           [
-            18.29,
+            18.45,
             188.58
           ],
           [
-            21.16,
-            188.7
+            21.32,
+            188.71
           ],
           [
-            24.03,
-            188.83
+            24.19,
+            188.84
           ],
           [
-            26.9,
-            188.96
+            27.07,
+            188.97
           ],
           [
-            29.77,
-            189.08
+            29.94,
+            189.09
           ],
           [
-            32.64,
+            32.81,
             189.21
           ],
           [
-            35.51,
-            189.32
+            35.68,
+            189.33
           ],
           [
-            38.39,
-            189.45
+            38.55,
+            189.46
           ],
           [
-            41.26,
+            41.42,
             189.59
           ],
           [
-            44.13,
+            44.29,
             189.72
           ],
           [
-            47,
-            189.84
+            47.16,
+            189.85
           ],
           [
-            49.87,
+            50.03,
             189.97
           ],
           [
-            52.74,
-            190.09
+            52.9,
+            190.1
           ],
           [
-            55.61,
-            190.22
+            55.77,
+            190.23
           ],
           [
-            58.48,
-            190.34
+            58.64,
+            190.35
           ],
           [
-            61.35,
-            190.46
+            61.52,
+            190.47
           ],
           [
-            64.22,
-            190.59
+            64.39,
+            190.6
           ],
           [
-            67.09,
-            190.75
+            67.25,
+            190.78
           ],
           [
             68.49,
-            190.82
+            190.85
           ]
         ],
         "closed": false,
@@ -37353,7 +37335,7 @@
           "note": "Arc length along the overhead centreline (image px). start end hidden by Sweden figure; position predicted from the bare sheet."
         },
         "end": {
-          "value": 2502.4,
+          "value": 2500.7,
           "unit": "px",
           "status": "traced",
           "uncertainty": null,
@@ -37420,7 +37402,7 @@
         "source_ids": [
           "user_measurement_2026_10_01_goalie"
         ],
-        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1527."
+        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1681."
       },
       "blade_offset_from_pivot": {
         "value": 9.15,
@@ -37786,12 +37768,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8256 (8 views); overhead top-view IoU 0.715."
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8256 (8 views); overhead top-view IoU 0.7158."
         },
         {
           "item": "absolute scale",
           "status": "measured",
-          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1527 at the assumed preview scale."
+          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1681 at the assumed preview scale."
         },
         {
           "item": "measured dimensions",
@@ -37806,7 +37788,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -37815,10 +37797,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -37826,7 +37808,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -37845,28 +37827,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -37887,19 +37869,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -37919,87 +37901,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -38021,13 +38003,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -38070,12 +38052,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38085,7 +38067,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38094,10 +38076,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38105,7 +38087,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38124,28 +38106,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -38166,19 +38148,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -38198,87 +38180,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -38300,13 +38282,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -38349,12 +38331,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38364,7 +38346,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38373,10 +38355,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38384,7 +38366,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38403,28 +38385,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -38445,19 +38427,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -38477,87 +38459,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -38579,13 +38561,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -38628,12 +38610,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38643,7 +38625,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38652,10 +38634,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38663,7 +38645,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38682,28 +38664,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -38724,19 +38706,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -38756,87 +38738,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -38858,13 +38840,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -38907,12 +38889,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -38922,7 +38904,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38931,10 +38913,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -38942,7 +38924,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -38961,28 +38943,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -39003,19 +38985,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -39035,87 +39017,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -39137,13 +39119,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -39186,12 +39168,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -39208,7 +39190,7 @@
         "source_ids": [
           "user_measurement_2026_10_01_goalie"
         ],
-        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1527."
+        "note": "User ruler measurement: top of the mask to the bottom of the figure (socket underside = ice plane). The asset is scaled to it (k = 1.1422). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = 1.1681."
       },
       "blade_offset_from_pivot": {
         "value": 9.15,
@@ -39574,12 +39556,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8256 (8 views); overhead top-view IoU 0.715."
+          "evidence": "Camera-matched silhouette fit to the user's photos and video frames: mean IoU 0.8256 (8 views); overhead top-view IoU 0.7158."
         },
         {
           "item": "absolute scale",
           "status": "measured",
-          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1527 at the assumed preview scale."
+          "evidence": "k = 1.1422 mm per mold unit = measured height 54 mm / mold height. Overhead check: goalie-only fit k = 1.1681 at the assumed preview scale."
         },
         {
           "item": "measured dimensions",
@@ -39594,7 +39576,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -39603,10 +39585,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -39614,7 +39596,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -39633,28 +39615,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -39675,19 +39657,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -39707,87 +39689,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -39809,13 +39791,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -39858,12 +39840,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -39873,7 +39855,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -39882,10 +39864,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -39893,7 +39875,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -39912,28 +39894,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -39954,19 +39936,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -39986,87 +39968,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -40088,13 +40070,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -40137,12 +40119,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40152,7 +40134,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40161,10 +40143,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40172,7 +40154,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40191,28 +40173,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -40233,19 +40215,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -40265,87 +40247,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -40367,13 +40349,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -40416,12 +40398,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40431,7 +40413,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40440,10 +40422,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40451,7 +40433,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40470,28 +40452,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -40512,19 +40494,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -40544,87 +40526,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -40646,13 +40628,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -40695,12 +40677,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
@@ -40710,7 +40692,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.15,
+        "value": 51.83,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40719,10 +40701,10 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0723. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0866. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.2 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
-        "value": 22.75,
+        "value": 23.05,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2,
@@ -40730,7 +40712,7 @@
           "stiga_se_fi_overhead",
           "user_skater_video_2574"
         ],
-        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.61 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
+        "note": "Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs 20.88 mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures."
       },
       "ice_clearance": {
         "value": null,
@@ -40749,28 +40731,28 @@
             "type": "polyline",
             "points_mm": [
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ],
               [
-                2.36,
-                43.11,
+                2.39,
+                43.68,
                 0
               ],
               [
-                2.36,
-                43.11,
-                3.22
+                2.39,
+                43.68,
+                3.26
               ],
               [
-                3.22,
-                22.52,
-                3.22
+                3.26,
+                22.82,
+                3.26
               ],
               [
-                3.22,
-                22.52,
+                3.26,
+                22.82,
                 0
               ]
             ]
@@ -40791,19 +40773,19 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.04,
-                -5.36,
-                30.02
+                8.15,
+                -5.43,
+                30.42
               ],
               [
-                3.32,
-                21.66,
-                1.72
+                3.37,
+                21.95,
+                1.74
               ],
               [
-                3.22,
-                22.52,
-                0.97
+                3.26,
+                22.82,
+                0.98
               ]
             ]
           },
@@ -40823,87 +40805,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6,
+                6.08,
                 0,
                 0
               ],
               [
-                5.55,
-                2.3,
+                5.62,
+                2.33,
                 0
               ],
               [
-                4.25,
-                4.25,
+                4.3,
+                4.3,
                 0
               ],
               [
-                2.3,
-                5.55,
-                0
-              ],
-              [
-                0,
-                6,
-                0
-              ],
-              [
-                -2.3,
-                5.55,
-                0
-              ],
-              [
-                -4.25,
-                4.25,
-                0
-              ],
-              [
-                -5.55,
-                2.3,
-                0
-              ],
-              [
-                -6,
-                0,
-                0
-              ],
-              [
-                -5.55,
-                -2.3,
-                0
-              ],
-              [
-                -4.25,
-                -4.25,
-                0
-              ],
-              [
-                -2.3,
-                -5.55,
+                2.33,
+                5.62,
                 0
               ],
               [
                 0,
-                -6,
+                6.08,
                 0
               ],
               [
-                2.3,
-                -5.55,
+                -2.33,
+                5.62,
                 0
               ],
               [
-                4.25,
-                -4.25,
+                -4.3,
+                4.3,
                 0
               ],
               [
-                5.55,
-                -2.3,
+                -5.62,
+                2.33,
                 0
               ],
               [
-                6,
+                -6.08,
+                0,
+                0
+              ],
+              [
+                -5.62,
+                -2.33,
+                0
+              ],
+              [
+                -4.3,
+                -4.3,
+                0
+              ],
+              [
+                -2.33,
+                -5.62,
+                0
+              ],
+              [
+                0,
+                -6.08,
+                0
+              ],
+              [
+                2.33,
+                -5.62,
+                0
+              ],
+              [
+                4.3,
+                -4.3,
+                0
+              ],
+              [
+                5.62,
+                -2.33,
+                0
+              ],
+              [
+                6.08,
                 0,
                 0
               ]
@@ -40925,13 +40907,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.58,
-                -14.8,
+                -14.78,
+                -15,
                 0
               ],
               [
-                -5.36,
-                -18.23,
+                -5.43,
+                -18.47,
                 0
               ]
             ]
@@ -40974,12 +40956,12 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7819."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8076 (8 views); overhead top-view IoU 0.7863."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0723 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.0866 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
       "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."

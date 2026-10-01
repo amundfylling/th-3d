@@ -1,8 +1,8 @@
 {
-  "scale_k_mm_per_mold_unit": 1.0723,
+  "scale_k_mm_per_mold_unit": 1.0866,
   "scale_source": "validation/players/overhead-fit.json (4 Sweden skaters, official overhead, ASSUMED preview scale)",
   "scales": {
-    "skater": 1.0723,
+    "skater": 1.0866,
     "goalie": 1.1421889791935147
   },
   "scale_sources": {
@@ -11,28 +11,28 @@
   },
   "assets": {
     "skater_SWE": {
-      "height_mm": 51.15,
+      "height_mm": 51.83,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
-        -16.1,
-        15.1
+        -16.3,
+        15.3
       ],
       "footprint_y_mm": [
-        -22.9,
-        43.1
+        -23.2,
+        43.7
       ],
-      "socket_bottom_diameter_mm": 12.01,
-      "socket_height_mm": 4.5,
+      "socket_bottom_diameter_mm": 12.17,
+      "socket_height_mm": 4.56,
       "blade_heel_mm": [
-        3.22,
-        22.52
+        3.26,
+        22.82
       ],
       "blade_toe_mm": [
-        2.36,
-        43.11
+        2.39,
+        43.68
       ],
-      "blade_length_mm": 20.61,
-      "blade_height_mm": 3.22,
+      "blade_length_mm": 20.88,
+      "blade_height_mm": 3.26,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
       "triangles": 52152,
@@ -40,28 +40,28 @@
       "number_on_asset_decal": "21"
     },
     "skater_FIN": {
-      "height_mm": 51.15,
+      "height_mm": 51.83,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
-        -16.1,
-        15.1
+        -16.3,
+        15.3
       ],
       "footprint_y_mm": [
-        -22.9,
-        43.1
+        -23.2,
+        43.7
       ],
-      "socket_bottom_diameter_mm": 12.01,
-      "socket_height_mm": 4.5,
+      "socket_bottom_diameter_mm": 12.17,
+      "socket_height_mm": 4.56,
       "blade_heel_mm": [
-        3.22,
-        22.52
+        3.26,
+        22.82
       ],
       "blade_toe_mm": [
-        2.36,
-        43.11
+        2.39,
+        43.68
       ],
-      "blade_length_mm": 20.61,
-      "blade_height_mm": 3.22,
+      "blade_length_mm": 20.88,
+      "blade_height_mm": 3.26,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
       "triangles": 52152,
