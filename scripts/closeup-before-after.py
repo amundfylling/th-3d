@@ -5,7 +5,7 @@ modelling (fitting references); INDEPENDENT fresh frames (red) were inspected on
     python3 scripts/closeup-before-after.py OUT.png "TITLE" skater=BEFORE.png,AFTER.png goalie=BEFORE.png,AFTER.png
 Each AFTER sheet has a sidecar AFTER.json (rows: view, tag, feature names) written by render_closeups.py; the
 BEFORE sheet must come from the same cameras and the same --views list (identical rows and feature windows).
-Picks: PICK below (round 5: goalie blocker, lower pads; skater upper cuff).
+Picks: PICK below (round 6: skater head, collar and upper gauntlet).
 """
 import json
 import sys
@@ -17,18 +17,18 @@ F = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 1
 FT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 24)
 # (kind, view, feature window, label)
 PICK = [
-    ("goalie", "goalie-photo-front", "blocker", "goalie blocker (front)"),
-    ("goalie", "goalie-photo-front-oblique", "blocker", "goalie blocker (front-oblique)"),
-    ("goalie", "goalie-video-t02.50", "blocker", "goalie blocker (front-right)"),
-    ("goalie", "goalie-photo-side", "blocker", "goalie blocker (right side)"),
-    ("goalie", "goalie-video-t12.25", "pads", "goalie pads + stick (front, low)"),
-    ("goalie", "goalie-video-t00.50", "pads", "goalie lower pads (front)"),
-    ("goalie", "goalie-video-t01.25", "blocker", "goalie blocker"),
-    ("goalie", "goalie-video-t01.25", "pads", "goalie pads"),
-    ("skater", "skater-video-t13.25", "arms/torso", "skater upper cuff (front)"),
-    ("skater", "skater-video-t03.00", "arms/torso", "skater upper cuff (front-right)"),
-    ("skater", "skater-video-t00.00", "arms/torso", "skater upper cuff (elevated)"),
-    ("skater", "skater-video-t00.75", "arms/torso", "skater upper cuff"),
+    ("skater", "skater-video-t13.25", "head", "skater helmet/face/collar (front)"),
+    ("skater", "skater-video-t04.50", "head", "skater helmet/face (right profile)"),
+    ("skater", "skater-video-t07.25", "head", "skater helmet/neck/collar (back)"),
+    ("skater", "skater-video-t00.00", "head", "skater helmet/face (elevated)"),
+    ("skater", "skater-video-t03.00", "head", "skater head/collar (front-right)"),
+    ("skater", "skater-video-t13.25", "arms/torso", "skater upper gauntlet (front)"),
+    ("skater", "skater-video-t00.00", "arms/torso", "skater upper gauntlet (elevated)"),
+    ("skater", "skater-video-t03.00", "arms/torso", "skater upper gauntlet (front-right)"),
+    ("skater", "skater-video-t01.10", "head", "skater head"),
+    ("skater", "skater-video-t01.10", "arms/torso", "skater gauntlet"),
+    ("skater", "skater-video-t04.10", "head", "skater head (right)"),
+    ("skater", "skater-video-t06.40", "head", "skater head (back-right)"),
 ]
 
 

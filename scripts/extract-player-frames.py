@@ -80,6 +80,12 @@ SELECT = {
     "goalie-video-t07.25": (VIDEO_GOALIE, 7.25, "goalie", "turntable, back-right (independent check, round 5)"),
     "goalie-video-t06.75": (VIDEO_GOALIE, 6.75, "goalie", "turntable, back-right (independent check, round 5)"),
     "goalie-video-t08.40": (VIDEO_GOALIE, 8.4, "goalie", "turntable, back (independent check, round 5)"),
+    # Round 6 (skater only): fresh frames, chosen by interpolated azimuth without looking. They lie 0.3-0.6 s
+    # from inspected frames, so they are near neighbours of fitting views (limited independence).
+    "skater-video-t01.10": (VIDEO_SKATER, 1.1, "skater", "turntable, front-left (independent check, round 6)"),
+    "skater-video-t04.10": (VIDEO_SKATER, 4.1, "skater", "turntable, right (independent check, round 6)"),
+    "skater-video-t06.40": (VIDEO_SKATER, 6.4, "skater", "turntable, back-right (independent check, round 6)"),
+    "skater-video-t08.80": (VIDEO_SKATER, 8.8, "skater", "turntable, back-left (independent check, round 6)"),
 }
 
 # Manual crop boxes (full-frame px) where the automatic colour box misses the figure: at 12.25 s the lit

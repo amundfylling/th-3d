@@ -58,8 +58,8 @@
     },
     "E-C": {
       "n": 85,
-      "onDark": 0.929,
-      "meanOffsetPx": 0.666,
+      "onDark": 0.918,
+      "meanOffsetPx": 0.728,
       "maxOffsetPx": 7.25
     },
     "E-LW": {
@@ -77,7 +77,7 @@
   },
   "slot_summary": {
     "min_on_dark": 0.593,
-    "worst_mean_offset_px": 0.712
+    "worst_mean_offset_px": 0.728
   },
   "ice_edge": {
     "samples": 15,

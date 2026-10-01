@@ -218,5 +218,19 @@ test("refinement round 5: blocker board faces front-right and covers the pad; st
   assert.equal(molds.finish.status, "assumed");
   assert.equal(over.scale_k_mm_per_mold_unit, 1.0814, "skater scale frozen for round 5");
   const cuff = molds.skater.parts.sleeves.lofts.gauntlet_r;
-  assert.ok(cuff.subsurf >= 1 && cuff.lip >= 0.9, "softened upper cuff rim");
+  assert.ok(cuff.subsurf >= 1 && cuff.lip >= 0.75, "softened upper cuff rim");
+});
+
+test("refinement round 6 (skater): boxy helmet without side knobs, forward face, collar band, flat gauntlet over the hand", () => {
+  const P = molds.skater.parts;
+  assert.ok(P.helmet.mboxes.dome, "helmet dome is one rounded box");
+  assert.equal(P.helmet.ellipsoids.brim, undefined, "no brim roll (it formed side knobs)");
+  assert.ok(P.face.ellipsoids.nose.centre[0] > 14, "face moved forward to the profile photo's x ~15");
+  const band = Object.keys(P.collar.ellipsoids).filter((k) => k.startsWith("band"));
+  assert.ok(band.length >= 20, "collar is a continuous band");
+  const cuff = P.sleeves.lofts.gauntlet_r;
+  assert.ok(cuff.mouth_r[1] <= 2.2 && cuff.mouth_r[0] >= 6, "flattened gauntlet: long rim, thin across");
+  assert.equal(Object.keys(P.gloves.capsules).filter((k) => k.startsWith("u_")).length, 0, "upper hand hidden in the gauntlet");
+  const sk = rep.assets.skater_SWE, fi = rep.assets.skater_FIN;
+  assert.deepEqual([sk.height_mm, sk.blade_length_mm], [fi.height_mm, fi.blade_length_mm], "one shared mold");
 });

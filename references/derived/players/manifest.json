@@ -1132,6 +1132,102 @@
       },
       "file": "references/derived/players/goalie-video-t08.40.jpg",
       "sha256": "710535d1917d91e7fd3a88974afd5e9b917368aa34118e9203cb6f52d54923ba"
+    },
+    "skater-video-t01.10": {
+      "source_file": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "source_sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "time_s": 1.1,
+      "figure": "skater",
+      "team": "Sweden",
+      "view": "turntable, front-left (independent check, round 6)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        86,
+        1770,
+        1346,
+        3582
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/skater-video-t01.10.jpg",
+      "sha256": "58ee7ecd0dc36e705d6b578d926074398d2098689e1f57a82a1950322ffa7123"
+    },
+    "skater-video-t04.10": {
+      "source_file": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "source_sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "time_s": 4.1,
+      "figure": "skater",
+      "team": "Sweden",
+      "view": "turntable, right (independent check, round 6)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        280,
+        1570,
+        1672,
+        3574
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/skater-video-t04.10.jpg",
+      "sha256": "6c97f10484421efb3584bb132a16bac11aa7d8f854f4d9e06a825c9faedd4f68"
+    },
+    "skater-video-t06.40": {
+      "source_file": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "source_sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "time_s": 6.4,
+      "figure": "skater",
+      "team": "Sweden",
+      "view": "turntable, back-right (independent check, round 6)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        336,
+        1486,
+        1584,
+        3754
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/skater-video-t06.40.jpg",
+      "sha256": "a5bfd3d1b8bb858c6aef5be286d1805b5502f061af87edd096c63a632e1ce136"
+    },
+    "skater-video-t08.80": {
+      "source_file": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "source_sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "time_s": 8.8,
+      "figure": "skater",
+      "team": "Sweden",
+      "view": "turntable, back-left (independent check, round 6)",
+      "full_size_px": [
+        2160,
+        3840
+      ],
+      "crop_box_px": [
+        312,
+        1470,
+        1848,
+        3546
+      ],
+      "camera": {
+        "video_fps": 30,
+        "note": "iPhone 15 video; focal length not recorded in the frame"
+      },
+      "file": "references/derived/players/skater-video-t08.80.jpg",
+      "sha256": "38f99241c4a2cbb013e0e52bfdede796da6907ccc1f7f7f77275e06f0533d52f"
     }
   }
 }

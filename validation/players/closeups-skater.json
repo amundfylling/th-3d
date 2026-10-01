@@ -138,7 +138,7 @@
   },
   {
    "view": "skater-video-t00.75",
-   "tag": "INDEPENDENT",
+   "tag": "inspected",
    "features": [
     "head",
     "arms/torso",
@@ -147,7 +147,7 @@
   },
   {
    "view": "skater-video-t03.75",
-   "tag": "INDEPENDENT",
+   "tag": "inspected",
    "features": [
     "head",
     "arms/torso"
@@ -155,7 +155,7 @@
   },
   {
    "view": "skater-video-t06.75",
-   "tag": "INDEPENDENT",
+   "tag": "inspected",
    "features": [
     "head",
     "arms/torso",
@@ -164,11 +164,45 @@
   },
   {
    "view": "skater-video-t08.00",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t01.10",
+   "tag": "INDEPENDENT",
+   "features": [
+    "head",
+    "arms/torso",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t04.10",
+   "tag": "INDEPENDENT",
+   "features": [
+    "head",
+    "arms/torso"
+   ]
+  },
+  {
+   "view": "skater-video-t06.40",
    "tag": "INDEPENDENT",
    "features": [
     "head",
     "arms/torso",
     "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t08.80",
+   "tag": "INDEPENDENT",
+   "features": [
+    "head",
+    "arms/torso"
    ]
   }
  ]

@@ -382,12 +382,76 @@ sticks read as metal. Still wrong / uncertain:
 - Remotion figures are slightly lighter/less saturated than before (blue median 51,94,164 vs 39,84,156; the
   calibrated albedo is 62,105,181).
 
+## Refinement round 6 (2026-10-01): skater helmet, face, neck/collar, upper gauntlet
+
+User request: one bounded round on the shared skater mold only (Sweden and Finland), from the existing photos and
+video: helmet, moulded face, neck/collar and the upper glove/cuff across front, side, back and elevated views;
+neutral-clay and final-material before/after with consistent cameras, plus full figures at the intended video
+framing. Goalie, rigid pose, mounting axis, stick handedness and the skater scale (k 1.0814) unchanged.
+
+**Views.** The round-5 skater independent frames had been inspected and joined the inspected set (cameras
+unchanged). Four fresh frames (1.10, 4.10, 6.40, 8.80 s) were extracted by interpolated azimuth without looking,
+their cameras fitted once on the round-5 model and frozen. They lie 0.3-0.6 s from inspected frames (near
+neighbours), so their independence is limited.
+
+**Evidence.** Profile landmarks (video 4.50 s) back-projected onto the figure's midline plane through the frozen
+camera: helmet top z 47.4, back x 4.2, front x 15.2 (model before: ~14.1), lower front edge (14.3, 39.8); face front
+x 15.0 at z 38.2 (before ~13.7); chin underside (12.7, 36.3). The model's material boundaries (painter's label
+render) were overlaid on the front, profile, back and elevated views. Upper gauntlet corners triangulated from four
+front views (elbow corner y -15.3 z 30.2; inner rim corner y -3.7 z 33.0); depth from the profile view, where the
+real gauntlet lies flat on the chest and does not stand out in front of it.
+
+**Changes (shared mold).**
+- Helmet: one rounded box (`mboxes.dome`) plus a rounded back - the boxy shell of the photos, about 1 unit longer
+  forward; the brim roll and the crown ridge strips are gone (they made side knobs and a crown bump); a shallow
+  arch is carved over the brow. Helmet top 47.46 mold units (photo 47.4): skater height 51.60 -> 51.32 mm at the
+  frozen k (the shape changed, not the scale).
+- Face: moved 1.4 units forward and 0.3 down, wider forehead and face, jaw and chin forming a tapered "shield"
+  as in the front view; cheek knobs removed, brow narrowed (its ends had poked out as horns), smaller nose. Neck
+  thinner (r 2.15).
+- Collar: the flat torus and V lumps replaced by one rolled band (flattened metaball elements along a smoothed
+  path) that lies on the jersey at the back and shoulders (snapped to the torso surface, lifted most at the back)
+  and runs down to a V under the chin.
+- Upper gauntlet: a flat, flared sleeve lying across the chest (thin across, 13 units along its rim) from a
+  pointed elbow corner under the shoulder to the stick top; its rimmed opening faces up under the upper arm,
+  which is shorter so the gauntlet shows below the shoulder in side views. The upper hand sits inside it: the
+  thumb, wrist stub and finger grooves of the upper glove are removed and its block reduced (the photos show the
+  stick leaving the gauntlet, not a separate fist). Lower glove and gauntlet unchanged.
+
+**Comparisons.** `validation/players/closeups-before-after-neutral.png` (grey clay), `closeups-before-after.png`
+(final materials, same lighting and finish), `full-figure-before-after.png` (photo | clay before/after | materials
+before/after at each photo's framing, independent frames in red) and `remotion-before-after.png` (Remotion
+oblique and side stills, the video framing: Sweden and Finland skaters).
+
+**Silhouette IoU, frozen cameras.**
+
+| Set | before (round 5) | after |
+| --- | --- | --- |
+| Skater, 8 fitted views | 0.8028 | 0.8084 |
+| Skater, 11 inspected | 0.7856 | 0.7803 |
+| Skater, 4 INDEPENDENT (fresh) | 0.8102 | 0.8050 |
+
+The fitted views improve; the inspected and independent sets regress slightly (independent 1.10 s 0.858 ->
+0.827, 8.80 s 0.777 -> 0.749; 4.10 s and 6.40 s improve). The independent cameras were fitted on the round-5
+model. The overhead top-view IoU in data/geometry.json is the stored round-4 value (overhead refit skipped, scale
+frozen).
+
+**AI review (not the user's).** Improved: helmet outline in profile, front-right, back and elevated views; no side
+knobs; face forward with a tapered jaw; a visible collar band at the back and a V in front; the upper gauntlet is a
+flat sleeve over the hand instead of a bowl, closer in front, elevated and Remotion views. Still wrong/uncertain:
+- Back views: the collar touches the helmet's lower edge; the photos show a strip of neck skin between them.
+  Back-left (8.50 s) the left strap stands up as an arc instead of lying on the shoulder.
+- Face details (nose, brow, mouth) are blurred in every video frame; their shape is inferred, not traced.
+- Upper gauntlet: in the side views (3.00, 4.50 s) the real one is larger and reaches lower toward the hip; the
+  elbow corner and inner rim depth come from one profile view; its surface creases are not modelled.
+- Helmet width and the face's lower outline rest mainly on the near-orthographic front frame 13.25 s.
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's
   "figure height approx. 57 mm" (datum unspecified) is 5.8 mm above the fitted skater height - not resolved.
 - **Goalie scale**: resolved by the user's measurement (54 mm, 2026-10-01); see above.
-- Remaining visible differences: see "Refinement round 5" above. Socket bore, blade/wire thickness assumed
+- Remaining visible differences: see "Refinement round 6" (skater) and "Refinement round 5" (goalie) above. Socket bore, blade/wire thickness assumed
   (`assume.figure_mold_hidden_details`). Remotion metal sticks now reflect a procedural room
   environment (round 5).
 - Poses: six figures (E-LD, E-RD, E-C, E-LW, W-RD, W-G) stand at their overhead-fitted pivot and heading; the

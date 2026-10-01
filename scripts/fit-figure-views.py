@@ -66,6 +66,11 @@ HELDOUT = {
         "skater-video-t05.25": (-112, 20, [], False, 0, 40),
         "skater-video-t09.25": (83, 37, [], False, 0, 40),
         "skater-video-t10.25": (44, 37, [], False, 0, 40),
+        # round-5 independent frames, inspected since (cameras fitted once on the round-4 model, frozen)
+        "skater-video-t00.75": (15, 25, [], False, 0, 40),
+        "skater-video-t03.75": (-72, 18, [], False, 0, 40),
+        "skater-video-t06.75": (-150, 22, [], False, 0, 40),
+        "skater-video-t08.00": (150, 28, [], False, 0, 40),
     },
     "goalie": {
         "goalie-video-t02.50": (-20, 45, [], False),  # rotation video, finger at the edge
@@ -90,10 +95,10 @@ HELDOUT = {
 # new one. The former held-out views (HELDOUT) have since been inspected and count as fitting references.
 INDEPENDENT = {
     "skater": {
-        "skater-video-t00.75": (15, 25, [], False, 0, 40),
-        "skater-video-t03.75": (-72, 18, [], False, 0, 40),
-        "skater-video-t06.75": (-150, 22, [], False, 0, 40),
-        "skater-video-t08.00": (150, 28, [], False, 0, 40),
+        "skater-video-t01.10": (16, 24, [], False, 0, 40, 15),
+        "skater-video-t04.10": (-84, 18, [], False, 0, 40, 15),
+        "skater-video-t06.40": (-147, 22, [], False, 0, 40, 15),
+        "skater-video-t08.80": (105, 30, [], False, 0, 40, 15),
     },
     "goalie": {
         # turntable camera height changes slowly (fitted neighbours 45-58 deg): elevation held within 15 deg
