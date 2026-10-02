@@ -240,8 +240,19 @@ test("refinement round 7 (skater): thin collar lying on the jersey, neck strip b
   const band = Object.entries(P.collar.ellipsoids).filter(([k]) => k.startsWith("band")).map(([, v]) => v as any);
   assert.ok(band.length >= 40, "continuous band");
   for (const e of band) assert.ok(e.semi_axes[2] <= 0.4, "thin band (flat across)");
-  const dome = P.helmet.mboxes.dome;
-  assert.ok(dome.round >= 2.6, "rounded helmet corners");
-  assert.ok(P.helmet.ellipsoids.crown, "crown fills the top transition");
+  assert.ok(P.helmet.mboxes.dome.round >= 2.6, "rounded helmet corners");
   assert.ok(P.face.capsules.neck_back, "neck shows between the collar and the helmet at the back");
+});
+
+test("refinement round 8 (skater): broad thin collar footprint, level rear helmet edge, flatter crown", () => {
+  const P = molds.skater.parts;
+  const band = Object.values(P.collar.ellipsoids).filter((e: any) => e.semi_axes[2] <= 0.4) as any[];
+  assert.equal(band.length, Object.keys(P.collar.ellipsoids).length, "every collar element is thin");
+  const widest = Math.max(...band.map((e) => e.semi_axes[1]));
+  assert.ok(widest >= 1.0, "broad strips at the back");
+  assert.equal(P.helmet.ellipsoids.crown, undefined, "no crown fill (it raised the top above the profile)");
+  assert.equal((P.helmet.negative_ellipsoids ?? {}).nape_cut, undefined, "no central notch in the rear helmet edge");
+  const nb = P.face.capsules.neck_back;
+  assert.ok(nb.b[2] <= 40.2, "back neck column stays below the helmet edge");
+  assert.ok(Math.abs(rep.assets.skater_SWE.height_mm - 51.24) < 0.3, `helmet top near the profile reading (${rep.assets.skater_SWE.height_mm} mm)`);
 });

@@ -44,6 +44,10 @@
   real jersey surface (front V, shoulders, no back-left arc), neck strip visible below the helmet at the back,
   softened helmet corners and crown. Slight silhouette regressions reported in `docs/players.md`. Goalie and
   skater scale unchanged. AI review only.
+- **Figure refinement round 8 (user request, 2026-10-02, skater only):** broad but thin collar footprint (three
+  conforming strips, measured asymmetric path), level rear helmet edge without the notch, neck column kept below
+  it, crown fill removed (top at the profile reading; skater 51.24 mm at the frozen scale). Round 6/7/8 sheets and
+  contour overlays; IoU between rounds 6 and 7. AI review only.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
