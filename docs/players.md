@@ -583,6 +583,62 @@ profile and both elevated views (wedge shape, chin position). Still uncertain: t
 to trace the nose, mouth and brow, so their size and placement are inferred; the nose reads as a small knob in
 the close-ups. The real face is wider at the cheeks on the figure's right in the front frame.
 
+## Refinement round 10 (2026-10-02): skater upper/right cuff only
+
+Request: one bounded iteration on the shared skater's upper (right) cuff, starting from reviewed commit 388df23,
+with every other part, the pose, scale, mounting axis, stick, lower glove, goalie, materials and lighting frozen.
+Verified: the only data change is `skater.parts.sleeves.lofts.gauntlet_r` (7 parameters).
+
+**References and marking.** Frames 0.00, 3.00, 4.50, 13.25 and 14.50 s. `scripts/cuff-overlay.py` draws, through the
+frozen fitted cameras, the photo's blue-plastic boundary (colour segmentation, white) and the model's visible
+cuff region (magenta; cuff triangles found by proximity to the cuff mesh) and other blue parts (cyan). The visible
+rim (upper lip; in 0.00 s also the near lip of the opening) was hand-marked in `data/cuff-marks-r10.json` (manual
+trace, about 6-10 px uncertainty, motion blur). Result: `validation/players/cuff-overlay-r10.png` (photo | before
+| after for all five frames).
+
+**Findings supported by several views, and the local changes.**
+- The inner/upper corner of the cuff was too high: it reached into the collar/chest in 13.25, 14.50 and 3.00 and
+  above the upper arm in 4.50. The opening plane was tilted toward the outside, which forced its inner end up
+  (~1.8 units) plus a saddle warp. Opening plane levelled (`mouth_n` y -0.22 -> -0.04, `mouth_long` z 0.22 -> 0):
+  cuff top 33.6 -> 32.4 mold units.
+- The outer (elbow) tip was short of the photographed point in 13.25, 14.50, 0.00 and 3.00: opening lengthened
+  (half-length 6.6 -> 7.1) and moved out (centre y -10.0 -> -10.8); tip now at y -17.7 (was -16.4).
+- Rim curvature: the near-orthographic front frame (13.25) shows the upper edge rising quickly from the tip and
+  then running level; the saddle warp (ends raised) was removed (`warp` 0.3 -> 0) and the opening raised 0.4 so
+  the middle of the rim sits about 1 unit higher relative to its ends.
+- Around the stick the cuff end was widened slightly toward the figure's left (wrist centre y -5.6 -> -5.3, half
+  width 3.6 -> 3.9), where blue continues past the stick in 13.25 and 14.50. No hand details or folds added.
+
+**Ambiguities (documented, not compensated elsewhere).**
+- 3.00 s still shows the model's inner corner above the photographed boundary, while 13.25 and 14.50 now agree;
+  in 4.50 s (profile) the photographed yellow upper arm covers that region. Most likely the real upper arm
+  occludes the corner in the side views; the arm/torso are frozen, so this stays open.
+- In 4.50 s a blue region low at the back of the crop may be the cuff's elbow tip seen from the side or the pants;
+  it was not used.
+- The apparent dip of the rim in the elevated 0.00 s view coincides with the round shoulder overlapping the cuff
+  and was treated as occlusion.
+
+**Comparisons (fixed cameras; exposure frozen).** `render_closeups.py --exposure-out/--exposure-in` stores each
+view's tint and gain from the before render and reuses them for the after render, so exposure handling is
+identical. Neutral clay: `closeups-before-after-neutral.png`; final materials: `closeups-before-after.png`
+(new "upper cuff" close-up window; front, elevated, front-right and profile views); full figures:
+`full-figure-before-after.png`; Remotion static preview (oblique still shows Sweden and Finland skaters; side
+still): `remotion-before-after.png`.
+
+**View labels.** The skater frames 1.10/4.10/6.40/8.80 s and goalie 1.25/6.75/7.25/8.40 s, previously labelled
+INDEPENDENT, have been inspected and are now "regression ref" (`role: regression_reference` in
+`<kind>-independent-fit.json`). There is no independent evidence in this round.
+
+**Visible result (AI review, not the user's).** Improved: the outline matches the photographed cuff better in
+13.25, 14.50 and 0.00 (longer pointed elbow tip, level upper edge, inner corner no longer climbing into the
+collar), and in the profile views the cuff no longer rises over the upper arm. Unchanged or regressed: the cuff
+still reads as a smooth tapered shield with a thin rim, not the photographed thicker rolled lip; the longer tip
+is sharper than the photographed rounded point in the elevated views; the 3.00 s corner remains high (see
+above); at the video framing (Remotion) the change is barely visible.
+
+**Numbers (secondary).** Silhouette IoU, frozen cameras: fitted 0.8078 -> 0.8086; inspected 0.7775 -> 0.7785;
+skater regression refs 0.7984 -> 0.7996; goalie unchanged. 84/84 tests pass. Neither measures the rim shape.
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's

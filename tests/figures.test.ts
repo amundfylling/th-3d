@@ -174,7 +174,7 @@ test("goalie matches the user's ruler measurements; the skater keeps its own (ov
 test("refinement round 4: independent fresh frames scored at frozen cameras; lofted cuffs, moulded pads, smooth skin edges", () => {
   for (const kind of ["skater", "goalie"]) {
     const ind = JSON.parse(readFileSync(`validation/players/${kind}-independent-fit.json`, "utf8"));
-    assert.equal(ind.independent, true);
+    assert.equal(ind.role, "regression_reference", "formerly independent frames, inspected since");
     const used = [
       ...Object.keys(JSON.parse(readFileSync(`validation/players/${kind}-fit.json`, "utf8")).views),
       ...Object.keys(JSON.parse(readFileSync(`validation/players/${kind}-heldout-fit.json`, "utf8")).views),
@@ -264,4 +264,13 @@ test("refinement round 9 (skater face): tapered wedge face turned with the head,
   assert.ok(F.ellipsoids.nose.semi_axes[2] < 0.7, "small moulded nose");
   assert.ok(F.ellipsoids.upper.semi_axes[1] > F.ellipsoids.chin.semi_axes[1] * 2.5, "broad brow tapering to a narrow chin");
   assert.ok(F.ellipsoids.nose.rot_deg[2] > 20, "face turned toward the figure's left with the head");
+});
+
+test("refinement round 10 (skater upper cuff only): level opening, longer elbow tip, rim marks recorded", () => {
+  const c = molds.skater.parts.sleeves.lofts.gauntlet_r;
+  assert.ok(Math.abs(c.mouth_n[1]) < 0.1, "opening plane level across the figure (inner corner not raised)");
+  assert.ok(c.mouth_c[1] - c.mouth_r[0] < -17, "elbow tip reaches the photographed outer point");
+  assert.equal(c.warp, 0, "no saddle on the rim (front frame shows a rim that rises from the tip, then runs level)");
+  const marks = JSON.parse(readFileSync("data/cuff-marks-r10.json", "utf8"));
+  for (const v of ["skater-video-t00.00", "skater-video-t13.25", "skater-video-t14.50"]) assert.ok(marks.views[v].rim.length >= 1, v);
 });

@@ -51,6 +51,10 @@
 - **Figure refinement round 9 (user request, 2026-10-02, skater face only):** wedge-shaped face turned with the
   head (broad under the helmet, narrow chin, level jaw), small nose and mouth line; traced against the front,
   profile and elevated frames. Nothing else changed. AI review only.
+- **Figure refinement round 10 (user request, 2026-10-02, skater upper/right cuff only, from 388df23):** cuff
+  opening levelled (inner corner lowered ~1.2), elbow tip lengthened, saddle removed from the rim, wrist end
+  widened slightly around the stick; boundary/rim overlays and hand-marked rim lines; exposure frozen between
+  before and after; former INDEPENDENT frames relabelled regression references. AI review only. No animation.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.

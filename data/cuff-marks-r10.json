@@ -1,0 +1,9 @@
+{
+  "description": "Hand-marked rim lines of the skater's upper (right) gauntlet, round 10 (2026-10-02). Pixel coordinates in the 1800-px working image of each derived still (scripts/figure_views.load_view(view, 1800)), read from 40-px gridded crops. 'rim' = the visible upper lip of the cuff opening (highlight edge); in 0.00 s the near (inner) lip of the opening is also visible. The cuff's outer boundary is taken from the colour segmentation in scripts/cuff-overlay.py, not marked by hand. status: traced (manual), uncertainty about 6-10 px (motion blur).",
+  "views": {
+    "skater-video-t00.00": {"rim": [[[372, 742], [420, 752], [470, 745], [520, 728], [570, 712], [620, 700]],
+                                    [[400, 790], [450, 800], [500, 795], [550, 780], [600, 765]]]},
+    "skater-video-t13.25": {"rim": [[[80, 722], [140, 716], [200, 712], [260, 706], [300, 700]]]},
+    "skater-video-t14.50": {"rim": [[[210, 740], [260, 725], [300, 722], [360, 705], [420, 690]]]}
+  }
+}

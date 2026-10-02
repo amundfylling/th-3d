@@ -1,12 +1,12 @@
 """Before/after sheet for a figure refinement round: photo | BEFORE model | AFTER model, same feature crop and
 the same frozen camera (assets/blender/render_closeups.py). Tags: "fitted" and "inspected" views guided the
-modelling (fitting references); INDEPENDENT fresh frames (red) were inspected only after the round's modelling.
+modelling (fitting references); "regression ref" frames (red) were independent checks in earlier rounds and have been inspected since.
 
     python3 scripts/closeup-before-after.py OUT.png "TITLE" skater=BEFORE.png,AFTER.png goalie=BEFORE.png,AFTER.png
     python3 scripts/closeup-before-after.py OUT.png "TITLE" --labels=R6,R7,R8 skater=R6.png,R7.png,R8.png   (N versions)
 Each AFTER sheet has a sidecar AFTER.json (rows: view, tag, feature names) written by render_closeups.py; the
 BEFORE sheet must come from the same cameras and the same --views list (identical rows and feature windows).
-Picks: PICK below (round 9: skater face).
+Picks: PICK below (round 10: skater upper cuff).
 """
 import json
 import sys
@@ -18,14 +18,14 @@ F = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 1
 FT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 24)
 # (kind, view, feature window, label)
 PICK = [
-    ("skater", "skater-video-t13.25", "head", "face (front)"),
-    ("skater", "skater-video-t14.50", "head", "face (front)"),
-    ("skater", "skater-video-t04.50", "head", "face (right profile)"),
-    ("skater", "skater-video-t03.00", "head", "face (front-right)"),
-    ("skater", "skater-video-t00.00", "head", "face (elevated front)"),
-    ("skater", "skater-video-t10.75", "head", "face (elevated front-right)"),
-    ("skater", "skater-video-t08.50", "head", "face (back-left)"),
-    ("skater", "skater-video-t01.10", "head", "face"),
+    ("skater", "skater-video-t13.25", "upper cuff", "upper cuff (front)"),
+    ("skater", "skater-video-t14.50", "upper cuff", "upper cuff (front)"),
+    ("skater", "skater-video-t00.00", "upper cuff", "upper cuff (elevated front)"),
+    ("skater", "skater-video-t10.75", "upper cuff", "upper cuff (elevated front-right)"),
+    ("skater", "skater-video-t03.00", "upper cuff", "upper cuff (front-right)"),
+    ("skater", "skater-video-t04.50", "upper cuff", "upper cuff (right profile)"),
+    ("skater", "skater-video-t01.10", "upper cuff", "upper cuff"),
+    ("skater", "skater-video-t04.10", "upper cuff", "upper cuff (right)"),
 ]
 
 
@@ -70,7 +70,7 @@ def main():
             d.rectangle((X + j * T, Y + 30, X + j * T + 150, Y + 56), fill=(40, 40, 40))
             d.text((X + j * T + 6, Y + 34), (["PHOTO"] + labels)[j], fill=(255, 255, 255), font=F)
         tag = r["tag"]
-        d.text((X + 4, Y + 6), f"{label} - {view.split('-', 1)[1]} [{tag}]", fill=(170, 0, 0) if tag == "INDEPENDENT" else (0, 0, 0), font=F)
+        d.text((X + 4, Y + 6), f"{label} - {view.split('-', 1)[1]} [{tag}]", fill=(170, 0, 0) if tag == "regression ref" else (0, 0, 0), font=F)
         n += 1
     sheet = sheet.crop((0, 0, W, 44 + ((n + cols - 1) // cols) * (T + 34)))
     sheet.save(out)

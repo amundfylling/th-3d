@@ -88,6 +88,7 @@
     }
   },
   "held_out": true,
-  "independent": true,
+  "independent": false,
+  "role": "regression_reference",
   "cameras": "fixed (scored only)"
 }

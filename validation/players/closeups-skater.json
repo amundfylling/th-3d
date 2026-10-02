@@ -8,6 +8,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -17,6 +18,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -25,7 +27,8 @@
    "tag": "fitted",
    "features": [
     "head",
-    "arms/torso"
+    "arms/torso",
+    "upper cuff"
    ]
   },
   {
@@ -34,6 +37,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "back print"
    ]
   },
@@ -43,6 +47,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "back print"
    ]
   },
@@ -52,6 +57,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "back print"
    ]
   },
@@ -61,6 +67,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -70,6 +77,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -79,6 +87,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -88,6 +97,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -97,6 +107,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -106,6 +117,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -115,6 +127,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "back print"
    ]
   },
@@ -124,6 +137,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "back print"
    ]
   },
@@ -133,6 +147,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -142,6 +157,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
@@ -150,7 +166,8 @@
    "tag": "inspected",
    "features": [
     "head",
-    "arms/torso"
+    "arms/torso",
+    "upper cuff"
    ]
   },
   {
@@ -159,6 +176,7 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "back print"
    ]
   },
@@ -168,41 +186,46 @@
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "back print"
    ]
   },
   {
    "view": "skater-video-t01.10",
-   "tag": "INDEPENDENT",
+   "tag": "regression ref",
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "gloves"
    ]
   },
   {
    "view": "skater-video-t04.10",
-   "tag": "INDEPENDENT",
+   "tag": "regression ref",
    "features": [
     "head",
-    "arms/torso"
+    "arms/torso",
+    "upper cuff"
    ]
   },
   {
    "view": "skater-video-t06.40",
-   "tag": "INDEPENDENT",
+   "tag": "regression ref",
    "features": [
     "head",
     "arms/torso",
+    "upper cuff",
     "back print"
    ]
   },
   {
    "view": "skater-video-t08.80",
-   "tag": "INDEPENDENT",
+   "tag": "regression ref",
    "features": [
     "head",
-    "arms/torso"
+    "arms/torso",
+    "upper cuff"
    ]
   }
  ]

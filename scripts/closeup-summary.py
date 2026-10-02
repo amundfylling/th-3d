@@ -1,5 +1,5 @@
 """Compact review sheet from the matched close-up sheets: one row per feature, photo | model pairs from fitted
-views, former held-out views now inspected while modelling ("inspected") and INDEPENDENT fresh frames (labels
+views, former held-out views now inspected while modelling ("inspected") and "regression ref" frames, independent checks in earlier rounds (labels
 say which). Input: validation/players/closeups-{skater,goalie}.png (+ their
 row labels re-derived from the fit files). Output: validation/players/closeups-summary.png
 
@@ -18,7 +18,7 @@ FONT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
 def rows(kind):
     out = []
-    for tag, f in (("fitted", f"{kind}-fit.json"), ("inspected", f"{kind}-heldout-fit.json"), ("INDEPENDENT", f"{kind}-independent-fit.json")):
+    for tag, f in (("fitted", f"{kind}-fit.json"), ("inspected", f"{kind}-heldout-fit.json"), ("regression ref", f"{kind}-independent-fit.json")):
         if (VAL / f).exists():
             out += [(v, tag) for v in json.loads((VAL / f).read_text())["views"]]
     return out
@@ -50,6 +50,6 @@ for i, (kind, view, slot, label) in enumerate(PICK):
     pair = sheets[kind].crop((x0, y0, x0 + 2 * TILE, y0 + TILE))
     X, Y = (i % cols) * 2 * TILE, (i // cols) * (TILE + 30)
     out.paste(pair, (X, Y + 28))
-    d.text((X + 6, Y + 5), f"{label} - {view.split('-', 1)[1]} [{tag}]", fill=(170, 0, 0) if tag == "INDEPENDENT" else (0, 0, 0), font=FONT)
+    d.text((X + 6, Y + 5), f"{label} - {view.split('-', 1)[1]} [{tag}]", fill=(170, 0, 0) if tag == "regression ref" else (0, 0, 0), font=FONT)
 out.save(VAL / "closeups-summary.png")
 print("wrote", VAL / "closeups-summary.png", out.size)

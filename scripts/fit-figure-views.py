@@ -88,7 +88,8 @@ HELDOUT = {
 }
 
 
-# Fresh turntable frames (scripts/extract-player-frames.py) reserved as INDEPENDENT checks (round 5 set; the
+# Regression references (round 10): turntable frames that were fresh INDEPENDENT checks in earlier rounds (skater
+# round 6, goalie round 5) and have been inspected since. Scored at their frozen cameras. (Originally: the
 # round-4 set has been inspected and moved to HELDOUT with its frozen cameras). Initial
 # azimuth/elevation interpolated in time between the neighbouring fitted turntable cameras. Their cameras are
 # fitted ONCE against the model before the round, then frozen (--fixed) - this favours the old shape, never the
@@ -234,7 +235,10 @@ def main():
     summary = {"kind": a.kind, "mean_iou": round(float(np.mean([r["iou"] for r in res.values()])), 4), "views": res}
     summary["held_out"] = bool(a.heldout or a.independent)
     if a.independent:
-        summary["independent"] = True
+        # Round 10: these frames were fresh in earlier rounds but have been inspected since; they are kept as
+        # regression references at their frozen cameras, not as independent evidence.
+        summary["independent"] = False
+        summary["role"] = "regression_reference"
     elif a.heldout:
         summary["note"] = "Former held-out views: inspected while modelling since round 3, so they are fitting references now; see <kind>-independent-fit.json for unseen frames."
     summary["cameras"] = "fixed (scored only)" if a.fixed else "fitted"

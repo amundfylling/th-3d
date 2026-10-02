@@ -2,8 +2,9 @@
 
     /root/venvs/blender/bin/python assets/blender/render_closeups.py [skater|goalie ...]
 For every fitted view (validation/players/<kind>-fit.json), every former held-out view (<kind>-heldout-fit.json,
-inspected while modelling since round 3, so now a fitting reference) and every INDEPENDENT frame
-(<kind>-independent-fit.json: fresh frames, inspected only after the round's modelling) the Sweden asset is rendered with Cycles from
+inspected while modelling since round 3, so now a fitting reference) and every regression
+reference (<kind>-independent-fit.json: frames that were fresh independent checks in earlier rounds; inspected
+since, so from round 10 on they are regression references, not independent evidence) the Sweden asset is rendered with Cycles from
 the fitted camera at the photo crop's framing. Feature windows (head, arms/torso, back print, mask, pads,
 gloves) are projected from the mold frame into both images and cut identically.
 Outputs: validation/players/closeups-<kind>.png (rows = views; full photo | full render | feature pairs),
@@ -30,6 +31,7 @@ MAN = json.loads((REPO / "references" / "derived" / "players" / "manifest.json")
 # Feature windows: centre (mold units) and radius (mold units); 'face' = direction the feature faces (None = any).
 FEATURES = {
     "skater": {"head": ((7.5, -2.4, 41.5), 7.5, None), "arms/torso": ((2.0, -5.0, 29.0), 15.0, None),
+               "upper cuff": ((5.5, -9.0, 29.0), 9.5, None),
                "back print": ((-6.4, -4.0, 32.0), 10.0, (-1, 0, 0.4)), "gloves": ((6.6, 0.0, 22.0), 9.0, (1, 0, 0))},
     "goalie": {"mask": ((1.5, 5.0, 41.5), 7.5, None), "pads": ((3.0, 5.0, 11.5), 13.0, (1, 0, 0)),
                "catcher": ((4.5, 17.5, 20.0), 7.5, (0.6, 0.8, 0)), "back print": ((-6.4, 5.0, 28.0), 10.0, (-1, 0, 0.2)),
@@ -93,7 +95,10 @@ def scene_for(kind):
                     o.data.materials[i] = clay
 
 
-def match_photo(ren_rgba, photo):
+EXPO, EXPO_OUT_PATH = {}, []  # --exposure-out=F / --exposure-in=F: freeze per-view tint and gain
+
+
+def match_photo(ren_rgba, photo, key=None):
     """Exposure + illuminant match of a neutral render to a photo (cameras auto-expose; the room light is warm):
     tint = table colour outside the figure (assumed near-neutral dark wood), gain = median luminance ratio of
     the figure pixels. Shape and relative colours are untouched."""
@@ -111,6 +116,11 @@ def match_photo(ren_rgba, photo):
     rgb = R[..., :3] * tint
     fig = a[..., 0] > 0.5
     gain = np.median(P[m].mean(1)) / max(np.median(rgb[fig].mean(1)), 1) if fig.any() and m.any() else 1.0
+    if key is not None and key in EXPO:  # identical exposure handling for a before/after pair
+        tint, gain = np.array(EXPO[key]["tint"]), EXPO[key]["gain"]
+        rgb = R[..., :3] * tint
+    elif key is not None:
+        EXPO[key] = {"tint": [float(t) for t in tint], "gain": float(gain)}
     rgb = np.clip(rgb * gain, 0, 255)
     bg = np.array([38, 36, 34], float)
     out = rgb * a + bg * (1 - a)
@@ -145,7 +155,7 @@ def render_view(kind, vid, fit_json):
     scn = bpy.context.scene
     _render_transparent(cam, p, res, 64)
     photo = Image.open(REPO / MAN[vid]["file"]).convert("RGB").resize(res, Image.LANCZOS)
-    ren = match_photo(Image.open(p).convert("RGBA"), photo)
+    ren = match_photo(Image.open(p).convert("RGBA"), photo, key=f"{kind}/{vid}")
     feats = []
     for name, (c, r, facing) in FEATURES[kind].items():
         cw_ = Vector(c) * bf.KS[kind] / 1000
@@ -178,6 +188,10 @@ def main():
             NEUTRAL = True
         elif a.startswith("--assets="):
             ASSETS = Path(a.split("=", 1)[1])
+        elif a.startswith("--exposure-in="):
+            EXPO.update(json.loads(Path(a.split("=", 1)[1]).read_text()))
+        elif a.startswith("--exposure-out="):
+            EXPO_OUT_PATH.append(Path(a.split("=", 1)[1]))
         elif a == "--legacy":
             LEGACY = True
         elif a.startswith("--tag="):
@@ -186,7 +200,7 @@ def main():
         scene_for(kind)
         rows, index = [], []
         for tag, fjson in (("fitted", VAL / f"{kind}-fit.json"), ("inspected", VAL / f"{kind}-heldout-fit.json"),
-                           ("INDEPENDENT", VAL / f"{kind}-independent-fit.json")):
+                           ("regression ref", VAL / f"{kind}-independent-fit.json")):
             if not fjson.exists():
                 continue
             fit = json.loads(fjson.read_text())["views"]
@@ -201,7 +215,7 @@ def main():
         d = ImageDraw.Draw(sheet)
         for i, (label, photo, ren, feats) in enumerate(rows):
             y = i * (TILE + 34)
-            d.text((6, y + 6), label + "   (each pair: photo | model, same camera and crop; render exposure/tint matched to the photo)", fill=(170, 0, 0) if "INDEPENDENT" in label else (0, 0, 0), font=FONT)
+            d.text((6, y + 6), label + "   (each pair: photo | model, same camera and crop; render exposure/tint matched to the photo)", fill=(170, 0, 0) if "regression ref" in label else (0, 0, 0), font=FONT)
             for j, im in enumerate((photo, ren)):
                 t = im.copy()
                 t.thumbnail((TILE, TILE))
@@ -214,6 +228,8 @@ def main():
         suffix = ("-neutral" if NEUTRAL else "") + ("-legacy" if LEGACY else "") + (f"-{TAG}" if TAG else "")
         dst = VAL / f"closeups-{kind}{suffix}.png" if not ONLY else OUT / f"closeups-{kind}{suffix}-partial.png"
         sheet.save(dst)
+        for f in EXPO_OUT_PATH:
+            f.write_text(json.dumps(EXPO, indent=1) + "\n")
         dst.with_suffix(".json").write_text(json.dumps({"tile": TILE, "row": TILE + 34, "rows": index}, indent=1) + "\n")
         print("wrote", dst, sheet.size)
 

@@ -2,7 +2,7 @@
 materials (renders from assets/blender/render_closeups.py at the frozen fitted cameras; per-view renders are the
 transparent RGBA frames it writes to out/figures/closeups/<kind>_<view>.png, copied per run).
 
-    python3 scripts/full-figure-before-after.py OUT.png "TITLE" BEFORE_DIR AFTER_DIR VIEW[,VIEW...] [INDEPENDENT_VIEWS]
+    python3 scripts/full-figure-before-after.py OUT.png "TITLE" BEFORE_DIR AFTER_DIR VIEW[,VIEW...] [REGRESSION_REF_VIEWS]
     python3 scripts/full-figure-before-after.py OUT.png "TITLE" DIR1,DIR2,DIR3 LABEL1,LABEL2,LABEL3 VIEWS [INDEP]
         (N versions: clay row then materials row per view)
 BEFORE_DIR/AFTER_DIR hold full_neutral/ and full_mat/ with skater_<view>.png. Rows: views; columns: photo, clay
@@ -48,7 +48,7 @@ d = ImageDraw.Draw(sheet)
 d.text((8, 8), title, fill=(0, 0, 0), font=FT)
 for r, (v, ims) in enumerate(rows):
     y = 40 + r * (TH + 28)
-    d.text((6, y + 4), v + ("  [INDEPENDENT]" if v in indep else ""), fill=(170, 0, 0) if v in indep else (0, 0, 0), font=F)
+    d.text((6, y + 4), v + ("  [regression ref]" if v in indep else ""), fill=(170, 0, 0) if v in indep else (0, 0, 0), font=F)
     x = 0
     for j, im in enumerate(ims):
         sheet.paste(im, (x, y + 24))
