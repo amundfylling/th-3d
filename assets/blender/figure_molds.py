@@ -255,9 +255,10 @@ def build_part(prefix: str, pname: str, part: dict):
     for n, e in part.get("cuffs", {}).items():
         out.append(cuff(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], tuple(e.get("oval", (1, 1))), tuple(e.get("up", (0, 0, 1))),
                         e.get("lip", 0.45), e.get("depth", 0.35), e.get("cut_deg", 0.0)))
-    for n, e in part.get("face_lofts", {}).items():  # round 11: continuous face envelope (face_loft.py)
-        from face_loft import face_loft_mesh
-        fv_, ff_ = face_loft_mesh(e)
+    face_obs = []
+    for n, e in part.get("face_sections", {}).items():  # round 12: face as horizontal cross-sections (face_sections.py)
+        from face_sections import face_section_mesh
+        fv_, ff_ = face_section_mesh(e)
         ob = mesh_object(f"{prefix}_{pname}_{n}", [tuple(v) for v in fv_], ff_)
         bpy.ops.object.select_all(action="DESELECT")
         bpy.context.view_layer.objects.active = ob
@@ -268,15 +269,72 @@ def build_part(prefix: str, pname: str, part: dict):
             bpy.ops.object.modifier_apply(modifier="subsurf")
         bpy.ops.object.shade_smooth()
         out.append(ob)
+        face_obs.append(ob)
     for n, e in part.get("lofts", {}).items():
         out.append(loft_cuff(f"{prefix}_{pname}_{n}", e["mouth_c"], e["mouth_n"], e["mouth_long"], e["mouth_r"], e["wrist_c"], e["wrist_r"],
                              e.get("lip", 0.5), e.get("depth", 1.2), e.get("flare", 1.4), e.get("base", 0.0),
                              e.get("bulge", 0.0), e.get("warp", 0.0), e.get("subsurf", 0)))
     for n, e in part.get("cones", {}).items():
         out.append(cone(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], e.get("bevel", 0.3)))
+    if part.get("face_blend") and face_obs and (balls or caps or mbox):
+        joined = blend_face_junction(out[0], face_obs, part["face_blend"])
+        out = [joined] + [o for o in out[1:] if o not in face_obs]
     for o in out:
         o["material_key"] = part["material"]
     return out
+
+
+def blend_face_junction(meta_ob, face_obs, fb: dict):
+    """Round 12: one skin surface for the face and the neck. The face mesh and the neck metaball mesh are joined,
+    voxel-remeshed (union, no internal faces), and only the vertices near the face/neck intersection are
+    Laplacian-smoothed, which turns the crease into a fillet of about `radius` mold units. Elsewhere both
+    surfaces keep their shape (weights fall to zero away from the junction)."""
+    import numpy as np
+    from mathutils.kdtree import KDTree
+
+    def tree(obs):
+        pts = [o.matrix_world @ v.co for o in obs for v in o.data.vertices]
+        t = KDTree(len(pts))
+        for i, p in enumerate(pts):
+            t.insert(p, i)
+        t.balance()
+        return t
+    ta, tb = tree(face_obs), tree([meta_ob])
+    bpy.ops.object.select_all(action="DESELECT")
+    for o in [meta_ob, *face_obs]:
+        o.select_set(True)
+    bpy.context.view_layer.objects.active = meta_ob
+    bpy.ops.object.join()
+    ob = bpy.context.view_layer.objects.active
+    mod = ob.modifiers.new("remesh", "REMESH")
+    mod.mode = "VOXEL"
+    mod.voxel_size = sb.m(fb.get("voxel", 0.08))
+    bpy.ops.object.modifier_apply(modifier="remesh")
+    me = ob.data
+    n = len(me.vertices)
+    V = np.empty(n * 3)
+    me.vertices.foreach_get("co", V)
+    V = V.reshape(n, 3)
+    E = np.empty(len(me.edges) * 2, np.int64)
+    me.edges.foreach_get("vertices", E)
+    E = E.reshape(-1, 2)
+    r = sb.m(fb.get("radius", 0.6))
+    w = np.zeros(n)
+    for i, p in enumerate(V):
+        da, db = ta.find(Vector(p))[2], tb.find(Vector(p))[2]
+        x = max(0.0, 1.0 - max(da, db) / r)
+        w[i] = x * x * (3 - 2 * x)  # smoothstep
+    deg = np.bincount(E.ravel(), minlength=n).astype(float)
+    lam = fb.get("lambda", 0.5)
+    for _ in range(fb.get("iterations", 25)):
+        acc = np.zeros_like(V)
+        np.add.at(acc, E[:, 0], V[E[:, 1]])
+        np.add.at(acc, E[:, 1], V[E[:, 0]])
+        V = V + (lam * w)[:, None] * (acc / np.maximum(deg, 1)[:, None] - V)
+    me.vertices.foreach_set("co", V.ravel())
+    me.update()
+    bpy.ops.object.shade_smooth()
+    return ob
 
 
 # ---------------------------------------------------------------------------------------------------

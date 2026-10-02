@@ -63,6 +63,13 @@
   than the photographed skin top, so a forehead band that is helmet in the photos is skin in the model. Helmet,
   neck, collar, body, cuff, pose, scale, axis, stick, materials, lighting and goalie unchanged. AI review only.
   No animation.
+- **Figure refinement round 12 (user request, 2026-10-02, shared skater face only, from c54ff1c):** the face
+  is now a stack of horizontal cross-sections (`assets/blender/face_sections.py`; `face_loft.py` removed). It has
+  a pointed front with a centreline, relief only on the centreline, a rigid jaw tilt, and a face-neck fillet.
+  Placement uses landmarks triangulated in the frozen helmet's frame (the whole-figure cameras misplace the head
+  by 0.6-3.1 units in several frames): turned 28 deg about the neck axis, nose under the helmet front edge.
+  Unresolved: left/right height disagreement and the right-side helmet edge (1.0-1.7 units high; no helmet
+  change). AI review only. No animation.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.

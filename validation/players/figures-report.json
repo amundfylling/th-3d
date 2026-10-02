@@ -15,7 +15,7 @@
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.2,
-        16.1
+        15.9
       ],
       "footprint_y_mm": [
         -19.9,
@@ -35,7 +35,7 @@
       "blade_height_mm": 3.24,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 99886,
+      "triangles": 110894,
       "decal_faces": 1369,
       "number_on_asset_decal": "21"
     },
@@ -44,7 +44,7 @@
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.2,
-        16.1
+        15.9
       ],
       "footprint_y_mm": [
         -19.9,
@@ -64,7 +64,7 @@
       "blade_height_mm": 3.24,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 99886,
+      "triangles": 110894,
       "decal_faces": 1369,
       "number_on_asset_decal": "4"
     },

@@ -1,9 +1,9 @@
 {
   "kind": "skater",
-  "mean_iou": 0.7784,
+  "mean_iou": 0.7785,
   "views": {
     "skater-video-t01.50": {
-      "iou": 0.8322,
+      "iou": 0.8329,
       "camera": {
         "azimuth_deg": 16.01,
         "elevation_deg": 22.61,
@@ -24,7 +24,7 @@
       ]
     },
     "skater-video-t14.50": {
-      "iou": 0.7622,
+      "iou": 0.7635,
       "camera": {
         "azimuth_deg": 22.57,
         "elevation_deg": -11.9,
@@ -45,7 +45,7 @@
       ]
     },
     "skater-video-t22.60": {
-      "iou": 0.7255,
+      "iou": 0.725,
       "camera": {
         "azimuth_deg": 36.56,
         "elevation_deg": 37.43,
@@ -66,7 +66,7 @@
       ]
     },
     "skater-video-t02.25": {
-      "iou": 0.7704,
+      "iou": 0.7701,
       "camera": {
         "azimuth_deg": -7.55,
         "elevation_deg": 23.87,
@@ -87,7 +87,7 @@
       ]
     },
     "skater-video-t05.25": {
-      "iou": 0.7971,
+      "iou": 0.7968,
       "camera": {
         "azimuth_deg": -134.79,
         "elevation_deg": 34.09,
@@ -129,7 +129,7 @@
       ]
     },
     "skater-video-t10.25": {
-      "iou": 0.7154,
+      "iou": 0.7153,
       "camera": {
         "azimuth_deg": 41.34,
         "elevation_deg": 52.39,
@@ -150,7 +150,7 @@
       ]
     },
     "skater-video-t00.75": {
-      "iou": 0.8379,
+      "iou": 0.8384,
       "camera": {
         "azimuth_deg": 17.16,
         "elevation_deg": 25.05,
@@ -171,7 +171,7 @@
       ]
     },
     "skater-video-t03.75": {
-      "iou": 0.7668,
+      "iou": 0.7671,
       "camera": {
         "azimuth_deg": -81.32,
         "elevation_deg": 20.26,
@@ -192,7 +192,7 @@
       ]
     },
     "skater-video-t06.75": {
-      "iou": 0.8552,
+      "iou": 0.855,
       "camera": {
         "azimuth_deg": -156.1,
         "elevation_deg": 2.36,
@@ -213,7 +213,7 @@
       ]
     },
     "skater-video-t08.00": {
-      "iou": 0.755,
+      "iou": 0.7544,
       "camera": {
         "azimuth_deg": 121.46,
         "elevation_deg": 10.2,

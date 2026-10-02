@@ -1,6 +1,6 @@
 {
   "kind": "skater",
-  "mean_iou": 0.8084,
+  "mean_iou": 0.8094,
   "views": {
     "skater-video-t00.00": {
       "iou": 0.8486,
@@ -24,7 +24,7 @@
       ]
     },
     "skater-video-t03.00": {
-      "iou": 0.7057,
+      "iou": 0.7061,
       "camera": {
         "azimuth_deg": -57.13,
         "elevation_deg": 19.77,
@@ -45,7 +45,7 @@
       ]
     },
     "skater-video-t04.50": {
-      "iou": 0.771,
+      "iou": 0.7715,
       "camera": {
         "azimuth_deg": -86.94,
         "elevation_deg": 15.44,
@@ -66,7 +66,7 @@
       ]
     },
     "skater-video-t06.00": {
-      "iou": 0.835,
+      "iou": 0.836,
       "camera": {
         "azimuth_deg": -138.5,
         "elevation_deg": 24.76,
@@ -87,7 +87,7 @@
       ]
     },
     "skater-video-t07.25": {
-      "iou": 0.8708,
+      "iou": 0.8702,
       "camera": {
         "azimuth_deg": 201.64,
         "elevation_deg": 17.97,
@@ -108,7 +108,7 @@
       ]
     },
     "skater-video-t08.50": {
-      "iou": 0.7706,
+      "iou": 0.7775,
       "camera": {
         "azimuth_deg": 112.44,
         "elevation_deg": 36.59,
@@ -129,7 +129,7 @@
       ]
     },
     "skater-video-t10.75": {
-      "iou": 0.8504,
+      "iou": 0.8507,
       "camera": {
         "azimuth_deg": 24.61,
         "elevation_deg": 37.35,

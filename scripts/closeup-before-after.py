@@ -6,7 +6,7 @@ modelling (fitting references); "regression ref" frames (red) were independent c
     python3 scripts/closeup-before-after.py OUT.png "TITLE" --labels=R6,R7,R8 skater=R6.png,R7.png,R8.png   (N versions)
 Each AFTER sheet has a sidecar AFTER.json (rows: view, tag, feature names) written by render_closeups.py; the
 BEFORE sheet must come from the same cameras and the same --views list (identical rows and feature windows).
-Picks: PICK below (round 11: skater face; round 10 picked the upper cuff).
+Picks: PICK below (rounds 11-12: skater face; round 10 picked the upper cuff).
 """
 import json
 import sys
@@ -25,7 +25,8 @@ PICK = [
     ("skater", "skater-video-t00.00", "face", "face (elevated: taper, orientation)"),
     ("skater", "skater-video-t01.50", "face", "face (elevated)"),
     ("skater", "skater-video-t10.75", "face", "face (elevated front-right)"),
-    ("skater", "skater-video-t08.50", "face", "face (left side: regression check)"),
+    ("skater", "skater-video-t08.50", "face", "face (left side, behind: projection check)"),
+    ("skater", "skater-video-t08.80", "face", "face (left profile)"),
 ]
 
 

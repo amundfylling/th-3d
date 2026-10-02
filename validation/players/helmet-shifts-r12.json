@@ -1,0 +1,93 @@
+{
+ "note": "per-view image shift of the frozen model helmet onto the photographed helmet (2000-px work image); the residual local camera error at the head",
+ "views": {
+  "skater-video-t13.25": {
+   "shift_px": [
+    17,
+    25
+   ],
+   "shift_units": [
+    0.63,
+    0.93
+   ],
+   "helmet_iou": 0.808
+  },
+  "skater-video-t14.50": {
+   "shift_px": [
+    62,
+    46
+   ],
+   "shift_units": [
+    2.68,
+    1.99
+   ],
+   "helmet_iou": 0.891
+  },
+  "skater-video-t00.00": {
+   "shift_px": [
+    -1,
+    -7
+   ],
+   "shift_units": [
+    -0.04,
+    -0.28
+   ],
+   "helmet_iou": 0.897
+  },
+  "skater-video-t10.75": {
+   "shift_px": [
+    -26,
+    12
+   ],
+   "shift_units": [
+    -0.97,
+    0.45
+   ],
+   "helmet_iou": 0.695
+  },
+  "skater-video-t03.00": {
+   "shift_px": [
+    26,
+    -6
+   ],
+   "shift_units": [
+    1.11,
+    -0.26
+   ],
+   "helmet_iou": 0.906
+  },
+  "skater-video-t04.50": {
+   "shift_px": [
+    14,
+    9
+   ],
+   "shift_units": [
+    0.66,
+    0.42
+   ],
+   "helmet_iou": 0.937
+  },
+  "skater-video-t08.50": {
+   "shift_px": [
+    -13,
+    -15
+   ],
+   "shift_units": [
+    -0.6,
+    -0.7
+   ],
+   "helmet_iou": 0.762
+  },
+  "skater-video-t08.80": {
+   "shift_px": [
+    -48,
+    -1
+   ],
+   "shift_units": [
+    -2.1,
+    -0.04
+   ],
+   "helmet_iou": 0.819
+  }
+ }
+}

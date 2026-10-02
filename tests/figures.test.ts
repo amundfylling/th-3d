@@ -225,9 +225,9 @@ test("refinement round 6 (skater): boxy helmet without side knobs, forward face,
   const P = molds.skater.parts;
   assert.ok(P.helmet.mboxes.dome, "helmet dome is one rounded box");
   assert.equal(P.helmet.ellipsoids.brim, undefined, "no brim roll (it formed side knobs)");
-  const env = P.face.face_lofts.envelope; // round 11: the face is one loft; its front = pivot + max u along the yaw
-  const front = env.pivot[0] + Math.max(...env.profile.map((q: number[]) => q[0])) * Math.cos((env.yaw_deg * Math.PI) / 180);
-  assert.ok(front > 14, `face forward toward the profile photo's x ~15 (${front.toFixed(2)})`);
+  const env = P.face.face_sections.envelope; // round 12: front measured in the helmet's frame (nose x ~13.4)
+  const front = env.pivot[0] + Math.max(...env.levels.map((q: any) => q.front)) * Math.cos((env.yaw_deg * Math.PI) / 180);
+  assert.ok(front > 13 && front < 14.6, `face front under the helmet front edge (${front.toFixed(2)})`);
   const band = Object.keys(P.collar.ellipsoids).filter((k) => k.startsWith("band"));
   assert.ok(band.length >= 20, "collar is a continuous band");
   const cuff = P.sleeves.lofts.gauntlet_r;
@@ -259,27 +259,20 @@ test("refinement round 8 (skater): broad thin collar footprint, level rear helme
   assert.ok(Math.abs(rep.assets.skater_SWE.height_mm - 51.24) < 0.3, `helmet top near the profile reading (${rep.assets.skater_SWE.height_mm} mm)`);
 });
 
-test("refinement round 9 (skater face), carried into the round-11 loft: taper, small nose, turned with the head", () => {
-  const env = molds.skater.parts.face.face_lofts.envelope;
-  const W = env.profile.map((q: number[]) => q[2]);
-  assert.ok(Math.max(...W) > Math.min(...W) * 2.5, "broad brow tapering to a narrow chin");
-  const nose = env.relief.bumps.filter((b: any) => b.h > 0 && b.z > 38);
-  assert.equal(nose.length, 1, "one nose relief");
-  assert.ok(nose[0].h <= 0.4, "small moulded nose");
+test("refinement round 9 (skater face), carried into round 12: taper, small nose, turned with the head", () => {
+  const env = molds.skater.parts.face.face_sections.envelope;
+  const W = env.levels.map((q: any) => q.half_width);
+  assert.ok(Math.max(...W) > Math.min(...W) * 2.5, "broad under the helmet, tapering to a narrow chin");
+  assert.ok(env.relief.nose.h <= 0.5, "small moulded nose");
   assert.ok(env.yaw_deg > 20, "face turned toward the figure's left with the head");
 });
 
-test("refinement round 11 (skater face only): one continuous face loft, hidden top under the helmet, shallow relief", () => {
+test("refinement round 11/12 (skater face only): one face surface, no lobes, shallow central relief", () => {
   const F = molds.skater.parts.face;
   assert.equal(Object.keys(F.ellipsoids ?? {}).length, 0, "no face ellipsoid lobes (nose/chin/cheeks)");
   assert.equal(Object.keys(F.negative_ellipsoids ?? {}).length, 0, "no carved mouth ellipsoid");
-  assert.ok(F.capsules.neck_back, "visible neck unchanged");
-  const env = F.face_lofts.envelope;
-  assert.ok(env.profile.length >= 10, "closed side profile");
-  assert.ok(env.profile.filter((q: number[]) => (q[1] ?? 0) >= 42).length >= 2, "profile top hidden inside the helmet (no shelf, no gap)");
-  for (const b of env.relief.bumps) assert.ok(Math.abs(b.h) <= 0.4, `relief stays shallow (${b.h})`);
-  const front = env.profile.filter((q: number[]) => (q[0] ?? 0) > 3 && (q[1] ?? 0) > 36.5 && (q[1] ?? 0) < 39.5).map((q: number[]) => q[0] ?? 0);
-  assert.ok(Math.max(...front) - Math.min(...front) < 0.7, "front is one convex surface (no full-width mouth groove or chin lobe)");
+  assert.equal(F.face_lofts, undefined, "round-11 side-profile extrusion removed (it spread the nose height across the face)");
+  assert.ok(F.capsules.neck && F.capsules.neck_back, "neck capsules unchanged");
   const sk = rep.assets.skater_SWE, fi = rep.assets.skater_FIN;
   assert.deepEqual([sk.height_mm, sk.blade_length_mm], [fi.height_mm, fi.blade_length_mm], "one shared mold for both kits");
 });
@@ -291,4 +284,22 @@ test("refinement round 10 (skater upper cuff only): level opening, longer elbow 
   assert.equal(c.warp, 0, "no saddle on the rim (front frame shows a rim that rises from the tip, then runs level)");
   const marks = JSON.parse(readFileSync("data/cuff-marks-r10.json", "utf8"));
   for (const v of ["skater-video-t00.00", "skater-video-t13.25", "skater-video-t14.50"]) assert.ok(marks.views[v].rim.length >= 1, v);
+});
+
+test("refinement round 12 (skater face only): horizontal cross-sections, depth falls off across the width", () => {
+  const F = molds.skater.parts.face;
+  const env = F.face_sections.envelope;
+  assert.ok(env.levels.length >= 6, "stack of horizontal sections");
+  assert.ok(env.n_front < 2, "pointed front section: a distinct centreline, cheeks recede from it");
+  for (const q of env.levels) assert.ok(q.front > 0 && q.half_width > 0, `level z ${q.z}`);
+  // nose relief stays on the centreline: its lateral falloff is narrower than the narrowest face section
+  const minW = Math.min(...env.levels.map((q: any) => q.half_width));
+  assert.ok(env.relief.nose.sigma < minW * 0.5, "nose projection vanishes before the cheeks");
+  assert.ok(env.relief.nose.h <= 0.5 && env.relief.mouth.h <= 0.2, "restrained relief");
+  assert.equal(env.jaw_slope, undefined, "no sheared jaw (it folded the cheek into a diagonal seam)");
+  assert.ok(F.face_blend && F.face_blend.radius > 0, "face and neck blended into one skin surface");
+  // placement measured in the frozen helmet's frame: yaw about the neck axis
+  assert.ok(env.yaw_deg >= 20 && env.yaw_deg <= 36, `yaw ${env.yaw_deg}`);
+  assert.deepEqual(env.pivot, [7.0, -1.7], "turn about the neck axis");
+  assert.equal(molds.skater.parts.helmet.mboxes.edge_r, undefined, "helmet unchanged (edge extension tested and rejected)");
 });

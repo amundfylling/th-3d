@@ -721,12 +721,111 @@ decide on; it was not made.
 - Numbers (secondary, do not measure the face shape): silhouette IoU, frozen cameras: fitted 0.8086 -> 0.8084;
   inspected 0.7785 -> 0.7784; skater regression refs 0.7996 -> 0.7994. 85/85 tests pass.
 
+## Refinement round 12 (2026-10-02): shared skater face, new representation and landmark placement
+
+Request: one bounded head correction from c54ff1c. The round-11 side-profile extrusion carried the nose-height
+projection across the whole width (a broad shelf). Its domed caps made slab cheeks and a diagonal jaw transition.
+Both kits share the mold; the goalie is unchanged. The data change is confined to `skater.parts.face`:
+`face_lofts` was removed, and `face_sections` and `face_blend` were added. The neck capsules are unchanged; only
+their junction with the face is filleted. Skater height is unchanged (51.24 mm). Helmet, collar, body, cuff,
+scale and pose are unchanged.
+
+**Representation (`assets/blender/face_sections.py`, replaces `face_loft.py`).**
+- The face is a stack of horizontal cross-sections. Each is a superellipse with its own front depth, hidden back
+  and half-width, so depth and width vary independently with height.
+- The front half has exponent 1.6, a slightly pointed section: there is a distinct centreline, and the cheeks
+  recede from it at every height.
+- The nose and mouth are relief on the centreline with a Gaussian lateral falloff (sigma 0.45). The nose
+  projection therefore vanishes before the cheeks instead of spreading across them.
+- A rigid 7 deg tilt gives the jaw line that runs down from the chin to the neck. A shear of the lowest sections
+  was tried first and rejected: it folded the cheek into a diagonal seam.
+- Face and neck become one skin surface: the two meshes are joined, voxel-remeshed, and only the junction is
+  Laplacian-smoothed (radius 0.9, `blend_face_junction` in `figure_molds.py`).
+- Sequence: the plain envelope (no relief) was inspected and corrected first. The shelf, muzzle and seam were
+  fixed there, not by changing the nose bump.
+
+**Placement and orientation from landmarks, not mask scores.**
+- *The cameras misplace the head.* The whole-figure camera fits put the head 0.6-3.1 units off in several
+  frames: the model's head sits differently on its body than the real one. Examples: 9.25 s -3.1 u, 8.80 s
+  -2.2 u, 14.50 s +2.7 u. All earlier face fits (rounds 9-11) inherited this error.
+- *Helmet registration.* Each view was therefore registered locally on the frozen, rigid helmet
+  (`scripts/face-helmet-overlay.py`; shifts in `validation/players/helmet-shifts-r12.json`).
+- *Landmarks.* Nose top/bottom, mouth step and chin bottom were hand-read on the sharp side profiles: right 3.75
+  and 4.50 s, left 8.50, 8.80 and 9.25 s. They were triangulated left + right together for x and z. Nose and chin
+  rays from 13.25, 0.00, 1.10 and 10.75 s then gave the sideways position. All marks and results are in
+  `data/face-landmarks-r12.json` (status traced).
+- *Result in the helmet's frame:*
+  - nose at about (13.4, 1.4) from z 38.6 to 39.9, directly under the helmet front edge as in the photos;
+  - mouth step x 12.8, z 38.1;
+  - chin bottom about (11.4, 0.6, 36.4).
+
+  This fits a face turned 28 deg toward the figure's left about the neck axis (7.0, -1.7). Round 11 had the front
+  about 1.6 units too far forward and the chin and jaw about 1 unit too far toward the figure's left. That
+  combination produced the muzzle seen in 8.50.
+- *Widths and taper.* With placement fixed by the landmarks, the widths and taper were set by comparing
+  helmet-registered outlines in the front and elevated-front views.
+
+**Contradictions that remain (stated, not fitted away).**
+- *Left vs right height.* After helmet registration, the left-side frames (8.50, 8.80, 9.25 s, elevated 31-38
+  deg) still want the face about 1.5-2 units higher than the right-side frames (3.75, 4.50 s). Translation-only
+  registration cannot remove a camera rotation error. The model uses the both-sides average, so in the left
+  views the jaw still projects below the photographed face.
+- *The shoulder.* In 8.50 s the real left shoulder and back sit right under the head and hide part of the jaw;
+  the model's frozen shoulder is lower. That part of the 8.50 mismatch is shoulder occlusion, not face shape.
+  The constraint that 8.50 does give is the forward face outline against the dark background. Measured relative
+  to the helmet, the round-12 face projects much less there than round 11, but still somewhat more than the photo.
+- *Helmet edge.* The right-side frames show the real helmet edge over the right cheek at z about 38.8 (back, x
+  8-9) rising to 39.9 (front, x 13). The frozen model edge is at 40.5-41.1, so 1.0-1.7 units too high (3.75 and
+  4.50 s agree within 0.2). The left side (8.50 s) shows no such gap. This asymmetry suggests the real helmet is
+  turned with the face. A thin right-side edge extension was tested and rejected: it read as a separate strap.
+  Turning or tilting the whole helmet would change the crown, which is frozen. No helmet change was made.
+- *Junction corner.* In 13.25 and 14.50 s the face's top-front corner catches light where it leaves the helmet's
+  rounded front-left corner. Receding the upper face further barely changed it.
+- *Nose and mouth.* Their size and shape are estimates from the profile steps (nose about 0.45 units proud of
+  the mouth line). The frames are motion-blurred at this scale.
+
+**Comparisons (frozen cameras, lights and per-view exposure; before = c54ff1c).**
+- `closeups-before-after-neutral.png` (clay) and `closeups-before-after.png` (materials): face window in
+  front 13.25 and 14.50, front-right 3.00, right profile 4.50, elevated 0.00, 1.50 and 10.75, and left
+  8.50 (behind-left) and 8.80 (left profile) s.
+- `face-helmet-overlay-r12.png`: helmet-registered outlines (photo skin, model helmet, model face). Model face =
+  skin in front of x 9.3; the vertical cut in the side views is that label boundary, not geometry.
+- `face-overlay-r12.png`: unregistered skin, helmet and silhouette edges.
+- `full-figure-before-after.png`.
+- `remotion-before-after.png`: the static oblique still shows both kits.
+
+**Visible result (AI review, not the user's).**
+- Improved:
+  - The broad nose-height shelf is gone in 13.25 and 14.50 s. The front recedes from a soft centreline, and the
+    nose is a narrow ridge right under the helmet.
+  - No diagonal cheek seam in 3.00 or 4.50 s: the side runs smoothly into the neck.
+  - The elevated views show a compact wedge tapering to the chin instead of the round-11 flat plane.
+  - The long round-11 muzzle in 8.50 and 8.80 s and the snout in the Remotion stills are much reduced.
+- Still wrong:
+  - In 8.50 and 8.80 s the jaw and lower face still hang lower and further forward than in the photo (see
+    contradictions above).
+  - The nose-to-mouth step is softer than the photographed block-like nose.
+  - The top-front junction corner (13.25, 14.50 s).
+  - The right-side helmet edge (forehead/cheek band visible where the real helmet covers it).
+  - In 0.00 and 10.75 s the chin sits slightly low and toward the figure's left.
+- Numbers (secondary, they do not measure the face): silhouette IoU, frozen cameras: fitted 0.8084 -> 0.8094;
+  inspected 0.7784 -> 0.7785; regression refs 0.7994 -> 0.7995. 86/86 tests pass.
+
+**Photographs that would settle what is left.** Sharp, evenly lit stills of one skater's head with no motion
+blur, the figure standing on its base:
+1. exactly from the right side, and 2. exactly from the left side, camera at head height. These give the nose
+   block, mouth and chin profile and the left/right helmet edge heights without camera-elevation error.
+3. straight from the front at head height, for the face turn and the nose and mouth width.
+4. straight down from above, for the turn of the helmet relative to the shoulders.
+
+A ruler in frame would also give the absolute scale.
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's
   "figure height approx. 57 mm" (datum unspecified) is 5.8 mm above the fitted skater height - not resolved.
 - **Goalie scale**: resolved by the user's measurement (54 mm, 2026-10-01); see above.
-- Remaining visible differences: see "Refinement round 11" (face; helmet-edge conflict), "8", "7" and "6" (skater) and "Refinement round 5" (goalie) above. Socket bore, blade/wire thickness assumed
+- Remaining visible differences: see "Refinement round 12" (face; head/camera offsets; right helmet edge), "11", "8", "7" and "6" (skater) and "Refinement round 5" (goalie) above. Socket bore, blade/wire thickness assumed
   (`assume.figure_mold_hidden_details`). Remotion metal sticks now reflect a procedural room
   environment (round 5).
 - Poses: six figures (E-LD, E-RD, E-C, E-LW, W-RD, W-G) stand at their overhead-fitted pivot and heading; the
@@ -745,7 +844,7 @@ decide on; it was not made.
 2. Which jersey numbers do your Sweden and Finland figures carry, per position?
 3. Is the Finland kit white with the same blue parts (as in the official pictures), and is anything printed on
    the front or sleeves?
-4. Round 11: the skater helmet's front/side lower edge sits about 1.5 units (mold) higher than the photographed
-   skin top, which leaves a forehead band of skin that is blue helmet on the real figure. May the helmet's lower
-   front edge be lowered in a separate round? A sharp, level side photo of one skater's head would settle the
-   edge height and the nose/mouth relief.
+4. Rounds 11-12: on the figure's right side the helmet's lower edge sits 1.0-1.7 units (mold) above the
+   photographed edge, but not on the left side. The likely cause is that the real helmet is turned with the face
+   (about 28 deg). May a later round turn the helmet with the face? That changes the crown orientation. The four
+   head photos listed under round 12 would settle it.
