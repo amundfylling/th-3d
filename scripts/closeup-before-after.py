@@ -6,7 +6,7 @@ modelling (fitting references); "regression ref" frames (red) were independent c
     python3 scripts/closeup-before-after.py OUT.png "TITLE" --labels=R6,R7,R8 skater=R6.png,R7.png,R8.png   (N versions)
 Each AFTER sheet has a sidecar AFTER.json (rows: view, tag, feature names) written by render_closeups.py; the
 BEFORE sheet must come from the same cameras and the same --views list (identical rows and feature windows).
-Picks: PICK below (round 10: skater upper cuff).
+Picks: PICK below (round 11: skater face; round 10 picked the upper cuff).
 """
 import json
 import sys
@@ -18,14 +18,14 @@ F = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 1
 FT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 24)
 # (kind, view, feature window, label)
 PICK = [
-    ("skater", "skater-video-t13.25", "upper cuff", "upper cuff (front)"),
-    ("skater", "skater-video-t14.50", "upper cuff", "upper cuff (front)"),
-    ("skater", "skater-video-t00.00", "upper cuff", "upper cuff (elevated front)"),
-    ("skater", "skater-video-t10.75", "upper cuff", "upper cuff (elevated front-right)"),
-    ("skater", "skater-video-t03.00", "upper cuff", "upper cuff (front-right)"),
-    ("skater", "skater-video-t04.50", "upper cuff", "upper cuff (right profile)"),
-    ("skater", "skater-video-t01.10", "upper cuff", "upper cuff"),
-    ("skater", "skater-video-t04.10", "upper cuff", "upper cuff (right)"),
+    ("skater", "skater-video-t13.25", "face", "face (front: outline, helmet junction)"),
+    ("skater", "skater-video-t14.50", "face", "face (front, motion-blurred)"),
+    ("skater", "skater-video-t03.00", "face", "face (front-right: nose, jaw underside)"),
+    ("skater", "skater-video-t04.50", "face", "face (right profile: nose, jaw, neck)"),
+    ("skater", "skater-video-t00.00", "face", "face (elevated: taper, orientation)"),
+    ("skater", "skater-video-t01.50", "face", "face (elevated)"),
+    ("skater", "skater-video-t10.75", "face", "face (elevated front-right)"),
+    ("skater", "skater-video-t08.50", "face", "face (left side: regression check)"),
 ]
 
 

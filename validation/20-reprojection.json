@@ -59,14 +59,14 @@
     "E-C": {
       "n": 85,
       "onDark": 0.918,
-      "meanOffsetPx": 0.735,
-      "maxOffsetPx": 7.25
+      "meanOffsetPx": 0.582,
+      "maxOffsetPx": 1
     },
     "E-LW": {
       "n": 168,
       "onDark": 0.97,
-      "meanOffsetPx": 0.505,
-      "maxOffsetPx": 1.25
+      "meanOffsetPx": 0.514,
+      "maxOffsetPx": 2.25
     },
     "E-RW": {
       "n": 154,
@@ -77,7 +77,7 @@
   },
   "slot_summary": {
     "min_on_dark": 0.593,
-    "worst_mean_offset_px": 0.735
+    "worst_mean_offset_px": 0.712
   },
   "ice_edge": {
     "samples": 15,

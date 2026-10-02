@@ -31,7 +31,7 @@ MAN = json.loads((REPO / "references" / "derived" / "players" / "manifest.json")
 # Feature windows: centre (mold units) and radius (mold units); 'face' = direction the feature faces (None = any).
 FEATURES = {
     "skater": {"head": ((7.5, -2.4, 41.5), 7.5, None), "arms/torso": ((2.0, -5.0, 29.0), 15.0, None),
-               "upper cuff": ((5.5, -9.0, 29.0), 9.5, None),
+               "upper cuff": ((5.5, -9.0, 29.0), 9.5, None), "face": ((12.3, -1.7, 38.6), 4.6, None),
                "back print": ((-6.4, -4.0, 32.0), 10.0, (-1, 0, 0.4)), "gloves": ((6.6, 0.0, 22.0), 9.0, (1, 0, 0))},
     "goalie": {"mask": ((1.5, 5.0, 41.5), 7.5, None), "pads": ((3.0, 5.0, 11.5), 13.0, (1, 0, 0)),
                "catcher": ((4.5, 17.5, 20.0), 7.5, (0.6, 0.8, 0)), "back print": ((-6.4, 5.0, 28.0), 10.0, (-1, 0, 0.2)),
@@ -43,7 +43,7 @@ NEUTRAL = False  # --neutral: one grey clay material, no prints (shape only); sa
 ASSETS = REPO / "assets" / "figures"  # --assets=DIR: render other .blend files (e.g. the previous round's)
 TAG = ""  # --tag=x: output name suffix
 LEGACY = False  # --legacy: the round-4 lighting and finish (grey world, 25 cm key; materials as saved) for before sheets
-NFEAT = 5
+NFEAT = 6
 FONT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 18)
 
 

@@ -255,6 +255,19 @@ def build_part(prefix: str, pname: str, part: dict):
     for n, e in part.get("cuffs", {}).items():
         out.append(cuff(f"{prefix}_{pname}_{n}", e["a"], e["b"], e["r_a"], e["r_b"], tuple(e.get("oval", (1, 1))), tuple(e.get("up", (0, 0, 1))),
                         e.get("lip", 0.45), e.get("depth", 0.35), e.get("cut_deg", 0.0)))
+    for n, e in part.get("face_lofts", {}).items():  # round 11: continuous face envelope (face_loft.py)
+        from face_loft import face_loft_mesh
+        fv_, ff_ = face_loft_mesh(e)
+        ob = mesh_object(f"{prefix}_{pname}_{n}", [tuple(v) for v in fv_], ff_)
+        bpy.ops.object.select_all(action="DESELECT")
+        bpy.context.view_layer.objects.active = ob
+        ob.select_set(True)
+        if e.get("subsurf", 1):
+            mod = ob.modifiers.new("subsurf", "SUBSURF")
+            mod.levels = mod.render_levels = e.get("subsurf", 1)
+            bpy.ops.object.modifier_apply(modifier="subsurf")
+        bpy.ops.object.shade_smooth()
+        out.append(ob)
     for n, e in part.get("lofts", {}).items():
         out.append(loft_cuff(f"{prefix}_{pname}_{n}", e["mouth_c"], e["mouth_n"], e["mouth_long"], e["mouth_r"], e["wrist_c"], e["wrist_r"],
                              e.get("lip", 0.5), e.get("depth", 1.2), e.get("flare", 1.4), e.get("base", 0.0),

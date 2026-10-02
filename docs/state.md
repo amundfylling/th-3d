@@ -55,6 +55,14 @@
   opening levelled (inner corner lowered ~1.2), elbow tip lengthened, saddle removed from the rim, wrist end
   widened slightly around the stick; boundary/rim overlays and hand-marked rim lines; exposure frozen between
   before and after; former INDEPENDENT frames relabelled regression references. AI review only. No animation.
+- **Figure refinement round 11 (user request, 2026-10-02, shared skater face only, from 0227dc6):** the five
+  face ellipsoids and the carved mouth are replaced by one continuous lofted face surface
+  (`assets/blender/face_loft.py`; `skater.parts.face.face_lofts.envelope`): envelope fitted first without
+  features through the frozen cameras, then a shallow nose ridge, faint mouth crease and slight chin relief.
+  Demonstrated conflict (not resolved, helmet frozen): the frozen helmet's front edge ends ~1.3-1.8 units higher
+  than the photographed skin top, so a forehead band that is helmet in the photos is skin in the model. Helmet,
+  neck, collar, body, cuff, pose, scale, axis, stick, materials, lighting and goalie unchanged. AI review only.
+  No animation.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.

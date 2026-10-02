@@ -225,7 +225,9 @@ test("refinement round 6 (skater): boxy helmet without side knobs, forward face,
   const P = molds.skater.parts;
   assert.ok(P.helmet.mboxes.dome, "helmet dome is one rounded box");
   assert.equal(P.helmet.ellipsoids.brim, undefined, "no brim roll (it formed side knobs)");
-  assert.ok(P.face.ellipsoids.nose.centre[0] > 14, "face moved forward to the profile photo's x ~15");
+  const env = P.face.face_lofts.envelope; // round 11: the face is one loft; its front = pivot + max u along the yaw
+  const front = env.pivot[0] + Math.max(...env.profile.map((q: number[]) => q[0])) * Math.cos((env.yaw_deg * Math.PI) / 180);
+  assert.ok(front > 14, `face forward toward the profile photo's x ~15 (${front.toFixed(2)})`);
   const band = Object.keys(P.collar.ellipsoids).filter((k) => k.startsWith("band"));
   assert.ok(band.length >= 20, "collar is a continuous band");
   const cuff = P.sleeves.lofts.gauntlet_r;
@@ -257,13 +259,29 @@ test("refinement round 8 (skater): broad thin collar footprint, level rear helme
   assert.ok(Math.abs(rep.assets.skater_SWE.height_mm - 51.24) < 0.3, `helmet top near the profile reading (${rep.assets.skater_SWE.height_mm} mm)`);
 });
 
-test("refinement round 9 (skater face): tapered wedge face turned with the head, small nose and mouth line", () => {
+test("refinement round 9 (skater face), carried into the round-11 loft: taper, small nose, turned with the head", () => {
+  const env = molds.skater.parts.face.face_lofts.envelope;
+  const W = env.profile.map((q: number[]) => q[2]);
+  assert.ok(Math.max(...W) > Math.min(...W) * 2.5, "broad brow tapering to a narrow chin");
+  const nose = env.relief.bumps.filter((b: any) => b.h > 0 && b.z > 38);
+  assert.equal(nose.length, 1, "one nose relief");
+  assert.ok(nose[0].h <= 0.4, "small moulded nose");
+  assert.ok(env.yaw_deg > 20, "face turned toward the figure's left with the head");
+});
+
+test("refinement round 11 (skater face only): one continuous face loft, hidden top under the helmet, shallow relief", () => {
   const F = molds.skater.parts.face;
-  for (const k of ["upper", "mid", "lower", "chin", "nose"]) assert.ok(F.ellipsoids[k], k);
-  assert.ok(F.negative_ellipsoids.mouth, "carved mouth line");
-  assert.ok(F.ellipsoids.nose.semi_axes[2] < 0.7, "small moulded nose");
-  assert.ok(F.ellipsoids.upper.semi_axes[1] > F.ellipsoids.chin.semi_axes[1] * 2.5, "broad brow tapering to a narrow chin");
-  assert.ok(F.ellipsoids.nose.rot_deg[2] > 20, "face turned toward the figure's left with the head");
+  assert.equal(Object.keys(F.ellipsoids ?? {}).length, 0, "no face ellipsoid lobes (nose/chin/cheeks)");
+  assert.equal(Object.keys(F.negative_ellipsoids ?? {}).length, 0, "no carved mouth ellipsoid");
+  assert.ok(F.capsules.neck_back, "visible neck unchanged");
+  const env = F.face_lofts.envelope;
+  assert.ok(env.profile.length >= 10, "closed side profile");
+  assert.ok(env.profile.filter((q: number[]) => (q[1] ?? 0) >= 42).length >= 2, "profile top hidden inside the helmet (no shelf, no gap)");
+  for (const b of env.relief.bumps) assert.ok(Math.abs(b.h) <= 0.4, `relief stays shallow (${b.h})`);
+  const front = env.profile.filter((q: number[]) => (q[0] ?? 0) > 3 && (q[1] ?? 0) > 36.5 && (q[1] ?? 0) < 39.5).map((q: number[]) => q[0] ?? 0);
+  assert.ok(Math.max(...front) - Math.min(...front) < 0.7, "front is one convex surface (no full-width mouth groove or chin lobe)");
+  const sk = rep.assets.skater_SWE, fi = rep.assets.skater_FIN;
+  assert.deepEqual([sk.height_mm, sk.blade_length_mm], [fi.height_mm, fi.blade_length_mm], "one shared mold for both kits");
 });
 
 test("refinement round 10 (skater upper cuff only): level opening, longer elbow tip, rim marks recorded", () => {
