@@ -234,3 +234,14 @@ test("refinement round 6 (skater): boxy helmet without side knobs, forward face,
   const sk = rep.assets.skater_SWE, fi = rep.assets.skater_FIN;
   assert.deepEqual([sk.height_mm, sk.blade_length_mm], [fi.height_mm, fi.blade_length_mm], "one shared mold");
 });
+
+test("refinement round 7 (skater): thin collar lying on the jersey, neck strip below the helmet, softened helmet", () => {
+  const P = molds.skater.parts;
+  const band = Object.entries(P.collar.ellipsoids).filter(([k]) => k.startsWith("band")).map(([, v]) => v as any);
+  assert.ok(band.length >= 40, "continuous band");
+  for (const e of band) assert.ok(e.semi_axes[2] <= 0.4, "thin band (flat across)");
+  const dome = P.helmet.mboxes.dome;
+  assert.ok(dome.round >= 2.6, "rounded helmet corners");
+  assert.ok(P.helmet.ellipsoids.crown, "crown fills the top transition");
+  assert.ok(P.face.capsules.neck_back, "neck shows between the collar and the helmet at the back");
+});

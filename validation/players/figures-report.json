@@ -11,7 +11,7 @@
   },
   "assets": {
     "skater_SWE": {
-      "height_mm": 51.32,
+      "height_mm": 51.62,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.2,
@@ -35,12 +35,12 @@
       "blade_height_mm": 3.24,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 89960,
+      "triangles": 90354,
       "decal_faces": 1369,
       "number_on_asset_decal": "21"
     },
     "skater_FIN": {
-      "height_mm": 51.32,
+      "height_mm": 51.62,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.2,
@@ -64,7 +64,7 @@
       "blade_height_mm": 3.24,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 89960,
+      "triangles": 90354,
       "decal_faces": 1369,
       "number_on_asset_decal": "4"
     },

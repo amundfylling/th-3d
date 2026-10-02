@@ -446,12 +446,63 @@ flat sleeve over the hand instead of a bowl, closer in front, elevated and Remot
   elbow corner and inner rim depth come from one profile view; its surface creases are not modelled.
 - Helmet width and the face's lower outline rest mainly on the near-orthographic front frame 13.25 s.
 
+## Refinement round 7 (2026-10-02): skater collar, neck and helmet
+
+User request: one narrow round on the shared skater mold - a thinner collar lying on the jersey (front V and
+shoulder contour), the strip of neck skin between collar and helmet in rear views, no raised arc from the
+back-left, and a softer helmet shell. Existing references only; same cameras and lighting as round 6; goalie,
+skater scale (k 1.0814), pose, mounting axis and stick geometry unchanged (checked: `goalie`, `stick`, `socket`
+and `runner` identical; only the skater `helmet`, `face` and `collar` parts changed).
+
+**Evidence.** Back view (video 7.25 s) through the frozen camera: photo helmet lower edge at z ~41.7, collar top
+~40.3 and bottom ~38.5; the round-6 model's helmet edge sat at ~40.6 with the collar touching it. The round-6
+collar was positioned against an ellipsoid estimate of the jersey, which lies up to ~0.7 units inside the real
+(blended metaball) jersey: parts of the band floated (the back-left arc) and parts were buried (gaps in front).
+
+**Changes (shared mold).**
+- Collar: thinner (0.34 vs 0.5-0.6 across) and narrower in front; its path is projected onto the actual jersey
+  mesh (closest point on the jersey triangles of the unchanged torso, plus a 0.14-0.26 lift), resampled evenly
+  and re-projected so no element jumps apart, and each flat element is oriented to the jersey normal there. It
+  runs wider over the shoulders (about 6 units each side of the neck) and down to the V on the chest.
+- Neck: the front neck capsule raised and slimmed (its lower front had reached down to z ~35, covering the V
+  straps); a short vertical neck column at the back fills the strip between collar and helmet; a shallow cut
+  lifts the helmet's lower back edge.
+- Helmet: corner radius 2.4 -> 2.8 and a crown ellipsoid that fills the top transition (no saddle between the
+  front box and the rounded back).
+
+**Comparisons (same cameras and lights).** `validation/players/closeups-before-after-neutral.png` (clay),
+`closeups-before-after.png` (materials), `full-figure-before-after.png` (photo framing), `remotion-before-after.png`
+(video framing).
+
+**Silhouette IoU, frozen cameras (supporting evidence).**
+
+| Set | round 6 | round 7 |
+| --- | --- | --- |
+| Skater, 8 fitted views | 0.8084 | 0.8072 |
+| Skater, 11 inspected | 0.7803 | 0.7765 |
+| Skater, 4 INDEPENDENT | 0.8050 | 0.7991 |
+
+All three sets regress slightly (largest: inspected 5.25 s and 9.25 s -0.010, independent 6.40 s and 8.80 s
+-0.008/-0.009). The rounder helmet gives up corner area that the boxy round-6 helmet filled. Skater height 51.32
+-> 51.62 mm at the frozen k: the crown fill raised the helmet top to ~47.7 mold units, 0.3 above the profile
+reading (47.4).
+
+**AI review (not the user's).** Improved against the reference contours: the collar reads as a thin band lying
+on the jersey with a V in front, the back-left arc is gone, neck skin shows between collar and helmet in the
+back and back-right views, and the helmet no longer has hard box corners from the elevated views. Still wrong:
+- The photographed back collar is a broader, more visible band; the new one is thin and partly hidden by the
+  jersey's curvature from the back.
+- The real helmet keeps flatter facets on top and sides (elevated 10.75 s) than the softened model; its top is
+  now ~0.3 units too high.
+- The front V is mostly hidden by the chin in the front views (as in the photos), so its exact depth is weakly
+  constrained.
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's
   "figure height approx. 57 mm" (datum unspecified) is 5.8 mm above the fitted skater height - not resolved.
 - **Goalie scale**: resolved by the user's measurement (54 mm, 2026-10-01); see above.
-- Remaining visible differences: see "Refinement round 6" (skater) and "Refinement round 5" (goalie) above. Socket bore, blade/wire thickness assumed
+- Remaining visible differences: see "Refinement round 7" and "Refinement round 6" (skater) and "Refinement round 5" (goalie) above. Socket bore, blade/wire thickness assumed
   (`assume.figure_mold_hidden_details`). Remotion metal sticks now reflect a procedural room
   environment (round 5).
 - Poses: six figures (E-LD, E-RD, E-C, E-LW, W-RD, W-G) stand at their overhead-fitted pivot and heading; the

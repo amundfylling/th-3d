@@ -40,6 +40,10 @@
   forward with a tapered jaw, rolled collar band lying on the jersey with a front V, flat upper gauntlet over the
   hand. Goalie unchanged; skater scale frozen (height 51.32 mm from the shape change). Clay, material,
   full-figure and Remotion before/after sheets; IoU and remaining mismatches in `docs/players.md`. AI review only.
+- **Figure refinement round 7 (user request, 2026-10-02, skater only):** thin collar band projected onto the
+  real jersey surface (front V, shoulders, no back-left arc), neck strip visible below the helmet at the back,
+  softened helmet corners and crown. Slight silhouette regressions reported in `docs/players.md`. Goalie and
+  skater scale unchanged. AI review only.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
