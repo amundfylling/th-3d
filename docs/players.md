@@ -552,6 +552,37 @@ to the neck on the left shoulder (no arc); crown height and elevated outline clo
   wider on the figure's left.
 - From the back-left the band shows a broad flat area on the shoulder where the photo shows mostly jersey.
 
+## Refinement round 9 (2026-10-02): skater face
+
+User request: the skater face looked very off; make it as similar as possible to the original (face only).
+
+**Evidence.** Face crops of the front (13.25, 14.50 s), profile (3.00, 4.50 s) and elevated (0.00, 1.50, 10.75 s)
+frames, with the model's skin outline drawn through the frozen cameras (`scripts/contour-overlay.py`). Profile
+landmarks on the midline (4.50 s): face front x ~15.1 from z 39.1 down to the nose (15.2, 38.4); below the nose the
+profile recedes to the chin front (13.95, 36.8) and chin underside (12.9, 35.6); the jaw line then runs almost
+level back to the neck (z ~34.5). In the elevated views the face is a wedge: broad under the helmet edge,
+tapering to a narrow chin, and turned toward the figure's left with the head pose.
+
+**Round-8 face (what was wrong).** A tall, flat rectangular block facing straight ahead, as wide at the chin as at
+the brow; a round knob for a chin; brow and nose as separate bumps. In the overlays its outline was too square
+and too far right in the front view, and it did not narrow toward the chin in the elevated views.
+
+**Round-9 face.** Five blended elements - a broad upper face under the helmet edge, a mid face, a narrow chin, a
+lower face/jaw that fills the level jaw line back to the neck, and a small nose - plus a carved mouth line. The
+whole face is turned 32 deg toward the figure's left about its own centre (matching the elevated and front views).
+Neck, helmet, collar and every other part unchanged; goalie unchanged; height unchanged (51.24 mm).
+
+**Comparisons.** `validation/players/contour-overlay-face.png` (skin edges before/after on six frames),
+`closeups-before-after-neutral.png` / `closeups-before-after.png` (clay / materials, same cameras and lights),
+`full-figure-before-after.png`, `remotion-before-after.png`. Silhouette IoU is essentially unchanged (fitted
+0.8078 -> 0.8078, inspected 0.7777 -> 0.7775, independent 0.7982 -> 0.7984): the face sits mostly inside the
+helmet/collar outline, so the edge overlays are the relevant evidence.
+
+**AI review (not the user's).** The skin outline now follows the photographed face in the front, front-right,
+profile and both elevated views (wedge shape, chin position). Still uncertain: the video frames are too blurred
+to trace the nose, mouth and brow, so their size and placement are inferred; the nose reads as a small knob in
+the close-ups. The real face is wider at the cheeks on the figure's right in the front frame.
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's

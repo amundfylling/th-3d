@@ -256,3 +256,12 @@ test("refinement round 8 (skater): broad thin collar footprint, level rear helme
   assert.ok(nb.b[2] <= 40.2, "back neck column stays below the helmet edge");
   assert.ok(Math.abs(rep.assets.skater_SWE.height_mm - 51.24) < 0.3, `helmet top near the profile reading (${rep.assets.skater_SWE.height_mm} mm)`);
 });
+
+test("refinement round 9 (skater face): tapered wedge face turned with the head, small nose and mouth line", () => {
+  const F = molds.skater.parts.face;
+  for (const k of ["upper", "mid", "lower", "chin", "nose"]) assert.ok(F.ellipsoids[k], k);
+  assert.ok(F.negative_ellipsoids.mouth, "carved mouth line");
+  assert.ok(F.ellipsoids.nose.semi_axes[2] < 0.7, "small moulded nose");
+  assert.ok(F.ellipsoids.upper.semi_axes[1] > F.ellipsoids.chin.semi_axes[1] * 2.5, "broad brow tapering to a narrow chin");
+  assert.ok(F.ellipsoids.nose.rot_deg[2] > 20, "face turned toward the figure's left with the head");
+});

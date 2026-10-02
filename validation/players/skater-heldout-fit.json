@@ -1,9 +1,9 @@
 {
   "kind": "skater",
-  "mean_iou": 0.7777,
+  "mean_iou": 0.7775,
   "views": {
     "skater-video-t01.50": {
-      "iou": 0.8295,
+      "iou": 0.8297,
       "camera": {
         "azimuth_deg": 16.01,
         "elevation_deg": 22.61,
@@ -24,7 +24,7 @@
       ]
     },
     "skater-video-t14.50": {
-      "iou": 0.76,
+      "iou": 0.7596,
       "camera": {
         "azimuth_deg": 22.57,
         "elevation_deg": -11.9,
@@ -45,7 +45,7 @@
       ]
     },
     "skater-video-t22.60": {
-      "iou": 0.7227,
+      "iou": 0.7225,
       "camera": {
         "azimuth_deg": 36.56,
         "elevation_deg": 37.43,
@@ -66,7 +66,7 @@
       ]
     },
     "skater-video-t02.25": {
-      "iou": 0.7735,
+      "iou": 0.773,
       "camera": {
         "azimuth_deg": -7.55,
         "elevation_deg": 23.87,
@@ -87,7 +87,7 @@
       ]
     },
     "skater-video-t05.25": {
-      "iou": 0.7983,
+      "iou": 0.7978,
       "camera": {
         "azimuth_deg": -134.79,
         "elevation_deg": 34.09,
@@ -108,7 +108,7 @@
       ]
     },
     "skater-video-t09.25": {
-      "iou": 0.7456,
+      "iou": 0.745,
       "camera": {
         "azimuth_deg": 95.14,
         "elevation_deg": 37.75,
@@ -129,7 +129,7 @@
       ]
     },
     "skater-video-t10.25": {
-      "iou": 0.7148,
+      "iou": 0.715,
       "camera": {
         "azimuth_deg": 41.34,
         "elevation_deg": 52.39,
@@ -150,7 +150,7 @@
       ]
     },
     "skater-video-t00.75": {
-      "iou": 0.8363,
+      "iou": 0.8367,
       "camera": {
         "azimuth_deg": 17.16,
         "elevation_deg": 25.05,
@@ -171,7 +171,7 @@
       ]
     },
     "skater-video-t03.75": {
-      "iou": 0.7662,
+      "iou": 0.7658,
       "camera": {
         "azimuth_deg": -81.32,
         "elevation_deg": 20.26,
@@ -192,7 +192,7 @@
       ]
     },
     "skater-video-t06.75": {
-      "iou": 0.8528,
+      "iou": 0.853,
       "camera": {
         "azimuth_deg": -156.1,
         "elevation_deg": 2.36,
@@ -213,7 +213,7 @@
       ]
     },
     "skater-video-t08.00": {
-      "iou": 0.7545,
+      "iou": 0.7546,
       "camera": {
         "azimuth_deg": 121.46,
         "elevation_deg": 10.2,

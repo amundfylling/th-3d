@@ -3,7 +3,7 @@
   "mean_iou": 0.8078,
   "views": {
     "skater-video-t00.00": {
-      "iou": 0.8459,
+      "iou": 0.846,
       "camera": {
         "azimuth_deg": 15.36,
         "elevation_deg": 26.77,
@@ -45,7 +45,7 @@
       ]
     },
     "skater-video-t04.50": {
-      "iou": 0.771,
+      "iou": 0.7712,
       "camera": {
         "azimuth_deg": -86.94,
         "elevation_deg": 15.44,
@@ -66,7 +66,7 @@
       ]
     },
     "skater-video-t06.00": {
-      "iou": 0.838,
+      "iou": 0.8409,
       "camera": {
         "azimuth_deg": -138.5,
         "elevation_deg": 24.76,
@@ -87,7 +87,7 @@
       ]
     },
     "skater-video-t07.25": {
-      "iou": 0.8706,
+      "iou": 0.8688,
       "camera": {
         "azimuth_deg": 201.64,
         "elevation_deg": 17.97,
@@ -108,7 +108,7 @@
       ]
     },
     "skater-video-t08.50": {
-      "iou": 0.7666,
+      "iou": 0.7677,
       "camera": {
         "azimuth_deg": 112.44,
         "elevation_deg": 36.59,
@@ -129,7 +129,7 @@
       ]
     },
     "skater-video-t10.75": {
-      "iou": 0.8481,
+      "iou": 0.8483,
       "camera": {
         "azimuth_deg": 24.61,
         "elevation_deg": 37.35,
@@ -150,7 +150,7 @@
       ]
     },
     "skater-video-t13.25": {
-      "iou": 0.8165,
+      "iou": 0.814,
       "camera": {
         "azimuth_deg": 7.0,
         "elevation_deg": -1.47,
