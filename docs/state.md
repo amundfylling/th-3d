@@ -70,6 +70,14 @@
   by 0.6-3.1 units in several frames): turned 28 deg about the neck axis, nose under the helmet front edge.
   Unresolved: left/right height disagreement and the right-side helmet edge (1.0-1.7 units high; no helmet
   change). AI review only. No animation.
+- **Figure refinement round 13 (user request, 2026-10-03, skater head):** root cause of the "weird face" in
+  rounds 9-12: the face was turned 28-38 deg under a helmet facing straight ahead, and was fitted through cameras
+  that shifted with the head. The helmet and face are now one rigid head (`skater.head_pose`: turned 20 deg left,
+  tipped 5 deg forward, no side tilt), with the face centred in a wider front opening. The upper torso and
+  collar are raised 1 unit. Cameras were refitted on the body only, then on the final figure. Evidence:
+  `data/head-pose-r13.json`. Unresolved: a ~1.5-unit left/right side-view disagreement, and a side tilt known only
+  to about +/-10 deg. Silhouette IoU 0.8191 / 0.8071 / 0.8054 (fitted / held-out / regression refs). Skater height 51.09 mm
+  (head tip; scale unchanged). Goalie unchanged. AI review only. No animation.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.

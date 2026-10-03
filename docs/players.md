@@ -820,6 +820,89 @@ blur, the figure standing on its base:
 
 A ruler in frame would also give the absolute scale.
 
+## Refinement round 13 (2026-10-03): skater head rebuilt as one rigid piece
+
+Request: implement the fixes from the root-cause investigation that followed round 12. Rebuild the head as one
+rigid piece, revisit where it sits on the shoulders and the shoulder height, then refit the cameras. Both kits
+share the mold; the goalie is unchanged.
+
+**Root cause (investigation after round 12).** From round 9 on, only the face was turned (28-38 deg); the helmet
+faced straight ahead and was frozen. A turned face under a straight helmet hangs off the helmet's front corner.
+Every face round compensated for this through cameras fitted to the whole figure, which shift whenever the head
+changes.
+
+**Method.**
+1. *Rigid head.* New `skater.head_pose` (`figure_molds.py`: `head_pose_matrix`, `apply_head_pose`). The helmet
+   and face parts, including the neck capsules, are built in the head's own frame. They are then turned as one
+   unit about the neck point (6.5, -1.7, 37.0): yaw about z, pitch about y, roll about x. The face is centred in
+   the helmet opening (face yaw 0 in the head frame).
+2. *Cameras that do not depend on the head.* Every camera was refitted with the head masked out of model and
+   photo (body-only cameras). Changes were small: mostly under 1 deg, at most 3.8 deg.
+3. *Head orientation.* The unturned round-12 helmet was rotated over a grid at the body-only cameras, with a free
+   image shift per view (absorbing the ~1-unit camera error at the head). The score is helmet IoU over 22 frames.
+   Evidence is in `data/head-pose-r13.json`.
+   - Turn: 0 deg 0.770, 10 deg 0.784, 20 deg 0.787, 30 deg 0.783, 40 deg 0.770.
+   - Best grid point: turn 20, forward tip 10, tilt 20. The tilt profile is flat within 0.01.
+
+   Chosen: **turn 20 deg left, forward tip 5 deg, tilt 0 deg.**
+   - A 10 deg forward tip hid the photographed face under the helmet's front edge in the elevated front views.
+   - Tilt: positive tilts (15-25 deg, suggested by the helmet/skin edge heights in the side frames) made the face
+     lean the wrong way in the sharp near-frontal frames (13.25, 14.50 s). There the photographed face leans
+     slightly the other way, and that frame's own preference was -5 deg. Helmet-registered face centroids in the
+     front views fell between 0 and 15 deg. 0 deg was chosen; the tilt is not resolved better than about
+     +/-10 deg.
+   - A joint fit without per-view shifts gave a 4-8 deg turn. Its helmet mask near the head also contains the
+     collar (IoU ~0.55), so I did not use it.
+4. *Helmet opening.* The front opening cut (`helmet.negative_ellipsoids.brow_arch`) is wider and shifted toward
+   the figure's left: the photographed edge rises toward the front and the left. This brought the edge in the
+   elevated front views to within ~0.2-0.6 units of the photos (was ~1-1.3).
+5. *Face inside the head.* Face centroids were compared after aligning each view on the helmet, in 11 frames, and
+   solved for one 3D offset. Result: the face moved about 1.0 back, 0.5 up and 0.4 toward the figure's left, and
+   was narrowed 8%.
+6. *Front neck capsule* shortened and thinned (b (8.8, -1.7, 39.6) r 1.95 -> (7.4, -1.7, 39.4) r 1.55, head
+   frame). The narrower face no longer covered it, and it showed as a round knob beside the chin in 13.25 s.
+7. *Shoulders.* The upper torso (traps, shoulders, upper-arm tops) and the collar band were raised 1.0 unit. The
+   photos show the shoulders and back higher under the head; whole-figure silhouette IoU improved slightly
+   (raising 2.0 made it worse).
+8. *Cameras refitted* on the final figure, starting from the body-only cameras. Mean silhouette IoU: fitted
+   0.8191, held-out 0.8071, regression refs 0.8054. Round 12 scored 0.8094 / 0.7785 / 0.7995, but its
+   held-out and regression cameras were frozen, so those are not like-for-like. Skater height 51.24 -> 51.09 mm
+   at the unchanged scale (the head's forward tip lowers the helmet top).
+
+**Remaining contradictions (not fitted away).**
+- *Left/right offset.* The right-side frames (3.75-4.50 s) see the face about 1.5 units lower than the model;
+  the left-side frames (8.50-9.25 s) see it about 1.4 units higher. A sideways shift of the face would explain
+  both, but the front views rule it out. These are probably camera errors in the turntable side frames (the
+  figure is held by a finger, so tilt in the hand is possible).
+- *Left-side frames* also individually prefer a smaller turn and more forward tip than the rest.
+- *Tilt* is not determined better than about +/-10 deg.
+- *Nose and mouth* relief is unchanged from round 12 and still an estimate.
+
+**Comparisons.** Round 12 assets and round 13 rendered at the final cameras, with lights and per-view exposure
+frozen:
+- `closeups-before-after-neutral.png` (clay) and `closeups-before-after.png` (materials): face window. The
+  window is fixed in the body frame at the round-12 face position, so the turned face sits toward its right edge
+  in 13.25 and 14.50 s.
+- `full-figure-before-after.png`.
+- `remotion-before-after.png`: both kits in the oblique still.
+- `face-helmet-overlay-r13.png`: helmet-registered outlines.
+
+**Visible result (AI review, not the user's).**
+- Improved:
+  - The face now sits centred in the helmet opening, turned with the helmet, in the front (13.25, 14.50 s) and
+    elevated front (0.00, 1.50, 10.75 s) views. Round 12's slab face hanging off the helmet's front corner is
+    gone.
+  - The elevated views show the face pointing down toward the puck under the helmet's front edge, as in the
+    photos.
+  - In the left views the face is more compact.
+- Still wrong:
+  - Left views (8.50, 8.80 s): the jaw still hangs lower than in the photo (see the left/right contradiction).
+  - Right profile (3.00, 4.50 s): the face sits slightly behind the helmet's front, and the nose step is weaker
+    than the photographed block nose.
+  - Front views: the face is somewhat narrower than the photographed one.
+  - Back view (7.25 s): the neck shows as two soft lumps instead of the photographed straight column.
+  - The helmet crown itself is still the round-8 rounded box. Even turned, its outline match stays at ~0.8.
+
 ## Limits and open items
 
 - **Absolute size is not measured.** It rests on the overhead at the ASSUMED preview scale. The catalog's
@@ -844,7 +927,6 @@ A ruler in frame would also give the absolute scale.
 2. Which jersey numbers do your Sweden and Finland figures carry, per position?
 3. Is the Finland kit white with the same blue parts (as in the official pictures), and is anything printed on
    the front or sleeves?
-4. Rounds 11-12: on the figure's right side the helmet's lower edge sits 1.0-1.7 units (mold) above the
-   photographed edge, but not on the left side. The likely cause is that the real helmet is turned with the face
-   (about 28 deg). May a later round turn the helmet with the face? That changes the crown orientation. The four
-   head photos listed under round 12 would settle it.
+4. Round 13 turned the whole head (helmet + face) ~20 deg; the side tilt is weakly determined (set to 0). Sharp head
+   photos (exact left and right side at head height, straight front, straight down from above) would pin the turn,
+   tilt and nose/mouth relief.

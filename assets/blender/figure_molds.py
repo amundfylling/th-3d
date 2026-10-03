@@ -547,7 +547,14 @@ def tag(ob, key: str):
 def build_skater(mold: dict | None = None):
     """Skater mold parts (see data/figure-molds.json 'skater')."""
     m = (mold or load_molds())["skater"]
-    parts = [o for n, p in m["parts"].items() for o in build_part("sk", n, p)]
+    head = m.get("head_pose")
+    parts = []
+    for n, p in m["parts"].items():
+        obs = build_part("sk", n, p)
+        if head and n in head["parts"]:
+            for o in obs:
+                apply_head_pose(o, head)
+        parts += obs
     parts.append(tag(socket("sk_socket", m["socket"]), BLUE))
     r = m["runner"]
     parts.append(tag(blade("sk_runner", r["a"], r["b"], r["height"], r["thickness"]), METAL))
@@ -555,6 +562,26 @@ def build_skater(mold: dict | None = None):
     parts.append(tag(tube("sk_shaft", s["shaft"], s["shaft_r"]), METAL))
     parts.append(tag(blade("sk_blade", s["blade"][0], s["blade"][1], s["blade_h"], s["blade_t"], z0=0.0), METAL))
     return parts
+
+
+def head_pose_matrix(head: dict) -> Matrix:
+    """Round 13: the helmet and face are one rigid moulded head. `head_pose` turns it as a unit about `pivot`
+    (mold units): yaw about z (+ = toward the figure's left), pitch about y (+ = front down), roll about x, then
+    `offset`. Returns the 4x4 transform in metres (the units of the built objects)."""
+    P = Vector([sb.m(c) for c in head["pivot"]])
+    t = Vector([sb.m(c) for c in head.get("offset", (0.0, 0.0, 0.0))])
+    R = (Matrix.Rotation(math.radians(head.get("yaw_deg", 0.0)), 4, "Z")
+         @ Matrix.Rotation(math.radians(head.get("pitch_deg", 0.0)), 4, "Y")
+         @ Matrix.Rotation(math.radians(head.get("roll_deg", 0.0)), 4, "X"))
+    return Matrix.Translation(P + t) @ R @ Matrix.Translation(-P)
+
+
+def apply_head_pose(ob, head: dict):
+    """Bake the rigid head transform into one built object's vertices."""
+    M = head_pose_matrix(head)
+    ob.data.transform(M @ ob.matrix_world)
+    ob.matrix_world = Matrix.Identity(4)
+    ob.data.update()
 
 
 def build_goalie(mold: dict | None = None):

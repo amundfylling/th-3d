@@ -11,11 +11,11 @@
   },
   "assets": {
     "skater_SWE": {
-      "height_mm": 51.24,
+      "height_mm": 51.09,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.2,
-        15.9
+        16.4
       ],
       "footprint_y_mm": [
         -19.9,
@@ -35,16 +35,16 @@
       "blade_height_mm": 3.24,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 110894,
-      "decal_faces": 1369,
+      "triangles": 111740,
+      "decal_faces": 1330,
       "number_on_asset_decal": "21"
     },
     "skater_FIN": {
-      "height_mm": 51.24,
+      "height_mm": 51.09,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
         -16.2,
-        15.9
+        16.4
       ],
       "footprint_y_mm": [
         -19.9,
@@ -64,8 +64,8 @@
       "blade_height_mm": 3.24,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 110894,
-      "decal_faces": 1369,
+      "triangles": 111740,
+      "decal_faces": 1330,
       "number_on_asset_decal": "4"
     },
     "goalie_SWE": {

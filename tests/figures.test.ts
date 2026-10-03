@@ -264,7 +264,8 @@ test("refinement round 9 (skater face), carried into round 12: taper, small nose
   const W = env.levels.map((q: any) => q.half_width);
   assert.ok(Math.max(...W) > Math.min(...W) * 2.5, "broad under the helmet, tapering to a narrow chin");
   assert.ok(env.relief.nose.h <= 0.5, "small moulded nose");
-  assert.ok(env.yaw_deg > 20, "face turned toward the figure's left with the head");
+  // round 13: the face is turned WITH the head (rigid head_pose), not under a straight helmet
+  assert.ok(molds.skater.head_pose.yaw_deg + env.yaw_deg > 10, "face turned toward the figure's left with the head");
 });
 
 test("refinement round 11/12 (skater face only): one face surface, no lobes, shallow central relief", () => {
@@ -298,8 +299,24 @@ test("refinement round 12 (skater face only): horizontal cross-sections, depth f
   assert.ok(env.relief.nose.h <= 0.5 && env.relief.mouth.h <= 0.2, "restrained relief");
   assert.equal(env.jaw_slope, undefined, "no sheared jaw (it folded the cheek into a diagonal seam)");
   assert.ok(F.face_blend && F.face_blend.radius > 0, "face and neck blended into one skin surface");
-  // placement measured in the frozen helmet's frame: yaw about the neck axis
-  assert.ok(env.yaw_deg >= 20 && env.yaw_deg <= 36, `yaw ${env.yaw_deg}`);
-  assert.deepEqual(env.pivot, [7.0, -1.7], "turn about the neck axis");
-  assert.equal(molds.skater.parts.helmet.mboxes.edge_r, undefined, "helmet unchanged (edge extension tested and rejected)");
+  assert.equal(molds.skater.parts.helmet.mboxes.edge_r, undefined, "no strap-like helmet edge extension (tested and rejected in round 12)");
+});
+
+test("refinement round 13 (skater head): helmet and face are one rigid head, turned as a unit; face centred in the opening", () => {
+  const sk = molds.skater;
+  const hp = sk.head_pose;
+  assert.deepEqual([...hp.parts].sort(), ["face", "helmet"], "helmet and face (with the neck capsules) posed together");
+  // helmet-only orientation search at body-only cameras: best turn ~20 deg left, tipped forward; tilt weakly determined
+  assert.ok(hp.yaw_deg >= 15 && hp.yaw_deg <= 25, `head turn ${hp.yaw_deg}`);
+  assert.ok(hp.pitch_deg >= 0 && hp.pitch_deg <= 10, `head forward tip ${hp.pitch_deg}`);
+  assert.ok(Math.abs(hp.roll_deg) <= 10, `head side tilt ${hp.roll_deg} (weakly determined; positive tilts made the face lean the wrong way in 13.25 s)`);
+  const env = sk.parts.face.face_sections.envelope;
+  assert.ok(Math.abs(env.yaw_deg) < 5, "face not turned relative to the helmet (round 12's 28 deg face under a straight helmet was the root cause)");
+  assert.ok(Math.abs(env.pivot[1] + 1.7) < 0.5, "face centreline on the helmet's centreline");
+  assert.ok(sk.parts.helmet.negative_ellipsoids.brow_arch.semi_axes[1] >= 3, "wider front opening (photographed edge rises toward the front)");
+  assert.ok(sk.parts.torso.ellipsoids.traps.centre[2] > 36.5, "upper torso raised under the head");
+  const neck = sk.parts.face.capsules.neck;
+  assert.ok(neck.radius <= 1.6 && neck.b[0] <= 7.5, "front neck capsule stays inside the narrower face (no knob beside the chin)");
+  const s = rep.assets.skater_SWE, f = rep.assets.skater_FIN;
+  assert.deepEqual([s.height_mm, s.blade_length_mm], [f.height_mm, f.blade_length_mm], "one shared mold for both kits");
 });

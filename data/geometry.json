@@ -37788,7 +37788,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -37797,7 +37797,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -38052,7 +38052,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -38067,7 +38067,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38076,7 +38076,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -38331,7 +38331,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -38346,7 +38346,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38355,7 +38355,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -38610,7 +38610,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -38625,7 +38625,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38634,7 +38634,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -38889,7 +38889,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -38904,7 +38904,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -38913,7 +38913,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -39168,7 +39168,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -39576,7 +39576,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -39585,7 +39585,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -39840,7 +39840,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -39855,7 +39855,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -39864,7 +39864,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -40119,7 +40119,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -40134,7 +40134,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40143,7 +40143,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -40398,7 +40398,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -40413,7 +40413,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40422,7 +40422,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -40677,7 +40677,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",
@@ -40692,7 +40692,7 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.24,
+        "value": 51.09,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
@@ -40701,7 +40701,7 @@
           "stiga_se_fi_overhead",
           "user_statement_2026_09_30_players"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.8 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -40956,7 +40956,7 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8094 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
         },
         {
           "item": "absolute scale",

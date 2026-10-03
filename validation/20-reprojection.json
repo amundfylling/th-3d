@@ -65,8 +65,8 @@
     "E-LW": {
       "n": 168,
       "onDark": 0.97,
-      "meanOffsetPx": 0.508,
-      "maxOffsetPx": 1.25
+      "meanOffsetPx": 0.525,
+      "maxOffsetPx": 2.75
     },
     "E-RW": {
       "n": 154,
