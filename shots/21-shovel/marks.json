@@ -1,0 +1,86 @@
+{
+  "description": "Iteration 21 hand-read image marks for the '#17 Shovel' recording (references/shots/shovel-17-screen-recording.mov). Pixel coordinates are in the decoded, display-rotated recording frame (2556 x 1180 px, u right, v down). Only segment 1 (full speed, camera 'seg1') is calibrated. Every mark was read on a gridded crop of the named recording frame; uncertainty_px is the reading uncertainty (blur, occlusion), not a model error. Status of every mark: traced.",
+  "status": "traced",
+  "read_by": "AI (iteration 21, 2026-10-04), not reviewed by the user",
+  "camera_correspondences": {
+    "note": "Ice-plane points identifiable in both the canonical geometry (world mm, z = 0) and segment-1 recording frame 167 (2.780 s, no motion). World positions come from the reference overhead landmarks through map.overhead.preview (assumed similarity) or from red faceoff-dot centroids measured in the reference overhead (overhead_px). The recorded table is a different STIGA edition (sponsor artwork differs); identical line/slot layout is an assumption checked only by the fit residuals.",
+    "frame": 167,
+    "points": [
+      {"id": "lm.board.goal_line.E.bottom", "landmark_id": "lm.board.goal_line.E.bottom", "frame_px": [2245.0, 374.0], "uncertainty_px": 6, "how": "end of the thin red E goal line at the -y board base (saturation mask, line fit)"},
+      {"id": "lm.board.blue_line.E.bottom", "landmark_id": "lm.board.blue_line.E.bottom", "frame_px": [2230.0, 698.3], "uncertainty_px": 6, "how": "end of the E blue line at the -y board base"},
+      {"id": "lm.board.centre_line.bottom", "landmark_id": "lm.board.centre_line.bottom", "frame_px": [2216.0, 955.4], "uncertainty_px": 6, "how": "end of the centre red line at the -y board base"},
+      {"id": "faceoff_spot.E.neg_y", "overhead_px": [3208.1, 3573.2], "frame_px": [1663.6, 709.9], "uncertainty_px": 3, "how": "red blob centroid in both images"},
+      {"id": "faceoff_spot.W.neg_y", "overhead_px": [2421.2, 3569.4], "frame_px": [1465.9, 1120.9], "uncertainty_px": 3, "how": "red blob centroid in both images"},
+      {"id": "faceoff_spot.E.pos_y", "overhead_px": [3202.2, 2016.1], "frame_px": [273.1, 544.3], "uncertainty_px": 4, "how": "red blob centroid in both images (partly cut by the frame edge)"},
+      {"id": "lm.slot.E-RD.overhead.end", "landmark_id": "lm.slot.E-RD.overhead.end", "frame_px": [956.0, 262.0], "uncertainty_px": 6, "how": "centre of the rounded slot end"},
+      {"id": "lm.slot.E-LD.overhead.end", "landmark_id": "lm.slot.E-LD.overhead.end", "frame_px": [1737.0, 233.0], "uncertainty_px": 6, "how": "centre of the rounded slot end"},
+      {"id": "lm.slot.W-C.overhead.start", "landmark_id": "lm.slot.W-C.overhead.start", "frame_px": [777.0, 961.0], "uncertainty_px": 8, "how": "centre of the rounded slot end (near end, partly under the W-C stick)"}
+    ],
+    "rejected": [
+      {"frame_px": [503.0, 644.0], "first_assumed": "lm.slot.W-LW.overhead.start", "reason": "misidentified: this is the W-LD slot end (W-LW starts off-frame); its W-LD overhead landmark is an observed end under the figure, not the slot end, so it was not used"}
+    ]
+  },
+  "figure_marks": {
+    "note": "Image y (frame px) of the bottom of the figure's skates; the fixture point is taken where the projected slot centreline has the same image y (both slots run mostly along image y). x is given for orientation only. Blurred frames give the centre of the motion smear and a larger uncertainty.",
+    "W-C": [
+      {"frame": 30, "skate_px": [1020, 567], "uncertainty_px": 20, "state": "sharp"},
+      {"frame": 47, "skate_px": [790, 958], "uncertainty_px": 25, "state": "motion blur"},
+      {"frame": 68, "skate_px": [1030, 558], "uncertainty_px": 15, "state": "sharp"},
+      {"frame": 78, "skate_px": [990, 683], "uncertainty_px": 60, "state": "motion blur, moving down the slot"},
+      {"frame": 95, "skate_px": [800, 965], "uncertainty_px": 20, "state": "sharp"},
+      {"frame": 104, "skate_px": [800, 965], "uncertainty_px": 20, "state": "slight blur"},
+      {"frame": 107, "skate_px": [810, 960], "uncertainty_px": 20, "state": "sharp"},
+      {"frame": 109, "skate_px": [800, 960], "uncertainty_px": 25, "state": "motion blur (starting to move)"},
+      {"frame": 111, "skate_px": [930, 667], "uncertainty_px": 120, "state": "heavy motion blur: smear spans v 383-800, moving up the slot"},
+      {"frame": 114, "skate_px": [1080, 450], "uncertainty_px": 40, "state": "motion blur, at the crease"},
+      {"frame": 116, "skate_px": [1110, 423], "uncertainty_px": 20, "state": "sharp, at the top end of its slot beside the goalie"},
+      {"frame": 119, "skate_px": [1095, 490], "uncertainty_px": 60, "state": "motion blur, moving back"},
+      {"frame": 121, "skate_px": [1030, 557], "uncertainty_px": 50, "state": "motion blur, moving back"},
+      {"frame": 126, "skate_px": [910, 757], "uncertainty_px": 60, "state": "motion blur, moving back"},
+      {"frame": 131, "skate_px": [820, 923], "uncertainty_px": 30, "state": "slight blur"},
+      {"frame": 167, "skate_px": [830, 957], "uncertainty_px": 15, "state": "sharp, at rest"}
+    ],
+    "W-RW": [
+      {"frame": 30, "skate_px": [2035, 400], "uncertainty_px": 15, "state": "sharp, puck at the blade"},
+      {"frame": 44, "skate_px": [1830, 1060], "uncertainty_px": 60, "state": "motion blur, moving toward the camera (centre ice)"},
+      {"frame": 68, "skate_px": [2025, 440], "uncertainty_px": 15, "state": "sharp, puck at the blade"},
+      {"frame": 85, "skate_px": [1810, 1100], "uncertainty_px": 30, "state": "motion blur"},
+      {"frame": 104, "skate_px": [1810, 1100], "uncertainty_px": 40, "state": "heavy blur: rotating (pass)"},
+      {"frame": 107, "skate_px": [1830, 1120], "uncertainty_px": 25, "state": "motion blur, after release"},
+      {"frame": 131, "skate_px": [1840, 1130], "uncertainty_px": 15, "state": "sharp, back to the camera"},
+      {"frame": 167, "skate_px": [1840, 1130], "uncertainty_px": 15, "state": "sharp, at rest"}
+    ]
+  },
+  "puck_marks": {
+    "note": "Centre of the visible puck blob (top face + side) or of the motion smear. Not the ice-contact centre: the blob centre is about half a puck thickness above the ice (thickness unknown), which biases the mapped world point toward the camera by a few mm. null = not visible.",
+    "marks": [
+      {"frame": 30, "px": [2090, 425], "uncertainty_px": 8, "state": "sharp, at the W-RW blade", "blob_size_px": [120, 78]},
+      {"frame": 37, "px": [2070, 550], "uncertainty_px": 25, "state": "motion smear, moving toward the camera", "blob_size_px": [140, 68]},
+      {"frame": 44, "px": [2040, 1000], "uncertainty_px": 40, "state": "smear, partly behind W-RW"},
+      {"frame": 51, "px": [1995, 1000], "uncertainty_px": 35, "state": "smear, partly behind W-RW"},
+      {"frame": 61, "px": [2087, 573], "uncertainty_px": 20, "state": "smear, moving away from the camera", "blob_size_px": [140, 64]},
+      {"frame": 68, "px": [2100, 465], "uncertainty_px": 8, "state": "sharp, at the W-RW blade", "blob_size_px": [122, 76]},
+      {"frame": 78, "px": [2075, 602], "uncertainty_px": 25, "state": "smear, moving toward the camera"},
+      {"frame": 85, "px": [1970, 1022], "uncertainty_px": 30, "state": "partly behind W-RW legs"},
+      {"frame": 95, "px": [1930, 1050], "uncertainty_px": 40, "state": "mostly behind W-RW"},
+      {"frame": 102, "px": [1910, 997], "uncertainty_px": 35, "state": "partly behind W-RW"},
+      {"frame": 104, "px": null, "uncertainty_px": null, "state": "not visible: hidden by the blurred, rotating W-RW"},
+      {"frame": 107, "px": [1462, 937], "uncertainty_px": 30, "state": "motion streak about 236 px long, moving toward W-C (pass in flight)"},
+      {"frame": 109, "px": [1130, 845], "uncertainty_px": 40, "state": "smear arriving at the W-C blade (contact interval)"},
+      {"frame": 111, "px": null, "uncertainty_px": null, "state": "not visible: carried behind the blurred W-C"},
+      {"frame": 114, "px": null, "uncertainty_px": null, "state": "not visible: W-C at the crease; puck behind figure or goalie"},
+      {"frame": 116, "px": null, "uncertainty_px": null, "state": "not visible from this camera (goal interior hidden by goalie and frame)"},
+      {"frame": 167, "px": null, "uncertainty_px": null, "state": "not on the visible ice: inside goal.E (confirmed by the replay)"}
+    ]
+  },
+  "replay_marks": {
+    "note": "Segment 2 (slow-motion replay of the same shot from behind goal.E). Not calibrated; used only for event order and goal confirmation.",
+    "marks": [
+      {"frame": 186, "event": "replay starts (hard cut), puck at the W-RW blade at the far -y side"},
+      {"frame": 258, "event": "puck arrives at the W-C blade (reception); range 256-263"},
+      {"frame": 277, "event": "W-C carrying the puck toward the goal mouth at the blade; range 270-280"},
+      {"frame": 282, "event": "puck smear crosses into the goal at the goalie's left (camera right) post side; range 280-285"},
+      {"frame": 289, "event": "puck inside the net behind the goal line; visible through the netting until the end"}
+    ]
+  }
+}

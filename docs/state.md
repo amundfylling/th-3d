@@ -78,6 +78,13 @@
   `data/head-pose-r13.json`. Unresolved: a ~1.5-unit left/right side-view disagreement, and a side tilt known only
   to about +/-10 deg. Silhouette IoU 0.8191 / 0.8071 / 0.8054 (fitted / held-out / regression refs). Skater height 51.09 mm
   (head tip; scale unchanged). Goalie unchanged. AI review only. No animation.
+- **Iteration 21 (2026-10-04): observations from one real shot.** Recording "#17 Shovel" (user upload; screen
+  recording of a third-party video, full speed then replay; different STIGA table edition and pack). Content
+  24.9 fps; segment-1 homography RMS 6.1 px (leave-one-out 13.5 px). Shooter W-C (shovel from the near slot end),
+  passer W-RW; events stored as intervals (pass 1.25-1.33 s, reception 1.33-1.40 s, goal entry 1.40-1.53 s, seen in
+  the replay only). Record `shots/21-shovel/observations.json`, contact sheet `validation/21-contact-sheet.png`,
+  notes `docs/shot21.md`. AI observation, not user-reviewed. No motion fitting or animation. **Next: iteration 22
+  (constrained trace) after the user reviews these observations.**
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
@@ -85,7 +92,7 @@
 ## Batch run result (docs/autonomous-run.md)
 
 **Batch 06-20 finished 2026-09-30: all iterations completed with recorded verification. Stopped after 20 as instructed.**
-No motion reconstruction or animated shots were started. **Next: iteration 21 requires the user's review feedback and a real shot recording.**
+No motion reconstruction or animated shots were started. **Iteration 21 done (see above); next: iteration 22 after the user reviews the observations.**
 
 Iteration 20 closed without repair cycles:
 - [x] Intake recorded: nothing supplied; checks re-run (84/84 tests, validate).

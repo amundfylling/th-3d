@@ -10,7 +10,7 @@ There are no animated shots before iteration 23.
 ## Active batch
 
 The autonomous batch 06-20 (`docs/autonomous-run.md`) is COMPLETE. Rule 1 ("stop after each
-iteration") applies again. Iteration 21 needs the user's review feedback and a real shot recording.
+iteration") applies again. Iteration 21 is done (docs/shot21.md); iteration 22 needs the user's review of those observations.
 
 ## Key files
 

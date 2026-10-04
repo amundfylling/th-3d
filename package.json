@@ -40,7 +40,8 @@
     "remotion:assets": "mkdir -p public && cp assets/scene/full_static_appearance.glb public/",
     "remotion:studio": "npm run remotion:assets && remotion studio remotion/index.ts",
     "remotion:stills": "npm run remotion:assets && for c in oblique overhead side checks; do remotion still remotion/index.ts static-$c out/19-$c.png --frame=0 --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell --gl=swangle; done",
-    "review:20": "node scripts/review-reprojection.ts && python3 scripts/review-sheet.py"
+    "review:20": "node scripts/review-reprojection.ts && python3 scripts/review-sheet.py",
+    "shot:21": "/root/venvs/blender/bin/python scripts/shot21-observe.py"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

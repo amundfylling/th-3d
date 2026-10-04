@@ -605,6 +605,24 @@
       "limitations": [
         "Annotation of measurement endpoints only; values are the user's ruler readings in the chat message (54 mm, 26 mm, 5.5 mm), stated without uncertainty."
       ]
+    },
+    {
+      "id": "user_shot_recording_shovel_17",
+      "title": "Screen recording of a third-party table hockey video '#17 SHOVEL' (full speed, then replay of the same shot)",
+      "provenance": "user_upload",
+      "local_path": "references/shots/shovel-17-screen-recording.mov",
+      "sha256": "65eca3cd30a39eb7a90f559936fbb0ffffdad64f5a22165eca4734928e557886",
+      "bytes": 20051809,
+      "format": "mov (HEVC, iOS ReplayKit screen recording)",
+      "native_width_px": 2556,
+      "native_height_px": 1180,
+      "uploaded": "chat attachment, 2026-10-04",
+      "view": "Segment 1: oblique view from behind the W attack toward goal.E at full speed; segment 2: slow-motion replay from behind goal.E.",
+      "limitations": [
+        "Screen recording of someone else's video (watermark 'Brent Plast Bordhockey'): recompressed, content ~25 fps inside a ~60 fps container.",
+        "Different STIGA table edition and figure pack than the user's (sponsor artwork, numbers).",
+        "Heavy motion blur at the contacts; the source camera's capture rate is unknown."
+      ]
     }
   ],
   "not_obtained": [
