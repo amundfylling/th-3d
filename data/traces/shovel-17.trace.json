@@ -1,0 +1,3333 @@
+{
+ "schema": "shot-trace/1",
+ "trace_id": "trace.shovel-17.v1",
+ "status": "proposed",
+ "review": "not reviewed: contacts and the carry rule await the user's review (iteration 22); not accepted",
+ "geometry_version": "0.6.0",
+ "asset_refs": {
+  "figure_molds_sha256": "c189758e98559f61ad8a46315394eebd2fb137ab4eb662ac827d2e318de61c68",
+  "skater_glb_sha256": "c3be1369dc4bc21c9fd00030a1e32bf7ce99a07dddd180206c7423ddf28627e1",
+  "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
+  "skater_scale_k": 1.0814,
+  "goalie_scale_k": 1.1421889791935147,
+  "git_commit": "e7a8faafb8ea41bfe98421ae705835cf7324dbfc"
+ },
+ "source": {
+  "observations": "shots/21-shovel/observations.json",
+  "inputs": "shots/22-shovel/inputs.json",
+  "recording": "references/shots/shovel-17-screen-recording.mov",
+  "recording_sha256": "65eca3cd30a39eb7a90f559936fbb0ffffdad64f5a22165eca4734928e557886"
+ },
+ "time_base": {
+  "t": "source time in seconds = presentation time in the recording",
+  "shot_time_offset_s": 0.45,
+  "note": "shot time = t - offset (iteration-21 tables); segment 1 treated as real time (user: full speed); content 24.9 fps, timestamps +/- 0.017 s",
+  "window_s": [
+   0.5,
+   2.18
+  ]
+ },
+ "interpolation": {
+  "arc_mm": "Fritsch-Carlson monotone cubic Hermite through arc_keyframes (held outside)",
+  "theta_deg": "linear between theta_keyframes (held outside)",
+  "puck": "linear between puck.nodes (held outside)",
+  "implementation": "src/model/trace.ts evaluateTrace (mirrors this script)"
+ },
+ "pose_convention": "docs/pose.md: pivot on the slot centreline at arc_mm; heading = team home (W 0, E 180 deg) + theta_deg; assume.fixture_axis_on_slot_centreline",
+ "figures": {
+  "W-C": {
+   "player_id": "W-C",
+   "team": "W",
+   "fixture_path_id": "path.W-C",
+   "slot_length_mm": 250.3,
+   "status": "moving: shooter",
+   "arc_keyframes": [
+    {
+     "t": 0.5,
+     "arc_mm": 159.3,
+     "sigma_mm": 10.9,
+     "source": "obs21 frame 30 (sharp)"
+    },
+    {
+     "t": 0.7833,
+     "arc_mm": 1.2,
+     "sigma_mm": 7.6,
+     "source": "obs21 frame 47 (motion blur)"
+    },
+    {
+     "t": 1.1317,
+     "arc_mm": 164.2,
+     "sigma_mm": 8.2,
+     "source": "obs21 frame 68 (sharp)"
+    },
+    {
+     "t": 1.2983,
+     "arc_mm": 102.2,
+     "sigma_mm": 26.9,
+     "source": "obs21 frame 78 (motion blur, moving down the slot)"
+    },
+    {
+     "t": 1.5817,
+     "arc_mm": 0.0,
+     "sigma_mm": null,
+     "source": "obs21 frame 95 (sharp)"
+    },
+    {
+     "t": 1.7317,
+     "arc_mm": 0.0,
+     "sigma_mm": null,
+     "source": "obs21 frame 104 (slight blur)"
+    },
+    {
+     "t": 1.7817,
+     "arc_mm": 0.6,
+     "sigma_mm": 6.1,
+     "source": "obs21 frame 107 (sharp)"
+    },
+    {
+     "t": 1.8127,
+     "arc_mm": 0.6,
+     "sigma_mm": null,
+     "source": "run onset (solved; frame 109 'starting to move')"
+    },
+    {
+     "t": 1.8967,
+     "arc_mm": 248.4,
+     "sigma_mm": null,
+     "source": "arrival at the slot top end (solved; frame-111 streak reaches it)"
+    },
+    {
+     "t": 1.9317,
+     "arc_mm": 248.4,
+     "sigma_mm": 14.1,
+     "source": "obs21 frame 116 (sharp, at the top end of its slot beside the goalie)"
+    },
+    {
+     "t": 1.98,
+     "arc_mm": 204.0,
+     "sigma_mm": 37.3,
+     "source": "obs21 frame 119 (motion blur, moving back)"
+    },
+    {
+     "t": 2.0133,
+     "arc_mm": 164.8,
+     "sigma_mm": 27.5,
+     "source": "obs21 frame 121 (motion blur, moving back)"
+    },
+    {
+     "t": 2.0967,
+     "arc_mm": 71.0,
+     "sigma_mm": 24.0,
+     "source": "obs21 frame 126 (motion blur, moving back)"
+    },
+    {
+     "t": 2.18,
+     "arc_mm": 12.0,
+     "sigma_mm": 9.5,
+     "source": "obs21 frame 131 (slight blur)"
+    },
+    {
+     "t": 2.78,
+     "arc_mm": 1.5,
+     "sigma_mm": 4.6,
+     "source": "obs21 frame 167 (sharp, at rest)"
+    }
+   ],
+   "theta_keyframes": [
+    {
+     "t": 1.7317,
+     "theta_deg": -197.56,
+     "sigma_deg": 4.0,
+     "source": "blade frame 104"
+    },
+    {
+     "t": 1.7817,
+     "theta_deg": -197.29,
+     "sigma_deg": 4.0,
+     "source": "blade frame 107"
+    },
+    {
+     "t": 2.78,
+     "theta_deg": -162.9,
+     "sigma_deg": 4.0,
+     "source": "blade frame 167"
+    }
+   ]
+  },
+  "W-RW": {
+   "player_id": "W-RW",
+   "team": "W",
+   "fixture_path_id": "path.W-RW",
+   "slot_length_mm": 453.54,
+   "status": "moving: passer",
+   "arc_keyframes": [
+    {
+     "t": 0.5,
+     "arc_mm": 327.8,
+     "sigma_mm": 11.3,
+     "source": "obs21 frame 30 (sharp, puck at the blade)"
+    },
+    {
+     "t": 0.7333,
+     "arc_mm": 29.4,
+     "sigma_mm": 16.2,
+     "source": "obs21 frame 44 (motion blur, moving toward the camera (centre ice))"
+    },
+    {
+     "t": 1.1317,
+     "arc_mm": 298.7,
+     "sigma_mm": 10.4,
+     "source": "obs21 frame 68 (sharp, puck at the blade)"
+    },
+    {
+     "t": 1.415,
+     "arc_mm": 18.9,
+     "sigma_mm": 7.7,
+     "source": "obs21 frame 85 (motion blur)"
+    },
+    {
+     "t": 1.7317,
+     "arc_mm": 18.9,
+     "sigma_mm": 10.3,
+     "source": "obs21 frame 104 (heavy blur: rotating (pass))"
+    },
+    {
+     "t": 1.7817,
+     "arc_mm": 13.9,
+     "sigma_mm": 6.3,
+     "source": "obs21 frame 107 (motion blur, after release)"
+    },
+    {
+     "t": 2.18,
+     "arc_mm": 11.4,
+     "sigma_mm": 3.7,
+     "source": "obs21 frame 131 (sharp, back to the camera)"
+    },
+    {
+     "t": 2.78,
+     "arc_mm": 11.4,
+     "sigma_mm": 3.7,
+     "source": "obs21 frame 167 (sharp, at rest)"
+    }
+   ],
+   "theta_keyframes": [
+    {
+     "t": 1.6983,
+     "theta_deg": -171.54,
+     "sigma_deg": 5.0,
+     "source": "blade frame 102 (facing the camera, puck behind the figure)"
+    },
+    {
+     "t": 1.7463,
+     "theta_deg": -104.62,
+     "sigma_deg": 15.0,
+     "source": "inferred: backhand face normal along the pass direction at release (contact rule, not observed)"
+    },
+    {
+     "t": 1.7817,
+     "theta_deg": 8.63,
+     "sigma_deg": 30.0,
+     "source": "visual: back to the camera in frame 107 (motion blur)"
+    },
+    {
+     "t": 2.78,
+     "theta_deg": 8.63,
+     "sigma_deg": 3.0,
+     "source": "blade frame 167 (and 131: identical)"
+    }
+   ]
+  },
+  "E-G": {
+   "player_id": "E-G",
+   "team": "E",
+   "fixture_path_id": "path.E-G",
+   "slot_length_mm": 82.8,
+   "status": "static (observed frame 167)",
+   "arc_keyframes": [
+    {
+     "t": 0.0,
+     "arc_mm": 45.8,
+     "sigma_mm": null,
+     "source": "feet frame 167"
+    }
+   ],
+   "theta_keyframes": [
+    {
+     "t": 0.0,
+     "theta_deg": 33.33,
+     "sigma_deg": 15.0,
+     "source": "paddle direction, frame 167 (position from the feet)"
+    }
+   ]
+  },
+  "E-RD": {
+   "player_id": "E-RD",
+   "team": "E",
+   "fixture_path_id": "path.E-RD",
+   "slot_length_mm": 238.96,
+   "status": "static (observed frame 167)",
+   "arc_keyframes": [
+    {
+     "t": 0.0,
+     "arc_mm": 2.8,
+     "sigma_mm": null,
+     "source": "feet frame 167"
+    }
+   ],
+   "theta_keyframes": [
+    {
+     "t": 0.0,
+     "theta_deg": 0.0,
+     "sigma_deg": null,
+     "source": "not measured: team home heading (assumed)"
+    }
+   ]
+  },
+  "E-LD": {
+   "player_id": "E-LD",
+   "team": "E",
+   "fixture_path_id": "path.E-LD",
+   "slot_length_mm": 436.06,
+   "status": "static (observed frame 167)",
+   "arc_keyframes": [
+    {
+     "t": 0.0,
+     "arc_mm": 93.4,
+     "sigma_mm": null,
+     "source": "feet frame 167"
+    }
+   ],
+   "theta_keyframes": [
+    {
+     "t": 0.0,
+     "theta_deg": 0.0,
+     "sigma_deg": null,
+     "source": "not measured: team home heading (assumed)"
+    }
+   ]
+  },
+  "others": "not observed in segment 1 (out of frame or not checked): use the static assembly pose, not part of this trace"
+ },
+ "puck": {
+  "radius_mm": 12.7,
+  "radius_status": "catalog_nominal",
+  "thickness_mm": 12.0,
+  "thickness_status": "assumed (preview)",
+  "nodes": [
+   {
+    "t": 0.5,
+    "x_mm": 243.1,
+    "y_mm": -202.7,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 0.6167,
+    "x_mm": 163.1,
+    "y_mm": -203.2,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 0.7333,
+    "x_mm": -18.9,
+    "y_mm": -210.1,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 0.85,
+    "x_mm": -20.7,
+    "y_mm": -204.0,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 1.015,
+    "x_mm": 151.4,
+    "y_mm": -207.1,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 1.1317,
+    "x_mm": 216.4,
+    "y_mm": -206.2,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 1.2983,
+    "x_mm": 135.5,
+    "y_mm": -205.8,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 1.415,
+    "x_mm": -27.8,
+    "y_mm": -201.2,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 1.5817,
+    "x_mm": -37.0,
+    "y_mm": -196.6,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 1.6983,
+    "x_mm": -23.1,
+    "y_mm": -192.4,
+    "phase": "prep_observed"
+   },
+   {
+    "t": 1.7003,
+    "x_mm": -23.22,
+    "y_mm": -191.08,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7023,
+    "x_mm": -23.34,
+    "y_mm": -189.76,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7043,
+    "x_mm": -23.46,
+    "y_mm": -188.44,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7063,
+    "x_mm": -23.59,
+    "y_mm": -187.12,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7083,
+    "x_mm": -23.71,
+    "y_mm": -185.8,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7103,
+    "x_mm": -23.83,
+    "y_mm": -184.48,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7123,
+    "x_mm": -23.95,
+    "y_mm": -183.16,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7143,
+    "x_mm": -24.07,
+    "y_mm": -181.84,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7163,
+    "x_mm": -24.19,
+    "y_mm": -180.52,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7183,
+    "x_mm": -24.31,
+    "y_mm": -179.2,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7203,
+    "x_mm": -24.43,
+    "y_mm": -177.88,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7223,
+    "x_mm": -24.56,
+    "y_mm": -176.56,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7243,
+    "x_mm": -24.68,
+    "y_mm": -175.24,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7263,
+    "x_mm": -24.8,
+    "y_mm": -173.92,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7283,
+    "x_mm": -24.92,
+    "y_mm": -172.6,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7303,
+    "x_mm": -25.04,
+    "y_mm": -171.28,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7323,
+    "x_mm": -25.16,
+    "y_mm": -169.95,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7343,
+    "x_mm": -25.28,
+    "y_mm": -168.63,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7363,
+    "x_mm": -25.4,
+    "y_mm": -167.31,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7383,
+    "x_mm": -25.53,
+    "y_mm": -165.99,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7403,
+    "x_mm": -25.65,
+    "y_mm": -164.67,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7423,
+    "x_mm": -25.77,
+    "y_mm": -163.35,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7443,
+    "x_mm": -25.89,
+    "y_mm": -162.03,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7463,
+    "x_mm": -26.01,
+    "y_mm": -160.71,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7483,
+    "x_mm": -26.13,
+    "y_mm": -159.39,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7503,
+    "x_mm": -26.25,
+    "y_mm": -158.07,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7523,
+    "x_mm": -26.37,
+    "y_mm": -156.75,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7543,
+    "x_mm": -26.5,
+    "y_mm": -155.43,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7563,
+    "x_mm": -26.62,
+    "y_mm": -154.11,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7583,
+    "x_mm": -26.74,
+    "y_mm": -152.79,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7603,
+    "x_mm": -26.86,
+    "y_mm": -151.47,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7623,
+    "x_mm": -26.98,
+    "y_mm": -150.15,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7643,
+    "x_mm": -27.1,
+    "y_mm": -148.83,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7663,
+    "x_mm": -27.22,
+    "y_mm": -147.51,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7683,
+    "x_mm": -27.34,
+    "y_mm": -146.19,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7703,
+    "x_mm": -27.47,
+    "y_mm": -144.87,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.772,
+    "x_mm": -27.57,
+    "y_mm": -143.75,
+    "phase": "pre_release_interpolated"
+   },
+   {
+    "t": 1.7723,
+    "x_mm": -27.43,
+    "y_mm": -143.23,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7743,
+    "x_mm": -26.53,
+    "y_mm": -139.78,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7763,
+    "x_mm": -25.63,
+    "y_mm": -136.32,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7783,
+    "x_mm": -24.73,
+    "y_mm": -132.87,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7803,
+    "x_mm": -23.83,
+    "y_mm": -129.42,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7823,
+    "x_mm": -22.93,
+    "y_mm": -125.96,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7843,
+    "x_mm": -22.03,
+    "y_mm": -122.51,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7863,
+    "x_mm": -21.13,
+    "y_mm": -119.06,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7883,
+    "x_mm": -20.23,
+    "y_mm": -115.6,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7903,
+    "x_mm": -19.33,
+    "y_mm": -112.15,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7923,
+    "x_mm": -18.43,
+    "y_mm": -108.7,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7943,
+    "x_mm": -17.52,
+    "y_mm": -105.24,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7963,
+    "x_mm": -16.62,
+    "y_mm": -101.79,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.7983,
+    "x_mm": -15.72,
+    "y_mm": -98.34,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8003,
+    "x_mm": -14.82,
+    "y_mm": -94.88,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8023,
+    "x_mm": -13.92,
+    "y_mm": -91.43,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8043,
+    "x_mm": -13.02,
+    "y_mm": -87.98,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8063,
+    "x_mm": -12.12,
+    "y_mm": -84.52,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8083,
+    "x_mm": -11.22,
+    "y_mm": -81.07,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8103,
+    "x_mm": -10.32,
+    "y_mm": -77.62,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8123,
+    "x_mm": -9.42,
+    "y_mm": -74.16,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8143,
+    "x_mm": -8.52,
+    "y_mm": -70.71,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8163,
+    "x_mm": -7.61,
+    "y_mm": -67.26,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8183,
+    "x_mm": -6.71,
+    "y_mm": -63.8,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8203,
+    "x_mm": -5.81,
+    "y_mm": -60.35,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8223,
+    "x_mm": -4.91,
+    "y_mm": -56.89,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8243,
+    "x_mm": -4.01,
+    "y_mm": -53.44,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8263,
+    "x_mm": -3.11,
+    "y_mm": -49.99,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8283,
+    "x_mm": -2.21,
+    "y_mm": -46.53,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8303,
+    "x_mm": -1.31,
+    "y_mm": -43.08,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8323,
+    "x_mm": -0.41,
+    "y_mm": -39.63,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.83425,
+    "x_mm": 0.47,
+    "y_mm": -36.26,
+    "phase": "pass_free"
+   },
+   {
+    "t": 1.8343,
+    "x_mm": 1.14,
+    "y_mm": -36.45,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8363,
+    "x_mm": 8.06,
+    "y_mm": -35.57,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8383,
+    "x_mm": 15.34,
+    "y_mm": -34.65,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8403,
+    "x_mm": 22.95,
+    "y_mm": -33.68,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8423,
+    "x_mm": 30.85,
+    "y_mm": -32.69,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8443,
+    "x_mm": 38.99,
+    "y_mm": -31.67,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8463,
+    "x_mm": 47.34,
+    "y_mm": -30.61,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8483,
+    "x_mm": 55.86,
+    "y_mm": -29.56,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8503,
+    "x_mm": 64.5,
+    "y_mm": -28.47,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8523,
+    "x_mm": 73.24,
+    "y_mm": -27.37,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8543,
+    "x_mm": 82.01,
+    "y_mm": -26.24,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.85475,
+    "x_mm": 83.99,
+    "y_mm": -25.99,
+    "phase": "carried_by_W-C"
+   },
+   {
+    "t": 1.8563,
+    "x_mm": 90.81,
+    "y_mm": -25.15,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8583,
+    "x_mm": 99.6,
+    "y_mm": -24.07,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8603,
+    "x_mm": 108.4,
+    "y_mm": -22.99,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8623,
+    "x_mm": 117.19,
+    "y_mm": -21.91,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8643,
+    "x_mm": 125.99,
+    "y_mm": -20.84,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8663,
+    "x_mm": 134.78,
+    "y_mm": -19.76,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8683,
+    "x_mm": 143.58,
+    "y_mm": -18.68,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8703,
+    "x_mm": 152.37,
+    "y_mm": -17.6,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8723,
+    "x_mm": 161.17,
+    "y_mm": -16.52,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8743,
+    "x_mm": 169.96,
+    "y_mm": -15.44,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8763,
+    "x_mm": 178.76,
+    "y_mm": -14.36,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8783,
+    "x_mm": 187.55,
+    "y_mm": -13.28,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8803,
+    "x_mm": 196.35,
+    "y_mm": -12.2,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8823,
+    "x_mm": 205.14,
+    "y_mm": -11.12,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8843,
+    "x_mm": 213.94,
+    "y_mm": -10.04,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8863,
+    "x_mm": 222.73,
+    "y_mm": -8.96,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8883,
+    "x_mm": 231.53,
+    "y_mm": -7.88,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8903,
+    "x_mm": 240.32,
+    "y_mm": -6.8,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8923,
+    "x_mm": 249.12,
+    "y_mm": -5.72,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8943,
+    "x_mm": 257.91,
+    "y_mm": -4.64,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8963,
+    "x_mm": 266.71,
+    "y_mm": -3.56,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.8983,
+    "x_mm": 275.5,
+    "y_mm": -2.48,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.9003,
+    "x_mm": 284.3,
+    "y_mm": -1.4,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.9023,
+    "x_mm": 293.09,
+    "y_mm": -0.32,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.9043,
+    "x_mm": 301.89,
+    "y_mm": 0.76,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.9063,
+    "x_mm": 310.68,
+    "y_mm": 1.84,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.9083,
+    "x_mm": 319.48,
+    "y_mm": 2.92,
+    "phase": "shot_free"
+   },
+   {
+    "t": 1.90965,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9103,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9123,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9143,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9163,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9183,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9203,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9223,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9243,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9263,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9283,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9303,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9323,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9343,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9363,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9383,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9403,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9423,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9443,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9463,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9483,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9503,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9523,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9543,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9563,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9583,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9603,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9623,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9643,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9663,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9683,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9703,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9723,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9743,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9763,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9783,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9803,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9823,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9843,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9863,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9883,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9903,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9923,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9943,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9963,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 1.9983,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0003,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0023,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0043,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0063,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0083,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0103,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0123,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0143,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0163,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0183,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0203,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0223,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0243,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0263,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0283,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0303,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0323,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0343,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0363,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0383,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0403,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0423,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0443,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0463,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0483,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0503,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0523,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0543,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0563,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0583,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0603,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0623,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0643,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0663,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0683,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0703,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0723,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0743,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0763,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0783,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0803,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0823,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0843,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0863,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0883,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0903,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0923,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0943,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0963,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.0983,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1003,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1023,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1043,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1063,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1083,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1103,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1123,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1143,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1163,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1183,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1203,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1223,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1243,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1263,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1283,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1303,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1323,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1343,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1363,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1383,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1403,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1423,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1443,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1463,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1483,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1503,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1523,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1543,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1563,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1583,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1603,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1623,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1643,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1663,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1683,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1703,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1723,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1743,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1763,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.1783,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   },
+   {
+    "t": 2.18,
+    "x_mm": 325.39,
+    "y_mm": 3.64,
+    "phase": "in_goal_rest"
+   }
+  ],
+  "phases": [
+   {
+    "id": "prep_observed",
+    "t": [
+     0.5,
+     1.6983
+    ],
+    "status": "observed blob centres; W-RW contact mechanics not reconstructed"
+   },
+   {
+    "id": "pre_release_interpolated",
+    "t": [
+     1.6983,
+     1.772
+    ],
+    "status": "linear from the last at-blade sample to the release point (occluded by W-RW)"
+   },
+   {
+    "id": "pass_free",
+    "t": [
+     1.772,
+     1.8343
+    ],
+    "status": "constant velocity from two flight observations"
+   },
+   {
+    "id": "carried_by_W-C",
+    "t": [
+     1.8343,
+     1.8548
+    ],
+    "status": "rule: rigid at the contact offset (occluded in segment 1; replay shows the puck just ahead of W-C's feet)"
+   },
+   {
+    "id": "shot_free",
+    "t": [
+     1.8548,
+     1.9096
+    ],
+    "status": "rule: constant velocity after separation (not observed in segment 1)"
+   },
+   {
+    "id": "in_goal_rest",
+    "t": [
+     1.9096,
+     2.18
+    ],
+    "status": "assumed: at the back of the preview cage (position in the net not observed)"
+   }
+  ],
+  "observations_vs_trace_mm": [
+   {
+    "frame": 30,
+    "t": 0.5,
+    "observed": [
+     243.1,
+     -202.7
+    ],
+    "trace": [
+     243.1,
+     -202.7
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 2.6
+   },
+   {
+    "frame": 37,
+    "t": 0.6167,
+    "observed": [
+     163.1,
+     -203.2
+    ],
+    "trace": [
+     163.1,
+     -203.2
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 7.1
+   },
+   {
+    "frame": 44,
+    "t": 0.7333,
+    "observed": [
+     -18.9,
+     -210.1
+    ],
+    "trace": [
+     -18.9,
+     -210.1
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 7.4
+   },
+   {
+    "frame": 51,
+    "t": 0.85,
+    "observed": [
+     -20.7,
+     -204.0
+    ],
+    "trace": [
+     -20.7,
+     -204.0
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 6.5
+   },
+   {
+    "frame": 61,
+    "t": 1.015,
+    "observed": [
+     151.4,
+     -207.1
+    ],
+    "trace": [
+     151.4,
+     -207.1
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 5.6
+   },
+   {
+    "frame": 68,
+    "t": 1.1317,
+    "observed": [
+     216.4,
+     -206.2
+    ],
+    "trace": [
+     216.4,
+     -206.2
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 2.5
+   },
+   {
+    "frame": 78,
+    "t": 1.2983,
+    "observed": [
+     135.5,
+     -205.8
+    ],
+    "trace": [
+     135.5,
+     -205.8
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 6.8
+   },
+   {
+    "frame": 85,
+    "t": 1.415,
+    "observed": [
+     -27.8,
+     -201.2
+    ],
+    "trace": [
+     -27.8,
+     -201.2
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 5.5
+   },
+   {
+    "frame": 95,
+    "t": 1.5817,
+    "observed": [
+     -37.0,
+     -196.6
+    ],
+    "trace": [
+     -37.0,
+     -196.6
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 7.2
+   },
+   {
+    "frame": 102,
+    "t": 1.6983,
+    "observed": [
+     -23.1,
+     -192.4
+    ],
+    "trace": [
+     -23.1,
+     -192.4
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 6.6
+   },
+   {
+    "frame": 107,
+    "t": 1.7817,
+    "observed": [
+     -23.2,
+     -127.0
+    ],
+    "trace": [
+     -23.2,
+     -127.0
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 5.9
+   },
+   {
+    "frame": 109,
+    "t": 1.815,
+    "observed": [
+     -8.2,
+     -69.5
+    ],
+    "trace": [
+     -8.2,
+     -69.5
+    ],
+    "residual_mm": 0.0,
+    "reading_uncertainty_mm": 8.3
+   }
+  ]
+ },
+ "events": [
+  {
+   "id": "pass.release",
+   "t_estimate": 1.772,
+   "observed_interval": [
+    1.6983,
+    1.7817
+   ],
+   "inside_observed_interval": true,
+   "by": "W-RW (backhand, rotating counter-clockwise)",
+   "derivation": "flight line through puck observations at frames 107 and 109 (constant velocity 1785 mm/s, direction 75.4 deg); the line passes the last at-blade sample (frame 102) at t = 1.7463 s (residual 16.6 mm); release = last instant W-RW's rotating geometry still touches the puck on that line",
+   "status": "derived"
+  },
+  {
+   "id": "contact.W-C_reception",
+   "t_estimate": 1.8343,
+   "observed_interval": [
+    1.7817,
+    1.8483
+   ],
+   "inside_observed_interval": true,
+   "contact_point_local_mm": [
+    -6.0,
+    0.8
+   ],
+   "puck_centre_local_mm": [
+    -18.6,
+    2.4
+   ],
+   "derivation": "first overlap of the flying puck disk with W-C's geometry below the puck top (0.25 ms steps)",
+   "w_c_run_timing": {
+    "t_onset": 1.8127,
+    "t_top": 1.8967,
+    "mid_run_rotation_change_deg": 0,
+    "feasible_t_onset": [
+     1.8127,
+     1.8127
+    ],
+    "feasible_t_top": [
+     1.8967,
+     1.8967
+    ],
+    "feasible_count": 0,
+    "scanned": 298,
+    "conflict_with_replay": true,
+    "scan_extrema": {
+     "goal_line_y_mm": [
+      -45.3,
+      -1.1
+     ],
+     "goalie_clearance_mm": [
+      -18.8,
+      -11.4
+     ]
+    },
+    "rotation_diagnostic": "diagnostic only (not in the trace): a single unobserved mid-run W-C rotation offset was tried (-30, +30, -60, +60, +90 deg, smallest first); the smallest offset that reproduces the replay is +90 deg (5 timings, best goalie clearance 1.0 mm). No frame shows such a turn.",
+    "rule": "W-C holds its frame-109 arc until the onset and reaches the frame-116 top arc at t_top (Fritsch-Carlson run). Blurred frames 109, 111 and 114 are exposure constraints, not keyframes: the run starts within frame 109's exposure, and during the exposures of 111 and 114 the skates reach the re-read row intervals (inputs.json run_marks; exposure at most 40 ms). Feasible = goal-line crossing inside the mouth on the +y side (replay), puck clearing the goalie and W-C after separation; chosen = nearest the centroid of the feasible region, or, if none is feasible, the least violating timing (crossing inside the mouth, then largest goalie clearance) with conflict_with_replay = true."
+   },
+   "status": "derived; CONFLICT: no scanned run timing reproduces the replay goal side"
+  },
+  {
+   "id": "shot.separation",
+   "t_estimate": 1.8548,
+   "speed_mm_s": 4430.0,
+   "direction_deg": 7.0,
+   "derivation": "W-C peak slot speed after contact (the figure decelerates afterwards; the puck keeps its velocity)",
+   "status": "rule-based (not observed)"
+  },
+  {
+   "id": "goal_entry",
+   "t_estimate": 1.9009,
+   "observed_interval": [
+    1.8483,
+    1.98
+   ],
+   "inside_observed_interval": true,
+   "goal_line_y_mm": -1.1,
+   "mouth_centre_window_y_mm": [
+    -28.7,
+    29.8
+   ],
+   "replay_side": "+y (goalie's right)",
+   "status": "derived; CONFLICT with the replay (wrong side or outside the mouth; see limitations)"
+  }
+ ],
+ "uncertainty": {
+  "figure_arc_mm": "per keyframe sigma_mm (iteration-21 reading, 4-55 mm)",
+  "theta_deg": "per keyframe sigma_deg; null = not measured",
+  "puck_mm": "blob-centre reading 3-13 mm plus parallax bias (up to half the unknown puck thickness); rule-based phases have no measured uncertainty",
+  "timing_s": 0.017
+ },
+ "limitations": [
+  "CONFLICT: with W-C's observed rotation, rigid carry and separation at peak slot speed, no run timing inside the frame-109/111/114 exposure constraints makes the puck enter on the replay's +y side clear of the goalie; the saved timing is the least violating one and the shot phase passes through the static goalie mesh. The rule-based shot leaves at 7.0 deg; straight paths from the same point that clear the goalie and enter on +y need 11.2-15.2 deg. Candidate causes: the contact rule (rigid carry, separation direction), an unobserved W-C rotation during the carry (only a +90 deg offset, which no frame shows, reproduces the replay), the goalie's position, assumed rotation or AI-mold size, or a different slot layout on the recorded edition.",
+  "Recorded on another STIGA edition; positions assume the canonical Play Off 21 slot layout (blade-derived pivots lie 0.4-3 mm from the slots, supporting it).",
+  "Slot position readings disagree: the blade-derived pivots (inputs.json blade marks) lie 2-25 mm along the slot from the iteration-21 skate-row arcs (checks blade_pivot_checks; W-C 18-25 mm further up the slot by blade, W-RW 2-6 mm). The trace keeps the skate-row arcs; a sensitivity run with every W-C reading shifted +18 mm keeps the replay conflict (docs/shot22.md).",
+  "W-C rotation between 1.78 and 2.78 s source time (the carry) is not observed; linear between the receiving pose and the rest pose.",
+  "W-RW rotation during the pass is reconstructed from a contact rule (backhand normal along the pass direction), not observed.",
+  "The carry is a rule (rigid push at the first-contact offset), the separation a rule (peak slot speed); both occluded in segment 1.",
+  "Blade, skate and stick geometry are the AI-modelled mold at the assumed preview scale: real contact dimensions unknown; puck thickness and goal size are preview values.",
+  "Fixture axis assumed on the slot centreline; rod-to-figure transfer, stops and backlash unknown."
+ ],
+ "evaluation_samples": [
+  {
+   "t": 0.5,
+   "W-RW": {
+    "arc_mm": 327.8,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 159.3,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    243.1,
+    -202.7
+   ]
+  },
+  {
+   "t": 0.54,
+   "W-RW": {
+    "arc_mm": 249.5442,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 120.6968,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    215.6793,
+    -202.8714
+   ]
+  },
+  {
+   "t": 0.58,
+   "W-RW": {
+    "arc_mm": 177.4813,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 86.6528,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    188.2585,
+    -203.0428
+   ]
+  },
+  {
+   "t": 0.62,
+   "W-RW": {
+    "arc_mm": 115.5413,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 57.6366,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    157.9491,
+    -203.3953
+   ]
+  },
+  {
+   "t": 0.66,
+   "W-RW": {
+    "arc_mm": 67.6539,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 34.117,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    95.5134,
+    -205.7623
+   ]
+  },
+  {
+   "t": 0.7,
+   "W-RW": {
+    "arc_mm": 37.749,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 16.5628,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    33.0777,
+    -208.1294
+   ]
+  },
+  {
+   "t": 0.74,
+   "W-RW": {
+    "arc_mm": 29.6259,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 5.4426,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -19.0033,
+    -209.7498
+   ]
+  },
+  {
+   "t": 0.78,
+   "W-RW": {
+    "arc_mm": 39.6333,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 1.2252,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -19.6203,
+    -207.659
+   ]
+  },
+  {
+   "t": 0.82,
+   "W-RW": {
+    "arc_mm": 62.1101,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 6.245,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -20.2373,
+    -205.5681
+   ]
+  },
+  {
+   "t": 0.86,
+   "W-RW": {
+    "arc_mm": 93.7858,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 21.4214,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -10.2697,
+    -204.1879
+   ]
+  },
+  {
+   "t": 0.9,
+   "W-RW": {
+    "arc_mm": 131.3896,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 43.8132,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    31.4515,
+    -204.9394
+   ]
+  },
+  {
+   "t": 0.94,
+   "W-RW": {
+    "arc_mm": 171.6509,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 70.4602,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    73.1727,
+    -205.6909
+   ]
+  },
+  {
+   "t": 0.98,
+   "W-RW": {
+    "arc_mm": 211.2989,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 98.4022,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    114.8939,
+    -206.4424
+   ]
+  },
+  {
+   "t": 1.02,
+   "W-RW": {
+    "arc_mm": 247.0629,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 124.6792,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    154.1849,
+    -207.0614
+   ]
+  },
+  {
+   "t": 1.06,
+   "W-RW": {
+    "arc_mm": 275.6723,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 146.3309,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    176.4643,
+    -206.753
+   ]
+  },
+  {
+   "t": 1.1,
+   "W-RW": {
+    "arc_mm": 293.8564,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 160.3973,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    198.7436,
+    -206.4445
+   ]
+  },
+  {
+   "t": 1.14,
+   "W-RW": {
+    "arc_mm": 297.9936,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 163.8978,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    212.3696,
+    -206.1801
+   ]
+  },
+  {
+   "t": 1.18,
+   "W-RW": {
+    "arc_mm": 277.0743,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 155.2352,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    192.9458,
+    -206.084
+   ]
+  },
+  {
+   "t": 1.22,
+   "W-RW": {
+    "arc_mm": 234.0992,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 138.48,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    173.522,
+    -205.988
+   ]
+  },
+  {
+   "t": 1.26,
+   "W-RW": {
+    "arc_mm": 178.519,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 118.8551,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    154.0983,
+    -205.892
+   ]
+  },
+  {
+   "t": 1.3,
+   "W-RW": {
+    "arc_mm": 119.7847,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 101.5729,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    133.1212,
+    -205.733
+   ]
+  },
+  {
+   "t": 1.34,
+   "W-RW": {
+    "arc_mm": 67.347,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 85.0878,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    77.1486,
+    -204.1563
+   ]
+  },
+  {
+   "t": 1.38,
+   "W-RW": {
+    "arc_mm": 30.6566,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 66.4367,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    21.176,
+    -202.5796
+   ]
+  },
+  {
+   "t": 1.42,
+   "W-RW": {
+    "arc_mm": 18.9,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 47.3145,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -28.0759,
+    -201.062
+   ]
+  },
+  {
+   "t": 1.46,
+   "W-RW": {
+    "arc_mm": 18.9,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 29.4158,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -30.2835,
+    -199.9582
+   ]
+  },
+  {
+   "t": 1.5,
+   "W-RW": {
+    "arc_mm": 18.9,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 14.4353,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -32.4911,
+    -198.8545
+   ]
+  },
+  {
+   "t": 1.54,
+   "W-RW": {
+    "arc_mm": 18.9,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 4.0675,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -34.6986,
+    -197.7507
+   ]
+  },
+  {
+   "t": 1.58,
+   "W-RW": {
+    "arc_mm": 18.9,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 0.0073,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -36.9062,
+    -196.6469
+   ]
+  },
+  {
+   "t": 1.62,
+   "W-RW": {
+    "arc_mm": 18.9,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 0.0,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -32.4342,
+    -195.2204
+   ]
+  },
+  {
+   "t": 1.66,
+   "W-RW": {
+    "arc_mm": 18.9,
+    "theta_deg": -171.54
+   },
+   "W-C": {
+    "arc_mm": 0.0,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -27.6658,
+    -193.7796
+   ]
+  },
+  {
+   "t": 1.7,
+   "W-RW": {
+    "arc_mm": 18.9,
+    "theta_deg": -169.1699
+   },
+   "W-C": {
+    "arc_mm": 0.0,
+    "theta_deg": -197.56
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -23.202,
+    -191.278
+   ]
+  },
+  {
+   "t": 1.74,
+   "W-RW": {
+    "arc_mm": 18.55,
+    "theta_deg": -113.4032
+   },
+   "W-C": {
+    "arc_mm": 0.0441,
+    "theta_deg": -197.5152
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -25.632,
+    -164.868
+   ]
+  },
+  {
+   "t": 1.78,
+   "W-RW": {
+    "arc_mm": 13.9412,
+    "theta_deg": 3.1914
+   },
+   "W-C": {
+    "arc_mm": 0.598,
+    "theta_deg": -197.2992
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -23.965,
+    -129.9375
+   ]
+  },
+  {
+   "t": 1.82,
+   "W-RW": {
+    "arc_mm": 13.3561,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 5.8892,
+    "theta_deg": -195.9706
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    -5.945,
+    -60.8675
+   ]
+  },
+  {
+   "t": 1.86,
+   "W-RW": {
+    "arc_mm": 12.8745,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 147.828,
+    "theta_deg": -194.5927
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    107.08,
+    -23.152
+   ]
+  },
+  {
+   "t": 1.9,
+   "W-RW": {
+    "arc_mm": 12.4744,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 248.4,
+    "theta_deg": -193.2147
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    282.98,
+    -1.562
+   ]
+  },
+  {
+   "t": 1.94,
+   "W-RW": {
+    "arc_mm": 12.1494,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 246.1459,
+    "theta_deg": -191.8368
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    325.39,
+    3.64
+   ]
+  },
+  {
+   "t": 1.98,
+   "W-RW": {
+    "arc_mm": 11.8926,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 204.0,
+    "theta_deg": -190.4589
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    325.39,
+    3.64
+   ]
+  },
+  {
+   "t": 2.02,
+   "W-RW": {
+    "arc_mm": 11.6975,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 156.9714,
+    "theta_deg": -189.0809
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    325.39,
+    3.64
+   ]
+  },
+  {
+   "t": 2.06,
+   "W-RW": {
+    "arc_mm": 11.5573,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 109.0699,
+    "theta_deg": -187.703
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    325.39,
+    3.64
+   ]
+  },
+  {
+   "t": 2.1,
+   "W-RW": {
+    "arc_mm": 11.4655,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 68.0897,
+    "theta_deg": -186.325
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    325.39,
+    3.64
+   ]
+  },
+  {
+   "t": 2.14,
+   "W-RW": {
+    "arc_mm": 11.4153,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 31.5557,
+    "theta_deg": -184.9471
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    325.39,
+    3.64
+   ]
+  },
+  {
+   "t": 2.18,
+   "W-RW": {
+    "arc_mm": 11.4,
+    "theta_deg": 8.63
+   },
+   "W-C": {
+    "arc_mm": 12.0,
+    "theta_deg": -183.5691
+   },
+   "E-G": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33
+   },
+   "E-RD": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0
+   },
+   "E-LD": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0
+   },
+   "puck": [
+    325.39,
+    3.64
+   ]
+  }
+ ]
+}

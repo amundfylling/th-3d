@@ -67,7 +67,7 @@ Shot times are segment-1 seconds. Slot positions are arc lengths along the canon
 | Pass release from W-RW (rotating), toward W-C | 1.25-1.33 | puck hidden at 1.28 s, a 236-px streak in flight at 1.33 s |
 | Reception at the W-C blade (interval, exact contact not observed) | 1.33-1.40 | smear at the blade at 1.37 s; replay 256-263 |
 | Carry: W-C travels up its slot with the puck at the blade (arc 0 -> 248 mm in ~0.15 s) | 1.37-1.48 | W-C marks; replay 265-280 |
-| Goal entry into goal.E, goalie's left side; hidden in segment 1 | 1.40-1.53 | replay 280-289 (smear into the net, then puck inside) |
+| Goal entry into goal.E, goalie's right (+y) side (corrected in iteration 22; iteration 21 said left); hidden in segment 1 | 1.40-1.53 | replay 280-289 (smear into the net, then puck inside) |
 | W-C returns down its slot | 1.48-1.73 | |
 
 - **Smallest useful segment**: 1.25-1.73 s (pass, reception, carry, goal). Full combination: 0.05-1.73 s.

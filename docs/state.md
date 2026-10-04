@@ -83,8 +83,22 @@
   24.9 fps; segment-1 homography RMS 6.1 px (leave-one-out 13.5 px). Shooter W-C (shovel from the near slot end),
   passer W-RW; events stored as intervals (pass 1.25-1.33 s, reception 1.33-1.40 s, goal entry 1.40-1.53 s, seen in
   the replay only). Record `shots/21-shovel/observations.json`, contact sheet `validation/21-contact-sheet.png`,
-  notes `docs/shot21.md`. AI observation, not user-reviewed. No motion fitting or animation. **Next: iteration 22
-  (constrained trace) after the user reviews these observations.**
+  notes `docs/shot21.md`. AI observation, not user-reviewed. No motion fitting or animation. (Goal side corrected
+  in iteration 22: the puck enters on the goalie's RIGHT, +y.)
+- **Iteration 22 (2026-10-04): constrained reconstruction, PROPOSED (not accepted).** One trace
+  `data/traces/shovel-17.trace.json` (`shot-trace/1`). It holds:
+  - W-C and W-RW slot arcs and rotations; W-C rotation measured from blade marks (faces back while receiving);
+    W-RW backhand release while rotating counter-clockwise;
+  - static E-G/E-RD/E-LD;
+  - the finite puck with phases;
+  - events in source time: release 1.772, reception 1.834, separation 1.855 (rule), goal entry 1.901 s; all
+    observed events inside their intervals.
+  **Conflict:** under the rigid-carry rule the shot leaves at 7.0 deg and passes through the static goalie
+  (-11.6 mm). The replay's +y goal side needs 11.2-15.2 deg. The conflict holds across all run timings and under
+  a +18 mm W-C position shift. Only an unobserved +90 deg turn would fix it.
+  Main artifact `validation/22-diagnostics.png`; notes `docs/shot22.md`; evaluator `src/model/trace.ts`. AI
+  reconstruction, not user-reviewed. **Next: the user reviews the contacts and the conflict (docs/shot22.md "Needed
+  from the user"). Iteration 23 needs the trace accepted or corrected.**
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
@@ -92,7 +106,7 @@
 ## Batch run result (docs/autonomous-run.md)
 
 **Batch 06-20 finished 2026-09-30: all iterations completed with recorded verification. Stopped after 20 as instructed.**
-No motion reconstruction or animated shots were started. **Iteration 21 done (see above); next: iteration 22 after the user reviews the observations.**
+No animated shots were started. **Iterations 21 and 22 done (see above); iteration 22's trace is proposed and awaits the user's contact review before iteration 23.**
 
 Iteration 20 closed without repair cycles:
 - [x] Intake recorded: nothing supplied; checks re-run (84/84 tests, validate).
@@ -183,6 +197,9 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **`validation/22-diagnostics.png`** - iteration 22 main artifact (proposed trace, nine stills around release,
+  reception and goal entry), plus `22-trace-overview.png`. Notes: `docs/shot22.md`.
+- **`validation/21-contact-sheet.png`**, `21-camera-calibration.png` - iteration 21. Notes: `docs/shot21.md`.
 - **`validation/20-review-sheet.png`** - iteration 20 main artifact. Review: `docs/review.md`.
 - **`validation/19/19-checks.png`**, `19-overhead.png`, `19-side.png`, `19-oblique.png` - iteration 19 Remotion stills. Docs: `docs/remotion.md`.
 - **`validation/18-oblique-1080p.png`** and `18-*` close-ups - iteration 18 (assets/scene/full_static_appearance).
@@ -237,3 +254,4 @@ Iteration 20 closed without repair cycles:
 | 19 | 2026-09-30 | remotion/ (index, Root, StaticInspection, cameras, checks); pinned remotion 4.0.531, react 19.2.0, three 0.186.1, R3F 9.4.0; tsconfig JSX/DOM; validation/19/*; docs/remotion.md; tests/remotion-setup.test.ts | typecheck + 83 tests pass; 4 Remotion stills rendered and AI-reviewed; import checks PASS; 2 repair cycles |
 | 20 | 2026-09-30 | scripts/review-reprojection.ts, png-read.ts, review-sheet.py; validation/20-review-sheet.png, 20-reprojection.json; docs/review.md; reprojection test | `npm run check` 84/84; review sheet AI-reviewed; 0 repair cycles |
 | D6 | 2026-09-30 | Sponsors dropped from the ice (assets/blender/drop_sponsors.py); the 17-20 renders, Remotion stills and review sheet regenerated; .blend1 backups untracked | `npm run check` 85/85; renders AI-reviewed; Remotion import checks PASS |
+| 22 | 2026-10-04 | scripts/shot22-trace.py; shots/22-shovel/{inputs,checks}.json; data/traces/shovel-17.trace.json (proposed); src/model/trace.ts; tests/shot22.test.ts; validation/22-diagnostics.png, 22-trace-overview.png; docs/shot22.md; goal-side correction in docs/shot21.md, shots/21-shovel/{observations,marks}.json, scripts/shot21-observe.py | trace script run (and a +18 mm sensitivity run); `npm run check`; diagnostics and overview images AI-reviewed; replay frames re-checked; TS evaluator matches the script's samples |

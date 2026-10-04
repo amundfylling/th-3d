@@ -1207,7 +1207,7 @@
   },
   {
    "id": "goal_entry",
-   "description": "puck enters goal.E past the goalie's left (camera-right in the replay) side. Not visible in segment 1; time bounded by W-C reaching its slot end",
+   "description": "puck enters goal.E past the goalie's right (+y; camera-right in the replay) side (corrected in iteration 22). Not visible in segment 1; time bounded by W-C reaching its slot end",
    "interval_s": [
     1.3983,
     1.53

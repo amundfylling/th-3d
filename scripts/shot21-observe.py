@@ -219,7 +219,7 @@ def main():
          "interval_s": [t(107), t(111)], "exact_time": None, "evidence": "smear at the W-C blade in 109; replay frames 256-263"},
         {"id": "carry", "description": "W-C carries the puck on its blade up the slot toward the goal mouth; puck occluded by the blurred figure",
          "interval_s": [t(109), t(116)], "exact_time": None, "evidence": "W-C marks 109-116; replay frames 265-280 show the puck at the blade"},
-        {"id": "goal_entry", "description": "puck enters goal.E past the goalie's left (camera-right in the replay) side. Not visible in segment 1; time bounded by W-C reaching its slot end",
+        {"id": "goal_entry", "description": "puck enters goal.E past the goalie's right (+y; camera-right in the replay) side (corrected in iteration 22). Not visible in segment 1; time bounded by W-C reaching its slot end",
          "interval_s": [t(111), t(119)], "exact_time": None, "evidence": "replay frames 280-289 (puck smear into the net, then puck inside); segment 1 frame 116 W-C at slot end"},
         {"id": "return", "description": "W-C returns down its slot to the near end", "interval_s": [t(116), t(131)], "evidence": "W-C marks 116-131"},
     ]

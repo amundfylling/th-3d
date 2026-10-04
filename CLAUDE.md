@@ -10,7 +10,8 @@ There are no animated shots before iteration 23.
 ## Active batch
 
 The autonomous batch 06-20 (`docs/autonomous-run.md`) is COMPLETE. Rule 1 ("stop after each
-iteration") applies again. Iteration 21 is done (docs/shot21.md); iteration 22 needs the user's review of those observations.
+iteration") applies again. Iterations 21 and 22 are done (docs/shot21.md, docs/shot22.md). The iteration-22 trace is PROPOSED with an
+explicit replay conflict; iteration 23 needs the user's review of its contacts (accept or correct).
 
 ## Key files
 

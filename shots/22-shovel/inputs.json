@@ -1,0 +1,175 @@
+{
+ "description": "Iteration 22 additional hand-read marks on the '#17 Shovel' recording (same pixel convention as shots/21-shovel/marks.json: decoded 2556 x 1180 recording frame). Used to measure figure rotations and the static figures' poses. Status: traced. Read by the AI (2026-10-04), not reviewed by the user.",
+ "status": "traced",
+ "blade_marks": {
+  "note": "Lower (ice-contact) edge of a skater/goalie blade: heel = where the blade leaves the shaft bend, toe = far end. Mapped to the ice plane with the segment-1 homography; the figure heading follows from the blade direction (asset blade heel/toe in validation/players/figures-report.json) and the pivot from the blade position. Toe marks beyond the visible blade end only fix the direction.",
+  "marks": [
+   {
+    "player_id": "W-C",
+    "frame": 104,
+    "heel_px": [
+     924,
+     947
+    ],
+    "toe_px": [
+     1056,
+     989
+    ],
+    "uncertainty_px": 4,
+    "state": "slight blur"
+   },
+   {
+    "player_id": "W-C",
+    "frame": 107,
+    "heel_px": [
+     926,
+     950
+    ],
+    "toe_px": [
+     1053,
+     990
+    ],
+    "uncertainty_px": 3,
+    "state": "sharp"
+   },
+   {
+    "player_id": "W-C",
+    "frame": 167,
+    "heel_px": [
+     972,
+     884
+    ],
+    "toe_px": [
+     1105,
+     880
+    ],
+    "uncertainty_px": 3,
+    "state": "sharp, at rest"
+   },
+   {
+    "player_id": "W-RW",
+    "frame": 102,
+    "heel_px": [
+     2036,
+     1101
+    ],
+    "toe_px": [
+     2146,
+     1106
+    ],
+    "uncertainty_px": 4,
+    "state": "slight blur; toe beyond the crop, direction only"
+   },
+   {
+    "player_id": "W-RW",
+    "frame": 167,
+    "heel_px": [
+     1690,
+     1097
+    ],
+    "toe_px": [
+     1532,
+     1090
+    ],
+    "uncertainty_px": 3,
+    "state": "sharp, at rest (identical in frame 131)"
+   },
+   {
+    "player_id": "E-G",
+    "frame": 167,
+    "heel_px": [
+     1312,
+     322
+    ],
+    "toe_px": [
+     1410,
+     313
+    ],
+    "uncertainty_px": 5,
+    "state": "paddle blade, partly behind the pads; direction only (its position maps 25 mm behind the goalie slot, so the edge read is probably not the ice-contact edge)"
+   }
+  ]
+ },
+ "visual_orientation_marks": [
+  {
+   "player_id": "W-RW",
+   "frame": 107,
+   "observation": "back (FINLAND 64) faces the camera in the motion blur: heading within about 30 deg of +x after the pass",
+   "theta_deg": 8.6,
+   "sigma_deg": 30
+  },
+  {
+   "player_id": "W-RW",
+   "frame": 30,
+   "observation": "back (64) visible, puck on the image-right of the figure; rotation not measured",
+   "theta_deg": null
+  },
+  {
+   "player_id": "W-C",
+   "frame": 116,
+   "observation": "at the top end of its slot, stick toward image right (-y): still facing back (-x) as in frames 104-107 and 167",
+   "theta_deg": null
+  }
+ ],
+ "static_marks": {
+  "note": "Feet/skate centre of figures that do not move during the shot (frame 167); snapped to the slot centreline at that image row. Goalie: feet centre between the pads.",
+  "marks": [
+   {
+    "player_id": "E-G",
+    "frame": 167,
+    "feet_px": [
+     1285,
+     348
+    ],
+    "uncertainty_px": 8
+   },
+   {
+    "player_id": "E-RD",
+    "frame": 167,
+    "feet_px": [
+     510,
+     575
+    ],
+    "uncertainty_px": 10
+   },
+   {
+    "player_id": "E-LD",
+    "frame": 167,
+    "feet_px": [
+     1400,
+     735
+    ],
+    "uncertainty_px": 10
+   }
+  ]
+ },
+ "replay_constraints": {
+  "note": "Segment 2 (slow-motion replay from behind goal.E, uncalibrated). Image right in that view is world +y (camera at +x looking -x; the goalie is seen from behind with its paddle on image left = its left = -y).",
+  "goal_entry_side": "+y (the goalie's right, between the goalie and the +y post; away from the paddle); replay frames 282-285",
+  "carry": "the puck travels just ahead (+x) of W-C's feet while W-C runs up its slot facing back (-x); replay frames 270-280",
+  "correction_of_iteration_21": "shots/21-shovel/observations.json and docs/shot21.md said 'goalie's left (camera-right in the replay)'; camera-right in the replay is +y, which is the goalie's RIGHT. Corrected here and in docs/shot21.md."
+ },
+ "run_marks": {
+  "note": "W-C skate rows during the blurred run (re-read in iteration 22 on full-resolution crops). The iteration-21 frame-111 note 'smear spans v 383-800' is the extent of the whole blurred figure (helmet to skates), not the skate travel; the skates in frame 111 fade out over the centre circle around rows 600-700. Each interval is the image-row range that the skates' ice contact must reach at some instant of that frame's exposure (exposure at most one content frame).",
+  "marks": [
+   {
+    "player_id": "W-C",
+    "frame": 111,
+    "skate_row_px": [
+     600,
+     700
+    ],
+    "state": "heavy motion blur, mid-slot; skate bottom not sharp"
+   },
+   {
+    "player_id": "W-C",
+    "frame": 114,
+    "skate_row_px": [
+     415,
+     475
+    ],
+    "state": "motion blur at the crease, skates within about 30 px of the frame-116 rest row (423)"
+   }
+  ]
+ }
+}

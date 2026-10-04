@@ -79,7 +79,7 @@
       {"frame": 186, "event": "replay starts (hard cut), puck at the W-RW blade at the far -y side"},
       {"frame": 258, "event": "puck arrives at the W-C blade (reception); range 256-263"},
       {"frame": 277, "event": "W-C carrying the puck toward the goal mouth at the blade; range 270-280"},
-      {"frame": 282, "event": "puck smear crosses into the goal at the goalie's left (camera right) post side; range 280-285"},
+      {"frame": 282, "event": "puck smear crosses into the goal at the goalie's right (camera right, +y) post side (side corrected in iteration 22); range 280-285"},
       {"frame": 289, "event": "puck inside the net behind the goal line; visible through the netting until the end"}
     ]
   }
