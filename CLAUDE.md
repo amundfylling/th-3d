@@ -10,11 +10,13 @@ There were no animated shots before iteration 23.
 ## Active batch
 
 The autonomous batch 06-20 (`docs/autonomous-run.md`) is COMPLETE. Rule 1 ("stop after each
-iteration") applies again. Iterations 21-24 are done (docs/shot21.md - docs/shot24.md). The iteration-22 trace is
+iteration") applies again. Iterations 21-25 are done (docs/shot21.md - docs/shot25.md). The iteration-22 trace is
 ACCEPTED by the user (2026-10-04) with an assumed far-corner shot direction; iteration 23 plays it in Remotion
 (fixed overhead camera). Revised 2026-10-05 (trace v2): W-RW drags the puck with its foot, and the contact-physics
 rule below applies. Iteration 24 is done (docs/shot24.md): normal pass, 1/4-speed replay with a pause at the
-key contact, oblique benchmark camera. Next: iteration 25, after the user reviews the presentation.
+key contact, oblique benchmark camera. Iteration 25 is done (docs/shot25.md): the first video is exported
+(validation/25-shovel-17-final.mp4, 1920x1080 60 fps; rerender with `npm run video:shovel-17`). No further
+numbered iteration is defined.
 
 ## Key files
 

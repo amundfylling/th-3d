@@ -27,10 +27,11 @@ H, W = frames[0].shape[:2]
 
 
 def tile(i, w, label):
+    """The frame scaled to width w, with its label in a band ABOVE the image (never over the captions)."""
     im = cv2.resize(frames[i], (w, int(w * H / W)), interpolation=cv2.INTER_AREA)
-    cv2.rectangle(im, (0, 0), (w, 22), (255, 255, 255), -1)
-    cv2.putText(im, label, (4, 16), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 160), 1, cv2.LINE_AA)
-    return im
+    band = np.full((22, w, 3), 255, np.uint8)
+    cv2.putText(band, label, (4, 16), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 160), 1, cv2.LINE_AA)
+    return np.vstack([band, im])
 
 
 strip = [tile(i, 240, f"{i} ({i / fps:.2f} s)") for i in range(0, n, 12)]

@@ -18,10 +18,10 @@ import type { ShotTrace } from "../src/model/trace.ts";
 
 const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
 const COMPOSITION = "shot25-shovel-17-final";
-const FINAL = { path: "validation/25-shovel-17-final.mp4", scale: 1, codec: "h264" as const, crf: 18, pixelFormat: "yuv420p" as const };
-const DRAFT = { path: "out/25/draft-480x270-60fps.mp4", scale: 0.25, codec: "h264" as const, crf: 23, pixelFormat: "yuv420p" as const };
+// concurrency: SwiftShader is itself multi-threaded; on the 4-CPU container 3 parallel tabs were slower per frame than 2
+const FINAL = { path: "validation/25-shovel-17-final.mp4", scale: 1, codec: "h264" as const, crf: 18, pixelFormat: "yuv420p" as const, concurrency: 2 };
+const DRAFT = { path: "out/25/draft-480x270-60fps.mp4", scale: 0.25, codec: "h264" as const, crf: 23, pixelFormat: "yuv420p" as const, concurrency: 3 };
 const REPORT = "validation/25-export-report.json";
-const CONCURRENCY = 3;
 import { execFileSync } from "node:child_process";
 const BROWSER_VERSION = execFileSync(BROWSER, ["--version"], { encoding: "utf8" }).trim();
 
@@ -61,11 +61,11 @@ async function render(o: typeof FINAL): Promise<Record<string, unknown>> {
   const logs = new Map<number, Logged>();
   const t0 = Date.now();
   await renderMedia({ ...base, composition: comp, codec: o.codec, crf: o.crf, pixelFormat: o.pixelFormat, outputLocation: o.path, inputProps: { overlays: true },
-    scale: o.scale, concurrency: CONCURRENCY, onBrowserLog: (l) => { const s = parse(l.text); if (s) logs.set(s.frame, s); },
+    scale: o.scale, concurrency: o.concurrency, onBrowserLog: (l) => { const s = parse(l.text); if (s) logs.set(s.frame, s); },
     onProgress: ({ renderedFrames }) => { if (renderedFrames % 50 === 0) console.log(`${o.path}: ${renderedFrames}/${comp.durationInFrames}`); } });
   const differing = [...logs.values()].filter((s) => JSON.stringify({ t: s.t, figures: s.figures, puck: s.puck, phase: s.phase }) !== JSON.stringify(pure(s.frame))).map((s) => s.frame);
   return { path: o.path, width: Math.round(comp.width * o.scale), height: Math.round(comp.height * o.scale), fps: comp.fps, frames: comp.durationInFrames,
-    duration_s: comp.durationInFrames / comp.fps, codec: o.codec, crf: o.crf, pixel_format: o.pixelFormat, concurrency: CONCURRENCY,
+    duration_s: comp.durationInFrames / comp.fps, codec: o.codec, crf: o.crf, pixel_format: o.pixelFormat, concurrency: o.concurrency,
     frames_logged: logs.size, frames_differing_from_pure: differing, max_readback_diff: Math.max(...[...logs.values()].map((s) => s.readback_max_diff)),
     render_seconds: Math.round((Date.now() - t0) / 1000), bytes: statSync(o.path).size, sha256: sha(o.path) };
 }
