@@ -70,3 +70,13 @@ There is no animated shot, no physics loop and no camera animation.
 - Caveat (studio only): `useLoader` caches the GLB per page, so in an interactive studio session the shot's posed
   nodes would also show in a static composition opened afterwards in the same tab. Renders load each composition
   separately and are not affected (the static-checks still was re-rendered after iteration 23: all PASS).
+
+## Presentation (iteration 24)
+
+- Composition `shot24-shovel-17` (`remotion/ShotPresentation.tsx`). Frame → source time comes from the explicit
+  timeline in `data/presentations/shovel-17.presentation.json` (`src/model/presentation.ts`). Source time → state
+  comes from the same pure evaluator (`shotTimeEvaluator`). The scene is shared with iteration 23
+  (`remotion/ShotScene.tsx`).
+- Overlays (title, speed label, contact explanation, puck ring) are an HTML/SVG layer above the canvas. The puck
+  ring is projected with the scene camera. `overlays: false` renders the mechanics only.
+- Camera: the oblique benchmark camera (`CAMERAS.oblique`).

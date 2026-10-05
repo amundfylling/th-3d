@@ -122,14 +122,25 @@
     - all 51 proof-clip frames equal the pure evaluation.
   - Proof clip `validation/23-proof-clip.mp4`; main artifact `validation/23-diagnostics.png`; notes `docs/shot23.md`.
   - **Next: iteration 24** (slow replay and minimal overlays), after the user reviews the playback.
+- **Iteration 24 (2026-10-05): one slow replay and minimal teaching overlays.**
+  - Composition `shot24-shovel-17`: 223 frames at 30 fps, oblique benchmark camera. It plays the whole shot once at
+    normal speed, then a 1/4-speed replay that pauses 2 s at the reception (`contact.W-C_reception`, 1.8343 s).
+  - Overlays: title "#17 Shovel", a speed label, the key-contact explanation during the pause, and a yellow ring on
+    the puck.
+  - The presentation-time → source-time mapping is explicit data (`data/presentations/shovel-17.presentation.json`,
+    `src/model/presentation.ts`). Trace and geometry are unchanged.
+  - Checks: normal and replay frames at the same source time give identical state and identical PNG bytes (4 pairs);
+    the pause frames are identical; the draft clip's frames equal the pure evaluation.
+  - Main artifact `validation/24-comparison.png`, draft `validation/24-draft.mp4`, notes `docs/shot24.md`.
+  - **Next: iteration 25** (export and document the first video) after the user reviews the presentation.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
-- Animated shots: one, the iteration-23 Remotion playback of the accepted trace (`shot23-shovel-17`).
+- Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
 
 ## Batch run result (docs/autonomous-run.md)
 
 **Batch 06-20 finished 2026-09-30: all iterations completed with recorded verification. Stopped after 20 as instructed.**
-No animated shots were started. **Iterations 21-23 done (see above). Next: iteration 24 after the user reviews the iteration-23 playback.**
+No animated shots were started. **Iterations 21-24 done (see above). Next: iteration 25 after the user reviews the iteration-24 presentation.**
 
 Iteration 20 closed without repair cycles:
 - [x] Intake recorded: nothing supplied; checks re-run (84/84 tests, validate).
@@ -281,3 +292,4 @@ Iteration 20 closed without repair cycles:
 | 22r | 2026-10-04 | User review applied: inputs.json user_review; trace status accepted with the far-corner shot direction (assumed, 11.2 deg); replay marked not-evidence; shot22 tests, docs/shot21.md, docs/shot22.md | trace script rerun; `npm run check` 97/97; diagnostics and overview images AI-reviewed |
 | 23 | 2026-10-04 | src/model/shot-pose.ts; remotion/ShotPlayback.tsx, Root.tsx (shot23-shovel-17, shot23-at-time), cameras.ts (SHOT_CAMERA), asset-manifest.json; scripts/shot23-{manifest.ts,render.ts,sheet.py}; tests/shot23.test.ts; validation/23-{diagnostics.png,render-checks.json,proof-clip.mp4}; docs/shot23.md, docs/remotion.md; package.json (shot:23, remotion:assets writes the manifest) | `npm run check`; Remotion stills at 4 contact times; 12 frames x 2 shuffled orders (identical state and PNG bytes); proof clip 51 frames (state = pure evaluation); sheet and clip frames AI-reviewed |
 | 22r2 | 2026-10-05 | User feedback: W-RW foot drag-back; CLAUDE.md contact-physics rule. scripts/shot22-trace.py (foot-contact solver, outline sliding, pushing contact, whole-trace check, W-C turn scan, approved exceptions, prep sheet); shots/22-shovel/inputs.json (prep_heading_marks, user instruction, approved exception); trace v2; validation/22-prep-foot-drag.png; Remotion contact gate; shot22/23 tests; iteration-23 renders regenerated | trace script run; no overlap except the approved one; `npm run check`; prep sheet, Remotion stills and clip AI-reviewed |
+| 24 | 2026-10-05 | data/presentations/shovel-17.presentation.json; src/model/presentation.ts; src/model/shot-pose.ts (shotTimeEvaluator); remotion/ShotScene.tsx (shared scene), ShotPresentation.tsx, Root.tsx (shot24-shovel-17); scripts/shot24-{render.ts,sheet.py}; tests/shot24.test.ts; validation/24-{comparison.png,render-checks.json,draft.mp4}; docs/shot24.md, docs/remotion.md; package.json (shot:24) | `npm run check`; 4 normal/replay pairs identical in state and PNG bytes; contact pause identical; draft clip 223 frames = pure evaluation; stills and clip AI-reviewed |

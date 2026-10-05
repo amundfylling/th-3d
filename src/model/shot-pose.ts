@@ -71,6 +71,12 @@ export function checkTraceCompatibility(trace: { geometry_version: string; asset
 
 /** Builds a pure frame evaluator for a trace on the canonical geometry. */
 export function shotFrameEvaluator(trace: ShotTrace, geometry: GeometryLike): (frame: number, fps: number, startS: number) => ShotFrameState {
+  const at = shotTimeEvaluator(trace, geometry);
+  return (frame, fps, startS) => at(sourceTimeForFrame(frame, fps, startS), frame);
+}
+
+/** Builds a pure evaluator of the physical state at a source time t (s); `frame` is only carried for logging. */
+export function shotTimeEvaluator(trace: ShotTrace, geometry: GeometryLike): (t: number, frame: number) => ShotFrameState {
   const evalAt = traceEvaluator(trace);
   const figs = Object.entries(trace.figures)
     .filter((e): e is [string, TraceFigure] => typeof e[1] === "object")
@@ -80,8 +86,8 @@ export function shotFrameEvaluator(trace: ShotTrace, geometry: GeometryLike): (f
       const kind: PathSampler["kind"] = pid.endsWith("-G") ? "goalie" : "skater";
       return { pid, team: f.team as Team, path: pathSampler(fp.id, kind, fp.centreline.points_mm.map((p) => [p[0]!, p[1]!] as Vec2)) };
     });
-  return (frame, fps, startS) => {
-    const t = sourceTimeForFrame(frame, fps, startS);
+  return (t, frame) => {
+    if (!Number.isFinite(t)) throw new Error(`source time ${t} is not finite`);
     const st = evalAt(t);
     const figures: Record<string, FigurePoseState> = {};
     for (const f of figs) {

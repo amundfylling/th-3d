@@ -10,10 +10,11 @@ There were no animated shots before iteration 23.
 ## Active batch
 
 The autonomous batch 06-20 (`docs/autonomous-run.md`) is COMPLETE. Rule 1 ("stop after each
-iteration") applies again. Iterations 21-23 are done (docs/shot21.md, docs/shot22.md, docs/shot23.md). The iteration-22 trace is
+iteration") applies again. Iterations 21-24 are done (docs/shot21.md - docs/shot24.md). The iteration-22 trace is
 ACCEPTED by the user (2026-10-04) with an assumed far-corner shot direction; iteration 23 plays it in Remotion
 (fixed overhead camera). Revised 2026-10-05 (trace v2): W-RW drags the puck with its foot, and the contact-physics
-rule below applies. Next: iteration 24, after the user reviews the revised playback.
+rule below applies. Iteration 24 is done (docs/shot24.md): normal pass, 1/4-speed replay with a pause at the
+key contact, oblique benchmark camera. Next: iteration 25, after the user reviews the presentation.
 
 ## Key files
 
