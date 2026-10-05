@@ -46,17 +46,44 @@ test("iteration 22: contact events carry observed intervals; replay conflict is 
   const run = ev["contact.W-C_reception"].w_c_run_timing;
   assert.equal(typeof run.rule_reaches_far_corner, "boolean");
   const sep = ev["shot.separation"];
-  if (sep.direction_adjustment_deg) {
+  if (/^assumed/.test(sep.status)) {
     // an assumed direction is labelled as such, stated as a limitation, and lands inside the far-corner window
     assert.equal(run.rule_reaches_far_corner, false);
-    assert.match(sep.status, /^assumed/);
     assert.ok(trace.limitations.some((l: string) => l.startsWith("ASSUMED SHOT DIRECTION")));
     const [lo, hi] = checks.shot_direction_diagnostic.clear_plus_y_directions_deg;
     assert.ok(sep.direction_deg >= lo && sep.direction_deg <= hi, `${sep.direction_deg} outside ${lo}-${hi}`);
   }
   const g = ev["goal_entry"];
   assert.ok(g.goal_line_y_mm > 0.53 && g.goal_line_y_mm <= g.mouth_centre_window_y_mm[1], "far corner (+y side) inside the mouth");
-  for (const u of checks.unexpected_penetrations) assert.notEqual(u.obstacle, "E-G", "the shot clears the goalie");
+});
+
+test("contact physics: the puck never overlaps a figure, the boards or the goal (CLAUDE.md), except user-approved exceptions", () => {
+  const inputs = JSON.parse(readFileSync("shots/22-shovel/inputs.json", "utf8"));
+  assert.ok(checks.penetration_tolerance_mm <= 0.1);
+  assert.deepEqual(checks.unexpected_penetrations, [], JSON.stringify(checks.unexpected_penetrations));
+  // the clearance scan covers the whole trace window, every phase
+  const phases = new Set(checks.min_clearance_by_obstacle_and_phase.map((r: any) => r.phase));
+  for (const ph of trace.puck.phases) if (ph.t[1] === null || ph.t[1] > ph.t[0]) assert.ok(phases.has(ph.id), `phase ${ph.id} not checked`);
+  for (const r of checks.min_clearance_by_obstacle_and_phase) {
+    const ex = (inputs.approved_overlap_exceptions ?? []).find((x: any) => x.obstacle === r.obstacle && x.phase === r.phase);
+    assert.ok(r.min_clearance_mm >= -checks.penetration_tolerance_mm || (ex && r.min_clearance_mm >= -ex.max_overlap_mm), `${r.obstacle} ${r.phase} ${r.min_clearance_mm}`);
+  }
+  for (const [id, a] of Object.entries(checks.approved_exceptions) as [string, any][]) {
+    const ex = inputs.approved_overlap_exceptions.find((x: any) => x.id === id);
+    assert.ok(ex && /user/.test(ex.approved_by), `${id} needs the user's approval`);
+    assert.ok(a.worst_mm >= -ex.max_overlap_mm, id);
+  }
+  assert.ok(checks.max_puck_step_mm < 2, "no puck jumps between samples");
+});
+
+test("prep foot drag (user 2026-10-05): at every observation the puck touches W-RW's foot, within the reading uncertainty", () => {
+  assert.ok(checks.prep_foot_contacts.length >= 8);
+  for (const c of checks.prep_foot_contacts) assert.ok(c.push_from_observed_mm <= c.observed_sigma_mm, `frame ${c.frame}: ${c.push_from_observed_mm} mm`);
+  // slight turns at the board end (sharp frames 30, 68): within 30 deg of facing up the ice
+  for (const fr of [30, 68]) {
+    const c = checks.prep_foot_contacts.find((x: any) => x.frame === fr);
+    assert.ok(Math.abs(((c.heading_deg - c.visual_heading_deg + 540) % 360) - 180) <= 30, `frame ${fr} heading ${c.heading_deg}`);
+  }
 });
 
 test("iteration 22: fast motion is checked between samples (puck step < 2 mm)", () => {

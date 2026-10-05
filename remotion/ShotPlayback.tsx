@@ -11,6 +11,7 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import geometry from "../data/geometry.json" with { type: "json" };
 import traceJson from "../data/traces/shovel-17.trace.json" with { type: "json" };
+import contactChecks from "../shots/22-shovel/checks.json" with { type: "json" };
 import { gltfMToWorldMm, worldMatrixToGltf } from "../src/model/coordinates.ts";
 import { checkTraceCompatibility, shotFrameEvaluator, type AssetManifest } from "../src/model/shot-pose.ts";
 import type { ShotTrace } from "../src/model/trace.ts";
@@ -23,7 +24,10 @@ export const SHOT_TRACE = traceJson as unknown as ShotTrace & { time_base: { win
 export function assertShotRenderable(): string[] {
   const compared = checkTraceCompatibility(SHOT_TRACE, geometry.geometry_version, manifest as AssetManifest);
   if (SHOT_TRACE.status !== "accepted") throw new Error(`trace ${SHOT_TRACE.trace_id} is ${SHOT_TRACE.status}, not accepted`);
-  return compared;
+  // CLAUDE.md "Contact physics": only a trace whose finite-puck contact check passed is played
+  if (contactChecks.trace_id !== SHOT_TRACE.trace_id) throw new Error(`contact checks are for ${contactChecks.trace_id}, not ${SHOT_TRACE.trace_id}`);
+  if (contactChecks.unexpected_penetrations.length > 0) throw new Error(`trace ${SHOT_TRACE.trace_id} overlaps geometry: ${JSON.stringify(contactChecks.unexpected_penetrations)}`);
+  return [...compared, "contact_checks"];
 }
 
 const evaluate = shotFrameEvaluator(SHOT_TRACE, geometry as Parameters<typeof shotFrameEvaluator>[1]);

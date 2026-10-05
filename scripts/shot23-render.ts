@@ -77,10 +77,12 @@ async function still(id: string, frame: number, output: string, inputProps: Reco
 const report: Record<string, unknown> = { trace_id: trace.trace_id, trace_status: trace.status, geometry_version: trace.geometry_version, renderer: "Remotion 4.0.531, chrome-headless-shell, --gl=swangle (SwiftShader, CPU)" };
 
 // 1. Diagnostic stills at the contact times.
-const events = ["pass.release", "contact.W-C_reception", "shot.separation", "goal_entry"];
+// two moments of W-RW's foot drag-back (prep phase; user rule 2026-10-05) and the four contact events
+const events = ["prep.drag_back_1", "prep.drag_back_2", "pass.release", "contact.W-C_reception", "shot.separation", "goal_entry"];
+const PREP_TIMES: Record<string, number> = { "prep.drag_back_1": 0.65, "prep.drag_back_2": 1.35 };
 const diag = [];
 for (const id of events) {
-  const ev = trace.events.find((e: { id: string }) => e.id === id);
+  const ev = PREP_TIMES[id] !== undefined ? { t_estimate: PREP_TIMES[id] } : trace.events.find((e: { id: string }) => e.id === id);
   const out = `${OUT}/diag-${id}.png`;
   const r = await still("shot23-at-time", 0, out, { startS: ev.t_estimate });
   const p = pureLogged(pure(0, 30, ev.t_estimate));

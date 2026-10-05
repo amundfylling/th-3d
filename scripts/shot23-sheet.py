@@ -27,9 +27,10 @@ for d in R["diagnostic_stills"]:
 oi = R["order_independence"]
 clip = R.get("proof_clip", {})
 head = 92
-sheet = Image.new("RGB", (2 * TW, head + 2 * (TH + 62)), "white")
+rows = (len(tiles) + 1) // 2
+sheet = Image.new("RGB", (2 * TW, head + rows * (TH + 62)), "white")
 dr = ImageDraw.Draw(sheet)
-dr.text((10, 8), f"23 - Remotion playback of the ACCEPTED trace '{R['trace_id']}' (fixed overhead camera, plain background); frames at the contact times",
+dr.text((10, 8), f"23 - Remotion playback, ACCEPTED trace '{R['trace_id']}', fixed overhead camera: W-RW foot drag-back and contact times",
         fill=(0, 0, 0), font=FB)
 dr.text((10, 40), f"Shuffled/repeated frames ({len(oi['frames'])} frames x 2 orders): identical state and PNG bytes = {oi['pass']}. "
                   f"Proof clip: {clip.get('frames', '-')} frames, max diff vs pure evaluation {clip.get('max_diff_vs_pure', '-')}.", fill=(0, 0, 0), font=FS)

@@ -183,5 +183,69 @@
   "shot_direction_choice": "aim at the far corner: keep timing, contacts and speed; rotate the rule-based shot direction to the centre of the clear far-corner window (assumption)",
   "trace": "looks good; accepted with the far-corner shot direction",
   "status_after_review": "accepted"
- }
+ },
+ "prep_heading_marks": {
+  "note": "W-RW facing during the puck preparation (frames 27-102), read on the recording (iteration 22 revision, 2026-10-05). Back to the camera = facing +x (theta 0); front to the camera = facing -x (theta 188.5, as the frame-102 blade). Visual readings, not measured angles: used as priors with the given sigma, the exact turn is solved so the puck touches the foot. Frames without a reading (37, 78: heavy blur) have no prior.",
+  "status": "traced",
+  "marks": [
+   {
+    "frame": 30,
+    "heading_deg": 0,
+    "sigma_deg": 30,
+    "observation": "sharp: back (64) to the camera, puck just behind the right skate on the board side"
+   },
+   {
+    "frame": 44,
+    "heading_deg": 188.5,
+    "sigma_deg": 60,
+    "observation": "motion blur near centre ice, turning toward the camera"
+   },
+   {
+    "frame": 51,
+    "heading_deg": 188.5,
+    "sigma_deg": 30,
+    "observation": "front to the camera (sharp in frame 49), puck at the skates"
+   },
+   {
+    "frame": 61,
+    "heading_deg": 0,
+    "sigma_deg": 60,
+    "observation": "blur moving up; back to the camera again in frame 63"
+   },
+   {
+    "frame": 68,
+    "heading_deg": 0,
+    "sigma_deg": 30,
+    "observation": "sharp: back to the camera, puck at the right skate"
+   },
+   {
+    "frame": 85,
+    "heading_deg": 188.5,
+    "sigma_deg": 30,
+    "observation": "front to the camera, puck at the skates"
+   },
+   {
+    "frame": 95,
+    "heading_deg": 188.5,
+    "sigma_deg": 20,
+    "observation": "sharp: front to the camera, puck behind the skates"
+   }
+  ]
+ },
+ "user_instruction_2026_10_05": {
+  "text": "The stick went through the puck during W-RW's drag back. The common way is to use the foot to drag it back and to turn the player slightly. Make the physics right.",
+  "applied": "prep phase rebuilt: at every puck observation W-RW's arc and heading are solved so the puck touches a skate (foot) with no overlap; the puck path between observations is projected out of every figure (pushing contact); the no-interpenetration check now covers the whole trace with no exemptions"
+ },
+ "approved_overlap_exceptions": [
+  {
+   "id": "shot.W-C_right_skate_brush",
+   "obstacle": "W-C",
+   "phase": "shot_free",
+   "max_overlap_mm": 2.7,
+   "what": "the shot to the far corner brushes the rear of W-C's right skate (2.65 mm) as the puck leaves W-C's back",
+   "why": "the far-corner goal (user) is not reachable without it: W-C's own right skate blocks the path unless W-C turns ~75 deg during the carry, which contradicts frame 116 (W-C faces back). The skate is AI-modelled and its real size is unknown; the brush is not visible on screen.",
+   "approved_by": "user, 2026-10-05 (answer: 'Allow skate brush')",
+   "remove_when": "W-C's skate is measured or the shot is re-observed"
+  }
+ ]
 }

@@ -128,6 +128,48 @@ angle (2.7 mm at 11.2 deg, 8.4 mm at 15.2 deg), so the smallest angle has the sh
 The extra 4.2 deg is an assumption ("assumed" in the trace), not a measurement. The likely mechanism is the puck
 sliding along W-C's angled back, which no contact model here describes.
 
+## Revision 2026-10-05: W-RW foot drag-back and the contact-physics rule (trace v2)
+
+**User feedback on the iteration-23 playback.** "The stick goes through the puck when it does the drag back of the
+puck on the RW. The common way is to use the foot to drag it back and to turn the player slightly." The user also
+asked for a permanent rule; it is now in `CLAUDE.md` under "Contact physics".
+
+**Cause.** The prep phase (frames 30-102) was never reconstructed physically:
+- W-RW's rotation was held at its frame-102 value (facing the camera) the whole time. The recording shows it facing
+  up the ice at the board end (frames 30 and 68).
+- The puck followed the observed blob centres in straight lines, independent of the figure.
+- The clearance check started only 60 ms before the release and exempted W-RW.
+
+**Fix** (`scripts/shot22-trace.py`):
+- **Pose at each puck observation.** At each of the 10 prep observations, W-RW's slot position and heading are
+  solved so that the puck touches a skate (the foot) and nothing overlaps it. The solve stays close to the visual
+  heading read on the recording (`inputs.json` `prep_heading_marks`) and to the skate-row slot readings.
+  - The puck moves at most 7.1 mm from its read position, always within the reading uncertainty.
+  - At the board end, W-RW faces up the ice turned slightly (+18.8 deg at frame 30, -24 deg at frame 68), with the
+    puck at its right foot.
+  - It drags the puck back with the foot and turns to face the camera on the way, as the recording shows.
+- **Between observations.** The puck stays on the figure. It slides along the figure's touching outline, in the
+  figure's own frame, so it moves with the foot. The way round the figure and the turn direction are chosen so
+  the puck moves without jumps and never enters the boards.
+- **Whole-trace check.** Every saved node (every 0.5 ms) is pushed out of any figure it would overlap (a pushing
+  contact). The check then covers the whole trace every 0.25 ms, with a 0.1 mm tolerance and no phase exemptions.
+  Result: no overlap anywhere except the one approved exception below. The largest puck step is 1.1 mm per
+  0.25 ms (the shot speed), so the puck never jumps.
+- **Shot: one approved exception.** The far-corner shot brushes the back of W-C's right skate by 2.65 mm.
+  - Under strict contact, that skate pushes the puck back into the goalie.
+  - Only a W-C turn of about 75 deg during the carry avoids it, and that contradicts frame 116, where W-C faces
+    back (`checks.json` `shot_direction_diagnostic.w_c_turn_scan`).
+  - The user approved keeping the accepted shot with this single exception (2026-10-05). It is recorded in
+    `inputs.json` `approved_overlap_exceptions` (at most 2.7 mm deep) and is removed once the skate is measured.
+- **Gates.** The Remotion shot plays only a trace whose `checks.json` matches its `trace_id` and lists no
+  unexpected overlaps.
+- **New artifact.** `validation/22-prep-foot-drag.png`: W-RW's foot, stick and the puck every 25 ms, with the
+  foot and stick clearances. The foot clearance stays at 0.0-0.1 mm through the drag, and the stick clearance
+  never goes negative.
+
+Trace id `trace.shovel-17.v2`. Status stays `accepted`: the corrections follow the user's instruction and
+decision, which are recorded in `review.revisions`.
+
 ## Corrections made in this iteration
 
 - **Goal side**: iteration 21 wrote "goalie's left (camera-right in the replay)". Camera-right in the replay is +y,
@@ -149,11 +191,8 @@ sliding along W-C's angled back, which no contact model here describes.
   - the in-net position, assumed at the back of the cage.
 - The shot direction is assumed (above). The goalie pose comes from one feet mark and a partly hidden paddle.
 - The replay is not used as evidence (possibly a different take).
-- Small overlaps:
-  - W-RW at release: -0.64 mm;
-  - W-RW before release: -3.7 mm, where contact is expected;
-  - W-C during the carry: 0 mm, touching;
-  - W-C right skate as the puck leaves: -2.65 mm (assumed direction; skate contact size unknown).
+- Overlaps (since the 2026-10-05 revision): none, except the approved 2.65 mm brush past W-C's right skate in the
+  shot. Every contact elsewhere is touching (0-0.1 mm).
 
 ## Reproduce
 

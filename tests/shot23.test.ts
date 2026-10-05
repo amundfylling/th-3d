@@ -61,10 +61,14 @@ test("iteration 23: continuous angles - no reversal through zero, W-RW turns cou
       prevMat = h;
     }
   }
-  // W-RW passes with a counter-clockwise rotation: heading never decreases between its first and last key
+  // W-RW passes with a counter-clockwise rotation: heading never decreases from the frame-102 blade key to the
+  // visual key after the pass (the prep turns before it go both ways, observed in the recording)
   const k = trace.figures["W-RW"].theta_keyframes;
+  const i102 = k.findIndex((x: { source: string }) => x.source.startsWith("blade frame 102"));
+  const iEnd = k.findIndex((x: { source: string }) => x.source.startsWith("visual: back to the camera in frame 107"));
+  assert.ok(i102 >= 0 && iEnd > i102, "pass rotation keys present");
   let last = -Infinity;
-  for (let t = k[0].t; t <= k[k.length - 1].t; t += 0.001) {
+  for (let t = k[i102].t; t <= k[iEnd].t; t += 0.001) {
     const h = ev(0, FPS, t).figures["W-RW"]!.headingDeg;
     assert.ok(h >= last - 1e-9, `W-RW reverses at ${t}`);
     last = h;

@@ -5,7 +5,7 @@
 Inputs: shots/21-shovel/observations.json (iteration-21 observations and segment-1 camera), shots/22-shovel/inputs.json
 (blade, orientation and static-figure marks), data/geometry.json (slots, boards, puck), validation/12-hardware-report.json
 (preview goal), out/figures/{skater,goalie}.npz (figure meshes, mold units) and validation/players/figures-report.json.
-Outputs: data/traces/shovel-17.trace.json, shots/22-shovel/checks.json, validation/22-diagnostics.png,
+Outputs: data/traces/shovel-17.trace.json, shots/22-shovel/checks.json, validation/22-diagnostics.png, validation/22-prep-foot-drag.png,
 validation/22-trace-overview.png.
 
 Reconstruction rules (no general simulator):
@@ -120,6 +120,96 @@ K_SK = FIG["scale_k_mm_per_mold_unit"]
 K_GO = FIG["scales"]["goalie"]
 SK_LOW = low_polygon("skater", K_SK)
 GO_LOW = low_polygon("goalie", K_GO)
+
+
+def part_polygon(kind, k, stick):
+    """Low geometry of the stick only (stick=True) or of everything else - skates/feet - (stick=False)."""
+    d = np.load(REPO / f"out/figures/{kind}.npz")
+    keys = [str(x) for x in d["keys"]]
+    V, T, L = d["verts"] * k, d["tris"], d["labels"]
+    is_stick = np.isin(L, [keys.index(x) for x in ("stick_metal", "stick_tan") if x in keys])
+    sel = T[(V[T][:, :, 2].min(1) < PUCK_T) & (is_stick if stick else ~is_stick)]
+    polys = [Polygon(V[t][:, :2]).buffer(0.01) for t in sel]
+    return unary_union([q for q in polys if q.area > 1e-6]).buffer(0)
+
+
+# No-interpenetration rule (CLAUDE.md "Contact physics"): the puck disk may touch figure geometry but never overlap it.
+EPS = 0.05  # mm: projected puck centres are placed this far outside the contact distance
+PEN_TOL = 0.1  # mm: any overlap deeper than this (between 0.5 ms nodes, checked every 0.25 ms) is a violation
+SK_FOOT = part_polygon("skater", K_SK, stick=False)
+# puck-centre positions (skater-local) where the puck touches a skate/foot and is clear of everything else (stick included)
+SK_FOOT_CONTACT = SK_FOOT.buffer(R_PUCK + EPS, 64).boundary.difference(SK_LOW.buffer(R_PUCK, 64))
+LOW_OUT = {"skater": SK_LOW.buffer(R_PUCK + EPS, 64), "goalie": GO_LOW.buffer(R_PUCK + EPS, 64)}
+_out = LOW_OUT["skater"]
+SK_RING = max(([_out] if _out.geom_type == "Polygon" else list(_out.geoms)), key=lambda g: g.area).exterior  # touching outline
+
+
+BOARD = Polygon(G["board"]["inner_boundary"]["world"]["points_mm"])
+
+
+def ring_local(qa, qb, f, way):
+    """Skater-local puck centre a fraction f of the way from qa to qb, sliding along the touching outline of the figure
+    (way +1 = the shorter way round, -1 = the longer way); the end offsets of qa, qb from the outline are blended in linearly."""
+    L_ = SK_RING.length
+    sa, sb = SK_RING.project(Point(*qa)), SK_RING.project(Point(*qb))
+    d_ = (sb - sa) % L_
+    short = d_ if d_ <= L_ / 2 else d_ - L_  # robust when qa and qb (nearly) coincide
+    dl = short if way > 0 else short - np.sign(short or 1.0) * L_
+    ra, rb = np.array(SK_RING.interpolate(sa).coords[0]), np.array(SK_RING.interpolate(sb).coords[0])
+    r = np.array(SK_RING.interpolate((sa + f * dl) % L_).coords[0])
+    return r + (1 - f) * (np.asarray(qa) - ra) + f * (np.asarray(qb) - rb)
+
+
+def push_out(f, t, p):
+    """Pushing contact: if the puck centre p is closer than the puck radius to figure f's geometry at time t, move it to the
+    nearest position where it just touches (kinematic projection: no masses, friction or restitution). Returns (p, push)."""
+    q = Point(*f.to_local(t, p))
+    out = LOW_OUT[f.kind]
+    if not out.contains(q):
+        return np.asarray(p, float), 0.0
+    rings = [out.exterior] + list(out.interiors) if out.geom_type == "Polygon" else [g.exterior for g in out.geoms] + [i for g in out.geoms for i in g.interiors]
+    best = min((r.interpolate(r.project(q)) for r in rings), key=lambda z: z.distance(q))
+    w = f.to_w(t, np.array(best.coords[0]))
+    return w, float(np.linalg.norm(w - p))
+
+
+def solve_foot_contact(slot, p_obs, sigma_p, arc_prior, theta_prior):
+    """W-RW pose (arc mm, heading deg) at one puck observation such that the puck touches a skate (the foot) and nothing
+    overlaps it. Minimises (push/sigma_p)^2 + ((arc - arc_obs)/sigma)^2 + ((heading - visual)/sigma)^2 over a grid, then refines.
+    Returns arc, heading, push (mm) and the adjusted puck centre (world)."""
+    p_obs = np.asarray(p_obs, float)
+
+    def cost(s, th):
+        q = Point(*(rot(th).T @ (p_obs - slot.at(s))))
+        dl = SK_FOOT_CONTACT.distance(q)
+        c = (dl / sigma_p) ** 2
+        if arc_prior:
+            c += ((s - arc_prior[0]) / arc_prior[1]) ** 2
+        if theta_prior:
+            c += ((((th - theta_prior[0] + 180) % 360) - 180) / theta_prior[1]) ** 2
+        return c, dl
+    s0 = slot.nearest(p_obs)[1]
+    best = (1e18, 0.0, 0.0, 0.0)
+    for s in np.arange(max(0.0, s0 - 70), min(slot.length, s0 + 70) + 1e-9, 1.0):
+        if np.linalg.norm(p_obs - slot.at(s)) > 75:
+            continue
+        for th in range(0, 360, 2):
+            c, dl = cost(s, th)
+            if c < best[0]:
+                best = (c, s, float(th), dl)
+    for step_s, step_t in ((0.25, 0.25), (0.05, 0.05)):
+        _, s1, t1, _ = best
+        for s in np.arange(max(0.0, s1 - 4 * step_s), min(slot.length, s1 + 4 * step_s) + 1e-9, step_s):
+            for th in np.arange(t1 - 8 * step_t, t1 + 8 * step_t + 1e-9, step_t):
+                c, dl = cost(s, th)
+                if c < best[0]:
+                    best = (c, float(s), float(th), dl)
+    c, s, th, dl = best
+    piv = slot.at(s)
+    q = Point(*(rot(th).T @ (p_obs - piv)))
+    geoms = SK_FOOT_CONTACT.geoms if SK_FOOT_CONTACT.geom_type == "MultiLineString" else [SK_FOOT_CONTACT]
+    near = min((g.interpolate(g.project(q)) for g in geoms), key=lambda z: z.distance(q))
+    return {"arc_mm": s, "heading_deg": th, "push_mm": dl, "cost": c, "puck_adj": piv + rot(th) @ np.array(near.coords[0])}
 BLADE = {"skater": (np.array(FIG["assets"]["skater_FIN"]["blade_heel_mm"]), np.array(FIG["assets"]["skater_FIN"]["blade_toe_mm"])),
          "goalie": (np.array(FIG["assets"]["goalie_SWE"]["blade_heel_mm"]), np.array(FIG["assets"]["goalie_SWE"]["blade_toe_mm"]))}
 
@@ -320,6 +410,98 @@ def main():
              {"t": round(t_rel, 4), "theta_deg": round(th_rel, 2), "sigma_deg": 15.0, "source": "inferred: backhand face normal along the pass direction at release (contact rule, not observed)"},
              {"t": src_t(FRAME_T.get(107, 1.3317)), "theta_deg": round(th_end, 2), "sigma_deg": 30.0, "source": "visual: back to the camera in frame 107 (motion blur)"},
              {"t": wr[167]["t"], "theta_deg": round(th_end, 2), "sigma_deg": 3.0, "source": "blade frame 167 (and 131: identical)"}]
+    # ---- prep (frames 30-102): W-RW drags the puck with its foot, turning slightly (user, 2026-10-05). At every puck
+    # observation the arc and heading are solved so the puck touches a skate and nothing overlaps it (solve_foot_contact).
+    slot_wr = Slot("W-RW")
+    arc_obs = {}
+    for k in arcs["W-RW"]:
+        fr = int(k["source"].split()[2])
+        arc_obs[fr] = (k["arc_mm"], k["sigma_mm"] or 10.0)
+    head_prior = {m["frame"]: (m["heading_deg"], m["sigma_deg"]) for m in INP["prep_heading_marks"]["marks"]}
+    head_prior[102] = (HOME["W"] + th102, 5.0)
+    unc = {r["recording_frame"]: r["reading_uncertainty_mm"] for r in puck_obs}
+    prep_frames = sorted(fr for fr, (tk, _) in P.items() if tk <= t102 + 1e-9)
+    prep = {}
+    for fr in prep_frames:
+        tk, pk = P[fr]
+        prep[fr] = solve_foot_contact(slot_wr, pk, unc[fr] + 3.0, arc_obs.get(fr), head_prior.get(fr))
+        prep[fr]["t"] = tk
+    # Heading at blurred frames without a visual reading, and the turn direction between observations: chosen so the foot
+    # carries the puck without sudden jumps - the largest puck step between 1 ms nodes (puck carried in the figure's frame,
+    # after pushing contact) is minimised.
+    # Linear theta between keyframes would otherwise sweep the stick through the puck on the shorter way round.
+    later_arcs = [k for k in arcs["W-RW"] if k["t"] > t102 + 1e-6]
+
+    def sim_interval(k0, k1, fr0, fr1):
+        """Largest puck step (mm per 1 ms) over one observation interval for keyframes k0, k1 = (arc, theta)."""
+        t0_, t1_ = prep[fr0]["t"], prep[fr1]["t"]
+        f_ = Figure("W-RW", "W", "skater", [{"t": t0_, "arc_mm": k0[0]}, {"t": t1_, "arc_mm": k1[0]}],
+                    [{"t": t0_, "theta_deg": k0[1]}, {"t": t1_, "theta_deg": k1[1]}])
+        qa, qb = f_.to_local(t0_, prep[fr0]["puck_adj"]), f_.to_local(t1_, prep[fr1]["puck_adj"])
+        res = []
+        for way in (1, -1):
+            prev_, worst = None, 0.0
+            for tq in np.linspace(t0_, t1_, max(3, int((t1_ - t0_) / 0.001) + 1)):
+                pq = f_.to_w(tq, ring_local(qa, qb, (tq - t0_) / (t1_ - t0_), way))
+                pq, _ = push_out(f_, tq, pq)
+                if prev_ is not None:
+                    worst = max(worst, float(np.linalg.norm(pq - prev_)))
+                prev_ = pq
+                bc_ = BOARD.exterior.distance(Point(*pq)) - R_PUCK if BOARD.contains(Point(*pq)) else -1.0
+                if bc_ < -PEN_TOL:
+                    worst = max(worst, 1e6 - bc_)  # the puck cannot go through the boards
+            res.append((worst, way))
+        return min(res)  # (largest step, way round the outline)
+
+    def ccw_cw(prev_th, h):
+        d_ = (h - prev_th) % 360
+        return [prev_th + d_, prev_th + d_ - 360]
+
+    free = [fr for fr in prep_frames if fr not in head_prior]
+    cand = {}
+    for fr in free:  # candidate headings every 10 deg, each with its own foot-contact arc
+        tk, pk = P[fr]
+        cand[fr] = [solve_foot_contact(slot_wr, pk, unc[fr] + 3.0, arc_obs.get(fr), (h_, 3.0)) for h_ in range(0, 360, 10)]
+    th_seq = {prep_frames[0]: prep[prep_frames[0]]["heading_deg"] - HOME["W"]}
+    i = 1
+    while i < len(prep_frames):
+        f0, f1 = prep_frames[i - 1], prep_frames[i]
+        k0 = (prep[f0]["arc_mm"], th_seq[f0])
+        if f1 in free and i + 1 < len(prep_frames):
+            f2 = prep_frames[i + 1]
+            best_ = None
+            for c in cand[f1]:
+                for th1 in ccw_cw(k0[1], c["heading_deg"] - HOME["W"]):
+                    w1 = sim_interval(k0, (c["arc_mm"], th1), f0, f1)[0]
+                    for th2 in ccw_cw(th1, prep[f2]["heading_deg"] - HOME["W"]):
+                        sc = max(w1, sim_interval((c["arc_mm"], th1), (prep[f2]["arc_mm"], th2), f1, f2)[0])
+                        if best_ is None or sc < best_[0]:
+                            best_ = (sc, c, th1, th2)
+            _, c, th1, th2 = best_
+            prep[f1].update({k: c[k] for k in ("arc_mm", "heading_deg", "push_mm", "puck_adj")})
+            th_seq[f1], th_seq[f2] = th1, th2
+            i += 2
+        else:
+            opts = ccw_cw(k0[1], prep[f1]["heading_deg"] - HOME["W"])
+            th_seq[f1] = min(opts, key=lambda th1: sim_interval(k0, (prep[f1]["arc_mm"], th1), f0, f1)[0])
+            i += 1
+    shift = 360 * round((th102 - th_seq[102]) / 360)
+    for fr in prep_frames:
+        prep[fr]["theta_deg"] = th_seq[fr] + shift
+    # way round the outline per interval, for the final keyframes
+    for f0, f1 in zip(prep_frames[:-1], prep_frames[1:]):
+        prep[f0]["way_to_next"] = sim_interval((prep[f0]["arc_mm"], th_seq[f0]), (prep[f1]["arc_mm"], th_seq[f1]), f0, f1)[1]
+    if abs(prep[102]["theta_deg"] - th102) > 20:
+        raise SystemExit(f"prep heading at frame 102 ({prep[102]['theta_deg']:.1f}) disagrees with the blade ({th102:.1f})")
+    arcs["W-RW"] = later_arcs + [
+        {"t": prep[fr]["t"], "arc_mm": round(prep[fr]["arc_mm"], 2), "sigma_mm": arc_obs[fr][1] if fr in arc_obs else None,
+         "source": f"solved frame {fr}: puck touches the foot, no overlap" + (f"; skate-row reading {arc_obs[fr][0]} mm" if fr in arc_obs else "")}
+        for fr in prep_frames]
+    wr_th = [{"t": prep[fr]["t"], "theta_deg": round(prep[fr]["theta_deg"], 2), "sigma_deg": head_prior[fr][1] if fr in head_prior else None,
+              "source": f"solved frame {fr}: puck touches the foot" + (f"; visual heading {head_prior[fr][0]} +/- {head_prior[fr][1]} deg" if fr in head_prior else "; no visual reading (blur)")}
+             for fr in prep_frames if fr != 102] + wr_th
+    P_adj = {fr: (prep[fr]["t"], prep[fr]["puck_adj"]) for fr in prep_frames}
+    p102_adj = P_adj[102][1]
     figs = {"W-RW": Figure("W-RW", "W", "skater", arcs["W-RW"], wr_th)}
     # release = last instant the flight-line puck still touches W-RW (the blade pushes it along that line until then)
     wrf = figs["W-RW"]
@@ -375,10 +557,14 @@ def main():
                {"t": round(t_top, 4), "arc_mm": k116["arc_mm"], "sigma_mm": None, "source": "arrival at the slot top end (solved; frame-111 streak reaches it)"}]
         th = list(wc_th)
         if dtheta:
+            # turn during the carry (blurred frames), back to the observed facing by frame 116 (sharp: still facing back)
             tm = round((t_on + t_top) / 2, 4)
-            base = lin_eval(np.array([k["t"] for k in wc_th]), np.array([k["theta_deg"] for k in wc_th]), tm)
+            tx_, ty_ = np.array([k["t"] for k in wc_th]), np.array([k["theta_deg"] for k in wc_th])
+            base = lin_eval(tx_, ty_, tm)
             th = th + [{"t": tm, "theta_deg": round(base + dtheta, 2), "sigma_deg": None,
-                        "source": "solved: mid-run rotation (unobserved, blurred); smallest change that reaches the far-corner goal side"}]
+                        "source": "solved: turn during the carry (unobserved, frames 109-114 blurred); smallest turn that reaches the far corner without overlap"},
+                       {"t": k116["t"], "theta_deg": round(lin_eval(tx_, ty_, k116["t"]), 2), "sigma_deg": None,
+                        "source": "visual frame 116: W-C faces back again (sharp); value interpolated between the blade keyframes"}]
         wc = Figure("W-C", "W", "skater", ak, th)
         # exposure constraints: the run starts within frame 109's exposure (blurred, 'starting to move'); during the
         # exposures of frames 111 and 114 the skates reach the re-read row intervals (inputs.json run_marks)
@@ -487,73 +673,168 @@ def main():
     # User review (inputs.json user_review): the puck went in the far corner (+y). The rule direction (slot tangent at
     # separation) misses it, so the shot direction is rotated into the clear far-corner window, at the largest margin to
     # the goalie, the posts and W-C. Speed, separation point and time stay as derived. Assumption, not a measurement.
-    v_rule = v_sep.copy()
-    dir_rule = math.degrees(math.atan2(v_rule[1], v_rule[0]))
-    dir_used, dir_status = dir_rule, "rule-based (not observed)"
-    if dir_diag["clear_plus_y_directions_deg"] and not (dir_diag["clear_plus_y_directions_deg"][0] <= dir_rule <= dir_diag["clear_plus_y_directions_deg"][1]):
-        # within the window, the direction with the largest smallest margin to the goalie, the posts and W-C (which keeps
-        # moving after separation); the window centre when margins tie
-        spd0 = float(np.linalg.norm(v_rule))
+    def shot_path(wc_, p0, t0, spd, dd):
+        """Free puck from the separation point p0 (time t0) at direction dd and speed spd. Where W-C (still moving after
+        separation) would overlap it, the puck is pushed out to touching (pushing contact) and keeps its speed along the
+        pushed direction. Steps of DT until the back of the cage."""
+        u = np.array([math.cos(math.radians(dd)), math.sin(math.radians(dd))])
+        pp, vv, tt = np.array(p0, float), spd * u, t0
+        pts, touch = [(tt, pp.copy())], []
+        while pp[0] < back_x and tt < t0 + 0.3:
+            tt += DT
+            pn = pp + vv * DT
+            pq, push = push_out(wc_, tt, pn)
+            if push > 0:
+                touch.append(tt)
+                dv = pq - pp
+                vv = spd * dv / np.linalg.norm(dv)
+            pp = pq
+            pts.append((tt, pp.copy()))
+        return pts, touch
 
-        def margin(dd):
-            u = np.array([math.cos(math.radians(dd)), math.sin(math.radians(dd))])
-            tb = t_sep + (back_x - p_sep[0]) / (spd0 * u[0])
-            line = LineString([tuple(p_sep), tuple(p_sep + u * (back_x - p_sep[0]) / u[0])])
-            m_static = min(line.distance(eg_poly), line.distance(post_disks)) - R_PUCK
-            m_wc = min(wc.clearance(tq, p_sep + spd0 * u * (tq - t_sep)) for tq in np.arange(t_sep + DT, tb, DT))
-            return min(m_static, m_wc)
-        lo_d, hi_d = dir_diag["clear_plus_y_directions_deg"]
-        cands = [round(float(x), 1) for x in np.arange(lo_d, hi_d + 1e-9, 0.1)]
-        margins = {dd: margin(dd) for dd in cands}
-        dir_used = max(cands, key=lambda dd: (round(margins[dd], 1), -abs(dd - (lo_d + hi_d) / 2)))
-        dir_diag["applied_direction_deg"] = dir_used
-        dir_diag["applied_direction_min_margin_mm"] = round(margins[dir_used], 2)
-        dir_diag["margin_by_direction_mm"] = {str(k): round(v, 2) for k, v in margins.items()}
-        dir_status = ("assumed: rotated from the rule direction into the clear far-corner window, at the largest margin to goalie, posts and W-C "
-                      "(user review 2026-10-04: puck in the far corner; contacts confirmed)")
-        spd = float(np.linalg.norm(v_rule))
-        v_sep = spd * np.array([math.cos(math.radians(dir_used)), math.sin(math.radians(dir_used))])
-        t_goal = t_sep + (gx - p_sep[0]) / v_sep[0]
-        t_back = t_sep + (back_x - p_sep[0]) / v_sep[0]
+    def shot_eval(wc_, p0, t0, spd, dd):
+        pts, touch = shot_path(wc_, p0, t0, spd, dd)
+        xs = np.array([q[1][0] for q in pts])
+        if not (xs >= gx).any() or xs[0] >= gx:
+            return None
+        i = int(np.argmax(xs >= gx))
+        f_ = (gx - xs[i - 1]) / (xs[i] - xs[i - 1])
+        yg = float(pts[i - 1][1][1] + f_ * (pts[i][1][1] - pts[i - 1][1][1]))
+        tg = float(pts[i - 1][0] + f_ * (pts[i][0] - pts[i - 1][0]))
+        g_clear = min(eg.clearance(tq, pq) for tq, pq in pts)
+        p_clear = min(float(np.linalg.norm(pq - po)) - R_PUCK - HW["goal"]["post_radius_mm"] for _, pq in pts for po in posts)
+        d_last = pts[-1][1] - pts[-5][1]
+        return {"dir": dd, "pts": pts, "touch": touch, "y_goal": yg, "t_goal": tg, "goalie_clearance": g_clear, "post_clearance": p_clear,
+                "final_dir": math.degrees(math.atan2(d_last[1], d_last[0])),
+                "ok": bool(yc < yg <= yc + half and g_clear >= 0.1 and p_clear >= 0.1)}
+
+    # The far corner (user) with no overlap anywhere: the puck leaves W-C along the carried point's velocity (rule) and
+    # slides off W-C if it touches it. Under W-C's observed facing it cannot get there (its own right skate pushes it back
+    # toward the goalie), so W-C turns during the carry - the smallest turn that works (cf. the user's technique note
+    # "turn the player slightly"; frames 109-114 are blurred, the turn is not observed).
+    rule_dir = math.degrees(math.atan2(v_sep[1], v_sep[0]))
+    turn_scan, chosen = [], None
+    for dth in [0.0] + [sg * d_ for d_ in range(5, 125, 5) for sg in (1, -1)]:
+        r = sol if dth == 0 else solve(best["t_on"], best["t_top"], dth)
+        if not r:
+            continue
+        dd = math.degrees(math.atan2(r["v_sep"][1], r["v_sep"][0]))
+        ev = shot_eval(r["wc"], r["p_sep"], r["t_sep"], float(np.linalg.norm(r["v_sep"])), dd)
+        if ev is None:
+            continue
+        turn_scan.append({"turn_deg": dth, "t_contact": round(r["t_contact"], 4), "separation_dir_deg": round(dd, 2), "final_dir_deg": round(ev["final_dir"], 2),
+                          "goal_line_y_mm": round(ev["y_goal"], 2), "goalie_clearance_mm": round(ev["goalie_clearance"], 2), "ok": ev["ok"]})
+        if ev["ok"]:
+            chosen = (dth, r, ev)
+            break
+    shot_fallback = chosen is None
+    if shot_fallback:
+        # No turn consistent with frame 116 reaches the far corner without overlap. Only with a user-approved exception
+        # (inputs.json approved_overlap_exceptions) the accepted shot is kept: straight line at the near edge of the window
+        # that clears the goalie and the far post (the smallest overlap with W-C's skate).
+        if not any(x["obstacle"] == "W-C" and x["phase"] == "shot_free" for x in INP.get("approved_overlap_exceptions", [])):
+            raise SystemExit("the far corner needs an overlap with W-C and no exception is approved: " + json.dumps(turn_scan[:6]))
+        lo_d = dir_diag["clear_plus_y_directions_deg"][0]
+        u_ = np.array([math.cos(math.radians(lo_d)), math.sin(math.radians(lo_d))])
+        spd_ = float(np.linalg.norm(v_sep))
+        pts_, tt_ = [], t_sep
+        while True:
+            pq_ = p_sep + spd_ * u_ * (tt_ - t_sep)
+            pts_.append((tt_, pq_))
+            if pq_[0] >= back_x:
+                break
+            tt_ += DT
+        i_ = next(j for j, q in enumerate(pts_) if q[1][0] >= gx)
+        chosen = (0.0, sol, {"dir": lo_d, "pts": pts_, "touch": [], "y_goal": float(pts_[i_][1][1]), "t_goal": float(pts_[i_][0]),
+                             "final_dir": lo_d, "ok": False})
+    w_c_turn, sol, shot = chosen
+    wc = sol["wc"]
+    figs["W-C"] = wc
+    t_contact, nearest, loc_c, t_sep, p_sep, v_sep = sol["t_contact"], sol["nearest"], sol["loc_c"], sol["t_sep"], sol["p_sep"], sol["v_sep"]
+    dir_rule = rule_dir
+    dir_used = shot["dir"]
+    if shot_fallback:
+        v_sep = float(np.linalg.norm(v_sep)) * np.array([math.cos(math.radians(dir_used)), math.sin(math.radians(dir_used))])
+    dir_status = ("rule-based (not observed): W-C peak slot speed, direction of the carried point" +
+                  (f"; W-C turns {w_c_turn:+.0f} deg during the carry (assumed: smallest turn that reaches the far corner without overlap)" if w_c_turn else ""))
+    if shot_fallback:
+        dir_status = ("assumed: rotated from the rule direction to the near edge of the window that clears the goalie and the far post "
+                      "(user review 2026-10-04: far corner); brushes W-C's right skate - user-approved exception shot.W-C_right_skate_brush (2026-10-05)")
+    dir_diag["w_c_turn_scan"] = turn_scan
+    dir_diag["applied_w_c_turn_deg"] = w_c_turn
+    dir_diag["final_direction_after_contact_deg"] = round(shot["final_dir"], 2)
+    dir_diag["contact_with_W-C_after_separation_s"] = [round(shot["touch"][0], 4), round(shot["touch"][-1], 4)] if shot["touch"] else None
+    shot_t = np.array([q[0] for q in shot["pts"]])
+    shot_x = np.array([q[1][0] for q in shot["pts"]])
+    shot_y = np.array([q[1][1] for q in shot["pts"]])
+    t_goal = shot["t_goal"]
+    t_back = float(shot_t[-1])
     t_rel_line = t_rel
     t_rel = t_rel_contact_end
     p_rel = p_line0 + v * (t_rel - t_line0)
 
+    wrf_ = figs["W-RW"]
+    prep_tl = np.array([prep[fr]["t"] for fr in prep_frames])
+    prep_ql = [wrf_.to_local(prep[fr]["t"], prep[fr]["puck_adj"]) for fr in prep_frames]
+
     def puck(tq):
         if tq <= t102:
-            ks = sorted(P.values(), key=lambda a: a[0])
-            ks = [k for k in ks if k[0] <= t102 + 1e-9]
-            return np.array([np.interp(tq, [k[0] for k in ks], [k[1][i] for k in ks]) for i in (0, 1)]), "prep_observed"
+            # carried by the foot: between the foot contacts at the observations the puck slides along the figure's touching
+            # outline (in the figure's own frame), so it moves with the figure and never passes through it
+            if tq <= prep_tl[0]:
+                return wrf_.to_w(prep_tl[0], prep_ql[0]), "prep_foot_drag"
+            j = int(np.searchsorted(prep_tl, tq) - 1)
+            f_ = (tq - prep_tl[j]) / (prep_tl[j + 1] - prep_tl[j])
+            return wrf_.to_w(tq, ring_local(prep_ql[j], prep_ql[j + 1], f_, prep[prep_frames[j]]["way_to_next"])), "prep_foot_drag"
         if tq <= t_rel:
             f = (tq - t102) / (t_rel - t102)
-            return p102 + f * (p_rel - p102), "pre_release_interpolated"
+            return p102_adj + f * (p_rel - p102_adj), "pre_release_interpolated"
         if tq <= t_contact:
             return p_rel + v * (tq - t_rel), "pass_free"
         if tq <= t_sep:
             return wc.to_w(tq, loc_c), "carried_by_W-C"
-        if t_back is None or tq <= t_back:
-            return p_sep + v_sep * (tq - t_sep), "shot_free"
-        return p_sep + v_sep * (t_back - t_sep), "in_goal_rest"
+        if tq <= t_back:
+            return np.array([np.interp(tq, shot_t, shot_x), np.interp(tq, shot_t, shot_y)]), "shot_free"
+        return np.array([shot_x[-1], shot_y[-1]]), "in_goal_rest"
 
     t_start, t_end = src_t(0.05), src_t(1.73)
-    # puck nodes: observed samples in prep, 2 ms elsewhere, exact phase boundaries
-    nodes_t = sorted(set([k[0] for k in P.values() if k[0] <= t102] + list(np.round(np.arange(t102, t_end, 0.002), 4)) +
-                         [round(x, 5) for x in (t_rel, t_contact, t_sep, t_back or t_end, t_end)]))
-    nodes = []
+    all_figs = {**figs, **static}
+    # puck nodes every 0.5 ms (the figures move up to a few mm per ms) plus the exact observation and phase times. In the
+    # observation-anchored phases the nominal puck is pushed out of every figure (pushing contact); the carried phase is
+    # rigid at a touching offset and the shot path already includes its contact.
+    nodes_t = sorted(set(list(np.round(np.arange(t_start, t_end, 0.0005), 5)) + [round(k[0], 5) for k in P_adj.values()] +
+                         [round(x, 5) for x in (t_rel, t_contact, t_sep, t_back, t_end)]))
+    nodes, push_by_phase = [], {}
     for tq in nodes_t:
         p, ph = puck(tq)
-        nodes.append({"t": round(float(tq), 5), "x_mm": round(float(p[0]), 2), "y_mm": round(float(p[1]), 2), "phase": ph})
+        if ph in ("prep_foot_drag", "pre_release_interpolated", "pass_free"):
+            for _ in range(3):
+                moved = 0.0
+                for f in all_figs.values():
+                    p, d_ = push_out(f, tq, p)
+                    moved += d_
+                    push_by_phase[ph] = max(push_by_phase.get(ph, 0.0), d_)
+                if moved == 0:
+                    break
+        nodes.append({"t": round(float(tq), 5), "x_mm": round(float(p[0]), 3), "y_mm": round(float(p[1]), 3), "phase": ph})
+    node_t = np.array([n["t"] for n in nodes])
+    node_x = np.array([n["x_mm"] for n in nodes])
+    node_y = np.array([n["y_mm"] for n in nodes])
+
+    def puck_traced(tq):
+        """The puck exactly as saved (linear between nodes) - what the renderer evaluates."""
+        i = int(np.searchsorted(node_t, tq, side="right") - 1)
+        ph = nodes[min(max(i, 0), len(nodes) - 1)]["phase"]
+        return np.array([np.interp(tq, node_t, node_x), np.interp(tq, node_t, node_y)]), ph
 
     # ---- clearance checks
     post_r = HW["goal"]["post_radius_mm"]
-    all_figs = {**figs, **static}
-    expected = {"W-C": ("carried_by_W-C",), "W-RW": ("prep_observed", "pre_release_interpolated")}
     rows = {}
     viol = []
     prev = None
     max_step = 0.0
-    for tq in np.arange(t_rel - 0.06, t_end, DT):
-        p, ph = puck(tq)
+    for tq in np.arange(t_start, t_end, DT):
+        p, ph = puck_traced(tq)
         if prev is not None:
             max_step = max(max_step, float(np.linalg.norm(p - prev)))
         prev = p
@@ -563,9 +844,11 @@ def main():
             r = rows.setdefault(key, {"min_clearance_mm": 1e9, "t_at_min": None})
             if c < r["min_clearance_mm"]:
                 r.update(min_clearance_mm=round(float(c), 2), t_at_min=round(float(tq), 4))
-            if c < -0.5 and ph not in expected.get(pid, ()):
+            if c < -PEN_TOL:  # no exemptions: touching is allowed, overlap never
                 viol.append((pid, ph, round(float(tq), 4), round(float(c), 2)))
         bc = board.exterior.distance(Point(*p)) - R_PUCK
+        if bc < -PEN_TOL:
+            viol.append(("boards", ph, round(float(tq), 4), round(float(bc), 2)))
         r = rows.setdefault(("boards", ph), {"min_clearance_mm": 1e9, "t_at_min": None})
         if bc < r["min_clearance_mm"]:
             r.update(min_clearance_mm=round(float(bc), 2), t_at_min=round(float(tq), 4))
@@ -577,12 +860,19 @@ def main():
             if pc < 0:
                 viol.append((f"goal_post_{k}", ph, round(float(tq), 4), round(pc, 2)))
     # goal-line crossing window
-    y_cross = float((p_sep + v_sep * (t_goal - t_sep))[1]) if t_goal else None
+    y_cross = shot["y_goal"]
     half = HW["goal"]["mouth_width_per_goal_mm"]["E"] / 2 - post_r - R_PUCK
     yc = HW["goal"]["placement_mm"]["E"][1]
     # group violations into intervals
-    vint = {}
+    vint, approved = {}, {}
+    exc = {(x["obstacle"], x["phase"]): x for x in INP.get("approved_overlap_exceptions", [])}
     for pid, ph, tq, c in viol:
+        if (pid, ph) in exc and c >= -exc[(pid, ph)]["max_overlap_mm"]:
+            a = approved.setdefault(exc[(pid, ph)]["id"], {"obstacle": pid, "phase": ph, "t0": tq, "t1": tq, "worst_mm": c,
+                                                             "max_overlap_mm": exc[(pid, ph)]["max_overlap_mm"], "approved_by": exc[(pid, ph)]["approved_by"]})
+            a["t1"] = tq
+            a["worst_mm"] = min(a["worst_mm"], c)
+            continue
         k = (pid, ph)
         a = vint.setdefault(k, {"t0": tq, "t1": tq, "worst_mm": c})
         a["t1"] = tq
@@ -609,23 +899,26 @@ def main():
          "status": "derived; confirmed by the user (2026-10-04)"},
         {"id": "shot.separation", "t_estimate": round(t_sep, 4), "speed_mm_s": round(float(np.linalg.norm(v_sep)), 0),
          "direction_deg": round(math.degrees(math.atan2(v_sep[1], v_sep[0])), 1),
-         "rule_direction_deg": round(dir_rule, 1), "direction_adjustment_deg": round(dir_used - dir_rule, 1),
+         "w_c_turn_deg": w_c_turn, "final_direction_after_contact_deg": round(shot["final_dir"], 2),
          "derivation": "time and speed: W-C peak slot speed after contact (the figure decelerates afterwards; the puck keeps its velocity). "
                        "Direction: see status", "status": dir_status},
         {"id": "goal_entry", "t_estimate": round(t_goal, 4) if t_goal else None, "observed_interval": obs_win["goal_entry"],
          "inside_observed_interval": bool(t_goal and obs_win["goal_entry"][0] <= t_goal <= obs_win["goal_entry"][1]),
          "goal_line_y_mm": round(y_cross, 1) if y_cross is not None else None, "mouth_centre_window_y_mm": [round(yc - half, 1), round(yc + half, 1)],
          "goal_side": "+y far corner (goalie's right; user statement)",
-         "status": ("derived from the adjusted shot direction" if dir_used != dir_rule else "derived") if (y_cross is not None and yc < y_cross <= yc + half) else "derived; NOT in the far corner (see limitations)"},
+         "status": "derived" if (y_cross is not None and yc < y_cross <= yc + half) else "derived; NOT in the far corner (see limitations)"},
     ]
     def fig_out(f, status):
         return {"player_id": f.pid, "team": f.team, "fixture_path_id": f.slot.id, "slot_length_mm": round(f.slot.length, 2), "status": status,
                 "arc_keyframes": f.arcs, "theta_keyframes": f.thetas}
     trace = {
         "schema": "shot-trace/1",
-        "trace_id": "trace.shovel-17.v1",
+        "trace_id": "trace.shovel-17.v2",
         "status": INP["user_review"]["status_after_review"],
-        "review": {k: v for k, v in INP["user_review"].items() if k != "status_after_review"},
+        "review": {**{k: v for k, v in INP["user_review"].items() if k != "status_after_review"},
+                   "revisions": [{"date": "2026-10-05", "trace_id": "trace.shovel-17.v2", "by": "user instruction",
+                                  "instruction": INP["user_instruction_2026_10_05"]["text"], "applied": INP["user_instruction_2026_10_05"]["applied"],
+                                  "approved_exceptions": [x["id"] for x in INP.get("approved_overlap_exceptions", [])]}]},
         "geometry_version": G["geometry_version"],
         "asset_refs": {"figure_molds_sha256": sha(REPO / "data/figure-molds.json"),
                        "skater_glb_sha256": sha(REPO / "assets/figures/skater_FIN.glb"), "goalie_glb_sha256": sha(REPO / "assets/figures/goalie_SWE.glb"),
@@ -644,31 +937,35 @@ def main():
                     "others": "not observed in segment 1 (out of frame or not checked): use the static assembly pose, not part of this trace"},
         "puck": {"radius_mm": R_PUCK, "radius_status": "catalog_nominal", "thickness_mm": PUCK_T, "thickness_status": "assumed (preview)", "nodes": nodes,
                  "phases": [
-                     {"id": "prep_observed", "t": [t_start, t102], "status": "observed blob centres; W-RW contact mechanics not reconstructed"},
-                     {"id": "pre_release_interpolated", "t": [t102, round(t_rel, 4)], "status": "linear from the last at-blade sample to the release point (occluded by W-RW)"},
+                     {"id": "prep_foot_drag", "t": [t_start, t102], "status": "W-RW drags the puck with its foot (user 2026-10-05): at each observation the puck touches a skate (moved at most the reported push from the blob centre); between observations it is carried in the figure's frame (interpolated between the foot contacts) and pushed out of every figure, so it slides along the foot"},
+                     {"id": "pre_release_interpolated", "t": [t102, round(t_rel, 4)], "status": "linear from the frame-102 foot contact to the release point (occluded by W-RW), pushed out of the rotating figure (the backhand pushes the puck)"},
                      {"id": "pass_free", "t": [round(t_rel, 4), round(t_contact, 4)], "status": "constant velocity from two flight observations"},
                      {"id": "carried_by_W-C", "t": [round(t_contact, 4), round(t_sep, 4)], "status": "rule: rigid at the contact offset (occluded in segment 1; contact confirmed by the user)"},
                      {"id": "shot_free", "t": [round(t_sep, 4), round(t_back, 4) if t_back else None], "status": "rule: constant velocity after separation (not observed in segment 1)"},
                      {"id": "in_goal_rest", "t": [round(t_back, 4) if t_back else None, t_end], "status": "assumed: at the back of the preview cage (position in the net not observed)"}],
                  "observations_vs_trace_mm": [{"frame": r["recording_frame"], "t": src_t(r["shot_time_s"]), "observed": r["world_mm_blob_centre"],
-                                               "trace": [round(float(x), 1) for x in puck(src_t(r["shot_time_s"]))[0]],
-                                               "residual_mm": round(float(np.linalg.norm(puck(src_t(r["shot_time_s"]))[0] - np.array(r["world_mm_blob_centre"]))), 1),
+                                               "trace": [round(float(x), 1) for x in puck_traced(src_t(r["shot_time_s"]))[0]],
+                                               "residual_mm": round(float(np.linalg.norm(puck_traced(src_t(r["shot_time_s"]))[0] - np.array(r["world_mm_blob_centre"]))), 1),
                                                "reading_uncertainty_mm": r["reading_uncertainty_mm"]} for r in puck_obs]},
         "events": events,
         "uncertainty": {"figure_arc_mm": "per keyframe sigma_mm (iteration-21 reading, 4-55 mm)", "theta_deg": "per keyframe sigma_deg; null = not measured",
                         "puck_mm": "blob-centre reading 3-13 mm plus parallax bias (up to half the unknown puck thickness); rule-based phases have no measured uncertainty",
                         "timing_s": 0.017},
         "limitations": [
-            *([("ASSUMED SHOT DIRECTION: with W-C's observed rotation, rigid carry and separation at peak slot speed, no run timing inside the "
-                "frame-109/111/114 exposure constraints sends the puck into the far corner the user confirmed: the rule direction "
-                f"({dir_rule:.1f} deg) runs through the static goalie. Following the user's review, the shot leaves at {dir_used:.1f} deg: inside the "
-                f"window that clears the goalie and the far post, at the largest margin to them and to W-C ({dir_diag['applied_direction_min_margin_mm']} mm) "
-                f"within ({dir_diag['clear_plus_y_directions_deg'][0]}-{dir_diag['clear_plus_y_directions_deg'][1]} deg); "
-                "speed, separation time and point stay rule-based. The sideways component is not explained by a contact model (a puck sliding along "
-                "W-C's angled back is the likely mechanism; the goalie pose or mold size may also contribute). Every direction in the window "
-                "brushes the rear of W-C's right skate while the puck slides off its back (checks unexpected_penetrations, W-C shot_free); the "
-                "chosen one has the shallowest overlap, within the unknown skate contact dimensions of the AI mold, and passes the goalie with "
-                "the smallest clearance in the window.")] if dir_used != dir_rule else []),
+            *([(f"ASSUMED W-C TURN: with W-C's observed facing, its own right skate pushes the shot back toward the goalie (pushing contact), so "
+                f"the puck cannot reach the far corner the user confirmed. W-C turns {w_c_turn:+.0f} deg during the carry (theta keyframe at "
+                f"{(best['t_on'] + best['t_top']) / 2:.4f} s; frames 109-114 are blurred, the turn is not observed): the smallest turn in 5-deg steps "
+                f"that reaches the far corner with no overlap anywhere. The puck leaves along the carried point's velocity ({dir_used:.1f} deg) "
+                f"and enters at y = {shot['y_goal']:.1f} mm.")] if w_c_turn else []),
+            *([(f"ASSUMED SHOT DIRECTION with an APPROVED OVERLAP: the rule direction ({dir_rule:.1f} deg) runs into the goalie; the far corner "
+                f"(user) is reached at {dir_used:.1f} deg, the near edge of the window that clears the goalie and the far post. On the way the puck "
+                "brushes the rear of W-C's right skate (checks approved_exceptions): a pushing contact would send it back toward the goalie, and no "
+                "W-C turn consistent with frame 116 avoids it (checks shot_direction_diagnostic.w_c_turn_scan). The user approved this single "
+                "exception on 2026-10-05 (skate size unknown, not visible); it is removed when the skate is measured.")] if shot_fallback else []),
+            "PREP FOOT DRAG (user, 2026-10-05): W-RW drags the puck with its foot and turns; at each puck observation its arc and heading are "
+            "solved so the puck touches a skate with no overlap (checks prep_foot_contacts: puck moved at most the listed push from the read blob "
+            "centre); between observations the puck is carried in the figure's frame and slides along the foot (pushing contact), not observed in detail. The turn direction between observations is the "
+            "shorter one; the large turns between the board end and centre ice are seen in the recording, their exact timing is not.",
             "Segment 2 (replay) may be a different take (user): it is not used as evidence for this trace.",
             "Recorded on another STIGA edition; positions assume the canonical Play Off 21 slot layout (blade-derived pivots lie 0.4-3 mm from the slots, supporting it).",
             "Slot position readings disagree: the blade-derived pivots (inputs.json blade marks) lie 2-25 mm along the slot from the iteration-21 "
@@ -679,9 +976,10 @@ def main():
             "The carry is a rule (rigid push at the first-contact offset), the separation a rule (peak slot speed); both occluded in segment 1.",
             "Blade, skate and stick geometry are the AI-modelled mold at the assumed preview scale: real contact dimensions unknown; puck thickness and goal size are preview values.",
             "Fixture axis assumed on the slot centreline; rod-to-figure transfer, stops and backlash unknown."]}
-    checks = {"sampling_s": DT, "max_puck_step_mm": round(max_step, 3),
+    checks = {"trace_id": trace["trace_id"], "sampling_s": DT, "max_puck_step_mm": round(max_step, 3),
               "min_clearance_by_obstacle_and_phase": [{"obstacle": k[0], "phase": k[1], **v} for k, v in sorted(rows.items())],
               "unexpected_penetrations": [{"obstacle": k[0], "phase": k[1], **v} for k, v in vint.items()],
+              "approved_exceptions": approved,
               "goal_line": {"x_mm": gx, "crossing_y_mm": round(y_cross, 2) if y_cross is not None else None,
                             "clear_window_y_mm": [round(yc - half, 1), round(yc + half, 1)],
                             "inside_window": bool(y_cross is not None and abs(y_cross - yc) <= half)},
@@ -689,7 +987,12 @@ def main():
                                       "distance_to_slot_mm": round(m["slot_dist_mm"], 1), "arc_from_blade_mm": round(m["arc_mm"], 1),
                                       "arc_in_trace_mm": round(all_figs[pid].arc(m["t"]), 1) if pid in all_figs else None}
                                      for pid, ms in (("W-C", meta["wc_meas"]), ("W-RW", meta["wr_meas"])) for m in ms],
-              "expected_contacts": {"W-C": "carried_by_W-C", "W-RW": "prep / pre-release"},
+              "contact_rule": "CLAUDE.md 'Contact physics': the puck may touch figures, boards and goal but never overlap them (tolerance PEN_TOL, every 0.25 ms, whole trace, no phase exemptions); only user-approved exceptions (inputs.json approved_overlap_exceptions) are allowed",
+              "prep_foot_contacts": [{"frame": fr, "t": prep[fr]["t"], "arc_mm": round(prep[fr]["arc_mm"], 2), "skate_row_arc_mm": arc_obs.get(fr, (None,))[0],
+                                      "heading_deg": round(prep[fr]["heading_deg"], 2), "visual_heading_deg": head_prior.get(fr, (None,))[0],
+                                      "push_from_observed_mm": round(prep[fr]["push_mm"], 2), "observed_sigma_mm": unc[fr] + 3.0} for fr in prep_frames],
+              "max_push_out_by_phase_mm": {k: round(v, 2) for k, v in push_by_phase.items()},
+              "penetration_tolerance_mm": PEN_TOL,
               "shot_direction_diagnostic": dir_diag, "w_c_onset_scan": scan0, "w_c_rotation_diagnostic": rot_scan}
     # evaluation samples for the TypeScript evaluator cross-check
     samp = []
@@ -705,7 +1008,8 @@ def main():
     OUT_TRACE.write_text(json.dumps(trace, indent=1) + "\n")
     OUT_CHECKS.write_text(json.dumps(checks, indent=1) + "\n")
     print(json.dumps({"events": events, "goal_line": checks["goal_line"], "unexpected": checks["unexpected_penetrations"], "max_step": max_step}, indent=1))
-    render(all_figs, puck, events, t_rel, t_contact, t_goal, posts, board, nodes)
+    prep_sheet(figs["W-RW"], puck_traced, t_start, t_rel + 0.03, prep)
+    render(all_figs, puck_traced, events, t_rel, t_contact, t_goal, posts, board, nodes)
 
 
 # ---------------------------------------------------------------- diagnostics
@@ -727,6 +1031,50 @@ def read_frames(wanted):
             out[i] = fr
         i += 1
     return out
+
+
+def prep_sheet(wr, puck, t0, t1, prep):
+    """validation/22-prep-foot-drag.png: W-RW (foot blue, stick grey) and the puck every 25 ms, top view centred on the
+    fixture axis, with the puck's clearance to the foot and to the stick (touching = 0, never negative)."""
+    stick = part_polygon("skater", K_SK, True)
+    S, Wt = 3.0, 220
+    obs_t = {round(v["t"], 4): fr for fr, v in prep.items()}
+    tiles = []
+    for tq in np.round(np.arange(t0, t1 + 1e-9, 0.025), 4):
+        p, ph = puck(tq)
+        piv, h = wr.pose(tq)
+        R = rot(h)
+        im = Image.new("RGB", (Wt, Wt + 34), "white")
+        d = ImageDraw.Draw(im)
+
+        def P(w):
+            return (Wt / 2 + (w[0] - piv[0]) * S, 34 + Wt / 2 - (w[1] - piv[1]) * S)
+        for poly, col in ((SK_FOOT, (40, 80, 220)), (stick, (140, 140, 140))):
+            for g in (poly.geoms if poly.geom_type == "MultiPolygon" else [poly]):
+                d.polygon([P(piv + R @ np.array(c)) for c in g.exterior.coords], fill=col)
+        q = Point(*(R.T @ (p - piv)))
+        c_foot = SK_FOOT.distance(q) - R_PUCK
+        c_stick = stick.distance(q) - R_PUCK
+        r = R_PUCK * S
+        pc = P(p)
+        d.ellipse((pc[0] - r, pc[1] - r, pc[0] + r, pc[1] + r), outline=(0, 0, 0), width=3)
+        d.ellipse((Wt / 2 - 3, 34 + Wt / 2 - 3, Wt / 2 + 3, 34 + Wt / 2 + 3), fill=(220, 0, 0))
+        d.line([P(piv), P(piv + R @ np.array([14.0, 0.0]))], fill=(220, 0, 0), width=2)
+        fr = next((f for tt, f in obs_t.items() if abs(tt - tq) < 0.0125), None)
+        d.text((4, 2), f"t {tq:.3f} s  {'frame ' + str(fr) if fr else ''}", fill=(0, 0, 0), font=FS)
+        d.text((4, 18), f"foot {c_foot:+.1f}  stick {c_stick:+.1f} mm", fill=(0, 120, 0) if min(c_foot, c_stick) >= -PEN_TOL else (200, 0, 0), font=FS)
+        tiles.append(im)
+    cols = 10
+    head = 64
+    sheet = Image.new("RGB", (cols * Wt, head + ((len(tiles) + cols - 1) // cols) * (Wt + 34)), "white")
+    d = ImageDraw.Draw(sheet)
+    d.text((8, 6), "22 (rev. 2026-10-05) - W-RW prep: the foot drags the puck (user rule). Top view centred on the fixture axis (red dot, red tick = facing), "
+                   "1 px = 0.33 mm.", fill=(0, 0, 0), font=FB)
+    d.text((8, 36), "Blue = skates/feet, grey = stick, black ring = puck. Clearances: puck edge to foot / stick (0 = touching; negative would be an "
+                    "overlap). 'frame N' = puck observation (puck touches the foot there).", fill=(0, 0, 0), font=FS)
+    for i, im in enumerate(tiles):
+        sheet.paste(im, ((i % cols) * Wt, head + (i // cols) * (Wt + 34)))
+    sheet.save(REPO / "validation/22-prep-foot-drag.png" if not OUT_DIR else OUT_DIR / "prep-foot-drag.png")
 
 
 def render(figs, puck, events, t_rel, t_contact, t_goal, posts, board, nodes):
@@ -815,7 +1163,7 @@ def overview(figs, nodes, posts, board, events):
     for pid, f in figs.items():
         P = f.slot.P
         d.line([S(q) for q in P], fill=(170, 170, 170), width=6)
-    cols = {"prep_observed": (120, 120, 120), "pre_release_interpolated": (200, 150, 0), "pass_free": (0, 140, 0), "carried_by_W-C": (0, 90, 220),
+    cols = {"prep_foot_drag": (120, 120, 120), "pre_release_interpolated": (200, 150, 0), "pass_free": (0, 140, 0), "carried_by_W-C": (0, 90, 220),
             "shot_free": (220, 0, 0), "in_goal_rest": (120, 0, 120)}
     for a, b in zip(nodes[:-1], nodes[1:]):
         d.line([S((a["x_mm"], a["y_mm"])), S((b["x_mm"], b["y_mm"]))], fill=cols[b["phase"]], width=3)

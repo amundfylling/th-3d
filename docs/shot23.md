@@ -1,5 +1,10 @@
 # Iteration 23 - accepted trace played with a fixed camera
 
+**Re-rendered on 2026-10-05 from trace v2.** W-RW now drags the puck back with its foot (user feedback), and the
+`CLAUDE.md` contact-physics rule applies (`docs/shot22.md` "Revision 2026-10-05"). The composition also refuses
+any trace whose contact check (`shots/22-shovel/checks.json`) lists an unexpected overlap or belongs to another
+trace id. All checks below were re-run on v2.
+
 Status: done on 2026-10-04 and AI-reviewed. The user accepted the iteration-22 trace on 2026-10-04 (`docs/shot22.md`,
 "User review"), and those corrections were applied there, so no further correction was needed. This iteration adds
 no narration, moving camera, replay, overlays or effects.
@@ -45,9 +50,9 @@ no narration, moving camera, replay, overlays or effects.
 
 | Check | Result |
 | --- | --- |
-| Diagnostic frames at the contact times: release 1.7720, reception 1.8343, separation 1.8548, goal entry 1.9014 s | rendered at exactly those times; logged state equals the pure Node evaluation (diff 0) |
+| Diagnostic frames at two W-RW foot drag-back moments (0.65, 1.35 s) and the contact times: release 1.7720, reception 1.8343, separation 1.8548, goal entry 1.9015 s | rendered at exactly those times; logged state equals the pure Node evaluation (diff 0) |
 | Shuffled and repeated frames: 12 frames (0, 20, 36-43, 45, 50), two seeded shuffled orders (A: 41,43,45,39,38,37,50,42,36,40,0,20; B: 41,40,0,37,50,20,36,45,43,42,39,38) | identical logged state and **identical PNG bytes** for every frame; equal to the pure evaluation |
-| Proof clip: all 51 frames, `renderMedia`, concurrency 2 (frames out of order across tabs) | every frame's logged state equals the pure evaluation (max diff 0) and matches the stills; 248 s |
+| Proof clip: all 51 frames, `renderMedia`, concurrency 2 (frames out of order across tabs) | every frame's logged state equals the pure evaluation (max diff 0) and matches the stills; 258 s |
 | `npm run check` | typecheck, validate, all tests pass |
 
 The proof clip was rendered and viewed: `validation/23-proof-clip.mp4` (960 × 540, H.264, 30 fps, 1.7 s). The
@@ -55,7 +60,8 @@ pass reaches W-C, W-C carries the puck up its slot, and the puck leaves past the
 
 ## Main artifact
 
-`validation/23-diagnostics.png`: the four contact-time frames, with state values, from the Remotion renderer.
+`validation/23-diagnostics.png`: two W-RW foot drag-back frames and the four contact-time frames, with state values,
+from the Remotion renderer.
 
 ## Limitations
 
@@ -63,7 +69,8 @@ pass reaches W-C, W-C carries the puck up its slot, and the puck leaves past the
   the recording were not observed.
 - **Renderer.** WebGL runs on the CPU (SwiftShader). There are no shadows, and the end screens are opaque. Seen
   from directly above, the goal cage roof hides most of the puck once it is in the net.
-- **Inherited from the trace.** The far-corner shot direction is assumed. The puck brushes W-C's skate by 2.65 mm.
+- **Inherited from the trace.** The far-corner shot direction is assumed. The puck brushes W-C's skate by 2.65 mm,
+  which is the single user-approved overlap exception.
   The puck's resting place in the net is assumed. Contact dimensions are the preview values.
 - **Proof clip resolution.** The clip is half resolution (`scale 0.5`) to save CPU time. The composition itself is
   1920 × 1080.

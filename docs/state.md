@@ -98,6 +98,17 @@
   goalie and the far post. The puck brushes W-C's right skate by 2.65 mm as it slides off (skate contact size
   unknown). The replay is no longer used as evidence (user: possibly a different take).
   Main artifact `validation/22-diagnostics.png`; notes `docs/shot22.md`; evaluator `src/model/trace.ts`.
+- **Revision 2026-10-05 (user feedback on the playback): W-RW foot drag-back plus the contact-physics rule.**
+  - The stick went through the puck in W-RW's drag-back. The prep phase is now rebuilt: at every puck observation
+    W-RW's slot position and heading are solved so the puck touches the foot, and between observations the puck
+    slides along the figure. At the board end W-RW is turned slightly (+19 / -24 deg). Trace
+    `trace.shovel-17.v2`, still `accepted`.
+  - New rule in `CLAUDE.md` "Contact physics": no overlap anywhere, ever; whole-trace check every 0.25 ms, 0.1 mm
+    tolerance. Now enforced by `tests/shot22.test.ts` and by the Remotion gate.
+  - One user-approved exception: the far-corner shot brushes W-C's right skate by 2.65 mm (`inputs.json`
+    `approved_overlap_exceptions`).
+  - Artifact `validation/22-prep-foot-drag.png`; notes `docs/shot22.md` "Revision 2026-10-05". Iteration-23
+    renders regenerated from v2.
 - **Iteration 23 (2026-10-04): accepted trace played in Remotion with a fixed camera.**
   - Composition `shot23-shovel-17`: 30 fps, 51 frames, source time 0.5-2.167 s, fixed orthographic overhead
     camera, plain background. `shot23-at-time` renders one diagnostic frame at any source time.
@@ -269,3 +280,4 @@ Iteration 20 closed without repair cycles:
 | 22 | 2026-10-04 | scripts/shot22-trace.py; shots/22-shovel/{inputs,checks}.json; data/traces/shovel-17.trace.json (proposed); src/model/trace.ts; tests/shot22.test.ts; validation/22-diagnostics.png, 22-trace-overview.png; docs/shot22.md; goal-side correction in docs/shot21.md, shots/21-shovel/{observations,marks}.json, scripts/shot21-observe.py | trace script run (and a +18 mm sensitivity run); `npm run check`; diagnostics and overview images AI-reviewed; replay frames re-checked; TS evaluator matches the script's samples |
 | 22r | 2026-10-04 | User review applied: inputs.json user_review; trace status accepted with the far-corner shot direction (assumed, 11.2 deg); replay marked not-evidence; shot22 tests, docs/shot21.md, docs/shot22.md | trace script rerun; `npm run check` 97/97; diagnostics and overview images AI-reviewed |
 | 23 | 2026-10-04 | src/model/shot-pose.ts; remotion/ShotPlayback.tsx, Root.tsx (shot23-shovel-17, shot23-at-time), cameras.ts (SHOT_CAMERA), asset-manifest.json; scripts/shot23-{manifest.ts,render.ts,sheet.py}; tests/shot23.test.ts; validation/23-{diagnostics.png,render-checks.json,proof-clip.mp4}; docs/shot23.md, docs/remotion.md; package.json (shot:23, remotion:assets writes the manifest) | `npm run check`; Remotion stills at 4 contact times; 12 frames x 2 shuffled orders (identical state and PNG bytes); proof clip 51 frames (state = pure evaluation); sheet and clip frames AI-reviewed |
+| 22r2 | 2026-10-05 | User feedback: W-RW foot drag-back; CLAUDE.md contact-physics rule. scripts/shot22-trace.py (foot-contact solver, outline sliding, pushing contact, whole-trace check, W-C turn scan, approved exceptions, prep sheet); shots/22-shovel/inputs.json (prep_heading_marks, user instruction, approved exception); trace v2; validation/22-prep-foot-drag.png; Remotion contact gate; shot22/23 tests; iteration-23 renders regenerated | trace script run; no overlap except the approved one; `npm run check`; prep sheet, Remotion stills and clip AI-reviewed |

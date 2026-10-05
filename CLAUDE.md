@@ -12,7 +12,8 @@ There were no animated shots before iteration 23.
 The autonomous batch 06-20 (`docs/autonomous-run.md`) is COMPLETE. Rule 1 ("stop after each
 iteration") applies again. Iterations 21-23 are done (docs/shot21.md, docs/shot22.md, docs/shot23.md). The iteration-22 trace is
 ACCEPTED by the user (2026-10-04) with an assumed far-corner shot direction; iteration 23 plays it in Remotion
-(fixed overhead camera). Next: iteration 24, after the user reviews the playback.
+(fixed overhead camera). Revised 2026-10-05 (trace v2): W-RW drags the puck with its foot, and the contact-physics
+rule below applies. Next: iteration 24, after the user reviews the revised playback.
 
 ## Key files
 
@@ -47,6 +48,24 @@ ACCEPTED by the user (2026-10-04) with an assumed far-corner shot direction; ite
     inspect, unresolved assumptions and the next step. Update `docs/state.md`. Commit that
     iteration's changes on the current working branch when git permits; do not merge or
     force-push.
+
+## Contact physics (user rule, 2026-10-05)
+
+- The puck is a rigid disk. It may TOUCH figures (skates, stick, body), boards and goal, but NEVER overlap or pass
+  through them: not at any time in a trace, in any phase, including preparation moves (drags, stick handling),
+  occluded intervals and the time between samples. Every saved trace is checked with the finite puck against every
+  figure's geometry, the boards and the goal posts every 0.25 ms or finer, with an overlap tolerance of at most
+  0.1 mm and no phase exemptions. A trace that fails is not saved as proposed or accepted, and Remotion does not
+  play it.
+- Every change in the puck's motion has a named physical cause: a contact with a specific part (foot/skate, blade,
+  back of the figure, boards, goal). No unexplained course changes, no jumps, no puck moving through geometry.
+- Follow the real technique: the drag-back is done with the foot (skate) and a slight turn of the figure, not with
+  the stick through the puck. When the evidence is unclear, choose a contact that is physically possible (touching,
+  pushing in the direction of motion), never an overlap. Rigid figures also obey rule 5: rotate the figure, don't
+  bend it.
+- Exceptions only with the user's explicit approval, recorded as data (`shots/*/inputs.json`
+  `approved_overlap_exceptions`: what, why, maximum depth, approver, removal condition) and reported in the checks.
+  Never add one silently, and never widen one without asking.
 
 ## Evidence discipline
 
