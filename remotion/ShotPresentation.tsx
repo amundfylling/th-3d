@@ -16,7 +16,13 @@ import { ShotScene } from "./ShotScene.tsx";
 import { SHOT_TRACE, assertShotRenderable } from "./ShotPlayback.tsx";
 
 export const PRESENTATION = presentationJson as unknown as PresentationSpec;
-export const TIMELINE = resolveTimeline(PRESENTATION, SHOT_TRACE as unknown as Parameters<typeof resolveTimeline>[1]);
+const TIMELINES = new Map<number, ReturnType<typeof resolveTimeline>>();
+/** The presentation timeline laid out at an output frame rate (a whole multiple of the presentation fps). */
+export function timelineFor(fps: number): ReturnType<typeof resolveTimeline> {
+  if (!TIMELINES.has(fps)) TIMELINES.set(fps, resolveTimeline(PRESENTATION, SHOT_TRACE as unknown as Parameters<typeof resolveTimeline>[1], fps));
+  return TIMELINES.get(fps)!;
+}
+export const TIMELINE = timelineFor(PRESENTATION.fps);
 const stateAt = shotTimeEvaluator(SHOT_TRACE, geometry as Parameters<typeof shotTimeEvaluator>[1]);
 
 export type PresentationProps = {
@@ -43,8 +49,8 @@ function benchmarkCamera(name: keyof typeof CAMERAS, width: number, height: numb
 
 const CAPTION: React.CSSProperties = { position: "absolute", color: "#ffffff", fontFamily: "DejaVu Sans, Arial, sans-serif", textShadow: "0 1px 3px rgba(0,0,0,0.6)" };
 
-const Overlay: React.FC<{ frame: number; puckMm: [number, number, number]; cam: THREE.Camera; width: number; height: number }> = ({ frame, puckMm, cam, width, height }) => {
-  const { segment } = sourceAtFrame(TIMELINE, frame);
+const Overlay: React.FC<{ frame: number; timeline: ReturnType<typeof resolveTimeline>; puckMm: [number, number, number]; cam: THREE.Camera; width: number; height: number }> = ({ frame, timeline, puckMm, cam, width, height }) => {
+  const { segment } = sourceAtFrame(timeline, frame);
   const caps = activeAt(PRESENTATION.captions, segment);
   const marks = activeAt(PRESENTATION.markers, segment);
   const toPx = (p: [number, number, number]): [number, number] => {
@@ -76,17 +82,17 @@ const Overlay: React.FC<{ frame: number; puckMm: [number, number, number]; cam: 
 export const ShotPresentation: React.FC<PresentationProps> = ({ overlays }) => {
   const { width, height, fps } = useVideoConfig();
   const frame = useCurrentFrame();
-  if (fps !== TIMELINE.fps) throw new Error(`composition fps ${fps} differs from the presentation fps ${TIMELINE.fps}`);
+  const timeline = timelineFor(fps); // throws unless fps is a whole multiple of the presentation fps
   useMemo(() => console.log(`[shot24-check] PASS versions: ${assertShotRenderable().join(", ")}`), []);
   // presentation frame -> source time (explicit timeline) -> physical state (pure evaluator of the same trace)
-  const state = useMemo(() => stateAt(sourceAtFrame(TIMELINE, frame).t, frame), [frame]);
+  const state = useMemo(() => stateAt(sourceAtFrame(timeline, frame).t, frame), [timeline, frame]);
   const cam = useMemo(() => benchmarkCamera(PRESENTATION.camera as keyof typeof CAMERAS, width, height), [width, height]);
   return (
     <AbsoluteFill style={{ backgroundColor: "#a6a6a6" }}>
       <ThreeCanvas width={width} height={height} camera={Object.assign(cam, { manual: true })} orthographic={CAMERAS[PRESENTATION.camera as keyof typeof CAMERAS].kind === "orthographic"} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true }}>
         <ShotScene state={state} logTag="shot24" />
       </ThreeCanvas>
-      {overlays ? <Overlay frame={frame} puckMm={state.puckMm} cam={cam} width={width} height={height} /> : null}
+      {overlays ? <Overlay frame={frame} timeline={timeline} puckMm={state.puckMm} cam={cam} width={width} height={height} /> : null}
     </AbsoluteFill>
   );
 };

@@ -44,7 +44,8 @@
     "shot:21": "/root/venvs/blender/bin/python scripts/shot21-observe.py",
     "shot:22": "/root/venvs/blender/bin/python scripts/shot22-trace.py",
     "shot:23": "npm run remotion:assets && node scripts/shot23-render.ts && python3 scripts/shot23-sheet.py",
-    "shot:24": "npm run remotion:assets && node scripts/shot24-render.ts && python3 scripts/shot24-sheet.py"
+    "shot:24": "npm run remotion:assets && node scripts/shot24-render.ts && python3 scripts/shot24-sheet.py",
+    "video:shovel-17": "npm run remotion:assets && node scripts/shot25-export.ts && /root/venvs/blender/bin/python scripts/shot25-review.py validation/25-shovel-17-final.mp4 validation/25-final-review.png"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

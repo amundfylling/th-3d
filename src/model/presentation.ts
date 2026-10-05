@@ -46,7 +46,8 @@ export interface ResolvedSegment {
   /** Presentation frames [f0, f1) covered by the segment (may be fractional). */
   f0: number;
   f1: number;
-  /** play: source time = window start + (u0 + (frame - f0) * rate) / fps, u0 in source frames. */
+  /** play: source time = window start + (u0 + (frame - f0) * rate) / fps, u0 in source frames (at the presentation
+   * fps); rate is source frames per OUTPUT frame (the spec rate divided by outFps / fps). */
   u0: number;
   rate: number;
   /** hold: the frozen source time. */
@@ -54,7 +55,10 @@ export interface ResolvedSegment {
 }
 
 export interface Timeline {
+  /** presentation (source-frame) fps of the spec */
   fps: number;
+  /** output frame rate the segments are laid out in */
+  outFps: number;
   windowStartS: number;
   segments: ResolvedSegment[];
   durationInFrames: number;
@@ -83,10 +87,16 @@ export function resolveSource(ref: SourceRef, trace: TraceLike, fps: number): nu
   return w0 + ref.window_frame / fps;
 }
 
-/** Resolves a presentation spec against its trace. Throws on anything that would not evaluate the same trace. */
-export function resolveTimeline(spec: PresentationSpec, trace: TraceLike): Timeline {
+/**
+ * Resolves a presentation spec against its trace. Throws on anything that would not evaluate the same trace.
+ * `outFps` (default spec.fps) must be a whole multiple of spec.fps: hold lengths and play durations scale with it, and
+ * every source time shown at spec.fps is shown, bit for bit, at the matching output frame.
+ */
+export function resolveTimeline(spec: PresentationSpec, trace: TraceLike, outFps: number = spec.fps): Timeline {
   if (spec.trace_id !== trace.trace_id) throw new Error(`presentation is for ${spec.trace_id}, trace is ${trace.trace_id}`);
   const fps = spec.fps;
+  const m = outFps / fps;
+  if (!Number.isInteger(m) || m < 1) throw new Error(`output fps ${outFps} must be a whole multiple of the presentation fps ${fps}`);
   const [w0, w1] = trace.time_base.window_s;
   const out: ResolvedSegment[] = [];
   let f = 0;
@@ -94,24 +104,24 @@ export function resolveTimeline(spec: PresentationSpec, trace: TraceLike): Timel
     if (s.kind === "hold") {
       if (s.at === undefined || !(s.frames! > 0)) throw new Error(`${s.id}: hold needs at and frames > 0`);
       const t = resolveSource(s.at, trace, fps);
-      out.push({ id: s.id, kind: "hold", f0: f, f1: f + s.frames!, u0: toSourceFrames(t, w0, fps), rate: 0, t });
-      f += s.frames!;
+      out.push({ id: s.id, kind: "hold", f0: f, f1: f + s.frames! * m, u0: toSourceFrames(t, w0, fps), rate: 0, t });
+      f += s.frames! * m;
     } else {
       if (s.from === undefined || s.to === undefined || !(s.rate! > 0)) throw new Error(`${s.id}: play needs from, to and rate > 0`);
       const a = resolveSource(s.from, trace, fps), b = resolveSource(s.to, trace, fps);
       if (!(b > a)) throw new Error(`${s.id}: play must move forward in source time`);
       const ua = toSourceFrames(a, w0, fps), ub = toSourceFrames(b, w0, fps);
-      const n = (ub - ua) / s.rate!;
-      out.push({ id: s.id, kind: "play", f0: f, f1: f + n, u0: ua, rate: s.rate!, t: Number.NaN });
+      const n = ((ub - ua) / s.rate!) * m;
+      out.push({ id: s.id, kind: "play", f0: f, f1: f + n, u0: ua, rate: s.rate! / m, t: Number.NaN });
       f += n;
     }
   }
   for (const s of out) {
     const lo = s.kind === "hold" ? s.t : w0 + s.u0 / fps;
-    const hi = s.kind === "hold" ? s.t : w0 + (s.u0 + (s.f1 - s.f0) * s.rate) / fps;
+    const hi = s.kind === "hold" ? s.t : w0 + (s.u0 + (s.f1 - s.f0) * s.rate) / fps;  // rate is per output frame
     if (lo < w0 - 1e-9 || hi > w1 + 1e-9) throw new Error(`${s.id}: source time outside the trace window`);
   }
-  return { fps, windowStartS: w0, segments: out, durationInFrames: Math.ceil(f - 1e-9) };
+  return { fps, outFps, windowStartS: w0, segments: out, durationInFrames: Math.ceil(f - 1e-9) };
 }
 
 /** The segment shown at a presentation frame and the source time it maps to. Pure. */

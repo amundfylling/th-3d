@@ -75,7 +75,7 @@ test("iteration 24: the composition reads the trace only through the pure evalua
     for (const bad of ["useFrame(", "Date.now", "performance.now", "new THREE.Clock", "getDelta", "requestAnimationFrame", "setInterval", "blur(", "DepthOfField", "Bokeh", "motionBlur"]) assert.ok(!src.includes(bad), `${file}: ${bad}`);
   }
   const src = readFileSync("remotion/ShotPresentation.tsx", "utf8");
-  assert.match(src, /stateAt\(sourceAtFrame\(TIMELINE, frame\)\.t, frame\)/);
+  assert.match(src, /stateAt\(sourceAtFrame\(timeline, frame\)\.t, frame\)/);
   assert.match(src, /shotTimeEvaluator\(SHOT_TRACE/);
   assert.equal(spec.camera, "oblique", "one camera from the static benchmarks (remotion/cameras.ts)");
 });
