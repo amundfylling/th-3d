@@ -143,6 +143,16 @@
   - Rerender: `npm run video:shovel-17`. Versions, hashes and settings are in `validation/25-export-report.json`;
     notes in `docs/shot25.md`.
   - This is the last numbered iteration. Open items: the renderer decision, real figure measurements, the next shot.
+- **Analysis video (2026-10-05, user request after iteration 25): "#17 The Shovel" breakdown.**
+  - `validation/analysis-shovel-17.mp4`: 1920 × 1080, 30 fps, H.264, 740 frames (24.67 s); VAR-style story (full
+    speed, rewind, pass freeze, reception freeze at the skates, slow-motion shovel, replay).
+  - Separate composition `analysis-shovel-17` (`remotion/ShotAnalysis.tsx`); data
+    `data/presentations/shovel-17.analysis.json`. Shot timeline, camera track (`src/model/camera-track.ts`) and
+    graphics are independent pure functions of the frame. The trace, geometry, models and the earlier compositions
+    are unchanged.
+  - Checks: every frame's state equals the pure evaluation and every frame's camera equals the camera track
+    (`validation/analysis-shovel-17-report.json`); size < 25 MB verified; `tests/analysis.test.ts`.
+  - Rerender: `npm run video:analysis-shovel-17`. Notes: `docs/analysis-shovel-17.md`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -241,6 +251,8 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **`validation/analysis-shovel-17.mp4`** - analysis video, with `analysis-shovel-17-review.png` and
+  `analysis-shovel-17-report.json`. Notes: `docs/analysis-shovel-17.md`.
 - **`validation/22-diagnostics.png`** - iteration 22 main artifact (proposed trace, nine stills around release,
   reception and goal entry), plus `22-trace-overview.png`. Notes: `docs/shot22.md`.
 - **`validation/21-contact-sheet.png`**, `21-camera-calibration.png` - iteration 21. Notes: `docs/shot21.md`.
@@ -304,3 +316,4 @@ Iteration 20 closed without repair cycles:
 | 22r2 | 2026-10-05 | User feedback: W-RW foot drag-back; CLAUDE.md contact-physics rule. scripts/shot22-trace.py (foot-contact solver, outline sliding, pushing contact, whole-trace check, W-C turn scan, approved exceptions, prep sheet); shots/22-shovel/inputs.json (prep_heading_marks, user instruction, approved exception); trace v2; validation/22-prep-foot-drag.png; Remotion contact gate; shot22/23 tests; iteration-23 renders regenerated | trace script run; no overlap except the approved one; `npm run check`; prep sheet, Remotion stills and clip AI-reviewed |
 | 24 | 2026-10-05 | data/presentations/shovel-17.presentation.json; src/model/presentation.ts; src/model/shot-pose.ts (shotTimeEvaluator); remotion/ShotScene.tsx (shared scene), ShotPresentation.tsx, Root.tsx (shot24-shovel-17); scripts/shot24-{render.ts,sheet.py}; tests/shot24.test.ts; validation/24-{comparison.png,render-checks.json,draft.mp4}; docs/shot24.md, docs/remotion.md; package.json (shot:24) | `npm run check`; 4 normal/replay pairs identical in state and PNG bytes; contact pause identical; draft clip 223 frames = pure evaluation; stills and clip AI-reviewed |
 | 25 | 2026-10-05 | src/model/presentation.ts (output fps multiple); remotion/ShotPresentation.tsx (timeline per fps), Root.tsx (shot25-shovel-17-final, 1920x1080 60 fps); scripts/shot25-{export.ts,keyframes.ts,review.py}; tests/shot25.test.ts; validation/25-{shovel-17-final.mp4,export-report.json,final-review.png}; docs/shot25.md; package.json (video:shovel-17) | draft 480x270 60 fps rendered and reviewed (all frames = pure evaluation); final 1920x1080 60 fps rendered, every frame = pure evaluation, review sheet AI-reviewed; `npm run check` |
+| A1 | 2026-10-05 | Analysis video (user request): src/model/{analysis.ts,camera-track.ts}, presentation.ts (rewind); data/presentations/shovel-17.analysis.json; remotion/ShotAnalysis.tsx, Root.tsx (analysis-shovel-17); public/fonts (Barlow, OFL); scripts/analysis-{stills.ts,render.ts,review.py}; tests/analysis.test.ts; validation/analysis-shovel-17.{mp4,-report.json,-review.png}; docs/analysis-shovel-17.md; package.json (video:analysis-shovel-17) | tuning stills reviewed across all segments; final 1080p render, every frame = pure evaluation and camera track; file size checked < 25 MB; review sheet AI-reviewed; `npm run check` |

@@ -7,8 +7,8 @@ export type SourceRef = number | { event: string } | { window_frame: number };
 
 export interface SegmentSpec {
   id: string;
-  /** play: source time advances at `rate` x real time; hold: source time is frozen (a pause). */
-  kind: "play" | "hold";
+  /** play: source time advances at `rate` x real time; rewind: it runs backwards at `rate`; hold: frozen (a pause). */
+  kind: "play" | "hold" | "rewind";
   from?: SourceRef;
   to?: SourceRef;
   rate?: number;
@@ -42,7 +42,7 @@ export interface PresentationSpec {
 
 export interface ResolvedSegment {
   id: string;
-  kind: "play" | "hold";
+  kind: "play" | "hold" | "rewind";
   /** Presentation frames [f0, f1) covered by the segment (may be fractional). */
   f0: number;
   f1: number;
@@ -107,18 +107,21 @@ export function resolveTimeline(spec: PresentationSpec, trace: TraceLike, outFps
       out.push({ id: s.id, kind: "hold", f0: f, f1: f + s.frames! * m, u0: toSourceFrames(t, w0, fps), rate: 0, t });
       f += s.frames! * m;
     } else {
-      if (s.from === undefined || s.to === undefined || !(s.rate! > 0)) throw new Error(`${s.id}: play needs from, to and rate > 0`);
+      if (s.from === undefined || s.to === undefined || !(s.rate! > 0)) throw new Error(`${s.id}: ${s.kind} needs from, to and rate > 0`);
       const a = resolveSource(s.from, trace, fps), b = resolveSource(s.to, trace, fps);
-      if (!(b > a)) throw new Error(`${s.id}: play must move forward in source time`);
+      if (s.kind === "play" && !(b > a)) throw new Error(`${s.id}: play must move forward in source time`);
+      if (s.kind === "rewind" && !(b < a)) throw new Error(`${s.id}: rewind must move backward in source time`);
       const ua = toSourceFrames(a, w0, fps), ub = toSourceFrames(b, w0, fps);
-      const n = ((ub - ua) / s.rate!) * m;
-      out.push({ id: s.id, kind: "play", f0: f, f1: f + n, u0: ua, rate: s.rate! / m, t: Number.NaN });
+      const n = (Math.abs(ub - ua) / s.rate!) * m;
+      const sign = s.kind === "rewind" ? -1 : 1;
+      out.push({ id: s.id, kind: s.kind, f0: f, f1: f + n, u0: ua, rate: (sign * s.rate!) / m, t: Number.NaN });
       f += n;
     }
   }
   for (const s of out) {
-    const lo = s.kind === "hold" ? s.t : w0 + s.u0 / fps;
-    const hi = s.kind === "hold" ? s.t : w0 + (s.u0 + (s.f1 - s.f0) * s.rate) / fps;  // rate is per output frame
+    const a = s.kind === "hold" ? s.t : w0 + s.u0 / fps;
+    const b = s.kind === "hold" ? s.t : w0 + (s.u0 + (s.f1 - s.f0) * s.rate) / fps;  // rate is per output frame
+    const lo = Math.min(a, b), hi = Math.max(a, b);
     if (lo < w0 - 1e-9 || hi > w1 + 1e-9) throw new Error(`${s.id}: source time outside the trace window`);
   }
   return { fps, outFps, windowStartS: w0, segments: out, durationInFrames: Math.ceil(f - 1e-9) };

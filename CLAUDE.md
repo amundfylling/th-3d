@@ -16,7 +16,8 @@ ACCEPTED by the user (2026-10-04) with an assumed far-corner shot direction; ite
 rule below applies. Iteration 24 is done (docs/shot24.md): normal pass, 1/4-speed replay with a pause at the
 key contact, oblique benchmark camera. Iteration 25 is done (docs/shot25.md): the first video is exported
 (validation/25-shovel-17-final.mp4, 1920x1080 60 fps; rerender with `npm run video:shovel-17`). No further
-numbered iteration is defined.
+numbered iteration is defined. A sports-analysis video of the same trace (composition `analysis-shovel-17`,
+validation/analysis-shovel-17.mp4, `npm run video:analysis-shovel-17`) is documented in docs/analysis-shovel-17.md.
 
 ## Key files
 
