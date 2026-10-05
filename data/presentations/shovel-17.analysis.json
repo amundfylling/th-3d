@@ -13,7 +13,7 @@
    "at": {
     "window_frame": 0
    },
-   "frames": 60
+   "frames": 51
   },
   {
    "id": "full",
@@ -32,7 +32,7 @@
    "at": {
     "window_frame": 50
    },
-   "frames": 24
+   "frames": 21
   },
   {
    "id": "rewind",
@@ -47,7 +47,7 @@
    "id": "pass_set",
    "kind": "hold",
    "at": 1.55,
-   "frames": 21
+   "frames": 18
   },
   {
    "id": "pass_in",
@@ -64,7 +64,7 @@
    "at": {
     "event": "pass.release"
    },
-   "frames": 90
+   "frames": 81
   },
   {
    "id": "to_reception",
@@ -147,20 +147,20 @@
    "id": "to_replay",
    "kind": "hold",
    "at": 1.96,
-   "frames": 27
+   "frames": 48
   },
   {
    "id": "replay",
    "kind": "play",
    "from": 1.0,
    "to": 2.05,
-   "rate": 0.45
+   "rate": 0.5
   },
   {
    "id": "outro",
    "kind": "hold",
    "at": 2.05,
-   "frames": 36
+   "frames": 54
   }
  ],
  "unlabelled_holds": [
@@ -226,16 +226,16 @@
   },
   "shovel": {
    "positionMm": [
-    40,
-    -420,
-    170
+    200,
+    249,
+    380
    ],
    "targetMm": [
-    95,
-    -30,
+    150,
+    5,
     5
    ],
-   "fovDeg": 32
+   "fovDeg": 34
   },
   "replay": {
    "positionMm": [
@@ -289,7 +289,7 @@
   {
    "at": "to_shovel.end",
    "view": "shovel",
-   "lift": 90
+   "lift": 40
   },
   {
    "at": "to_replay.start",
@@ -298,7 +298,7 @@
   {
    "at": "to_replay.end",
    "view": "replay",
-   "lift": 120
+   "lift": 60
   }
  ],
  "chapters": [
@@ -407,7 +407,7 @@
   {
    "id": "end",
    "type": "end_card",
-   "from": "outro.start+0.2",
+   "from": "replay.end-0.3",
    "to": "outro.end"
   }
  ]

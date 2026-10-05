@@ -164,3 +164,39 @@ test("analysis: export report matches the committed inputs and the delivered vid
   assert.ok(r.checks.camera_max_diff_vs_track <= 0.02);
   if (existsSync(r.output.path)) assert.equal(sha(r.output.path), r.output.sha256);
 });
+
+test("analysis: during the carry and the release the camera sees the puck and the centre past every other figure", () => {
+  // static figures from the scene GLB (glTF metres, y up) and the traced figures from the evaluator
+  const glb = readFileSync("assets/scene/full_static_appearance.glb");
+  const gltf = JSON.parse(glb.subarray(20, 20 + glb.readUInt32LE(12)).toString("utf8")) as { nodes: { name?: string; translation?: number[] }[] };
+  const staticXY = new Map<string, [number, number]>();
+  for (const n of gltf.nodes) if (n.name?.startsWith("Figure.") && n.translation) staticXY.set(n.name.slice(7), [n.translation[0]! * 1000, -n.translation[2]! * 1000]);
+  assert.equal(staticXY.size, 12);
+  const stateAt = shotTimeEvaluator(trace, geometry);
+  // a figure is a vertical cylinder around its fixture axis: radius 25 mm (goalie 32 mm), 56 mm tall (figures 51-54 mm)
+  const blocked = (cam: number[], p: number[], cx: number, cy: number, r: number): boolean => {
+    for (let k = 0; k <= 60; k++) {
+      const u = k / 60;
+      if (u > 0.97) break;
+      const z = cam[2]! + (p[2]! - cam[2]!) * u;
+      if (z <= 56 && Math.hypot(cam[0]! + (p[0]! - cam[0]!) * u - cx, cam[1]! + (p[1]! - cam[1]!) * u - cy) < r) return true;
+    }
+    return false;
+  };
+  let checked = 0;
+  for (const id of ["shovel_read", "carry", "release_freeze"]) {
+    for (const f of framesOf(id)) {
+      const af = analysisFrame(A, f), s = stateAt(af.t, f), cam = af.camera.positionMm;
+      const wc = s.figures["W-C"]!.pivotMm;
+      for (const target of [[s.puckMm[0], s.puckMm[1], 6], [wc[0], wc[1], 32]]) {
+        for (const [pid, xy] of staticXY) {
+          if (pid === "W-C") continue;
+          const p = s.figures[pid]?.pivotMm ?? xy;
+          assert.ok(!blocked(cam, target, p[0]!, p[1]!, pid.endsWith("G") ? 32 : 25), `${id} frame ${f}: ${pid} hides the ${target[2] === 6 ? "puck" : "centre"}`);
+        }
+        checked++;
+      }
+    }
+  }
+  assert.ok(checked > 100);
+});

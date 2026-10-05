@@ -144,7 +144,7 @@
     notes in `docs/shot25.md`.
   - This is the last numbered iteration. Open items: the renderer decision, real figure measurements, the next shot.
 - **Analysis video (2026-10-05, user request after iteration 25): "#17 The Shovel" breakdown.**
-  - `validation/analysis-shovel-17.mp4`: 1920 × 1080, 30 fps, H.264, 740 frames (24.67 s); VAR-style story (full
+  - `validation/analysis-shovel-17.mp4`: 1920 × 1080, 30 fps, H.264, 748 frames (24.93 s); VAR-style story (full
     speed, rewind, pass freeze, reception freeze at the skates, slow-motion shovel, replay).
   - Separate composition `analysis-shovel-17` (`remotion/ShotAnalysis.tsx`); data
     `data/presentations/shovel-17.analysis.json`. Shot timeline, camera track (`src/model/camera-track.ts`) and
