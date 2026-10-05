@@ -9,7 +9,7 @@ scene, models, trace and contact sequence as iterations 23-25, and it changes no
 | --- | --- |
 | Video | `validation/analysis-shovel-17.mp4` |
 | Format | 1920 × 1080 (16:9), 30 fps, H.264 CRF 20, yuv420p, 748 frames (24.93 s) |
-| Size | see `validation/analysis-shovel-17-report.json` (`output.bytes`; limit 25 MB, checked by the script) |
+| Size | 12,144,395 bytes (12.14 MB), measured from the file; limit 25 MB, checked by the render script |
 | Composition | `analysis-shovel-17` (`remotion/ShotAnalysis.tsx`, registered in `remotion/Root.tsx`) |
 | Data | `data/presentations/shovel-17.analysis.json` (shot timeline, camera views and keys, chapters, graphics) |
 | Model code | `src/model/analysis.ts` (spec resolution, badges, frame evaluation), `src/model/camera-track.ts` (camera), `src/model/presentation.ts` (timeline; `rewind` segments added) |
@@ -22,7 +22,7 @@ scene, models, trace and contact sequence as iterations 23-25, and it changes no
 npm run video:analysis-shovel-17
 ```
 
-This copies the scene GLB to `public/`, renders and checks the video (`scripts/analysis-render.ts`, about 75 min on
+This copies the scene GLB to `public/`, renders and checks the video (`scripts/analysis-render.ts`, about 66 min on
 the 4-CPU container with SwiftShader) and writes the review sheet (`scripts/analysis-review.py`). Single frames for
 tuning: `node scripts/analysis-stills.ts 0.5 <frame> ...` → `out/analysis/`. The other compositions (`shot23-*`,
 `shot24-shovel-17`, `shot25-shovel-17-final`, `static-*`) are unchanged and still registered.
@@ -109,7 +109,17 @@ recorded on the trace event. The slot arrow follows the W-C fixture centreline.
   The composition passed a new `THREE.PerspectiveCamera` to `ThreeCanvas` on every frame, and memory grew by about
   140 MB per 1080p frame. With one canvas camera per tab, memory stayed flat at about 2.1 GB over a 50-frame probe.
   A test guards it.
-- **Final video.** Reviewed from the review sheet (every 15th frame plus the middle frame of every segment).
+- **Final video.** Reviewed from the review sheet (every 15th frame plus the middle frame of every segment):
+  - title, chapters, badges and the summary card are legible;
+  - the puck and the contacts are visible in the pass, reception, carry, release and goal freezes;
+  - no label overlaps the puck or another label;
+  - no clipping.
+- **Render checks** (`validation/analysis-shovel-17-report.json`):
+  - 748/748 frames logged, and every frame's state equals the pure evaluation;
+  - the camera is within 0.005 mm of the camera track;
+  - ffprobe reports h264, 1920 × 1080, 30/1, 748 frames, 24.93 s;
+  - render time 3962 s with 2 parallel tabs.
+- `npm run check`: typecheck, validate and 124/124 tests pass.
 
 ## Limitations
 
