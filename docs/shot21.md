@@ -28,6 +28,8 @@ animation.
 - **Real time**: segment 1 is treated as real time on the user's statement ("full speed"). Shot time is measured
   from the first frame of segment 1, +/- 17 ms (one recording interval).
 - **Replay**: segment 2 is slower by an undetermined factor (roughly 3-10x) and is not mapped to segment 1.
+  **Update (user, 2026-10-04):** the replay may not be the same take as segment 1 (only one camera was used), so its
+  marks are not evidence for the segment-1 shot. The goal side (far corner, +y) is confirmed by the user.
 
 ## Camera (segment 1)
 

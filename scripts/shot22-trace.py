@@ -1,4 +1,4 @@
-"""Iteration 22: one constrained motion trace for the '#17 Shovel' shot (proposed, not accepted).
+"""Iteration 22: one constrained motion trace for the '#17 Shovel' shot (status from the user review in inputs.json).
 
     /root/venvs/blender/bin/python scripts/shot22-trace.py
 
@@ -378,7 +378,7 @@ def main():
             tm = round((t_on + t_top) / 2, 4)
             base = lin_eval(np.array([k["t"] for k in wc_th]), np.array([k["theta_deg"] for k in wc_th]), tm)
             th = th + [{"t": tm, "theta_deg": round(base + dtheta, 2), "sigma_deg": None,
-                        "source": "solved: mid-run rotation (unobserved, blurred); smallest change that reproduces the replay goal side"}]
+                        "source": "solved: mid-run rotation (unobserved, blurred); smallest change that reaches the far-corner goal side"}]
         wc = Figure("W-C", "W", "skater", ak, th)
         # exposure constraints: the run starts within frame 109's exposure (blurred, 'starting to move'); during the
         # exposures of frames 111 and 114 the skates reach the re-read row intervals (inputs.json run_marks)
@@ -438,7 +438,7 @@ def main():
                              "goal_line_y_mm": round(r["y_cross"], 1), "goalie_clearance_mm": round(r["goalie_clearance"], 1),
                              "peak_puck_speed_mm_s": round(float(np.linalg.norm(r["v_sep"])), 0), "feasible": r["ok"]})
     # The trace keeps W-C's observed rotation (dtheta 0). The other rotation offsets are a diagnostic only: they test
-    # whether an unobserved mid-run turn could explain the replay's goal side.
+    # whether an unobserved mid-run turn could explain the far-corner goal side.
     rot_scan = []
     for dth in sorted({x["dtheta_deg"] for x in scan}):
         xs = [x for x in scan if x["dtheta_deg"] == dth]
@@ -449,8 +449,8 @@ def main():
     rot_ok = [r for r in rot_scan if r["feasible"] and r["dtheta_deg"] != 0]
     rot_tried = ", ".join(f"{r['dtheta_deg']:+.0f}" for r in sorted(rot_scan, key=lambda r: abs(r["dtheta_deg"])) if r["dtheta_deg"] != 0)
     rot_text = (f"diagnostic only (not in the trace): a single unobserved mid-run W-C rotation offset was tried ({rot_tried} deg, smallest first); "
-                + (f"the smallest offset that reproduces the replay is {rot_ok[0]['dtheta_deg']:+.0f} deg ({rot_ok[0]['feasible']} timings, best goalie clearance "
-                   f"{rot_ok[0]['best_goalie_clearance_mm']} mm). No frame shows such a turn." if rot_ok else "none reproduces the replay."))
+                + (f"the smallest offset that reaches the far corner is {rot_ok[0]['dtheta_deg']:+.0f} deg ({rot_ok[0]['feasible']} timings, best goalie clearance "
+                   f"{rot_ok[0]['best_goalie_clearance_mm']} mm). No frame shows such a turn." if rot_ok else "none reaches the far corner."))
     feas = [x for x in scan0 if x["feasible"]]
     conflict = not feas
     if feas:  # the feasible solution nearest the centroid of the feasible region
@@ -465,6 +465,56 @@ def main():
     figs["W-C"] = wc
     t_contact, nearest, loc_c, t_sep, p_sep, v_sep = sol["t_contact"], sol["nearest"], sol["loc_c"], sol["t_sep"], sol["p_sep"], sol["v_sep"]
     t_goal, t_back = sol["t_goal"], sol["t_back"]
+    board = Polygon(G["board"]["inner_boundary"]["world"]["points_mm"])
+    posts = [np.array([gx, HW["goal"]["placement_mm"]["E"][1] + s * HW["goal"]["mouth_width_per_goal_mm"]["E"] / 2]) for s in (1, -1)]
+    # diagnostic: which straight shot directions from the separation point would clear the static goalie and both posts
+    # and cross the goal line inside the mouth on the +y side, the far corner from the shooter (user, 2026-10-04)
+    eg_poly = unary_union([Polygon(c) for c in eg.world_polygon(t_sep)])
+    post_disks = unary_union([Point(*po).buffer(HW["goal"]["post_radius_mm"]) for po in posts])
+    ok_dirs = []
+    for dd in np.arange(-20.0, 40.0001, 0.1):
+        u = np.array([math.cos(math.radians(dd)), math.sin(math.radians(dd))])
+        end = p_sep + u * ((back_x - p_sep[0]) / u[0])
+        yg = p_sep[1] + u[1] * (gx - p_sep[0]) / u[0]
+        line = LineString([tuple(p_sep), tuple(end)])
+        if yc < yg <= yc + half and line.distance(eg_poly) >= R_PUCK and line.distance(post_disks) >= R_PUCK:
+            ok_dirs.append(round(float(dd), 1))
+    dir_diag = {"separation_point_mm": [round(float(x), 1) for x in p_sep], "rule_direction_deg": round(math.degrees(math.atan2(v_sep[1], v_sep[0])), 1),
+                "clear_plus_y_directions_deg": [min(ok_dirs), max(ok_dirs)] if ok_dirs else None,
+                "goalie_low_geometry_y_mm": [round(float(eg_poly.bounds[1]), 1), round(float(eg_poly.bounds[3]), 1)],
+                "note": "straight puck paths from the trace's separation point that clear the static goalie (low geometry) and the posts and enter on the +y side; "
+                        "how far the rule-based shot direction is from the far corner the user confirmed"}
+    # User review (inputs.json user_review): the puck went in the far corner (+y). The rule direction (slot tangent at
+    # separation) misses it, so the shot direction is rotated into the clear far-corner window, at the largest margin to
+    # the goalie, the posts and W-C. Speed, separation point and time stay as derived. Assumption, not a measurement.
+    v_rule = v_sep.copy()
+    dir_rule = math.degrees(math.atan2(v_rule[1], v_rule[0]))
+    dir_used, dir_status = dir_rule, "rule-based (not observed)"
+    if dir_diag["clear_plus_y_directions_deg"] and not (dir_diag["clear_plus_y_directions_deg"][0] <= dir_rule <= dir_diag["clear_plus_y_directions_deg"][1]):
+        # within the window, the direction with the largest smallest margin to the goalie, the posts and W-C (which keeps
+        # moving after separation); the window centre when margins tie
+        spd0 = float(np.linalg.norm(v_rule))
+
+        def margin(dd):
+            u = np.array([math.cos(math.radians(dd)), math.sin(math.radians(dd))])
+            tb = t_sep + (back_x - p_sep[0]) / (spd0 * u[0])
+            line = LineString([tuple(p_sep), tuple(p_sep + u * (back_x - p_sep[0]) / u[0])])
+            m_static = min(line.distance(eg_poly), line.distance(post_disks)) - R_PUCK
+            m_wc = min(wc.clearance(tq, p_sep + spd0 * u * (tq - t_sep)) for tq in np.arange(t_sep + DT, tb, DT))
+            return min(m_static, m_wc)
+        lo_d, hi_d = dir_diag["clear_plus_y_directions_deg"]
+        cands = [round(float(x), 1) for x in np.arange(lo_d, hi_d + 1e-9, 0.1)]
+        margins = {dd: margin(dd) for dd in cands}
+        dir_used = max(cands, key=lambda dd: (round(margins[dd], 1), -abs(dd - (lo_d + hi_d) / 2)))
+        dir_diag["applied_direction_deg"] = dir_used
+        dir_diag["applied_direction_min_margin_mm"] = round(margins[dir_used], 2)
+        dir_diag["margin_by_direction_mm"] = {str(k): round(v, 2) for k, v in margins.items()}
+        dir_status = ("assumed: rotated from the rule direction into the clear far-corner window, at the largest margin to goalie, posts and W-C "
+                      "(user review 2026-10-04: puck in the far corner; contacts confirmed)")
+        spd = float(np.linalg.norm(v_rule))
+        v_sep = spd * np.array([math.cos(math.radians(dir_used)), math.sin(math.radians(dir_used))])
+        t_goal = t_sep + (gx - p_sep[0]) / v_sep[0]
+        t_back = t_sep + (back_x - p_sep[0]) / v_sep[0]
     t_rel_line = t_rel
     t_rel = t_rel_contact_end
     p_rel = p_line0 + v * (t_rel - t_line0)
@@ -495,25 +545,6 @@ def main():
         nodes.append({"t": round(float(tq), 5), "x_mm": round(float(p[0]), 2), "y_mm": round(float(p[1]), 2), "phase": ph})
 
     # ---- clearance checks
-    board = Polygon(G["board"]["inner_boundary"]["world"]["points_mm"])
-    posts = [np.array([gx, HW["goal"]["placement_mm"]["E"][1] + s * HW["goal"]["mouth_width_per_goal_mm"]["E"] / 2]) for s in (1, -1)]
-    # diagnostic: which straight shot directions from the separation point would clear the static goalie and both posts
-    # and cross the goal line inside the mouth on the replay's +y side (same separation point and time as the trace)
-    eg_poly = unary_union([Polygon(c) for c in eg.world_polygon(t_sep)])
-    post_disks = unary_union([Point(*po).buffer(HW["goal"]["post_radius_mm"]) for po in posts])
-    ok_dirs = []
-    for dd in np.arange(-20.0, 40.0001, 0.1):
-        u = np.array([math.cos(math.radians(dd)), math.sin(math.radians(dd))])
-        end = p_sep + u * ((back_x - p_sep[0]) / u[0])
-        yg = p_sep[1] + u[1] * (gx - p_sep[0]) / u[0]
-        line = LineString([tuple(p_sep), tuple(end)])
-        if yc < yg <= yc + half and line.distance(eg_poly) >= R_PUCK and line.distance(post_disks) >= R_PUCK:
-            ok_dirs.append(round(float(dd), 1))
-    dir_diag = {"separation_point_mm": [round(float(x), 1) for x in p_sep], "trace_direction_deg": round(math.degrees(math.atan2(v_sep[1], v_sep[0])), 1),
-                "clear_plus_y_directions_deg": [min(ok_dirs), max(ok_dirs)] if ok_dirs else None,
-                "goalie_low_geometry_y_mm": [round(float(eg_poly.bounds[1]), 1), round(float(eg_poly.bounds[3]), 1)],
-                "note": "straight puck paths from the trace's separation point that clear the static goalie (low geometry) and the posts and enter on the +y side; "
-                        "how far the rule-based shot direction is from the replay"}
     post_r = HW["goal"]["post_radius_mm"]
     all_figs = {**figs, **static}
     expected = {"W-C": ("carried_by_W-C",), "W-RW": ("prep_observed", "pre_release_interpolated")}
@@ -570,20 +601,22 @@ def main():
          "w_c_run_timing": {"t_onset": best["t_on"], "t_top": best["t_top"], "mid_run_rotation_change_deg": 0,
                             "feasible_t_onset": [min(x["t_on"] for x in feas), max(x["t_on"] for x in feas)],
                             "feasible_t_top": [min(x["t_top"] for x in feas), max(x["t_top"] for x in feas)],
-                            "feasible_count": 0 if conflict else len(feas), "scanned": len(scan0), "conflict_with_replay": conflict,
+                            "feasible_count": 0 if conflict else len(feas), "scanned": len(scan0), "rule_reaches_far_corner": not conflict,
                             "scan_extrema": {"goal_line_y_mm": [min(x["goal_line_y_mm"] for x in scan0), max(x["goal_line_y_mm"] for x in scan0)],
                                              "goalie_clearance_mm": [min(x["goalie_clearance_mm"] for x in scan0), max(x["goalie_clearance_mm"] for x in scan0)]},
                             "rotation_diagnostic": rot_text,
-                            "rule": "W-C holds its frame-109 arc until the onset and reaches the frame-116 top arc at t_top (Fritsch-Carlson run). Blurred frames 109, 111 and 114 are exposure constraints, not keyframes: the run starts within frame 109's exposure, and during the exposures of 111 and 114 the skates reach the re-read row intervals (inputs.json run_marks; exposure at most 40 ms). Feasible = goal-line crossing inside the mouth on the +y side (replay), puck clearing the goalie and W-C after separation; chosen = nearest the centroid of the feasible region, or, if none is feasible, the least violating timing (crossing inside the mouth, then largest goalie clearance) with conflict_with_replay = true."},
-         "status": "derived" if not conflict else "derived; CONFLICT: no scanned run timing reproduces the replay goal side"},
+                            "rule": "W-C holds its frame-109 arc until the onset and reaches the frame-116 top arc at t_top (Fritsch-Carlson run). Blurred frames 109, 111 and 114 are exposure constraints, not keyframes: the run starts within frame 109's exposure, and during the exposures of 111 and 114 the skates reach the re-read row intervals (inputs.json run_marks; exposure at most 40 ms). Feasible = goal-line crossing inside the mouth on the +y side (far corner, user), puck clearing the goalie and W-C after separation; chosen = nearest the centroid of the feasible region, or, if none is feasible, the least violating timing (crossing inside the mouth, then largest goalie clearance) with rule_reaches_far_corner = false; the shot direction is then adjusted (see shot.separation)."},
+         "status": "derived; confirmed by the user (2026-10-04)"},
         {"id": "shot.separation", "t_estimate": round(t_sep, 4), "speed_mm_s": round(float(np.linalg.norm(v_sep)), 0),
          "direction_deg": round(math.degrees(math.atan2(v_sep[1], v_sep[0])), 1),
-         "derivation": "W-C peak slot speed after contact (the figure decelerates afterwards; the puck keeps its velocity)", "status": "rule-based (not observed)"},
+         "rule_direction_deg": round(dir_rule, 1), "direction_adjustment_deg": round(dir_used - dir_rule, 1),
+         "derivation": "time and speed: W-C peak slot speed after contact (the figure decelerates afterwards; the puck keeps its velocity). "
+                       "Direction: see status", "status": dir_status},
         {"id": "goal_entry", "t_estimate": round(t_goal, 4) if t_goal else None, "observed_interval": obs_win["goal_entry"],
          "inside_observed_interval": bool(t_goal and obs_win["goal_entry"][0] <= t_goal <= obs_win["goal_entry"][1]),
          "goal_line_y_mm": round(y_cross, 1) if y_cross is not None else None, "mouth_centre_window_y_mm": [round(yc - half, 1), round(yc + half, 1)],
-         "replay_side": "+y (goalie's right)",
-         "status": "derived" if (y_cross is not None and abs(y_cross - yc) <= half and y_cross > yc) else "derived; CONFLICT with the replay (wrong side or outside the mouth; see limitations)"},
+         "goal_side": "+y far corner (goalie's right; user statement)",
+         "status": ("derived from the adjusted shot direction" if dir_used != dir_rule else "derived") if (y_cross is not None and yc < y_cross <= yc + half) else "derived; NOT in the far corner (see limitations)"},
     ]
     def fig_out(f, status):
         return {"player_id": f.pid, "team": f.team, "fixture_path_id": f.slot.id, "slot_length_mm": round(f.slot.length, 2), "status": status,
@@ -591,8 +624,8 @@ def main():
     trace = {
         "schema": "shot-trace/1",
         "trace_id": "trace.shovel-17.v1",
-        "status": "proposed",
-        "review": "not reviewed: contacts and the carry rule await the user's review (iteration 22); not accepted",
+        "status": INP["user_review"]["status_after_review"],
+        "review": {k: v for k, v in INP["user_review"].items() if k != "status_after_review"},
         "geometry_version": G["geometry_version"],
         "asset_refs": {"figure_molds_sha256": sha(REPO / "data/figure-molds.json"),
                        "skater_glb_sha256": sha(REPO / "assets/figures/skater_FIN.glb"), "goalie_glb_sha256": sha(REPO / "assets/figures/goalie_SWE.glb"),
@@ -614,7 +647,7 @@ def main():
                      {"id": "prep_observed", "t": [t_start, t102], "status": "observed blob centres; W-RW contact mechanics not reconstructed"},
                      {"id": "pre_release_interpolated", "t": [t102, round(t_rel, 4)], "status": "linear from the last at-blade sample to the release point (occluded by W-RW)"},
                      {"id": "pass_free", "t": [round(t_rel, 4), round(t_contact, 4)], "status": "constant velocity from two flight observations"},
-                     {"id": "carried_by_W-C", "t": [round(t_contact, 4), round(t_sep, 4)], "status": "rule: rigid at the contact offset (occluded in segment 1; replay shows the puck just ahead of W-C's feet)"},
+                     {"id": "carried_by_W-C", "t": [round(t_contact, 4), round(t_sep, 4)], "status": "rule: rigid at the contact offset (occluded in segment 1; contact confirmed by the user)"},
                      {"id": "shot_free", "t": [round(t_sep, 4), round(t_back, 4) if t_back else None], "status": "rule: constant velocity after separation (not observed in segment 1)"},
                      {"id": "in_goal_rest", "t": [round(t_back, 4) if t_back else None, t_end], "status": "assumed: at the back of the preview cage (position in the net not observed)"}],
                  "observations_vs_trace_mm": [{"frame": r["recording_frame"], "t": src_t(r["shot_time_s"]), "observed": r["world_mm_blob_centre"],
@@ -626,19 +659,21 @@ def main():
                         "puck_mm": "blob-centre reading 3-13 mm plus parallax bias (up to half the unknown puck thickness); rule-based phases have no measured uncertainty",
                         "timing_s": 0.017},
         "limitations": [
-            *([("CONFLICT: with W-C's observed rotation, rigid carry and separation at peak slot speed, no run timing inside the frame-109/111/114 "
-                "exposure constraints makes the puck enter on the replay's +y side clear of the goalie; the saved timing is the least violating one "
-                "and the shot phase passes through the static goalie mesh. "
-                + (f"The rule-based shot leaves at {dir_diag['trace_direction_deg']} deg; straight paths from the same point that clear the goalie and "
-                   f"enter on +y need {dir_diag['clear_plus_y_directions_deg'][0]}-{dir_diag['clear_plus_y_directions_deg'][1]} deg. "
-                   if dir_diag["clear_plus_y_directions_deg"] else "")
-                + "Candidate causes: the contact rule (rigid carry, separation direction), an unobserved W-C rotation during the carry ("
-                + (f"only a {rot_ok[0]['dtheta_deg']:+.0f} deg offset, which no frame shows, reproduces the replay" if rot_ok else "no tested offset fixes it")
-                + "), the goalie's position, assumed rotation or AI-mold size, or a different slot layout on the recorded edition.")] if conflict else []),
+            *([("ASSUMED SHOT DIRECTION: with W-C's observed rotation, rigid carry and separation at peak slot speed, no run timing inside the "
+                "frame-109/111/114 exposure constraints sends the puck into the far corner the user confirmed: the rule direction "
+                f"({dir_rule:.1f} deg) runs through the static goalie. Following the user's review, the shot leaves at {dir_used:.1f} deg: inside the "
+                f"window that clears the goalie and the far post, at the largest margin to them and to W-C ({dir_diag['applied_direction_min_margin_mm']} mm) "
+                f"within ({dir_diag['clear_plus_y_directions_deg'][0]}-{dir_diag['clear_plus_y_directions_deg'][1]} deg); "
+                "speed, separation time and point stay rule-based. The sideways component is not explained by a contact model (a puck sliding along "
+                "W-C's angled back is the likely mechanism; the goalie pose or mold size may also contribute). Every direction in the window "
+                "brushes the rear of W-C's right skate while the puck slides off its back (checks unexpected_penetrations, W-C shot_free); the "
+                "chosen one has the shallowest overlap, within the unknown skate contact dimensions of the AI mold, and passes the goalie with "
+                "the smallest clearance in the window.")] if dir_used != dir_rule else []),
+            "Segment 2 (replay) may be a different take (user): it is not used as evidence for this trace.",
             "Recorded on another STIGA edition; positions assume the canonical Play Off 21 slot layout (blade-derived pivots lie 0.4-3 mm from the slots, supporting it).",
             "Slot position readings disagree: the blade-derived pivots (inputs.json blade marks) lie 2-25 mm along the slot from the iteration-21 "
             "skate-row arcs (checks blade_pivot_checks; W-C 18-25 mm further up the slot by blade, W-RW 2-6 mm). The trace keeps the skate-row arcs; "
-            "a sensitivity run with every W-C reading shifted +18 mm keeps the replay conflict (docs/shot22.md).",
+            "a sensitivity run with every W-C reading shifted +18 mm moves the rule direction further from the far corner (docs/shot22.md).",
             "W-C rotation between 1.78 and 2.78 s source time (the carry) is not observed; linear between the receiving pose and the rest pose.",
             "W-RW rotation during the pass is reconstructed from a contact rule (backhand normal along the pass direction), not observed.",
             "The carry is a rule (rigid push at the first-contact offset), the separation a rule (peak slot speed); both occluded in segment 1.",
@@ -725,10 +760,11 @@ def render(figs, puck, events, t_rel, t_contact, t_goal, posts, board, nodes):
     W, Hh = tiles[0].size
     sheet = Image.new("RGB", (3 * W, 3 * Hh + 80), "white")
     d = ImageDraw.Draw(sheet)
-    d.text((10, 8), "22 - PROPOSED trace 'shovel-17' (not accepted). Left: source frame with the trace projected by the segment-1 camera (red = puck disk, "
-                    "cyan = W figures' low geometry, orange = E). Right: top view, 1 px = 0.5 mm.", fill=(0, 0, 0), font=FB)
-    d.text((10, 44), "Release, contact and separation times are derived (see data/traces/shovel-17.trace.json events), not observed exactly. "
-                     "Goal entry is hidden in segment 1. AI diagnostics, not user-reviewed.", fill=(0, 0, 0), font=FS)
+    d.text((10, 8), "22 - trace 'shovel-17', ACCEPTED by the user 2026-10-04 (contacts confirmed; far-corner shot direction assumed)",
+           fill=(0, 0, 0), font=FB)
+    d.text((10, 44), "Left: nearest source frame with the trace projected by the segment-1 camera (red = puck disk, cyan = W figures' low geometry, "
+                     "orange = E). Right: top view, 1 px = 0.5 mm. Event times are derived, not observed exactly; goal entry is hidden in segment 1.",
+           fill=(0, 0, 0), font=FS)
     for i, tl in enumerate(tiles):
         sheet.paste(tl, ((i % 3) * W, 80 + (i // 3) * Hh))
     sheet.save(OUT_DIAG)
@@ -798,9 +834,9 @@ def overview(figs, nodes, posts, board, events):
             a = S((n["x_mm"], n["y_mm"]))
             d.ellipse((a[0] - 6, a[1] - 6, a[0] + 6, a[1] + 6), outline=(0, 0, 0), width=2)
             d.text((a[0] + 8, a[1] - 8), e["id"], fill=(0, 0, 0), font=FS)
-    d.text((8, 4), "22 - PROPOSED puck trace (not accepted), top view, 2 px/mm. Grey = slots; circles = iteration-21", fill=(0, 0, 0), font=FS)
+    d.text((8, 4), "22 - puck trace, ACCEPTED by the user (2026-10-04), top view, 2 px/mm. Grey = slots; circles = iteration-21", fill=(0, 0, 0), font=FS)
     d.text((8, 22), "observations (radius = 2 x reading uncertainty). Grey prep (observed), amber pre-release, green pass,", fill=(0, 0, 0), font=FS)
-    d.text((8, 40), "blue carried by W-C (rule), red shot (rule" + ("; passes through the goalie: CONFLICT" if any(e.get("w_c_run_timing", {}).get("conflict_with_replay") for e in events) else "") + "), purple in the net (assumed).", fill=(0, 0, 0), font=FS)
+    d.text((8, 40), "blue carried by W-C (rule), red shot (" + next((("direction assumed: far corner, user" if e.get("direction_adjustment_deg") else "rule")) for e in events if e["id"] == "shot.separation") + "), purple in the net (assumed).", fill=(0, 0, 0), font=FS)
     im.save(OUT_OVER)
 
 

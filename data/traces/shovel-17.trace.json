@@ -1,8 +1,17 @@
 {
  "schema": "shot-trace/1",
  "trace_id": "trace.shovel-17.v1",
- "status": "proposed",
- "review": "not reviewed: contacts and the carry rule await the user's review (iteration 22); not accepted",
+ "status": "accepted",
+ "review": {
+  "date": "2026-10-04",
+  "by": "user (answers to docs/shot22.md 'Needed from the user')",
+  "contacts_confirmed": true,
+  "contacts": "reception on W-C's back near the skates; W-RW backhand release while rotating counter-clockwise",
+  "goal_side": "far corner: +y, between the goalie and the +y post (user statement)",
+  "replay": "may not be the same shot as segment 1 (one camera); not used as evidence",
+  "shot_direction_choice": "aim at the far corner: keep timing, contacts and speed; rotate the rule-based shot direction to the centre of the clear far-corner window (assumption)",
+  "trace": "looks good; accepted with the far-corner shot direction"
+ },
  "geometry_version": "0.6.0",
  "asset_refs": {
   "figure_molds_sha256": "c189758e98559f61ad8a46315394eebd2fb137ab4eb662ac827d2e318de61c68",
@@ -10,7 +19,7 @@
   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
   "skater_scale_k": 1.0814,
   "goalie_scale_k": 1.1421889791935147,
-  "git_commit": "e7a8faafb8ea41bfe98421ae705835cf7324dbfc"
+  "git_commit": "f4bd6b385fa26b5357b2410d89a20eaa691c7c15"
  },
  "source": {
   "observations": "shots/21-shovel/observations.json",
@@ -862,986 +871,986 @@
    },
    {
     "t": 1.8563,
-    "x_mm": 90.81,
-    "y_mm": -25.15,
+    "x_mm": 90.73,
+    "y_mm": -24.66,
     "phase": "shot_free"
    },
    {
     "t": 1.8583,
-    "x_mm": 99.6,
-    "y_mm": -24.07,
+    "x_mm": 99.42,
+    "y_mm": -22.94,
     "phase": "shot_free"
    },
    {
     "t": 1.8603,
-    "x_mm": 108.4,
-    "y_mm": -22.99,
+    "x_mm": 108.11,
+    "y_mm": -21.22,
     "phase": "shot_free"
    },
    {
     "t": 1.8623,
-    "x_mm": 117.19,
-    "y_mm": -21.91,
+    "x_mm": 116.8,
+    "y_mm": -19.49,
     "phase": "shot_free"
    },
    {
     "t": 1.8643,
-    "x_mm": 125.99,
-    "y_mm": -20.84,
+    "x_mm": 125.5,
+    "y_mm": -17.77,
     "phase": "shot_free"
    },
    {
     "t": 1.8663,
-    "x_mm": 134.78,
-    "y_mm": -19.76,
+    "x_mm": 134.19,
+    "y_mm": -16.05,
     "phase": "shot_free"
    },
    {
     "t": 1.8683,
-    "x_mm": 143.58,
-    "y_mm": -18.68,
+    "x_mm": 142.88,
+    "y_mm": -14.33,
     "phase": "shot_free"
    },
    {
     "t": 1.8703,
-    "x_mm": 152.37,
-    "y_mm": -17.6,
+    "x_mm": 151.57,
+    "y_mm": -12.61,
     "phase": "shot_free"
    },
    {
     "t": 1.8723,
-    "x_mm": 161.17,
-    "y_mm": -16.52,
+    "x_mm": 160.27,
+    "y_mm": -10.89,
     "phase": "shot_free"
    },
    {
     "t": 1.8743,
-    "x_mm": 169.96,
-    "y_mm": -15.44,
+    "x_mm": 168.96,
+    "y_mm": -9.17,
     "phase": "shot_free"
    },
    {
     "t": 1.8763,
-    "x_mm": 178.76,
-    "y_mm": -14.36,
+    "x_mm": 177.65,
+    "y_mm": -7.45,
     "phase": "shot_free"
    },
    {
     "t": 1.8783,
-    "x_mm": 187.55,
-    "y_mm": -13.28,
+    "x_mm": 186.34,
+    "y_mm": -5.73,
     "phase": "shot_free"
    },
    {
     "t": 1.8803,
-    "x_mm": 196.35,
-    "y_mm": -12.2,
+    "x_mm": 195.03,
+    "y_mm": -4.0,
     "phase": "shot_free"
    },
    {
     "t": 1.8823,
-    "x_mm": 205.14,
-    "y_mm": -11.12,
+    "x_mm": 203.73,
+    "y_mm": -2.28,
     "phase": "shot_free"
    },
    {
     "t": 1.8843,
-    "x_mm": 213.94,
-    "y_mm": -10.04,
+    "x_mm": 212.42,
+    "y_mm": -0.56,
     "phase": "shot_free"
    },
    {
     "t": 1.8863,
-    "x_mm": 222.73,
-    "y_mm": -8.96,
+    "x_mm": 221.11,
+    "y_mm": 1.16,
     "phase": "shot_free"
    },
    {
     "t": 1.8883,
-    "x_mm": 231.53,
-    "y_mm": -7.88,
+    "x_mm": 229.8,
+    "y_mm": 2.88,
     "phase": "shot_free"
    },
    {
     "t": 1.8903,
-    "x_mm": 240.32,
-    "y_mm": -6.8,
+    "x_mm": 238.49,
+    "y_mm": 4.6,
     "phase": "shot_free"
    },
    {
     "t": 1.8923,
-    "x_mm": 249.12,
-    "y_mm": -5.72,
+    "x_mm": 247.19,
+    "y_mm": 6.32,
     "phase": "shot_free"
    },
    {
     "t": 1.8943,
-    "x_mm": 257.91,
-    "y_mm": -4.64,
+    "x_mm": 255.88,
+    "y_mm": 8.04,
     "phase": "shot_free"
    },
    {
     "t": 1.8963,
-    "x_mm": 266.71,
-    "y_mm": -3.56,
+    "x_mm": 264.57,
+    "y_mm": 9.76,
     "phase": "shot_free"
    },
    {
     "t": 1.8983,
-    "x_mm": 275.5,
-    "y_mm": -2.48,
+    "x_mm": 273.26,
+    "y_mm": 11.49,
     "phase": "shot_free"
    },
    {
     "t": 1.9003,
-    "x_mm": 284.3,
-    "y_mm": -1.4,
+    "x_mm": 281.96,
+    "y_mm": 13.21,
     "phase": "shot_free"
    },
    {
     "t": 1.9023,
-    "x_mm": 293.09,
-    "y_mm": -0.32,
+    "x_mm": 290.65,
+    "y_mm": 14.93,
     "phase": "shot_free"
    },
    {
     "t": 1.9043,
-    "x_mm": 301.89,
-    "y_mm": 0.76,
+    "x_mm": 299.34,
+    "y_mm": 16.65,
     "phase": "shot_free"
    },
    {
     "t": 1.9063,
-    "x_mm": 310.68,
-    "y_mm": 1.84,
+    "x_mm": 308.03,
+    "y_mm": 18.37,
     "phase": "shot_free"
    },
    {
     "t": 1.9083,
-    "x_mm": 319.48,
-    "y_mm": 2.92,
+    "x_mm": 316.72,
+    "y_mm": 20.09,
     "phase": "shot_free"
    },
    {
-    "t": 1.90965,
-    "x_mm": 325.39,
-    "y_mm": 3.64,
-    "phase": "in_goal_rest"
+    "t": 1.91029,
+    "x_mm": 325.37,
+    "y_mm": 21.8,
+    "phase": "shot_free"
    },
    {
     "t": 1.9103,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9123,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9143,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9163,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9183,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9203,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9223,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9243,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9263,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9283,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9303,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9323,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9343,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9363,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9383,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9403,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9423,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9443,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9463,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9483,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9503,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9523,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9543,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9563,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9583,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9603,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9623,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9643,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9663,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9683,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9703,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9723,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9743,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9763,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9783,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9803,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9823,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9843,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9863,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9883,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9903,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9923,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9943,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9963,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 1.9983,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0003,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0023,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0043,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0063,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0083,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0103,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0123,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0143,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0163,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0183,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0203,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0223,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0243,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0263,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0283,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0303,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0323,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0343,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0363,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0383,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0403,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0423,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0443,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0463,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0483,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0503,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0523,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0543,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0563,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0583,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0603,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0623,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0643,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0663,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0683,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0703,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0723,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0743,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0763,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0783,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0803,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0823,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0843,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0863,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0883,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0903,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0923,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0943,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0963,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.0983,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1003,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1023,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1043,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1063,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1083,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1103,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1123,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1143,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1163,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1183,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1203,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1223,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1243,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1263,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1283,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1303,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1323,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1343,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1363,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1383,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1403,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1423,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1443,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1463,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1483,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1503,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1523,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1543,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1563,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1583,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1603,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1623,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1643,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1663,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1683,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1703,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1723,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1743,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1763,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.1783,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    },
    {
     "t": 2.18,
     "x_mm": 325.39,
-    "y_mm": 3.64,
+    "y_mm": 21.81,
     "phase": "in_goal_rest"
    }
   ],
@@ -1876,20 +1885,20 @@
      1.8343,
      1.8548
     ],
-    "status": "rule: rigid at the contact offset (occluded in segment 1; replay shows the puck just ahead of W-C's feet)"
+    "status": "rule: rigid at the contact offset (occluded in segment 1; contact confirmed by the user)"
    },
    {
     "id": "shot_free",
     "t": [
      1.8548,
-     1.9096
+     1.9103
     ],
     "status": "rule: constant velocity after separation (not observed in segment 1)"
    },
    {
     "id": "in_goal_rest",
     "t": [
-     1.9096,
+     1.9103,
      2.18
     ],
     "status": "assumed: at the back of the preview cage (position in the net not observed)"
@@ -2110,7 +2119,7 @@
     ],
     "feasible_count": 0,
     "scanned": 298,
-    "conflict_with_replay": true,
+    "rule_reaches_far_corner": false,
     "scan_extrema": {
      "goal_line_y_mm": [
       -45.3,
@@ -2121,34 +2130,36 @@
       -11.4
      ]
     },
-    "rotation_diagnostic": "diagnostic only (not in the trace): a single unobserved mid-run W-C rotation offset was tried (-30, +30, -60, +60, +90 deg, smallest first); the smallest offset that reproduces the replay is +90 deg (5 timings, best goalie clearance 1.0 mm). No frame shows such a turn.",
-    "rule": "W-C holds its frame-109 arc until the onset and reaches the frame-116 top arc at t_top (Fritsch-Carlson run). Blurred frames 109, 111 and 114 are exposure constraints, not keyframes: the run starts within frame 109's exposure, and during the exposures of 111 and 114 the skates reach the re-read row intervals (inputs.json run_marks; exposure at most 40 ms). Feasible = goal-line crossing inside the mouth on the +y side (replay), puck clearing the goalie and W-C after separation; chosen = nearest the centroid of the feasible region, or, if none is feasible, the least violating timing (crossing inside the mouth, then largest goalie clearance) with conflict_with_replay = true."
+    "rotation_diagnostic": "diagnostic only (not in the trace): a single unobserved mid-run W-C rotation offset was tried (-30, +30, -60, +60, +90 deg, smallest first); the smallest offset that reaches the far corner is +90 deg (5 timings, best goalie clearance 1.0 mm). No frame shows such a turn.",
+    "rule": "W-C holds its frame-109 arc until the onset and reaches the frame-116 top arc at t_top (Fritsch-Carlson run). Blurred frames 109, 111 and 114 are exposure constraints, not keyframes: the run starts within frame 109's exposure, and during the exposures of 111 and 114 the skates reach the re-read row intervals (inputs.json run_marks; exposure at most 40 ms). Feasible = goal-line crossing inside the mouth on the +y side (far corner, user), puck clearing the goalie and W-C after separation; chosen = nearest the centroid of the feasible region, or, if none is feasible, the least violating timing (crossing inside the mouth, then largest goalie clearance) with rule_reaches_far_corner = false; the shot direction is then adjusted (see shot.separation)."
    },
-   "status": "derived; CONFLICT: no scanned run timing reproduces the replay goal side"
+   "status": "derived; confirmed by the user (2026-10-04)"
   },
   {
    "id": "shot.separation",
    "t_estimate": 1.8548,
    "speed_mm_s": 4430.0,
-   "direction_deg": 7.0,
-   "derivation": "W-C peak slot speed after contact (the figure decelerates afterwards; the puck keeps its velocity)",
-   "status": "rule-based (not observed)"
+   "direction_deg": 11.2,
+   "rule_direction_deg": 7.0,
+   "direction_adjustment_deg": 4.2,
+   "derivation": "time and speed: W-C peak slot speed after contact (the figure decelerates afterwards; the puck keeps its velocity). Direction: see status",
+   "status": "assumed: rotated from the rule direction into the clear far-corner window, at the largest margin to goalie, posts and W-C (user review 2026-10-04: puck in the far corner; contacts confirmed)"
   },
   {
    "id": "goal_entry",
-   "t_estimate": 1.9009,
+   "t_estimate": 1.9014,
    "observed_interval": [
     1.8483,
     1.98
    ],
    "inside_observed_interval": true,
-   "goal_line_y_mm": -1.1,
+   "goal_line_y_mm": 14.2,
    "mouth_centre_window_y_mm": [
     -28.7,
     29.8
    ],
-   "replay_side": "+y (goalie's right)",
-   "status": "derived; CONFLICT with the replay (wrong side or outside the mouth; see limitations)"
+   "goal_side": "+y far corner (goalie's right; user statement)",
+   "status": "derived from the adjusted shot direction"
   }
  ],
  "uncertainty": {
@@ -2158,9 +2169,10 @@
   "timing_s": 0.017
  },
  "limitations": [
-  "CONFLICT: with W-C's observed rotation, rigid carry and separation at peak slot speed, no run timing inside the frame-109/111/114 exposure constraints makes the puck enter on the replay's +y side clear of the goalie; the saved timing is the least violating one and the shot phase passes through the static goalie mesh. The rule-based shot leaves at 7.0 deg; straight paths from the same point that clear the goalie and enter on +y need 11.2-15.2 deg. Candidate causes: the contact rule (rigid carry, separation direction), an unobserved W-C rotation during the carry (only a +90 deg offset, which no frame shows, reproduces the replay), the goalie's position, assumed rotation or AI-mold size, or a different slot layout on the recorded edition.",
+  "ASSUMED SHOT DIRECTION: with W-C's observed rotation, rigid carry and separation at peak slot speed, no run timing inside the frame-109/111/114 exposure constraints sends the puck into the far corner the user confirmed: the rule direction (7.0 deg) runs through the static goalie. Following the user's review, the shot leaves at 11.2 deg: inside the window that clears the goalie and the far post, at the largest margin to them and to W-C (-2.65 mm) within (11.2-15.2 deg); speed, separation time and point stay rule-based. The sideways component is not explained by a contact model (a puck sliding along W-C's angled back is the likely mechanism; the goalie pose or mold size may also contribute). Every direction in the window brushes the rear of W-C's right skate while the puck slides off its back (checks unexpected_penetrations, W-C shot_free); the chosen one has the shallowest overlap, within the unknown skate contact dimensions of the AI mold, and passes the goalie with the smallest clearance in the window.",
+  "Segment 2 (replay) may be a different take (user): it is not used as evidence for this trace.",
   "Recorded on another STIGA edition; positions assume the canonical Play Off 21 slot layout (blade-derived pivots lie 0.4-3 mm from the slots, supporting it).",
-  "Slot position readings disagree: the blade-derived pivots (inputs.json blade marks) lie 2-25 mm along the slot from the iteration-21 skate-row arcs (checks blade_pivot_checks; W-C 18-25 mm further up the slot by blade, W-RW 2-6 mm). The trace keeps the skate-row arcs; a sensitivity run with every W-C reading shifted +18 mm keeps the replay conflict (docs/shot22.md).",
+  "Slot position readings disagree: the blade-derived pivots (inputs.json blade marks) lie 2-25 mm along the slot from the iteration-21 skate-row arcs (checks blade_pivot_checks; W-C 18-25 mm further up the slot by blade, W-RW 2-6 mm). The trace keeps the skate-row arcs; a sensitivity run with every W-C reading shifted +18 mm moves the rule direction further from the far corner (docs/shot22.md).",
   "W-C rotation between 1.78 and 2.78 s source time (the carry) is not observed; linear between the receiving pose and the rest pose.",
   "W-RW rotation during the pass is reconstructed from a contact rule (backhand normal along the pass direction), not observed.",
   "The carry is a rule (rigid push at the first-contact offset), the separation a rule (peak slot speed); both occluded in segment 1.",
@@ -3109,8 +3121,8 @@
     "theta_deg": 0.0
    },
    "puck": [
-    107.08,
-    -23.152
+    106.8065,
+    -21.478
    ]
   },
   {
@@ -3136,8 +3148,8 @@
     "theta_deg": 0.0
    },
    "puck": [
-    282.98,
-    -1.562
+    280.655,
+    12.952
    ]
   },
   {
@@ -3164,7 +3176,7 @@
    },
    "puck": [
     325.39,
-    3.64
+    21.81
    ]
   },
   {
@@ -3191,7 +3203,7 @@
    },
    "puck": [
     325.39,
-    3.64
+    21.81
    ]
   },
   {
@@ -3218,7 +3230,7 @@
    },
    "puck": [
     325.39,
-    3.64
+    21.81
    ]
   },
   {
@@ -3245,7 +3257,7 @@
    },
    "puck": [
     325.39,
-    3.64
+    21.81
    ]
   },
   {
@@ -3272,7 +3284,7 @@
    },
    "puck": [
     325.39,
-    3.64
+    21.81
    ]
   },
   {
@@ -3299,7 +3311,7 @@
    },
    "puck": [
     325.39,
-    3.64
+    21.81
    ]
   },
   {
@@ -3326,7 +3338,7 @@
    },
    "puck": [
     325.39,
-    3.64
+    21.81
    ]
   }
  ]

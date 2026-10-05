@@ -10,8 +10,8 @@ There are no animated shots before iteration 23.
 ## Active batch
 
 The autonomous batch 06-20 (`docs/autonomous-run.md`) is COMPLETE. Rule 1 ("stop after each
-iteration") applies again. Iterations 21 and 22 are done (docs/shot21.md, docs/shot22.md). The iteration-22 trace is PROPOSED with an
-explicit replay conflict; iteration 23 needs the user's review of its contacts (accept or correct).
+iteration") applies again. Iterations 21 and 22 are done (docs/shot21.md, docs/shot22.md). The iteration-22 trace is ACCEPTED by the
+user (2026-10-04) with an assumed far-corner shot direction. Next: iteration 23.
 
 ## Key files
 

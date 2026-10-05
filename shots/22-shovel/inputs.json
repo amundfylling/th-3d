@@ -147,7 +147,8 @@
   "note": "Segment 2 (slow-motion replay from behind goal.E, uncalibrated). Image right in that view is world +y (camera at +x looking -x; the goalie is seen from behind with its paddle on image left = its left = -y).",
   "goal_entry_side": "+y (the goalie's right, between the goalie and the +y post; away from the paddle); replay frames 282-285",
   "carry": "the puck travels just ahead (+x) of W-C's feet while W-C runs up its slot facing back (-x); replay frames 270-280",
-  "correction_of_iteration_21": "shots/21-shovel/observations.json and docs/shot21.md said 'goalie's left (camera-right in the replay)'; camera-right in the replay is +y, which is the goalie's RIGHT. Corrected here and in docs/shot21.md."
+  "correction_of_iteration_21": "shots/21-shovel/observations.json and docs/shot21.md said 'goalie's left (camera-right in the replay)'; camera-right in the replay is +y, which is the goalie's RIGHT. Corrected here and in docs/shot21.md.",
+  "superseded": "User review 2026-10-04: the replay may not be the same take as segment 1 (only one camera was used), so it is not evidence for this shot. The goal side now comes from the user's statement (far corner, +y); the carry note is kept as context only."
  },
  "run_marks": {
   "note": "W-C skate rows during the blurred run (re-read in iteration 22 on full-resolution crops). The iteration-21 frame-111 note 'smear spans v 383-800' is the extent of the whole blurred figure (helmet to skates), not the skate travel; the skates in frame 111 fade out over the centre circle around rows 600-700. Each interval is the image-row range that the skates' ice contact must reach at some instant of that frame's exposure (exposure at most one content frame).",
@@ -171,5 +172,16 @@
     "state": "motion blur at the crease, skates within about 30 px of the frame-116 rest row (423)"
    }
   ]
+ },
+ "user_review": {
+  "date": "2026-10-04",
+  "by": "user (answers to docs/shot22.md 'Needed from the user')",
+  "contacts_confirmed": true,
+  "contacts": "reception on W-C's back near the skates; W-RW backhand release while rotating counter-clockwise",
+  "goal_side": "far corner: +y, between the goalie and the +y post (user statement)",
+  "replay": "may not be the same shot as segment 1 (one camera); not used as evidence",
+  "shot_direction_choice": "aim at the far corner: keep timing, contacts and speed; rotate the rule-based shot direction to the centre of the clear far-corner window (assumption)",
+  "trace": "looks good; accepted with the far-corner shot direction",
+  "status_after_review": "accepted"
  }
 }

@@ -85,20 +85,20 @@
   the replay only). Record `shots/21-shovel/observations.json`, contact sheet `validation/21-contact-sheet.png`,
   notes `docs/shot21.md`. AI observation, not user-reviewed. No motion fitting or animation. (Goal side corrected
   in iteration 22: the puck enters on the goalie's RIGHT, +y.)
-- **Iteration 22 (2026-10-04): constrained reconstruction, PROPOSED (not accepted).** One trace
-  `data/traces/shovel-17.trace.json` (`shot-trace/1`). It holds:
+- **Iteration 22 (2026-10-04): constrained reconstruction, ACCEPTED by the user (2026-10-04).** One trace
+  `data/traces/shovel-17.trace.json` (`shot-trace/1`, status `accepted`, review recorded). It holds:
   - W-C and W-RW slot arcs and rotations; W-C rotation measured from blade marks (faces back while receiving);
-    W-RW backhand release while rotating counter-clockwise;
+    W-RW backhand release while rotating counter-clockwise (both contacts confirmed by the user);
   - static E-G/E-RD/E-LD;
   - the finite puck with phases;
-  - events in source time: release 1.772, reception 1.834, separation 1.855 (rule), goal entry 1.901 s; all
-    observed events inside their intervals.
-  **Conflict:** under the rigid-carry rule the shot leaves at 7.0 deg and passes through the static goalie
-  (-11.6 mm). The replay's +y goal side needs 11.2-15.2 deg. The conflict holds across all run timings and under
-  a +18 mm W-C position shift. Only an unobserved +90 deg turn would fix it.
-  Main artifact `validation/22-diagnostics.png`; notes `docs/shot22.md`; evaluator `src/model/trace.ts`. AI
-  reconstruction, not user-reviewed. **Next: the user reviews the contacts and the conflict (docs/shot22.md "Needed
-  from the user"). Iteration 23 needs the trace accepted or corrected.**
+  - events in source time: release 1.772, reception 1.834, separation 1.855 (rule), goal entry 1.901 s, far corner
+    (+y 14.2 mm); all observed events inside their intervals.
+  **Assumed value:** the rigid-carry rule sends the shot at 7.0 deg, through the static goalie. On the user's
+  answer (puck in the far corner; aim it there), the direction is 11.2 deg, the smallest angle that clears the
+  goalie and the far post. The puck brushes W-C's right skate by 2.65 mm as it slides off (skate contact size
+  unknown). The replay is no longer used as evidence (user: possibly a different take).
+  Main artifact `validation/22-diagnostics.png`; notes `docs/shot22.md`; evaluator `src/model/trace.ts`.
+  **Next: iteration 23.**
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
@@ -106,7 +106,7 @@
 ## Batch run result (docs/autonomous-run.md)
 
 **Batch 06-20 finished 2026-09-30: all iterations completed with recorded verification. Stopped after 20 as instructed.**
-No animated shots were started. **Iterations 21 and 22 done (see above); iteration 22's trace is proposed and awaits the user's contact review before iteration 23.**
+No animated shots were started. **Iterations 21 and 22 done (see above); the iteration-22 trace is accepted by the user. Next: iteration 23.**
 
 Iteration 20 closed without repair cycles:
 - [x] Intake recorded: nothing supplied; checks re-run (84/84 tests, validate).
@@ -255,3 +255,4 @@ Iteration 20 closed without repair cycles:
 | 20 | 2026-09-30 | scripts/review-reprojection.ts, png-read.ts, review-sheet.py; validation/20-review-sheet.png, 20-reprojection.json; docs/review.md; reprojection test | `npm run check` 84/84; review sheet AI-reviewed; 0 repair cycles |
 | D6 | 2026-09-30 | Sponsors dropped from the ice (assets/blender/drop_sponsors.py); the 17-20 renders, Remotion stills and review sheet regenerated; .blend1 backups untracked | `npm run check` 85/85; renders AI-reviewed; Remotion import checks PASS |
 | 22 | 2026-10-04 | scripts/shot22-trace.py; shots/22-shovel/{inputs,checks}.json; data/traces/shovel-17.trace.json (proposed); src/model/trace.ts; tests/shot22.test.ts; validation/22-diagnostics.png, 22-trace-overview.png; docs/shot22.md; goal-side correction in docs/shot21.md, shots/21-shovel/{observations,marks}.json, scripts/shot21-observe.py | trace script run (and a +18 mm sensitivity run); `npm run check`; diagnostics and overview images AI-reviewed; replay frames re-checked; TS evaluator matches the script's samples |
+| 22r | 2026-10-04 | User review applied: inputs.json user_review; trace status accepted with the far-corner shot direction (assumed, 11.2 deg); replay marked not-evidence; shot22 tests, docs/shot21.md, docs/shot22.md | trace script rerun; `npm run check` 97/97; diagnostics and overview images AI-reviewed |

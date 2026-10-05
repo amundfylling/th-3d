@@ -8,11 +8,16 @@ const obs = JSON.parse(readFileSync("shots/21-shovel/observations.json", "utf8")
 const geo = JSON.parse(readFileSync("data/geometry.json", "utf8"));
 const checks = JSON.parse(readFileSync("shots/22-shovel/checks.json", "utf8"));
 
-test("iteration 22: trace is proposed, never silently accepted", () => {
+test("iteration 22: trace status comes from the recorded user review, never silently accepted", () => {
+  const inputs = JSON.parse(readFileSync("shots/22-shovel/inputs.json", "utf8"));
   assert.equal(trace.schema, "shot-trace/1");
-  assert.equal(trace.status, "proposed");
-  assert.match(trace.review, /not reviewed/);
-  assert.match(trace.review, /not accepted/);
+  if (!inputs.user_review) {
+    assert.equal(trace.status, "proposed");
+    return;
+  }
+  assert.equal(trace.status, inputs.user_review.status_after_review);
+  assert.equal(trace.review.date, inputs.user_review.date);
+  assert.equal(trace.review.contacts_confirmed, true);
 });
 
 test("iteration 22: trace references the current geometry, assets and the pinned recording", () => {
@@ -39,12 +44,19 @@ test("iteration 22: contact events carry observed intervals; replay conflict is 
   assert.ok(ev["contact.W-C_reception"].t_estimate < ev["shot.separation"].t_estimate);
   assert.ok(ev["shot.separation"].t_estimate < ev["goal_entry"].t_estimate);
   const run = ev["contact.W-C_reception"].w_c_run_timing;
-  assert.equal(typeof run.conflict_with_replay, "boolean");
-  if (run.conflict_with_replay) {
-    assert.match(ev["contact.W-C_reception"].status, /CONFLICT/);
-    assert.ok(trace.limitations.some((l: string) => l.startsWith("CONFLICT")), "conflict stated as a limitation");
-    assert.ok(checks.unexpected_penetrations.length > 0, "unexplained overlaps are reported, not hidden");
+  assert.equal(typeof run.rule_reaches_far_corner, "boolean");
+  const sep = ev["shot.separation"];
+  if (sep.direction_adjustment_deg) {
+    // an assumed direction is labelled as such, stated as a limitation, and lands inside the far-corner window
+    assert.equal(run.rule_reaches_far_corner, false);
+    assert.match(sep.status, /^assumed/);
+    assert.ok(trace.limitations.some((l: string) => l.startsWith("ASSUMED SHOT DIRECTION")));
+    const [lo, hi] = checks.shot_direction_diagnostic.clear_plus_y_directions_deg;
+    assert.ok(sep.direction_deg >= lo && sep.direction_deg <= hi, `${sep.direction_deg} outside ${lo}-${hi}`);
   }
+  const g = ev["goal_entry"];
+  assert.ok(g.goal_line_y_mm > 0.53 && g.goal_line_y_mm <= g.mouth_centre_window_y_mm[1], "far corner (+y side) inside the mouth");
+  for (const u of checks.unexpected_penetrations) assert.notEqual(u.obstacle, "E-G", "the shot clears the goalie");
 });
 
 test("iteration 22: fast motion is checked between samples (puck step < 2 mm)", () => {
