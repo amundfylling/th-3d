@@ -289,9 +289,11 @@ export const ShotAnalysis: React.FC<AnalysisProps> = ({ graphics }) => {
   const state = useMemo(() => stateAt(af.t, frame), [af.t, frame]);
   const view = useMemo<CameraView>(() => ({ positionMm: af.camera.positionMm, targetMm: af.camera.targetMm, fovDeg: af.camera.fovDeg }), [af]);
   const cam = useMemo(() => makeCamera(view, width, height), [view, width, height]);
+  // one canvas camera for the life of the tab (a new camera object per frame makes the canvas reconfigure and leak)
+  const [canvasCamera] = useState(() => Object.assign(new THREE.PerspectiveCamera(), { manual: true }));
   return (
     <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 40%, #3a4250 0%, #161b24 75%)" }}>
-      <ThreeCanvas width={width} height={height} camera={Object.assign(new THREE.PerspectiveCamera(), { manual: true })} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true, alpha: true }}>
+      <ThreeCanvas width={width} height={height} camera={canvasCamera} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true, alpha: true }}>
         <CameraRig view={view} frame={frame} />
         <ShotScene state={state} logTag="analysis" />
       </ThreeCanvas>

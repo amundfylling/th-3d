@@ -137,6 +137,10 @@ test("analysis: the composition uses only the pure evaluators and keeps the diag
   assert.doesNotMatch(src, /useFrame\s*\(|Date\.now|performance\.now|Math\.random|requestAnimationFrame/);
   assert.match(src, /shotTimeEvaluator/);
   assert.match(src, /assertShotRenderable/);
+  // the canvas camera must be one object for the life of the tab: a new camera per frame grew the renderer's memory
+  // by about 140 MB per 1080p frame until the container killed ffmpeg (first full render, frame 94)
+  assert.doesNotMatch(src, /camera=\{[^}]*new THREE\./);
+  assert.match(src, /camera=\{canvasCamera\}/);
   const root = read("remotion/Root.tsx");
   for (const id of ["analysis-shovel-17", "shot23-shovel-17", "shot23-at-time", "shot24-shovel-17", "shot25-shovel-17-final", "static-checks"]) assert.match(root, new RegExp(`id="${id}"`), id);
   for (const f of ["Barlow-Medium.ttf", "Barlow-SemiBold.ttf", "BarlowCondensed-SemiBold.ttf", "BarlowCondensed-ExtraBold.ttf", "OFL.txt"]) assert.ok(existsSync(`public/fonts/${f}`), f);

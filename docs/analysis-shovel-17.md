@@ -94,6 +94,10 @@ recorded on the trace event. The slot arrow follows the W-C fixture centreline.
   4 words per second (tested).
 - **Camera.** The camera never goes below 130 mm above the ice; the tallest object in the scene is the 70 mm end
   screen. Its largest frame-to-frame step is under 60 mm (tested), so it never cuts or clips.
+- **Render memory.** The first full render died at frame 94: the container's 14 GB memory limit killed ffmpeg.
+  The composition passed a new `THREE.PerspectiveCamera` to `ThreeCanvas` on every frame, and memory grew by about
+  140 MB per 1080p frame. With one canvas camera per tab, memory stayed flat at about 2.1 GB over a 50-frame probe.
+  A test guards it.
 - **Final video.** Reviewed from the review sheet (every 15th frame plus the middle frame of every segment).
 
 ## Limitations
