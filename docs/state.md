@@ -98,15 +98,27 @@
   goalie and the far post. The puck brushes W-C's right skate by 2.65 mm as it slides off (skate contact size
   unknown). The replay is no longer used as evidence (user: possibly a different take).
   Main artifact `validation/22-diagnostics.png`; notes `docs/shot22.md`; evaluator `src/model/trace.ts`.
-  **Next: iteration 23.**
+- **Iteration 23 (2026-10-04): accepted trace played in Remotion with a fixed camera.**
+  - Composition `shot23-shovel-17`: 30 fps, 51 frames, source time 0.5-2.167 s, fixed orthographic overhead
+    camera, plain background. `shot23-at-time` renders one diagnostic frame at any source time.
+  - Time = start + frame / fps. Each frame's state comes from the pure evaluator (`src/model/shot-pose.ts`); no
+    `useFrame`, no clock.
+  - The shot refuses to render on a geometry or asset version mismatch (`remotion/asset-manifest.json`, plus a hash
+    of the loaded GLB).
+  - Checks:
+    - contact-time frames match the pure state exactly;
+    - 12 frames rendered in two shuffled orders give identical state and PNG bytes;
+    - all 51 proof-clip frames equal the pure evaluation.
+  - Proof clip `validation/23-proof-clip.mp4`; main artifact `validation/23-diagnostics.png`; notes `docs/shot23.md`.
+  - **Next: iteration 24** (slow replay and minimal overlays), after the user reviews the playback.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
-- Code, 3D assets, animations: none. No animated shots exist or are planned before iteration 23.
+- Animated shots: one, the iteration-23 Remotion playback of the accepted trace (`shot23-shovel-17`).
 
 ## Batch run result (docs/autonomous-run.md)
 
 **Batch 06-20 finished 2026-09-30: all iterations completed with recorded verification. Stopped after 20 as instructed.**
-No animated shots were started. **Iterations 21 and 22 done (see above); the iteration-22 trace is accepted by the user. Next: iteration 23.**
+No animated shots were started. **Iterations 21-23 done (see above). Next: iteration 24 after the user reviews the iteration-23 playback.**
 
 Iteration 20 closed without repair cycles:
 - [x] Intake recorded: nothing supplied; checks re-run (84/84 tests, validate).
@@ -256,3 +268,4 @@ Iteration 20 closed without repair cycles:
 | D6 | 2026-09-30 | Sponsors dropped from the ice (assets/blender/drop_sponsors.py); the 17-20 renders, Remotion stills and review sheet regenerated; .blend1 backups untracked | `npm run check` 85/85; renders AI-reviewed; Remotion import checks PASS |
 | 22 | 2026-10-04 | scripts/shot22-trace.py; shots/22-shovel/{inputs,checks}.json; data/traces/shovel-17.trace.json (proposed); src/model/trace.ts; tests/shot22.test.ts; validation/22-diagnostics.png, 22-trace-overview.png; docs/shot22.md; goal-side correction in docs/shot21.md, shots/21-shovel/{observations,marks}.json, scripts/shot21-observe.py | trace script run (and a +18 mm sensitivity run); `npm run check`; diagnostics and overview images AI-reviewed; replay frames re-checked; TS evaluator matches the script's samples |
 | 22r | 2026-10-04 | User review applied: inputs.json user_review; trace status accepted with the far-corner shot direction (assumed, 11.2 deg); replay marked not-evidence; shot22 tests, docs/shot21.md, docs/shot22.md | trace script rerun; `npm run check` 97/97; diagnostics and overview images AI-reviewed |
+| 23 | 2026-10-04 | src/model/shot-pose.ts; remotion/ShotPlayback.tsx, Root.tsx (shot23-shovel-17, shot23-at-time), cameras.ts (SHOT_CAMERA), asset-manifest.json; scripts/shot23-{manifest.ts,render.ts,sheet.py}; tests/shot23.test.ts; validation/23-{diagnostics.png,render-checks.json,proof-clip.mp4}; docs/shot23.md, docs/remotion.md; package.json (shot:23, remotion:assets writes the manifest) | `npm run check`; Remotion stills at 4 contact times; 12 frames x 2 shuffled orders (identical state and PNG bytes); proof clip 51 frames (state = pure evaluation); sheet and clip frames AI-reviewed |

@@ -5,13 +5,14 @@ STIGA Play Off 21 table hockey game (family 71-1145-XX). The model must be built
 around the actual hardware, not a generic hockey table.
 
 Work proceeds in numbered iterations from `Claude_Code_Stiga_Iteration_Prompts.md`.
-There are no animated shots before iteration 23.
+There were no animated shots before iteration 23.
 
 ## Active batch
 
 The autonomous batch 06-20 (`docs/autonomous-run.md`) is COMPLETE. Rule 1 ("stop after each
-iteration") applies again. Iterations 21 and 22 are done (docs/shot21.md, docs/shot22.md). The iteration-22 trace is ACCEPTED by the
-user (2026-10-04) with an assumed far-corner shot direction. Next: iteration 23.
+iteration") applies again. Iterations 21-23 are done (docs/shot21.md, docs/shot22.md, docs/shot23.md). The iteration-22 trace is
+ACCEPTED by the user (2026-10-04) with an assumed far-corner shot direction; iteration 23 plays it in Remotion
+(fixed overhead camera). Next: iteration 24, after the user reviews the playback.
 
 ## Key files
 
