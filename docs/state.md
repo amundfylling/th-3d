@@ -181,6 +181,16 @@
   - Assumed: all timing, and the goalie standing toward the left post.
   - Video `validation/analysis-nacka.mp4` (composition `analysis-nacka`). Notes: `docs/nacka.md`. Rerender:
     `npm run trace:nacka`, `npm run video:analysis-nacka`.
+- **Invers Kryssar med Velodrom (2026-10-06, user request: sketch first, then animate): SKETCH ONLY, awaiting the user.**
+  - NTHF page (no illustration or video) and the base move "Invers Kryssar" saved in `references/combinations/`.
+  - Interpretation `validation/ikv-sketch.png`: overhead render of our model (composition `pose-preview`) with the lines.
+    1. Cross pass RW → LW.
+    2. The LW sends the puck along the +y board; it rides the curved boards behind the goal (simulated with the
+       board pushing-contact rule and the spjass friction) to the right wing's board.
+    3. RW, moved up his slot and turned round, shoots first time into the goal.
+  - Data: `shots/invers-kryssar-velodrom/sketch.json` (choices), `sketch-geometry.json` (poses, lines, clearances:
+    all positive). Scripts: `scripts/ikv-sketch.py`, `scripts/ikv-sketch-render.ts`.
+  - **Next:** user confirms or corrects the reading; then trace (contact-checked) and analysis video as for Näcka.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.

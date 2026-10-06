@@ -683,6 +683,28 @@
       "url": "https://www.puck.no/media/images/trick-spjass-6dadefbc.png",
       "native_width_px": 600,
       "native_height_px": 438
+    },
+    {
+      "id": "puck_no_invers_kryssar_med_velodrom_page",
+      "title": "NTHF combination 'Invers Kryssar med Velodrom' (right wing, 7/10): page as fetched; no illustration or video",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/puck-no-invers-kryssar-med-velodrom.html",
+      "sha256": "ef5334d5860892e20271f76056f38577f39ff4b6932d5dd22ab0b4d2e4971f83",
+      "bytes": 17555,
+      "format": "html",
+      "url": "https://www.puck.no/en/combinations/invers-kryssar-med-velodrom/",
+      "text": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who shoots directly into the goal"
+    },
+    {
+      "id": "puck_no_invers_kryssar_page",
+      "title": "NTHF combination 'Invers Kryssar' (right wing, 7/10): the base move; no illustration",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/puck-no-invers-kryssar.html",
+      "sha256": "5b2a16e8b6ca4c696b8ebdaee5dc3a488eeda3e8cceb885a35165df3edc5596e",
+      "bytes": 17087,
+      "format": "html",
+      "url": "https://www.puck.no/en/combinations/invers-kryssar/",
+      "text": "Pass from right wing to left wing, who shoots into the left corner"
     }
   ],
   "not_obtained": [
