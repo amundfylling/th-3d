@@ -74,7 +74,18 @@ def build():
         h = math.degrees(math.atan2(p[1] - piv[1], p[0] - piv[0]))
         return ((h - 180.0 + 180.0) % 360.0) - 180.0 if INP["defender_faces_puck"] else 0.0
 
-    rd_arcs, rd_th, g_arcs = [], [], []
+    eg_slot = sp.Slot("E-G")
+
+    def g_theta(setup):
+        """Goalie rotation: square to the play (0) or, when the set-up says so, turned with its BACK to the puck so its
+        whole width lies across the straight-shot line (the user: 'the back outwards ... cover the corner')."""
+        if not S[setup].get("E-G_back_to_puck"):
+            return 0.0
+        piv = eg_slot.at(goalie_arc(S[setup]["E-G_y_mm"]))
+        away = math.degrees(math.atan2(piv[1] - p[1], piv[0] - p[0]))  # facing away from the puck
+        return away - 180.0 + 360.0 if away - 180.0 < -180.0 else away - 180.0
+
+    rd_arcs, rd_th, g_arcs, g_th = [], [], [], []
     for (ta, sa), (tb, sb) in zip(sched[:-1], sched[1:]):
         n = max(1, int(round((tb - ta) / KEY_DT)))
         for k in range(0 if not rd_arcs else 1, n + 1):
@@ -86,8 +97,10 @@ def build():
             rd_arcs.append({"t": round(t, 5), "arc_mm": round(arc, 4), "sigma_mm": None, "source": why})
             rd_th.append({"t": round(t, 5), "theta_deg": round(rd_theta(arc), 4), "sigma_deg": None, "source": why + " (faces the puck)"})
             g_arcs.append({"t": round(t, 5), "arc_mm": round(ga, 4), "sigma_mm": None, "source": why})
+            gt = g_theta(sa) + (g_theta(sb) - g_theta(sa)) * u
+            g_th.append({"t": round(t, 5), "theta_deg": round(gt, 4), "sigma_deg": None, "source": why + (" (back to the puck)" if S[sb].get("E-G_back_to_puck") or S[sa].get("E-G_back_to_puck") else "")})
     rd = sp.Figure("E-RD", "E", "skater", rd_arcs, rd_th)
-    eg = sp.Figure("E-G", "E", "goalie", g_arcs, th(0.0, "designed: square to the shooter's end"))
+    eg = sp.Figure("E-G", "E", "goalie", g_arcs, g_th)
     others = {pid: sp.Static(pid, "goalie" if f["position"] == "G" else "skater", f["pivot_mm"][:2], f["heading_deg"]) for pid, f in sp.ASM.items() if pid not in ("W-LW", "W-C", "E-RD", "E-G")}
     return t0, t1, p, lw, wc, rd, eg, others
 
@@ -151,7 +164,7 @@ def main():
     for eid, tq, setup in marks:
         lanes = lanes_at(tq, p, wc, rd, eg)
         events.append({"id": eid, "t_estimate": tq, "setup": setup, "E-RD_pivot_mm": [round(float(x), 2) for x in rd.pose(tq)[0]], "E-RD_heading_deg": round(rd.pose(tq)[1], 2),
-                       "E-G_pivot_mm": [round(float(x), 2) for x in eg.pose(tq)[0]], "lanes": lanes,
+                       "E-G_pivot_mm": [round(float(x), 2) for x in eg.pose(tq)[0]], "E-G_heading_deg": round(eg.pose(tq)[1], 2), "lanes": lanes,
                        "status": "designed set-up; lanes swept with the finite puck"})
     moves = [{"id": f"move.{sa}_to_{sb}", "t_estimate": ta, "t_end": tb, "status": "designed"} for (ta, sa), (tb, sb) in zip(sched[:-1], sched[1:]) if sa != sb]
     events = sorted(events + moves, key=lambda e: e["t_estimate"])

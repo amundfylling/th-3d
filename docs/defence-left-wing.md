@@ -9,6 +9,14 @@ the direct shot, but don't focus on the shots themselves"*.
 The trace `trace.defence-left-wing.v1` is **proposed** and **designed**. It is a concept illustration, not a recorded
 shot.
 
+**User correction (before the first render was finished):** *"The goalie does not have the back outwards and cover
+the corner in active and mixed. When it stands with face facing forward it does not cover the direct shot at all."*
+- When active, the goalie now turns at the near post until it faces directly away from the puck. Its back is toward
+  the corner and the left wing, and its whole width lies across the straight-shot line. That is a turn of about 120°
+  counter-clockwise from square.
+- When passive it stays square in the middle.
+- The video shows the turn with an arrow, "BACK TO THE CORNER".
+
 | Item | Path |
 | --- | --- |
 | Source (user upload, preserved, indexed) | `references/shots/defence-vs-left-wing-tiktok.mp4` (TikTok, @tablehockeyglobal, 57 s) |
@@ -75,7 +83,7 @@ All three defences are set against the same situation:
 | --- | --- | --- | --- | --- | --- |
 | Neutral (no defence) | middle | half-way up its slot | **open** (goal) | — | — |
 | Passive (the box) | middle (y = 0) | in front of the goal on the straight-shot line (slot position 164 mm) | blocked by the defender | open | met by the goalie |
-| Active | near post (y = 33 mm) | out in the passing lane (slot position 89 mm), turned toward the puck | blocked by the goalie | cut by the defender | — |
+| Active | near post (y = 33 mm), **back to the puck** (heading 300°) | out in the passing lane (slot position 89 mm), turned toward the puck | blocked by the goalie | cut by the defender | open, if a pass got through (the risk of going active; not shown) |
 | Mix | switches: passive → active → passive | | as above in each phase | | |
 
 Positions follow the idea of each defence, not the TikTok's exact spots (the user allowed this):
@@ -101,6 +109,7 @@ Positions follow the idea of each defence, not the TikTok's exact spots (the use
   - every passive phase: the defender blocks the straight shot, the pass is open, the goalie meets the centre's shot;
   - every active phase: the goalie blocks the straight shot and the defender cuts the pass;
   - the goalie is at the near post when active and in the middle when passive;
+  - when active, the goalie faces away from the puck (back to the corner), within 2°; when passive it is square;
   - the mix switches passive → active → passive.
 - **Video:**
   - each chapter is shown at least 3.5 s with a still camera, at no more than 4 words per second;
@@ -119,7 +128,7 @@ Positions follow the idea of each defence, not the TikTok's exact spots (the use
 | 0-1.5 s | title |
 | 1.5-7.5 s | **THE LEFT WING HAS THE PUCK**: the two threats (straight shot; centrifuge pass and the centre's shot) |
 | 7.5-16.5 s | **1 PASSIVE · THE BOX**: the defender and goalie set up; shot blocked, pass open, goalie there |
-| 16.5-24.2 s | **2 ACTIVE**: the goalie to the near post, the defender out; shot closed, pass cut |
+| 16.5-24.2 s | **2 ACTIVE**: the goalie to the near post, turning its back to the corner; the defender out; shot closed, pass cut |
 | 24.2-31.4 s | **3 THE MIX**: PASSIVE → ACTIVE → PASSIVE at ×0.5, with the lane each phase closes |
 | 31.4-35.4 s | summary card |
 
@@ -129,7 +138,9 @@ The camera stands behind the defended goal, high, like the TikTok, and stays sti
 
 1. **The reading of the three defences** (above), from the captions and the demonstrations.
 2. **The left wing's position** (further out than in the TikTok) and the defender's two positions.
-3. **The centrifuge** as the left wing's pass to the centre who shoots first time (Bordshockeyskolan). The user named
+3. **The goalie's turn when active:** it faces directly away from the puck (about 120°). That follows the user's
+   description; the exact angle is not measured.
+4. **The centrifuge** as the left wing's pass to the centre who shoots first time (Bordshockeyskolan). The user named
    it as an example; puck.no has no description.
-4. **Lanes are straight lines** (flat shots and passes); lifted shots are not considered.
-5. Preview figure, puck and goal sizes; the other figures stand in their assembly poses.
+5. **Lanes are straight lines** (flat shots and passes); lifted shots are not considered.
+6. Preview figure, puck and goal sizes; the other figures stand in their assembly poses.

@@ -39,7 +39,8 @@
   "active": {
    "E-RD_arc_mm": 89.0,
    "E-G_y_mm": 33.0,
-   "note": "the goalie closes the straight shot at the near post; the defender goes out to where the centrifuge pass crosses its slot"
+   "note": "the goalie goes to the near post and turns with its BACK to the puck (user, 2026-10-06: 'the back outwards ... cover the corner'; facing forward it does not cover the direct shot), so its whole width lies across the straight-shot line; the defender goes out to where the centrifuge pass crosses its slot",
+   "E-G_back_to_puck": true
   }
  },
  "defender_faces_puck": true,
@@ -119,7 +120,9 @@
  "limitations": [
   "A concept illustration: positions follow the idea of each defence, not the exact placement in the TikTok (the user: 'It does not have to be precisely the same placement as the video').",
   "The shots and passes are drawn as lanes (graphics) that end where the puck would first touch a defending figure; the puck itself stays on the left wing's blade, so no blocked shot is simulated (a blocked hard shot would rebound, which the traces do not model).",
+  "Goalie rotation when active: turned to face directly away from the puck (about 120 deg counter-clockwise), from the user's description; the exact angle is not measured.",
   "Figure moves are designed (smootherstep, 0.3-0.4 s); the defender turns to face the puck.",
   "Preview figure, puck and goal sizes; the other figures stand in their assembly poses."
- ]
+ ],
+ "user_feedback_v1": "2026-10-06: 'The goalie does not have the back outwards and cover the corner in active and mixed. When it stands with face facing forward it does not cover the direct shot at all'"
 }

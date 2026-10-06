@@ -139,7 +139,7 @@
    "id": "active",
    "number": "2",
    "title": "ACTIVE",
-   "text": "The goalie closes the straight shot at the near post. The defender goes out and cuts the passes.",
+   "text": "The goalie moves to the near post and turns its back to the corner, closing the straight shot. The defender goes out and cuts the passes.",
    "from": "to_active.start",
    "to": "active.end"
   },
@@ -309,11 +309,29 @@
    "to": "active.end"
   },
   {
+   "id": "a_turn",
+   "type": "rotation_arrow",
+   "target": "E-G",
+   "event": "active.set",
+   "direction": "ccw",
+   "radius_mm": 42,
+   "start_deg": -125,
+   "sweep_deg": 110,
+   "label": "BACK TO THE CORNER",
+   "accent": "amber",
+   "label_offset_px": [
+    -260,
+    40
+   ],
+   "from": "to_active.start+0.3",
+   "to": "active.start+2.0"
+  },
+  {
    "id": "a_shot",
    "type": "lane",
    "event": "active.set",
    "lane": "straight_shot",
-   "from": "active.start+0.6",
+   "from": "active.start+1.2",
    "to": "active.end",
    "ghost_s": 0.7,
    "label": "GOALIE CLOSES IT",
@@ -327,7 +345,7 @@
    "type": "lane",
    "event": "active.set",
    "lane": "centrifuge_pass",
-   "from": "active.start+2.2",
+   "from": "active.start+2.8",
    "to": "active.end",
    "ghost_s": 0.7,
    "label": "PASS CUT",

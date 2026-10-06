@@ -57,6 +57,14 @@ test("defence vs the left wing: the concept - which lane each set-up closes", ()
   // the goalie stands at the near post (+y, the left wing's side) when active, in the middle when passive
   const gy = (id: string) => (ev(id)["E-G_pivot_mm"] as number[])[1]!;
   assert.ok(gy("active.set") > 25 && Math.abs(gy("passive.set")) < 5);
+  // when active the goalie turns its BACK to the puck (user, 2026-10-06): it faces away from the puck, square when passive
+  const puck = trace.puck.nodes[0];
+  for (const id of ["active.set", "mix.active"]) {
+    const g = ev(id)["E-G_pivot_mm"] as number[], h = ev(id)["E-G_heading_deg"] as number;
+    const away = (Math.atan2(g[1]! - puck.y_mm, g[0]! - puck.x_mm) * 180) / Math.PI;
+    assert.ok(Math.abs(((h - away + 540) % 360) - 180) < 2, id);
+  }
+  for (const id of ["passive.set", "mix.passive_1", "mix.passive_2"]) assert.equal(ev(id)["E-G_heading_deg"], 180, id);
   // the mix really switches
   const setups = trace.events.filter((e: { setup?: string }) => e.setup).map((e: { setup: string }) => e.setup);
   assert.deepEqual(setups, ["neutral", "passive", "active", "passive", "active", "passive"]);
