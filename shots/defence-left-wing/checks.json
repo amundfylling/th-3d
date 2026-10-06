@@ -80,8 +80,8 @@
    "straight_shot": {
     "blocked_by": "E-G",
     "end_mm": [
-     269.01,
-     32.96
+     269.29,
+     32.54
     ]
    },
    "centrifuge_pass": {
@@ -94,8 +94,8 @@
    "centre_shot": {
     "blocked_by": "E-G",
     "end_mm": [
-     235.92,
-     -3.81
+     233.08,
+     -2.82
     ]
    }
   },
@@ -126,8 +126,8 @@
    "straight_shot": {
     "blocked_by": "E-G",
     "end_mm": [
-     269.01,
-     32.96
+     269.29,
+     32.54
     ]
    },
    "centrifuge_pass": {
@@ -140,8 +140,8 @@
    "centre_shot": {
     "blocked_by": "E-G",
     "end_mm": [
-     235.92,
-     -3.81
+     233.08,
+     -2.82
     ]
    }
   },

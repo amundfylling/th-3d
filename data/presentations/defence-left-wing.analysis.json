@@ -139,7 +139,7 @@
    "id": "active",
    "number": "2",
    "title": "ACTIVE",
-   "text": "The goalie moves toward the near post, back to the corner, still covering the middle. The defender goes out and cuts the passes.",
+   "text": "The goalie turns its back to the corner: the straight shot is closed and as much of the far side as possible covered. The defender cuts the passes.",
    "from": "to_active.start",
    "to": "active.end"
   },

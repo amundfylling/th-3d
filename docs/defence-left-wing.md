@@ -9,46 +9,39 @@ the direct shot, but don't focus on the shots themselves"*.
 The trace `trace.defence-left-wing.v1` is **proposed** and **designed**. It is a concept illustration, not a recorded
 shot.
 
-**User correction (before the first render was finished):** *"The goalie does not have the back outwards and cover
-the corner in active and mixed. When it stands with face facing forward it does not cover the direct shot at all."*
-- When active, the goalie now turns at the near post until it faces directly away from the puck. Its back is toward
-  the corner and the left wing, and its whole width lies across the straight-shot line. That is a turn of about 120°
-  counter-clockwise from square.
-- When passive it stays square in the middle.
-- The video shows the turn with an arrow, "BACK TO THE CORNER".
+**The goalie when active: four user corrections, settled before any full render.**
+1. *"The goalie does not have the back outwards and cover the corner in active and mixed. When it stands with face
+   facing forward it does not cover the direct shot at all."* The goalie turns with its back to the puck.
+2. *"the goalie should not stand all the way out to the right ... cover more of the middle. It should however leave
+   little space for the direct shots."* It moves in from the near post.
+3. *"Do not proceed with rendering the full video before getting this right. The goalie can be rotated slightly more
+   and moved slightly more to the goalie's left."* The goalie's left is toward the middle (−y).
+4. *"Rotate it even further and move it more to the left. It should cover as much space as possible on the left side
+   while still covering direct shots."*
 
-**Second correction:** *"the goalie should not stand all the way out to the right, because it can leave a bit of space
-to still catch most direct shots and cover more of the middle. It should however leave little space for the direct
-shots."*
-- When active, the goalie now stands at y = 15 mm, about two-thirds of the way from the middle to the near post
-  (the post is at 43.5 mm), instead of right at the post (33 mm, the end of its slot).
-- A scan with the goalie turned (straight shots swept with the finite puck to every point across the goal):
+For the last one I scanned the goalie's position on its slot against its turn. For each pose, straight shots from the
+left wing were swept with the finite puck to every point across the goal (every 0.5 mm). The table shows how many of
+those targets are reached ("open"), and how far left the goalie reaches:
 
-| Goalie y (mm) | Straight shots from the left wing | Centre's far-corner window |
-| --- | --- | --- |
-| 33 (at the post) | all stopped | 13.1° open |
-| 24 | all stopped | 7.5° |
-| 15 (chosen) | all stopped | 1.9° |
-| 9 | all stopped | closed |
-| 0 | all stopped | 2.6° open on the near side |
+| Goalie y (mm) | +30° turn | +35° | +40° | +45° | +50° | +55° | reaches y (mm) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| −9 | 0 | 0 | 0 | 0 | 1 | 6 | −20 |
+| **−10** | 0 | 0 | 0 | **0** | 3 | 8 | **−21** |
+| −11 | 0 | 0 | 0 | 1 | 5 | 11 | −22 |
+| −12 | 0 | 0 | 0 | 4 | 8 | 13 | −23 |
+| −13 | 0 | 1 | 3 | 6 | 10 | 15 | −24 |
+| −14 | 2 | 3 | 5 | 8 | 13 | 18 | −25 |
 
-  From this left-wing position the straight-shot window is only 4.5° wide, so the turned goalie closes it anywhere
-  in that range. y = 15 mm leaves the near post itself open on the ice, but no straight-shot line reaches it, and it
-  covers most of the middle.
+(Turn = beyond facing directly away from the puck. Coarser scan: at y = −15 mm and below, straight shots get through
+at every turn.)
 
-| Item | Path |
-| --- | --- |
-| Source (user upload, preserved, indexed) | `references/shots/defence-vs-left-wing-tiktok.mp4` (TikTok, @tablehockeyglobal, 57 s) |
-| The centrifuge (found for the user's term, indexed) | `references/combinations/bordshockeyskolan-lektion-3-centrifugen.html` |
-| Design choices | `shots/defence-left-wing/inputs.json` |
-| Trace | `data/traces/defence-left-wing.trace.json` (`scripts/defence-trace.py`); checks `shots/defence-left-wing/checks.json`; top view `validation/defence-trace.png` |
-| Analysis spec | `data/presentations/defence-left-wing.analysis.json` |
-| Composition | `analysis-defence-lw` (`remotion/DefenceAnalysis.tsx` + the shared `remotion/AnalysisVideo.tsx`) |
-| Video | `validation/analysis-defence-lw.mp4`; report `validation/analysis-defence-lw-report.json`; review sheet `validation/analysis-defence-lw-review.png`; puck visibility `validation/analysis-defence-lw-occlusion.json` |
-| Tests | `tests/defence.test.ts` |
-
-Reproduce: `npm run trace:defence-lw`, then `npm run video:analysis-defence-lw` (about 80 min on the 4-CPU
-container).
+**Chosen:** y = −10 mm, turned 45° beyond facing away from the puck (heading about 340°, about 160°
+counter-clockwise from square).
+- It reaches 21 mm left of the middle.
+- Every straight shot is stopped, and so is the centre's far-corner shot.
+- The margin: 1 mm further left, or 5° more turn, would start to open straight shots.
+- Review images for the user: `validation/defence-goalie-review.png` (overhead, previous vs new;
+  `scripts/defence-goalie-review.ts`) and `validation/defence-goalie-active-still.png` (the video's active freeze).
 
 ## What the TikTok says and shows
 
@@ -102,7 +95,7 @@ All three defences are set against the same situation:
 | --- | --- | --- | --- | --- | --- |
 | Neutral (no defence) | middle | half-way up its slot | **open** (goal) | — | — |
 | Passive (the box) | middle (y = 0) | in front of the goal on the straight-shot line (slot position 164 mm) | blocked by the defender | open | met by the goalie |
-| Active | toward the near post, not all the way (y = 15 mm), **back to the puck** (heading 298°) | out in the passing lane (slot position 89 mm), turned toward the puck | blocked by the goalie | cut by the defender | met by the goalie (1.9° left open at the far post) |
+| Active | y = −10 mm, **back to the corner**, turned 45° beyond facing away from the puck (heading about 340°) | out in the passing lane (slot position 89 mm), turned toward the puck | blocked by the goalie | cut by the defender | met by the goalie |
 | Mix | switches: passive → active → passive | | as above in each phase | | |
 
 Positions follow the idea of each defence, not the TikTok's exact spots (the user allowed this):
@@ -127,8 +120,9 @@ Positions follow the idea of each defence, not the TikTok's exact spots (the use
   - neutral: the straight shot is open;
   - every passive phase: the defender blocks the straight shot, the pass is open, the goalie meets the centre's shot;
   - every active phase: the goalie blocks the straight shot and the defender cuts the pass;
-  - the goalie is between the middle and the near post when active (10 < y < 25 mm) and in the middle when passive;
-  - when active, the goalie faces away from the puck (back to the corner), within 2°; when passive it is square;
+  - when active, the goalie stands where `inputs.json` puts it and faces away from the puck plus the extra turn,
+    within 2°;
+  - when passive it is square, in the middle;
   - the mix switches passive → active → passive.
 - **Video:**
   - each chapter is shown at least 3.5 s with a still camera, at no more than 4 words per second;
@@ -147,7 +141,7 @@ Positions follow the idea of each defence, not the TikTok's exact spots (the use
 | 0-1.5 s | title |
 | 1.5-7.5 s | **THE LEFT WING HAS THE PUCK**: the two threats (straight shot; centrifuge pass and the centre's shot) |
 | 7.5-16.5 s | **1 PASSIVE · THE BOX**: the defender and goalie set up; shot blocked, pass open, goalie there |
-| 16.5-24.2 s | **2 ACTIVE**: the goalie to the near post, turning its back to the corner; the defender out; shot closed, pass cut |
+| 16.5-24.2 s | **2 ACTIVE**: the goalie turns its back to the corner and covers as much of the far side as it can; the defender goes out; shot closed, pass cut |
 | 24.2-31.4 s | **3 THE MIX**: PASSIVE → ACTIVE → PASSIVE at ×0.5, with the lane each phase closes |
 | 31.4-35.4 s | summary card |
 
@@ -157,8 +151,8 @@ The camera stands behind the defended goal, high, like the TikTok, and stays sti
 
 1. **The reading of the three defences** (above), from the captions and the demonstrations.
 2. **The left wing's position** (further out than in the TikTok) and the defender's two positions.
-3. **The goalie when active:** it faces directly away from the puck (about 120°) at y = 15 mm. Both follow the user's
-   description; neither the angle nor the spot is measured.
+3. **The goalie when active:** y = −10 mm and heading about 340°, the limit found by the scan for this left-wing
+   position. It follows the user's four corrections; neither is measured from the TikTok.
 4. **The centrifuge** as the left wing's pass to the centre who shoots first time (Bordshockeyskolan). The user named
    it as an example; puck.no has no description.
 5. **Lanes are straight lines** (flat shots and passes); lifted shots are not considered.

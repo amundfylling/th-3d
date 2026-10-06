@@ -211,14 +211,17 @@
     The centrifuge comes from `references/combinations/bordshockeyskolan-lektion-3-centrifugen.html`.
   - The three defences:
     - **passive / the box:** the defender in front of the goal on the straight-shot line, the goalie in the middle;
-    - **active:** the goalie toward the near post but not all the way (y = 15 mm), turned with its back to the
-      corner (two user corrections, 2026-10-06), the defender out cutting the passes;
+    - **active:** the goalie turned with its back to the corner, covering as much of the far side as it can while
+      every straight shot is still stopped (y = −10 mm, heading about 340°; four user corrections and a scan,
+      2026-10-06), the defender out cutting the passes;
     - **the mix:** switching between them.
   - Trace `trace.defence-left-wing.v1` (**proposed**, designed). E-RD and E-G move between the set-ups. The puck stays
     on W-LW's blade.
   - The attacker's options are lanes swept with the finite puck: the straight shot, the centrifuge pass and the
     centre's shot. They are drawn as graphics, open or crossed out where first stopped.
-  - Video `validation/analysis-defence-lw.mp4` (composition `analysis-defence-lw`, 35.4 s). Notes:
+  - **Waiting for the user to approve the goalie pose** (`validation/defence-goalie-review.png`) before the full
+    render. The user: "Do not proceed with rendering the full video before getting this right".
+  - Video `validation/analysis-defence-lw.mp4` (composition `analysis-defence-lw`, 35.4 s), not rendered yet. Notes:
     `docs/defence-left-wing.md`. Rerender: `npm run trace:defence-lw`, `npm run video:analysis-defence-lw`.
   - `remotion/AnalysisVideo.tsx` gained a `lane` graphic. The other four analysis videos are verified byte-identical
     on six frames each; recorded as `composition_refactor` in their reports.

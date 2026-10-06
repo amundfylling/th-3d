@@ -38,10 +38,10 @@
   },
   "active": {
    "E-RD_arc_mm": 89.0,
-   "E-G_y_mm": 10.0,
-   "note": "the goalie moves toward the near post, but not all the way (user, 2026-10-06: 'it can leave a bit of space to still catch most direct shots and cover more of the middle ... leave little space for the direct shots'): y = 15 mm, about two thirds of the way from the middle to the near post, turned with its BACK to the puck (user: 'the back outwards ... cover the corner'); scan (docs/defence-left-wing.md): every straight shot from the left wing's position is still stopped from y = 33 down to y = -6 mm, and the centre's far-corner window shrinks from 13.1 deg (y = 33) to 1.9 deg (y = 15); the defender goes out to where the centrifuge pass crosses its slot",
+   "E-G_y_mm": -10.0,
+   "note": "the goalie covers as much of its left side (toward the middle and the far post) as it can while every straight shot from the left wing is still stopped (user, 2026-10-06, three corrections: back to the corner; not all the way out; 'rotate it even further and move it more to the left ... cover as much space as possible on the left side while still covering direct shots'). Chosen from a scan of position x turn (docs/defence-left-wing.md): y = -10 mm, turned 45 deg beyond facing directly away from the puck (heading about 340 deg); 1 mm further left or 5 deg more turn opens straight shots. The defender goes out to where the centrifuge pass crosses its slot",
    "E-G_back_to_puck": true,
-   "E-G_turn_extra_deg": 15.0
+   "E-G_turn_extra_deg": 45.0
   }
  },
  "defender_faces_puck": true,
@@ -127,5 +127,6 @@
  ],
  "user_feedback_v1": "2026-10-06: 'The goalie does not have the back outwards and cover the corner in active and mixed. When it stands with face facing forward it does not cover the direct shot at all'",
  "user_feedback_v2": "2026-10-06: 'the goalie should not stand all the way out to the right, because it can leave a bit of space to still catch most direct shots and cover more of the middle. It should however leave little space for the direct shots'",
- "user_feedback_v3": "2026-10-06: 'Do not proceed with rendering the full video before getting this right. The goalie can be rotated slightly more and moved slighly more to the goalies left'"
+ "user_feedback_v3": "2026-10-06: 'Do not proceed with rendering the full video before getting this right. The goalie can be rotated slightly more and moved slighly more to the goalies left'",
+ "user_feedback_v4": "2026-10-06: 'Rotate it even further and move it more to the left. It should cover as much space as possible on the left side while still covering direct shots'"
 }
