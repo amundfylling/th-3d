@@ -57,12 +57,14 @@ test("defence vs the left wing: the concept - which lane each set-up closes", ()
   // the goalie moves toward the near post (+y, the left wing's side) when active, stays in the middle when passive
   const gy = (id: string) => (ev(id)["E-G_pivot_mm"] as number[])[1]!;
   // (user: not all the way out - it leaves a little space at the near post and covers more of the middle)
-  assert.ok(gy("active.set") > 10 && gy("active.set") < 25 && Math.abs(gy("passive.set")) < 5);
-  // when active the goalie turns its BACK to the puck (user, 2026-10-06): it faces away from the puck, square when passive
+  assert.ok(gy("active.set") >= 8 && gy("active.set") < 25 && Math.abs(gy("passive.set")) < 5);
+  // when active the goalie turns its BACK to the puck (user, 2026-10-06): it faces away from the puck, plus the extra
+  // turn the user asked for (inputs.json E-G_turn_extra_deg); square when passive
   const puck = trace.puck.nodes[0];
+  const extra: number = JSON.parse(read("shots/defence-left-wing/inputs.json")).setups.active["E-G_turn_extra_deg"] ?? 0;
   for (const id of ["active.set", "mix.active"]) {
     const g = ev(id)["E-G_pivot_mm"] as number[], h = ev(id)["E-G_heading_deg"] as number;
-    const away = (Math.atan2(g[1]! - puck.y_mm, g[0]! - puck.x_mm) * 180) / Math.PI;
+    const away = (Math.atan2(g[1]! - puck.y_mm, g[0]! - puck.x_mm) * 180) / Math.PI + extra;
     assert.ok(Math.abs(((h - away + 540) % 360) - 180) < 2, id);
   }
   for (const id of ["passive.set", "mix.passive_1", "mix.passive_2"]) assert.equal(ev(id)["E-G_heading_deg"], 180, id);

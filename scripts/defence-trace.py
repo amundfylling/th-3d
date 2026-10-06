@@ -82,7 +82,7 @@ def build():
         if not S[setup].get("E-G_back_to_puck"):
             return 0.0
         piv = eg_slot.at(goalie_arc(S[setup]["E-G_y_mm"]))
-        away = math.degrees(math.atan2(piv[1] - p[1], piv[0] - p[0]))  # facing away from the puck
+        away = math.degrees(math.atan2(piv[1] - p[1], piv[0] - p[0])) + S[setup].get("E-G_turn_extra_deg", 0.0)  # facing away from the puck (+ extra turn)
         return away - 180.0 + 360.0 if away - 180.0 < -180.0 else away - 180.0
 
     rd_arcs, rd_th, g_arcs, g_th = [], [], [], []
