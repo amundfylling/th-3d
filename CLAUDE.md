@@ -20,7 +20,9 @@ numbered iteration is defined. A sports-analysis video of the same trace (compos
 validation/analysis-shovel-17.mp4, `npm run video:analysis-shovel-17`) is documented in docs/analysis-shovel-17.md.
 The spjass centre move (user's TikTok, references/shots/spjass-tiktok.mp4) is reconstructed as a PROPOSED trace
 (data/traces/spjass.trace.json) and animated (composition `analysis-spjass`, validation/analysis-spjass.mp4); see docs/spjass.md.
-Both analysis videos share remotion/AnalysisVideo.tsx.
+Näcka (NTHF page and illustration, references/combinations/; no recording) is a PROPOSED, DESIGNED trace
+(data/traces/nacka.trace.json) with video validation/analysis-nacka.mp4; see docs/nacka.md.
+All analysis videos share remotion/AnalysisVideo.tsx.
 
 ## Key files
 

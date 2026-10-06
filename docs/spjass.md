@@ -23,6 +23,14 @@ npm run trace:spjass            # observations + trace + checks (deterministic)
 npm run video:analysis-spjass   # render (about 70 min on the 4-CPU container), occlusion report, review sheet
 ```
 
+## Cross-check: the NTHF description (fetched 2026-10-06)
+
+The Norwegian Table Hockey Association describes the Spjass (centre, difficulty 5/10) as: *"Center starts with the
+puck in the heel groove, passes with the blade a few centimeters out to the left, spins all the way around and shoots
+with the blade into the left corner"* (`references/combinations/puck-no-spjass.html`, illustration `trick-spjass.png`).
+Every step matches this reconstruction: the set-up, the pass to the left (+y), the full spin and the shot into the
+left corner.
+
 ## What the TikTok shows
 
 The clip is a portrait TikTok by @tablehockeyglobal. It was recorded on another STIGA edition (Byggmax/gyproc

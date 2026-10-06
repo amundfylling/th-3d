@@ -1,0 +1,426 @@
+{
+ "schema": "shot-analysis/1",
+ "analysis_id": "analysis.nacka.v1",
+ "trace_id": "trace.nacka.v1",
+ "note": "Sports-analysis presentation of the designed Näcka trace (data/traces/nacka.trace.json; NTHF description and illustration, set-up and rates from the measured spjass). Shot timing, camera and graphics are separate tracks; the motion comes only from the trace.",
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "segments": [
+  {
+   "id": "intro",
+   "kind": "hold",
+   "at": 3.95,
+   "frames": 45
+  },
+  {
+   "id": "full",
+   "kind": "play",
+   "from": 3.95,
+   "to": 4.65,
+   "rate": 1
+  },
+  {
+   "id": "goal_hold",
+   "kind": "hold",
+   "at": 4.65,
+   "frames": 20
+  },
+  {
+   "id": "rewind",
+   "kind": "rewind",
+   "from": 4.65,
+   "to": 4.0,
+   "rate": 1.2
+  },
+  {
+   "id": "setup_set",
+   "kind": "hold",
+   "at": 4.0,
+   "frames": 20
+  },
+  {
+   "id": "setup_freeze",
+   "kind": "hold",
+   "at": 4.0,
+   "frames": 108
+  },
+  {
+   "id": "to_pass",
+   "kind": "hold",
+   "at": 4.0,
+   "frames": 33
+  },
+  {
+   "id": "pass_in",
+   "kind": "play",
+   "from": 4.0,
+   "to": {
+    "event": "contact.heel_pass"
+   },
+   "rate": 0.1
+  },
+  {
+   "id": "pass_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "contact.heel_pass"
+   },
+   "frames": 96
+  },
+  {
+   "id": "to_shot",
+   "kind": "hold",
+   "at": {
+    "event": "contact.heel_pass"
+   },
+   "frames": 33
+  },
+  {
+   "id": "slide_in",
+   "kind": "play",
+   "from": {
+    "event": "contact.heel_pass"
+   },
+   "to": {
+    "event": "contact.shot"
+   },
+   "rate": 0.2
+  },
+  {
+   "id": "strike_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "contact.shot"
+   },
+   "frames": 90
+  },
+  {
+   "id": "shot_out",
+   "kind": "play",
+   "from": {
+    "event": "contact.shot"
+   },
+   "to": 4.5,
+   "rate": 0.15
+  },
+  {
+   "id": "goal_freeze",
+   "kind": "hold",
+   "at": 4.5,
+   "frames": 30
+  },
+  {
+   "id": "to_replay",
+   "kind": "hold",
+   "at": 4.5,
+   "frames": 38
+  },
+  {
+   "id": "replay",
+   "kind": "play",
+   "from": 3.95,
+   "to": 4.65,
+   "rate": 0.4
+  },
+  {
+   "id": "outro",
+   "kind": "hold",
+   "at": 4.65,
+   "frames": 50
+  }
+ ],
+ "unlabelled_holds": [
+  "intro",
+  "outro",
+  "to_replay"
+ ],
+ "replay_segments": [
+  "replay"
+ ],
+ "views": {
+  "intro_high": {
+   "positionMm": [
+    -420,
+    -820,
+    820
+   ],
+   "targetMm": [
+    170,
+    0,
+    0
+   ],
+   "fovDeg": 30
+  },
+  "broadcast": {
+   "positionMm": [
+    -150,
+    -330,
+    380
+   ],
+   "targetMm": [
+    215,
+    0,
+    0
+   ],
+   "fovDeg": 30
+  },
+  "setup": {
+   "positionMm": [
+    215,
+    -230,
+    190
+   ],
+   "targetMm": [
+    165,
+    -5,
+    12
+   ],
+   "fovDeg": 30
+  },
+  "pass": {
+   "positionMm": [
+    95,
+    -175,
+    220
+   ],
+   "targetMm": [
+    180,
+    -15,
+    8
+   ],
+   "fovDeg": 30
+  },
+  "shot": {
+   "positionMm": [
+    -30,
+    -160,
+    270
+   ],
+   "targetMm": [
+    235,
+    -20,
+    0
+   ],
+   "fovDeg": 32
+  },
+  "replay": {
+   "positionMm": [
+    40,
+    -330,
+    330
+   ],
+   "targetMm": [
+    220,
+    0,
+    0
+   ],
+   "fovDeg": 32
+  }
+ },
+ "camera": [
+  {
+   "at": "intro.start",
+   "view": "intro_high"
+  },
+  {
+   "at": "intro.start+0.15",
+   "view": "intro_high"
+  },
+  {
+   "at": "intro.end-0.1",
+   "view": "broadcast"
+  },
+  {
+   "at": "goal_hold.end",
+   "view": "broadcast"
+  },
+  {
+   "at": "setup_set.end",
+   "view": "setup",
+   "lift": 60
+  },
+  {
+   "at": "to_pass.start",
+   "view": "setup"
+  },
+  {
+   "at": "to_pass.end",
+   "view": "pass",
+   "lift": 60
+  },
+  {
+   "at": "to_shot.start",
+   "view": "pass"
+  },
+  {
+   "at": "to_shot.end",
+   "view": "shot",
+   "lift": 60
+  },
+  {
+   "at": "to_replay.start",
+   "view": "shot"
+  },
+  {
+   "at": "to_replay.end",
+   "view": "replay",
+   "lift": 80
+  }
+ ],
+ "chapters": [
+  {
+   "id": "setup",
+   "number": "1",
+   "title": "THE SET-UP",
+   "text": "Same start as the spjass: back to the goal, the puck behind his heel.",
+   "from": "setup_set.start",
+   "to": "to_pass.start+0.2"
+  },
+  {
+   "id": "pass",
+   "number": "2",
+   "title": "THE HEEL PASS",
+   "text": "He turns the other way and pushes the puck out right with his heel.",
+   "from": "to_pass.end-0.2",
+   "to": "to_shot.start+0.2"
+  },
+  {
+   "id": "shot",
+   "number": "3",
+   "title": "THE SHOT",
+   "text": "He steps up, turns back and shoots with the blade into the right corner.",
+   "from": "to_shot.end-0.2",
+   "to": "goal_freeze.end"
+  }
+ ],
+ "graphics": [
+  {
+   "id": "title",
+   "type": "title_card",
+   "from": "intro.start+0.3",
+   "to": "intro.end"
+  },
+  {
+   "id": "goal_full",
+   "type": "goal_banner",
+   "from": "goal_hold.start",
+   "to": "goal_hold.end"
+  },
+  {
+   "id": "centre",
+   "type": "highlight",
+   "target": "W-C",
+   "label": "CENTRE",
+   "accent": "cyan",
+   "from": "setup_set.start",
+   "to": "to_pass.start+0.3"
+  },
+  {
+   "id": "puck_rest",
+   "type": "puck_marker",
+   "label": "PUCK BEHIND THE HEEL",
+   "accent": "amber",
+   "from": "setup_freeze.start+0.2",
+   "to": "to_pass.start+0.3"
+  },
+  {
+   "id": "turn",
+   "type": "rotation_arrow",
+   "target": "W-C",
+   "event": "turn.onset",
+   "direction": "cw",
+   "radius_mm": 34,
+   "start_deg": 30,
+   "sweep_deg": 70,
+   "label": "TURN",
+   "accent": "cyan",
+   "label_offset_px": [
+    -110,
+    0
+   ],
+   "from": "to_pass.end",
+   "to": "pass_freeze.end"
+  },
+  {
+   "id": "heel",
+   "type": "contact_marker",
+   "target": "W-C",
+   "event": "contact.heel_pass",
+   "label": "PASS · HEEL",
+   "accent": "amber",
+   "label_offset_px": [
+    190,
+    -110
+   ],
+   "from": "pass_freeze.start+0.15",
+   "to": "to_shot.start+0.3"
+  },
+  {
+   "id": "pass_dir",
+   "type": "puck_arrow",
+   "event": "contact.heel_pass",
+   "start_mm": 18,
+   "length_mm": 60,
+   "accent": "amber",
+   "from": "pass_freeze.start+0.6",
+   "to": "to_shot.start+0.3"
+  },
+  {
+   "id": "turn_back",
+   "type": "rotation_arrow",
+   "target": "W-C",
+   "event": "turn_back.onset",
+   "direction": "ccw",
+   "radius_mm": 36,
+   "start_deg": -70,
+   "sweep_deg": 60,
+   "label": "TURN BACK",
+   "accent": "cyan",
+   "label_offset_px": [
+    0,
+    -45
+   ],
+   "from": "to_shot.end",
+   "to": "strike_freeze.end"
+  },
+  {
+   "id": "shot",
+   "type": "contact_marker",
+   "target": "W-C",
+   "event": "contact.shot",
+   "label": "SHOT · BLADE",
+   "accent": "amber",
+   "from": "strike_freeze.start+0.15",
+   "to": "shot_out.start+0.3"
+  },
+  {
+   "id": "trail",
+   "type": "puck_trail",
+   "event": "contact.heel_pass",
+   "back_s": 0.0,
+   "from": "slide_in.start",
+   "to": "goal_freeze.end"
+  },
+  {
+   "id": "goal_slow",
+   "type": "goal_banner",
+   "from": "goal_freeze.start",
+   "to": "goal_freeze.end"
+  },
+  {
+   "id": "trail_replay",
+   "type": "puck_trail",
+   "event": "contact.heel_pass",
+   "back_s": 0.0,
+   "from": "replay.start",
+   "to": "replay.end"
+  },
+  {
+   "id": "end",
+   "type": "end_card",
+   "from": "replay.end-0.3",
+   "to": "outro.end"
+  }
+ ]
+}

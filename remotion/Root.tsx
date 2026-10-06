@@ -4,6 +4,7 @@ import { SHOT_TRACE, ShotPlayback } from "./ShotPlayback.tsx";
 import { ShotPresentation, TIMELINE, timelineFor } from "./ShotPresentation.tsx";
 import { ANALYSIS, ShotAnalysis } from "./ShotAnalysis.tsx";
 import { SPJASS_ANALYSIS, SpjassAnalysis } from "./SpjassAnalysis.tsx";
+import { NACKA_ANALYSIS, NackaAnalysis } from "./NackaAnalysis.tsx";
 
 // Iteration 25: final export settings (presentation choice, not geometry precision): 1920 x 1080 at 60 fps.
 export const FINAL_FPS = 60;
@@ -40,6 +41,7 @@ export const RemotionRoot: React.FC = () => (
     {/* Sports-analysis video (VAR-style breakdown) of the accepted shot: data/presentations/shovel-17.analysis.json. */}
     <Composition id="analysis-shovel-17" component={ShotAnalysis} durationInFrames={ANALYSIS.durationInFrames} fps={ANALYSIS.spec.fps} width={ANALYSIS.spec.width} height={ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     <Composition id="analysis-spjass" component={SpjassAnalysis} durationInFrames={SPJASS_ANALYSIS.durationInFrames} fps={SPJASS_ANALYSIS.spec.fps} width={SPJASS_ANALYSIS.spec.width} height={SPJASS_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
+    <Composition id="analysis-nacka" component={NackaAnalysis} durationInFrames={NACKA_ANALYSIS.durationInFrames} fps={NACKA_ANALYSIS.spec.fps} width={NACKA_ANALYSIS.spec.width} height={NACKA_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     <Composition id="static-checks" component={StaticInspection} durationInFrames={30} fps={30} width={1920} height={1080} defaultProps={{ camera: "oblique", showChecks: true }} />
   </>
 );

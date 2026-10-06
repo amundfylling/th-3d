@@ -22,6 +22,8 @@ const VIDEOS = {
     files: ["remotion/ShotAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "analysis", out: "validation/analysis-shovel-17.mp4", report: "validation/analysis-shovel-17-report.json", title: "#17 The Shovel - sports-analysis video" },
   spjass: { composition: "analysis-spjass", spec: "data/presentations/spjass.analysis.json", trace: "data/traces/spjass.trace.json",
     files: ["remotion/SpjassAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "spjass", out: "validation/analysis-spjass.mp4", report: "validation/analysis-spjass-report.json", title: "The spjass - sports-analysis video" },
+  nacka: { composition: "analysis-nacka", spec: "data/presentations/nacka.analysis.json", trace: "data/traces/nacka.trace.json",
+    files: ["remotion/NackaAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "nacka", out: "validation/analysis-nacka.mp4", report: "validation/analysis-nacka-report.json", title: "Näcka - sports-analysis video" },
 } as const;
 const NAME = (process.argv[2] ?? "shovel-17") as keyof typeof VIDEOS;
 const V = VIDEOS[NAME];

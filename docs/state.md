@@ -170,6 +170,17 @@
   - Rerender: `npm run trace:spjass`, `npm run video:analysis-spjass`. Notes: `docs/spjass.md`.
   - **Next:** the user reviews the trace (`validation/spjass-trace.png`, the video). Open points: the shot direction,
     and whether the TikTok's spoken explanation names a different technique.
+  - Cross-check (2026-10-06): the NTHF description of the Spjass matches the reconstruction in every step.
+- **Näcka (2026-10-06, user request with https://www.puck.no/en/combinations/nacka/): designed and animated.**
+  - Sources preserved and indexed: `references/combinations/` (NTHF pages and illustrations for Näcka and Spjass).
+    No recording exists: the trace `trace.nacka.v1` (**proposed**) is designed from the description and illustration,
+    with the spjass set-up and rates.
+  - The move: a clockwise turn, the back of the right skate passes the puck 37.5 mm out to the right, then a
+    counter-clockwise turn back with a 43 mm step up the slot; the blade face shoots it into the right corner.
+  - Checks: no overlap; the contacts are heel, blade and net only.
+  - Assumed: all timing, and the goalie standing toward the left post.
+  - Video `validation/analysis-nacka.mp4` (composition `analysis-nacka`). Notes: `docs/nacka.md`. Rerender:
+    `npm run trace:nacka`, `npm run video:analysis-nacka`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -268,6 +279,9 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **`validation/analysis-nacka.mp4`** - Näcka analysis video, with `analysis-nacka-review.png`,
+  `analysis-nacka-report.json`, `analysis-nacka-occlusion.json`; trace sheet `validation/nacka-trace.png`.
+  Notes: `docs/nacka.md`.
 - **`validation/analysis-spjass.mp4`** - spjass analysis video, with `analysis-spjass-review.png`,
   `analysis-spjass-report.json`, `analysis-spjass-occlusion.json`; trace sheet `validation/spjass-trace.png`;
   observations `validation/spjass-observations.png`. Notes: `docs/spjass.md`.
@@ -338,3 +352,4 @@ Iteration 20 closed without repair cycles:
 | 25 | 2026-10-05 | src/model/presentation.ts (output fps multiple); remotion/ShotPresentation.tsx (timeline per fps), Root.tsx (shot25-shovel-17-final, 1920x1080 60 fps); scripts/shot25-{export.ts,keyframes.ts,review.py}; tests/shot25.test.ts; validation/25-{shovel-17-final.mp4,export-report.json,final-review.png}; docs/shot25.md; package.json (video:shovel-17) | draft 480x270 60 fps rendered and reviewed (all frames = pure evaluation); final 1920x1080 60 fps rendered, every frame = pure evaluation, review sheet AI-reviewed; `npm run check` |
 | A1 | 2026-10-05 | Analysis video (user request): src/model/{analysis.ts,camera-track.ts}, presentation.ts (rewind); data/presentations/shovel-17.analysis.json; remotion/ShotAnalysis.tsx, Root.tsx (analysis-shovel-17); public/fonts (Barlow, OFL); scripts/analysis-{stills.ts,render.ts,review.py}; tests/analysis.test.ts; validation/analysis-shovel-17.{mp4,-report.json,-review.png}; docs/analysis-shovel-17.md; package.json (video:analysis-shovel-17) | tuning stills reviewed across all segments; final 1080p render, every frame = pure evaluation and camera track; file size checked < 25 MB; review sheet AI-reviewed; `npm run check` |
 | S1 | 2026-10-06 | Spjass from the user's TikTok: references/shots/spjass-tiktok.mp4 (+ index); shots/spjass/{marks,observations,inputs,checks}.json; scripts/spjass-{observe,trace}.py; data/traces/spjass.trace.json (proposed); data/presentations/spjass.analysis.json; remotion/AnalysisVideo.tsx (shared; ShotAnalysis.tsx refactored onto it), SpjassAnalysis.tsx, Root.tsx (analysis-spjass); scripts/analysis-occlusion{-dump.ts,.py}, analysis-render.ts (per video), analysis-stills.ts (COMP), analysis-review.py (spec args); src/model/analysis.ts (graphic fields); tests/spjass.test.ts, tests/analysis.test.ts; validation/spjass-*.png, analysis-spjass*; docs/spjass.md; package.json (trace:spjass, video:analysis-spjass) | observation and trace scripts run; contact checks (no overlap, 0 unexplained); stills reviewed for every segment; puck visibility ray-cast; Shovel refactor byte-identical on 6 frames; final 1080p render with per-frame state and camera checks; `npm run check` |
+| N1 | 2026-10-06 | Näcka from the NTHF page: references/combinations/* (+ index); shots/nacka/{inputs,checks}.json; scripts/nacka-trace.py; data/traces/nacka.trace.json (proposed, designed); data/presentations/nacka.analysis.json; remotion/NackaAnalysis.tsx, Root.tsx (analysis-nacka); scripts/analysis-render.ts (nacka); tests/nacka.test.ts; validation/nacka-trace.png, analysis-nacka*; docs/nacka.md, docs/spjass.md (NTHF cross-check); package.json (trace:nacka, video:analysis-nacka) | trace script run (contact checks clean); turn-profile and shot scans; stills reviewed; puck visibility ray-cast; final 1080p render with per-frame state and camera checks; `npm run check` |

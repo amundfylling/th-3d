@@ -637,6 +637,52 @@
       "uploaded": "chat attachment, 2026-10-06",
       "view": "Portrait TikTok. Frames 0-62: low close-up from behind W-C; 66-145 (take 1): fixed top-down camera over goal.E (unmirrored: ice text rotated 180 deg), calibrated in shots/spjass/observations.json; 146-235: presenter; 236-580: hand explanation; 700-880: slow manual demonstration; 894-948: wider top-down repetition; 949-1068: TikTok end card.",
       "notes": "Another STIGA table edition (Byggmax/gyproc artwork), white Finland centre no. 26 against a yellow Sweden goalie. The spoken explanation was not transcribed (no speech recognition available)."
+    },
+    {
+      "id": "puck_no_nacka_page",
+      "title": "Norwegian Table Hockey Association (NTHF), combination 'Näcka' (centre, difficulty 4/10): page as fetched",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/puck-no-nacka.html",
+      "sha256": "dcd0634a6b923386c94d1619b3b47964a05a99edde8d3aeef7a35cd8f257e8aa",
+      "bytes": 17610,
+      "format": "html",
+      "url": "https://www.puck.no/en/combinations/nacka/",
+      "text": "Center starts with the puck in the heel groove, passes with the heel a few centimeters out to the right, and shoots with the blade into the right corner"
+    },
+    {
+      "id": "puck_no_nacka_illustration",
+      "title": "NTHF movement illustration for 'Näcka' (top view, goal at the top; puck positions 1 and 2, green arrows)",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/trick-nacka.png",
+      "sha256": "b41e3ba0a327975450024e1a8576bfc81f83dbd0ea41700ebf92fbbcad89b945",
+      "bytes": 33196,
+      "format": "png 600 x 438 (palette)",
+      "url": "https://www.puck.no/media/images/trick-nacka-2e6af9fd.png",
+      "native_width_px": 600,
+      "native_height_px": 438
+    },
+    {
+      "id": "puck_no_spjass_page",
+      "title": "NTHF combination 'Spjass' (centre, difficulty 5/10): page as fetched (cross-check of the TikTok reconstruction)",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/puck-no-spjass.html",
+      "sha256": "be9bf7e8610ebad05017e312d3a5aeaa0f5800c5a337786b14cb346aec1558d8",
+      "bytes": 17711,
+      "format": "html",
+      "url": "https://www.puck.no/en/combinations/spjass/",
+      "text": "Center starts with the puck in the heel groove, passes with the blade a few centimeters out to the left, spins all the way around and shoots with the blade into the left corner"
+    },
+    {
+      "id": "puck_no_spjass_illustration",
+      "title": "NTHF movement illustration for 'Spjass'",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/trick-spjass.png",
+      "sha256": "868b465985fbbae6d2a036d86083084192a7a5b80704ccca6c2ccac19c5f0f2e",
+      "bytes": 33981,
+      "format": "png 600 x 438 (palette)",
+      "url": "https://www.puck.no/media/images/trick-spjass-6dadefbc.png",
+      "native_width_px": 600,
+      "native_height_px": 438
     }
   ],
   "not_obtained": [

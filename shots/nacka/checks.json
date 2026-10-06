@@ -1,0 +1,151 @@
+{
+ "trace_id": "trace.nacka.v1",
+ "sampling_s": 0.00025,
+ "max_puck_step_mm": 0.225,
+ "penetration_tolerance_mm": 0.1,
+ "contact_rule": "CLAUDE.md 'Contact physics': the puck may touch figures, boards and goal but never overlap them (every 0.25 ms, whole trace, all 12 figures, no phase exemptions)",
+ "min_clearance_by_obstacle_and_phase": [
+  {
+   "obstacle": "E-G",
+   "phase": "shot_blade",
+   "min_clearance_mm": 21.846,
+   "t_at_min": 4.3505
+  },
+  {
+   "obstacle": "E-G",
+   "phase": "shot_free",
+   "min_clearance_mm": 1.298,
+   "t_at_min": 4.38925
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "heel_pass",
+   "min_clearance_mm": 0.049,
+   "t_at_min": 4.08825
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "rest_at_heel",
+   "min_clearance_mm": 0.049,
+   "t_at_min": 4.0505
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "shot_blade",
+   "min_clearance_mm": 0.05,
+   "t_at_min": 4.35
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "shot_free",
+   "min_clearance_mm": 0.654,
+   "t_at_min": 4.35075
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "slide",
+   "min_clearance_mm": 0.05,
+   "t_at_min": 4.3355
+  },
+  {
+   "obstacle": "W-LW",
+   "phase": "in_goal",
+   "min_clearance_mm": 28.521,
+   "t_at_min": 4.8
+  },
+  {
+   "obstacle": "W-LW",
+   "phase": "shot_free",
+   "min_clearance_mm": 28.521,
+   "t_at_min": 4.487
+  },
+  {
+   "obstacle": "goal_post_neg_y",
+   "phase": "in_goal",
+   "min_clearance_mm": 28.74,
+   "t_at_min": 4.8
+  },
+  {
+   "obstacle": "goal_post_neg_y",
+   "phase": "shot_free",
+   "min_clearance_mm": 2.501,
+   "t_at_min": 4.43725
+  }
+ ],
+ "unexpected_penetrations": [],
+ "approved_exceptions": [],
+ "contacts": [
+  {
+   "obstacle": "W-C:skate/body",
+   "t0": 4.0505,
+   "t1": 4.051
+  },
+  {
+   "obstacle": "W-C:skate/body",
+   "t0": 4.05525,
+   "t1": 4.0595
+  },
+  {
+   "obstacle": "W-C:skate/body",
+   "t0": 4.06075,
+   "t1": 4.06125
+  },
+  {
+   "obstacle": "W-C:skate/body",
+   "t0": 4.06425,
+   "t1": 4.06425
+  },
+  {
+   "obstacle": "W-C:skate/body",
+   "t0": 4.06975,
+   "t1": 4.0705
+  },
+  {
+   "obstacle": "W-C:skate/body",
+   "t0": 4.0755,
+   "t1": 4.07575
+  },
+  {
+   "obstacle": "W-C:skate/body",
+   "t0": 4.08025,
+   "t1": 4.081
+  },
+  {
+   "obstacle": "W-C:skate/body",
+   "t0": 4.08825,
+   "t1": 4.08875
+  },
+  {
+   "obstacle": "W-C:stick/blade",
+   "t0": 4.33525,
+   "t1": 4.35
+  },
+  {
+   "obstacle": "goal_net",
+   "t0": 4.487,
+   "t1": 4.487
+  }
+ ],
+ "unexplained_velocity_changes": [],
+ "unexplained_count": 0,
+ "goal_line": {
+  "x_mm": 286.79,
+  "crossing_y_mm": -26.21,
+  "inside_mouth_window_y_mm": [
+   -28.7,
+   29.8
+  ]
+ },
+ "comparison_with_illustration": {
+  "pass_mm": [
+   27.3,
+   -25.8
+  ],
+  "pass_length_mm": 37.5,
+  "pass_direction_deg": -43.41,
+  "illustration_pass_length_mm": 44.0,
+  "illustration_pass_direction_deg": -68.8,
+  "shot_direction_deg": 3.09,
+  "illustration_shot_direction_deg": 5.5
+ }
+}
