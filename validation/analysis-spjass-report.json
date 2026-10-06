@@ -1,0 +1,75 @@
+{
+ "analysis": "The spjass - sports-analysis video",
+ "composition": "analysis-spjass",
+ "versions": {
+  "node": "v22.22.2",
+  "remotion": "4.0.531",
+  "@remotion/three": "4.0.531",
+  "three": "0.186.1",
+  "@react-three/fiber": "9.4.0",
+  "react": "19.2.0",
+  "browser": "chrome-headless-shell Chromium 141.0.7390.37",
+  "gl": "swangle (SwiftShader, CPU)"
+ },
+ "model": {
+  "geometry_version": "0.6.0",
+  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+ },
+ "trace": {
+  "trace_id": "trace.spjass.v1",
+  "status": "proposed",
+  "sha256": "c68af5f93f83558a81ab71e0549c98cfd879ae11089ad9f5eed29071c1fa0a76"
+ },
+ "analysis_spec": {
+  "analysis_id": "analysis.spjass.v1",
+  "sha256": "ee79d30720157d2995be88abded034252e4ca2fc2c9bebd09ec2cb37a71ecbce",
+  "composition_files": [
+   "remotion/SpjassAnalysis.tsx",
+   "remotion/AnalysisVideo.tsx"
+  ],
+  "composition_sha256": "6b8c377ef754739328d3ccd9f8ec99ebc0a5152b0497b2afadf9a05f7460ffb8"
+ },
+ "output": {
+  "path": "validation/analysis-spjass.mp4",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 742,
+  "duration_s": 24.733333333333334,
+  "codec": "h264",
+  "crf": 20,
+  "pixel_format": "yuv420p",
+  "ffprobe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuvj420p",
+     "r_frame_rate": "30/1",
+     "nb_frames": "742",
+     "side_data_list": [
+      {}
+     ]
+    }
+   ],
+   "format": {
+    "duration": "24.733333"
+   }
+  },
+  "bytes": 10489441,
+  "megabytes": 10.49,
+  "below_25_mb": true,
+  "sha256": "81315298af595f3436714f4e0fdcde11276d1cc3ab6c78d0742a9b7f7db84430"
+ },
+ "checks": {
+  "frames_logged": 742,
+  "frames_differing_from_pure": [],
+  "max_readback_diff": 1.14e-13,
+  "camera_frames_logged": 742,
+  "camera_max_diff_vs_track": 0.005
+ },
+ "render_seconds": 3349
+}
