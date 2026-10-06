@@ -16,26 +16,26 @@
   "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
  },
  "trace": {
-  "trace_id": "trace.invers-kryssar-velodrom.v1",
+  "trace_id": "trace.invers-kryssar-velodrom.v2",
   "status": "proposed",
-  "sha256": "87ffa4e83303e402b04c73bee8e8b1c8a1e417927a0c29106d3ce4718ee38b99"
+  "sha256": "6359b2d9f58ca49bdf6baf06ede2167abff7f5b8072cdba11a63532717fa9c37"
  },
  "analysis_spec": {
-  "analysis_id": "analysis.invers-kryssar-velodrom.v1",
-  "sha256": "67ee6aa5e976cfa4f90c5708cd9891908cdb29856df4bf19f195f43f5e02b46f",
+  "analysis_id": "analysis.invers-kryssar-velodrom.v2",
+  "sha256": "2dd5a7dbd8fde1cce05bb9c411fbe4eb876df25c13671fecd815a98ee57723f5",
   "composition_files": [
    "remotion/IkvAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "composition_sha256": "6780c3206667a11d09bb77acfd4fdf92ac2af0410372ef809e1c5d37289f8224"
+  "composition_sha256": "e94e0ec8dd42ef0341bc865a73af2a29f126911218588c32ecc96b54976ed24c"
  },
  "output": {
   "path": "validation/analysis-ikv.mp4",
   "width": 1920,
   "height": 1080,
   "fps": 30,
-  "frames": 819,
-  "duration_s": 27.3,
+  "frames": 892,
+  "duration_s": 29.733333333333334,
   "codec": "h264",
   "crf": 20,
   "pixel_format": "yuv420p",
@@ -49,27 +49,27 @@
      "height": 1080,
      "pix_fmt": "yuvj420p",
      "r_frame_rate": "30/1",
-     "nb_frames": "819",
+     "nb_frames": "892",
      "side_data_list": [
       {}
      ]
     }
    ],
    "format": {
-    "duration": "27.300000"
+    "duration": "29.733333"
    }
   },
-  "bytes": 10862435,
-  "megabytes": 10.86,
+  "bytes": 11227166,
+  "megabytes": 11.23,
   "below_25_mb": true,
-  "sha256": "1c59d2349acc27c887a9cd6529fcc3d246c0cd8cc56f9e1e16828d028f4c21bb"
+  "sha256": "743e863d01499bfb125843dff8d4b35ab61f1349e64cad89933908b1eaf1f43d"
  },
  "checks": {
-  "frames_logged": 819,
+  "frames_logged": 892,
   "frames_differing_from_pure": [],
   "max_readback_diff": 2.84e-14,
-  "camera_frames_logged": 819,
+  "camera_frames_logged": 892,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 3843
+ "render_seconds": 4389
 }
