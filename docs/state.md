@@ -219,9 +219,10 @@
     on W-LW's blade.
   - The attacker's options are lanes swept with the finite puck: the straight shot, the centrifuge pass and the
     centre's shot. They are drawn as graphics, open or crossed out where first stopped.
-  - **Waiting for the user to approve the goalie pose** (`validation/defence-goalie-review.png`) before the full
-    render. The user: "Do not proceed with rendering the full video before getting this right".
-  - Video `validation/analysis-defence-lw.mp4` (composition `analysis-defence-lw`, 35.4 s), not rendered yet. Notes:
+  - The user approved the goalie pose (`validation/defence-goalie-review.png`: "Lets implement the video!") before
+    the full render.
+  - Video `validation/analysis-defence-lw.mp4` (composition `analysis-defence-lw`, 35.4 s, 3.81 MB).
+    - Render report: 1061/1061 frames equal the pure evaluation; the camera is within 0.005 mm of its track. Notes:
     `docs/defence-left-wing.md`. Rerender: `npm run trace:defence-lw`, `npm run video:analysis-defence-lw`.
   - `remotion/AnalysisVideo.tsx` gained a `lane` graphic. The other four analysis videos are verified byte-identical
     on six frames each; recorded as `composition_refactor` in their reports.

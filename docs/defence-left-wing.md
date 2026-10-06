@@ -35,7 +35,7 @@ those targets are reached ("open"), and how far left the goalie reaches:
 (Turn = beyond facing directly away from the puck. Coarser scan: at y = −15 mm and below, straight shots get through
 at every turn.)
 
-**Chosen:** y = −10 mm, turned 45° beyond facing away from the puck (heading about 340°, about 160°
+**Chosen** (approved by the user from the review images: "Lets implement the video!"): y = −10 mm, turned 45° beyond facing away from the puck (heading about 340°, about 160°
 counter-clockwise from square).
 - It reaches 21 mm left of the middle.
 - Every straight shot is stopped, and so is the centre's far-corner shot.
@@ -146,6 +146,20 @@ Positions follow the idea of each defence, not the TikTok's exact spots (the use
 | 31.4-35.4 s | summary card |
 
 The camera stands behind the defended goal, high, like the TikTok, and stays still after the intro.
+
+## Render
+
+`validation/analysis-defence-lw.mp4`:
+- 1920 × 1080, 30 fps, 1061 frames (35.4 s), H.264, 3.81 MB;
+- every frame's state equals the pure evaluation of the trace, and the camera is within 0.005 mm of its track
+  (`validation/analysis-defence-lw-report.json`);
+- render time 4364 s.
+
+The review sheet (`validation/analysis-defence-lw-review.png`, every 15th frame and the middle of every segment) was
+checked:
+- the title, the threat lanes and the passive, active and mix set-ups with their banners are all present;
+- the summary card is readable;
+- labels sit beside their crosses, not on the puck.
 
 ## Assumptions to review
 
