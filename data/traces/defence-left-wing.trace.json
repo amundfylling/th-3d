@@ -10,7 +10,7 @@
   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
   "skater_scale_k": 1.0814,
   "goalie_scale_k": 1.1421889791935147,
-  "git_commit": "c9b951bed938e33db639986054f15f7985761f45"
+  "git_commit": "285fdacc2f5c53bc6eea5da3090d7a7bcec17e8e"
  },
  "source": {
   "video": "references/shots/defence-vs-left-wing-tiktok.mp4",
@@ -8517,1015 +8517,1015 @@
     },
     {
      "t": 2.01,
-     "arc_mm": 32.945,
+     "arc_mm": 32.9477,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.02,
-     "arc_mm": 32.9118,
+     "arc_mm": 32.9326,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.03,
-     "arc_mm": 32.8262,
+     "arc_mm": 32.8936,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.04,
-     "arc_mm": 32.6679,
+     "arc_mm": 32.8216,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.05,
-     "arc_mm": 32.4211,
+     "arc_mm": 32.7092,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.06,
-     "arc_mm": 32.0731,
+     "arc_mm": 32.5508,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.07,
-     "arc_mm": 31.6152,
+     "arc_mm": 32.3423,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.08,
-     "arc_mm": 31.0415,
+     "arc_mm": 32.0812,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.09,
-     "arc_mm": 30.3495,
+     "arc_mm": 31.7662,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.1,
-     "arc_mm": 29.5392,
+     "arc_mm": 31.3973,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.11,
-     "arc_mm": 28.6132,
+     "arc_mm": 30.9757,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.12,
-     "arc_mm": 27.5765,
+     "arc_mm": 30.5038,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.13,
-     "arc_mm": 26.4362,
+     "arc_mm": 29.9847,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.14,
-     "arc_mm": 25.2012,
+     "arc_mm": 29.4225,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.15,
-     "arc_mm": 23.8819,
+     "arc_mm": 28.8219,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.16,
-     "arc_mm": 22.4904,
+     "arc_mm": 28.1884,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.17,
-     "arc_mm": 21.0396,
+     "arc_mm": 27.5279,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.18,
-     "arc_mm": 19.5435,
+     "arc_mm": 26.8469,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.19,
-     "arc_mm": 18.017,
+     "arc_mm": 26.152,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.2,
-     "arc_mm": 16.475,
+     "arc_mm": 25.45,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.21,
-     "arc_mm": 14.933,
+     "arc_mm": 24.748,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.22,
-     "arc_mm": 13.4065,
+     "arc_mm": 24.0531,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.23,
-     "arc_mm": 11.9104,
+     "arc_mm": 23.3721,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.24,
-     "arc_mm": 10.4596,
+     "arc_mm": 22.7116,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.25,
-     "arc_mm": 9.0681,
+     "arc_mm": 22.0781,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.26,
-     "arc_mm": 7.7488,
+     "arc_mm": 21.4775,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.27,
-     "arc_mm": 6.5138,
+     "arc_mm": 20.9153,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.28,
-     "arc_mm": 5.3735,
+     "arc_mm": 20.3962,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.29,
-     "arc_mm": 4.3368,
+     "arc_mm": 19.9243,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.3,
-     "arc_mm": 3.4108,
+     "arc_mm": 19.5027,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.31,
-     "arc_mm": 2.6005,
+     "arc_mm": 19.1338,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.32,
-     "arc_mm": 1.9085,
+     "arc_mm": 18.8188,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.33,
-     "arc_mm": 1.3348,
+     "arc_mm": 18.5577,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.34,
-     "arc_mm": 0.8769,
+     "arc_mm": 18.3492,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.35,
-     "arc_mm": 0.5289,
+     "arc_mm": 18.1908,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.36,
-     "arc_mm": 0.2821,
+     "arc_mm": 18.0784,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.37,
-     "arc_mm": 0.1238,
+     "arc_mm": 18.0064,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.38,
-     "arc_mm": 0.0382,
+     "arc_mm": 17.9674,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.39,
-     "arc_mm": 0.005,
+     "arc_mm": 17.9523,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.4,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 2.41,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.42,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.43,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.44,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.45,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.46,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.47,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.48,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.49,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.5,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.51,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.52,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.53,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.54,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.55,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.56,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.57,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.58,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.59,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.6,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.61,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.62,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.63,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.64,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.65,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.66,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.67,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.68,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.69,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.7,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.71,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.72,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.73,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.74,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.75,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.76,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.77,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.78,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.79,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.8,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.81,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.82,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.83,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.84,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.85,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.86,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.87,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.88,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.89,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.9,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.91,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.92,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.93,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.94,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.95,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.96,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.97,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.98,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 2.99,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.0,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.01,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.02,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.03,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.04,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.05,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.06,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.07,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.08,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.09,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.1,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.11,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.12,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.13,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.14,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.15,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.16,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.17,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.18,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.19,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.2,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.21,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.22,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.23,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.24,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.25,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.26,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.27,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.28,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.29,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.3,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.31,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.32,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.33,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.34,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.35,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.36,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.37,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.38,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.39,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.4,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 3.41,
-     "arc_mm": 0.0116,
+     "arc_mm": 17.9553,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.42,
-     "arc_mm": 0.0881,
+     "arc_mm": 17.9901,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.43,
-     "arc_mm": 0.2821,
+     "arc_mm": 18.0784,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.44,
-     "arc_mm": 0.6332,
+     "arc_mm": 18.2382,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.45,
-     "arc_mm": 1.1695,
+     "arc_mm": 18.4824,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.46,
-     "arc_mm": 1.9085,
+     "arc_mm": 18.8188,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.47,
-     "arc_mm": 2.8576,
+     "arc_mm": 19.2509,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.48,
-     "arc_mm": 4.0156,
+     "arc_mm": 19.778,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.49,
-     "arc_mm": 5.3735,
+     "arc_mm": 20.3962,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.5,
-     "arc_mm": 6.9154,
+     "arc_mm": 21.0981,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.51,
-     "arc_mm": 8.6197,
+     "arc_mm": 21.874,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.52,
-     "arc_mm": 10.4596,
+     "arc_mm": 22.7116,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.53,
-     "arc_mm": 12.4048,
+     "arc_mm": 23.5971,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.54,
-     "arc_mm": 14.4217,
+     "arc_mm": 24.5153,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.55,
-     "arc_mm": 16.475,
+     "arc_mm": 25.45,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.56,
-     "arc_mm": 18.5283,
+     "arc_mm": 26.3847,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.57,
-     "arc_mm": 20.5452,
+     "arc_mm": 27.3029,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.58,
-     "arc_mm": 22.4904,
+     "arc_mm": 28.1884,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.59,
-     "arc_mm": 24.3303,
+     "arc_mm": 29.026,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.6,
-     "arc_mm": 26.0346,
+     "arc_mm": 29.8019,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.61,
-     "arc_mm": 27.5765,
+     "arc_mm": 30.5038,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.62,
-     "arc_mm": 28.9344,
+     "arc_mm": 31.122,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.63,
-     "arc_mm": 30.0924,
+     "arc_mm": 31.6491,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.64,
-     "arc_mm": 31.0415,
+     "arc_mm": 32.0812,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.65,
-     "arc_mm": 31.7805,
+     "arc_mm": 32.4176,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.66,
-     "arc_mm": 32.3168,
+     "arc_mm": 32.6618,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.67,
-     "arc_mm": 32.6679,
+     "arc_mm": 32.8216,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.68,
-     "arc_mm": 32.8619,
+     "arc_mm": 32.9099,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 3.69,
-     "arc_mm": 32.9384,
+     "arc_mm": 32.9447,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
@@ -9837,655 +9837,655 @@
     },
     {
      "t": 4.21,
-     "arc_mm": 32.9384,
+     "arc_mm": 32.9447,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.22,
-     "arc_mm": 32.8619,
+     "arc_mm": 32.9099,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.23,
-     "arc_mm": 32.6679,
+     "arc_mm": 32.8216,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.24,
-     "arc_mm": 32.3168,
+     "arc_mm": 32.6618,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.25,
-     "arc_mm": 31.7805,
+     "arc_mm": 32.4176,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.26,
-     "arc_mm": 31.0415,
+     "arc_mm": 32.0812,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.27,
-     "arc_mm": 30.0924,
+     "arc_mm": 31.6491,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.28,
-     "arc_mm": 28.9344,
+     "arc_mm": 31.122,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.29,
-     "arc_mm": 27.5765,
+     "arc_mm": 30.5038,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.3,
-     "arc_mm": 26.0346,
+     "arc_mm": 29.8019,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.31,
-     "arc_mm": 24.3303,
+     "arc_mm": 29.026,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.32,
-     "arc_mm": 22.4904,
+     "arc_mm": 28.1884,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.33,
-     "arc_mm": 20.5452,
+     "arc_mm": 27.3029,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.34,
-     "arc_mm": 18.5283,
+     "arc_mm": 26.3847,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.35,
-     "arc_mm": 16.475,
+     "arc_mm": 25.45,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.36,
-     "arc_mm": 14.4217,
+     "arc_mm": 24.5153,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.37,
-     "arc_mm": 12.4048,
+     "arc_mm": 23.5971,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.38,
-     "arc_mm": 10.4596,
+     "arc_mm": 22.7116,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.39,
-     "arc_mm": 8.6197,
+     "arc_mm": 21.874,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.4,
-     "arc_mm": 6.9154,
+     "arc_mm": 21.0981,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.41,
-     "arc_mm": 5.3735,
+     "arc_mm": 20.3962,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.42,
-     "arc_mm": 4.0156,
+     "arc_mm": 19.778,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.43,
-     "arc_mm": 2.8576,
+     "arc_mm": 19.2509,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.44,
-     "arc_mm": 1.9085,
+     "arc_mm": 18.8188,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.45,
-     "arc_mm": 1.1695,
+     "arc_mm": 18.4824,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.46,
-     "arc_mm": 0.6332,
+     "arc_mm": 18.2382,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.47,
-     "arc_mm": 0.2821,
+     "arc_mm": 18.0784,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.48,
-     "arc_mm": 0.0881,
+     "arc_mm": 17.9901,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.49,
-     "arc_mm": 0.0116,
+     "arc_mm": 17.9553,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.5,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: passive -> active"
     },
     {
      "t": 4.51,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.52,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.53,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.54,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.55,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.56,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.57,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.58,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.59,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.6,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.61,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.62,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.63,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.64,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.65,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.66,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.67,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.68,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.69,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.7,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.71,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.72,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.73,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.74,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.75,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.76,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.77,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.78,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.79,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.8,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.81,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.82,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.83,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.84,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.85,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.86,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.87,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.88,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.89,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.9,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.91,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.92,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.93,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.94,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.95,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.96,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.97,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.98,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 4.99,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 5.0,
-     "arc_mm": 0.0,
+     "arc_mm": 17.95,
      "sigma_mm": null,
      "source": "designed: active"
     },
     {
      "t": 5.01,
-     "arc_mm": 0.0116,
+     "arc_mm": 17.9553,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.02,
-     "arc_mm": 0.0881,
+     "arc_mm": 17.9901,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.03,
-     "arc_mm": 0.2821,
+     "arc_mm": 18.0784,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.04,
-     "arc_mm": 0.6332,
+     "arc_mm": 18.2382,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.05,
-     "arc_mm": 1.1695,
+     "arc_mm": 18.4824,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.06,
-     "arc_mm": 1.9085,
+     "arc_mm": 18.8188,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.07,
-     "arc_mm": 2.8576,
+     "arc_mm": 19.2509,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.08,
-     "arc_mm": 4.0156,
+     "arc_mm": 19.778,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.09,
-     "arc_mm": 5.3735,
+     "arc_mm": 20.3962,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.1,
-     "arc_mm": 6.9154,
+     "arc_mm": 21.0981,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.11,
-     "arc_mm": 8.6197,
+     "arc_mm": 21.874,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.12,
-     "arc_mm": 10.4596,
+     "arc_mm": 22.7116,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.13,
-     "arc_mm": 12.4048,
+     "arc_mm": 23.5971,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.14,
-     "arc_mm": 14.4217,
+     "arc_mm": 24.5153,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.15,
-     "arc_mm": 16.475,
+     "arc_mm": 25.45,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.16,
-     "arc_mm": 18.5283,
+     "arc_mm": 26.3847,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.17,
-     "arc_mm": 20.5452,
+     "arc_mm": 27.3029,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.18,
-     "arc_mm": 22.4904,
+     "arc_mm": 28.1884,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.19,
-     "arc_mm": 24.3303,
+     "arc_mm": 29.026,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.2,
-     "arc_mm": 26.0346,
+     "arc_mm": 29.8019,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.21,
-     "arc_mm": 27.5765,
+     "arc_mm": 30.5038,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.22,
-     "arc_mm": 28.9344,
+     "arc_mm": 31.122,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.23,
-     "arc_mm": 30.0924,
+     "arc_mm": 31.6491,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.24,
-     "arc_mm": 31.0415,
+     "arc_mm": 32.0812,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.25,
-     "arc_mm": 31.7805,
+     "arc_mm": 32.4176,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.26,
-     "arc_mm": 32.3168,
+     "arc_mm": 32.6618,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.27,
-     "arc_mm": 32.6679,
+     "arc_mm": 32.8216,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.28,
-     "arc_mm": 32.8619,
+     "arc_mm": 32.9099,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
     {
      "t": 5.29,
-     "arc_mm": 32.9384,
+     "arc_mm": 32.9447,
      "sigma_mm": null,
      "source": "designed: active -> passive"
     },
@@ -12125,1015 +12125,1015 @@
     },
     {
      "t": 2.01,
-     "theta_deg": 0.0181,
+     "theta_deg": 0.0177,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.02,
-     "theta_deg": 0.1393,
+     "theta_deg": 0.1365,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.03,
-     "theta_deg": 0.4521,
+     "theta_deg": 0.4429,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.04,
-     "theta_deg": 1.0297,
+     "theta_deg": 1.0088,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.05,
-     "theta_deg": 1.9309,
+     "theta_deg": 1.8917,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.06,
-     "theta_deg": 3.2012,
+     "theta_deg": 3.1361,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.07,
-     "theta_deg": 4.873,
+     "theta_deg": 4.774,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.08,
-     "theta_deg": 6.9672,
+     "theta_deg": 6.8257,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.09,
-     "theta_deg": 9.4937,
+     "theta_deg": 9.3008,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.1,
-     "theta_deg": 12.452,
+     "theta_deg": 12.199,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.11,
-     "theta_deg": 15.8325,
+     "theta_deg": 15.5108,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.12,
-     "theta_deg": 19.617,
+     "theta_deg": 19.2184,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.13,
-     "theta_deg": 23.7799,
+     "theta_deg": 23.2968,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.14,
-     "theta_deg": 28.2887,
+     "theta_deg": 27.7139,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.15,
-     "theta_deg": 33.1049,
+     "theta_deg": 32.4323,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.16,
-     "theta_deg": 38.1851,
+     "theta_deg": 37.4093,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.17,
-     "theta_deg": 43.4815,
+     "theta_deg": 42.5981,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.18,
-     "theta_deg": 48.9431,
+     "theta_deg": 47.9487,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.19,
-     "theta_deg": 54.5161,
+     "theta_deg": 53.4085,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.2,
-     "theta_deg": 60.1454,
+     "theta_deg": 58.9234,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.21,
-     "theta_deg": 65.7746,
+     "theta_deg": 64.4382,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.22,
-     "theta_deg": 71.3477,
+     "theta_deg": 69.8981,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.23,
-     "theta_deg": 76.8093,
+     "theta_deg": 75.2487,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.24,
-     "theta_deg": 82.1057,
+     "theta_deg": 80.4375,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.25,
-     "theta_deg": 87.1858,
+     "theta_deg": 85.4144,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.26,
-     "theta_deg": 92.0021,
+     "theta_deg": 90.1328,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.27,
-     "theta_deg": 96.5108,
+     "theta_deg": 94.55,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.28,
-     "theta_deg": 100.6738,
+     "theta_deg": 98.6283,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.29,
-     "theta_deg": 104.4583,
+     "theta_deg": 102.336,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.3,
-     "theta_deg": 107.8388,
+     "theta_deg": 105.6478,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.31,
-     "theta_deg": 110.7971,
+     "theta_deg": 108.546,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.32,
-     "theta_deg": 113.3235,
+     "theta_deg": 111.0211,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.33,
-     "theta_deg": 115.4178,
+     "theta_deg": 113.0728,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.34,
-     "theta_deg": 117.0896,
+     "theta_deg": 114.7106,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.35,
-     "theta_deg": 118.3598,
+     "theta_deg": 115.9551,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.36,
-     "theta_deg": 119.2611,
+     "theta_deg": 116.838,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.37,
-     "theta_deg": 119.8387,
+     "theta_deg": 117.4038,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.38,
-     "theta_deg": 120.1515,
+     "theta_deg": 117.7103,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.39,
-     "theta_deg": 120.2727,
+     "theta_deg": 117.829,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.4,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 2.41,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.42,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.43,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.44,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.45,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.46,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.47,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.48,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.49,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.5,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.51,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.52,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.53,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.54,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.55,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.56,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.57,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.58,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.59,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.6,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.61,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.62,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.63,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.64,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.65,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.66,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.67,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.68,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.69,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.7,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.71,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.72,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.73,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.74,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.75,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.76,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.77,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.78,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.79,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.8,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.81,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.82,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.83,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.84,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.85,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.86,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.87,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.88,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.89,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.9,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.91,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.92,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.93,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.94,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.95,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.96,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.97,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.98,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 2.99,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.0,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.01,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.02,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.03,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.04,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.05,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.06,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.07,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.08,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.09,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.1,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.11,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.12,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.13,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.14,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.15,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.16,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.17,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.18,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.19,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.2,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.21,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.22,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.23,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.24,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.25,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.26,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.27,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.28,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.29,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.3,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.31,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.32,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.33,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.34,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.35,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.36,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.37,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.38,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.39,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.4,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 3.41,
-     "theta_deg": 120.2484,
+     "theta_deg": 117.8053,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.42,
-     "theta_deg": 119.969,
+     "theta_deg": 117.5316,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.43,
-     "theta_deg": 119.2611,
+     "theta_deg": 116.838,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.44,
-     "theta_deg": 117.9793,
+     "theta_deg": 115.5822,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.45,
-     "theta_deg": 116.0212,
+     "theta_deg": 113.6639,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.46,
-     "theta_deg": 113.3235,
+     "theta_deg": 111.0211,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.47,
-     "theta_deg": 109.8587,
+     "theta_deg": 107.6266,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.48,
-     "theta_deg": 105.6311,
+     "theta_deg": 103.4849,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.49,
-     "theta_deg": 100.6738,
+     "theta_deg": 98.6283,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.5,
-     "theta_deg": 95.0446,
+     "theta_deg": 93.1135,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.51,
-     "theta_deg": 88.8228,
+     "theta_deg": 87.0182,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.52,
-     "theta_deg": 82.1057,
+     "theta_deg": 80.4375,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.53,
-     "theta_deg": 75.0045,
+     "theta_deg": 73.4806,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.54,
-     "theta_deg": 67.6413,
+     "theta_deg": 66.267,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.55,
-     "theta_deg": 60.1454,
+     "theta_deg": 58.9234,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.56,
-     "theta_deg": 52.6495,
+     "theta_deg": 51.5798,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.57,
-     "theta_deg": 45.2863,
+     "theta_deg": 44.3662,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.58,
-     "theta_deg": 38.1851,
+     "theta_deg": 37.4093,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.59,
-     "theta_deg": 31.4679,
+     "theta_deg": 30.8286,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.6,
-     "theta_deg": 25.2462,
+     "theta_deg": 24.7333,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.61,
-     "theta_deg": 19.617,
+     "theta_deg": 19.2184,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.62,
-     "theta_deg": 14.6597,
+     "theta_deg": 14.3618,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.63,
-     "theta_deg": 10.4321,
+     "theta_deg": 10.2201,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.64,
-     "theta_deg": 6.9672,
+     "theta_deg": 6.8257,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.65,
-     "theta_deg": 4.2696,
+     "theta_deg": 4.1828,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.66,
-     "theta_deg": 2.3115,
+     "theta_deg": 2.2645,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.67,
-     "theta_deg": 1.0297,
+     "theta_deg": 1.0088,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.68,
-     "theta_deg": 0.3217,
+     "theta_deg": 0.3152,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 3.69,
-     "theta_deg": 0.0424,
+     "theta_deg": 0.0415,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
@@ -13445,655 +13445,655 @@
     },
     {
      "t": 4.21,
-     "theta_deg": 0.0424,
+     "theta_deg": 0.0415,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.22,
-     "theta_deg": 0.3217,
+     "theta_deg": 0.3152,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.23,
-     "theta_deg": 1.0297,
+     "theta_deg": 1.0088,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.24,
-     "theta_deg": 2.3115,
+     "theta_deg": 2.2645,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.25,
-     "theta_deg": 4.2696,
+     "theta_deg": 4.1828,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.26,
-     "theta_deg": 6.9672,
+     "theta_deg": 6.8257,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.27,
-     "theta_deg": 10.4321,
+     "theta_deg": 10.2201,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.28,
-     "theta_deg": 14.6597,
+     "theta_deg": 14.3618,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.29,
-     "theta_deg": 19.617,
+     "theta_deg": 19.2184,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.3,
-     "theta_deg": 25.2462,
+     "theta_deg": 24.7333,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.31,
-     "theta_deg": 31.4679,
+     "theta_deg": 30.8286,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.32,
-     "theta_deg": 38.1851,
+     "theta_deg": 37.4093,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.33,
-     "theta_deg": 45.2863,
+     "theta_deg": 44.3662,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.34,
-     "theta_deg": 52.6495,
+     "theta_deg": 51.5798,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.35,
-     "theta_deg": 60.1454,
+     "theta_deg": 58.9234,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.36,
-     "theta_deg": 67.6413,
+     "theta_deg": 66.267,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.37,
-     "theta_deg": 75.0045,
+     "theta_deg": 73.4806,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.38,
-     "theta_deg": 82.1057,
+     "theta_deg": 80.4375,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.39,
-     "theta_deg": 88.8228,
+     "theta_deg": 87.0182,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.4,
-     "theta_deg": 95.0446,
+     "theta_deg": 93.1135,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.41,
-     "theta_deg": 100.6738,
+     "theta_deg": 98.6283,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.42,
-     "theta_deg": 105.6311,
+     "theta_deg": 103.4849,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.43,
-     "theta_deg": 109.8587,
+     "theta_deg": 107.6266,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.44,
-     "theta_deg": 113.3235,
+     "theta_deg": 111.0211,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.45,
-     "theta_deg": 116.0212,
+     "theta_deg": 113.6639,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.46,
-     "theta_deg": 117.9793,
+     "theta_deg": 115.5822,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.47,
-     "theta_deg": 119.2611,
+     "theta_deg": 116.838,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.48,
-     "theta_deg": 119.969,
+     "theta_deg": 117.5316,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.49,
-     "theta_deg": 120.2484,
+     "theta_deg": 117.8053,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.5,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: passive -> active (back to the puck)"
     },
     {
      "t": 4.51,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.52,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.53,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.54,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.55,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.56,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.57,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.58,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.59,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.6,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.61,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.62,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.63,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.64,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.65,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.66,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.67,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.68,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.69,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.7,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.71,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.72,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.73,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.74,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.75,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.76,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.77,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.78,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.79,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.8,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.81,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.82,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.83,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.84,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.85,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.86,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.87,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.88,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.89,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.9,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.91,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.92,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.93,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.94,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.95,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.96,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.97,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.98,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 4.99,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 5.0,
-     "theta_deg": 120.2908,
+     "theta_deg": 117.8468,
      "sigma_deg": null,
      "source": "designed: active (back to the puck)"
     },
     {
      "t": 5.01,
-     "theta_deg": 120.2484,
+     "theta_deg": 117.8053,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.02,
-     "theta_deg": 119.969,
+     "theta_deg": 117.5316,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.03,
-     "theta_deg": 119.2611,
+     "theta_deg": 116.838,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.04,
-     "theta_deg": 117.9793,
+     "theta_deg": 115.5822,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.05,
-     "theta_deg": 116.0212,
+     "theta_deg": 113.6639,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.06,
-     "theta_deg": 113.3235,
+     "theta_deg": 111.0211,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.07,
-     "theta_deg": 109.8587,
+     "theta_deg": 107.6266,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.08,
-     "theta_deg": 105.6311,
+     "theta_deg": 103.4849,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.09,
-     "theta_deg": 100.6738,
+     "theta_deg": 98.6283,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.1,
-     "theta_deg": 95.0446,
+     "theta_deg": 93.1135,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.11,
-     "theta_deg": 88.8228,
+     "theta_deg": 87.0182,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.12,
-     "theta_deg": 82.1057,
+     "theta_deg": 80.4375,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.13,
-     "theta_deg": 75.0045,
+     "theta_deg": 73.4806,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.14,
-     "theta_deg": 67.6413,
+     "theta_deg": 66.267,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.15,
-     "theta_deg": 60.1454,
+     "theta_deg": 58.9234,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.16,
-     "theta_deg": 52.6495,
+     "theta_deg": 51.5798,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.17,
-     "theta_deg": 45.2863,
+     "theta_deg": 44.3662,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.18,
-     "theta_deg": 38.1851,
+     "theta_deg": 37.4093,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.19,
-     "theta_deg": 31.4679,
+     "theta_deg": 30.8286,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.2,
-     "theta_deg": 25.2462,
+     "theta_deg": 24.7333,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.21,
-     "theta_deg": 19.617,
+     "theta_deg": 19.2184,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.22,
-     "theta_deg": 14.6597,
+     "theta_deg": 14.3618,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.23,
-     "theta_deg": 10.4321,
+     "theta_deg": 10.2201,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.24,
-     "theta_deg": 6.9672,
+     "theta_deg": 6.8257,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.25,
-     "theta_deg": 4.2696,
+     "theta_deg": 4.1828,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.26,
-     "theta_deg": 2.3115,
+     "theta_deg": 2.2645,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.27,
-     "theta_deg": 1.0297,
+     "theta_deg": 1.0088,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.28,
-     "theta_deg": 0.3217,
+     "theta_deg": 0.3152,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
     {
      "t": 5.29,
-     "theta_deg": 0.0424,
+     "theta_deg": 0.0415,
      "sigma_deg": null,
      "source": "designed: active -> passive (back to the puck)"
     },
@@ -14717,10 +14717,10 @@
    ],
    "E-RD_heading_deg": 92.77,
    "E-G_pivot_mm": [
-    252.39,
-    32.93
+    251.9,
+    15.0
    ],
-   "E-G_heading_deg": 300.29,
+   "E-G_heading_deg": 297.85,
    "lanes": {
     "straight_shot": {
      "from_mm": [
@@ -14732,8 +14732,8 @@
       -12.8
      ],
      "end_mm": [
-      253.86,
-      55.32
+      265.78,
+      37.72
      ],
      "blocked_by": "E-G",
      "open": false,
@@ -14766,11 +14766,11 @@
       -26.0
      ],
      "end_mm": [
-      300.0,
-      -26.0
+      238.75,
+      -4.79
      ],
-     "blocked_by": null,
-     "open": true,
+     "blocked_by": "E-G",
+     "open": false,
      "note": "the centre's first-time shot into the far corner"
     }
    },
@@ -14867,10 +14867,10 @@
    ],
    "E-RD_heading_deg": 92.77,
    "E-G_pivot_mm": [
-    252.39,
-    32.93
+    251.9,
+    15.0
    ],
-   "E-G_heading_deg": 300.29,
+   "E-G_heading_deg": 297.85,
    "lanes": {
     "straight_shot": {
      "from_mm": [
@@ -14882,8 +14882,8 @@
       -12.8
      ],
      "end_mm": [
-      253.86,
-      55.32
+      265.78,
+      37.72
      ],
      "blocked_by": "E-G",
      "open": false,
@@ -14916,11 +14916,11 @@
       -26.0
      ],
      "end_mm": [
-      300.0,
-      -26.0
+      238.75,
+      -4.79
      ],
-     "blocked_by": null,
-     "open": true,
+     "blocked_by": "E-G",
+     "open": false,
      "note": "the centre's first-time shot into the far corner"
     }
    },
@@ -15332,8 +15332,8 @@
     "theta_deg": -58.4864
    },
    "E-G": {
-    "arc_mm": 29.5392,
-    "theta_deg": 12.452
+    "arc_mm": 31.3973,
+    "theta_deg": 12.199
    },
    "puck": [
     148.1254,
@@ -15347,8 +15347,8 @@
     "theta_deg": -70.1208
    },
    "E-G": {
-    "arc_mm": 16.475,
-    "theta_deg": 60.1454
+    "arc_mm": 25.45,
+    "theta_deg": 58.9234
    },
    "puck": [
     148.1254,
@@ -15362,8 +15362,8 @@
     "theta_deg": -83.5617
    },
    "E-G": {
-    "arc_mm": 3.4108,
-    "theta_deg": 107.8388
+    "arc_mm": 19.5027,
+    "theta_deg": 105.6478
    },
    "puck": [
     148.1254,
@@ -15377,8 +15377,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15392,8 +15392,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15407,8 +15407,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15422,8 +15422,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15437,8 +15437,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15452,8 +15452,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15467,8 +15467,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15482,8 +15482,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15497,8 +15497,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15512,8 +15512,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15527,8 +15527,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15542,8 +15542,8 @@
     "theta_deg": -79.8354
    },
    "E-G": {
-    "arc_mm": 6.9154,
-    "theta_deg": 95.0446
+    "arc_mm": 21.0981,
+    "theta_deg": 93.1135
    },
    "puck": [
     148.1254,
@@ -15557,8 +15557,8 @@
     "theta_deg": -61.3924
    },
    "E-G": {
-    "arc_mm": 26.0346,
-    "theta_deg": 25.2462
+    "arc_mm": 29.8019,
+    "theta_deg": 24.7333
    },
    "puck": [
     148.1254,
@@ -15662,8 +15662,8 @@
     "theta_deg": -61.3924
    },
    "E-G": {
-    "arc_mm": 26.0346,
-    "theta_deg": 25.2462
+    "arc_mm": 29.8019,
+    "theta_deg": 24.7333
    },
    "puck": [
     148.1254,
@@ -15677,8 +15677,8 @@
     "theta_deg": -79.8354
    },
    "E-G": {
-    "arc_mm": 6.9154,
-    "theta_deg": 95.0446
+    "arc_mm": 21.0981,
+    "theta_deg": 93.1135
    },
    "puck": [
     148.1254,
@@ -15692,8 +15692,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15707,8 +15707,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15722,8 +15722,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15737,8 +15737,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15752,8 +15752,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15767,8 +15767,8 @@
     "theta_deg": -87.2301
    },
    "E-G": {
-    "arc_mm": 0.0,
-    "theta_deg": 120.2908
+    "arc_mm": 17.95,
+    "theta_deg": 117.8468
    },
    "puck": [
     148.1254,
@@ -15782,8 +15782,8 @@
     "theta_deg": -79.8354
    },
    "E-G": {
-    "arc_mm": 6.9154,
-    "theta_deg": 95.0446
+    "arc_mm": 21.0981,
+    "theta_deg": 93.1135
    },
    "puck": [
     148.1254,
@@ -15797,8 +15797,8 @@
     "theta_deg": -61.3924
    },
    "E-G": {
-    "arc_mm": 26.0346,
-    "theta_deg": 25.2462
+    "arc_mm": 29.8019,
+    "theta_deg": 24.7333
    },
    "puck": [
     148.1254,

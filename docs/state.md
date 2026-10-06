@@ -211,8 +211,8 @@
     The centrifuge comes from `references/combinations/bordshockeyskolan-lektion-3-centrifugen.html`.
   - The three defences:
     - **passive / the box:** the defender in front of the goal on the straight-shot line, the goalie in the middle;
-    - **active:** the goalie at the near post, turned with its back to the corner (user correction, 2026-10-06), the
-      defender out cutting the passes;
+    - **active:** the goalie toward the near post but not all the way (y = 15 mm), turned with its back to the
+      corner (two user corrections, 2026-10-06), the defender out cutting the passes;
     - **the mix:** switching between them.
   - Trace `trace.defence-left-wing.v1` (**proposed**, designed). E-RD and E-G move between the set-ups. The puck stays
     on W-LW's blade.

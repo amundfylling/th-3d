@@ -54,9 +54,10 @@ test("defence vs the left wing: the concept - which lane each set-up closes", ()
     assert.equal(L(id).straight_shot!.blocked_by, "E-G", id);
     assert.equal(L(id).centrifuge_pass!.blocked_by, "E-RD", id);
   }
-  // the goalie stands at the near post (+y, the left wing's side) when active, in the middle when passive
+  // the goalie moves toward the near post (+y, the left wing's side) when active, stays in the middle when passive
   const gy = (id: string) => (ev(id)["E-G_pivot_mm"] as number[])[1]!;
-  assert.ok(gy("active.set") > 25 && Math.abs(gy("passive.set")) < 5);
+  // (user: not all the way out - it leaves a little space at the near post and covers more of the middle)
+  assert.ok(gy("active.set") > 10 && gy("active.set") < 25 && Math.abs(gy("passive.set")) < 5);
   // when active the goalie turns its BACK to the puck (user, 2026-10-06): it faces away from the puck, square when passive
   const puck = trace.puck.nodes[0];
   for (const id of ["active.set", "mix.active"]) {

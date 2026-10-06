@@ -139,7 +139,7 @@
    "id": "active",
    "number": "2",
    "title": "ACTIVE",
-   "text": "The goalie moves to the near post and turns its back to the corner, closing the straight shot. The defender goes out and cuts the passes.",
+   "text": "The goalie moves toward the near post, back to the corner, still covering the middle. The defender goes out and cuts the passes.",
    "from": "to_active.start",
    "to": "active.end"
   },
@@ -336,8 +336,8 @@
    "ghost_s": 0.7,
    "label": "GOALIE CLOSES IT",
    "label_offset_px": [
-    -210,
-    60
+    -230,
+    -70
    ]
   },
   {

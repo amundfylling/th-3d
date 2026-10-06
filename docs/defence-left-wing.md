@@ -17,6 +17,25 @@ the corner in active and mixed. When it stands with face facing forward it does 
 - When passive it stays square in the middle.
 - The video shows the turn with an arrow, "BACK TO THE CORNER".
 
+**Second correction:** *"the goalie should not stand all the way out to the right, because it can leave a bit of space
+to still catch most direct shots and cover more of the middle. It should however leave little space for the direct
+shots."*
+- When active, the goalie now stands at y = 15 mm, about two-thirds of the way from the middle to the near post
+  (the post is at 43.5 mm), instead of right at the post (33 mm, the end of its slot).
+- A scan with the goalie turned (straight shots swept with the finite puck to every point across the goal):
+
+| Goalie y (mm) | Straight shots from the left wing | Centre's far-corner window |
+| --- | --- | --- |
+| 33 (at the post) | all stopped | 13.1° open |
+| 24 | all stopped | 7.5° |
+| 15 (chosen) | all stopped | 1.9° |
+| 9 | all stopped | closed |
+| 0 | all stopped | 2.6° open on the near side |
+
+  From this left-wing position the straight-shot window is only 4.5° wide, so the turned goalie closes it anywhere
+  in that range. y = 15 mm leaves the near post itself open on the ice, but no straight-shot line reaches it, and it
+  covers most of the middle.
+
 | Item | Path |
 | --- | --- |
 | Source (user upload, preserved, indexed) | `references/shots/defence-vs-left-wing-tiktok.mp4` (TikTok, @tablehockeyglobal, 57 s) |
@@ -83,7 +102,7 @@ All three defences are set against the same situation:
 | --- | --- | --- | --- | --- | --- |
 | Neutral (no defence) | middle | half-way up its slot | **open** (goal) | — | — |
 | Passive (the box) | middle (y = 0) | in front of the goal on the straight-shot line (slot position 164 mm) | blocked by the defender | open | met by the goalie |
-| Active | near post (y = 33 mm), **back to the puck** (heading 300°) | out in the passing lane (slot position 89 mm), turned toward the puck | blocked by the goalie | cut by the defender | open, if a pass got through (the risk of going active; not shown) |
+| Active | toward the near post, not all the way (y = 15 mm), **back to the puck** (heading 298°) | out in the passing lane (slot position 89 mm), turned toward the puck | blocked by the goalie | cut by the defender | met by the goalie (1.9° left open at the far post) |
 | Mix | switches: passive → active → passive | | as above in each phase | | |
 
 Positions follow the idea of each defence, not the TikTok's exact spots (the user allowed this):
@@ -108,7 +127,7 @@ Positions follow the idea of each defence, not the TikTok's exact spots (the use
   - neutral: the straight shot is open;
   - every passive phase: the defender blocks the straight shot, the pass is open, the goalie meets the centre's shot;
   - every active phase: the goalie blocks the straight shot and the defender cuts the pass;
-  - the goalie is at the near post when active and in the middle when passive;
+  - the goalie is between the middle and the near post when active (10 < y < 25 mm) and in the middle when passive;
   - when active, the goalie faces away from the puck (back to the corner), within 2°; when passive it is square;
   - the mix switches passive → active → passive.
 - **Video:**
@@ -138,8 +157,8 @@ The camera stands behind the defended goal, high, like the TikTok, and stays sti
 
 1. **The reading of the three defences** (above), from the captions and the demonstrations.
 2. **The left wing's position** (further out than in the TikTok) and the defender's two positions.
-3. **The goalie's turn when active:** it faces directly away from the puck (about 120°). That follows the user's
-   description; the exact angle is not measured.
+3. **The goalie when active:** it faces directly away from the puck (about 120°) at y = 15 mm. Both follow the user's
+   description; neither the angle nor the spot is measured.
 4. **The centrifuge** as the left wing's pass to the centre who shoots first time (Bordshockeyskolan). The user named
    it as an example; puck.no has no description.
 5. **Lanes are straight lines** (flat shots and passes); lifted shots are not considered.
