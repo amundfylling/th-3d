@@ -22,6 +22,9 @@ The spjass centre move (user's TikTok, references/shots/spjass-tiktok.mp4) is re
 (data/traces/spjass.trace.json) and animated (composition `analysis-spjass`, validation/analysis-spjass.mp4); see docs/spjass.md.
 Näcka (NTHF page and illustration, references/combinations/; no recording) is a PROPOSED, DESIGNED trace
 (data/traces/nacka.trace.json) with video validation/analysis-nacka.mp4; see docs/nacka.md.
+Invers Kryssar med Velodrom (NTHF text only; the user approved the sketch validation/ikv-sketch.png) is a PROPOSED,
+DESIGNED trace (data/traces/invers-kryssar-velodrom.trace.json) with video validation/analysis-ikv.mp4; see
+docs/invers-kryssar-velodrom.md.
 All analysis videos share remotion/AnalysisVideo.tsx.
 
 ## Key files

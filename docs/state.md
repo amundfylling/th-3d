@@ -181,16 +181,19 @@
   - Assumed: all timing, and the goalie standing toward the left post.
   - Video `validation/analysis-nacka.mp4` (composition `analysis-nacka`). Notes: `docs/nacka.md`. Rerender:
     `npm run trace:nacka`, `npm run video:analysis-nacka`.
-- **Invers Kryssar med Velodrom (2026-10-06, user request: sketch first, then animate): SKETCH ONLY, awaiting the user.**
-  - NTHF page (no illustration or video) and the base move "Invers Kryssar" saved in `references/combinations/`.
-  - Interpretation `validation/ikv-sketch.png`: overhead render of our model (composition `pose-preview`) with the lines.
-    1. Cross pass RW → LW.
-    2. The LW sends the puck along the +y board; it rides the curved boards behind the goal (simulated with the
-       board pushing-contact rule and the spjass friction) to the right wing's board.
-    3. RW, moved up his slot and turned round, shoots first time into the goal.
-  - Data: `shots/invers-kryssar-velodrom/sketch.json` (choices), `sketch-geometry.json` (poses, lines, clearances:
-    all positive). Scripts: `scripts/ikv-sketch.py`, `scripts/ikv-sketch-render.ts`.
-  - **Next:** user confirms or corrects the reading; then trace (contact-checked) and analysis video as for Näcka.
+- **Invers Kryssar med Velodrom (2026-10-06): sketch approved by the user ("The picture is correct"), then animated.**
+  - NTHF page (no illustration) and the base move saved in `references/combinations/`.
+  - Approved sketch: `validation/ikv-sketch.png` (composition `pose-preview`, `scripts/ikv-sketch.py`).
+  - Trace `trace.invers-kryssar-velodrom.v1` (**proposed**, designed): the right wing's forehand cross pass; the back
+    of the left wing's blade sends the puck along the boards; the velodrome passes behind the cage (simulated board
+    sliding); the right wing's backhand first-time shot goes in.
+    - Collision rule: moving-blade impulse, restitution 0.5; ice friction from the spjass.
+    - Checks: no overlap, 0 unexplained velocity changes; the contacts are exactly blade, blade, boards, blade, net.
+  - **Deviation from the sketch:** the right wing catches near the centre line (slot position 35 mm), not near the
+    goal. The puck arrives pressed to the board, 37 mm from his slot, so his blade can't send it in from close range.
+  - Assumed: the goalie toward the left post; all timing; a 4.7 m/s velodrome pass.
+  - Video `validation/analysis-ikv.mp4` (composition `analysis-ikv`). Notes: `docs/invers-kryssar-velodrom.md`.
+    Rerender: `npm run trace:ikv`, `npm run video:analysis-ikv`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -289,6 +292,9 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **`validation/analysis-ikv.mp4`** - Invers Kryssar med Velodrom analysis video, with `analysis-ikv-review.png`,
+  `analysis-ikv-report.json`, `analysis-ikv-occlusion.json`; sketch `validation/ikv-sketch.png`; trace sheet
+  `validation/ikv-trace.png`. Notes: `docs/invers-kryssar-velodrom.md`.
 - **`validation/analysis-nacka.mp4`** - Näcka analysis video, with `analysis-nacka-review.png`,
   `analysis-nacka-report.json`, `analysis-nacka-occlusion.json`; trace sheet `validation/nacka-trace.png`.
   Notes: `docs/nacka.md`.
@@ -363,3 +369,4 @@ Iteration 20 closed without repair cycles:
 | A1 | 2026-10-05 | Analysis video (user request): src/model/{analysis.ts,camera-track.ts}, presentation.ts (rewind); data/presentations/shovel-17.analysis.json; remotion/ShotAnalysis.tsx, Root.tsx (analysis-shovel-17); public/fonts (Barlow, OFL); scripts/analysis-{stills.ts,render.ts,review.py}; tests/analysis.test.ts; validation/analysis-shovel-17.{mp4,-report.json,-review.png}; docs/analysis-shovel-17.md; package.json (video:analysis-shovel-17) | tuning stills reviewed across all segments; final 1080p render, every frame = pure evaluation and camera track; file size checked < 25 MB; review sheet AI-reviewed; `npm run check` |
 | S1 | 2026-10-06 | Spjass from the user's TikTok: references/shots/spjass-tiktok.mp4 (+ index); shots/spjass/{marks,observations,inputs,checks}.json; scripts/spjass-{observe,trace}.py; data/traces/spjass.trace.json (proposed); data/presentations/spjass.analysis.json; remotion/AnalysisVideo.tsx (shared; ShotAnalysis.tsx refactored onto it), SpjassAnalysis.tsx, Root.tsx (analysis-spjass); scripts/analysis-occlusion{-dump.ts,.py}, analysis-render.ts (per video), analysis-stills.ts (COMP), analysis-review.py (spec args); src/model/analysis.ts (graphic fields); tests/spjass.test.ts, tests/analysis.test.ts; validation/spjass-*.png, analysis-spjass*; docs/spjass.md; package.json (trace:spjass, video:analysis-spjass) | observation and trace scripts run; contact checks (no overlap, 0 unexplained); stills reviewed for every segment; puck visibility ray-cast; Shovel refactor byte-identical on 6 frames; final 1080p render with per-frame state and camera checks; `npm run check` |
 | N1 | 2026-10-06 | Näcka from the NTHF page: references/combinations/* (+ index); shots/nacka/{inputs,checks}.json; scripts/nacka-trace.py; data/traces/nacka.trace.json (proposed, designed); data/presentations/nacka.analysis.json; remotion/NackaAnalysis.tsx, Root.tsx (analysis-nacka); scripts/analysis-render.ts (nacka); tests/nacka.test.ts; validation/nacka-trace.png, analysis-nacka*; docs/nacka.md, docs/spjass.md (NTHF cross-check); package.json (trace:nacka, video:analysis-nacka) | trace script run (contact checks clean); turn-profile and shot scans; stills reviewed; puck visibility ray-cast; final 1080p render with per-frame state and camera checks; `npm run check` |
+| V1 | 2026-10-06 | Invers Kryssar med Velodrom: NTHF pages; sketch (scripts/ikv-sketch.py, ikv-sketch-render.ts, remotion/PosePreview.tsx, validation/ikv-sketch.png) approved by the user; scripts/ikv-trace.py (moving-blade collisions, board sliding, open-mouth cage); data/traces/invers-kryssar-velodrom.trace.json (proposed); shots/invers-kryssar-velodrom/{sketch,sketch-geometry,inputs,checks}.json; data/presentations/invers-kryssar-velodrom.analysis.json; remotion/IkvAnalysis.tsx, Root.tsx (analysis-ikv, pose-preview); tests/ikv.test.ts; validation/ikv-trace.png, analysis-ikv*; docs/invers-kryssar-velodrom.md; package.json (trace:ikv, video:analysis-ikv) | sketch clearances; staged strike scans; contact checks clean; stills reviewed, views reframed; puck visibility ray-cast (all frames visible); final 1080p render with per-frame state and camera checks; `npm run check` |

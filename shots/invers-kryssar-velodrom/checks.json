@@ -1,0 +1,218 @@
+{
+ "trace_id": "trace.invers-kryssar-velodrom.v1",
+ "sampling_s": 0.00025,
+ "max_puck_step_mm": 1.175,
+ "penetration_tolerance_mm": 0.1,
+ "contact_rule": "CLAUDE.md 'Contact physics': the puck may touch figures, boards and goal but never overlap them (every 0.25 ms, whole trace, all 12 figures, boards, posts, cage; no phase exemptions)",
+ "min_clearance_by_obstacle_and_phase": [
+  {
+   "obstacle": "E-G",
+   "phase": "shot_free",
+   "min_clearance_mm": 6.831,
+   "t_at_min": 1.7755
+  },
+  {
+   "obstacle": "W-LW",
+   "phase": "cross_pass",
+   "min_clearance_mm": 0.425,
+   "t_at_min": 0.46975
+  },
+  {
+   "obstacle": "W-LW",
+   "phase": "lw_backhand",
+   "min_clearance_mm": 0.05,
+   "t_at_min": 0.47
+  },
+  {
+   "obstacle": "W-LW",
+   "phase": "to_the_boards",
+   "min_clearance_mm": 6.746,
+   "t_at_min": 0.474
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "along_the_board",
+   "min_clearance_mm": 0.095,
+   "t_at_min": 1.55425
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "cross_pass",
+   "min_clearance_mm": 2.594,
+   "t_at_min": 0.241
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "pass_forehand",
+   "min_clearance_mm": 0.191,
+   "t_at_min": 0.237
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "rest_at_blade",
+   "min_clearance_mm": 0.129,
+   "t_at_min": 0.2365
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "shot_backhand",
+   "min_clearance_mm": 0.049,
+   "t_at_min": 1.5745
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "shot_free",
+   "min_clearance_mm": 0.588,
+   "t_at_min": 1.579
+  },
+  {
+   "obstacle": "boards",
+   "phase": "along_the_board",
+   "min_clearance_mm": 0.0,
+   "t_at_min": 0.9005
+  },
+  {
+   "obstacle": "boards",
+   "phase": "shot_backhand",
+   "min_clearance_mm": 0.732,
+   "t_at_min": 1.5545
+  },
+  {
+   "obstacle": "boards",
+   "phase": "shot_free",
+   "min_clearance_mm": 16.842,
+   "t_at_min": 1.579
+  },
+  {
+   "obstacle": "boards",
+   "phase": "to_the_boards",
+   "min_clearance_mm": 0.224,
+   "t_at_min": 0.49975
+  },
+  {
+   "obstacle": "boards",
+   "phase": "velodrome",
+   "min_clearance_mm": -0.0,
+   "t_at_min": 0.9
+  },
+  {
+   "obstacle": "goal_cage",
+   "phase": "shot_free",
+   "min_clearance_mm": 15.508,
+   "t_at_min": 1.78775
+  },
+  {
+   "obstacle": "goal_post_neg_y",
+   "phase": "shot_free",
+   "min_clearance_mm": 14.008,
+   "t_at_min": 1.78775
+  },
+  {
+   "obstacle": "goal_post_pos_y",
+   "phase": "shot_free",
+   "min_clearance_mm": 28.174,
+   "t_at_min": 1.824
+  }
+ ],
+ "unexpected_penetrations": [],
+ "approved_exceptions": [],
+ "contact_sequence": [
+  "W-RW:stick/blade",
+  "W-LW:stick/blade",
+  "boards",
+  "W-RW:stick/blade",
+  "goal_net"
+ ],
+ "impulses": [
+  {
+   "t": 0.23675,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 1695.3
+  },
+  {
+   "t": 0.47,
+   "figure": "W-LW",
+   "part": "stick/blade",
+   "dv": 4323.0
+  },
+  {
+   "t": 0.47,
+   "figure": "W-LW",
+   "part": "stick/blade",
+   "dv": 119.6
+  },
+  {
+   "t": 1.5545,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 540.6
+  },
+  {
+   "t": 1.56,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 243.3
+  },
+  {
+   "t": 1.56025,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 165.2
+  },
+  {
+   "t": 1.56275,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 213.0
+  },
+  {
+   "t": 1.56475,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 182.0
+  },
+  {
+   "t": 1.56675,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 185.1
+  },
+  {
+   "t": 1.56875,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 157.5
+  },
+  {
+   "t": 1.57125,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 88.6
+  },
+  {
+   "t": 1.5745,
+   "figure": "W-RW",
+   "part": "stick/blade",
+   "dv": 16.6
+  }
+ ],
+ "unexplained_velocity_changes": [],
+ "unexplained_count": 0,
+ "goal_line": {
+  "x_mm": 286.79,
+  "crossing_y_mm": -8.05,
+  "inside_mouth_window_y_mm": [
+   -28.7,
+   29.8
+  ]
+ },
+ "velodrome": {
+  "t": [
+   0.4998,
+   0.9002
+  ],
+  "length_mm": 395.8,
+  "behind_goal_min_x_mm": 409.5
+ }
+}
