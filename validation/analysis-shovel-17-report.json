@@ -23,7 +23,11 @@
  "analysis_spec": {
   "analysis_id": "analysis.shovel-17.v1",
   "sha256": "7903d36ea22b69459e1d3cfb04328c69d2cd94c31ea896008b74a7ace38636a3",
-  "composition_sha256": "676d5769f62fe4b32cccc36f908f4b93fcc4d3323a3ccb3732ab6e5896e99f2f"
+  "composition_sha256": "7caf2f772ed0b165673adf92810da6521da040ad267deb732c2957f5c28fcf8a",
+  "composition_files": [
+   "remotion/ShotAnalysis.tsx",
+   "remotion/AnalysisVideo.tsx"
+  ]
  },
  "output": {
   "path": "validation/analysis-shovel-17.mp4",
@@ -67,5 +71,12 @@
   "camera_frames_logged": 748,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 3962
+ "render_seconds": 3962,
+ "composition_refactor": {
+  "date": "2026-10-06",
+  "change": "remotion/ShotAnalysis.tsx split into the shared remotion/AnalysisVideo.tsx (used by analysis-spjass) and a Shovel config; no change in behaviour intended",
+  "previous_composition_sha256 (remotion/ShotAnalysis.tsx)": "676d5769f62fe4b32cccc36f908f4b93fcc4d3323a3ccb3732ab6e5896e99f2f",
+  "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 before and after the refactor (scripts/analysis-stills.ts): PNG bytes identical for all six",
+  "video_rerendered": false
+ }
 }

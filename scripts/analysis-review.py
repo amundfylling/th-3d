@@ -1,7 +1,8 @@
-"""Review sheet of the analysis video: the whole video (every 15th frame) and one large frame from the middle of every
-segment of the analysis timeline (data/presentations/shovel-17.analysis.json).
+"""Review sheet of an analysis video: the whole video (every 15th frame) and one large frame from the middle of every
+segment of its analysis timeline (default: the Shovel; pass the spec and trace for another video).
 
     /root/venvs/blender/bin/python scripts/analysis-review.py validation/analysis-shovel-17.mp4 validation/analysis-shovel-17-review.png
+    /root/venvs/blender/bin/python scripts/analysis-review.py validation/analysis-spjass.mp4 validation/analysis-spjass-review.png data/presentations/spjass.analysis.json data/traces/spjass.trace.json
 """
 import json
 import subprocess
@@ -13,6 +14,8 @@ import numpy as np
 
 REPO = Path(__file__).resolve().parents[1]
 video, out = sys.argv[1], sys.argv[2]
+spec_path = sys.argv[3] if len(sys.argv) > 3 else "data/presentations/shovel-17.analysis.json"
+trace_path = sys.argv[4] if len(sys.argv) > 4 else "data/traces/shovel-17.trace.json"
 cap = cv2.VideoCapture(str(REPO / video))
 fps = round(cap.get(cv2.CAP_PROP_FPS))
 frames = []
@@ -25,8 +28,8 @@ n = len(frames)
 H, W = frames[0].shape[:2]
 script = (
     "import { readFileSync } from 'node:fs'; import { resolveAnalysis } from './src/model/analysis.ts';"
-    "const a = resolveAnalysis(JSON.parse(readFileSync('data/presentations/shovel-17.analysis.json','utf8')),"
-    " JSON.parse(readFileSync('data/traces/shovel-17.trace.json','utf8')));"
+    f"const a = resolveAnalysis(JSON.parse(readFileSync('{spec_path}','utf8')),"
+    f" JSON.parse(readFileSync('{trace_path}','utf8')));"
     "console.log(JSON.stringify(a.timeline.segments.map(s => [s.id, s.kind, s.f0, s.f1])));"
 )
 segments = json.loads(subprocess.run(["node", "--input-type=module", "-e", script], cwd=REPO, capture_output=True, text=True, check=True).stdout)

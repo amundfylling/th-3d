@@ -1,11 +1,11 @@
-// Analysis video "#17 The Shovel": renders the composition `analysis-shovel-17` (remotion/ShotAnalysis.tsx) to a
+// Analysis videos ("#17 The Shovel": analysis-shovel-17, "The spjass": analysis-spjass): renders the composition to a
 // 1920 x 1080, 30 fps H.264 MP4 and checks it.
 //
-//   node scripts/analysis-render.ts
+//   node scripts/analysis-render.ts [shovel-17|spjass]
 //
 // Checks: every frame's logged physical state equals the pure Node evaluation of the trace at the source time of the
 // analysis timeline; every frame's canvas camera equals the pure camera track; the file is below 25 MB.
-// Report: validation/analysis-shovel-17-report.json. Video: validation/analysis-shovel-17.mp4.
+// Report: validation/analysis-<name>-report.json. Video: validation/analysis-<name>.mp4.
 import { bundle } from "@remotion/bundler";
 import { openBrowser, renderMedia, selectComposition } from "@remotion/renderer";
 import { execFileSync } from "node:child_process";
@@ -17,15 +17,26 @@ import { shotTimeEvaluator } from "../src/model/shot-pose.ts";
 import type { ShotTrace } from "../src/model/trace.ts";
 
 const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
-const COMPOSITION = "analysis-shovel-17";
-const SPEC = "data/presentations/shovel-17.analysis.json";
-const OUT = { path: "validation/analysis-shovel-17.mp4", codec: "h264" as const, crf: 20, pixelFormat: "yuv420p" as const, concurrency: 2 };
-const REPORT = "validation/analysis-shovel-17-report.json";
+const VIDEOS = {
+  "shovel-17": { composition: "analysis-shovel-17", spec: "data/presentations/shovel-17.analysis.json", trace: "data/traces/shovel-17.trace.json",
+    files: ["remotion/ShotAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "analysis", out: "validation/analysis-shovel-17.mp4", report: "validation/analysis-shovel-17-report.json", title: "#17 The Shovel - sports-analysis video" },
+  spjass: { composition: "analysis-spjass", spec: "data/presentations/spjass.analysis.json", trace: "data/traces/spjass.trace.json",
+    files: ["remotion/SpjassAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "spjass", out: "validation/analysis-spjass.mp4", report: "validation/analysis-spjass-report.json", title: "The spjass - sports-analysis video" },
+} as const;
+const NAME = (process.argv[2] ?? "shovel-17") as keyof typeof VIDEOS;
+const V = VIDEOS[NAME];
+if (!V) throw new Error(`unknown video ${NAME}; one of ${Object.keys(VIDEOS).join(", ")}`);
+const COMPOSITION = V.composition;
+const SPEC = V.spec;
+const OUT = { path: V.out, codec: "h264" as const, crf: 20, pixelFormat: "yuv420p" as const, concurrency: 2 };
+const REPORT = V.report;
 const MAX_BYTES = 25 * 1000 * 1000;
 
 const read = (p: string): string => readFileSync(p, "utf8");
 const sha = (p: string): string => createHash("sha256").update(readFileSync(p)).digest("hex");
-const trace = JSON.parse(read("data/traces/shovel-17.trace.json")) as ShotTrace;
+/** Fingerprint of the files that define a composition (each file's path and SHA-256, in order). */
+const compositionSha = (files: readonly string[]): string => createHash("sha256").update(files.map((f) => `${f}:${sha(f)}`).join("\n")).digest("hex");
+const trace = JSON.parse(read(V.trace)) as ShotTrace;
 const geometry = JSON.parse(read("data/geometry.json"));
 const spec = JSON.parse(read(SPEC)) as AnalysisSpec;
 const analysis = resolveAnalysis(spec, trace as unknown as Parameters<typeof resolveAnalysis>[1]);
@@ -57,8 +68,8 @@ await renderMedia({
   ...base, composition: comp, codec: OUT.codec, crf: OUT.crf, pixelFormat: OUT.pixelFormat, outputLocation: OUT.path, inputProps: { graphics: true },
   concurrency: OUT.concurrency,
   onBrowserLog: (l) => {
-    if (l.text.startsWith("[analysis-state] ")) { const s = JSON.parse(l.text.slice(17)) as Logged; states.set(s.frame, s); }
-    if (l.text.startsWith("[analysis-camera] ")) { const c = JSON.parse(l.text.slice(18)) as Cam; cams.set(c.frame, c); }
+    if (l.text.startsWith(`[${V.tag}-state] `)) { const s = JSON.parse(l.text.slice(V.tag.length + 9)) as Logged; states.set(s.frame, s); }
+    if (l.text.startsWith(`[${V.tag}-camera] `)) { const c = JSON.parse(l.text.slice(V.tag.length + 10)) as Cam; cams.set(c.frame, c); }
   },
   onProgress: ({ renderedFrames }) => { if (renderedFrames % 50 === 0) console.log(`${OUT.path}: ${renderedFrames}/${comp.durationInFrames}`); },
 });
@@ -74,15 +85,15 @@ const bytes = statSync(OUT.path).size;
 const probe = JSON.parse(execFileSync("npx", ["remotion", "ffprobe", "-v", "error", "-show_entries", "stream=codec_name,width,height,r_frame_rate,nb_frames,pix_fmt:format=duration", "-of", "json", OUT.path], { encoding: "utf8" }));
 
 const report = {
-  analysis: "#17 The Shovel - sports-analysis video",
+  analysis: V.title,
   composition: COMPOSITION,
   versions: {
     node: process.version, remotion: ver("remotion"), "@remotion/three": ver("@remotion/three"), three: ver("three"), "@react-three/fiber": ver("@react-three/fiber"),
     react: ver("react"), browser: `chrome-headless-shell ${execFileSync(BROWSER, ["--version"], { encoding: "utf8" }).trim()}`, gl: "swangle (SwiftShader, CPU)",
   },
   model: { geometry_version: geometry.geometry_version, scene_glb_sha256: manifest.scene_glb.sha256 },
-  trace: { trace_id: trace.trace_id, status: trace.status, sha256: sha("data/traces/shovel-17.trace.json") },
-  analysis_spec: { analysis_id: spec.analysis_id, sha256: sha(SPEC), composition_sha256: sha("remotion/ShotAnalysis.tsx") },
+  trace: { trace_id: trace.trace_id, status: trace.status, sha256: sha(V.trace) },
+  analysis_spec: { analysis_id: spec.analysis_id, sha256: sha(SPEC), composition_files: V.files, composition_sha256: compositionSha(V.files) },
   output: {
     path: OUT.path, width: comp.width, height: comp.height, fps: comp.fps, frames: comp.durationInFrames, duration_s: comp.durationInFrames / comp.fps,
     codec: OUT.codec, crf: OUT.crf, pixel_format: OUT.pixelFormat, ffprobe: probe, bytes, megabytes: Math.round(bytes / 1e4) / 100,

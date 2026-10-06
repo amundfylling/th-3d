@@ -153,6 +153,23 @@
   - Checks: every frame's state equals the pure evaluation and every frame's camera equals the camera track
     (`validation/analysis-shovel-17-report.json`); size < 25 MB verified; `tests/analysis.test.ts`.
   - Rerender: `npm run video:analysis-shovel-17`. Notes: `docs/analysis-shovel-17.md`.
+- **Spjass (2026-10-06, user request "Create an animation for it", from the user's TikTok): reconstructed and animated.**
+  - Source preserved: `references/shots/spjass-tiktok.mp4` (indexed). Take 1 (top-down, unmirrored) calibrated,
+    RMS 4 px. Puck tracked; W-C poses from blade-toe marks; E-G from its blade.
+  - Trace `trace.spjass.v1`, **proposed** (not reviewed by the user): W-C turns counter-clockwise and flicks the puck
+    to its +y side with the back of the blade, then spins clockwise while stepping up its slot and shoots with the
+    front of the blade between the goalie and the +y post.
+    - Contact checks: no overlap, all 12 figures, every 0.25 ms. Every puck motion change is a named contact (blade,
+      blade, goal net) or the fitted ice friction.
+    - Agreement: take-1 residuals 0.1-0.3 mm on the sharp frames.
+    - Assumptions: the shot direction (corridor centre, 3° from the blurred line), the spin and lunge timing in the
+      blur, and the flick contact pose (8.5° from the reading).
+  - Video `validation/analysis-spjass.mp4` (composition `analysis-spjass`, 1080p 30 fps, 24.7 s), built from the
+    shared `remotion/AnalysisVideo.tsx`. The Shovel composition was refactored onto it; six frames are byte-identical,
+    so the Shovel video was not re-rendered.
+  - Rerender: `npm run trace:spjass`, `npm run video:analysis-spjass`. Notes: `docs/spjass.md`.
+  - **Next:** the user reviews the trace (`validation/spjass-trace.png`, the video). Open points: the shot direction,
+    and whether the TikTok's spoken explanation names a different technique.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -251,6 +268,9 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **`validation/analysis-spjass.mp4`** - spjass analysis video, with `analysis-spjass-review.png`,
+  `analysis-spjass-report.json`, `analysis-spjass-occlusion.json`; trace sheet `validation/spjass-trace.png`;
+  observations `validation/spjass-observations.png`. Notes: `docs/spjass.md`.
 - **`validation/analysis-shovel-17.mp4`** - analysis video, with `analysis-shovel-17-review.png` and
   `analysis-shovel-17-report.json`. Notes: `docs/analysis-shovel-17.md`.
 - **`validation/22-diagnostics.png`** - iteration 22 main artifact (proposed trace, nine stills around release,
@@ -317,3 +337,4 @@ Iteration 20 closed without repair cycles:
 | 24 | 2026-10-05 | data/presentations/shovel-17.presentation.json; src/model/presentation.ts; src/model/shot-pose.ts (shotTimeEvaluator); remotion/ShotScene.tsx (shared scene), ShotPresentation.tsx, Root.tsx (shot24-shovel-17); scripts/shot24-{render.ts,sheet.py}; tests/shot24.test.ts; validation/24-{comparison.png,render-checks.json,draft.mp4}; docs/shot24.md, docs/remotion.md; package.json (shot:24) | `npm run check`; 4 normal/replay pairs identical in state and PNG bytes; contact pause identical; draft clip 223 frames = pure evaluation; stills and clip AI-reviewed |
 | 25 | 2026-10-05 | src/model/presentation.ts (output fps multiple); remotion/ShotPresentation.tsx (timeline per fps), Root.tsx (shot25-shovel-17-final, 1920x1080 60 fps); scripts/shot25-{export.ts,keyframes.ts,review.py}; tests/shot25.test.ts; validation/25-{shovel-17-final.mp4,export-report.json,final-review.png}; docs/shot25.md; package.json (video:shovel-17) | draft 480x270 60 fps rendered and reviewed (all frames = pure evaluation); final 1920x1080 60 fps rendered, every frame = pure evaluation, review sheet AI-reviewed; `npm run check` |
 | A1 | 2026-10-05 | Analysis video (user request): src/model/{analysis.ts,camera-track.ts}, presentation.ts (rewind); data/presentations/shovel-17.analysis.json; remotion/ShotAnalysis.tsx, Root.tsx (analysis-shovel-17); public/fonts (Barlow, OFL); scripts/analysis-{stills.ts,render.ts,review.py}; tests/analysis.test.ts; validation/analysis-shovel-17.{mp4,-report.json,-review.png}; docs/analysis-shovel-17.md; package.json (video:analysis-shovel-17) | tuning stills reviewed across all segments; final 1080p render, every frame = pure evaluation and camera track; file size checked < 25 MB; review sheet AI-reviewed; `npm run check` |
+| S1 | 2026-10-06 | Spjass from the user's TikTok: references/shots/spjass-tiktok.mp4 (+ index); shots/spjass/{marks,observations,inputs,checks}.json; scripts/spjass-{observe,trace}.py; data/traces/spjass.trace.json (proposed); data/presentations/spjass.analysis.json; remotion/AnalysisVideo.tsx (shared; ShotAnalysis.tsx refactored onto it), SpjassAnalysis.tsx, Root.tsx (analysis-spjass); scripts/analysis-occlusion{-dump.ts,.py}, analysis-render.ts (per video), analysis-stills.ts (COMP), analysis-review.py (spec args); src/model/analysis.ts (graphic fields); tests/spjass.test.ts, tests/analysis.test.ts; validation/spjass-*.png, analysis-spjass*; docs/spjass.md; package.json (trace:spjass, video:analysis-spjass) | observation and trace scripts run; contact checks (no overlap, 0 unexplained); stills reviewed for every segment; puck visibility ray-cast; Shovel refactor byte-identical on 6 frames; final 1080p render with per-frame state and camera checks; `npm run check` |

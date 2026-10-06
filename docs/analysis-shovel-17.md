@@ -10,7 +10,7 @@ scene, models, trace and contact sequence as iterations 23-25, and it changes no
 | Video | `validation/analysis-shovel-17.mp4` |
 | Format | 1920 × 1080 (16:9), 30 fps, H.264 CRF 20, yuv420p, 748 frames (24.93 s) |
 | Size | 12,144,395 bytes (12.14 MB), measured from the file; limit 25 MB, checked by the render script |
-| Composition | `analysis-shovel-17` (`remotion/ShotAnalysis.tsx`, registered in `remotion/Root.tsx`) |
+| Composition | `analysis-shovel-17` (`remotion/ShotAnalysis.tsx`, the Shovel config of the shared `remotion/AnalysisVideo.tsx`; registered in `remotion/Root.tsx`) |
 | Data | `data/presentations/shovel-17.analysis.json` (shot timeline, camera views and keys, chapters, graphics) |
 | Model code | `src/model/analysis.ts` (spec resolution, badges, frame evaluation), `src/model/camera-track.ts` (camera), `src/model/presentation.ts` (timeline; `rewind` segments added) |
 | Review sheet | `validation/analysis-shovel-17-review.png` |
@@ -126,3 +126,10 @@ recorded on the trace event. The slot arrow follows the W-C fixture centreline.
 - The look is the CPU WebGL renderer's: no shadows and flat ice. This is not photorealistic; the renderer decision
   (Cycles benchmark in `docs/review.md`) is still open.
 - The wording ("centre", "right winger", "slot") is AI wording, for non-players.
+
+## Refactor (2026-10-06)
+
+The composition code was split into the shared `remotion/AnalysisVideo.tsx`, which the spjass video also uses, and
+the Shovel config in `remotion/ShotAnalysis.tsx`. Frames 30, 200, 400, 510, 660 and 730 were rendered at half size
+before and after the split: their PNG bytes are identical. The video was therefore not re-rendered; the report records
+the verification and the new composition fingerprint (`composition_refactor`).

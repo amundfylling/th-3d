@@ -1,0 +1,1205 @@
+{
+ "schema": "shot-observations/1",
+ "shot": "spjass (centre move) - user TikTok",
+ "source": {
+  "path": "references/shots/spjass-tiktok.mp4",
+  "sha256": "bf0da0e1292e47fbad0ceb06334b2991d5d1347048965faf00780203715aebcc",
+  "frames": 1069,
+  "fps": 30.0,
+  "size_px": [
+   576,
+   1024
+  ],
+  "time_base": "t_s = frame / 30 (real time; take 1 shows normal motion)"
+ },
+ "camera_take1": {
+  "H_world_mm_to_frame_px": [
+   [
+    -0.022217222922725075,
+    -2.521113833856318,
+    285.1591617279273
+   ],
+   [
+    -2.5188162033569568,
+    -0.021469943538919407,
+    1096.7071945307125
+   ],
+   [
+    6.901022409789462e-05,
+    -0.00010090495164626084,
+    1.0
+   ]
+  ],
+  "rms_px": 4.02,
+  "leave_one_out_rms_px": 8.27,
+  "correspondences": [
+   {
+    "id": "blue_line_E_x_E-RD",
+    "frame_px": [
+     55,
+     855
+    ],
+    "world_mm": [
+     94.81,
+     89.22
+    ],
+    "residual_px": 4.5,
+    "leave_one_out_px": 13.2
+   },
+   {
+    "id": "blue_line_E_x_W-C",
+    "frame_px": [
+     324,
+     853
+    ],
+    "world_mm": [
+     94.81,
+     -15.36
+    ],
+    "residual_px": 5.1,
+    "leave_one_out_px": 7.5
+   },
+   {
+    "id": "blue_line_E_x_E-LD",
+    "frame_px": [
+     525,
+     847
+    ],
+    "world_mm": [
+     94.81,
+     -100.56
+    ],
+    "residual_px": 3.0,
+    "leave_one_out_px": 9.4
+   },
+   {
+    "id": "goal_line_E_x_E-RD",
+    "frame_px": [
+     41.5,
+     366.5
+    ],
+    "world_mm": [
+     286.79,
+     93.66
+    ],
+    "residual_px": 2.1,
+    "leave_one_out_px": 3.8
+   },
+   {
+    "id": "goal_line_E_x_E-LD",
+    "frame_px": [
+     512.5,
+     362.5
+    ],
+    "world_mm": [
+     286.79,
+     -100.58
+    ],
+    "residual_px": 5.4,
+    "leave_one_out_px": 8.8
+   },
+   {
+    "id": "W-C_slot_end",
+    "frame_px": [
+     291,
+     608.5
+    ],
+    "world_mm": [
+     191.27,
+     -3.71
+    ],
+    "residual_px": 4.9,
+    "leave_one_out_px": 6.3
+   },
+   {
+    "id": "E-RD_slot_end",
+    "frame_px": [
+     40.6,
+     329
+    ],
+    "world_mm": [
+     303.89,
+     93.95
+    ],
+    "residual_px": 3.5,
+    "leave_one_out_px": 7.2
+   },
+   {
+    "id": "E-LD_slot_end",
+    "frame_px": [
+     513,
+     122
+    ],
+    "world_mm": [
+     386.14,
+     -100.36
+    ],
+    "residual_px": 2.2,
+    "leave_one_out_px": 6.7
+   }
+  ],
+  "pinhole_estimate": {
+   "f_px": 1997.0,
+   "camera_centre_mm": [
+    186.1,
+    57.7,
+    771.8
+   ],
+   "note": "principal point at the image centre and square pixels assumed; weakly conditioned (near top-down view); used only for the puck parallax correction"
+  }
+ },
+ "puck_take1": [
+  {
+   "frame": 96,
+   "t_s": 3.2,
+   "blob_px": [
+    290.6,
+    650.8
+   ],
+   "blob_size_px": [
+    59,
+    61
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.99,
+    -4.18
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 97,
+   "t_s": 3.2333,
+   "blob_px": [
+    290.9,
+    651.3
+   ],
+   "blob_size_px": [
+    59,
+    62
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.77,
+    -4.27
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 98,
+   "t_s": 3.2667,
+   "blob_px": [
+    291.0,
+    651.4
+   ],
+   "blob_size_px": [
+    60,
+    62
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.73,
+    -4.34
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 99,
+   "t_s": 3.3,
+   "blob_px": [
+    290.9,
+    652.0
+   ],
+   "blob_size_px": [
+    60,
+    62
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.53,
+    -4.27
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 100,
+   "t_s": 3.3333,
+   "blob_px": [
+    291.0,
+    652.3
+   ],
+   "blob_size_px": [
+    60,
+    62
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.41,
+    -4.3
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 101,
+   "t_s": 3.3667,
+   "blob_px": [
+    291.1,
+    652.4
+   ],
+   "blob_size_px": [
+    60,
+    62
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.35,
+    -4.34
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 102,
+   "t_s": 3.4,
+   "blob_px": [
+    291.2,
+    652.8
+   ],
+   "blob_size_px": [
+    60,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.21,
+    -4.38
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 103,
+   "t_s": 3.4333,
+   "blob_px": [
+    291.3,
+    652.8
+   ],
+   "blob_size_px": [
+    61,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.19,
+    -4.44
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 104,
+   "t_s": 3.4667,
+   "blob_px": [
+    291.4,
+    653.6
+   ],
+   "blob_size_px": [
+    60,
+    64
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.88,
+    -4.45
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 105,
+   "t_s": 3.5,
+   "blob_px": [
+    291.4,
+    653.3
+   ],
+   "blob_size_px": [
+    60,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.01,
+    -4.46
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 106,
+   "t_s": 3.5333,
+   "blob_px": [
+    291.7,
+    653.1
+   ],
+   "blob_size_px": [
+    61,
+    64
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.09,
+    -4.59
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 107,
+   "t_s": 3.5667,
+   "blob_px": [
+    291.9,
+    653.2
+   ],
+   "blob_size_px": [
+    60,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    173.05,
+    -4.65
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 108,
+   "t_s": 3.6,
+   "blob_px": [
+    292.1,
+    653.4
+   ],
+   "blob_size_px": [
+    60,
+    65
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.96,
+    -4.75
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 109,
+   "t_s": 3.6333,
+   "blob_px": [
+    292.2,
+    653.5
+   ],
+   "blob_size_px": [
+    60,
+    65
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.94,
+    -4.76
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 110,
+   "t_s": 3.6667,
+   "blob_px": [
+    292.3,
+    653.5
+   ],
+   "blob_size_px": [
+    61,
+    64
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.91,
+    -4.8
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 111,
+   "t_s": 3.7,
+   "blob_px": [
+    292.2,
+    654.0
+   ],
+   "blob_size_px": [
+    61,
+    65
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.74,
+    -4.78
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 112,
+   "t_s": 3.7333,
+   "blob_px": [
+    292.2,
+    654.2
+   ],
+   "blob_size_px": [
+    61,
+    65
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.66,
+    -4.77
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 113,
+   "t_s": 3.7667,
+   "blob_px": [
+    292.2,
+    654.4
+   ],
+   "blob_size_px": [
+    60,
+    65
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.57,
+    -4.75
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 114,
+   "t_s": 3.8,
+   "blob_px": [
+    292.4,
+    654.7
+   ],
+   "blob_size_px": [
+    61,
+    66
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.44,
+    -4.82
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 115,
+   "t_s": 3.8333,
+   "blob_px": [
+    292.4,
+    654.8
+   ],
+   "blob_size_px": [
+    61,
+    66
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.41,
+    -4.83
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 116,
+   "t_s": 3.8667,
+   "blob_px": [
+    292.3,
+    655.1
+   ],
+   "blob_size_px": [
+    61,
+    65
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.29,
+    -4.82
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 117,
+   "t_s": 3.9,
+   "blob_px": [
+    292.5,
+    655.5
+   ],
+   "blob_size_px": [
+    61,
+    66
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.14,
+    -4.86
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 118,
+   "t_s": 3.9333,
+   "blob_px": [
+    292.4,
+    655.6
+   ],
+   "blob_size_px": [
+    61,
+    66
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    172.08,
+    -4.84
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 119,
+   "t_s": 3.9667,
+   "blob_px": [
+    292.4,
+    655.9
+   ],
+   "blob_size_px": [
+    61,
+    66
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    171.99,
+    -4.84
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 120,
+   "t_s": 4.0,
+   "blob_px": [
+    292.4,
+    656.0
+   ],
+   "blob_size_px": [
+    61,
+    65
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    171.93,
+    -4.82
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 121,
+   "t_s": 4.0333,
+   "blob_px": [
+    292.3,
+    656.2
+   ],
+   "blob_size_px": [
+    61,
+    65
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    171.86,
+    -4.79
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 122,
+   "t_s": 4.0667,
+   "blob_px": [
+    292.0,
+    656.9
+   ],
+   "blob_size_px": [
+    62,
+    66
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    171.6,
+    -4.67
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 123,
+   "t_s": 4.1,
+   "blob_px": [
+    292.0,
+    657.1
+   ],
+   "blob_size_px": [
+    62,
+    67
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    171.5,
+    -4.66
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 124,
+   "t_s": 4.1333,
+   "blob_px": [
+    291.5,
+    657.0
+   ],
+   "blob_size_px": [
+    63,
+    66
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    171.57,
+    -4.47
+   ],
+   "parallax_range_mm": 0.5,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 125,
+   "t_s": 4.1667,
+   "blob_px": [
+    270.0,
+    646.6
+   ],
+   "blob_size_px": [
+    64,
+    64
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    175.76,
+    3.69
+   ],
+   "parallax_range_mm": 0.43,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 126,
+   "t_s": 4.2,
+   "blob_px": [
+    250.3,
+    638.4
+   ],
+   "blob_size_px": [
+    65,
+    64
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    179.11,
+    11.18
+   ],
+   "parallax_range_mm": 0.37,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 127,
+   "t_s": 4.2333,
+   "blob_px": [
+    232.3,
+    630.9
+   ],
+   "blob_size_px": [
+    62,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    182.15,
+    18.01
+   ],
+   "parallax_range_mm": 0.31,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 128,
+   "t_s": 4.2667,
+   "blob_px": [
+    216.5,
+    624.2
+   ],
+   "blob_size_px": [
+    62,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    184.85,
+    24.03
+   ],
+   "parallax_range_mm": 0.27,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 129,
+   "t_s": 4.3,
+   "blob_px": [
+    203.0,
+    618.3
+   ],
+   "blob_size_px": [
+    64,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    187.22,
+    29.13
+   ],
+   "parallax_range_mm": 0.23,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 130,
+   "t_s": 4.3333,
+   "blob_px": [
+    192.2,
+    613.9
+   ],
+   "blob_size_px": [
+    65,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    189.03,
+    33.21
+   ],
+   "parallax_range_mm": 0.19,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 131,
+   "t_s": 4.3667,
+   "blob_px": [
+    185.2,
+    610.6
+   ],
+   "blob_size_px": [
+    67,
+    63
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    190.34,
+    35.87
+   ],
+   "parallax_range_mm": 0.17,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 132,
+   "t_s": 4.4,
+   "blob_px": [
+    179.4,
+    483.3
+   ],
+   "blob_size_px": [
+    61,
+    53
+   ],
+   "motion_blurred": false,
+   "world_mm": [
+    240.12,
+    37.44
+   ],
+   "parallax_range_mm": 0.45,
+   "reading_uncertainty_mm": 2.5
+  },
+  {
+   "frame": 133,
+   "t_s": 4.4333,
+   "blob_px": [
+    180.8,
+    349.2
+   ],
+   "blob_size_px": [
+    63,
+    45
+   ],
+   "motion_blurred": true,
+   "world_mm": [
+    292.9,
+    36.19
+   ],
+   "parallax_range_mm": 0.86,
+   "reading_uncertainty_mm": 6.0
+  }
+ ],
+ "w_c_blade_poses": [
+  {
+   "frame": 100,
+   "t_s": 3.3333,
+   "toe_px": [
+    407,
+    713
+   ],
+   "toe_world_mm": [
+    148.4,
+    -52.1
+   ],
+   "solutions": [
+    {
+     "arc_mm": 194.5,
+     "heading_deg": 199.9
+    },
+    {
+     "arc_mm": 209.4,
+     "heading_deg": 180.2
+    }
+   ],
+   "visual_heading_deg": 186,
+   "chosen": {
+    "arc_mm": 209.4,
+    "heading_deg": 180.2,
+    "heading_minus_visual_deg": -5.8
+   }
+  },
+  {
+   "frame": 121,
+   "t_s": 4.0333,
+   "toe_px": [
+    410,
+    711
+   ],
+   "toe_world_mm": [
+    149.2,
+    -53.4
+   ],
+   "solutions": [],
+   "visual_heading_deg": null
+  },
+  {
+   "frame": 122,
+   "t_s": 4.0667,
+   "toe_px": [
+    409,
+    705
+   ],
+   "toe_world_mm": [
+    151.5,
+    -53.0
+   ],
+   "solutions": [],
+   "visual_heading_deg": 191
+  },
+  {
+   "frame": 124,
+   "t_s": 4.1333,
+   "toe_px": [
+    348,
+    615
+   ],
+   "toe_world_mm": [
+    187.6,
+    -28.8
+   ],
+   "solutions": [
+    {
+     "arc_mm": 207.6,
+     "heading_deg": 245.9
+    }
+   ],
+   "visual_heading_deg": 235,
+   "chosen": {
+    "arc_mm": 207.6,
+    "heading_deg": 245.9,
+    "heading_minus_visual_deg": 10.9
+   }
+  },
+  {
+   "frame": 125,
+   "t_s": 4.1667,
+   "toe_px": [
+    322,
+    607
+   ],
+   "toe_world_mm": [
+    191.0,
+    -18.2
+   ],
+   "solutions": [
+    {
+     "arc_mm": 207.1,
+     "heading_deg": 260.8
+    }
+   ],
+   "visual_heading_deg": 263,
+   "chosen": {
+    "arc_mm": 207.1,
+    "heading_deg": 260.8,
+    "heading_minus_visual_deg": -2.2
+   }
+  },
+  {
+   "frame": 126,
+   "t_s": 4.2,
+   "toe_px": [
+    296,
+    603
+   ],
+   "toe_world_mm": [
+    192.7,
+    -7.7
+   ],
+   "solutions": [
+    {
+     "arc_mm": 207.9,
+     "heading_deg": 274.7
+    }
+   ],
+   "visual_heading_deg": 273,
+   "chosen": {
+    "arc_mm": 207.9,
+    "heading_deg": 274.7,
+    "heading_minus_visual_deg": 1.7
+   }
+  },
+  {
+   "frame": 127,
+   "t_s": 4.2333,
+   "toe_px": [
+    271,
+    608
+   ],
+   "toe_world_mm": [
+    190.9,
+    2.5
+   ],
+   "solutions": [
+    {
+     "arc_mm": 207.6,
+     "heading_deg": 288.3
+    }
+   ],
+   "visual_heading_deg": 292,
+   "chosen": {
+    "arc_mm": 207.6,
+    "heading_deg": 288.3,
+    "heading_minus_visual_deg": -3.7
+   }
+  },
+  {
+   "frame": 128,
+   "t_s": 4.2667,
+   "toe_px": [
+    263,
+    610
+   ],
+   "toe_world_mm": [
+    190.1,
+    5.8
+   ],
+   "solutions": [
+    {
+     "arc_mm": 207.9,
+     "heading_deg": 292.8
+    }
+   ],
+   "visual_heading_deg": 294,
+   "chosen": {
+    "arc_mm": 207.9,
+    "heading_deg": 292.8,
+    "heading_minus_visual_deg": -1.2
+   }
+  },
+  {
+   "frame": 133,
+   "t_s": 4.4333,
+   "toe_px": [
+    242,
+    552
+   ],
+   "toe_world_mm": [
+    213.2,
+    14.0
+   ],
+   "solutions": [
+    {
+     "arc_mm": 233.3,
+     "heading_deg": 300.1
+    }
+   ],
+   "visual_heading_deg": 306,
+   "chosen": {
+    "arc_mm": 233.3,
+    "heading_deg": 300.1,
+    "heading_minus_visual_deg": -5.9
+   }
+  },
+  {
+   "frame": 134,
+   "t_s": 4.4667,
+   "toe_px": [
+    263,
+    543
+   ],
+   "toe_world_mm": [
+    216.7,
+    5.4
+   ],
+   "solutions": [
+    {
+     "arc_mm": 233.5,
+     "heading_deg": 287.9
+    }
+   ],
+   "visual_heading_deg": 295,
+   "chosen": {
+    "arc_mm": 233.5,
+    "heading_deg": 287.9,
+    "heading_minus_visual_deg": -7.1
+   }
+  },
+  {
+   "frame": 136,
+   "t_s": 4.5333,
+   "toe_px": [
+    327,
+    540
+   ],
+   "toe_world_mm": [
+    217.5,
+    -20.7
+   ],
+   "solutions": [
+    {
+     "arc_mm": 235.7,
+     "heading_deg": 252.6
+    }
+   ],
+   "visual_heading_deg": null
+  },
+  {
+   "frame": 140,
+   "t_s": 4.6667,
+   "toe_px": [
+    305,
+    542
+   ],
+   "toe_world_mm": [
+    216.9,
+    -11.7
+   ],
+   "solutions": [
+    {
+     "arc_mm": 232.6,
+     "heading_deg": 265.4
+    }
+   ],
+   "visual_heading_deg": 267,
+   "chosen": {
+    "arc_mm": 232.6,
+    "heading_deg": 265.4,
+    "heading_minus_visual_deg": -1.6
+   }
+  }
+ ],
+ "e_g_blade_pose": {
+  "frame": 100,
+  "heel_world_mm": [
+   246.5,
+   1.2
+  ],
+  "toe_world_mm": [
+   240.6,
+   -23.6
+  ],
+  "blade_length_mm": 25.5,
+  "model_blade_length_mm": 26.0,
+  "heading_deg": 166.8,
+  "pivot_mm": [
+   257.1,
+   7.4
+  ],
+  "nearest_arc_mm": 25.4,
+  "pivot_to_slot_mm": 5.5
+ },
+ "qualitative_evidence": [
+  {
+   "frames": [
+    26,
+    45
+   ],
+   "view": "intro close-up from behind the centre (not calibrated)",
+   "reading": "W-C faces the camera with the puck hidden behind it (goal side); it turns, the puck appears at its +y side (33-36), then the puck leaves forward and enters the +y side of the net (37-38) while W-C faces the goal with the number 26 on its back."
+  },
+  {
+   "frames": [
+    700,
+    880
+   ],
+   "view": "slow manual demonstration, same camera as take 1",
+   "reading": "the puck at W-C's +y side; the presenter turns the figure clockwise (stick up 796, right 808-826, down 844-856, down-left 862-880) until the blade lies behind the puck (its -x side): the clockwise spin that brings the blade behind the puck before the shot."
+  },
+  {
+   "frames": [
+    894,
+    948
+   ],
+   "view": "full-speed repetition from a wider top-down camera (not calibrated)",
+   "reading": "same sequence: puck behind the back, turn, puck to the +y side, spin, puck into the +y side of the net (933-936)."
+  },
+  {
+   "frames": [
+    236,
+    580
+   ],
+   "view": "presenter explaining with a hand (same camera as take 1)",
+   "reading": "points at the puck on the slot line behind the centre and at the stick; turns the figure through several positions. The spoken explanation (audio) was not transcribed: speech recognition is not available in this environment."
+  }
+ ],
+ "interpretation": [
+  "rest (frames 66-121): W-C faces away from goal.E (heading about 190 deg), the puck lies behind its back on the slot line, near the slot end.",
+  "turn and sweep (122-128): W-C turns counter-clockwise (seen from above) to about 296 deg; the blade comes round to the puck's -y side and pushes it toward +y (blade speed matches the puck speed, about 8 mm per frame).",
+  "free slide (128-131): the puck slides on in a straight line, decelerating evenly (ice friction).",
+  "spin and shot (129-132, motion-blurred): W-C spins clockwise almost a full turn while sliding up its slot about 25 mm; the blade arrives behind the puck (its -x side) and drives it along +x (puck about 55 mm per frame).",
+  "goal (133): the puck crosses the goal line inside the +y post; W-C follows through to about 300 deg and turns back (134-140)."
+ ]
+}

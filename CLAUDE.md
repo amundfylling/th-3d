@@ -18,6 +18,9 @@ key contact, oblique benchmark camera. Iteration 25 is done (docs/shot25.md): th
 (validation/25-shovel-17-final.mp4, 1920x1080 60 fps; rerender with `npm run video:shovel-17`). No further
 numbered iteration is defined. A sports-analysis video of the same trace (composition `analysis-shovel-17`,
 validation/analysis-shovel-17.mp4, `npm run video:analysis-shovel-17`) is documented in docs/analysis-shovel-17.md.
+The spjass centre move (user's TikTok, references/shots/spjass-tiktok.mp4) is reconstructed as a PROPOSED trace
+(data/traces/spjass.trace.json) and animated (composition `analysis-spjass`, validation/analysis-spjass.mp4); see docs/spjass.md.
+Both analysis videos share remotion/AnalysisVideo.tsx.
 
 ## Key files
 

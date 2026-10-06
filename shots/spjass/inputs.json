@@ -1,0 +1,88 @@
+{
+ "description": "Reconstruction choices for trace.spjass.v1 (scripts/spjass-trace.py). Observations: shots/spjass/observations.json. Every value here is either read from the TikTok (cited frame) or an assumption that is named as such.",
+ "status": "proposed",
+ "window_s": [
+  3.5,
+  5.0
+ ],
+ "rest": {
+  "puck_frames": [
+   118,
+   124
+  ],
+  "theta_deg": 180.2,
+  "arc_mm_reading": 207.6,
+  "note": "W-C faces away from goal.E with the puck behind its heel. Heading from the frame-100 blade pose; slot position: mean of the blade poses 124-128 (207.1-207.9 mm; frame 100: 209.4 mm). The script backs the figure off along its slot until the resting puck just touches the heel (the read pose overlaps the model puck by about 2 mm).",
+  "gap_mm": 0.1
+ },
+ "slide_fit_frames": [
+  125,
+  131
+ ],
+ "turn": {
+  "start_frame": 121.5,
+  "keyframes": {
+   "122.5": 196.0,
+   "123.3": 222.0,
+   "124": 245.9,
+   "125": 260.8,
+   "126": 274.7,
+   "127": 288.3,
+   "128": 292.8
+  },
+  "assumed": [
+   "122.5",
+   "123.3"
+  ],
+  "note": "Counter-clockwise turn (seen from above). Frames 124-128: blade poses from the toe marks. 121-123 are blurred or the toe is out of reach of the slot solution: the onset and the two intermediate keyframes are assumed (fast start, as the motion blur of 123 shows).",
+  "arc_mm": 207.6
+ },
+ "spin": {
+  "start_frame": 128,
+  "end_frame": 133,
+  "lunge_start_frame": 129,
+  "lunge_arc_frames": [
+   133,
+   134,
+   140
+  ],
+  "after_frames": [
+   134,
+   140
+  ],
+  "note": "Clockwise spin of about 350 deg from the frame-128 pose to the frame-133 pose (unwrapped) while W-C slides about 25 mm up its slot. Frames 129-132 are motion-blurred: the direction (clockwise) is seen in the slow demonstration (frames 790-880) and in the follow-through (133-140). The heading follows a monotone cubic through the frame-128 pose, the touching pose at the strike (shot) and the frame-133 pose; the lunge timing (lunge_extra_keyframes) is ASSUMED: nearly complete at the strike, as the frame-133 arc requires.",
+  "lunge_extra_keyframes": [
+   [
+    130.5,
+    229.0
+   ],
+   [
+    131.4,
+    232.5
+   ]
+  ],
+  "touch_scan_from_deg": 40.0
+ },
+ "limitations": [
+  "Recorded on another STIGA table (Byggmax/gyproc artwork): positions assume the canonical Play Off 21 slot layout (camera fit RMS 4 px, leave-one-out 8 px, about 1.5-3 mm).",
+  "The spoken explanation in the TikTok was not transcribed (no speech recognition available); the move is read from the pictures only.",
+  "The spin (frames 129-132) is motion-blurred: its clockwise direction is observed (slow demonstration, follow-through), its timing profile is assumed.",
+  "Shot direction: the observed shot (blurred frames 132-133) crosses the goal line at y = 36 mm, which would overlap the +y post of the preview goal (mouth width is a preview value). The reconstructed forehand contact sends the puck between the observed goalie pose and the post; the difference to the observed line is reported in checks.observations_vs_trace_mm.",
+  "Ice friction is a constant deceleration fitted to the observed slide; it is a reconstruction rule, not a measured coefficient.",
+  "E-G stands at its observed blade pose (frame 100) moved onto its slot; the other figures not in the trace stand in the static assembly pose (they do not appear in take 1 near the puck).",
+  "Blade, skate and stick geometry are the AI-modelled mold at the assumed preview scale; puck thickness and goal size are preview values; fixture axis assumed on the slot centreline."
+ ],
+ "alignment": {
+  "puck_y_offset_mm": 0.0,
+  "note": "puck observations relative to the canonical slot layout; 0 = as calibrated"
+ },
+ "shot": {
+  "frames": [
+   132,
+   133
+  ],
+  "direction": "window_centre",
+  "min_clearance_mm": 0.2,
+  "note": "Strike where the backward-extended observed shot line (blurred frames 132-133, 52.8 mm per frame) meets the observed slide; the puck leaves at the observed speed. Direction: ASSUMED - the centre of the window of straight paths that clear the observed goalie pose and both posts of the preview goal (the observed blurred line, -1.3 deg, would enter 7.7 mm from the +y post centre and overlap it). W-C's heading at the strike: the model blade's front face touches the puck."
+ }
+}

@@ -14,11 +14,43 @@ export interface Window {
 
 export interface GraphicSpec extends Window {
   id: string;
-  type: "title_card" | "end_card" | "highlight" | "pass_arrow" | "contact_marker" | "slot_arrow" | "puck_trail" | "goal_banner";
-  /** figure id for highlights / slot arrows */
+  type:
+    | "title_card"
+    | "end_card"
+    | "highlight"
+    | "pass_arrow"
+    | "puck_arrow"
+    | "contact_marker"
+    | "puck_marker"
+    | "slot_arrow"
+    | "rotation_arrow"
+    | "puck_trail"
+    | "goal_banner";
+  /** figure id for highlights / slot and rotation arrows / contact markers */
   target?: string;
   label?: string;
   accent?: "amber" | "cyan";
+  /** trace event the graphic is anchored to (the pose or puck at that source time) */
+  event?: string;
+  /** arrows: start offset, length and sideways offset on the ice (mm) */
+  start_mm?: number;
+  length_mm?: number;
+  ahead_mm?: number;
+  offset_mm?: number;
+  /** rotation arrow: direction seen from above, arc radius (mm), start angle relative to the figure heading and sweep (deg) */
+  direction?: "cw" | "ccw";
+  radius_mm?: number;
+  start_deg?: number;
+  sweep_deg?: number;
+  /** contact marker: point in the figure frame (mm); default: the event's contact_point_local_mm */
+  local_mm?: [number, number];
+  /** label placement: world offset of a puck-arrow label (mm), screen offset of a marker label (px) */
+  label_offset_mm?: [number, number];
+  /** puck arrow: distance of its label along the arrow (mm) */
+  label_at_mm?: number;
+  label_offset_px?: [number, number];
+  /** puck trail: samples are not drawn earlier than this many seconds before the event */
+  back_s?: number;
 }
 
 export interface ChapterSpec extends Window {

@@ -623,6 +623,20 @@
         "Different STIGA table edition and figure pack than the user's (sponsor artwork, numbers).",
         "Heavy motion blur at the contacts; the source camera's capture rate is unknown."
       ]
+    },
+    {
+      "id": "user_shot_video_spjass_tiktok",
+      "title": "TikTok video (@tablehockeyglobal) showing how to do the centre move 'spjass': overhead demonstrations, slow manual demonstration, presenter explanation",
+      "provenance": "user_upload",
+      "local_path": "references/shots/spjass-tiktok.mp4",
+      "sha256": "bf0da0e1292e47fbad0ceb06334b2991d5d1347048965faf00780203715aebcc",
+      "bytes": 2463643,
+      "format": "mp4 (H.264 576 x 1024, 30 fps, 1069 frames, 35.6 s; AAC audio)",
+      "native_width_px": 576,
+      "native_height_px": 1024,
+      "uploaded": "chat attachment, 2026-10-06",
+      "view": "Portrait TikTok. Frames 0-62: low close-up from behind W-C; 66-145 (take 1): fixed top-down camera over goal.E (unmirrored: ice text rotated 180 deg), calibrated in shots/spjass/observations.json; 146-235: presenter; 236-580: hand explanation; 700-880: slow manual demonstration; 894-948: wider top-down repetition; 949-1068: TikTok end card.",
+      "notes": "Another STIGA table edition (Byggmax/gyproc artwork), white Finland centre no. 26 against a yellow Sweden goalie. The spoken explanation was not transcribed (no speech recognition available)."
     }
   ],
   "not_obtained": [

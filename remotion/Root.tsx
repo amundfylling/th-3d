@@ -3,6 +3,7 @@ import { framesForWindow } from "../src/model/shot-pose.ts";
 import { SHOT_TRACE, ShotPlayback } from "./ShotPlayback.tsx";
 import { ShotPresentation, TIMELINE, timelineFor } from "./ShotPresentation.tsx";
 import { ANALYSIS, ShotAnalysis } from "./ShotAnalysis.tsx";
+import { SPJASS_ANALYSIS, SpjassAnalysis } from "./SpjassAnalysis.tsx";
 
 // Iteration 25: final export settings (presentation choice, not geometry precision): 1920 x 1080 at 60 fps.
 export const FINAL_FPS = 60;
@@ -38,6 +39,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="shot25-shovel-17-final" component={ShotPresentation} durationInFrames={timelineFor(FINAL_FPS).durationInFrames} fps={FINAL_FPS} width={1920} height={1080} defaultProps={{ overlays: true }} />
     {/* Sports-analysis video (VAR-style breakdown) of the accepted shot: data/presentations/shovel-17.analysis.json. */}
     <Composition id="analysis-shovel-17" component={ShotAnalysis} durationInFrames={ANALYSIS.durationInFrames} fps={ANALYSIS.spec.fps} width={ANALYSIS.spec.width} height={ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
+    <Composition id="analysis-spjass" component={SpjassAnalysis} durationInFrames={SPJASS_ANALYSIS.durationInFrames} fps={SPJASS_ANALYSIS.spec.fps} width={SPJASS_ANALYSIS.spec.width} height={SPJASS_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     <Composition id="static-checks" component={StaticInspection} durationInFrames={30} fps={30} width={1920} height={1080} defaultProps={{ camera: "oblique", showChecks: true }} />
   </>
 );

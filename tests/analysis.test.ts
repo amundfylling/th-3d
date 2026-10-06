@@ -8,6 +8,7 @@ import { shotTimeEvaluator } from "../src/model/shot-pose.ts";
 
 const read = (p: string): string => readFileSync(p, "utf8");
 const sha = (p: string): string => createHash("sha256").update(readFileSync(p)).digest("hex");
+const compositionSha = (files: string[]): string => createHash("sha256").update(files.map((f) => `${f}:${sha(f)}`).join("\n")).digest("hex");
 const trace = JSON.parse(read("data/traces/shovel-17.trace.json"));
 const geometry = JSON.parse(read("data/geometry.json"));
 const spec = JSON.parse(read("data/presentations/shovel-17.analysis.json")) as AnalysisSpec;
@@ -133,10 +134,10 @@ test("analysis: graphics and captions resolve, anchor to real figures and stay w
 });
 
 test("analysis: the composition uses only the pure evaluators and keeps the diagnostic compositions", () => {
-  const src = read("remotion/ShotAnalysis.tsx");
-  assert.doesNotMatch(src, /useFrame\s*\(|Date\.now|performance\.now|Math\.random|requestAnimationFrame/);
+  const src = read("remotion/AnalysisVideo.tsx"), shovel = read("remotion/ShotAnalysis.tsx");
+  for (const s of [src, shovel]) assert.doesNotMatch(s, /useFrame\s*\(|Date\.now|performance\.now|Math\.random|requestAnimationFrame/);
   assert.match(src, /shotTimeEvaluator/);
-  assert.match(src, /assertShotRenderable/);
+  assert.match(shovel, /gate: assertShotRenderable/);
   // the canvas camera must be one object for the life of the tab: a new camera per frame grew the renderer's memory
   // by about 140 MB per 1080p frame until the container killed ffmpeg (first full render, frame 94)
   assert.doesNotMatch(src, /camera=\{[^}]*new THREE\./);
@@ -152,7 +153,8 @@ test("analysis: export report matches the committed inputs and the delivered vid
   const r = JSON.parse(read(p));
   assert.equal(r.trace.sha256, sha("data/traces/shovel-17.trace.json"), "trace changed since the export: re-render");
   assert.equal(r.analysis_spec.sha256, sha("data/presentations/shovel-17.analysis.json"), "analysis spec changed since the export: re-render");
-  assert.equal(r.analysis_spec.composition_sha256, sha("remotion/ShotAnalysis.tsx"), "composition changed since the export: re-render");
+  assert.equal(r.analysis_spec.composition_sha256, compositionSha(r.analysis_spec.composition_files), "composition changed since the export: re-render");
+  if (r.composition_refactor) assert.match(r.composition_refactor.verification, /identical/);
   assert.equal(r.model.scene_glb_sha256, JSON.parse(read("remotion/asset-manifest.json")).scene_glb.sha256);
   assert.equal(r.output.width, 1920);
   assert.equal(r.output.height, 1080);
