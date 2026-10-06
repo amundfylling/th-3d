@@ -705,6 +705,20 @@
       "format": "html",
       "url": "https://www.puck.no/en/combinations/invers-kryssar/",
       "text": "Pass from right wing to left wing, who shoots into the left corner"
+    },
+    {
+      "id": "user_shot_video_lw_board_pass_example",
+      "title": "Screen recording (user upload): a left wing pushes the puck along its curved slot into the corner and sends it along the boards behind the goal to the right wing. PHYSICS EXAMPLE ONLY - a different combination",
+      "provenance": "user_upload",
+      "local_path": "references/shots/lw-board-pass-example.mov",
+      "sha256": "ab5dd38a4f41e6dd1245c93cec7665959ed5151e3c45e48345faa60f7c7dbb12",
+      "bytes": 6968468,
+      "format": "mov (HEVC 1180 x 1182, 60.4 fps nominal, 190 frames; the content repeats every 2-3 frames: a screen recording of a lower-rate video)",
+      "native_width_px": 1180,
+      "native_height_px": 1182,
+      "uploaded": "chat attachment ScreenRecording_10-06-2026_13-47-44_1.mov, 2026-10-06",
+      "view": "Frames 0-34: presenter; 35-42: crossfade; 42-118: fixed top-down camera over one end (goal at the right, end board at the right edge, unmirrored board ads). Yellow left wing in the top-right corner carries the puck along its curved slot (frames 42-59); the puck runs down the end board behind the goal (60-72), round the bottom corner and left along the bottom board (75-118) to the yellow right wing, who passes it on (120-160).",
+      "notes": "The user's words: use it for the physics of the board pass (push, not flick), it is a different combination. Puck speeds read by Claude from dark-blob tracking with an UNCALIBRATED scale (about 2.4 px/mm from the board-to-board width): about 1.0 m/s along the end board just after the corner, 0.7 -> 0.5 m/s along the bottom board. Not a measurement of our table; used as a plausibility reference for docs/invers-kryssar-velodrom.md and the CLAUDE.md slide-or-bounce rule."
     }
   ],
   "not_obtained": [

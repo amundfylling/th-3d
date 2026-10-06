@@ -22,7 +22,7 @@ const video = createAnalysisVideo({
     subtitle: "Invers Kryssar med Velodrom · right wing · animated from the NTHF description",
     bug: "INVERS KRYSSAR MED VELODROM",
     endTitle: "INVERS KRYSSAR MED VELODROM",
-    endSteps: ["CROSS PASS TO THE LEFT WING", "ALONG THE BOARDS BEHIND THE GOAL", "FIRST-TIME SHOT"],
+    endSteps: ["CROSS PASS TO THE LEFT WING", "PUSHED ROUND BEHIND THE GOAL", "FIRST-TIME SHOT"],
   },
 });
 

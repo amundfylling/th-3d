@@ -23,7 +23,8 @@ The spjass centre move (user's TikTok, references/shots/spjass-tiktok.mp4) is re
 Näcka (NTHF page and illustration, references/combinations/; no recording) is a PROPOSED, DESIGNED trace
 (data/traces/nacka.trace.json) with video validation/analysis-nacka.mp4; see docs/nacka.md.
 Invers Kryssar med Velodrom (NTHF text only; the user approved the sketch validation/ikv-sketch.png) is a PROPOSED,
-DESIGNED trace (data/traces/invers-kryssar-velodrom.trace.json) with video validation/analysis-ikv.mp4; see
+DESIGNED trace (data/traces/invers-kryssar-velodrom.trace.json, v2: the left wing catches softly and pushes the puck
+into the corner, after the user rejected v1's flick) with video validation/analysis-ikv.mp4; see
 docs/invers-kryssar-velodrom.md.
 All analysis videos share remotion/AnalysisVideo.tsx.
 
@@ -78,6 +79,38 @@ All analysis videos share remotion/AnalysisVideo.tsx.
 - Exceptions only with the user's explicit approval, recorded as data (`shots/*/inputs.json`
   `approved_overlap_exceptions`: what, why, maximum depth, approver, removal condition) and reported in the checks.
   Never add one silently, and never widen one without asking.
+
+## Slide or bounce (user rule, 2026-10-06)
+
+The puck is a light, thin disk. It stays flat and SLIDES only when every contact changes its velocity gently. A hard
+hit makes it tip, jump or rebound, and traces do not model that. So a trace must not rely on a contact that would
+make the puck bounce.
+- **Slides:**
+  - **A push.** The blade or skate meets the puck at a low relative speed and then moves WITH it, building the speed
+    up over a sustained contact. The figure faces the push direction and travels along its slot and/or turns slowly.
+    This is how a pass along the boards is played: the wing skates forward with the puck on the front of the blade,
+    into the curve of the corner, and the puck runs on along the boards (example:
+    `references/shots/lw-board-pass-example.mov`, a different combination; the puck leaves the corner at about
+    1 m/s).
+  - **A soft reception.** The blade gives way (turns or moves with the incoming puck), so the puck is slowed, not
+    stopped dead or sent back.
+  - **Along the boards.** The puck meets the board at a glancing angle (it enters a curve nearly tangentially) and
+    then follows it.
+  - **A first-time play of a moving puck.** The blade first moves with the puck (it gives way: the figure slides
+    along its slot or turns away), then accelerates it in the new direction.
+- **Bounces (not allowed in a trace):**
+  - A flick or strike: a fast-sweeping blade hits the puck at a large relative speed, worst of all a puck that is
+    coming toward the blade (a first-time reversal or a sharp redirect).
+  - A puck driven steeply into the boards, a post or a figure at speed. It rebounds; it does not stick and slide.
+- **Checks** (every new or changed trace, reported in its checks file as `slide_check`):
+  - every figure contact: relative normal impact speed at most 500 mm/s;
+  - every board, post or cage contact: normal impact speed at most 300 mm/s;
+  - the goal net catching the puck is exempt.
+  - These limits are ASSUMED. They come from the user's judgement that the left-wing flick in the first IKV trace (v1),
+    with a 2.9 m/s impact, bounces, and from the example clip. Change them only with the user.
+  - Traces made before this rule (Shovel, spjass, Näcka) have not been rechecked against it.
+  - In the frictionless restitution-0.5 contact model, a push shows up as a run of many small touches. That is
+    expected; each touch must be within the limit.
 
 ## Evidence discipline
 

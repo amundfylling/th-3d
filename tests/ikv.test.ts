@@ -31,22 +31,43 @@ test("invers kryssar med velodrom: contact physics - no overlap, every motion ch
   assert.deepEqual(checks.unexpected_penetrations, []);
   assert.deepEqual(checks.approved_exceptions, []);
   assert.equal(checks.unexplained_count, 0);
-  // right wing passes, left wing sends it along the boards, the boards carry it, the right wing shoots, the net stops it
-  assert.deepEqual(checks.contact_sequence, ["W-RW:stick/blade", "W-LW:stick/blade", "boards", "W-RW:stick/blade", "goal_net"]);
+  // right wing pushes the pass, left wing catches it softly, it slides on the board, the left wing pushes it into the
+  // corner (pressed against the board), the boards carry it round, the right wing shoots, the net stops it
+  const seq = checks.contact_sequence.filter((c: string, i: number, a: string[]) => i === 0 || c !== a[i - 1]);
+  assert.deepEqual(seq, ["W-RW:stick/blade", "W-LW:stick/blade", "boards", "W-LW:stick/blade", "boards", "W-RW:stick/blade", "goal_net"]);
   // the velodrome really goes round behind the goal cage
   assert.ok(checks.velodrome.behind_goal_min_x_mm > 338 + 12.7, "behind the cage");
   const g = checks.goal_line;
   assert.ok(g.crossing_y_mm > g.inside_mouth_window_y_mm[0] && g.crossing_y_mm < g.inside_mouth_window_y_mm[1], "inside the posts");
 });
 
+test("invers kryssar med velodrom: slide or bounce (CLAUDE.md, user rule 2026-10-06) - no flick, glancing board contacts", () => {
+  const sc = checks.slide_check;
+  assert.equal(sc.figure_impact_max_mm_s, 500);
+  assert.equal(sc.wall_impact_max_mm_s, 300);
+  assert.ok(sc.passed);
+  assert.deepEqual(sc.figure_violations, []);
+  assert.deepEqual(sc.wall_violations, []);
+  for (const c of sc.per_contact) assert.ok(c.peak_impact_mm_s <= sc.figure_impact_max_mm_s, c.contact);
+  assert.ok(sc.peak_board_impact_mm_s <= sc.wall_impact_max_mm_s && sc.peak_post_impact_mm_s <= sc.wall_impact_max_mm_s);
+  // the left wing's pass is a sustained forward push (many small touches), not one strike
+  const push = sc.per_contact.find((c: { contact: string }) => c.contact === "lw_push");
+  assert.ok(push.touches > 50 && push.peak_impact_mm_s < 150 && push.t[1] - push.t[0] > 0.15);
+  const e = ev("contact.lw_push");
+  assert.ok(Math.abs((e.release_direction_deg as number) + 90) < 3, "released along the end board");
+  assert.ok((e.release_speed_mm_s as number) < 1600);
+  // the left wing faces the way it pushes: mid-curve its heading follows the slot (no automatic tangent rotation: designed)
+  assert.ok(Math.abs((ev("lw_push.corner").heading_deg as number) + 45) < 5);
+});
+
 test("invers kryssar med velodrom: the reading - cross pass to the left wing, shot by the right wing", () => {
   const e = traceEvaluator(trace as ShotTrace);
   const pAt = (t: number): [number, number] => { const s = e(t); return [s.puck.x_mm, s.puck.y_mm]; };
   // the cross pass goes from the right wing's side (-y) to the left wing's side (+y)
-  assert.ok(pAt(ev("pass.release").t_estimate)[1] < -100 && pAt(ev("contact.lw_pass").t_estimate)[1] > 100);
+  assert.ok(pAt(ev("pass.release").t_estimate)[1] < -100 && pAt(ev("contact.lw_catch").t_estimate)[1] > 100);
   // the shot is taken from the right wing's board side and enters the goal
   assert.ok(pAt(ev("contact.shot").t_estimate)[1] < -150);
-  const order = ["pass.release", "contact.lw_pass", "velodrome.start", "velodrome.end", "contact.shot", "goal_entry", "goal_net"].map((id) => ev(id).t_estimate);
+  const order = ["pass.start", "pass.release", "contact.lw_catch", "board.after_catch", "contact.lw_push", "lw_push.corner", "velodrome.start", "velodrome.end", "contact.shot", "goal_entry", "goal_net"].map((id) => ev(id).t_estimate);
   for (let i = 1; i < order.length; i++) assert.ok(order[i]! > order[i - 1]!);
   for (const s of trace.evaluation_samples) {
     const v = e(s.t);

@@ -1,16 +1,22 @@
 {
- "description": "Design choices for trace.invers-kryssar-velodrom.v1 (scripts/ikv-trace.py). The reading follows the sketch the user approved on 2026-10-06 (validation/ikv-sketch.png, sketch.json). No recording exists: the figure motions are designed; the puck follows from them through contacts, ice friction and the boards.",
+ "description": "Design choices for trace.invers-kryssar-velodrom.v2 (scripts/ikv-trace.py). The reading follows the sketch the user approved on 2026-10-06 (validation/ikv-sketch.png, sketch.json). v2 replaces the left wing's flick (rejected by the user: the puck would bounce) by a soft reception and a forward push into the corner, following the user's example clip (references/shots/lw-board-pass-example.mov, physics only). No recording of this combination exists: the figure motions are designed; the puck follows from them through contacts, ice friction and the boards.",
  "status": "proposed",
  "source_text": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who shoots directly into the goal",
  "approved_reading": "validation/ikv-sketch.png (user: 'The picture is correct', 2026-10-06)",
+ "user_feedback_v1": "2026-10-06: 'the way that the left wing shoots the puck, it would actually bounce ... It wouldn't slide in the way it does. So it has to ... not flick the puck, but ... move it standing forward, forward facing, and then pushing the puck towards the [curve] on the left side.'",
  "window_s": [
   0.0,
-  2.3
+  2.35
  ],
  "contact": {
   "restitution_figure": 0.5,
   "restitution_boards_posts": 0.0,
   "note": "ASSUMED: blade/skate-puck collisions keep half the approach speed (e = 0.5, frictionless); boards and posts are inelastic (the puck slides along them - the velodrome)."
+ },
+ "slide_rule": {
+  "figure_impact_max_mm_s": 500.0,
+  "wall_impact_max_mm_s": 300.0,
+  "status": "assumed (CLAUDE.md 'Slide or bounce', user rule 2026-10-06; the numbers are Claude's, to be reviewed with the user)"
  },
  "centre": {
   "arc_mm": 60.0,
@@ -18,46 +24,143 @@
   "note": "W-C is not part of the move; stands back on its slot, out of the cross-pass lane (as in the sketch)"
  },
  "right_wing": {
-  "arc_start_mm": 140.0,
-  "puck_rest_heading_deg": 53.0,
-  "arc_catch_mm": 35.0,
-  "slide": [
-   0.55,
-   1.05
+  "arc_keys": [
+   [
+    0.0,
+    140.0,
+    "start position"
+   ],
+   [
+    0.6,
+    140.0,
+    "start position"
+   ],
+   [
+    1.0,
+    140.0,
+    "start position"
+   ],
+   [
+    1.5,
+    140.0,
+    "starts down the slot"
+   ]
+  ],
+  "arc_moves": [
+   [
+    1.5,
+    1.825,
+    140.0,
+    0.0,
+    99.0,
+    -450.0,
+    "down the slot ahead of the arriving puck"
+   ],
+   [
+    1.825,
+    1.945,
+    99.0,
+    -450.0,
+    72.0,
+    0.0,
+    "giving way as the puck arrives, then stopping"
+   ]
   ],
   "theta_segments": [
    [
-    0.2,
-    0.06,
-    100.0,
-    30.0
+    0.15,
+    0.08,
+    72.0,
+    20.0
    ],
    [
-    0.5,
-    0.55,
-    30.0,
+    1.0,
+    0.4,
+    20.0,
     204.0
    ],
    [
-    1.55,
-    0.05,
+    1.825,
+    0.06,
     204.0,
-    262.0
+    275.0
    ]
   ],
-  "note": "forehand pass: clockwise sweep 100 -> 30 deg through the resting puck (pass along about 53 deg); then 105 mm DOWN the slot (to slot position 35 mm, near the centre line) while turning round counter-clockwise to 204 deg; first-time backhand shot: counter-clockwise sweep 204 -> 262 deg as the puck arrives along the board. The catch point is further back than in the sketch (slot 215 mm): see limitations."
+  "note": "Pass: the puck rests against the front of the blade; a clockwise turn 72 -> 20 deg pushes it across the ice (sustained contact, no strike). Then the right wing turns round (counter-clockwise to 204 deg) and, as the puck comes along the -y board, slides down his slot ahead of it at 450 mm/s, so it catches him up softly on the back of the blade; a counter-clockwise turn 204 -> 275 deg pushes it into the goal (first-time: it is never stopped)."
  },
  "left_wing": {
-  "arc_mm": 215.0,
-  "theta_segments": [
+  "arc_keys": [
    [
-    0.45,
-    0.04,
-    110.0,
-    195.0
+    0.0,
+    76.0,
+    "waits for the pass"
+   ],
+   [
+    0.43,
+    76.0,
+    "waits for the pass"
+   ],
+   [
+    0.53,
+    85.0,
+    "moves up with the pass"
+   ],
+   [
+    0.65,
+    106.0,
+    "moves up with the pass"
+   ],
+   [
+    0.73,
+    111.0,
+    "after the reception"
    ]
   ],
-  "note": "first-time pass along the boards: the left wing waits turned with the blade reaching back into the pass lane (110 deg) and sweeps counter-clockwise to 195 deg; the back of the blade drives the puck into the corner at about 4.3 m/s."
+  "arc_moves": [
+   [
+    0.73,
+    0.9,
+    111.0,
+    0.0,
+    191.5,
+    263.0,
+    "skates after the puck, meets it just faster than it slides"
+   ],
+   [
+    0.9,
+    1.24,
+    191.5,
+    263.0,
+    414.71,
+    1050.0,
+    "pushes it up the slot and through the curve"
+   ],
+   [
+    1.24,
+    1.34,
+    414.71,
+    1050.0,
+    467.21,
+    0.0,
+    "slows down behind the goal: the puck runs on"
+   ]
+  ],
+  "theta_segments": [
+   [
+    0.48,
+    0.2,
+    -90.0,
+    0.0
+   ],
+   [
+    0.75,
+    0.15,
+    0.0,
+    3.29
+   ]
+  ],
+  "follow_tangent_from_s": 0.68,
+  "note": "Reception: the left wing faces the pass (theta -90: front of the blade toward the right wing) and turns counter-clockwise to face forward (0) as the puck arrives, so the blade gives way; the puck runs on to the board at a glancing angle. Push: facing forward, he skates up his slot behind the puck and through the curve of the corner; from 0.68 s he turns the figure with the slot (the blade stays square to the curved board; 3.29 deg = the slot direction at the start of the follow, so the blade ends square to the end board). He slows down behind the goal and the puck runs on along the end board (the velodrome)."
  },
  "goalie": {
   "y_mm": 20.0,
@@ -65,9 +168,11 @@
   "note": "ASSUMED: E-G has followed the cross pass to the left wing and still covers the left post (+y), 9.5 mm from the assembly pose (as in Näcka); with the assembly pose the gap for the shot is 2 deg."
  },
  "limitations": [
-  "No recording exists: all figure motions are DESIGNED to follow the reading the user approved (sketch); the puck follows from them through contacts, ice friction and the boards.",
-  "CATCH POINT MOVED: in the sketch the right wing receives about 18 cm from the goal line. The velodrome brings the puck pressed against the board, 37 mm from the right wing's slot, so only the board-side face of his blade can reach it and the shot can leave at most about 30-35 deg from the board. That reaches the goal mouth only from further back: the right wing receives near the centre line (slot position 35 mm) and the first-time shot is a long diagonal one.",
-  "Goalie pose assumed: E-G covers the left post (y = +20 mm, drawn there by the cross pass to the left wing). With the assembly pose the shot still goes in, but only after touching the goalie's stick and the post.",
+  "No recording of this combination exists: all figure motions are DESIGNED to follow the reading the user approved (sketch); the puck follows from them through contacts, ice friction and the boards.",
+  "Left-wing pass (v2): soft reception, then a forward push into the corner, from the user's physics example (references/shots/lw-board-pass-example.mov, a different combination). The example's speeds were read with an uncalibrated scale (about 1 m/s along the end board); the trace releases at about 1.3 m/s because the preview ice friction (spjass fit, 926 mm/s^2) is higher than the example suggests.",
+  "Slide-or-bounce limits (500 mm/s figure impacts, 300 mm/s board/post impacts) are assumed by Claude from the user's rule; the frictionless e = 0.5 contact makes the push a series of small touches (each below 100 mm/s after the first).",
+  "CATCH POINT MOVED: in the sketch the right wing receives about 18 cm from the goal line. Along the board the puck is 37 mm from his slot, so only the board-side face of his blade can reach it and the shot can leave at most about 35-40 deg from the board; he receives it about 26 cm from the goal line.",
+  "Goalie pose assumed: E-G covers the left post (y = +20 mm, drawn there by the cross pass to the left wing).",
   "Collision rule ASSUMED: blade/skate-puck restitution 0.5, frictionless; boards, posts and cage inelastic. Ice friction from the spjass slide fit.",
   "Blade, skate and stick geometry are the AI-modelled mold at the assumed preview scale; puck thickness and goal size are preview values; the cage is modelled as its footprint (side and back nets)."
  ]

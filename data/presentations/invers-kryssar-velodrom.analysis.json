@@ -1,8 +1,8 @@
 {
  "schema": "shot-analysis/1",
- "analysis_id": "analysis.invers-kryssar-velodrom.v1",
- "trace_id": "trace.invers-kryssar-velodrom.v1",
- "note": "Sports-analysis presentation of the designed Invers Kryssar med Velodrom trace (data/traces/invers-kryssar-velodrom.trace.json; NTHF description, reading approved by the user as a sketch). Shot timing, camera and graphics are separate tracks; the motion comes only from the trace.",
+ "analysis_id": "analysis.invers-kryssar-velodrom.v2",
+ "trace_id": "trace.invers-kryssar-velodrom.v2",
+ "note": "Sports-analysis presentation of the designed Invers Kryssar med Velodrom trace v2 (data/traces/invers-kryssar-velodrom.trace.json; NTHF description, reading approved by the user as a sketch; the left wing's pass is a soft catch and a forward push, after the user's feedback on v1). Shot timing, camera and graphics are separate tracks; the motion comes only from the trace.",
  "fps": 30,
  "width": 1920,
  "height": 1080,
@@ -11,42 +11,42 @@
    "id": "intro",
    "kind": "hold",
    "at": 0.1,
-   "frames": 45
+   "frames": 40
   },
   {
    "id": "full",
    "kind": "play",
    "from": 0.1,
-   "to": 2.0,
+   "to": 2.25,
    "rate": 1
   },
   {
    "id": "goal_hold",
    "kind": "hold",
-   "at": 2.0,
+   "at": 2.25,
    "frames": 20
   },
   {
    "id": "rewind",
    "kind": "rewind",
-   "from": 2.0,
-   "to": 0.15,
+   "from": 2.25,
+   "to": 0.12,
    "rate": 2.5
   },
   {
    "id": "pass_set",
    "kind": "hold",
-   "at": 0.15,
+   "at": 0.12,
    "frames": 20
   },
   {
    "id": "pass_in",
    "kind": "play",
-   "from": 0.15,
+   "from": 0.12,
    "to": {
     "event": "pass.release"
    },
-   "rate": 0.15
+   "rate": 0.1
   },
   {
    "id": "pass_freeze",
@@ -54,7 +54,7 @@
    "at": {
     "event": "pass.release"
    },
-   "frames": 92
+   "frames": 90
   },
   {
    "id": "to_lw",
@@ -62,7 +62,7 @@
    "at": {
     "event": "pass.release"
    },
-   "frames": 33
+   "frames": 30
   },
   {
    "id": "flight",
@@ -71,23 +71,64 @@
     "event": "pass.release"
    },
    "to": {
-    "event": "contact.lw_pass"
+    "event": "contact.lw_catch"
    },
-   "rate": 0.4
+   "rate": 0.5
   },
   {
-   "id": "lw_freeze",
+   "id": "catch_freeze",
    "kind": "hold",
    "at": {
-    "event": "contact.lw_pass"
+    "event": "contact.lw_catch"
    },
-   "frames": 84
+   "frames": 66
+  },
+  {
+   "id": "to_push",
+   "kind": "play",
+   "from": {
+    "event": "contact.lw_catch"
+   },
+   "to": {
+    "event": "contact.lw_push"
+   },
+   "rate": 0.5
+  },
+  {
+   "id": "push_in",
+   "kind": "play",
+   "from": {
+    "event": "contact.lw_push"
+   },
+   "to": {
+    "event": "lw_push.corner"
+   },
+   "rate": 0.25
+  },
+  {
+   "id": "push_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "lw_push.corner"
+   },
+   "frames": 75
+  },
+  {
+   "id": "push_out",
+   "kind": "play",
+   "from": {
+    "event": "lw_push.corner"
+   },
+   "to": {
+    "event": "velodrome.start"
+   },
+   "rate": 0.25
   },
   {
    "id": "to_velo",
    "kind": "hold",
    "at": {
-    "event": "contact.lw_pass"
+    "event": "velodrome.start"
    },
    "frames": 30
   },
@@ -95,25 +136,25 @@
    "id": "velodrome",
    "kind": "play",
    "from": {
-    "event": "contact.lw_pass"
+    "event": "velodrome.start"
    },
-   "to": 1.0,
-   "rate": 0.5
+   "to": 1.7,
+   "rate": 0.6
   },
   {
    "id": "to_shot",
    "kind": "hold",
-   "at": 1.0,
-   "frames": 33
+   "at": 1.7,
+   "frames": 28
   },
   {
    "id": "slide_in",
    "kind": "play",
-   "from": 1.0,
+   "from": 1.7,
    "to": {
     "event": "contact.shot"
    },
-   "rate": 1.2
+   "rate": 0.4
   },
   {
    "id": "strike_freeze",
@@ -121,7 +162,7 @@
    "at": {
     "event": "contact.shot"
    },
-   "frames": 84
+   "frames": 80
   },
   {
    "id": "shot_out",
@@ -129,33 +170,33 @@
    "from": {
     "event": "contact.shot"
    },
-   "to": 1.84,
-   "rate": 0.3
+   "to": 2.2,
+   "rate": 0.4
   },
   {
    "id": "goal_freeze",
    "kind": "hold",
-   "at": 1.84,
-   "frames": 27
+   "at": 2.2,
+   "frames": 25
   },
   {
    "id": "to_replay",
    "kind": "hold",
-   "at": 1.84,
-   "frames": 36
+   "at": 2.2,
+   "frames": 28
   },
   {
    "id": "replay",
    "kind": "play",
    "from": 0.1,
-   "to": 2.0,
-   "rate": 0.7
+   "to": 2.25,
+   "rate": 0.9
   },
   {
    "id": "outro",
    "kind": "hold",
-   "at": 2.0,
-   "frames": 45
+   "at": 2.25,
+   "frames": 40
   }
  ],
  "unlabelled_holds": [
@@ -182,16 +223,16 @@
   },
   "broadcast": {
    "positionMm": [
-    -330,
+    -200,
     -300,
-    620
+    800
    ],
    "targetMm": [
     170,
     0,
     0
    ],
-   "fovDeg": 34
+   "fovDeg": 31
   },
   "pass": {
    "positionMm": [
@@ -208,16 +249,16 @@
   },
   "lw": {
    "positionMm": [
-    110,
-    -40,
-    330
+    520,
+    -20,
+    400
    ],
    "targetMm": [
-    300,
+    290,
     150,
-    10
+    0
    ],
-   "fovDeg": 32
+   "fovDeg": 36
   },
   "velodrome": {
    "positionMm": [
@@ -323,7 +364,7 @@
    "id": "pass",
    "number": "1",
    "title": "THE CROSS PASS",
-   "text": "The right wing sweeps the puck across the ice to the left wing.",
+   "text": "The right wing pushes the puck across the ice to the left wing.",
    "from": "pass_set.start",
    "to": "to_lw.start+0.2"
   },
@@ -331,7 +372,7 @@
    "id": "velo",
    "number": "2",
    "title": "THE VELODROME",
-   "text": "The left wing sends it along the boards, round behind the goal.",
+   "text": "Facing forward, the left wing skates the puck into the corner. The boards carry it round behind the goal.",
    "from": "to_lw.end-0.2",
    "to": "to_shot.start+0.2"
   },
@@ -339,7 +380,7 @@
    "id": "shot",
    "number": "3",
    "title": "THE FIRST-TIME SHOT",
-   "text": "The right wing has dropped back and turned: he fires it straight in.",
+   "text": "The right wing gives way as it arrives and turns it into the goal.",
    "from": "to_shot.end-0.2",
    "to": "goal_freeze.end"
   }
@@ -389,36 +430,77 @@
     -60
    ],
    "from": "to_lw.end-0.3",
-   "to": "to_velo.start+0.3"
+   "to": "to_push.start+0.3"
   },
   {
-   "id": "lw_contact",
+   "id": "catch_turn",
+   "type": "rotation_arrow",
+   "target": "W-LW",
+   "event": "contact.lw_catch",
+   "direction": "ccw",
+   "radius_mm": 50,
+   "start_deg": -95,
+   "sweep_deg": 85,
+   "label": "TURNS TO FACE FORWARD",
+   "accent": "cyan",
+   "label_offset_px": [
+    -150,
+    40
+   ],
+   "from": "catch_freeze.start+0.2",
+   "to": "to_push.start+0.2"
+  },
+  {
+   "id": "catch_contact",
    "type": "contact_marker",
    "target": "W-LW",
-   "event": "contact.lw_pass",
-   "label": "PASS · BACK OF THE BLADE",
+   "event": "contact.lw_catch",
+   "label": "SOFT CATCH",
    "accent": "amber",
    "label_offset_px": [
     160,
     110
    ],
-   "from": "lw_freeze.start+0.15",
+   "from": "catch_freeze.start+0.15",
+   "to": "to_push.start+0.2"
+  },
+  {
+   "id": "trail_lw",
+   "type": "puck_trail",
+   "event": "contact.lw_catch",
+   "back_s": 0.0,
+   "from": "to_push.start",
    "to": "to_velo.start+0.3"
   },
   {
-   "id": "lw_dir",
-   "type": "puck_arrow",
-   "event": "contact.lw_pass",
-   "start_mm": 18,
-   "length_mm": 90,
+   "id": "push_slot",
+   "type": "slot_arrow",
+   "target": "W-LW",
+   "event": "contact.lw_push",
+   "ahead_mm": 25,
+   "length_mm": 140,
+   "accent": "cyan",
+   "from": "push_in.start",
+   "to": "push_freeze.end"
+  },
+  {
+   "id": "push_contact",
+   "type": "contact_marker",
+   "target": "W-LW",
+   "event": "lw_push.corner",
+   "label": "PUSH · FRONT OF THE BLADE",
    "accent": "amber",
-   "from": "lw_freeze.start+0.6",
-   "to": "to_velo.start+0.3"
+   "label_offset_px": [
+    160,
+    110
+   ],
+   "from": "push_freeze.start+0.15",
+   "to": "push_out.end"
   },
   {
    "id": "trail_velo",
    "type": "puck_trail",
-   "event": "contact.lw_pass",
+   "event": "velodrome.start",
    "back_s": 0.0,
    "from": "velodrome.start",
    "to": "to_shot.start+0.3"
@@ -442,16 +524,16 @@
    "target": "W-RW",
    "event": "contact.shot",
    "direction": "ccw",
-   "radius_mm": 50,
-   "start_deg": 60,
-   "sweep_deg": 70,
-   "label": "SWEEP",
+   "radius_mm": 55,
+   "start_deg": 140,
+   "sweep_deg": 80,
+   "label": "TURN",
    "accent": "cyan",
    "from": "strike_freeze.start+0.2",
    "to": "strike_freeze.end",
    "label_offset_px": [
-    110,
-    10
+    -190,
+    -90
    ]
   },
   {

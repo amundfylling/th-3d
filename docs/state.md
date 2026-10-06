@@ -181,19 +181,31 @@
   - Assumed: all timing, and the goalie standing toward the left post.
   - Video `validation/analysis-nacka.mp4` (composition `analysis-nacka`). Notes: `docs/nacka.md`. Rerender:
     `npm run trace:nacka`, `npm run video:analysis-nacka`.
-- **Invers Kryssar med Velodrom (2026-10-06): sketch approved by the user ("The picture is correct"), then animated.**
+- **Invers Kryssar med Velodrom (2026-10-06): sketch approved by the user ("The picture is correct"), then animated.
+  v2 the same day after the user's feedback.**
   - NTHF page (no illustration) and the base move saved in `references/combinations/`.
   - Approved sketch: `validation/ikv-sketch.png` (composition `pose-preview`, `scripts/ikv-sketch.py`).
-  - Trace `trace.invers-kryssar-velodrom.v1` (**proposed**, designed): the right wing's forehand cross pass; the back
-    of the left wing's blade sends the puck along the boards; the velodrome passes behind the cage (simulated board
-    sliding); the right wing's backhand first-time shot goes in.
-    - Collision rule: moving-blade impulse, restitution 0.5; ice friction from the spjass.
-    - Checks: no overlap, 0 unexplained velocity changes; the contacts are exactly blade, blade, boards, blade, net.
-  - **Deviation from the sketch:** the right wing catches near the centre line (slot position 35 mm), not near the
-    goal. The puck arrives pressed to the board, 37 mm from his slot, so his blade can't send it in from close range.
-  - Assumed: the goalie toward the left post; all timing; a 4.7 m/s velodrome pass.
-  - Video `validation/analysis-ikv.mp4` (composition `analysis-ikv`). Notes: `docs/invers-kryssar-velodrom.md`.
-    Rerender: `npm run trace:ikv`, `npm run video:analysis-ikv`.
+  - v1 (superseded): the back of the left wing's blade flicked the puck into the corner at 4.7 m/s. The user's
+    judgement: the puck would bounce, not slide. The left wing must face forward and push the puck into the curve.
+    - Example clip for the physics: `references/shots/lw-board-pass-example.mov` (a different combination, indexed).
+    - New project rule: `CLAUDE.md` "Slide or bounce". Figure contacts are limited to 500 mm/s impact and board or
+      post contacts to 300 mm/s (assumed limits). It is checked as `slide_check`.
+  - Trace `trace.invers-kryssar-velodrom.v2` (**proposed**, designed):
+    - the right wing pushes the cross pass from the resting puck (impact 42 mm/s);
+    - the left wing turns from facing the pass to facing forward and catches it softly (166 mm/s); it slides on the
+      board (255 mm/s, glancing);
+    - the left wing skates up its slot behind it and pushes it through the curve with the front of the blade: 277 touches,
+      peak 93 mm/s, released along the end board at 1.31 m/s;
+    - the velodrome passes behind the cage;
+    - the right wing gives way down his slot as it arrives (227 mm/s) and turns it into the middle of the goal.
+    - Checks: no overlap, 0 unexplained velocity changes, slide check passed.
+  - **Deviations from the sketch:**
+    - the left wing receives near the blue line and carries the puck into the corner;
+    - the right wing receives about 26 cm from the goal line, not 18 cm.
+  - Assumed: the slide limits; the catch; release at 1.3 m/s (the example looks about 1.0 m/s, uncalibrated); the
+    goalie toward the left post; all timing.
+  - Video `validation/analysis-ikv.mp4` (composition `analysis-ikv`, 29.7 s). Notes:
+    `docs/invers-kryssar-velodrom.md`. Rerender: `npm run trace:ikv`, `npm run video:analysis-ikv`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -370,3 +382,4 @@ Iteration 20 closed without repair cycles:
 | S1 | 2026-10-06 | Spjass from the user's TikTok: references/shots/spjass-tiktok.mp4 (+ index); shots/spjass/{marks,observations,inputs,checks}.json; scripts/spjass-{observe,trace}.py; data/traces/spjass.trace.json (proposed); data/presentations/spjass.analysis.json; remotion/AnalysisVideo.tsx (shared; ShotAnalysis.tsx refactored onto it), SpjassAnalysis.tsx, Root.tsx (analysis-spjass); scripts/analysis-occlusion{-dump.ts,.py}, analysis-render.ts (per video), analysis-stills.ts (COMP), analysis-review.py (spec args); src/model/analysis.ts (graphic fields); tests/spjass.test.ts, tests/analysis.test.ts; validation/spjass-*.png, analysis-spjass*; docs/spjass.md; package.json (trace:spjass, video:analysis-spjass) | observation and trace scripts run; contact checks (no overlap, 0 unexplained); stills reviewed for every segment; puck visibility ray-cast; Shovel refactor byte-identical on 6 frames; final 1080p render with per-frame state and camera checks; `npm run check` |
 | N1 | 2026-10-06 | Näcka from the NTHF page: references/combinations/* (+ index); shots/nacka/{inputs,checks}.json; scripts/nacka-trace.py; data/traces/nacka.trace.json (proposed, designed); data/presentations/nacka.analysis.json; remotion/NackaAnalysis.tsx, Root.tsx (analysis-nacka); scripts/analysis-render.ts (nacka); tests/nacka.test.ts; validation/nacka-trace.png, analysis-nacka*; docs/nacka.md, docs/spjass.md (NTHF cross-check); package.json (trace:nacka, video:analysis-nacka) | trace script run (contact checks clean); turn-profile and shot scans; stills reviewed; puck visibility ray-cast; final 1080p render with per-frame state and camera checks; `npm run check` |
 | V1 | 2026-10-06 | Invers Kryssar med Velodrom: NTHF pages; sketch (scripts/ikv-sketch.py, ikv-sketch-render.ts, remotion/PosePreview.tsx, validation/ikv-sketch.png) approved by the user; scripts/ikv-trace.py (moving-blade collisions, board sliding, open-mouth cage); data/traces/invers-kryssar-velodrom.trace.json (proposed); shots/invers-kryssar-velodrom/{sketch,sketch-geometry,inputs,checks}.json; data/presentations/invers-kryssar-velodrom.analysis.json; remotion/IkvAnalysis.tsx, Root.tsx (analysis-ikv, pose-preview); tests/ikv.test.ts; validation/ikv-trace.png, analysis-ikv*; docs/invers-kryssar-velodrom.md; package.json (trace:ikv, video:analysis-ikv) | sketch clearances; staged strike scans; contact checks clean; stills reviewed, views reframed; puck visibility ray-cast (all frames visible); final 1080p render with per-frame state and camera checks; `npm run check` |
+| V2 | 2026-10-06 | Invers Kryssar med Velodrom v2 (user: the left wing's flick would bounce; push forward-facing into the curve): example clip references/shots/lw-board-pass-example.mov (indexed); CLAUDE.md rule "Slide or bounce"; scripts/ikv-trace.py (quintic arc moves, slot-following rod turn, impact logging, slide_check, contact episodes, new events); shots/invers-kryssar-velodrom/{inputs,checks}.json; data/traces/invers-kryssar-velodrom.trace.json (v2, proposed); data/presentations/invers-kryssar-velodrom.analysis.json (v2: catch and corner push in chapter 2); remotion/IkvAnalysis.tsx (end card); tests/ikv.test.ts; validation/ikv-trace.png, analysis-ikv*; docs/invers-kryssar-velodrom.md | example clip puck track; parameter scans (catch, chase, push, shot); contact and slide checks clean; stills reviewed (push view moved: the left wing hid the puck; broadcast raised); puck visibility ray-cast (all frames visible); final 1080p render with per-frame state and camera checks; `npm run check` |
