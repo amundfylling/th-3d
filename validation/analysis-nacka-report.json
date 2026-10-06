@@ -27,7 +27,7 @@
    "remotion/NackaAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "composition_sha256": "41a7a793b9ac4762201090b59dc9da8c5854a4fa624194fbea25ad4146e17dc1"
+  "composition_sha256": "14193df8d8c56203bef7277d9c9173f61c97cc5d972e45eaca0ce0b84a4bb8cb"
  },
  "output": {
   "path": "validation/analysis-nacka.mp4",
@@ -71,5 +71,12 @@
   "camera_frames_logged": 744,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 3549
+ "render_seconds": 3549,
+ "composition_refactor": {
+  "date": "2026-10-06",
+  "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
+  "previous_composition_sha256": "41a7a793b9ac4762201090b59dc9da8c5854a4fa624194fbea25ad4146e17dc1",
+  "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
+  "video_rerendered": false
+ }
 }

@@ -1,0 +1,172 @@
+{
+ "trace_id": "trace.defence-left-wing.v1",
+ "sampling_s": 0.00025,
+ "penetration_tolerance_mm": 0.1,
+ "contact_rule": "CLAUDE.md 'Contact physics': the finite puck against every figure (all 12), the boards and the posts every 0.25 ms, no exemptions",
+ "min_clearance_by_obstacle": [
+  {
+   "obstacle": "W-LW",
+   "min_clearance_mm": 0.05,
+   "t_at_min": 6.0
+  },
+  {
+   "obstacle": "boards",
+   "min_clearance_mm": 10.578,
+   "t_at_min": 0.0
+  }
+ ],
+ "unexpected_penetrations": [],
+ "approved_exceptions": [],
+ "contact_sequence": [
+  "W-LW:stick/blade"
+ ],
+ "unexplained_count": 0,
+ "slide_check": {
+  "rule": "CLAUDE.md 'Slide or bounce'",
+  "figure_impact_max_mm_s": 500.0,
+  "wall_impact_max_mm_s": 300.0,
+  "per_contact": [],
+  "note": "the puck rests on the left wing's blade the whole time: no impacts. Shots and passes are drawn as lanes, not simulated.",
+  "passed": true
+ },
+ "lanes": {
+  "setup.neutral": {
+   "straight_shot": {
+    "blocked_by": null,
+    "end_mm": [
+     300.0,
+     -12.8
+    ]
+   },
+   "centrifuge_pass": {
+    "blocked_by": "E-RD",
+    "end_mm": [
+     153.82,
+     96.05
+    ]
+   },
+   "centre_shot": {
+    "blocked_by": "E-G",
+    "end_mm": [
+     229.53,
+     -1.59
+    ]
+   }
+  },
+  "passive.set": {
+   "straight_shot": {
+    "blocked_by": "E-RD",
+    "end_mm": [
+     216.98,
+     109.77
+    ]
+   },
+   "centrifuge_pass": {
+    "blocked_by": null,
+    "end_mm": [
+     157.41,
+     23.38
+    ]
+   },
+   "centre_shot": {
+    "blocked_by": "E-G",
+    "end_mm": [
+     229.53,
+     -1.59
+    ]
+   }
+  },
+  "active.set": {
+   "straight_shot": {
+    "blocked_by": "E-G",
+    "end_mm": [
+     256.39,
+     51.59
+    ]
+   },
+   "centrifuge_pass": {
+    "blocked_by": "E-RD",
+    "end_mm": [
+     153.04,
+     111.78
+    ]
+   },
+   "centre_shot": {
+    "blocked_by": "E-G",
+    "end_mm": [
+     229.29,
+     -1.51
+    ]
+   }
+  },
+  "mix.passive_1": {
+   "straight_shot": {
+    "blocked_by": "E-RD",
+    "end_mm": [
+     216.98,
+     109.77
+    ]
+   },
+   "centrifuge_pass": {
+    "blocked_by": null,
+    "end_mm": [
+     157.41,
+     23.38
+    ]
+   },
+   "centre_shot": {
+    "blocked_by": "E-G",
+    "end_mm": [
+     229.53,
+     -1.59
+    ]
+   }
+  },
+  "mix.active": {
+   "straight_shot": {
+    "blocked_by": "E-G",
+    "end_mm": [
+     256.39,
+     51.59
+    ]
+   },
+   "centrifuge_pass": {
+    "blocked_by": "E-RD",
+    "end_mm": [
+     153.04,
+     111.78
+    ]
+   },
+   "centre_shot": {
+    "blocked_by": "E-G",
+    "end_mm": [
+     229.29,
+     -1.51
+    ]
+   }
+  },
+  "mix.passive_2": {
+   "straight_shot": {
+    "blocked_by": "E-RD",
+    "end_mm": [
+     216.98,
+     109.77
+    ]
+   },
+   "centrifuge_pass": {
+    "blocked_by": null,
+    "end_mm": [
+     157.41,
+     23.38
+    ]
+   },
+   "centre_shot": {
+    "blocked_by": "E-G",
+    "end_mm": [
+     229.53,
+     -1.59
+    ]
+   }
+  }
+ }
+}

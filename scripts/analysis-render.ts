@@ -24,6 +24,8 @@ const VIDEOS = {
     files: ["remotion/SpjassAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "spjass", out: "validation/analysis-spjass.mp4", report: "validation/analysis-spjass-report.json", title: "The spjass - sports-analysis video" },
   ikv: { composition: "analysis-ikv", spec: "data/presentations/invers-kryssar-velodrom.analysis.json", trace: "data/traces/invers-kryssar-velodrom.trace.json",
     files: ["remotion/IkvAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "ikv", out: "validation/analysis-ikv.mp4", report: "validation/analysis-ikv-report.json", title: "Invers Kryssar med Velodrom - sports-analysis video" },
+  "defence-lw": { composition: "analysis-defence-lw", spec: "data/presentations/defence-left-wing.analysis.json", trace: "data/traces/defence-left-wing.trace.json",
+    files: ["remotion/DefenceAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "defence", out: "validation/analysis-defence-lw.mp4", report: "validation/analysis-defence-lw-report.json", title: "Defending the left wing - concept video" },
   nacka: { composition: "analysis-nacka", spec: "data/presentations/nacka.analysis.json", trace: "data/traces/nacka.trace.json",
     files: ["remotion/NackaAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "nacka", out: "validation/analysis-nacka.mp4", report: "validation/analysis-nacka-report.json", title: "Näcka - sports-analysis video" },
 } as const;

@@ -1,0 +1,125 @@
+{
+ "description": "Design choices for trace.defence-left-wing.v1 (scripts/defence-trace.py): the three ways to defend when the opponent's left wing has the puck, from the user's TikTok (references/shots/defence-vs-left-wing-tiktok.mp4). A concept illustration, not a recorded shot: the defending goalie (E-G) and right defender (E-RD) move between the set-ups; the attacking left wing (W-LW) holds the puck still at the boards near the goal line; the attacking centre (W-C) waits in the slot for the centrifuge pass.",
+ "status": "proposed",
+ "source": {
+  "video": "references/shots/defence-vs-left-wing-tiktok.mp4",
+  "transcript": "burned-in captions read frame by frame (docs/defence-left-wing.md)",
+  "centrifuge": "references/combinations/bordshockeyskolan-lektion-3-centrifugen.html"
+ },
+ "window_s": [
+  0.0,
+  6.0
+ ],
+ "attacker": {
+  "W-LW": {
+   "arc_mm": 60.0,
+   "theta_deg": 0.0,
+   "puck_local_mm": [
+    16.2,
+    31.0
+   ],
+   "note": "at the +y boards level with the face-off circle, puck on the front of the blade. Further out than in the TikTok's corner: from near the goal line a flat straight shot cannot pass the near post of our preview goal (window under 8 deg, post clearance below the puck radius + post radius), so there would be no straight-shot lane to close; from here the window between the posts is 11 deg"
+  },
+  "W-C": {
+   "arc_mm": 200.0,
+   "theta_deg": 0.0,
+   "note": "waits in the slot for the centrifuge pass"
+  }
+ },
+ "setups": {
+  "neutral": {
+   "E-RD_arc_mm": 125.0,
+   "E-G_y_mm": 0.0
+  },
+  "passive": {
+   "E-RD_arc_mm": 164.0,
+   "E-G_y_mm": 0.0,
+   "note": "the box: the defender stands in front of the goal on the straight-shot line (slot position where that line crosses the defender's slot); the goalie stays in the middle"
+  },
+  "active": {
+   "E-RD_arc_mm": 89.0,
+   "E-G_y_mm": 33.0,
+   "note": "the goalie closes the straight shot at the near post; the defender goes out to where the centrifuge pass crosses its slot"
+  }
+ },
+ "defender_faces_puck": true,
+ "schedule": [
+  [
+   0.0,
+   "neutral"
+  ],
+  [
+   0.6,
+   "neutral"
+  ],
+  [
+   1.0,
+   "passive"
+  ],
+  [
+   2.0,
+   "passive"
+  ],
+  [
+   2.4,
+   "active"
+  ],
+  [
+   3.4,
+   "active"
+  ],
+  [
+   3.7,
+   "passive"
+  ],
+  [
+   4.2,
+   "passive"
+  ],
+  [
+   4.5,
+   "active"
+  ],
+  [
+   5.0,
+   "active"
+  ],
+  [
+   5.3,
+   "passive"
+  ],
+  [
+   6.0,
+   "passive"
+  ]
+ ],
+ "lanes": {
+  "straight_shot": {
+   "from": "puck",
+   "to": [
+    300.0,
+    -12.8
+   ],
+   "note": "the left wing's straight shot through the middle of the window between the posts"
+  },
+  "centrifuge_pass": {
+   "from": "puck",
+   "to": "W-C blade",
+   "note": "the left wing's pass to the centre (centrifuge)"
+  },
+  "centre_shot": {
+   "from": "W-C blade",
+   "to": [
+    300.0,
+    -26.0
+   ],
+   "note": "the centre's first-time shot into the far corner"
+  }
+ },
+ "limitations": [
+  "A concept illustration: positions follow the idea of each defence, not the exact placement in the TikTok (the user: 'It does not have to be precisely the same placement as the video').",
+  "The shots and passes are drawn as lanes (graphics) that end where the puck would first touch a defending figure; the puck itself stays on the left wing's blade, so no blocked shot is simulated (a blocked hard shot would rebound, which the traces do not model).",
+  "Figure moves are designed (smootherstep, 0.3-0.4 s); the defender turns to face the puck.",
+  "Preview figure, puck and goal sizes; the other figures stand in their assembly poses."
+ ]
+}

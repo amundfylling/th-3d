@@ -1,0 +1,397 @@
+{
+ "schema": "shot-analysis/1",
+ "analysis_id": "analysis.defence-left-wing.v1",
+ "trace_id": "trace.defence-left-wing.v1",
+ "note": "Concept video: three ways to defend when the opponent's left wing has the puck (passive / active / mix), from the user's TikTok (references/shots/defence-vs-left-wing-tiktok.mp4). The set-ups come from data/traces/defence-left-wing.trace.json; shots and passes are lanes recorded on its events (graphics), not simulated pucks.",
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "segments": [
+  {
+   "id": "intro",
+   "kind": "hold",
+   "at": 0.3,
+   "frames": 45
+  },
+  {
+   "id": "threat",
+   "kind": "hold",
+   "at": 0.3,
+   "frames": 180
+  },
+  {
+   "id": "to_passive",
+   "kind": "play",
+   "from": 0.3,
+   "to": 1.0,
+   "rate": 0.35
+  },
+  {
+   "id": "passive",
+   "kind": "hold",
+   "at": 1.0,
+   "frames": 210
+  },
+  {
+   "id": "to_active",
+   "kind": "play",
+   "from": 2.0,
+   "to": 2.4,
+   "rate": 0.3
+  },
+  {
+   "id": "active",
+   "kind": "hold",
+   "at": 2.4,
+   "frames": 190
+  },
+  {
+   "id": "mix",
+   "kind": "play",
+   "from": 3.4,
+   "to": 6.0,
+   "rate": 0.5
+  },
+  {
+   "id": "mix_end",
+   "kind": "hold",
+   "at": 6.0,
+   "frames": 60
+  },
+  {
+   "id": "outro",
+   "kind": "hold",
+   "at": 6.0,
+   "frames": 120
+  }
+ ],
+ "unlabelled_holds": [
+  "intro",
+  "outro",
+  "mix_end"
+ ],
+ "replay_segments": [],
+ "views": {
+  "intro_high": {
+   "positionMm": [
+    900,
+    90,
+    1000
+   ],
+   "targetMm": [
+    170,
+    60,
+    0
+   ],
+   "fovDeg": 34
+  },
+  "zone": {
+   "positionMm": [
+    440,
+    95,
+    560
+   ],
+   "targetMm": [
+    215,
+    95,
+    0
+   ],
+   "fovDeg": 34
+  }
+ },
+ "camera": [
+  {
+   "at": "intro.start",
+   "view": "intro_high"
+  },
+  {
+   "at": "intro.start+0.15",
+   "view": "intro_high"
+  },
+  {
+   "at": "intro.end",
+   "view": "zone",
+   "lift": 40
+  },
+  {
+   "at": "outro.end",
+   "view": "zone"
+  }
+ ],
+ "chapters": [
+  {
+   "id": "threat",
+   "number": "LW",
+   "title": "THE LEFT WING HAS THE PUCK",
+   "text": "Two threats: a straight shot at the goal, or the centrifuge, a pass to the centre who shoots first time.",
+   "from": "threat.start",
+   "to": "threat.end"
+  },
+  {
+   "id": "passive",
+   "number": "1",
+   "title": "PASSIVE · THE BOX",
+   "text": "Defender and goalie stay in front of the goal and close the straight shot. Only a precise combination can score. Best for beginners.",
+   "from": "to_passive.start",
+   "to": "passive.end"
+  },
+  {
+   "id": "active",
+   "number": "2",
+   "title": "ACTIVE",
+   "text": "The goalie closes the straight shot at the near post. The defender goes out and cuts the passes.",
+   "from": "to_active.start",
+   "to": "active.end"
+  },
+  {
+   "id": "mix",
+   "number": "3",
+   "title": "THE MIX",
+   "text": "Switch between active and passive, depending on what the opponent does. They can't read which shot will be open.",
+   "from": "mix.start",
+   "to": "mix_end.end"
+  }
+ ],
+ "graphics": [
+  {
+   "id": "title",
+   "type": "title_card",
+   "from": "intro.start+0.3",
+   "to": "intro.end"
+  },
+  {
+   "id": "lw",
+   "type": "highlight",
+   "target": "W-LW",
+   "label": "LEFT WING",
+   "accent": "amber",
+   "from": "threat.start+0.2",
+   "to": "threat.end"
+  },
+  {
+   "id": "opt_shot",
+   "type": "lane",
+   "event": "setup.neutral",
+   "lane": "straight_shot",
+   "from": "threat.start+0.8",
+   "to": "threat.end",
+   "option": true,
+   "accent": "amber",
+   "ghost_s": 0.7,
+   "label": "STRAIGHT SHOT",
+   "label_offset_px": [
+    -210,
+    -40
+   ]
+  },
+  {
+   "id": "wc",
+   "type": "highlight",
+   "target": "W-C",
+   "label": "CENTRE",
+   "accent": "cyan",
+   "label_offset_px": [
+    -170,
+    -60
+   ],
+   "from": "threat.start+2.2",
+   "to": "threat.end"
+  },
+  {
+   "id": "opt_pass",
+   "type": "lane",
+   "event": "setup.neutral",
+   "lane": "centrifuge_pass",
+   "from": "threat.start+2.4",
+   "to": "threat.end",
+   "option": true,
+   "accent": "cyan",
+   "ghost_s": 0.7,
+   "label": "CENTRIFUGE",
+   "label_offset_px": [
+    150,
+    90
+   ]
+  },
+  {
+   "id": "opt_cshot",
+   "type": "lane",
+   "event": "setup.neutral",
+   "lane": "centre_shot",
+   "from": "threat.start+3.3",
+   "to": "threat.end",
+   "option": true,
+   "accent": "cyan",
+   "ghost_s": 0.5
+  },
+  {
+   "id": "b_passive",
+   "type": "goal_banner",
+   "label": "PASSIVE",
+   "accent": "cyan",
+   "from": "to_passive.start+0.3",
+   "to": "passive.end"
+  },
+  {
+   "id": "rd1",
+   "type": "highlight",
+   "target": "E-RD",
+   "label": "DEFENDER",
+   "accent": "cyan",
+   "label_offset_px": [
+    170,
+    -70
+   ],
+   "from": "to_passive.start+0.2",
+   "to": "passive.start+0.8"
+  },
+  {
+   "id": "g1",
+   "type": "highlight",
+   "target": "E-G",
+   "label": "GOALIE",
+   "accent": "cyan",
+   "label_offset_px": [
+    -210,
+    40
+   ],
+   "from": "to_passive.start+0.2",
+   "to": "passive.start+0.8"
+  },
+  {
+   "id": "p_shot",
+   "type": "lane",
+   "event": "passive.set",
+   "lane": "straight_shot",
+   "from": "passive.start+0.9",
+   "to": "passive.end",
+   "ghost_s": 0.7,
+   "label": "SHOT BLOCKED",
+   "label_offset_px": [
+    170,
+    70
+   ]
+  },
+  {
+   "id": "p_pass",
+   "type": "lane",
+   "event": "passive.set",
+   "lane": "centrifuge_pass",
+   "from": "passive.start+2.6",
+   "to": "passive.end",
+   "ghost_s": 0.7,
+   "label": "PASS IS OPEN",
+   "label_offset_px": [
+    150,
+    -80
+   ]
+  },
+  {
+   "id": "p_cshot",
+   "type": "lane",
+   "event": "passive.set",
+   "lane": "centre_shot",
+   "from": "passive.start+3.6",
+   "to": "passive.end",
+   "ghost_s": 0.5,
+   "label": "GOALIE IS THERE",
+   "label_offset_px": [
+    -210,
+    60
+   ]
+  },
+  {
+   "id": "b_active",
+   "type": "goal_banner",
+   "label": "ACTIVE",
+   "accent": "amber",
+   "from": "to_active.start+0.2",
+   "to": "active.end"
+  },
+  {
+   "id": "a_shot",
+   "type": "lane",
+   "event": "active.set",
+   "lane": "straight_shot",
+   "from": "active.start+0.6",
+   "to": "active.end",
+   "ghost_s": 0.7,
+   "label": "GOALIE CLOSES IT",
+   "label_offset_px": [
+    -210,
+    60
+   ]
+  },
+  {
+   "id": "a_pass",
+   "type": "lane",
+   "event": "active.set",
+   "lane": "centrifuge_pass",
+   "from": "active.start+2.2",
+   "to": "active.end",
+   "ghost_s": 0.7,
+   "label": "PASS CUT",
+   "label_offset_px": [
+    150,
+    90
+   ]
+  },
+  {
+   "id": "m_p1",
+   "type": "goal_banner",
+   "label": "PASSIVE",
+   "accent": "cyan",
+   "from": "mix.start+0.5",
+   "to": "mix.start+1.9"
+  },
+  {
+   "id": "m_s1",
+   "type": "lane",
+   "event": "mix.passive_1",
+   "lane": "straight_shot",
+   "from": "mix.start+0.7",
+   "to": "mix.start+1.9",
+   "ghost_s": 0.5
+  },
+  {
+   "id": "m_a",
+   "type": "goal_banner",
+   "label": "ACTIVE",
+   "accent": "amber",
+   "from": "mix.start+2.1",
+   "to": "mix.start+3.5"
+  },
+  {
+   "id": "m_pass",
+   "type": "lane",
+   "event": "mix.active",
+   "lane": "centrifuge_pass",
+   "from": "mix.start+2.3",
+   "to": "mix.start+3.5",
+   "ghost_s": 0.5
+  },
+  {
+   "id": "m_p2",
+   "type": "goal_banner",
+   "label": "PASSIVE",
+   "accent": "cyan",
+   "from": "mix.start+3.7",
+   "to": "mix_end.end"
+  },
+  {
+   "id": "m_s2",
+   "type": "lane",
+   "event": "mix.passive_2",
+   "lane": "straight_shot",
+   "from": "mix.start+3.9",
+   "to": "mix_end.end",
+   "ghost_s": 0.5
+  },
+  {
+   "id": "end",
+   "type": "end_card",
+   "from": "outro.start+0.2",
+   "to": "outro.end"
+  }
+ ]
+}

@@ -27,7 +27,7 @@
    "remotion/IkvAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "composition_sha256": "e94e0ec8dd42ef0341bc865a73af2a29f126911218588c32ecc96b54976ed24c"
+  "composition_sha256": "875164300cd3bace5a4d59cf533c0cae1273618f1fcaedfdaf68032f2a406746"
  },
  "output": {
   "path": "validation/analysis-ikv.mp4",
@@ -71,5 +71,12 @@
   "camera_frames_logged": 892,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 4389
+ "render_seconds": 4389,
+ "composition_refactor": {
+  "date": "2026-10-06",
+  "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
+  "previous_composition_sha256": "e94e0ec8dd42ef0341bc865a73af2a29f126911218588c32ecc96b54976ed24c",
+  "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
+  "video_rerendered": false
+ }
 }

@@ -26,6 +26,9 @@ Invers Kryssar med Velodrom (NTHF text only; the user approved the sketch valida
 DESIGNED trace (data/traces/invers-kryssar-velodrom.trace.json, v2: the left wing catches softly and pushes the puck
 into the corner, after the user rejected v1's flick) with video validation/analysis-ikv.mp4; see
 docs/invers-kryssar-velodrom.md.
+A concept video of the three ways to defend when the opponent's left wing has the puck (passive/box, active, mix; user's
+TikTok references/shots/defence-vs-left-wing-tiktok.mp4) uses the PROPOSED, DESIGNED trace data/traces/defence-left-wing.trace.json
+(video validation/analysis-defence-lw.mp4); its shots and passes are lanes drawn as graphics; see docs/defence-left-wing.md.
 All analysis videos share remotion/AnalysisVideo.tsx.
 
 ## Key files

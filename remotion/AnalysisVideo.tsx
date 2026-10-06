@@ -20,7 +20,8 @@ import manifest from "./asset-manifest.json" with { type: "json" };
 import { toThree } from "./cameras.ts";
 import { ShotScene } from "./ShotScene.tsx";
 
-type TraceEvent = { id: string; t_estimate: number; contact_point_local_mm?: [number, number] };
+type Lane = { from_mm: [number, number]; to_mm: [number, number]; end_mm: [number, number]; blocked_by: string | null };
+type TraceEvent = { id: string; t_estimate: number; contact_point_local_mm?: [number, number]; lanes?: Record<string, Lane> };
 export type AnalysisTrace = ShotTrace & { trace_id: string; time_base: { window_s: [number, number] }; asset_refs: Record<string, unknown>; events: TraceEvent[] };
 
 export interface ContactChecks {
@@ -45,7 +46,7 @@ export interface AnalysisConfig {
 
 export type AnalysisProps = { graphics: boolean };
 
-const ACCENT = { amber: "#FFB21E", cyan: "#2FD6FF" } as const;
+const ACCENT = { amber: "#FFB21E", cyan: "#2FD6FF", red: "#FF4D4D", green: "#3BE07A" } as const;
 const INK = "#F4F6FA";
 const PANEL = "rgba(9, 14, 24, 0.84)";
 const COND = "'Barlow Condensed', 'DejaVu Sans', sans-serif";
@@ -281,13 +282,39 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
             );
           }
         }
+      } else if (spec.type === "lane") {
+        // an attacking option drawn on the ice: from the puck (or the receiver) to its target, or to where the swept
+        // finite puck would first touch a defending figure (a cross); never part of the physical state
+        const ln = event(spec.event!).lanes?.[spec.lane!];
+        if (!ln) throw new Error(`event ${spec.event} has no lane ${spec.lane}`);
+        const blocked = !spec.option && ln.blocked_by !== null;
+        const end = spec.option ? ln.to_mm : ln.end_mm;
+        const col = spec.accent ? color : blocked ? ACCENT.red : ACCENT.green;
+        const a: Vec3 = [ln.from_mm[0], ln.from_mm[1], 1], b: Vec3 = [end[0], end[1], 1];
+        const prog = since(g) / (spec.ghost_s ?? 0.6);
+        svg.push(<g key={spec.id} opacity={o}><IceArrow proj={proj} pts={[a, b]} color={col} progress={blocked ? Math.min(prog, 0.999) : prog} width={6} /></g>);
+        if (spec.ghost_s) {
+          const f = Math.min(1, Math.max(0, prog));
+          const c: Vec3 = [a[0] + f * (b[0] - a[0]), a[1] + f * (b[1] - a[1]), 1];
+          svg.push(<path key={spec.id + "g"} d={iceCircle(proj, c, 12.7)} fill="#10141c" fillOpacity={0.55 * o} stroke={col} strokeWidth={2} opacity={o} />);
+        }
+        if (blocked && prog >= 1) {
+          const k = 13, c0 = proj([b[0] - k, b[1] - k, 2]), c1 = proj([b[0] + k, b[1] + k, 2]), c2 = proj([b[0] - k, b[1] + k, 2]), c3 = proj([b[0] + k, b[1] - k, 2]);
+          if (c0 && c1 && c2 && c3) {
+            for (const [u, v, w] of [[c0, c1, 10], [c2, c3, 10], [c0, c1, 6], [c2, c3, 6]] as const) {
+              svg.push(<line key={spec.id + "x" + u[0] + w} x1={u[0]} y1={u[1]} x2={v[0]} y2={v[1]} stroke={w === 10 ? "rgba(0,0,0,0.5)" : ACCENT.red} strokeWidth={w} strokeLinecap="round" opacity={o} />);
+            }
+          }
+        }
+        const tip = proj(b);
+        if (tip && spec.label && prog >= 1) markerLabel(svg, html, spec.id, tip, spec.label_offset_px ?? [150, 120], spec.label, col, o * Math.min(1, (prog - 1) * 4 + 0.001));
       } else if (spec.type === "goal_banner") {
         const s = Math.min(1, since(g) / 0.25);
         html.push(
           <div key={spec.id} style={{ position: "absolute", left: 56, top: 132, display: "flex", opacity: o }}>
             <div style={{ display: "flex", alignItems: "center", gap: 22, background: PANEL, padding: "10px 46px 8px 36px", transform: `scale(${0.9 + 0.1 * s})`, boxShadow: "0 10px 30px rgba(0,0,0,0.35)" }}>
-              <div style={{ width: 12, height: 64, background: ACCENT.amber }} />
-              <div style={{ fontFamily: COND, fontWeight: 800, fontSize: 92, color: INK, letterSpacing: 6, lineHeight: 1 }}>GOAL</div>
+              <div style={{ width: 12, height: 64, background: color }} />
+              <div style={{ fontFamily: COND, fontWeight: 800, fontSize: 92, color: INK, letterSpacing: 6, lineHeight: 1 }}>{spec.label ?? "GOAL"}</div>
             </div>
           </div>,
         );

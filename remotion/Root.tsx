@@ -7,6 +7,7 @@ import { SPJASS_ANALYSIS, SpjassAnalysis } from "./SpjassAnalysis.tsx";
 import { NACKA_ANALYSIS, NackaAnalysis } from "./NackaAnalysis.tsx";
 import { PosePreview } from "./PosePreview.tsx";
 import { IKV_ANALYSIS, IkvAnalysis } from "./IkvAnalysis.tsx";
+import { DEFENCE_ANALYSIS, DefenceAnalysis } from "./DefenceAnalysis.tsx";
 
 // Iteration 25: final export settings (presentation choice, not geometry precision): 1920 x 1080 at 60 fps.
 export const FINAL_FPS = 60;
@@ -45,6 +46,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="analysis-spjass" component={SpjassAnalysis} durationInFrames={SPJASS_ANALYSIS.durationInFrames} fps={SPJASS_ANALYSIS.spec.fps} width={SPJASS_ANALYSIS.spec.width} height={SPJASS_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     <Composition id="analysis-nacka" component={NackaAnalysis} durationInFrames={NACKA_ANALYSIS.durationInFrames} fps={NACKA_ANALYSIS.spec.fps} width={NACKA_ANALYSIS.spec.width} height={NACKA_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     <Composition id="analysis-ikv" component={IkvAnalysis} durationInFrames={IKV_ANALYSIS.durationInFrames} fps={IKV_ANALYSIS.spec.fps} width={IKV_ANALYSIS.spec.width} height={IKV_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
+    <Composition id="analysis-defence-lw" component={DefenceAnalysis} durationInFrames={DEFENCE_ANALYSIS.durationInFrames} fps={DEFENCE_ANALYSIS.spec.fps} width={DEFENCE_ANALYSIS.spec.width} height={DEFENCE_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     <Composition id="pose-preview" component={PosePreview} durationInFrames={1} fps={30} width={1600} height={1300} defaultProps={{ poses: {}, puckMm: [0, 0] as [number, number], camera: { cx: 150, cy: 0, widthMm: 640 } }} />
     <Composition id="static-checks" component={StaticInspection} durationInFrames={30} fps={30} width={1920} height={1080} defaultProps={{ camera: "oblique", showChecks: true }} />
   </>

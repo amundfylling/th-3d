@@ -27,7 +27,7 @@
    "remotion/SpjassAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "composition_sha256": "6b8c377ef754739328d3ccd9f8ec99ebc0a5152b0497b2afadf9a05f7460ffb8"
+  "composition_sha256": "ec5dffa8b9cc5f9de6f41619829d5ce722728ae2a6f4b49e13817e3f64932e92"
  },
  "output": {
   "path": "validation/analysis-spjass.mp4",
@@ -71,5 +71,12 @@
   "camera_frames_logged": 742,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 3349
+ "render_seconds": 3349,
+ "composition_refactor": {
+  "date": "2026-10-06",
+  "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
+  "previous_composition_sha256": "6b8c377ef754739328d3ccd9f8ec99ebc0a5152b0497b2afadf9a05f7460ffb8",
+  "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
+  "video_rerendered": false
+ }
 }

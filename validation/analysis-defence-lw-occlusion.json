@@ -1,0 +1,65 @@
+{
+ "intro": {
+  "frames": 45,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "threat": {
+  "frames": 180,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "to_passive": {
+  "frames": 60,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "passive": {
+  "frames": 210,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "to_active": {
+  "frames": 40,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "active": {
+  "frames": 190,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "mix": {
+  "frames": 156,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "mix_end": {
+  "frames": 60,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "outro": {
+  "frames": 120,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ }
+}

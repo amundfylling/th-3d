@@ -719,6 +719,31 @@
       "uploaded": "chat attachment ScreenRecording_10-06-2026_13-47-44_1.mov, 2026-10-06",
       "view": "Frames 0-34: presenter; 35-42: crossfade; 42-118: fixed top-down camera over one end (goal at the right, end board at the right edge, unmirrored board ads). Yellow left wing in the top-right corner carries the puck along its curved slot (frames 42-59); the puck runs down the end board behind the goal (60-72), round the bottom corner and left along the bottom board (75-118) to the yellow right wing, who passes it on (120-160).",
       "notes": "The user's words: use it for the physics of the board pass (push, not flick), it is a different combination. Puck speeds read by Claude from dark-blob tracking with an UNCALIBRATED scale (about 2.4 px/mm from the board-to-board width): about 1.0 m/s along the end board just after the corner, 0.7 -> 0.5 m/s along the bottom board. Not a measurement of our table; used as a plausibility reference for docs/invers-kryssar-velodrom.md and the CLAUDE.md slide-or-bounce rule."
+    },
+    {
+      "id": "user_video_defence_vs_left_wing_tiktok",
+      "title": "TikTok video (@tablehockeyglobal): 'Somebody is attacking from their left wing. Here are three defenses you can use' - passive (box), active, mix",
+      "provenance": "user_upload",
+      "local_path": "references/shots/defence-vs-left-wing-tiktok.mp4",
+      "sha256": "05b49eab1de3b0e537fca7e6d27cd4cbcf7e7bea6f4c8eeceb60524ceb68ef81",
+      "bytes": 7969682,
+      "format": "mp4 (576 x 1024, 30 fps, 1713 frames, 57.1 s)",
+      "native_width_px": 576,
+      "native_height_px": 1024,
+      "uploaded": "chat attachment, 2026-10-06",
+      "view": "Portrait, top-down over one end; yellow team defends the goal at the bottom, white/blue left wing (#64) in the bottom-right corner with the puck. Frames 0-120: overview and intro; 120-510: passive (defender #82 to the near post, goalie #30 in the middle); 520-1000: active (goalie to the near post, defender out cutting passes); 1005-1610: mix (switching), then the presenter shows short-corner and far-corner shots; 1610-1713: outro.",
+      "notes": "Narration read from the burned-in captions (docs/defence-left-wing.md); no speech recognition."
+    },
+    {
+      "id": "bordshockeyskolan_lektion_3_centrifugen",
+      "title": "Bordshockeyskolan, lesson 3: Centrifugen (the centrifuge) - the left wing passes to the centre, who shoots first time",
+      "provenance": "web (found by Claude for the user's term 'centrifuge', fetched 2026-10-06)",
+      "local_path": "references/combinations/bordshockeyskolan-lektion-3-centrifugen.html",
+      "sha256": "d3b011ecb5c989b54fabe7a4d98bd2f5036dbb7900d9c056b7e9e0c1f232eb9f",
+      "bytes": 151387,
+      "format": "html",
+      "url": "https://bordshockeyskolan.wordpress.com/bordshockeyskolan/lektion-1-10/lektion-3-centrifugen/",
+      "text": "Centrifug: the left wing (puck on the backhand side) passes to the centre, who scores; the centre waits up at the centre circle with its back to the goal and the stick aimed at the goal."
     }
   ],
   "not_obtained": [

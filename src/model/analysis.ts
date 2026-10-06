@@ -25,11 +25,12 @@ export interface GraphicSpec extends Window {
     | "slot_arrow"
     | "rotation_arrow"
     | "puck_trail"
-    | "goal_banner";
+    | "goal_banner"
+    | "lane";
   /** figure id for highlights / slot and rotation arrows / contact markers */
   target?: string;
   label?: string;
-  accent?: "amber" | "cyan";
+  accent?: "amber" | "cyan" | "red" | "green";
   /** trace event the graphic is anchored to (the pose or puck at that source time) */
   event?: string;
   /** arrows: start offset, length and sideways offset on the ice (mm) */
@@ -51,6 +52,12 @@ export interface GraphicSpec extends Window {
   label_offset_px?: [number, number];
   /** puck trail: samples are not drawn earlier than this many seconds before the event */
   back_s?: number;
+  /** lane: name of a lane recorded on the event (event.lanes[lane]: from_mm, to_mm, end_mm, blocked_by); drawn as an
+   * arrow to its end, with a cross where the swept puck is first stopped; option = draw from -> to and ignore the block */
+  lane?: string;
+  option?: boolean;
+  /** lane: a ghost puck travels along the lane (seconds of presentation time) */
+  ghost_s?: number;
 }
 
 export interface ChapterSpec extends Window {
