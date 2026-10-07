@@ -30,6 +30,9 @@ A concept video of the three ways to defend when the opponent's left wing has th
 TikTok references/shots/defence-vs-left-wing-tiktok.mp4) uses the PROPOSED, DESIGNED trace data/traces/defence-left-wing.trace.json
 (video validation/analysis-defence-lw.mp4); its shots and passes are lanes drawn as graphics; see docs/defence-left-wing.md.
 All analysis videos share remotion/AnalysisVideo.tsx.
+Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
+references/games/; handheld phone) are digested in docs/game-mechanics.md, with open questions for the user. No tracking
+model is built yet; answer those questions first.
 
 ## Key files
 

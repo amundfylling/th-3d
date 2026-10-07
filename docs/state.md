@@ -226,6 +226,17 @@
     `docs/defence-left-wing.md`. Rerender: `npm run trace:defence-lw`, `npm run video:analysis-defence-lw`.
   - `remotion/AnalysisVideo.tsx` gained a `lane` graphic. The other four analysis videos are verified byte-identical
     on six frames each; recorded as `composition_refactor` in their reports.
+- **Game mechanics (2026-10-07): ITHF rules and one recorded match, documented, nothing built.** The user asked for
+  a full understanding of the game before anything more complex, and to ask rather than assume.
+  - Sources (indexed): `references/rules/ithf-game-rules.pdf` (ITHF Game Rules, valid from 21 Aug 2023) and
+    `references/games/fylling-vs-moe-trondheim-open-2022-final.mov` (one full match, handheld phone, 640 × 360, 25 fps).
+  - `docs/game-mechanics.md`: a rules digest for analysis, the match as states, the established video facts, the
+    unclassified hand episodes, why this angle is hard, and 10 questions for the user.
+  - Established from the audio timer: the match runs from video time about 7.5 s to 307.5 s (start and final tone
+    300 s apart, interval signals at 107.8 s and 207.7 s, music in the last 30 s). The puck rests on the centre spot
+    before the start.
+  - Not decided: goals, face-offs and retrievals in the 20 hand episodes; who is who; the score. **Waiting on the
+    user's answers** (docs/game-mechanics.md section 6) before any tracking work.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -318,7 +329,8 @@ Iteration 20 closed without repair cycles:
    defence, centre).
 4. Puck thickness, diameter, rim profile, mass; goal size, posts, clearance.
 5. The user's actual teams/artwork. (Goal configuration now known: without inserts, D5.)
-6. Blocked downloads: full manual A06 (`d.otto.de`), ITHF rules (`www.ithf.info`), the 1001 x 603
+6. Blocked downloads: full manual A06 (`d.otto.de`), ITHF Tournament Rules (`www.ithf.info`; the Game Rules were
+   fetched on 2026-10-07), the 1001 x 603
    older-artwork overhead (`www.stigacanada.ca`; not in the PDF). Allow these hosts in the cloud
    environment's network settings, or upload the files to `references/originals/`.
 
@@ -404,3 +416,4 @@ Iteration 20 closed without repair cycles:
 | V1 | 2026-10-06 | Invers Kryssar med Velodrom: NTHF pages; sketch (scripts/ikv-sketch.py, ikv-sketch-render.ts, remotion/PosePreview.tsx, validation/ikv-sketch.png) approved by the user; scripts/ikv-trace.py (moving-blade collisions, board sliding, open-mouth cage); data/traces/invers-kryssar-velodrom.trace.json (proposed); shots/invers-kryssar-velodrom/{sketch,sketch-geometry,inputs,checks}.json; data/presentations/invers-kryssar-velodrom.analysis.json; remotion/IkvAnalysis.tsx, Root.tsx (analysis-ikv, pose-preview); tests/ikv.test.ts; validation/ikv-trace.png, analysis-ikv*; docs/invers-kryssar-velodrom.md; package.json (trace:ikv, video:analysis-ikv) | sketch clearances; staged strike scans; contact checks clean; stills reviewed, views reframed; puck visibility ray-cast (all frames visible); final 1080p render with per-frame state and camera checks; `npm run check` |
 | V2 | 2026-10-06 | Invers Kryssar med Velodrom v2 (user: the left wing's flick would bounce; push forward-facing into the curve): example clip references/shots/lw-board-pass-example.mov (indexed); CLAUDE.md rule "Slide or bounce"; scripts/ikv-trace.py (quintic arc moves, slot-following rod turn, impact logging, slide_check, contact episodes, new events); shots/invers-kryssar-velodrom/{inputs,checks}.json; data/traces/invers-kryssar-velodrom.trace.json (v2, proposed); data/presentations/invers-kryssar-velodrom.analysis.json (v2: catch and corner push in chapter 2); remotion/IkvAnalysis.tsx (end card); tests/ikv.test.ts; validation/ikv-trace.png, analysis-ikv*; docs/invers-kryssar-velodrom.md | example clip puck track; parameter scans (catch, chase, push, shot); contact and slide checks clean; stills reviewed (push view moved: the left wing hid the puck; broadcast raised); puck visibility ray-cast (all frames visible); final 1080p render with per-frame state and camera checks; `npm run check` |
 | D1 | 2026-10-06 | Defending against the left wing (passive / active / mix), concept video from the user's TikTok: references/shots/defence-vs-left-wing-tiktok.mp4 and references/combinations/bordshockeyskolan-lektion-3-centrifugen.html (indexed); scripts/defence-trace.py; shots/defence-left-wing/{inputs,checks}.json; data/traces/defence-left-wing.trace.json (proposed); data/presentations/defence-left-wing.analysis.json; remotion/DefenceAnalysis.tsx, Root.tsx (analysis-defence-lw), AnalysisVideo.tsx (lane graphic, red/green accents, banner label); src/model/analysis.ts; scripts/analysis-render.ts; tests/defence.test.ts; validation/defence-trace.png, analysis-defence-lw*; four analysis reports (composition_refactor); docs/defence-left-wing.md; package.json (trace:defence-lw, video:analysis-defence-lw) | captions read frame by frame; lane sweeps with the finite puck; contact checks clean; stills reviewed (camera closer, labels moved); other analysis videos byte-identical on 6 frames each; puck visibility ray-cast (all frames visible); final 1080p render with per-frame state and camera checks; `npm run check` |
+| G1 | 2026-10-07 | Game mechanics (user request): references/rules/ithf-game-rules.pdf, references/games/fylling-vs-moe-trondheim-open-2022-final.mov (indexed); docs/game-mechanics.md; docs/state.md; CLAUDE.md | rules PDF read in full; video probed (ffprobe); audio spectrogram for the timer signals; frame registration and contact sheets around the start and the hand episodes (scratch only); no build or test changes |

@@ -744,6 +744,31 @@
       "format": "html",
       "url": "https://bordshockeyskolan.wordpress.com/bordshockeyskolan/lektion-1-10/lektion-3-centrifugen/",
       "text": "Centrifug: the left wing (puck on the backhand side) passes to the centre, who scores; the centre waits up at the centre circle with its back to the goal and the stick aimed at the goal."
+    },
+    {
+      "id": "user_game_video_fylling_vs_moe_trondheim_open_2022_final",
+      "title": "Fylling vs Moe, Trondheim Open 2022, final: one complete match filmed with a handheld phone",
+      "provenance": "user_upload",
+      "local_path": "references/games/fylling-vs-moe-trondheim-open-2022-final.mov",
+      "sha256": "ba3c7acdd85fa027473c53c2dffb0ccdbb51b76923bc343a39a30baca30e8d09",
+      "bytes": 29429077,
+      "format": "mov (H.264 640 x 360, 25 fps, 7756 frames, 310.25 s; AAC stereo 44.1 kHz)",
+      "native_width_px": 640,
+      "native_height_px": 360,
+      "uploaded": "chat attachment, 2026-10-07",
+      "view": "Handheld, low and oblique from the near long side of the table; the whole rink in view (about 380 px wide, puck about 10 px). The camera moves during 0-5 s, then holds roughly still.",
+      "notes": "Table: STIGA Play Off 21 (Peter Forsberg edition printed on the near side), yellow vs white/blue figures. Match timeline from the audio timer: start signal at about 7.5 s, final signal from about 307.5 s (docs/game-mechanics.md). Chosen by the user as the hardest camera angle for game analysis."
+    },
+    {
+      "id": "ithf_game_rules_2023",
+      "title": "ITHF Game Rules (valid from 21 August 2023), approved by the ITHF Executive Committee",
+      "provenance": "web (URL given by the user, fetched 2026-10-07)",
+      "local_path": "references/rules/ithf-game-rules.pdf",
+      "sha256": "de5f0e74078a5f85af11a61e6b7286e5a30e50c6de84872f87dcb8ce70f56678",
+      "bytes": 468913,
+      "format": "pdf (6 pages)",
+      "url": "https://ithf.info/stiga/ithf/docs/GameRules.pdf",
+      "text": "Official game rules: equipment (Stiga games, goal cups removed, Play-off figures), 5-minute matches with an audio timer, face-offs, scoring, goal crease, possession (passive play, 5 seconds), interference, interruption, the defender-goalie-defender pass. Digest in docs/game-mechanics.md. Changes of the 2023 vote are printed in red (only rule 6.1)."
     }
   ],
   "not_obtained": [
