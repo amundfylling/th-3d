@@ -1,23 +1,37 @@
 {
- "description": "Passes and turnovers (scripts/game-passes.py). Match seconds. PROPOSED; the definition is assumed (see the script).",
- "definition": "(Claude's reading of the user's possession rule; ASSUMED, to be confirmed):\n- A pass is the puck going from one skater to a TEAMMATE: possession episode A is followed by episode B of another\n  skater of the same team, with at most MAX_TRANSIT_S of \"nobody\" between them (the puck travelling through\n  contested ice or hidden).\n- A turnover is the same with B on the OTHER team. It may be an intercepted pass, a lost puck or a blocked shot; the\n  video does not tell them apart.\n- A puck that comes back to the same skater after a nobody stretch is no pass. Touches shorter than the minimum episode\n  (0.5 s) are not possessions, so one-touch passes through a skater do not appear.\n- A hand-over shorter than MIN_LENGTH_MM (80 mm) is a battle at the border of two skaters' areas, not a pass or a\n  turnover; it is listed as kind \"battle\".\n- Start point: the last seen puck position in A's episode (or, if none, the first seen in the transit); end point: the\n  first seen position in B's episode. \"seen\" flags record whether each end was actually detected near the hand-over;\n  a missing end falls back to the middle of the skater's exclusive area (drawn dashed).",
+ "description": "Passes and turnovers with the puck's path from release to reception (scripts/game-passes.py). Match seconds. PROPOSED; definitions assumed (see the script).",
+ "definition": "are passes (Claude's reading of the user's possession rule; ASSUMED, to be confirmed):\n- A pass is the puck going from one skater to a TEAMMATE: possession episode A is followed by episode B of another\n  skater of the same team, with at most MAX_TRANSIT_S of \"nobody\" between them.\n- A turnover is the same with B on the OTHER team (an intercepted pass, a lost puck or a blocked shot; the video\n  does not tell them apart).\n- A puck that comes back to the same skater is no pass. Touches shorter than the minimum episode (0.5 s) are not\n  possessions, so one-touch passes through a skater do not appear.\n- A hand-over whose puck path is shorter than MIN_LENGTH_MM (80 mm) is a battle at the border of two skaters' areas.\n\nWhere the puck left and where it ended up (the pass line), from the detected puck positions only:\n- A passed puck slides in a straight line at near-constant speed until a board turns it. Around each hand-over (from\n  WINDOW_S before A's possession ends to WINDOW_S after B's starts) the detections are fitted with straight-line,\n  constant-velocity segments (RANSAC over pairs of detections): a detection fits when it is within TOL_MM of the\n  segment's predicted position at its time. A segment needs at least MIN_INLIERS detections, a speed of at least\n  MOVING_MM_S, and must cover the hand-over.\n- A board bounce: when a segment ends within NEAR_BOARD_MM of the boards, a following segment starting at that point\n  is fitted to the later detections (up to MAX_BOUNCES).\n- The line must START inside the passer's reach and END inside the receiver's reach (slot plus figure plus puck, with\n  AREA_SLACK_MM for the position error). A segment may start at a slow detection in the passer's reach (the puck\n  resting on the blade at release) and then needs only MIN_INLIERS - 1 moving detections.\n- Among valid lines, the one with the most fitted detections wins (then the longest).\n- RELEASE: the first point of the line. RECEPTION: its last fitted detection, moved forward to where the puck slowed at\n  the receiver if a later detection lies on the line within EXTEND_S.\n- A hand-over without such a fit has no measured line (\"measured\": false). It is still counted, but not drawn as a\n  line.\n- Positions are the centre of the puck's dark blob on the ice plane: about +-10 mm (calibration and the blob including\n  the puck's side; the side biases the point toward the camera).",
  "parameters": {
   "max_transit_s": 2.0,
   "min_length_mm": 80.0,
-  "near_s": 1.0,
+  "window_s": 1.0,
+  "tol_mm": 15.0,
+  "min_inliers": 3,
+  "moving_mm_s": 300.0,
+  "near_board_mm": 35.0,
+  "max_bounces": 2,
+  "extend_s": 0.6,
   "min_episode_s": 0.5
  },
  "summary": {
   "W": {
    "passes": 17,
-   "turnovers_lost": 9,
-   "battles_lost": 4
+   "turnovers_lost": 13,
+   "battles_lost": 0
   },
   "E": {
    "passes": 10,
-   "turnovers_lost": 9,
-   "battles_lost": 2
+   "turnovers_lost": 10,
+   "battles_lost": 1
   }
+ },
+ "quality": {
+  "hand_overs": 51,
+  "measured_lines": 25,
+  "not_measured": 25,
+  "release_at_rest": 0,
+  "reception_at_rest": 8,
+  "with_bounces": 1
  },
  "pairs": {
   "W-RW>W-LD": 1,
@@ -26,6 +40,7 @@
   "E-LW>E-RW": 1,
   "E-RW>W-RD": 1,
   "W-RD>E-LW": 1,
+  "W-RW>E-RD": 1,
   "E-RD>E-LD": 1,
   "E-LD>E-RW": 1,
   "E-RW>W-LD": 1,
@@ -45,16 +60,18 @@
   "W-C>W-RW": 1,
   "E-RW>W-LW": 1,
   "W-LW>E-LW": 1,
-  "E-LW>W-LD": 1,
+  "E-LW>W-LD": 2,
+  "W-LD>E-RW": 1,
   "W-LW>E-C": 1,
   "E-C>W-LD": 1,
-  "W-RW>E-LD": 1,
+  "W-RW>E-LD": 2,
   "E-LD>W-LW": 1,
   "W-C>W-RD": 1,
   "E-LD>E-C": 1,
   "E-C>E-LW": 1,
   "W-RD>W-LW": 1,
   "W-LW>W-RD": 1,
+  "W-RD>E-C": 1,
   "W-LW>W-C": 1
  },
  "events": [
@@ -63,1020 +80,2061 @@
    "team": "W",
    "from": "W-RW",
    "to": "W-LD",
-   "t_release": 5.88,
-   "t_receive": 5.88,
+   "t_poss_end": 5.88,
+   "t_poss_start": 5.88,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 5.46,
+   "t_reception": 6.34,
    "start_mm": [
-    -14.2,
-    -156.2
+    -18.3,
+    -166.3
    ],
    "end_mm": [
-    -49.7,
-    123.6
+    -52.7,
+    124.6
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 282.0
+   "line_mm": [
+    [
+     -18.3,
+     -166.3
+    ],
+    [
+     -52.7,
+     124.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 292.9,
+   "speed_mm_s": [
+    349.0
+   ],
+   "detections_on_line": 5,
+   "fit_residual_mm": 6.8,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     5.46,
+     -18.3,
+     -166.3
+    ],
+    [
+     5.5,
+     -14.2,
+     -156.2
+    ],
+    [
+     6.26,
+     -49.7,
+     123.6
+    ],
+    [
+     6.3,
+     -50.9,
+     124.0
+    ],
+    [
+     6.34,
+     -52.7,
+     124.6
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-LD",
    "to": "E-C",
-   "t_release": 6.72,
-   "t_receive": 7.88,
+   "t_poss_end": 6.72,
+   "t_poss_start": 7.88,
    "transit_s": 1.16,
-   "start_mm": [
-    -47.3,
-    121.3
-   ],
-   "end_mm": [
-    -109.9,
-    -7.1
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 142.8
+   "measured": false,
+   "t_release": 6.72,
+   "t_reception": 7.88
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-C",
    "to": "E-LD",
-   "t_release": 12.36,
-   "t_receive": 13.0,
+   "t_poss_end": 12.36,
+   "t_poss_start": 13.0,
    "transit_s": 0.64,
+   "measured": true,
+   "t_release": 12.42,
+   "t_reception": 13.74,
    "start_mm": [
-    -170.5,
-    -17.0
+    -211.7,
+    -64.0
    ],
    "end_mm": [
-    -1.9,
-    -124.2
+    196.1,
+    -73.5
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 199.8
+   "line_mm": [
+    [
+     -211.7,
+     -64.0
+    ],
+    [
+     196.1,
+     -73.5
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 407.9,
+   "speed_mm_s": [
+    302.0
+   ],
+   "detections_on_line": 5,
+   "fit_residual_mm": 7.1,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     12.42,
+     -211.7,
+     -64.0
+    ],
+    [
+     12.46,
+     -202.2,
+     -72.9
+    ],
+    [
+     13.66,
+     149.5,
+     -71.8
+    ],
+    [
+     13.7,
+     174.8,
+     -67.8
+    ],
+    [
+     13.74,
+     196.1,
+     -73.5
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-LW",
    "to": "E-RW",
-   "t_release": 20.52,
-   "t_receive": 20.52,
+   "t_poss_end": 20.52,
+   "t_poss_start": 20.52,
    "transit_s": 0.0,
-   "start_mm": [
-    -389.0,
-    24.7
-   ],
-   "end_mm": [
-    -151.8,
-    181.7
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 284.5
+   "measured": false,
+   "t_release": 20.52,
+   "t_reception": 20.52
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-RW",
    "to": "W-RD",
-   "t_release": 24.88,
-   "t_receive": 25.36,
+   "t_poss_end": 24.88,
+   "t_poss_start": 25.36,
    "transit_s": 0.48,
+   "measured": true,
+   "t_release": 24.42,
+   "t_reception": 26.14,
    "start_mm": [
-    -83.1,
-    199.2
+    -78.1,
+    202.9
    ],
    "end_mm": [
-    -232.2,
-    -59.7
+    -256.0,
+    -78.3
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 298.8
+   "line_mm": [
+    [
+     -78.1,
+     202.9
+    ],
+    [
+     -256.0,
+     -78.3
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 332.7,
+   "speed_mm_s": [
+    310.0
+   ],
+   "detections_on_line": 6,
+   "fit_residual_mm": 8.3,
+   "release_at_rest": false,
+   "reception_at_rest": true,
+   "fitted_detections": [
+    [
+     24.42,
+     -78.1,
+     202.9
+    ],
+    [
+     24.46,
+     -83.1,
+     199.2
+    ],
+    [
+     25.38,
+     -232.2,
+     -59.7
+    ],
+    [
+     25.42,
+     -246.2,
+     -70.0
+    ],
+    [
+     25.5,
+     -253.9,
+     -76.9
+    ],
+    [
+     25.54,
+     -251.6,
+     -77.9
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-RD",
    "to": "E-LW",
-   "t_release": 31.72,
-   "t_receive": 31.72,
+   "t_poss_end": 31.72,
+   "t_poss_start": 31.72,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 31.3,
+   "t_reception": 31.9,
    "start_mm": [
-    -148.1,
-    -72.4
+    -211.9,
+    -77.1
    ],
    "end_mm": [
-    -375.5,
-    -183.5
+    -375.2,
+    -183.7
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 253.1
+   "line_mm": [
+    [
+     -211.9,
+     -77.1
+    ],
+    [
+     -375.2,
+     -183.7
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 195.0,
+   "speed_mm_s": [
+    345.0
+   ],
+   "detections_on_line": 4,
+   "fit_residual_mm": 6.4,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     31.3,
+     -211.9,
+     -77.1
+    ],
+    [
+     31.34,
+     -214.4,
+     -77.3
+    ],
+    [
+     31.86,
+     -375.5,
+     -183.5
+    ],
+    [
+     31.9,
+     -375.2,
+     -183.7
+    ]
+   ]
   },
   {
-   "kind": "battle",
+   "kind": "turnover",
    "team": "W",
    "from": "W-RW",
    "to": "E-RD",
-   "t_release": 37.96,
-   "t_receive": 39.36,
+   "t_poss_end": 37.96,
+   "t_poss_start": 39.36,
    "transit_s": 1.4,
-   "start_mm": [
-    346.5,
-    -160.5
-   ],
-   "end_mm": [
-    320.9,
-    -154.6
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 26.3
+   "measured": false,
+   "t_release": 37.96,
+   "t_reception": 39.36
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-RD",
    "to": "E-LD",
-   "t_release": 40.8,
-   "t_receive": 40.92,
+   "t_poss_end": 40.8,
+   "t_poss_start": 40.92,
    "transit_s": 0.12,
+   "measured": true,
+   "t_release": 40.74,
+   "t_reception": 41.02,
    "start_mm": [
-    106.4,
-    73.9
+    127.9,
+    100.9
    ],
    "end_mm": [
     36.3,
     -88.1
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 176.5
+   "line_mm": [
+    [
+     127.9,
+     100.9
+    ],
+    [
+     36.3,
+     -88.1
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 210.0,
+   "speed_mm_s": [
+    745.0
+   ],
+   "detections_on_line": 5,
+   "fit_residual_mm": 4.7,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     40.74,
+     127.9,
+     100.9
+    ],
+    [
+     40.78,
+     106.4,
+     73.9
+    ],
+    [
+     40.82,
+     91.6,
+     43.7
+    ],
+    [
+     40.86,
+     79.3,
+     14.0
+    ],
+    [
+     41.02,
+     36.3,
+     -88.1
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-LD",
    "to": "E-RW",
-   "t_release": 45.64,
-   "t_receive": 47.16,
+   "t_poss_end": 45.64,
+   "t_poss_start": 47.16,
    "transit_s": 1.52,
+   "measured": true,
+   "t_release": 45.06,
+   "t_reception": 47.42,
    "start_mm": [
-    98.9,
-    -75.4
+    140.5,
+    -79.5
    ],
    "end_mm": [
-    -341.5,
-    206.3
+    -331.0,
+    209.1
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 522.8
+   "line_mm": [
+    [
+     140.5,
+     -79.5
+    ],
+    [
+     -406.2,
+     36.1
+    ],
+    [
+     -331.0,
+     209.1
+    ]
+   ],
+   "bounces": 1,
+   "length_mm": 747.4,
+   "speed_mm_s": [
+    313.0,
+    388.0
+   ],
+   "detections_on_line": 9,
+   "fit_residual_mm": 6.0,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     45.06,
+     140.5,
+     -79.5
+    ],
+    [
+     45.1,
+     136.8,
+     -78.7
+    ],
+    [
+     45.14,
+     126.8,
+     -75.9
+    ],
+    [
+     46.82,
+     -407.0,
+     21.3
+    ],
+    [
+     46.86,
+     -407.3,
+     29.7
+    ],
+    [
+     46.9,
+     -406.2,
+     36.1
+    ],
+    [
+     47.34,
+     -341.5,
+     206.3
+    ],
+    [
+     47.38,
+     -337.5,
+     209.0
+    ],
+    [
+     47.42,
+     -331.0,
+     209.1
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-RW",
    "to": "W-LD",
-   "t_release": 49.96,
-   "t_receive": 49.96,
+   "t_poss_end": 49.96,
+   "t_poss_start": 49.96,
    "transit_s": 0.0,
-   "start_mm": [
-    -2.4,
-    190.0
-   ],
-   "end_mm": [
-    -326.7,
-    101.7
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 336.1
+   "measured": false,
+   "t_release": 49.96,
+   "t_reception": 49.96
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LD",
    "to": "W-LW",
-   "t_release": 55.36,
-   "t_receive": 55.36,
+   "t_poss_end": 55.36,
+   "t_poss_start": 55.36,
    "transit_s": 0.0,
-   "start_mm": [
-    -175.5,
-    87.9
-   ],
-   "end_mm": [
-    384.6,
-    86.4
-   ],
-   "start_seen": false,
-   "end_seen": false,
-   "length_mm": 560.1
+   "measured": false,
+   "t_release": 55.36,
+   "t_reception": 55.36
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-LW",
    "to": "E-RW",
-   "t_release": 59.68,
-   "t_receive": 59.68,
+   "t_poss_end": 59.68,
+   "t_poss_start": 59.68,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 59.1,
+   "t_reception": 60.58,
    "start_mm": [
-    324.1,
-    193.1
+    336.2,
+    194.2
    ],
    "end_mm": [
-    -169.0,
-    193.7
+    -324.2,
+    195.1
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 493.1
+   "line_mm": [
+    [
+     336.2,
+     194.2
+    ],
+    [
+     -324.2,
+     195.1
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 660.4,
+   "speed_mm_s": [
+    682.0
+   ],
+   "detections_on_line": 6,
+   "fit_residual_mm": 8.3,
+   "release_at_rest": false,
+   "reception_at_rest": true,
+   "fitted_detections": [
+    [
+     59.1,
+     336.2,
+     194.2
+    ],
+    [
+     59.9,
+     -199.5,
+     201.4
+    ],
+    [
+     59.94,
+     -251.5,
+     208.5
+    ],
+    [
+     59.98,
+     -274.1,
+     210.8
+    ],
+    [
+     60.02,
+     -292.1,
+     209.6
+    ],
+    [
+     60.06,
+     -307.0,
+     209.1
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-RW",
    "to": "E-LW",
-   "t_release": 66.48,
-   "t_receive": 67.56,
+   "t_poss_end": 66.48,
+   "t_poss_start": 67.56,
    "transit_s": 1.08,
+   "measured": true,
+   "t_release": 66.78,
+   "t_reception": 68.26,
    "start_mm": [
-    -264.7,
-    195.8
+    58.1,
+    155.8
    ],
    "end_mm": [
-    -291.5,
-    -170.3
+    -295.3,
+    -170.7
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 367.1
+   "line_mm": [
+    [
+     58.1,
+     155.8
+    ],
+    [
+     -295.3,
+     -170.7
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 481.1,
+   "speed_mm_s": [
+    334.0
+   ],
+   "detections_on_line": 5,
+   "fit_residual_mm": 6.0,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     66.78,
+     58.1,
+     155.8
+    ],
+    [
+     66.82,
+     51.4,
+     151.4
+    ],
+    [
+     68.18,
+     -291.8,
+     -169.4
+    ],
+    [
+     68.22,
+     -291.5,
+     -169.3
+    ],
+    [
+     68.26,
+     -295.3,
+     -170.7
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-LW",
    "to": "W-RD",
-   "t_release": 71.72,
-   "t_receive": 73.48,
+   "t_poss_end": 71.72,
+   "t_poss_start": 73.48,
    "transit_s": 1.76,
-   "start_mm": [
-    -241.0,
-    137.1
-   ],
-   "end_mm": [
-    -232.7,
-    -63.6
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 200.9
+   "measured": false,
+   "t_release": 71.72,
+   "t_reception": 73.48
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-RD",
    "to": "W-C",
-   "t_release": 76.36,
-   "t_receive": 77.6,
+   "t_poss_end": 76.36,
+   "t_poss_start": 77.6,
    "transit_s": 1.24,
-   "start_mm": [
-    -235.9,
-    -90.1
-   ],
-   "end_mm": [
-    -247.8,
-    138.9
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 229.3
+   "measured": false,
+   "t_release": 76.36,
+   "t_reception": 77.6
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-C",
    "to": "E-RD",
-   "t_release": 84.52,
-   "t_receive": 84.52,
+   "t_poss_end": 84.52,
+   "t_poss_start": 84.52,
    "transit_s": 0.0,
-   "start_mm": [
-    170.2,
-    -5.8
-   ],
-   "end_mm": [
-    209.2,
-    85.7
-   ],
-   "start_seen": false,
-   "end_seen": false,
-   "length_mm": 99.4
+   "measured": false,
+   "t_release": 84.52,
+   "t_reception": 84.52
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-RD",
    "to": "W-LD",
-   "t_release": 104.24,
-   "t_receive": 104.24,
+   "t_poss_end": 104.24,
+   "t_poss_start": 104.24,
    "transit_s": 0.0,
-   "start_mm": [
-    -210.8,
-    -85.2
-   ],
-   "end_mm": [
-    -175.5,
-    87.9
-   ],
-   "start_seen": false,
-   "end_seen": false,
-   "length_mm": 176.6
+   "measured": false,
+   "t_release": 104.24,
+   "t_reception": 104.24
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LD",
    "to": "W-RW",
-   "t_release": 110.48,
-   "t_receive": 111.28,
+   "t_poss_end": 110.48,
+   "t_poss_start": 111.28,
    "transit_s": 0.8,
+   "measured": true,
+   "t_release": 110.06,
+   "t_reception": 111.18,
    "start_mm": [
-    -43.3,
-    111.3
+    -42.8,
+    112.5
    ],
    "end_mm": [
-    349.7,
-    -159.9
+    370.1,
+    -139.4
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 477.5
+   "line_mm": [
+    [
+     -42.8,
+     112.5
+    ],
+    [
+     370.1,
+     -139.4
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 483.7,
+   "speed_mm_s": [
+    452.0
+   ],
+   "detections_on_line": 3,
+   "fit_residual_mm": 5.1,
+   "release_at_rest": false,
+   "reception_at_rest": true,
+   "fitted_detections": [
+    [
+     110.06,
+     -42.8,
+     112.5
+    ],
+    [
+     111.1,
+     372.2,
+     -121.8
+    ],
+    [
+     111.14,
+     372.9,
+     -133.1
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LD",
    "to": "W-LW",
-   "t_release": 120.52,
-   "t_receive": 120.52,
+   "t_poss_end": 120.52,
+   "t_poss_start": 120.52,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 119.94,
+   "t_reception": 121.02,
    "start_mm": [
-    -32.5,
-    113.4
+    -32.1,
+    113.2
    ],
    "end_mm": [
-    211.6,
-    207.4
+    316.0,
+    165.2
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 261.6
+   "line_mm": [
+    [
+     -32.1,
+     113.2
+    ],
+    [
+     316.0,
+     165.2
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 352.0,
+   "speed_mm_s": [
+    336.0
+   ],
+   "detections_on_line": 5,
+   "fit_residual_mm": 5.8,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     119.94,
+     -32.1,
+     113.2
+    ],
+    [
+     119.98,
+     -31.8,
+     113.1
+    ],
+    [
+     120.94,
+     299.8,
+     154.1
+    ],
+    [
+     120.98,
+     308.9,
+     163.5
+    ],
+    [
+     121.02,
+     316.0,
+     165.2
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-LW",
    "to": "E-LD",
-   "t_release": 121.92,
-   "t_receive": 121.92,
+   "t_poss_end": 121.92,
+   "t_poss_start": 121.92,
    "transit_s": 0.0,
-   "start_mm": [
-    303.3,
-    163.6
-   ],
-   "end_mm": [
-    241.8,
-    -92.0
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 262.9
+   "measured": false,
+   "t_release": 121.92,
+   "t_reception": 121.92
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-LD",
    "to": "W-RW",
-   "t_release": 123.2,
-   "t_receive": 123.2,
+   "t_poss_end": 123.2,
+   "t_poss_start": 123.2,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 122.7,
+   "t_reception": 123.7,
    "start_mm": [
-    256.3,
-    -89.2
+    271.1,
+    -86.6
    ],
    "end_mm": [
-    -23.4,
-    -176.7
+    -15.0,
+    -170.5
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 293.1
+   "line_mm": [
+    [
+     271.1,
+     -86.6
+    ],
+    [
+     -15.0,
+     -170.5
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 298.1,
+   "speed_mm_s": [
+    302.0
+   ],
+   "detections_on_line": 5,
+   "fit_residual_mm": 5.6,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     122.7,
+     271.1,
+     -86.6
+    ],
+    [
+     122.74,
+     250.0,
+     -93.1
+    ],
+    [
+     122.78,
+     249.9,
+     -91.7
+    ],
+    [
+     123.66,
+     -15.3,
+     -171.8
+    ],
+    [
+     123.7,
+     -15.0,
+     -170.5
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-RW",
    "to": "W-LW",
-   "t_release": 123.96,
-   "t_receive": 123.96,
+   "t_poss_end": 123.96,
+   "t_poss_start": 123.96,
    "transit_s": 0.0,
-   "start_mm": [
-    -15.0,
-    -170.5
-   ],
-   "end_mm": [
-    357.7,
-    16.0
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 416.8
+   "measured": false,
+   "t_release": 123.96,
+   "t_reception": 123.96
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-LW",
    "to": "E-LD",
-   "t_release": 132.2,
-   "t_receive": 132.84,
+   "t_poss_end": 132.2,
+   "t_poss_start": 132.84,
    "transit_s": 0.64,
+   "measured": true,
+   "t_release": 131.74,
+   "t_reception": 133.42,
    "start_mm": [
-    302.7,
-    203.8
+    314.6,
+    200.5
    ],
    "end_mm": [
-    11.0,
-    -128.1
+    3.8,
+    -127.1
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 441.9
+   "line_mm": [
+    [
+     314.6,
+     200.5
+    ],
+    [
+     3.8,
+     -127.1
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 451.6,
+   "speed_mm_s": [
+    368.0
+   ],
+   "detections_on_line": 7,
+   "fit_residual_mm": 8.9,
+   "release_at_rest": false,
+   "reception_at_rest": true,
+   "fitted_detections": [
+    [
+     131.74,
+     314.6,
+     200.5
+    ],
+    [
+     131.78,
+     314.0,
+     200.5
+    ],
+    [
+     132.26,
+     178.7,
+     72.9
+    ],
+    [
+     132.3,
+     163.2,
+     53.4
+    ],
+    [
+     132.94,
+     0.8,
+     -122.9
+    ],
+    [
+     132.98,
+     0.2,
+     -122.3
+    ],
+    [
+     133.02,
+     -0.2,
+     -122.3
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-LD",
    "to": "E-LW",
-   "t_release": 148.36,
-   "t_receive": 149.8,
+   "t_poss_end": 148.36,
+   "t_poss_start": 149.8,
    "transit_s": 1.44,
-   "start_mm": [
-    222.3,
-    -120.1
-   ],
-   "end_mm": [
-    -380.8,
-    -10.8
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 612.9
+   "measured": false,
+   "t_release": 148.36,
+   "t_reception": 149.8
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-LW",
    "to": "E-C",
-   "t_release": 151.4,
-   "t_receive": 151.4,
+   "t_poss_end": 151.4,
+   "t_poss_start": 151.4,
    "transit_s": 0.0,
-   "start_mm": [
-    -399.9,
-    9.6
-   ],
-   "end_mm": [
-    -209.0,
-    -8.2
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 191.7
+   "measured": false,
+   "t_release": 151.4,
+   "t_reception": 151.4
   },
   {
    "kind": "battle",
    "team": "E",
    "from": "E-C",
    "to": "W-RD",
-   "t_release": 152.0,
-   "t_receive": 152.0,
+   "t_poss_end": 152.0,
+   "t_poss_start": 152.0,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 151.9,
+   "t_reception": 152.18,
    "start_mm": [
-    -207.4,
-    -6.5
+    -209.0,
+    -8.2
    ],
    "end_mm": [
-    -235.6,
-    -66.0
+    -245.3,
+    -72.7
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 65.8
+   "line_mm": [
+    [
+     -209.0,
+     -8.2
+    ],
+    [
+     -245.3,
+     -72.7
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 74.0,
+   "speed_mm_s": [
+    322.0
+   ],
+   "detections_on_line": 6,
+   "fit_residual_mm": 9.1,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     151.9,
+     -209.0,
+     -8.2
+    ],
+    [
+     151.94,
+     -206.0,
+     -8.7
+    ],
+    [
+     152.06,
+     -236.0,
+     -63.5
+    ],
+    [
+     152.1,
+     -243.6,
+     -75.6
+    ],
+    [
+     152.14,
+     -244.9,
+     -74.7
+    ],
+    [
+     152.18,
+     -245.3,
+     -72.7
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-RD",
    "to": "W-C",
-   "t_release": 155.68,
-   "t_receive": 155.68,
+   "t_poss_end": 155.68,
+   "t_poss_start": 155.68,
    "transit_s": 0.0,
-   "start_mm": [
-    -225.4,
-    -71.2
-   ],
-   "end_mm": [
-    142.5,
-    12.1
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 377.2
+   "measured": false,
+   "t_release": 155.68,
+   "t_reception": 155.68
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-C",
    "to": "W-RW",
-   "t_release": 160.32,
-   "t_receive": 160.32,
+   "t_poss_end": 160.32,
+   "t_poss_start": 160.32,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 159.98,
+   "t_reception": 160.94,
    "start_mm": [
-    186.8,
-    6.4
+    183.4,
+    3.5
    ],
    "end_mm": [
-    326.4,
-    -167.0
+    327.5,
+    -167.8
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 222.6
+   "line_mm": [
+    [
+     183.4,
+     3.5
+    ],
+    [
+     327.5,
+     -167.8
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 223.8,
+   "speed_mm_s": [
+    334.0
+   ],
+   "detections_on_line": 5,
+   "fit_residual_mm": 8.0,
+   "release_at_rest": false,
+   "reception_at_rest": true,
+   "fitted_detections": [
+    [
+     159.98,
+     183.4,
+     3.5
+    ],
+    [
+     160.02,
+     183.6,
+     3.0
+    ],
+    [
+     160.62,
+     326.4,
+     -167.0
+    ],
+    [
+     160.66,
+     326.6,
+     -167.1
+    ],
+    [
+     160.7,
+     326.5,
+     -167.1
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-RW",
    "to": "W-LW",
-   "t_release": 168.84,
-   "t_receive": 168.84,
+   "t_poss_end": 168.84,
+   "t_poss_start": 168.84,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 168.18,
+   "t_reception": 169.74,
    "start_mm": [
-    -240.8,
-    192.9
+    -284.8,
+    194.2
    ],
    "end_mm": [
-    302.7,
-    203.3
+    305.3,
+    202.9
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 543.6
+   "line_mm": [
+    [
+     -284.8,
+     194.2
+    ],
+    [
+     305.3,
+     202.9
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 590.2,
+   "speed_mm_s": [
+    384.0
+   ],
+   "detections_on_line": 8,
+   "fit_residual_mm": 7.8,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     168.18,
+     -284.8,
+     194.2
+    ],
+    [
+     168.22,
+     -256.6,
+     189.7
+    ],
+    [
+     168.26,
+     -250.6,
+     188.7
+    ],
+    [
+     168.3,
+     -247.6,
+     196.9
+    ],
+    [
+     168.34,
+     -234.0,
+     197.5
+    ],
+    [
+     169.66,
+     293.1,
+     200.6
+    ],
+    [
+     169.7,
+     301.0,
+     200.0
+    ],
+    [
+     169.74,
+     305.3,
+     202.9
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-LW",
    "to": "E-LW",
-   "t_release": 179.72,
-   "t_receive": 180.28,
+   "t_poss_end": 179.72,
+   "t_poss_start": 180.28,
    "transit_s": 0.56,
+   "measured": true,
+   "t_release": 178.74,
+   "t_reception": 180.42,
    "start_mm": [
-    337.0,
-    148.9
+    337.9,
+    196.1
    ],
    "end_mm": [
-    -231.1,
-    -153.2
+    -250.3,
+    -165.6
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 643.4
+   "line_mm": [
+    [
+     337.9,
+     196.1
+    ],
+    [
+     -250.3,
+     -165.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 690.5,
+   "speed_mm_s": [
+    426.0
+   ],
+   "detections_on_line": 8,
+   "fit_residual_mm": 8.9,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     178.74,
+     337.9,
+     196.1
+    ],
+    [
+     178.78,
+     336.7,
+     192.4
+    ],
+    [
+     180.22,
+     -203.4,
+     -130.8
+    ],
+    [
+     180.26,
+     -220.4,
+     -137.9
+    ],
+    [
+     180.3,
+     -231.1,
+     -153.2
+    ],
+    [
+     180.34,
+     -238.0,
+     -160.6
+    ],
+    [
+     180.38,
+     -248.3,
+     -164.7
+    ],
+    [
+     180.42,
+     -250.3,
+     -165.6
+    ]
+   ]
   },
   {
-   "kind": "battle",
+   "kind": "turnover",
    "team": "E",
    "from": "E-LW",
    "to": "W-LD",
-   "t_release": 184.64,
-   "t_receive": 185.8,
+   "t_poss_end": 184.64,
+   "t_poss_start": 185.8,
    "transit_s": 1.16,
-   "start_mm": [
-    -77.6,
-    63.6
-   ],
-   "end_mm": [
-    -136.1,
-    70.9
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 59.0
+   "measured": false,
+   "t_release": 184.64,
+   "t_reception": 185.8
   },
   {
-   "kind": "battle",
+   "kind": "turnover",
    "team": "W",
    "from": "W-LD",
    "to": "E-RW",
-   "t_release": 186.4,
-   "t_receive": 186.4,
+   "t_poss_end": 186.4,
+   "t_poss_start": 186.4,
    "transit_s": 0.0,
-   "start_mm": [
-    -124.7,
-    110.1
-   ],
-   "end_mm": [
-    -112.0,
-    180.5
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 71.5
+   "measured": false,
+   "t_release": 186.4,
+   "t_reception": 186.4
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-RW",
    "to": "E-LW",
-   "t_release": 193.08,
-   "t_receive": 193.08,
+   "t_poss_end": 193.08,
+   "t_poss_start": 193.08,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 192.34,
+   "t_reception": 193.66,
    "start_mm": [
-    -69.8,
-    199.6
+    -56.0,
+    200.4
    ],
    "end_mm": [
     -404.8,
     3.1
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 388.4
+   "line_mm": [
+    [
+     -56.0,
+     200.4
+    ],
+    [
+     -404.8,
+     3.1
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 400.7,
+   "speed_mm_s": [
+    305.0
+   ],
+   "detections_on_line": 3,
+   "fit_residual_mm": 1.4,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     192.34,
+     -56.0,
+     200.4
+    ],
+    [
+     192.38,
+     -62.4,
+     194.7
+    ],
+    [
+     193.66,
+     -404.8,
+     3.1
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-LW",
    "to": "W-LD",
-   "t_release": 196.32,
-   "t_receive": 196.32,
+   "t_poss_end": 196.32,
+   "t_poss_start": 196.32,
    "transit_s": 0.0,
-   "start_mm": [
-    -384.9,
-    -85.3
-   ],
-   "end_mm": [
-    -175.5,
-    87.9
-   ],
-   "start_seen": false,
-   "end_seen": false,
-   "length_mm": 271.7
+   "measured": false,
+   "t_release": 196.32,
+   "t_reception": 196.32
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LD",
    "to": "W-LW",
-   "t_release": 202.24,
-   "t_receive": 202.24,
+   "t_poss_end": 202.24,
+   "t_poss_start": 202.24,
    "transit_s": 0.0,
-   "start_mm": [
-    -32.6,
-    113.8
-   ],
-   "end_mm": [
-    237.5,
-    205.8
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 285.3
+   "measured": false,
+   "t_release": 202.24,
+   "t_reception": 202.24
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-LW",
    "to": "E-C",
-   "t_release": 207.08,
-   "t_receive": 208.16,
+   "t_poss_end": 207.08,
+   "t_poss_start": 208.16,
    "transit_s": 1.08,
-   "start_mm": [
-    308.2,
-    200.6
-   ],
-   "end_mm": [
-    -27.5,
-    28.6
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 377.2
+   "measured": false,
+   "t_release": 207.08,
+   "t_reception": 208.16
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-C",
    "to": "W-LD",
-   "t_release": 209.28,
-   "t_receive": 209.28,
+   "t_poss_end": 209.28,
+   "t_poss_start": 209.28,
    "transit_s": 0.0,
-   "start_mm": [
-    -26.6,
-    28.7
-   ],
-   "end_mm": [
-    -78.8,
-    109.8
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 96.4
+   "measured": false,
+   "t_release": 209.28,
+   "t_reception": 209.28
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LD",
    "to": "W-RW",
-   "t_release": 215.36,
-   "t_receive": 216.2,
+   "t_poss_end": 215.36,
+   "t_poss_start": 216.2,
    "transit_s": 0.84,
+   "measured": true,
+   "t_release": 215.02,
+   "t_reception": 216.14,
    "start_mm": [
-    -36.3,
-    113.8
+    -36.0,
+    112.0
    ],
    "end_mm": [
-    309.1,
-    -164.0
+    360.7,
+    -141.6
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 443.3
+   "line_mm": [
+    [
+     -36.0,
+     112.0
+    ],
+    [
+     360.7,
+     -141.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 470.8,
+   "speed_mm_s": [
+    432.0
+   ],
+   "detections_on_line": 4,
+   "fit_residual_mm": 6.8,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     215.02,
+     -36.0,
+     112.0
+    ],
+    [
+     215.06,
+     -29.0,
+     111.6
+    ],
+    [
+     216.1,
+     359.7,
+     -139.6
+    ],
+    [
+     216.14,
+     360.7,
+     -141.6
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "W",
    "from": "W-RW",
    "to": "E-LD",
-   "t_release": 217.48,
-   "t_receive": 217.48,
+   "t_poss_end": 217.48,
+   "t_poss_start": 217.48,
    "transit_s": 0.0,
-   "start_mm": [
-    179.3,
-    -185.7
-   ],
-   "end_mm": [
-    175.5,
-    -88.2
-   ],
-   "start_seen": false,
-   "end_seen": false,
-   "length_mm": 97.5
+   "measured": false,
+   "t_release": 217.48,
+   "t_reception": 217.48
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-LD",
    "to": "W-LW",
-   "t_release": 222.96,
-   "t_receive": 224.24,
+   "t_poss_end": 222.96,
+   "t_poss_start": 224.24,
    "transit_s": 1.28,
-   "start_mm": [
-    246.3,
-    -68.6
-   ],
-   "end_mm": [
-    363.0,
-    178.5
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 273.3
+   "measured": false,
+   "t_release": 222.96,
+   "t_reception": 224.24
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-C",
    "to": "W-RD",
-   "t_release": 232.56,
-   "t_receive": 233.0,
+   "t_poss_end": 232.56,
+   "t_poss_start": 233.0,
    "transit_s": 0.44,
+   "measured": true,
+   "t_release": 232.62,
+   "t_reception": 233.58,
    "start_mm": [
-    193.0,
-    -42.8
+    203.6,
+    -70.8
    ],
    "end_mm": [
-    -123.8,
-    -47.3
+    -261.7,
+    -49.6
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 316.8
+   "line_mm": [
+    [
+     203.6,
+     -70.8
+    ],
+    [
+     -261.7,
+     -49.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 465.8,
+   "speed_mm_s": [
+    426.0
+   ],
+   "detections_on_line": 4,
+   "fit_residual_mm": 6.4,
+   "release_at_rest": false,
+   "reception_at_rest": true,
+   "fitted_detections": [
+    [
+     232.62,
+     203.6,
+     -70.8
+    ],
+    [
+     233.42,
+     -123.8,
+     -47.3
+    ],
+    [
+     233.46,
+     -153.4,
+     -53.1
+    ],
+    [
+     233.5,
+     -179.1,
+     -52.6
+    ]
+   ]
   },
   {
-   "kind": "battle",
+   "kind": "turnover",
    "team": "W",
    "from": "W-RW",
    "to": "E-LD",
-   "t_release": 248.44,
-   "t_receive": 248.48,
+   "t_poss_end": 248.44,
+   "t_poss_start": 248.48,
    "transit_s": 0.04,
+   "measured": true,
+   "t_release": 248.38,
+   "t_reception": 249.26,
    "start_mm": [
-    283.0,
-    -163.9
+    286.5,
+    -168.5
    ],
    "end_mm": [
-    301.5,
-    -121.5
+    311.8,
+    -61.6
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 46.3
+   "line_mm": [
+    [
+     286.5,
+     -168.5
+    ],
+    [
+     311.8,
+     -61.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 109.9,
+   "speed_mm_s": [
+    386.0
+   ],
+   "detections_on_line": 8,
+   "fit_residual_mm": 6.9,
+   "release_at_rest": false,
+   "reception_at_rest": true,
+   "fitted_detections": [
+    [
+     248.38,
+     286.5,
+     -168.5
+    ],
+    [
+     248.42,
+     283.0,
+     -163.9
+    ],
+    [
+     248.46,
+     294.2,
+     -139.8
+    ],
+    [
+     248.5,
+     301.5,
+     -121.5
+    ],
+    [
+     248.58,
+     309.2,
+     -80.6
+    ],
+    [
+     248.62,
+     310.2,
+     -72.0
+    ],
+    [
+     248.66,
+     312.2,
+     -64.2
+    ],
+    [
+     248.7,
+     311.3,
+     -62.9
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-LD",
    "to": "E-C",
-   "t_release": 252.32,
-   "t_receive": 252.48,
+   "t_poss_end": 252.32,
+   "t_poss_start": 252.48,
    "transit_s": 0.16,
+   "measured": true,
+   "t_release": 251.5,
+   "t_reception": 253.26,
    "start_mm": [
-    83.3,
-    -78.7
+    153.0,
+    -80.7
    ],
    "end_mm": [
-    -146.6,
-    -31.7
+    -184.4,
+    -21.5
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 234.7
+   "line_mm": [
+    [
+     153.0,
+     -80.7
+    ],
+    [
+     -184.4,
+     -21.5
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 342.6,
+   "speed_mm_s": [
+    308.0
+   ],
+   "detections_on_line": 9,
+   "fit_residual_mm": 6.8,
+   "release_at_rest": false,
+   "reception_at_rest": true,
+   "fitted_detections": [
+    [
+     251.5,
+     153.0,
+     -80.7
+    ],
+    [
+     251.54,
+     150.8,
+     -80.7
+    ],
+    [
+     252.42,
+     -112.2,
+     -41.5
+    ],
+    [
+     252.46,
+     -130.9,
+     -35.9
+    ],
+    [
+     252.5,
+     -146.6,
+     -31.7
+    ],
+    [
+     252.54,
+     -169.2,
+     -23.5
+    ],
+    [
+     252.58,
+     -177.2,
+     -21.8
+    ],
+    [
+     252.62,
+     -182.5,
+     -21.6
+    ],
+    [
+     252.66,
+     -184.4,
+     -21.6
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "E",
    "from": "E-C",
    "to": "E-LW",
-   "t_release": 260.12,
-   "t_receive": 260.24,
+   "t_poss_end": 260.12,
+   "t_poss_start": 260.24,
    "transit_s": 0.12,
+   "measured": true,
+   "t_release": 259.58,
+   "t_reception": 260.26,
    "start_mm": [
-    -182.3,
-    27.2
+    -168.0,
+    10.4
    ],
    "end_mm": [
     -382.0,
     41.2
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 200.2
+   "line_mm": [
+    [
+     -168.0,
+     10.4
+    ],
+    [
+     -382.0,
+     41.2
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 216.2,
+   "speed_mm_s": [
+    326.0
+   ],
+   "detections_on_line": 3,
+   "fit_residual_mm": 4.4,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     259.58,
+     -168.0,
+     10.4
+    ],
+    [
+     259.62,
+     -168.5,
+     9.4
+    ],
+    [
+     260.26,
+     -382.0,
+     41.2
+    ]
+   ]
   },
   {
    "kind": "turnover",
    "team": "E",
    "from": "E-LW",
    "to": "W-RD",
-   "t_release": 265.4,
-   "t_receive": 265.4,
+   "t_poss_end": 265.4,
+   "t_poss_start": 265.4,
    "transit_s": 0.0,
-   "start_mm": [
-    -384.9,
-    -85.3
-   ],
-   "end_mm": [
-    -210.8,
-    -85.2
-   ],
-   "start_seen": false,
-   "end_seen": false,
-   "length_mm": 174.2
+   "measured": false,
+   "t_release": 265.4,
+   "t_reception": 265.4
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-RD",
    "to": "W-LW",
-   "t_release": 267.68,
-   "t_receive": 268.56,
+   "t_poss_end": 267.68,
+   "t_poss_start": 268.56,
    "transit_s": 0.88,
+   "measured": true,
+   "t_release": 267.58,
+   "t_reception": 269.14,
    "start_mm": [
-    -149.7,
-    -112.9
+    -179.4,
+    -104.6
    ],
    "end_mm": [
     306.5,
     175.6
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 539.8
+   "line_mm": [
+    [
+     -179.4,
+     -104.6
+    ],
+    [
+     306.5,
+     175.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 560.9,
+   "speed_mm_s": [
+    361.0
+   ],
+   "detections_on_line": 3,
+   "fit_residual_mm": 3.6,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     267.58,
+     -179.4,
+     -104.6
+    ],
+    [
+     267.62,
+     -165.0,
+     -107.7
+    ],
+    [
+     269.14,
+     306.5,
+     175.6
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LW",
    "to": "W-RD",
-   "t_release": 269.72,
-   "t_receive": 269.72,
+   "t_poss_end": 269.72,
+   "t_poss_start": 269.72,
    "transit_s": 0.0,
+   "measured": true,
+   "t_release": 269.14,
+   "t_reception": 270.42,
    "start_mm": [
-    158.7,
-    196.2
+    306.5,
+    175.6
    ],
    "end_mm": [
-    -112.0,
-    -56.9
+    -129.6,
+    -70.0
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 370.6
+   "line_mm": [
+    [
+     306.5,
+     175.6
+    ],
+    [
+     -129.6,
+     -70.0
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 500.5,
+   "speed_mm_s": [
+    397.0
+   ],
+   "detections_on_line": 4,
+   "fit_residual_mm": 6.2,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     269.14,
+     306.5,
+     175.6
+    ],
+    [
+     269.18,
+     289.9,
+     177.2
+    ],
+    [
+     270.38,
+     -128.7,
+     -69.1
+    ],
+    [
+     270.42,
+     -129.6,
+     -70.0
+    ]
+   ]
   },
   {
-   "kind": "battle",
+   "kind": "turnover",
    "team": "W",
    "from": "W-RD",
    "to": "E-C",
-   "t_release": 270.56,
-   "t_receive": 270.6,
+   "t_poss_end": 270.56,
+   "t_poss_start": 270.6,
    "transit_s": 0.04,
+   "measured": true,
+   "t_release": 270.38,
+   "t_reception": 270.66,
    "start_mm": [
-    -149.7,
-    -50.4
+    -128.7,
+    -69.1
    ],
    "end_mm": [
-    -203.7,
-    -31.1
+    -217.8,
+    -20.4
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 57.3
+   "line_mm": [
+    [
+     -128.7,
+     -69.1
+    ],
+    [
+     -217.8,
+     -20.4
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 101.5,
+   "speed_mm_s": [
+    375.0
+   ],
+   "detections_on_line": 5,
+   "fit_residual_mm": 5.6,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     270.38,
+     -128.7,
+     -69.1
+    ],
+    [
+     270.42,
+     -129.6,
+     -70.0
+    ],
+    [
+     270.58,
+     -184.0,
+     -43.2
+    ],
+    [
+     270.62,
+     -203.7,
+     -31.1
+    ],
+    [
+     270.66,
+     -217.8,
+     -20.4
+    ]
+   ]
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LD",
    "to": "W-LW",
+   "t_poss_end": 280.72,
+   "t_poss_start": 280.72,
+   "transit_s": 0.0,
+   "measured": false,
    "t_release": 280.72,
-   "t_receive": 280.72,
-   "transit_s": 0.0,
-   "start_mm": [
-    -38.1,
-    113.7
-   ],
-   "end_mm": [
-    351.4,
-    198.1
-   ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 398.5
+   "t_reception": 280.72
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LD",
    "to": "W-LW",
-   "t_release": 291.36,
-   "t_receive": 291.36,
+   "t_poss_end": 291.36,
+   "t_poss_start": 291.36,
    "transit_s": 0.0,
-   "start_mm": [
-    -175.5,
-    87.9
-   ],
-   "end_mm": [
-    384.6,
-    86.4
-   ],
-   "start_seen": false,
-   "end_seen": false,
-   "length_mm": 560.1
+   "measured": false,
+   "t_release": 291.36,
+   "t_reception": 291.36
   },
   {
    "kind": "pass",
    "team": "W",
    "from": "W-LW",
    "to": "W-C",
-   "t_release": 296.92,
-   "t_receive": 298.76,
+   "t_poss_end": 296.92,
+   "t_poss_start": 298.76,
    "transit_s": 1.84,
+   "measured": true,
+   "t_release": 296.86,
+   "t_reception": 297.66,
    "start_mm": [
-    299.0,
-    200.3
+    302.9,
+    199.6
    ],
    "end_mm": [
-    79.1,
-    -19.1
+    105.6,
+    56.6
    ],
-   "start_seen": true,
-   "end_seen": true,
-   "length_mm": 310.6
+   "line_mm": [
+    [
+     302.9,
+     199.6
+    ],
+    [
+     105.6,
+     56.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 243.7,
+   "speed_mm_s": [
+    310.0
+   ],
+   "detections_on_line": 3,
+   "fit_residual_mm": 3.5,
+   "release_at_rest": false,
+   "reception_at_rest": false,
+   "fitted_detections": [
+    [
+     296.86,
+     302.9,
+     199.6
+    ],
+    [
+     296.9,
+     299.0,
+     200.3
+    ],
+    [
+     297.66,
+     105.6,
+     56.6
+    ]
+   ]
   }
  ]
 }

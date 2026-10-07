@@ -256,9 +256,9 @@
     121.9 s / 51 times, Moe 81.8 s / 39, nobody 96.3 s.
   - Review (`review.json`): 10/16 tracked spot-check frames clearly right, 0 clearly wrong; of 22 checkable episodes 8
     consistent, 7 plausible, 5 not verifiable, 2 probably wrong (false detections on the near board edge).
-  - Passes (`passes.json`, assumed definition: teammate's possession within 2 s; turnovers to the opponent; hand-overs
-    under 80 mm are battles): Fylling 17 passes / 9 lost,
-    Moe 10 / 9. One-touch passes are below the detection.
+  - Passes (`passes.json`): Fylling 17 passes / 13 lost, Moe 10 / 10 (assumed definition).
+    Pass lines are straight-line fits to the puck detections, from a detection in the passer's reach to one in the
+    receiver's reach, with board bounces; 25 of 50 have a measured line, the rest are hidden and not drawn.
   - Interactive board page `validation/game-possession-board.html` (`npm run game:board`; published as a private
     artifact for the user). Figure poses on it are illustrative, not tracked.
   - Weaknesses and next steps: `docs/game-tracking.md`. Stoppages (goals, face-offs) are not detected yet.

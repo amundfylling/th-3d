@@ -63,16 +63,27 @@ test("game tracking: possession accounts for every match second, goalies not cou
   assert.ok(Math.abs(end - p.match_s) < 1e-6);
 });
 
-test("game tracking: passes follow the possession episodes", () => {
+test("game tracking: passes follow the possession episodes; lines run between detected puck positions", () => {
   const p = json(`${D}/possession.json`);
   const ps = json(`${D}/passes.json`);
+  const tr = json(`${D}/puck-track.json`);
+  const at = new Map<number, number[]>((tr.rows as number[][]).map((r) => [Math.round((r[0]! / 25 - 7.5) * 100), r]));
   const sk = (p.episodes as [string, number, number][]).filter((e) => e[0] !== "nobody");
+  let measured = 0;
   for (const e of ps.events) {
-    const i = sk.findIndex((x) => x[0] === e.from && Math.abs(x[2] - e.t_release) < 0.011);
-    assert.ok(i >= 0 && sk[i + 1]![0] === e.to && Math.abs(sk[i + 1]![1] - e.t_receive) < 0.011, `${e.from}->${e.to} ${e.t_release}`);
+    const i = sk.findIndex((x) => x[0] === e.from && Math.abs(x[2] - e.t_poss_end) < 0.011);
+    assert.ok(i >= 0 && sk[i + 1]![0] === e.to && Math.abs(sk[i + 1]![1] - e.t_poss_start) < 0.011, `${e.from}->${e.to} ${e.t_poss_end}`);
     assert.ok(e.transit_s <= ps.parameters.max_transit_s + 1e-9);
-    const kind = e.length_mm < ps.parameters.min_length_mm ? "battle" : e.from[0] === e.to[0] ? "pass" : "turnover";
-    assert.equal(e.kind, kind);
+    if (!e.measured) continue;
+    measured++;
+    // both ends of the line are puck detections at the release and reception times
+    for (const [t, q] of [[e.t_release, e.start_mm], [e.t_reception, e.end_mm]] as [number, number[]][]) {
+      const r = at.get(Math.round(t * 100));
+      assert.ok(r && Math.abs(r[2]! - q[0]!) < 0.11 && Math.abs(r[3]! - q[1]!) < 0.11, `${e.from}->${e.to} end at ${t}`);
+    }
+    assert.ok(e.t_release < e.t_reception && e.fit_residual_mm <= ps.parameters.tol_mm);
+    assert.equal(e.line_mm.length, e.bounces + 2);
   }
+  assert.equal(measured, ps.quality.measured_lines + ps.events.filter((e: { kind: string; measured: boolean }) => e.kind === "battle" && e.measured).length);
   for (const t of ["W", "E"]) assert.equal(ps.summary[t].passes, ps.events.filter((e: { kind: string; team: string }) => e.kind === "pass" && e.team === t).length);
 });

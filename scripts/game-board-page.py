@@ -134,7 +134,7 @@ goals = {t: {"x": HW["placement_mm"][t][0], "y": HW["placement_mm"][t][1], "widt
              "depth": HW["depth_per_goal_mm"][t], "back": -1 if t == "W" else 1} for t in "WE"}
 
 PS = load(GAME / "passes.json")
-DATA_PASSES = {"events": PS["events"], "summary": PS["summary"], "pairs": PS["pairs"], "parameters": PS["parameters"]}
+DATA_PASSES = {"events": PS["events"], "summary": PS["summary"], "pairs": PS["pairs"], "parameters": PS["parameters"], "quality": PS["quality"]}
 DATA = {
     "match": {"title": "Fylling vs Moe", "event": "Trondheim Open 2022 · final", "result": "1–1 after 5:00 · Fylling won 2–1 in overtime",
               "length_s": P["match_s"], "seen_fraction": P["frames_seen_fraction"]},

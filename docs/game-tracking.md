@@ -64,26 +64,39 @@ The long-gap rule (Q16) makes no difference in this match: each gap over 7 s fol
 | | Fylling | Moe |
 | --- | --- | --- |
 | Passes | 17 | 10 |
-| Lost to the opponent (turnovers) | 9 | 9 |
-| Lost in a battle at an area border | 4 | 2 |
+| Lost to the opponent (turnovers) | 13 | 10 |
+| Lost in a battle at an area border | 0 | 1 |
 
-Most used: Fylling's LD → LW (5 times).
+**Which hand-overs count (assumed, to be confirmed):**
+- **Pass:** a possession by one skater followed by a teammate's within 2 s.
+- **Turnover:** the same, but the next skater is an opponent.
+- **Battle:** a hand-over shorter than 80 mm.
 
-**Definition (assumed, to confirm with the user):**
-- **Pass:** a possession by one skater followed by a possession by a teammate, with at most 2 s of "nobody" between
-  them.
-- **Turnover:** the same, but the next skater is an opponent. The video can't tell an intercepted pass from a lost puck
-  or a blocked shot.
-- **Battle:** a hand-over shorter than 80 mm, at the border of two areas.
-
-**Limits:**
-- One-touch passes are missed: a touch shorter than 0.5 s is no possession.
-- Passes where the puck is hidden for more than 2 s are missed.
-- The arrows join the last and first seen puck positions. 44 of 51 hand-overs have both ends seen.
-- One flagged pass (232.6 s) happens while a hand is over the right goal, so it is probably a stoppage
-  (`review.json` → `passes_review`).
-- 27 passes in 5 minutes is far fewer than a real match has. Most passes are short and fast, and they fall below the
-  detection.
+**Pass lines, measured, not drawn by hand.** These replace the first version's curved arrows between last and first
+sightings. The user asked for "very specific pass lines, from where the puck left to where it ended up".
+- A passed puck slides straight at near-constant speed until a board turns it. Around each hand-over the puck
+  detections are fitted with straight, constant-velocity segments (RANSAC).
+  - A detection fits when it lies within 15 mm of the predicted position.
+  - A segment needs 3 fitted detections, or 2 after a slow detection in the passer's reach (the puck on the blade).
+  - Its speed must be at least 300 mm/s.
+- **Bounces:** a segment ending within 35 mm of the boards may continue as a bounce segment (at most 2 bounces).
+- **Ends:** the line must start inside the passer's reach and end inside the receiver's reach (plus 20 mm). Both ends
+  are actual detections: the release and the reception (moved forward to where the puck slowed at the receiver, if a
+  later detection lies on the line).
+- **Result:** 25 of 50 passes and turnovers have a measured
+  line (16 passes, 9 turnovers).
+  - The others had no straight run of detections: the puck was hidden or blurred in flight. They are counted and listed,
+    but not drawn.
+  - Fit errors average 1-9 mm, within the ±10 mm position accuracy.
+- **Review:** 12 measured lines were drawn on their video frames at release, mid-flight and reception. Each ran
+  between the passer's and receiver's figures along a plausible path. The puck is visible at both ends in most; it is
+  rarely visible mid-flight, because fast pucks blur out of the detector.
+- **Speeds** are averages over the fitted span (0.3-0.75 m/s). Since the fast middle of a pass is rarely detected, they
+  understate the peak speed.
+- **Limits:**
+  - one-touch passes (touches under 0.5 s) and passes hidden for more than 2 s are not found;
+  - 27 passes in 5 minutes is well below the real number;
+  - one flagged pass (232.6 s) coincides with a hand over the right goal (`review.json` → `passes_review`).
 
 ## How it works
 
