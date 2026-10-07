@@ -62,3 +62,17 @@ test("game tracking: possession accounts for every match second, goalies not cou
   }
   assert.ok(Math.abs(end - p.match_s) < 1e-6);
 });
+
+test("game tracking: passes follow the possession episodes", () => {
+  const p = json(`${D}/possession.json`);
+  const ps = json(`${D}/passes.json`);
+  const sk = (p.episodes as [string, number, number][]).filter((e) => e[0] !== "nobody");
+  for (const e of ps.events) {
+    const i = sk.findIndex((x) => x[0] === e.from && Math.abs(x[2] - e.t_release) < 0.011);
+    assert.ok(i >= 0 && sk[i + 1]![0] === e.to && Math.abs(sk[i + 1]![1] - e.t_receive) < 0.011, `${e.from}->${e.to} ${e.t_release}`);
+    assert.ok(e.transit_s <= ps.parameters.max_transit_s + 1e-9);
+    const kind = e.length_mm < ps.parameters.min_length_mm ? "battle" : e.from[0] === e.to[0] ? "pass" : "turnover";
+    assert.equal(e.kind, kind);
+  }
+  for (const t of ["W", "E"]) assert.equal(ps.summary[t].passes, ps.events.filter((e: { kind: string; team: string }) => e.kind === "pass" && e.team === t).length);
+});

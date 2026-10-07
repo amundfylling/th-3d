@@ -67,5 +67,13 @@
       "what": "real puck in the far corner by the right goal (several times)",
       "after_fix": "kept"
     }
-  ]
+  ],
+  "passes_review": {
+    "sheet": "16 random hand-overs, each shown at release and receipt with the arrow drawn on the stabilised frame (scratch sheet, not committed)",
+    "result": "The arrows follow the slots and the puck positions where the puck is visible, but at 360p the release and the reception can rarely be confirmed frame by frame; the passes are not individually verified.",
+    "flagged": [
+      "Match 232.6 s, W-C -> W-RD: a hand is over the right goal in the release frame (video 239.3-240.4 s hand episode); probably a stoppage, possibly a goal, not a pass.",
+      "Two hand-overs of 46-59 mm at area borders looked like scrambles; this led to the 80 mm 'battle' rule (6 such events)."
+    ]
+  }
 }

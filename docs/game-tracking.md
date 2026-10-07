@@ -13,7 +13,8 @@ errors listed below. The rules and the user's answers that define the count are 
 | 3. Puck track | `scripts/game-puck.py`, labels `puck-labels.json` → `puck-track.json` (cache `out/game/candidates.json`, not committed) |
 | 4. Possession | `scripts/game-possession.py` → `possession.json`, `validation/game-figure-areas.png`, **`validation/game-possession.png`** |
 | 5. Review | `scripts/game-review.py` → `validation/game-puck-spotcheck.jpg`, `validation/game-possession-review.jpg`; judgements in `review.json` |
-| 6. Board page | `scripts/game-board-page.py` + `scripts/game-board.template.html` → **`validation/game-possession-board.html`** (interactive: areas shaded on the top-view table, illustrative figures, every seen puck position, a 5:00 timeline that scrubs the puck; `npm run game:board`) |
+| 6. Passes | `scripts/game-passes.py` → `passes.json` |
+| 7. Board page | `scripts/game-board-page.py` + `scripts/game-board.template.html` → **`validation/game-possession-board.html`** (interactive: areas shaded on the top-view table, illustrative figures, every seen puck position, a 5:00 timeline that scrubs the puck; `npm run game:board`) |
 | Tests | `tests/game-tracking.test.ts` |
 
 Reproduce: `npm run game:track` (about 10 min on the 4-CPU container).
@@ -57,6 +58,32 @@ puck was actually detected while on that skater; the rest was carried through ga
 | Max gap 3 s | 97.2 s, 45 | 73.5 s, 38 |
 
 The long-gap rule (Q16) makes no difference in this match: each gap over 7 s follows a "nobody" stretch.
+
+## Passes (`scripts/game-passes.py` → `passes.json`; shown under **Passes** on the board page)
+
+| | Fylling | Moe |
+| --- | --- | --- |
+| Passes | 17 | 10 |
+| Lost to the opponent (turnovers) | 9 | 9 |
+| Lost in a battle at an area border | 4 | 2 |
+
+Most used: Fylling's LD → LW (5 times).
+
+**Definition (assumed, to confirm with the user):**
+- **Pass:** a possession by one skater followed by a possession by a teammate, with at most 2 s of "nobody" between
+  them.
+- **Turnover:** the same, but the next skater is an opponent. The video can't tell an intercepted pass from a lost puck
+  or a blocked shot.
+- **Battle:** a hand-over shorter than 80 mm, at the border of two areas.
+
+**Limits:**
+- One-touch passes are missed: a touch shorter than 0.5 s is no possession.
+- Passes where the puck is hidden for more than 2 s are missed.
+- The arrows join the last and first seen puck positions. 44 of 51 hand-overs have both ends seen.
+- One flagged pass (232.6 s) happens while a hand is over the right goal, so it is probably a stoppage
+  (`review.json` → `passes_review`).
+- 27 passes in 5 minutes is far fewer than a real match has. Most passes are short and fast, and they fall below the
+  detection.
 
 ## How it works
 

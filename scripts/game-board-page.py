@@ -2,7 +2,7 @@
 
     /root/venvs/blender/bin/python scripts/game-board-page.py
 
-Inputs: data/games/fylling-vs-moe-2022/{possession.json, puck-track.json}, data/geometry.json (inner board boundary,
+Inputs: data/games/fylling-vs-moe-2022/{possession.json, puck-track.json, passes.json}, data/geometry.json (inner board boundary,
 board landmarks of the lines, slot centrelines), validation/12-hardware-report.json (preview goal placement and size),
 out/figures/{skater,goalie}.npz + validation/players/figures-report.json (top-view figure outlines).
 Template: scripts/game-board.template.html (the page; this script only injects the data as JSON).
@@ -133,6 +133,8 @@ label_at = {k: label_point(k) for k in areas}
 goals = {t: {"x": HW["placement_mm"][t][0], "y": HW["placement_mm"][t][1], "width": HW["mouth_width_per_goal_mm"][t],
              "depth": HW["depth_per_goal_mm"][t], "back": -1 if t == "W" else 1} for t in "WE"}
 
+PS = load(GAME / "passes.json")
+DATA_PASSES = {"events": PS["events"], "summary": PS["summary"], "pairs": PS["pairs"], "parameters": PS["parameters"]}
 DATA = {
     "match": {"title": "Fylling vs Moe", "event": "Trondheim Open 2022 · final", "result": "1–1 after 5:00 · Fylling won 2–1 in overtime",
               "length_s": P["match_s"], "seen_fraction": P["frames_seen_fraction"]},
@@ -141,7 +143,7 @@ DATA = {
     "per_skater": P["per_skater"], "per_team": P["per_team"], "nobody": P["nobody_s"],
     "board": pts(board.exterior, 0.6), "lines": lines, "goals": goals, "slots": slots, "areas": areas,
     "contested": contested_polys, "labels": label_at, "poses": poses, "silhouettes": silhouettes,
-    "episodes": eps, "puck": puck,
+    "episodes": eps, "puck": puck, "passes": DATA_PASSES,
     "areas_share": {"exclusive": round(sum(P["areas_mm2"]["exclusive"].values()) / P["areas_mm2"]["rink_puck_centre"], 3),
                     "reachable": round(P["areas_mm2"]["reachable"] / P["areas_mm2"]["rink_puck_centre"], 3)},
 }

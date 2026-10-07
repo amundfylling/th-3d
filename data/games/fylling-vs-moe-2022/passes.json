@@ -1,0 +1,1082 @@
+{
+ "description": "Passes and turnovers (scripts/game-passes.py). Match seconds. PROPOSED; the definition is assumed (see the script).",
+ "definition": "(Claude's reading of the user's possession rule; ASSUMED, to be confirmed):\n- A pass is the puck going from one skater to a TEAMMATE: possession episode A is followed by episode B of another\n  skater of the same team, with at most MAX_TRANSIT_S of \"nobody\" between them (the puck travelling through\n  contested ice or hidden).\n- A turnover is the same with B on the OTHER team. It may be an intercepted pass, a lost puck or a blocked shot; the\n  video does not tell them apart.\n- A puck that comes back to the same skater after a nobody stretch is no pass. Touches shorter than the minimum episode\n  (0.5 s) are not possessions, so one-touch passes through a skater do not appear.\n- A hand-over shorter than MIN_LENGTH_MM (80 mm) is a battle at the border of two skaters' areas, not a pass or a\n  turnover; it is listed as kind \"battle\".\n- Start point: the last seen puck position in A's episode (or, if none, the first seen in the transit); end point: the\n  first seen position in B's episode. \"seen\" flags record whether each end was actually detected near the hand-over;\n  a missing end falls back to the middle of the skater's exclusive area (drawn dashed).",
+ "parameters": {
+  "max_transit_s": 2.0,
+  "min_length_mm": 80.0,
+  "near_s": 1.0,
+  "min_episode_s": 0.5
+ },
+ "summary": {
+  "W": {
+   "passes": 17,
+   "turnovers_lost": 9,
+   "battles_lost": 4
+  },
+  "E": {
+   "passes": 10,
+   "turnovers_lost": 9,
+   "battles_lost": 2
+  }
+ },
+ "pairs": {
+  "W-RW>W-LD": 1,
+  "W-LD>E-C": 1,
+  "E-C>E-LD": 1,
+  "E-LW>E-RW": 1,
+  "E-RW>W-RD": 1,
+  "W-RD>E-LW": 1,
+  "E-RD>E-LD": 1,
+  "E-LD>E-RW": 1,
+  "E-RW>W-LD": 1,
+  "W-LD>W-LW": 5,
+  "W-LW>E-RW": 1,
+  "E-RW>E-LW": 2,
+  "E-LW>W-RD": 2,
+  "W-RD>W-C": 2,
+  "W-C>E-RD": 1,
+  "W-RD>W-LD": 1,
+  "W-LD>W-RW": 2,
+  "W-LW>E-LD": 2,
+  "E-LD>W-RW": 1,
+  "W-RW>W-LW": 1,
+  "E-LD>E-LW": 1,
+  "E-LW>E-C": 1,
+  "W-C>W-RW": 1,
+  "E-RW>W-LW": 1,
+  "W-LW>E-LW": 1,
+  "E-LW>W-LD": 1,
+  "W-LW>E-C": 1,
+  "E-C>W-LD": 1,
+  "W-RW>E-LD": 1,
+  "E-LD>W-LW": 1,
+  "W-C>W-RD": 1,
+  "E-LD>E-C": 1,
+  "E-C>E-LW": 1,
+  "W-RD>W-LW": 1,
+  "W-LW>W-RD": 1,
+  "W-LW>W-C": 1
+ },
+ "events": [
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-RW",
+   "to": "W-LD",
+   "t_release": 5.88,
+   "t_receive": 5.88,
+   "transit_s": 0.0,
+   "start_mm": [
+    -14.2,
+    -156.2
+   ],
+   "end_mm": [
+    -49.7,
+    123.6
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 282.0
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-LD",
+   "to": "E-C",
+   "t_release": 6.72,
+   "t_receive": 7.88,
+   "transit_s": 1.16,
+   "start_mm": [
+    -47.3,
+    121.3
+   ],
+   "end_mm": [
+    -109.9,
+    -7.1
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 142.8
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-C",
+   "to": "E-LD",
+   "t_release": 12.36,
+   "t_receive": 13.0,
+   "transit_s": 0.64,
+   "start_mm": [
+    -170.5,
+    -17.0
+   ],
+   "end_mm": [
+    -1.9,
+    -124.2
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 199.8
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-LW",
+   "to": "E-RW",
+   "t_release": 20.52,
+   "t_receive": 20.52,
+   "transit_s": 0.0,
+   "start_mm": [
+    -389.0,
+    24.7
+   ],
+   "end_mm": [
+    -151.8,
+    181.7
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 284.5
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-RW",
+   "to": "W-RD",
+   "t_release": 24.88,
+   "t_receive": 25.36,
+   "transit_s": 0.48,
+   "start_mm": [
+    -83.1,
+    199.2
+   ],
+   "end_mm": [
+    -232.2,
+    -59.7
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 298.8
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-RD",
+   "to": "E-LW",
+   "t_release": 31.72,
+   "t_receive": 31.72,
+   "transit_s": 0.0,
+   "start_mm": [
+    -148.1,
+    -72.4
+   ],
+   "end_mm": [
+    -375.5,
+    -183.5
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 253.1
+  },
+  {
+   "kind": "battle",
+   "team": "W",
+   "from": "W-RW",
+   "to": "E-RD",
+   "t_release": 37.96,
+   "t_receive": 39.36,
+   "transit_s": 1.4,
+   "start_mm": [
+    346.5,
+    -160.5
+   ],
+   "end_mm": [
+    320.9,
+    -154.6
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 26.3
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-RD",
+   "to": "E-LD",
+   "t_release": 40.8,
+   "t_receive": 40.92,
+   "transit_s": 0.12,
+   "start_mm": [
+    106.4,
+    73.9
+   ],
+   "end_mm": [
+    36.3,
+    -88.1
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 176.5
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-LD",
+   "to": "E-RW",
+   "t_release": 45.64,
+   "t_receive": 47.16,
+   "transit_s": 1.52,
+   "start_mm": [
+    98.9,
+    -75.4
+   ],
+   "end_mm": [
+    -341.5,
+    206.3
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 522.8
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-RW",
+   "to": "W-LD",
+   "t_release": 49.96,
+   "t_receive": 49.96,
+   "transit_s": 0.0,
+   "start_mm": [
+    -2.4,
+    190.0
+   ],
+   "end_mm": [
+    -326.7,
+    101.7
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 336.1
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LD",
+   "to": "W-LW",
+   "t_release": 55.36,
+   "t_receive": 55.36,
+   "transit_s": 0.0,
+   "start_mm": [
+    -175.5,
+    87.9
+   ],
+   "end_mm": [
+    384.6,
+    86.4
+   ],
+   "start_seen": false,
+   "end_seen": false,
+   "length_mm": 560.1
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-LW",
+   "to": "E-RW",
+   "t_release": 59.68,
+   "t_receive": 59.68,
+   "transit_s": 0.0,
+   "start_mm": [
+    324.1,
+    193.1
+   ],
+   "end_mm": [
+    -169.0,
+    193.7
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 493.1
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-RW",
+   "to": "E-LW",
+   "t_release": 66.48,
+   "t_receive": 67.56,
+   "transit_s": 1.08,
+   "start_mm": [
+    -264.7,
+    195.8
+   ],
+   "end_mm": [
+    -291.5,
+    -170.3
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 367.1
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-LW",
+   "to": "W-RD",
+   "t_release": 71.72,
+   "t_receive": 73.48,
+   "transit_s": 1.76,
+   "start_mm": [
+    -241.0,
+    137.1
+   ],
+   "end_mm": [
+    -232.7,
+    -63.6
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 200.9
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-RD",
+   "to": "W-C",
+   "t_release": 76.36,
+   "t_receive": 77.6,
+   "transit_s": 1.24,
+   "start_mm": [
+    -235.9,
+    -90.1
+   ],
+   "end_mm": [
+    -247.8,
+    138.9
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 229.3
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-C",
+   "to": "E-RD",
+   "t_release": 84.52,
+   "t_receive": 84.52,
+   "transit_s": 0.0,
+   "start_mm": [
+    170.2,
+    -5.8
+   ],
+   "end_mm": [
+    209.2,
+    85.7
+   ],
+   "start_seen": false,
+   "end_seen": false,
+   "length_mm": 99.4
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-RD",
+   "to": "W-LD",
+   "t_release": 104.24,
+   "t_receive": 104.24,
+   "transit_s": 0.0,
+   "start_mm": [
+    -210.8,
+    -85.2
+   ],
+   "end_mm": [
+    -175.5,
+    87.9
+   ],
+   "start_seen": false,
+   "end_seen": false,
+   "length_mm": 176.6
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LD",
+   "to": "W-RW",
+   "t_release": 110.48,
+   "t_receive": 111.28,
+   "transit_s": 0.8,
+   "start_mm": [
+    -43.3,
+    111.3
+   ],
+   "end_mm": [
+    349.7,
+    -159.9
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 477.5
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LD",
+   "to": "W-LW",
+   "t_release": 120.52,
+   "t_receive": 120.52,
+   "transit_s": 0.0,
+   "start_mm": [
+    -32.5,
+    113.4
+   ],
+   "end_mm": [
+    211.6,
+    207.4
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 261.6
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-LW",
+   "to": "E-LD",
+   "t_release": 121.92,
+   "t_receive": 121.92,
+   "transit_s": 0.0,
+   "start_mm": [
+    303.3,
+    163.6
+   ],
+   "end_mm": [
+    241.8,
+    -92.0
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 262.9
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-LD",
+   "to": "W-RW",
+   "t_release": 123.2,
+   "t_receive": 123.2,
+   "transit_s": 0.0,
+   "start_mm": [
+    256.3,
+    -89.2
+   ],
+   "end_mm": [
+    -23.4,
+    -176.7
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 293.1
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-RW",
+   "to": "W-LW",
+   "t_release": 123.96,
+   "t_receive": 123.96,
+   "transit_s": 0.0,
+   "start_mm": [
+    -15.0,
+    -170.5
+   ],
+   "end_mm": [
+    357.7,
+    16.0
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 416.8
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-LW",
+   "to": "E-LD",
+   "t_release": 132.2,
+   "t_receive": 132.84,
+   "transit_s": 0.64,
+   "start_mm": [
+    302.7,
+    203.8
+   ],
+   "end_mm": [
+    11.0,
+    -128.1
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 441.9
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-LD",
+   "to": "E-LW",
+   "t_release": 148.36,
+   "t_receive": 149.8,
+   "transit_s": 1.44,
+   "start_mm": [
+    222.3,
+    -120.1
+   ],
+   "end_mm": [
+    -380.8,
+    -10.8
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 612.9
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-LW",
+   "to": "E-C",
+   "t_release": 151.4,
+   "t_receive": 151.4,
+   "transit_s": 0.0,
+   "start_mm": [
+    -399.9,
+    9.6
+   ],
+   "end_mm": [
+    -209.0,
+    -8.2
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 191.7
+  },
+  {
+   "kind": "battle",
+   "team": "E",
+   "from": "E-C",
+   "to": "W-RD",
+   "t_release": 152.0,
+   "t_receive": 152.0,
+   "transit_s": 0.0,
+   "start_mm": [
+    -207.4,
+    -6.5
+   ],
+   "end_mm": [
+    -235.6,
+    -66.0
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 65.8
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-RD",
+   "to": "W-C",
+   "t_release": 155.68,
+   "t_receive": 155.68,
+   "transit_s": 0.0,
+   "start_mm": [
+    -225.4,
+    -71.2
+   ],
+   "end_mm": [
+    142.5,
+    12.1
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 377.2
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-C",
+   "to": "W-RW",
+   "t_release": 160.32,
+   "t_receive": 160.32,
+   "transit_s": 0.0,
+   "start_mm": [
+    186.8,
+    6.4
+   ],
+   "end_mm": [
+    326.4,
+    -167.0
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 222.6
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-RW",
+   "to": "W-LW",
+   "t_release": 168.84,
+   "t_receive": 168.84,
+   "transit_s": 0.0,
+   "start_mm": [
+    -240.8,
+    192.9
+   ],
+   "end_mm": [
+    302.7,
+    203.3
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 543.6
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-LW",
+   "to": "E-LW",
+   "t_release": 179.72,
+   "t_receive": 180.28,
+   "transit_s": 0.56,
+   "start_mm": [
+    337.0,
+    148.9
+   ],
+   "end_mm": [
+    -231.1,
+    -153.2
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 643.4
+  },
+  {
+   "kind": "battle",
+   "team": "E",
+   "from": "E-LW",
+   "to": "W-LD",
+   "t_release": 184.64,
+   "t_receive": 185.8,
+   "transit_s": 1.16,
+   "start_mm": [
+    -77.6,
+    63.6
+   ],
+   "end_mm": [
+    -136.1,
+    70.9
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 59.0
+  },
+  {
+   "kind": "battle",
+   "team": "W",
+   "from": "W-LD",
+   "to": "E-RW",
+   "t_release": 186.4,
+   "t_receive": 186.4,
+   "transit_s": 0.0,
+   "start_mm": [
+    -124.7,
+    110.1
+   ],
+   "end_mm": [
+    -112.0,
+    180.5
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 71.5
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-RW",
+   "to": "E-LW",
+   "t_release": 193.08,
+   "t_receive": 193.08,
+   "transit_s": 0.0,
+   "start_mm": [
+    -69.8,
+    199.6
+   ],
+   "end_mm": [
+    -404.8,
+    3.1
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 388.4
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-LW",
+   "to": "W-LD",
+   "t_release": 196.32,
+   "t_receive": 196.32,
+   "transit_s": 0.0,
+   "start_mm": [
+    -384.9,
+    -85.3
+   ],
+   "end_mm": [
+    -175.5,
+    87.9
+   ],
+   "start_seen": false,
+   "end_seen": false,
+   "length_mm": 271.7
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LD",
+   "to": "W-LW",
+   "t_release": 202.24,
+   "t_receive": 202.24,
+   "transit_s": 0.0,
+   "start_mm": [
+    -32.6,
+    113.8
+   ],
+   "end_mm": [
+    237.5,
+    205.8
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 285.3
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-LW",
+   "to": "E-C",
+   "t_release": 207.08,
+   "t_receive": 208.16,
+   "transit_s": 1.08,
+   "start_mm": [
+    308.2,
+    200.6
+   ],
+   "end_mm": [
+    -27.5,
+    28.6
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 377.2
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-C",
+   "to": "W-LD",
+   "t_release": 209.28,
+   "t_receive": 209.28,
+   "transit_s": 0.0,
+   "start_mm": [
+    -26.6,
+    28.7
+   ],
+   "end_mm": [
+    -78.8,
+    109.8
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 96.4
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LD",
+   "to": "W-RW",
+   "t_release": 215.36,
+   "t_receive": 216.2,
+   "transit_s": 0.84,
+   "start_mm": [
+    -36.3,
+    113.8
+   ],
+   "end_mm": [
+    309.1,
+    -164.0
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 443.3
+  },
+  {
+   "kind": "turnover",
+   "team": "W",
+   "from": "W-RW",
+   "to": "E-LD",
+   "t_release": 217.48,
+   "t_receive": 217.48,
+   "transit_s": 0.0,
+   "start_mm": [
+    179.3,
+    -185.7
+   ],
+   "end_mm": [
+    175.5,
+    -88.2
+   ],
+   "start_seen": false,
+   "end_seen": false,
+   "length_mm": 97.5
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-LD",
+   "to": "W-LW",
+   "t_release": 222.96,
+   "t_receive": 224.24,
+   "transit_s": 1.28,
+   "start_mm": [
+    246.3,
+    -68.6
+   ],
+   "end_mm": [
+    363.0,
+    178.5
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 273.3
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-C",
+   "to": "W-RD",
+   "t_release": 232.56,
+   "t_receive": 233.0,
+   "transit_s": 0.44,
+   "start_mm": [
+    193.0,
+    -42.8
+   ],
+   "end_mm": [
+    -123.8,
+    -47.3
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 316.8
+  },
+  {
+   "kind": "battle",
+   "team": "W",
+   "from": "W-RW",
+   "to": "E-LD",
+   "t_release": 248.44,
+   "t_receive": 248.48,
+   "transit_s": 0.04,
+   "start_mm": [
+    283.0,
+    -163.9
+   ],
+   "end_mm": [
+    301.5,
+    -121.5
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 46.3
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-LD",
+   "to": "E-C",
+   "t_release": 252.32,
+   "t_receive": 252.48,
+   "transit_s": 0.16,
+   "start_mm": [
+    83.3,
+    -78.7
+   ],
+   "end_mm": [
+    -146.6,
+    -31.7
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 234.7
+  },
+  {
+   "kind": "pass",
+   "team": "E",
+   "from": "E-C",
+   "to": "E-LW",
+   "t_release": 260.12,
+   "t_receive": 260.24,
+   "transit_s": 0.12,
+   "start_mm": [
+    -182.3,
+    27.2
+   ],
+   "end_mm": [
+    -382.0,
+    41.2
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 200.2
+  },
+  {
+   "kind": "turnover",
+   "team": "E",
+   "from": "E-LW",
+   "to": "W-RD",
+   "t_release": 265.4,
+   "t_receive": 265.4,
+   "transit_s": 0.0,
+   "start_mm": [
+    -384.9,
+    -85.3
+   ],
+   "end_mm": [
+    -210.8,
+    -85.2
+   ],
+   "start_seen": false,
+   "end_seen": false,
+   "length_mm": 174.2
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-RD",
+   "to": "W-LW",
+   "t_release": 267.68,
+   "t_receive": 268.56,
+   "transit_s": 0.88,
+   "start_mm": [
+    -149.7,
+    -112.9
+   ],
+   "end_mm": [
+    306.5,
+    175.6
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 539.8
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LW",
+   "to": "W-RD",
+   "t_release": 269.72,
+   "t_receive": 269.72,
+   "transit_s": 0.0,
+   "start_mm": [
+    158.7,
+    196.2
+   ],
+   "end_mm": [
+    -112.0,
+    -56.9
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 370.6
+  },
+  {
+   "kind": "battle",
+   "team": "W",
+   "from": "W-RD",
+   "to": "E-C",
+   "t_release": 270.56,
+   "t_receive": 270.6,
+   "transit_s": 0.04,
+   "start_mm": [
+    -149.7,
+    -50.4
+   ],
+   "end_mm": [
+    -203.7,
+    -31.1
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 57.3
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LD",
+   "to": "W-LW",
+   "t_release": 280.72,
+   "t_receive": 280.72,
+   "transit_s": 0.0,
+   "start_mm": [
+    -38.1,
+    113.7
+   ],
+   "end_mm": [
+    351.4,
+    198.1
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 398.5
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LD",
+   "to": "W-LW",
+   "t_release": 291.36,
+   "t_receive": 291.36,
+   "transit_s": 0.0,
+   "start_mm": [
+    -175.5,
+    87.9
+   ],
+   "end_mm": [
+    384.6,
+    86.4
+   ],
+   "start_seen": false,
+   "end_seen": false,
+   "length_mm": 560.1
+  },
+  {
+   "kind": "pass",
+   "team": "W",
+   "from": "W-LW",
+   "to": "W-C",
+   "t_release": 296.92,
+   "t_receive": 298.76,
+   "transit_s": 1.84,
+   "start_mm": [
+    299.0,
+    200.3
+   ],
+   "end_mm": [
+    79.1,
+    -19.1
+   ],
+   "start_seen": true,
+   "end_seen": true,
+   "length_mm": 310.6
+  }
+ ]
+}

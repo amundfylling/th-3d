@@ -49,6 +49,7 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.45; }
 .wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 40px; display: grid; gap: 22px; }
 h1, h2, h3 { font-family: var(--f-display); font-weight: 700; letter-spacing: 0.01em; margin: 0; text-wrap: balance; }
@@ -86,6 +87,11 @@ h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1; text-transform: uppercas
 .seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; font-weight: 500; }
 .seg button + button { border-left: 1px solid var(--rule); }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.sub-controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.seg-main button { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 15px; padding: 6px 16px; }
+.board-svg .pass { cursor: pointer; }
+.board-svg .pass .hit { stroke: transparent; stroke-width: 14; fill: none; }
+.tl-svg .pmark { cursor: pointer; }
 .check { display: inline-flex; gap: 7px; align-items: center; color: var(--ink-2); cursor: pointer; font-size: 14px; }
 .check input { accent-color: var(--ink); width: 16px; height: 16px; }
 .board-svg { width: 100%; height: auto; display: block; touch-action: manipulation; }
@@ -172,11 +178,26 @@ td.num { font-family: var(--f-data); }
   <section class="main">
     <div class="panel board-card">
       <div class="controls">
-        <div class="seg" role="group" aria-label="Shade the areas by">
-          <button type="button" id="m-time" aria-pressed="true">Time on the puck</button>
-          <button type="button" id="m-times" aria-pressed="false">Number of times</button>
+        <div class="seg seg-main" role="group" aria-label="What the board shows">
+          <button type="button" id="v-poss" aria-pressed="true">Possession</button>
+          <button type="button" id="v-pass" aria-pressed="false">Passes</button>
         </div>
-        <label class="check"><input type="checkbox" id="show-puck" checked> Every place the puck was seen</label>
+        <div class="sub-controls" id="c-poss">
+          <div class="seg" role="group" aria-label="Shade the areas by">
+            <button type="button" id="m-time" aria-pressed="true">Time on the puck</button>
+            <button type="button" id="m-times" aria-pressed="false">Number of times</button>
+          </div>
+          <label class="check"><input type="checkbox" id="show-puck" checked> Every place the puck was seen</label>
+        </div>
+        <div class="sub-controls" id="c-pass" hidden>
+          <div class="seg" role="group" aria-label="Draw passes as">
+            <button type="button" id="p-each" aria-pressed="true">Every pass</button>
+            <button type="button" id="p-net" aria-pressed="false">Pass network</button>
+          </div>
+          <label class="check"><input type="checkbox" id="f-W" checked> ${W}</label>
+          <label class="check"><input type="checkbox" id="f-E" checked> ${E}</label>
+          <label class="check"><input type="checkbox" id="f-T"> Turnovers</label>
+        </div>
       </div>
       <svg class="board-svg" id="board" viewBox="-470 -268 940 536" role="img" aria-labelledby="board-desc">
         <desc id="board-desc">Top view of the table. Each skater's area is shaded by how long the puck was on that skater.</desc>
@@ -196,7 +217,7 @@ td.num { font-family: var(--f-data); }
       </div>
     </div>
     <div class="tl-scroll"><svg class="tl-svg" id="tl" role="img" aria-label="Timeline of possession per skater over the five minutes"></svg></div>
-    <div class="note">Drag across the timeline to move the puck on the board. Click a row, an area or a figure to follow one skater.</div>
+    <div class="note">Drag across the timeline to move the puck on the board. Click a row, an area or a figure to follow one skater. The top row marks every pass (▲) and turnover (✕); click one to see it on the board.</div>
   </section>
 
   <details>
@@ -218,7 +239,9 @@ const SKATERS = ["W-LD", "W-RD", "W-C", "W-LW", "W-RW", "E-LD", "E-RD", "E-C", "
 const TEAMVAR = { W: "var(--fyl)", E: "var(--moe)" };
 const NAME = { W: D.players.W.name, E: D.players.E.name };
 const NS = "http://www.w3.org/2000/svg";
-const state = { metric: "time", sel: null, hover: null, t: null, playing: false };
+const state = { view: "poss", metric: "time", pmode: "each", show: { W: true, E: true, T: false }, sel: null, hover: null, pass: null, t: null, playing: false };
+const PASSES = D.passes.events.map((e, i) => ({ ...e, i }));
+const PK = { pass: "Pass", turnover: "Turnover", battle: "Battle at an area border" };
 
 const el = (tag, attrs = {}, parent) => {
   const e = document.createElementNS(NS, tag);
@@ -238,6 +261,7 @@ const stays = (pid) => D.episodes.filter((e) => e[0] === pid);
 document.getElementById("event").textContent = D.match.event;
 document.getElementById("title").textContent = D.match.title;
 document.getElementById("result").textContent = D.match.result;
+for (const t of ["W", "E"]) document.getElementById("f-" + t).parentElement.lastChild.textContent = ` ${NAME[t]} passes`;
 (function score() {
   const W = D.per_team.W, E = D.per_team.E, nob = D.match.length_s - W.time_s - E.time_s, L = D.match.length_s;
   document.getElementById("score").innerHTML = `
@@ -308,6 +332,61 @@ for (const [pid, pose] of Object.entries(D.poses)) {
   if (!pid.endsWith("-G")) wire(g, pid);
 }
 
+svg.appendChild(gFig); // keep the figures under the pass arrows
+// passes: markers and layer
+for (const [id, col] of [["W", "var(--fyl)"], ["E", "var(--moe)"], ["T", "var(--ink-2)"]]) {
+  const m = el("marker", { id: "ah-" + id, viewBox: "0 0 10 10", refX: 8, refY: 5, markerWidth: 5.5, markerHeight: 5.5, orient: "auto-start-reverse", markerUnits: "strokeWidth" }, defs);
+  el("path", { d: "M0,1L9,5L0,9Z", fill: col }, m);
+}
+const gPass = el("g", {}, svg);
+function curve(a, b, bend = 0.16) {
+  const [x1, y1] = S(a), [x2, y2] = S(b), mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1;
+  const cx = mx - dy * bend, cy = my + dx * bend;
+  return { d: `M${x1.toFixed(1)},${y1.toFixed(1)}Q${cx.toFixed(1)},${cy.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`, mid: [0.25 * x1 + 0.5 * cx + 0.25 * x2, 0.25 * y1 + 0.5 * cy + 0.25 * y2] };
+}
+const passEls = [];
+for (const e of PASSES) {
+  const g = el("g", { class: "pass", tabindex: 0, role: "button", "aria-label": `${PK[e.kind]} ${e.from} to ${e.to} at ${fmtT(e.t_release)}` }, gPass);
+  if (e.kind === "battle") {
+    const m = S([(e.start_mm[0] + e.end_mm[0]) / 2, (e.start_mm[1] + e.end_mm[1]) / 2]);
+    el("rect", { x: m[0] - 5, y: m[1] - 5, width: 10, height: 10, transform: `rotate(45 ${m[0]} ${m[1]})`, fill: "var(--surface)", stroke: "var(--ink-2)", "stroke-width": 1.6, class: "vis" }, g);
+  } else {
+    const c = curve(e.start_mm, e.end_mm);
+    const col = e.kind === "pass" ? TEAMVAR[e.team] : TEAMVAR[e.to[0]];
+    el("path", { d: c.d, class: "hit" }, g);
+    el("path", { d: c.d, fill: "none", stroke: "var(--halo)", "stroke-width": 6, "stroke-linecap": "round", class: "vis halo" }, g);
+    el("path", { d: c.d, fill: "none", stroke: col, "stroke-width": 3, "stroke-linecap": "round", "stroke-dasharray": e.kind === "turnover" ? "7 5" : "none", "marker-end": `url(#ah-${e.kind === "pass" ? e.team : e.to[0]})`, class: "vis" }, g);
+    const st = S(e.start_mm);
+    el("circle", { cx: st[0], cy: st[1], r: 4.2, fill: e.start_seen ? col : "var(--surface)", stroke: col, "stroke-width": 1.6, class: "vis" }, g);
+  }
+  g.addEventListener("pointerenter", () => { state.hover = null; state.passHover = e.i; render(); });
+  g.addEventListener("pointerleave", () => { state.passHover = null; render(); });
+  const pick = () => { state.pass = state.pass === e.i ? null : e.i; if (state.pass != null) { stop(); state.t = e.t_release; } render(); };
+  g.addEventListener("click", pick);
+  g.addEventListener("keydown", (ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); pick(); } });
+  passEls.push(g);
+}
+// network: one link per directed pair, between the illustrative figure positions
+const gNet = el("g", {}, svg);
+const netEls = [];
+{
+  const pairs = {};
+  for (const e of PASSES) if (e.kind !== "battle") { const k = e.from + ">" + e.to; (pairs[k] ??= { from: e.from, to: e.to, kind: e.kind, n: 0 }).n++; }
+  for (const p of Object.values(pairs)) {
+    const a = D.poses[p.from], b = D.poses[p.to];
+    const c = curve([a.x, a.y], [b.x, b.y], 0.12);
+    const col = p.kind === "pass" ? TEAMVAR[p.from[0]] : TEAMVAR[p.to[0]];
+    const g = el("g", { class: "pass" }, gNet);
+    el("path", { d: c.d, fill: "none", stroke: "var(--halo)", "stroke-width": 3 + 2.2 * p.n + 3, "stroke-linecap": "round" }, g);
+    el("path", { d: c.d, fill: "none", stroke: col, "stroke-width": 1.5 + 2.2 * p.n, "stroke-linecap": "round", "stroke-opacity": 0.9, "stroke-dasharray": p.kind === "turnover" ? "8 6" : "none", "marker-end": `url(#ah-${p.kind === "pass" ? p.from[0] : p.to[0]})` }, g);
+    if (p.n > 1) {
+      el("circle", { cx: c.mid[0], cy: c.mid[1], r: 10, fill: "var(--surface)", stroke: col, "stroke-width": 1.6 }, g);
+      el("text", { x: c.mid[0], y: c.mid[1] + 4.5, "text-anchor": "middle", "font-family": "var(--f-data)", "font-size": 12.5, "font-weight": 500, fill: "var(--ink)" }, g).textContent = p.n;
+    }
+    netEls.push({ g, p });
+  }
+}
+
 // labels
 const gLbl = el("g", { class: "lbl" }, svg);
 const lblEls = {};
@@ -341,21 +420,28 @@ function wire(node, pid) {
 const mTime = document.getElementById("m-time"), mTimes = document.getElementById("m-times");
 mTime.onclick = () => { state.metric = "time"; render(); };
 mTimes.onclick = () => { state.metric = "times"; render(); };
+const vPoss = document.getElementById("v-poss"), vPass = document.getElementById("v-pass");
+vPoss.onclick = () => { state.view = "poss"; state.pass = null; render(); };
+vPass.onclick = () => { state.view = "pass"; render(); };
+const pEach = document.getElementById("p-each"), pNet = document.getElementById("p-net");
+pEach.onclick = () => { state.pmode = "each"; render(); };
+pNet.onclick = () => { state.pmode = "net"; state.pass = null; render(); };
+for (const k of ["W", "E", "T"]) document.getElementById("f-" + k).onchange = (ev) => { state.show[k] = ev.target.checked; render(); };
 document.getElementById("show-puck").onchange = (e) => { gHeat.style.display = e.target.checked ? "" : "none"; };
 
 /* ---------- timeline ---------- */
 const tl = document.getElementById("tl");
-const TL = { x0: 96, x1: 972, top: 26, lane: 21, gap: 12 };
+const TL = { x0: 96, x1: 972, top: 56, lane: 21, gap: 12, prow: 30 };
 const laneY = (i) => TL.top + i * TL.lane + (i >= 5 ? TL.gap : 0);
 const TLH = laneY(10) + 26;
 tl.setAttribute("viewBox", `0 0 1000 ${TLH}`);
 const X = (s) => TL.x0 + ((TL.x1 - TL.x0) * s) / D.match.length_s;
 // last-30-s music band and thirds
-el("rect", { x: X(270), y: TL.top - 6, width: X(300) - X(270), height: laneY(10) - TL.top + 6, fill: "var(--ink)", "fill-opacity": 0.05 }, tl);
-el("text", { x: X(285), y: TL.top - 10, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--f-body)" }, tl).textContent = "music: last 30 s";
+el("rect", { x: X(270), y: 20, width: X(300) - X(270), height: laneY(10) - 20, fill: "var(--ink)", "fill-opacity": 0.05 }, tl);
+el("text", { x: X(285), y: 14, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--f-body)" }, tl).textContent = "music: last 30 s";
 for (const [s, txt] of [[100, "⅓ signal"], [200, "⅔ signal"]]) {
-  el("line", { x1: X(s), x2: X(s), y1: TL.top - 6, y2: laneY(10), stroke: "var(--ink-3)", "stroke-dasharray": "3 3", "stroke-width": 1 }, tl);
-  el("text", { x: X(s), y: TL.top - 10, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--f-body)" }, tl).textContent = txt;
+  el("line", { x1: X(s), x2: X(s), y1: 20, y2: laneY(10), stroke: "var(--ink-3)", "stroke-dasharray": "3 3", "stroke-width": 1 }, tl);
+  el("text", { x: X(s), y: 14, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--f-body)" }, tl).textContent = txt;
 }
 for (let s = 0; s <= 300; s += 30) {
   el("line", { x1: X(s), x2: X(s), y1: laneY(10), y2: laneY(10) + 5, stroke: "var(--ink-3)", "stroke-width": 1 }, tl);
@@ -375,8 +461,21 @@ SKATERS.forEach((pid, i) => {
   row.addEventListener("click", () => { state.sel = state.sel === pid ? null : pid; render(); });
   row.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); state.sel = state.sel === pid ? null : pid; render(); } });
 });
-el("text", { x: 6, y: TL.top + 5 * TL.lane + 7, "font-size": 10, fill: "var(--ink-3)" }, tl);
-const scrub = el("line", { y1: TL.top - 6, y2: laneY(10), stroke: "var(--ink)", "stroke-width": 1.6, visibility: "hidden" }, tl);
+// pass row
+el("text", { x: 20, y: TL.prow + 4, "font-size": 13, "font-family": "var(--f-display)", "font-weight": 600, fill: "var(--ink)" }, tl).textContent = "Passes";
+el("line", { x1: TL.x0, x2: TL.x1, y1: TL.prow, y2: TL.prow, stroke: "var(--rule)", "stroke-width": 1 }, tl);
+const pmarkEls = [];
+for (const e of PASSES) {
+  const x = X(e.t_release), y = TL.prow;
+  const g = el("g", { class: "pmark" }, tl);
+  el("rect", { x: x - 5, y: y - 11, width: 10, height: 22, fill: "transparent" }, g);
+  if (e.kind === "pass") el("path", { d: `M${x - 5},${y + 5}L${x + 5},${y + 5}L${x},${y - 6}Z`, fill: TEAMVAR[e.team] }, g);
+  else if (e.kind === "turnover") el("path", { d: `M${x - 4},${y - 4}L${x + 4},${y + 4}M${x + 4},${y - 4}L${x - 4},${y + 4}`, stroke: TEAMVAR[e.to[0]], "stroke-width": 2.4, "stroke-linecap": "round" }, g);
+  else el("rect", { x: x - 3, y: y - 3, width: 6, height: 6, transform: `rotate(45 ${x} ${y})`, fill: "var(--surface)", stroke: "var(--ink-2)", "stroke-width": 1.4 }, g);
+  g.addEventListener("pointerdown", (ev) => { ev.stopPropagation(); state.view = "pass"; state.pmode = "each"; state.pass = e.i; stop(); state.t = e.t_release; render(); });
+  pmarkEls.push(g);
+}
+const scrub = el("line", { y1: 20, y2: laneY(10), stroke: "var(--ink)", "stroke-width": 1.6, visibility: "hidden", "pointer-events": "none" }, tl);
 function tlTime(ev) {
   const r = tl.getBoundingClientRect();
   const vx = ((ev.clientX - r.left) / r.width) * 1000;
@@ -463,8 +562,78 @@ function skaterView(pid) {
     <button type="button" class="clear" id="clear">Show all positions</button>`;
 }
 
+/* ---------- pass panels ---------- */
+const PS = D.passes.summary;
+function counts(pid) {
+  const r = { made: 0, recv: 0, lost: 0, won: 0 };
+  for (const e of PASSES) {
+    if (e.kind === "pass") { if (e.from === pid) r.made++; if (e.to === pid) r.recv++; }
+    if (e.kind === "turnover") { if (e.from === pid) r.lost++; if (e.to === pid) r.won++; }
+  }
+  return r;
+}
+function passLabel(pid) { const c = counts(pid); return `${c.made} out · ${c.recv} in`; }
+const who = (pid) => `${NAME[pid[0]]}’s ${ROLE[pid.slice(2)].toLowerCase()}`;
+const short = (pid) => `${NAME[pid[0]]} ${pid.slice(2)}`;
+function passRow(e) {
+  const icon = e.kind === "pass" ? `<span class="swatch" style="background:${TEAMVAR[e.team]}"></span>` : e.kind === "turnover" ? `<span style="color:${TEAMVAR[e.to[0]]};font-weight:700">✕</span>` : "◇";
+  return `<button type="button" class="fly-row" data-pass="${e.i}" style="grid-template-columns:52px 16px 1fr;text-align:left">
+    <span class="num" style="font-size:12.5px">${fmtT(e.t_release).replace(/\.\d$/, "")}</span>${icon}<span style="font-size:13px">${short(e.from)} → ${short(e.to)}</span></button>`;
+}
+function passOverview() {
+  const top = Object.entries(D.passes.pairs).filter(([k]) => k[0] === k.split(">")[1][0]).sort((a, b) => b[1] - a[1]).slice(0, 4);
+  const team = (t) => `<div><span class="k">${NAME[t]}</span><span class="v">${PS[t].passes}<small> passes</small></span>
+      <div class="note">${PS[t].turnovers_lost} lost to ${NAME[t === "W" ? "E" : "W"]} · kept it in ${Math.round((100 * PS[t].passes) / (PS[t].passes + PS[t].turnovers_lost))}% of hand-overs</div></div>`;
+  return `<div class="eyebrow">Passes and turnovers</div>
+    <h2>${PS.W.passes + PS.E.passes} passes found</h2>
+    <div class="kv">${team("W")}${team("E")}</div>
+    <div style="display:grid;gap:4px"><div class="kv-k" style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);font-family:var(--f-display);font-weight:600">Most used</div>
+      ${top.map(([k, n]) => { const [a, b] = k.split(">"); return `<div style="display:flex;justify-content:space-between;gap:8px;font-size:14px"><span><span class="swatch" style="background:${TEAMVAR[a[0]]};margin-right:6px;vertical-align:-1px"></span>${short(a)} → ${b.slice(2)}</span><span class="num">${n}×</span></div>`; }).join("")}</div>
+    <div class="note">A pass: the puck goes from one skater’s area to a teammate’s within ${D.passes.parameters.max_transit_s} s. A turnover: the same, but the opponent ends up with it (dashed, in the colour of the team that won it). The filled dot is where the puck was last seen before the pass; a hollow dot means it was hidden there. Click an arrow or a mark on the timeline.</div>`;
+}
+function skaterPassView(pid) {
+  const c = counts(pid), t = pid[0];
+  const list = PASSES.filter((e) => e.kind !== "battle" && involves(e, pid));
+  return `<div class="eyebrow"><span class="swatch" style="background:${TEAMVAR[t]};margin-right:6px;vertical-align:-1px"></span>${NAME[t]}</div>
+    <h2>${ROLE[pid.slice(2)]}</h2>
+    <div class="kv">
+      <div><span class="k">Passes made</span><span class="v">${c.made}</span></div>
+      <div><span class="k">Passes received</span><span class="v">${c.recv}</span></div>
+      <div><span class="k">Lost to opponent</span><span class="v">${c.lost}</span></div>
+      <div><span class="k">Won from opponent</span><span class="v">${c.won}</span></div>
+    </div>
+    <div class="fly" style="gap:2px;max-height:240px;overflow:auto">${list.map(passRow).join("") || '<div class="note">No passes found for this skater.</div>'}</div>
+    <button type="button" class="clear" id="clear">Show all positions</button>`;
+}
+function passView(e) {
+  const col = e.kind === "pass" ? TEAMVAR[e.team] : e.kind === "turnover" ? TEAMVAR[e.to[0]] : "var(--ink-2)";
+  const title = e.kind === "pass" ? `${e.from.slice(2)} → ${e.to.slice(2)}` : e.kind === "turnover" ? `${short(e.from)} → ${short(e.to)}` : "Battle";
+  return `<div class="eyebrow"><span class="swatch" style="background:${col};margin-right:6px;vertical-align:-1px"></span>${PK[e.kind]} · ${fmtT(e.t_release)}</div>
+    <h2>${title}</h2>
+    <div class="sub">${e.kind === "pass" ? `${who(e.from)} to the ${ROLE[e.to.slice(2)].toLowerCase()}.` : e.kind === "turnover" ? `${who(e.from)} lost the puck to ${who(e.to)}. It may be an intercepted pass, a lost puck or a blocked shot.` : `The puck changed hands at the border of ${who(e.from)}’s and ${who(e.to)}’s areas.`}</div>
+    <div class="kv">
+      <div><span class="k">Distance</span><span class="v">${Math.round(e.length_mm)}<small> mm</small></span></div>
+      <div><span class="k">On its way</span><span class="v">${e.transit_s.toFixed(1)}<small> s</small></span></div>
+    </div>
+    <div class="note">${e.start_seen && e.end_seen ? "The puck was seen at both ends." : e.start_seen || e.end_seen ? "The puck was seen at one end only; the other end is the middle of the skater’s area." : "The puck was hidden at both ends; the arrow joins the middles of the two areas."}</div>
+    <button type="button" class="clear" id="clear">Back to all passes</button>`;
+}
+
 /* ---------- render ---------- */
+function passVisible(e) {
+  if (e.kind === "battle") return state.show.T;
+  if (e.kind === "turnover") return state.show.T;
+  return state.show[e.team];
+}
+function involves(e, pid) { return e.from === pid || e.to === pid; }
 function render() {
+  const pv = state.view === "pass";
+  vPoss.setAttribute("aria-pressed", !pv); vPass.setAttribute("aria-pressed", pv);
+  document.getElementById("c-poss").hidden = pv; document.getElementById("c-pass").hidden = !pv;
+  pEach.setAttribute("aria-pressed", state.pmode === "each"); pNet.setAttribute("aria-pressed", state.pmode === "net");
+  gHeat.style.display = !pv && document.getElementById("show-puck").checked ? "" : "none";
+  gPass.style.display = pv && state.pmode === "each" ? "" : "none";
+  gNet.style.display = pv && state.pmode === "net" ? "" : "none";
   mTime.setAttribute("aria-pressed", state.metric === "time");
   mTimes.setAttribute("aria-pressed", state.metric === "times");
   const mx = maxMetric();
@@ -472,22 +641,45 @@ function render() {
   const focus = state.sel ?? state.hover ?? (live && live !== "nobody" ? live : null);
   for (const pid of SKATERS) {
     const g = areaEls[pid];
-    const op = 0.1 + 0.62 * (metricVal(pid) / mx);
+    const op = pv ? 0.13 : 0.1 + 0.62 * (metricVal(pid) / mx);
     for (const p of g.children) { p.setAttribute("fill-opacity", op.toFixed(3)); p.setAttribute("stroke-width", focus === pid ? 3.2 : 1.2); }
-    g.classList.toggle("dim", !!focus && focus !== pid);
+    g.classList.toggle("dim", !pv && !!focus && focus !== pid);
     const v = D.per_skater[pid];
     lblEls[pid].t1.textContent = pid.slice(2);
-    lblEls[pid].t2.textContent = state.metric === "time" ? `${v.time_s.toFixed(1)} s` : `${v.times}×`;
+    lblEls[pid].t2.textContent = pv ? passLabel(pid) : state.metric === "time" ? `${v.time_s.toFixed(1)} s` : `${v.times}×`;
     laneEls[pid].bg.setAttribute("fill-opacity", focus === pid ? 0.08 : 0);
   }
-  for (const [pid, g] of Object.entries(figEls)) g.style.opacity = !focus || focus === pid || pid.endsWith("-G") ? 1 : 0.45;
-  detail.innerHTML = state.sel || state.hover ? skaterView(state.sel ?? state.hover) : overview();
-  detail.querySelectorAll(".fly-row").forEach((b) => {
+  for (const [pid, g] of Object.entries(figEls)) g.style.opacity = pv || !focus || focus === pid || pid.endsWith("-G") ? 1 : 0.45;
+  // passes
+  const ph = state.passHover ?? state.pass;
+  const near = (e) => state.t != null && !state.pass && e.t_release <= state.t + 0.3 && e.t_release >= state.t - 6;
+  for (const e of PASSES) {
+    const g = passEls[e.i];
+    g.style.display = passVisible(e) || ph === e.i ? "" : "none";
+    let o = 0.9;
+    if (ph != null) o = ph === e.i ? 1 : 0.12;
+    else if (state.sel) o = involves(e, state.sel) ? 1 : 0.1;
+    else if (state.t != null && (state.playing || dragging)) o = near(e) ? 1 : 0.1;
+    else if (!(e.start_seen && e.end_seen)) o = 0.5;
+    g.style.opacity = o;
+    if (ph === e.i) gPass.appendChild(g);
+    pmarkEls[e.i].style.opacity = (state.sel && !involves(e, state.sel)) || !passVisible(e) ? 0.2 : ph != null && ph !== e.i ? 0.45 : 1;
+  }
+  for (const { g, p } of netEls) {
+    const vis = p.kind === "pass" ? state.show[p.from[0]] : state.show.T;
+    g.style.display = vis ? "" : "none";
+    g.style.opacity = state.sel ? (p.from === state.sel || p.to === state.sel ? 1 : 0.12) : 0.95;
+  }
+  if (pv) detail.innerHTML = ph != null ? passView(PASSES[ph]) : state.sel || state.hover ? skaterPassView(state.sel ?? state.hover) : passOverview();
+  else detail.innerHTML = state.sel || state.hover ? skaterView(state.sel ?? state.hover) : overview();
+  detail.querySelectorAll("[data-pass]").forEach((b) => { b.onclick = () => { state.pass = +b.dataset.pass; stop(); state.t = PASSES[state.pass].t_release; render(); }; });
+  detail.querySelectorAll(".fly-row[data-pid]").forEach((b) => {
     const r = b.querySelector(".fly-role").textContent;
     b.onclick = (e) => { const side = e.clientX < b.getBoundingClientRect().left + b.offsetWidth / 2 ? "W" : "E"; state.sel = `${side}-${r}`; render(); };
   });
   const c = detail.querySelector("#clear");
-  if (c) c.onclick = () => { state.sel = null; state.hover = null; render(); };
+  if (c) c.onclick = () => { state.sel = null; state.hover = null; state.pass = null; state.passHover = null; render(); };
+  document.getElementById("legend").innerHTML = pv ? LEG_PASS : LEG_POSS;
   // clock + puck
   const clock = document.getElementById("clock"), owner = document.getElementById("owner");
   if (state.t == null) {
@@ -510,12 +702,18 @@ function render() {
 }
 
 /* ---------- legend, table, notes ---------- */
-document.getElementById("legend").innerHTML = `
+const LEG_POSS = `
   <span class="ramp"><span class="ramp-bar" style="background:linear-gradient(90deg,color-mix(in srgb,var(--fyl) 12%,var(--ice)),var(--fyl))"></span>${NAME.W}</span>
   <span class="ramp"><span class="ramp-bar" style="background:linear-gradient(90deg,color-mix(in srgb,var(--moe) 12%,var(--ice)),var(--moe))"></span>${NAME.E}</span>
   <span>Darker = more of the selected measure</span>
   <span class="ramp"><span class="swatch hatch-chip"></span>Two skaters can reach it: puck on nobody</span>
   <span class="ramp"><svg width="14" height="14" viewBox="-7 -7 14 14"><circle r="5" fill="var(--puck)"/></svg>Puck, true size</span>`;
+const LEG_PASS = `
+  <span class="ramp"><svg width="34" height="12" viewBox="0 0 34 12"><path d="M2,6H28" stroke="var(--fyl)" stroke-width="3"/><path d="M26,1L33,6L26,11Z" fill="var(--fyl)"/></svg>${NAME.W} pass</span>
+  <span class="ramp"><svg width="34" height="12" viewBox="0 0 34 12"><path d="M2,6H28" stroke="var(--moe)" stroke-width="3"/><path d="M26,1L33,6L26,11Z" fill="var(--moe)"/></svg>${NAME.E} pass</span>
+  <span class="ramp"><svg width="34" height="12" viewBox="0 0 34 12"><path d="M2,6H28" stroke="var(--ink-2)" stroke-width="3" stroke-dasharray="6 4"/><path d="M26,1L33,6L26,11Z" fill="var(--ink-2)"/></svg>Turnover, in the colour of the team that won it</span>
+  <span class="ramp"><svg width="12" height="12" viewBox="-6 -6 12 12"><rect x="-3.5" y="-3.5" width="7" height="7" transform="rotate(45)" fill="var(--surface)" stroke="var(--ink-2)" stroke-width="1.4"/></svg>Battle at an area border</span>
+  <span class="ramp"><svg width="12" height="12" viewBox="-6 -6 12 12"><circle r="4" fill="var(--surface)" stroke="var(--ink-2)" stroke-width="1.6"/></svg>Hollow start: puck hidden there</span>`;
 document.getElementById("table").innerHTML =
   `<thead><tr><th>Player</th><th>Position</th><th>Time (s)</th><th>Times</th><th>Seen (s)</th><th>Longest stay (s)</th></tr></thead><tbody>` +
   SKATERS.map((p) => { const v = D.per_skater[p]; const l = stays(p).reduce((m, e) => Math.max(m, e[2] - e[1]), 0);
