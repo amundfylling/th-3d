@@ -240,8 +240,11 @@
     figure's area, i.e. no other figure can reach the puck.
   - Five hand episodes inspected: hands at figures (one is the left player adjusting his own goalie at 176.8-177.4 s),
     the puck twice behind the right goal; none is a goal. **The two regulation goals are not located yet.**
-  - Open: Q11 (the goal times) and Q12-Q15 (the details of the possession definition). Waiting on the user before
-    any tracking work.
+  - Second answers A11-A15: the possession count is per skater (goalies not counted); the measures are time and
+    number of times; a stoppage of more than 10 s puts the puck on nobody, a shorter one leaves it on the controlling
+    figure. Definition in docs/game-mechanics.md section 6.
+  - Open: Q11 (the goal times; the user will check) and Q16 (a long stoppage: on nobody from its start or from 10 s
+    on). No tracking work started.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.

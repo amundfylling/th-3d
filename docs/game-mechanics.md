@@ -280,12 +280,32 @@ other figure, can reach it. That is the "figure's area" of rule 8.3.
 - Where two or more figures' areas overlap, the puck is on nobody.
 - Touches do not matter by themselves: the count follows where the puck *is*.
 
+Second round (2026-10-07):
+
+| # | Question | Answer |
+| --- | --- | --- |
+| A11 | When were the two regulation goals? | "i will have to check later" (**open**) |
+| A12 | Does "no other figures" mean either team, or only opponents? | "there are no such cases. So it does not matter what definition you use" |
+| A13 | Per figure or per player; time or number of times? | "per figure, both" |
+| A14 | Does the goalie count? | "dont count the goalie for simplicity" |
+| A15 | Is the puck on nobody during a dead puck? | "if it is just a few seconds it should be on the figure controlling the puck. If play stops for more than 10 seconds it should be nobody" |
+
+### The possession count, as defined by the answers
+
+- **Unit:** each of the 5 skaters per side (A13, A14). The goalies are not counted: while the puck is in a goalie's
+  area it is on nobody for the count.
+- **On a figure:** the puck lies in that figure's area, and no other figure can reach it (A10). With A12, the
+  definition is "no other figure of either team".
+- **Measures:** both per skater (A13):
+  - the time the puck spends on it;
+  - the number of times it gets the puck. A new time starts when the puck enters the skater's area from anywhere
+    else.
+- **Stoppages:**
+  - a stoppage of up to 10 s leaves the puck on the figure that controlled it (A15);
+  - a stoppage longer than 10 s puts the puck on nobody (A15).
+- **Time base:** the match clock from the audio timer (7.5-307.5 s of video time in this recording).
+
 ### Open questions
 
-11. **When were the two regulation goals?** Roughly, in video time, and who scored first. I could not find either
-    (section 4).
-12. **"No other figures":** does that mean no figure of *either* team, or only no *opposing* figure? For example, the
-    puck between your own centre and your own wing, out of the opponent's reach: is that on nobody, or on your team?
-13. **The count:** per figure (6 per side), or per player? And as time on the puck, the number of times, or both?
-14. **The goalie:** does the puck in the goalie's area count as on the goalie, like any other figure?
-15. **Dead puck:** is the puck on nobody during a stoppage, a retrieval, or while a hand adjusts a figure?
+11. The two regulation goals in video time (the user will check).
+16. **A stoppage longer than 10 s:** is the puck on nobody for the whole stoppage, or only from 10 s on?
