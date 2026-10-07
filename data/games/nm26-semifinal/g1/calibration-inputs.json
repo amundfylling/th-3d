@@ -1,0 +1,10 @@
+{
+  "description": "Hand-picked starting points for scripts/nm26-calibrate.py: where the goal, blue and centre lines meet the boards, in stab px of the game-1 background (picked by Claude from a 0.75x view, about 5-20 px uncertain). Only the starting point; the fit itself uses the slots.",
+  "line_points_stab_px": {
+    "goal_line.W.top": [353, 127], "goal_line.W.bottom": [273, 387],
+    "blue_line.W.top": [644, 93], "blue_line.W.bottom": [611, 397],
+    "centre_line.top": [783, 96], "centre_line.bottom": [775, 397],
+    "blue_line.E.top": [933, 93], "blue_line.E.bottom": [944, 400],
+    "goal_line.E.top": [1224, 127], "goal_line.E.bottom": [1287, 393]
+  }
+}

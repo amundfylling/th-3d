@@ -87,3 +87,20 @@ test("game tracking: passes follow the possession episodes; lines run between de
   assert.equal(measured, ps.quality.measured_lines + ps.events.filter((e: { kind: string; measured: boolean }) => e.kind === "battle" && e.measured).length);
   for (const t of ["W", "E"]) assert.equal(ps.summary[t].passes, ps.events.filter((e: { kind: string; team: string }) => e.kind === "pass" && e.team === t).length);
 });
+
+test("nm26 game 1: calibration fits the slots; passes rest on the puck track", () => {
+  const N = "data/games/nm26-semifinal";
+  const c = json(`${N}/g1/calibration.json`);
+  assert.ok(c.residuals.median_px < 1.5, "slot centrelines on the image slots");
+  const tr = json(`${N}/g1/puck-track.json`);
+  const rows = new Map<number, number[]>((tr.rows as (number | string)[][]).map((r) => [r[0] as number, r as number[]]));
+  const ps = json(`${N}/g1/passes.json`);
+  for (const e of ps.events) {
+    for (const [f, q] of [[e.frame_release, e.line_mm[0]], [e.frame_reception, e.line_mm[e.line_mm.length - 1]]] as [number, number[]][]) {
+      const r = rows.get(f);
+      assert.ok(r && Math.abs(r[2]! - q[0]!) < 0.11 && Math.abs(r[3]! - q[1]!) < 0.11, `end of ${e.kind} at frame ${f}`);
+    }
+    if (e.kind === "pass") assert.equal(e.from[0], e.to[0]);
+    if (e.kind === "turnover" || e.kind === "battle") assert.notEqual(e.from[0], e.to[0]);
+  }
+});

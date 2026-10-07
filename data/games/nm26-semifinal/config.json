@@ -1,0 +1,25 @@
+{
+  "description": "NM 2026 semi-final, Daniel Nygård vs Andreas Fjermestad (seven games, one broadcast video). Inputs for scripts/nm26-*.py.",
+  "video": {
+    "source_id": "user_game_video_nygard_vs_fjermestad_nm26_semifinal",
+    "url": "https://github.com/amundfylling/th-3d/releases/download/daniel_andreas_NM26.mp4/daniel_andreas_NM26.mp4.webm",
+    "sha256": "7de5bc6b5ac1127942404fcfb81c43234d70e7682e041d8a5a9c56819a0d1707",
+    "local_path": "out/dl/nm26.webm",
+    "fps": 30
+  },
+  "players": {"nygard": {"name": "Daniel Nygård", "kit": "white/blue"}, "fjermestad": {"name": "Andreas Fjermestad", "kit": "yellow"}},
+  "roi_px": [240, 440, 1820, 900],
+  "registration_mask_half_px": [120, 235, 910, 440],
+  "ice_polygon_stab_px": [[130, 95], [1450, 95], [1500, 140], [1505, 370], [1460, 400], [120, 400], [70, 360], [75, 140]],
+  "games": {
+    "g1": {
+      "result_nygard_fjermestad": "3:4 OT",
+      "video_window_s": [20.0, 545.0],
+      "start_signal_s": 21.6,
+      "note": "Start: timer tone at 21.6-25.0 s. 3-3 after regulation; Fjermestad's overtime goal at about 535 s (series 0-1 from 539 s). Nygård's goalie (white/blue) at the left end, so Nygård = team W in data/geometry.json terms.",
+      "reference_frame_s": 180.0,
+      "team_W": "nygard",
+      "team_E": "fjermestad"
+    }
+  }
+}

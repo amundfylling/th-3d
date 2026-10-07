@@ -1,0 +1,281 @@
+<title>NM26 Pass Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a review queue. Header with progress and filters; a pass map of everything reviewed; one card per
+   candidate (three video frames, a mini board, verdict buttons); a form to add missed passes by clicking the board. */
+:root {
+  --bg: #eef1f4; --surface: #f9fafb; --ink: #13171c; --ink-2: #4d5664; --ink-3: #7c8693; --rule: #d6dce3;
+  --ice: #fbfcfd; --rim: #1c2128; --slot: #2a3038; --red: #c8323a; --blue: #2f5fb3;
+  --nyg: #2a78d6; --fje: #d19100; --ok: #1f8a4c; --bad: #c0392b; --fix: #b26a00; --focus: #2f5fb3;
+  --f-display: "Barlow Condensed", "Arial Narrow", sans-serif; --f-body: "Barlow", system-ui, sans-serif; --f-data: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0e1216; --surface: #151b21; --ink: #eef2f5; --ink-2: #aab3be; --ink-3: #7c8794; --rule: #28313b;
+    --ice: #1b222a; --rim: #05070a; --slot: #5a6574; --red: #e0575d; --blue: #6a93e3; --nyg: #3987e5; --fje: #c98500; --ok: #3fb070; --bad: #e0675a; --fix: #d9902a; --focus: #6a93e3; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0e1216; --surface: #151b21; --ink: #eef2f5; --ink-2: #aab3be; --ink-3: #7c8794; --rule: #28313b;
+  --ice: #1b222a; --rim: #05070a; --slot: #5a6574; --red: #e0575d; --blue: #6a93e3; --nyg: #3987e5; --fje: #c98500; --ok: #3fb070; --bad: #e0675a; --fix: #d9902a; --focus: #6a93e3; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.45; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 18px; padding-block: 24px 48px; display: grid; gap: 18px; }
+h1, h2 { font-family: var(--f-display); font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: .02em; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1; }
+.eyebrow { font-family: var(--f-display); font-weight: 600; text-transform: uppercase; letter-spacing: .12em; font-size: 13px; color: var(--ink-2); }
+.num { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; padding: 12px 14px; }
+.progress { flex: 1 1 260px; display: grid; gap: 4px; }
+.track { height: 10px; border-radius: 4px; background: color-mix(in srgb, var(--ink) 10%, transparent); overflow: hidden; display: flex; }
+.track span { height: 100%; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, input[type=text] { font: inherit; padding: 5px 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); }
+button { font: inherit; cursor: pointer; }
+.btn { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 7px; padding: 6px 12px; font-weight: 600; }
+.btn[aria-pressed="true"].ok { background: var(--ok); color: #fff; border-color: var(--ok); }
+.btn[aria-pressed="true"].bad { background: var(--bad); color: #fff; border-color: var(--bad); }
+.btn[aria-pressed="true"].fix { background: var(--fix); color: #fff; border-color: var(--fix); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.note { color: var(--ink-2); font-size: 13.5px; }
+.map { padding: 12px; display: grid; gap: 8px; }
+.map svg { width: 100%; height: auto; display: block; }
+.cards { display: grid; gap: 12px; }
+.card { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1.25fr); gap: 12px; padding: 12px; }
+.card.done { opacity: .72; }
+.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; align-items: start; align-content: start; }
+.strip figure { margin: 0; display: grid; gap: 2px; }
+.strip img { width: 100%; height: auto; border-radius: 5px; display: block; cursor: zoom-in; }
+.strip figcaption { font-size: 12px; color: var(--ink-3); font-family: var(--f-display); text-transform: uppercase; letter-spacing: .08em; }
+.side { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.kind { font-family: var(--f-display); font-weight: 700; font-size: 20px; text-transform: uppercase; }
+.who { font-size: 14px; }
+.chip { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+.verdict { display: flex; gap: 6px; flex-wrap: wrap; }
+.fixrow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.fixrow select { width: 100%; min-width: 0; }
+.status { font-size: 12.5px; color: var(--ink-3); min-height: 1.2em; }
+.zoom { position: fixed; inset: 0; background: rgba(0,0,0,.82); display: grid; place-items: center; padding: 20px; z-index: 10; cursor: zoom-out; }
+.zoom img { max-width: 100%; max-height: 100%; }
+.add { padding: 14px; display: grid; gap: 10px; }
+.addgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.addgrid label { display: grid; gap: 3px; font-size: 13px; color: var(--ink-2); }
+.addgrid select, .addgrid input { width: 100%; }
+#addboard { cursor: crosshair; }
+.missed { display: grid; gap: 4px; font-size: 14px; }
+@media (max-width: 820px) { .card { grid-template-columns: minmax(0, 1fr); } .addgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:6px">
+    <div class="eyebrow" id="sub"></div>
+    <h1 id="title"></h1>
+    <div class="note">Every candidate the tracker found, each with three frames from the video: where the puck left (line and ring drawn), the middle of its path, and where it arrived (ring). Mark each one. Your answers are saved for everyone who opens this page, and Claude reads them back.</div>
+  </header>
+
+  <section class="panel bar">
+    <div class="progress"><div><b class="num" id="done">0</b> of <span class="num" id="total"></span> reviewed · <span id="counts" class="note"></span></div><div class="track" id="ptrack"></div></div>
+    <div class="filters">
+      <label class="note" for="fkind">Show</label>
+      <select id="fkind"><option value="all">All candidates</option><option value="pass">Passes</option><option value="turnover">Turnovers</option><option value="shot">Shots</option><option value="loose">Loose pucks</option></select>
+      <select id="fstate"><option value="open">Not reviewed yet</option><option value="any">Reviewed and not</option><option value="done">Reviewed</option></select>
+    </div>
+  </section>
+  <div class="note" id="dbnote" hidden>Saving is not available in this view (sign in to claude.ai, or ask the owner for edit access). You can still look through the candidates.</div>
+
+  <section class="panel map">
+    <div class="head"><h2 style="font-size:20px">Pass map</h2><span class="note">Confirmed and fixed passes, solid; still to review, faint; rejected, hidden</span></div>
+    <svg id="map" viewBox="-460 -255 920 510" role="img" aria-label="Top view of the table with every candidate pass line"></svg>
+  </section>
+
+  <section class="cards" id="cards"></section>
+
+  <section class="panel add">
+    <h2 style="font-size:20px">Add a pass the tracker missed</h2>
+    <div class="note">Find it in the video, type the video time, pick the players, then click on the board where the puck left and where it arrived. Claude snaps it to the exact puck positions in the track.</div>
+    <div class="addgrid">
+      <label>Video time (m:ss.s)<input type="text" id="at" placeholder="1:42.5"></label>
+      <label>Kind<select id="ak"></select></label>
+      <label>From<select id="af"></select></label>
+      <label>To<select id="ato"></select></label>
+    </div>
+    <svg id="addboard" viewBox="-460 -255 920 510" role="img" aria-label="Click where the puck left, then where it arrived"></svg>
+    <div class="verdict"><button class="btn" id="asave" type="button">Save missed pass</button><button class="btn" id="aclear" type="button">Clear clicks</button><span class="status" id="astatus"></span></div>
+    <div class="missed" id="missedlist"></div>
+  </section>
+</div>
+<div class="zoom" id="zoom" hidden><img id="zimg" alt=""></div>
+
+<script>
+const D = /*__DATA__*/null;
+const NS = "http://www.w3.org/2000/svg";
+const ROLE = { LD: "left defence", RD: "right defence", C: "centre", LW: "left wing", RW: "right wing", G: "goalie" };
+const KIND = { pass: "Pass", turnover: "Turnover", shot: "Shot", loose: "Loose puck", loose_received: "Loose puck", battle: "Battle", none: "Nothing" };
+const PIDS = ["W-G", "W-LD", "W-RD", "W-C", "W-LW", "W-RW", "E-G", "E-LD", "E-RD", "E-C", "E-LW", "E-RW"];
+const col = (pid) => (pid ? (D.teams[pid[0]] === "nygard" ? "var(--nyg)" : "var(--fje)") : "var(--ink-3)");
+const pname = (pid) => (pid ? `${D.names[D.teams[pid[0]]]} ${pid.slice(2)}` : "nobody");
+const fmt = (s) => `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, "0")}`;
+const parseT = (v) => { const m = /^(\d+):(\d+(?:\.\d+)?)$/.exec(v.trim()); return m ? +m[1] * 60 + +m[2] : (isFinite(+v) ? +v : null); };
+const el = (tag, a = {}, p) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(a)) e.setAttribute(k, v); if (p) p.appendChild(e); return e; };
+const S = ([x, y]) => [x, -y];
+const pathOf = (pts, close) => "M" + pts.map((p) => S(p).map((v) => v.toFixed(1)).join(",")).join("L") + (close ? "Z" : "");
+const reviews = {}; // id -> {verdict, kind, from, to}
+let db = null, missed = [];
+
+document.getElementById("title").textContent = D.title;
+document.getElementById("sub").textContent = `Result ${D.result} (Nygård first) · ${D.names[D.teams.W]} ${D.kits.W} at the left end, ${D.names[D.teams.E]} ${D.kits.E} at the right`;
+document.getElementById("total").textContent = D.events.length;
+
+function drawBoard(svg) {
+  el("path", { d: pathOf(D.board, true), fill: "var(--ice)", stroke: "var(--rim)", "stroke-width": 10, "stroke-linejoin": "round" }, svg);
+  for (const l of D.lines) el("line", { x1: l.a[0], y1: -l.a[1], x2: l.b[0], y2: -l.b[1], stroke: l.kind === "red" ? "var(--red)" : "var(--blue)", "stroke-width": l.kind === "red" ? 2 : 4, "stroke-opacity": .6 }, svg);
+  for (const pts of Object.values(D.slots)) el("path", { d: pathOf(pts, false), fill: "none", stroke: "var(--slot)", "stroke-width": 3, "stroke-opacity": .35, "stroke-linecap": "round" }, svg);
+  for (const [t, g] of Object.entries(D.goals)) { const back = t === "W" ? -1 : 1; el("rect", { x: Math.min(g.x, g.x + back * g.d), y: -(g.y + g.w / 2), width: g.d, height: g.w, rx: 10, fill: "none", stroke: "var(--red)", "stroke-width": 2 }, svg); }
+}
+const map = document.getElementById("map"); drawBoard(map);
+const mapLines = el("g", {}, map);
+const addSvg = document.getElementById("addboard"); drawBoard(addSvg);
+const addMarks = el("g", {}, addSvg);
+
+function effective(e) { const r = reviews[e.id]; return r && r.verdict === "fix" ? { ...e, kind: r.kind, from: r.from || null, to: r.to || null } : e; }
+function renderMap() {
+  mapLines.replaceChildren();
+  for (const e of D.events) {
+    const r = reviews[e.id]; if (r && r.verdict === "wrong") continue;
+    const x = effective(e); const conf = r && (r.verdict === "ok" || r.verdict === "fix");
+    if (x.kind !== "pass" && x.kind !== "shot") continue;
+    const c = col(x.from);
+    el("path", { d: pathOf(e.line, false), fill: "none", stroke: c, "stroke-width": conf ? 3 : 1.6, "stroke-opacity": conf ? .95 : .3, "stroke-dasharray": x.kind === "shot" ? "6 4" : "none", "stroke-linecap": "round" }, mapLines);
+    const end = S(e.line[e.line.length - 1]); el("circle", { cx: end[0], cy: end[1], r: conf ? 4 : 2.5, fill: c, "fill-opacity": conf ? 1 : .35 }, mapLines);
+  }
+  for (const m of missed) {
+    if (!m.start || !m.end) continue;
+    el("path", { d: pathOf([m.start, m.end], false), fill: "none", stroke: col(m.from), "stroke-width": 3, "stroke-dasharray": "2 4", "stroke-linecap": "round" }, mapLines);
+  }
+}
+function renderProgress() {
+  const vals = Object.values(reviews).filter((r) => D.events.some((e) => e.id === r.id));
+  const n = { ok: 0, wrong: 0, fix: 0 }; for (const r of vals) n[r.verdict] = (n[r.verdict] || 0) + 1;
+  document.getElementById("done").textContent = vals.length;
+  document.getElementById("counts").textContent = `${n.ok} correct, ${n.fix} fixed, ${n.wrong} not a pass · ${missed.length} missed added`;
+  const T = D.events.length, tr = document.getElementById("ptrack"); tr.replaceChildren();
+  for (const [k, c] of [["ok", "var(--ok)"], ["fix", "var(--fix)"], ["wrong", "var(--bad)"]]) { const s = document.createElement("span"); s.style.width = `${(100 * n[k]) / T}%`; s.style.background = c; tr.appendChild(s); }
+}
+
+function options(sel, list, val) { sel.replaceChildren(...list.map(([v, t]) => { const o = document.createElement("option"); o.value = v; o.textContent = t; if (v === val) o.selected = true; return o; })); }
+const pidOpts = [["", "nobody"], ...PIDS.map((p) => [p, pname(p)])];
+const kindOpts = ["pass", "turnover", "shot", "loose", "battle", "none"].map((k) => [k, KIND[k]]);
+
+const cards = document.getElementById("cards");
+const cardEls = {};
+function makeCard(e) {
+  const c = document.createElement("article"); c.className = "panel card"; c.id = e.id;
+  const strip = document.createElement("div"); strip.className = "strip";
+  ["Puck leaves", "On its way", "Puck arrives"].forEach((cap, k) => {
+    const f = document.createElement("figure"); const im = document.createElement("img");
+    im.src = e.img[k]; im.alt = `${cap}, ${KIND[e.kind]} at ${fmt(e.t)}`; im.loading = "lazy";
+    im.onclick = () => { document.getElementById("zimg").src = e.img[k]; document.getElementById("zoom").hidden = false; };
+    const fc = document.createElement("figcaption"); fc.textContent = cap; f.append(im, fc); strip.appendChild(f);
+  });
+  const side = document.createElement("div"); side.className = "side";
+  side.innerHTML = `<div class="head"><span class="kind">${KIND[e.kind]}</span><span class="num note">video ${fmt(e.t)} → ${fmt(e.t_end)}</span></div>
+    <div class="who"><span class="chip" style="background:${col(e.from)}"></span>${pname(e.from)} → <span class="chip" style="background:${col(e.to)}"></span>${pname(e.to)}${e.uncertain ? ' <span class="note">(two figures could reach one end)</span>' : ""}</div>
+    <div class="note num">${Math.round(e.len)} mm · ${(e.speed / 1000).toFixed(2)} m/s${e.bounces ? ` · ${e.bounces} board bounce${e.bounces > 1 ? "s" : ""}` : ""}</div>`;
+  const mini = el("svg", { viewBox: "-460 -255 920 510", width: "100%" }); drawBoard(mini);
+  el("path", { d: pathOf(e.line, false), fill: "none", stroke: col(e.from), "stroke-width": 7, "stroke-linecap": "round" }, mini);
+  const st = S(e.line[0]); el("circle", { cx: st[0], cy: st[1], r: 12, fill: "var(--surface)", stroke: col(e.from), "stroke-width": 5 }, mini);
+  side.appendChild(mini);
+  const v = document.createElement("div"); v.className = "verdict";
+  const bOk = Object.assign(document.createElement("button"), { type: "button", className: "btn ok", textContent: "Correct" });
+  const bBad = Object.assign(document.createElement("button"), { type: "button", className: "btn bad", textContent: "Not a pass" });
+  const bFix = Object.assign(document.createElement("button"), { type: "button", className: "btn fix", textContent: "Fix" });
+  v.append(bOk, bBad, bFix);
+  const fx = document.createElement("div"); fx.className = "fixrow"; fx.hidden = true;
+  const sk = document.createElement("select"), sf = document.createElement("select"), stt = document.createElement("select");
+  sk.setAttribute("aria-label", "Kind"); sf.setAttribute("aria-label", "From"); stt.setAttribute("aria-label", "To");
+  options(sk, kindOpts, e.kind); options(sf, pidOpts, e.from || ""); options(stt, pidOpts, e.to || "");
+  fx.append(sk, sf, stt);
+  const status = document.createElement("div"); status.className = "status";
+  side.append(v, fx, status);
+  c.append(strip, side); cards.appendChild(c);
+  const save = (verdict) => write(e, verdict === "fix" ? { verdict, kind: sk.value, from: sf.value, to: stt.value } : { verdict }, status);
+  bOk.onclick = () => save("ok"); bBad.onclick = () => save("wrong");
+  bFix.onclick = () => { fx.hidden = false; save("fix"); };
+  for (const s of [sk, sf, stt]) s.onchange = () => save("fix");
+  cardEls[e.id] = { c, bOk, bBad, bFix, fx, sk, sf, stt, status };
+}
+D.events.forEach(makeCard);
+
+function paintCard(e) {
+  const k = cardEls[e.id], r = reviews[e.id];
+  k.bOk.setAttribute("aria-pressed", r?.verdict === "ok"); k.bBad.setAttribute("aria-pressed", r?.verdict === "wrong"); k.bFix.setAttribute("aria-pressed", r?.verdict === "fix");
+  if (r?.verdict === "fix") { k.fx.hidden = false; k.sk.value = r.kind; k.sf.value = r.from || ""; k.stt.value = r.to || ""; }
+  k.c.classList.toggle("done", !!r);
+}
+function applyFilter() {
+  const fk = document.getElementById("fkind").value, fs = document.getElementById("fstate").value;
+  for (const e of D.events) {
+    const r = reviews[e.id];
+    const kindOk = fk === "all" || e.kind === fk || (fk === "loose" && e.kind.startsWith("loose"));
+    const stOk = fs === "any" || (fs === "open" ? !r : !!r);
+    cardEls[e.id].c.hidden = !(kindOk && stOk);
+  }
+}
+document.getElementById("fkind").onchange = applyFilter; document.getElementById("fstate").onchange = applyFilter;
+
+async function write(e, data, status) {
+  reviews[e.id] = { id: e.id, ...data }; paintCard(e); renderMap(); renderProgress();
+  if (!db) { status.textContent = "Not saved: saving is not available in this view."; return; }
+  status.textContent = "Saving…";
+  try { await db.collection("reviews").doc(e.id).set({ id: e.id, game: D.game, ...data, t_video_s: e.t, at: new Date().toISOString() }); status.textContent = "Saved"; }
+  catch (err) { status.textContent = `Not saved (${err?.code || "error"}). Try again.`; }
+}
+
+// missed passes
+let clicks = [];
+options(document.getElementById("ak"), kindOpts.slice(0, 4), "pass");
+options(document.getElementById("af"), pidOpts, ""); options(document.getElementById("ato"), pidOpts, "");
+addSvg.addEventListener("click", (ev) => {
+  const pt = addSvg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
+  const p = pt.matrixTransform(addSvg.getScreenCTM().inverse());
+  if (clicks.length >= 2) clicks = [];
+  clicks.push([Math.round(p.x), Math.round(-p.y)]); drawClicks();
+});
+function drawClicks() {
+  addMarks.replaceChildren();
+  clicks.forEach((c, k) => el("circle", { cx: c[0], cy: -c[1], r: 9, fill: k ? "var(--ink)" : "var(--surface)", stroke: "var(--ink)", "stroke-width": 3 }, addMarks));
+  if (clicks.length === 2) el("line", { x1: clicks[0][0], y1: -clicks[0][1], x2: clicks[1][0], y2: -clicks[1][1], stroke: "var(--ink)", "stroke-width": 3 }, addMarks);
+}
+document.getElementById("aclear").onclick = () => { clicks = []; drawClicks(); };
+document.getElementById("asave").onclick = async () => {
+  const st = document.getElementById("astatus"); const t = parseT(document.getElementById("at").value);
+  if (t == null) { st.textContent = "Type the video time as m:ss.s, for example 1:42.5."; return; }
+  if (clicks.length < 2) { st.textContent = "Click on the board where the puck left, then where it arrived."; return; }
+  const m = { game: D.game, t_video_s: t, kind: document.getElementById("ak").value, from: document.getElementById("af").value, to: document.getElementById("ato").value, start: clicks[0], end: clicks[1], at: new Date().toISOString() };
+  if (!db) { st.textContent = "Not saved: saving is not available in this view."; return; }
+  st.textContent = "Saving…";
+  try { await db.collection("missed").add(m); st.textContent = "Saved. Add the next one."; clicks = []; drawClicks(); document.getElementById("at").value = ""; }
+  catch (err) { st.textContent = `Not saved (${err?.code || "error"}). Try again.`; }
+};
+function renderMissed() {
+  const box = document.getElementById("missedlist"); box.replaceChildren();
+  for (const m of missed.slice().sort((a, b) => a.t_video_s - b.t_video_s)) {
+    const d = document.createElement("div"); d.textContent = `${fmt(m.t_video_s)} · ${KIND[m.kind] || m.kind} · ${pname(m.from)} → ${pname(m.to)}`; box.appendChild(d);
+  }
+}
+
+document.getElementById("zoom").onclick = () => { document.getElementById("zoom").hidden = true; };
+renderMap(); renderProgress(); applyFilter();
+(async () => {
+  try { db = await window.claude?.use?.("db"); } catch { db = null; }
+  if (!db) { document.getElementById("dbnote").hidden = false; return; }
+  db.collection("reviews").where("game", "==", D.game).onSnapshot((snap) => {
+    for (const k of Object.keys(reviews)) delete reviews[k];
+    for (const d of snap.docs) { const x = d.data(); if (x) reviews[x.id] = x; }
+    D.events.forEach(paintCard); renderMap(); renderProgress(); applyFilter();
+  }, () => {});
+  db.collection("missed").where("game", "==", D.game).onSnapshot((snap) => { missed = snap.docs.map((d) => d.data()).filter(Boolean); renderMissed(); renderMap(); renderProgress(); }, () => {});
+})();
+</script>

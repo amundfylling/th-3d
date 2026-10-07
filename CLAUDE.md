@@ -34,6 +34,8 @@ Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one fu
 references/games/; handheld phone) are digested in docs/game-mechanics.md, with the user's answers. A first PROPOSED
 tracking pipeline (stabilisation, calibration, puck track, possession per skater by exclusive reach areas;
 `npm run game:track`) is documented in docs/game-tracking.md.
+NM 2026 semi-final (Nygård vs Fjermestad, seven games, broadcast video in a GitHub release, indexed): game 1 pass
+mapping (PROPOSED) with a user review page; see docs/nm26-game1-investigation.md and docs/nm26-passes.md.
 
 ## Key files
 

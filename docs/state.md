@@ -269,7 +269,13 @@
     px.
   - Recommendation: a scripted two-kind puck detector plus a motion tracker, flights fitted between contacts, and a
     user confirm page.
-  - Calibration for this view is still to be done. See `docs/nm26-game1-investigation.md`.
+  - Investigation: `docs/nm26-game1-investigation.md`.
+  - **Game 1 pass mapping, first version (PROPOSED, `npm run nm26:g1`, `docs/nm26-passes.md`):**
+    - calibration: slot fit median 0.86 px;
+    - puck positions in 73% of frames;
+    - candidates: 67 passes, 64 turnovers, 13 shots.
+    - The review page `validation/nm26-g1-review.html` (artifact with a `db`) collects the user's verdicts and missed
+      passes. Next: read them back and build the confirmed pass map.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
