@@ -1,0 +1,25 @@
+{
+  "description": "Hand-picked inputs for the rink-plane calibration of the match recording (scripts/game-calibrate.py). Image positions are crop px of the stabilised working image (game_common.py). Picked by Claude on 2026-10-07 from 3x zooms of the median background; uncertainty about 2-3 crop px for slot ends, about 0.5 crop px for the lines (Hough fits).",
+  "orientation": {
+    "statement": "World -x (goal.W) is the video's left end and world +y is the far long side.",
+    "status": "assumed",
+    "reason": "The rink markings and slot layout are point-symmetric (a 180 deg turn maps each team's slots onto the other's), so the video alone cannot tell goal.W from goal.E. Choosing goal.W at the left makes team W the team of the left player (Fylling, user answer A1)."
+  },
+  "slot_end_anchors": [
+    {"player_id": "E-RW", "end": "start", "crop_px": [88.3, 111.7], "note": "far slot with the hook at the left end"},
+    {"player_id": "W-LD", "end": "start", "crop_px": [81.7, 131.7]},
+    {"player_id": "E-C", "end": "start", "crop_px": [255.0, 149.3]},
+    {"player_id": "W-RD", "end": "start", "crop_px": [195.0, 195.0]},
+    {"player_id": "W-LW", "end": "end", "crop_px": [666.7, 106.7], "note": "end of the straight part along the right end board"},
+    {"player_id": "E-LD", "end": "end", "crop_px": [695.0, 127.3]}
+  ],
+  "lines": [
+    {"landmark_pair": ["lm.board.blue_line.W.top", "lm.board.blue_line.W.bottom"], "crop_px": [[283.5, 66.8], [368.5, 197.5]], "method": "Hough segment on the dark-pixel mask of the background"},
+    {"landmark_pair": ["lm.board.blue_line.E.top", "lm.board.blue_line.E.bottom"], "crop_px": [[442.5, 95.0], [581.0, 239.5]], "method": "Hough segment on the dark-pixel mask of the background"}
+  ],
+  "slot_chamfer": {
+    "statement": "Every skater slot centreline (data/geometry.json, status assumed) sampled every 3 mm must lie on dark pixels of the background (distance transform, truncated at 3 crop px). Goalie slots are left out: the goalies stand on them in the median background.",
+    "dark_pixel_rule": "HSV value < 110 and saturation < 120 on the 4x upscaled background"
+  },
+  "initial_estimate": "First fit through the anchors above plus the two goalie slot ends of W-G and E-G (dropped from the final fit: in the background the goalie figures cover them)."
+}

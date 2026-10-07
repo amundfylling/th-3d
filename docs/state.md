@@ -244,7 +244,19 @@
     number of times; a stoppage of more than 10 s puts the puck on nobody, a shorter one leaves it on the controlling
     figure. Definition in docs/game-mechanics.md section 6.
   - Open: Q11 (the goal times; the user will check) and Q16 (a long stoppage: on nobody from its start or from 10 s
-    on). No tracking work started.
+    on).
+- **Match tracking, first version (2026-10-07, user: "Start the tracking without those answers"). PROPOSED.**
+  - Pipeline `npm run game:track`:
+    - stabilisation of every frame;
+    - rink-plane calibration to the repo geometry (goal.W at the video's left, assumed from symmetry);
+    - puck candidates, a logistic classifier on 1967 hand labels, a Viterbi track (puck seen in 40% of match frames);
+    - possession per skater by exclusive reach areas (A10-A15).
+  - Result `validation/game-possession.png`, `data/games/fylling-vs-moe-2022/possession.json`: Fylling 133.0 s / 63
+    times, Moe 88.0 s / 55, nobody 79.0 s.
+    - Sensitivity: Fylling 102-135 s and 55-84 times depending on gap and minimum-episode choices.
+  - Review (`review.json`): 10/16 tracked spot-check frames clearly right, 0 clearly wrong; 17/18 checkable episodes
+    consistent.
+  - Weaknesses and next steps: `docs/game-tracking.md`. Stoppages (goals, face-offs) are not detected yet.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -425,3 +437,4 @@ Iteration 20 closed without repair cycles:
 | V2 | 2026-10-06 | Invers Kryssar med Velodrom v2 (user: the left wing's flick would bounce; push forward-facing into the curve): example clip references/shots/lw-board-pass-example.mov (indexed); CLAUDE.md rule "Slide or bounce"; scripts/ikv-trace.py (quintic arc moves, slot-following rod turn, impact logging, slide_check, contact episodes, new events); shots/invers-kryssar-velodrom/{inputs,checks}.json; data/traces/invers-kryssar-velodrom.trace.json (v2, proposed); data/presentations/invers-kryssar-velodrom.analysis.json (v2: catch and corner push in chapter 2); remotion/IkvAnalysis.tsx (end card); tests/ikv.test.ts; validation/ikv-trace.png, analysis-ikv*; docs/invers-kryssar-velodrom.md | example clip puck track; parameter scans (catch, chase, push, shot); contact and slide checks clean; stills reviewed (push view moved: the left wing hid the puck; broadcast raised); puck visibility ray-cast (all frames visible); final 1080p render with per-frame state and camera checks; `npm run check` |
 | D1 | 2026-10-06 | Defending against the left wing (passive / active / mix), concept video from the user's TikTok: references/shots/defence-vs-left-wing-tiktok.mp4 and references/combinations/bordshockeyskolan-lektion-3-centrifugen.html (indexed); scripts/defence-trace.py; shots/defence-left-wing/{inputs,checks}.json; data/traces/defence-left-wing.trace.json (proposed); data/presentations/defence-left-wing.analysis.json; remotion/DefenceAnalysis.tsx, Root.tsx (analysis-defence-lw), AnalysisVideo.tsx (lane graphic, red/green accents, banner label); src/model/analysis.ts; scripts/analysis-render.ts; tests/defence.test.ts; validation/defence-trace.png, analysis-defence-lw*; four analysis reports (composition_refactor); docs/defence-left-wing.md; package.json (trace:defence-lw, video:analysis-defence-lw) | captions read frame by frame; lane sweeps with the finite puck; contact checks clean; stills reviewed (camera closer, labels moved); other analysis videos byte-identical on 6 frames each; puck visibility ray-cast (all frames visible); final 1080p render with per-frame state and camera checks; `npm run check` |
 | G1 | 2026-10-07 | Game mechanics (user request): references/rules/ithf-game-rules.pdf, references/games/fylling-vs-moe-trondheim-open-2022-final.mov (indexed); docs/game-mechanics.md; docs/state.md; CLAUDE.md | rules PDF read in full; video probed (ffprobe); audio spectrogram for the timer signals; frame registration and contact sheets around the start and the hand episodes (scratch only); no build or test changes |
+| G2 | 2026-10-07 | Match tracking (user request): scripts/game_common.py, game-{stabilise,calibrate,puck,possession,review}.py; data/games/fylling-vs-moe-2022/{stabilisation.json, background.png, calibration-inputs.json, calibration.json, puck-labels.json, puck-track.json, possession.json, review.json}; validation/game-{calibration,figure-areas,possession}.png, game-{puck-spotcheck,possession-review}.jpg; tests/game-tracking.test.ts; docs/game-tracking.md; package.json (game:track); docs/state.md; CLAUDE.md | full pipeline run; calibration overlay reviewed; classifier cross-validated in time blocks; 40 random frames and 24 random episodes reviewed by eye; false-detection hotspots inspected and fixed; sensitivity table; `npm run check` |

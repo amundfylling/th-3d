@@ -1,0 +1,30 @@
+{
+  "description": "Visual review of the tracking (Claude, 2026-10-07), made from validation/game-puck-spotcheck.jpg and validation/game-possession-review.jpg (scripts/game-review.py, fixed seeds). Judged by eye at the sheets' resolution (the puck is about 10-20 px); 'plausible' means the circle sits on a dark disk-shaped object where a puck can be, but the sheet does not show enough to be sure.",
+  "puck_spotcheck": {
+    "frames": 40,
+    "tracked": 16,
+    "tracked_correct": 10,
+    "tracked_plausible_not_verifiable": 6,
+    "tracked_clearly_wrong": 0,
+    "not_seen": 24,
+    "not_seen_but_puck_visible": 2,
+    "not_seen_puck_visible_frames": ["212.12 s (puck at the far board by the right goal; tracked 0.36 s later)", "12.60 s (probably: a dark dot left of the centre circle)"],
+    "note": "Most 'not seen' frames show no clear puck at this resolution: hidden under or behind figures, motion-blurred, or during the camera move at 21 s."
+  },
+  "possession_review": {
+    "episodes": 24,
+    "puck_seen_at_episode_middle": 18,
+    "consistent": 17,
+    "wrong": 1,
+    "wrong_detail": "Episode 0 (W-RW, match 0.0-0.3 s, video 7.64 s): the puck is still on the centre spot at the opening; the track has a false candidate on the near side.",
+    "not_verifiable": 6,
+    "not_verifiable_detail": "The puck is not seen at the episode's middle frame; the owner is held through a gap (W-RW 3.6-5.9, E-RD 39.4-40.8, W-LD 106.6-110.5, W-LD 117.0-120.5, W-LD 196.3-198.6, W-LD 288.2-291.4 s)."
+  },
+  "false_detection_hotspots_checked": [
+    {"world_mm": [-240, 135], "what": "dark rim of the green ice logo next to the left goal", "after_fix": "88 -> 34 tracked frames (candidate-density feature and batch-2 labels)"},
+    {"world_mm": [-255, 60], "what": "the left (yellow) goalie's navy trousers", "after_fix": "no longer among the busiest places"},
+    {"world_mm": [-45, 120], "what": "real puck resting near the far blue line (127, 208, 287 s)", "after_fix": "kept"},
+    {"world_mm": [-180, -15], "what": "real puck resting on a slot near the left circle (260-262 s)", "after_fix": "kept"},
+    {"world_mm": [330, 195], "what": "real puck in the far corner by the right goal (several times)", "after_fix": "kept"}
+  ]
+}

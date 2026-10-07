@@ -31,8 +31,9 @@ TikTok references/shots/defence-vs-left-wing-tiktok.mp4) uses the PROPOSED, DESI
 (video validation/analysis-defence-lw.mp4); its shots and passes are lanes drawn as graphics; see docs/defence-left-wing.md.
 All analysis videos share remotion/AnalysisVideo.tsx.
 Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
-references/games/; handheld phone) are digested in docs/game-mechanics.md, with open questions for the user. No tracking
-model is built yet; answer those questions first.
+references/games/; handheld phone) are digested in docs/game-mechanics.md, with the user's answers. A first PROPOSED
+tracking pipeline (stabilisation, calibration, puck track, possession per skater by exclusive reach areas;
+`npm run game:track`) is documented in docs/game-tracking.md.
 
 ## Key files
 
