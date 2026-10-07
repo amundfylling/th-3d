@@ -6,6 +6,11 @@ it work here we make it work for proper setups too ... I would like you to get a
 mechanics before continuing with anything more complex. Document it in the repo. Don't make assumptions, ask me if
 you are unsure."*
 
+**Answers from the user (2026-10-07)** are recorded as A1-A10 in section 6 and used throughout. The most important:
+Fylling is the left player; the match was 1-1 after 5 minutes and Fylling won 2-1 in overtime; the table has the same
+layout as the repo's model; "puck on a player" means the figure's area: the puck is on a figure when no other figure
+can reach it.
+
 This page separates three kinds of statement:
 - **Rule**: from the official text, with its rule number.
 - **Observed**: seen or measured in the match video, with the video time.
@@ -22,7 +27,7 @@ Both files are indexed in `references/index.json` with sha256 and size.
 ## 1. The rules, as they matter for analysing a match
 
 The rules PDF is the 2023 version. The match was played in 2022, before it took effect. Only rule 6.1 was changed by
-the 2023 vote (printed in red). Which wording applied in 2022 is open (Q3).
+the 2023 vote (printed in red). The user: the version "does not matter in this case" (A3).
 
 ### Equipment and figures (rules 2-3)
 
@@ -59,7 +64,8 @@ the 2023 vote (printed in red). Which wording applied in 2022 is open (Q3).
   - (a) the puck touches a side board;
   - (b) the puck touches a figure other than the attacking centre or the defending goalie;
   - (c) a deliberate pass to the centre.
-- Rule 5 does not say who drops after a goal. Rules 8.2, 9.7 and 11 say the opponent drops in those cases. Open (Q5).
+- Rule 5 does not say who drops after a goal. Rules 8.2, 9.7 and 11 say the opponent drops in those cases. The user:
+  there is "no clear rule", and there was no referee in this match (A5). So the dropper after a goal is not fixed.
 
 ### Goals (rule 6)
 
@@ -150,15 +156,18 @@ What this means for analysing a recording, using the rules alone:
   - a blue centre circle with a logo;
   - yellow circles at both goals;
   - sponsor logos (MECA, SPORT, Lidl) on the ice and boards.
-  - Whether this is the same table family and slot layout is open (Q9).
+  - The user confirmed it is the same table family and slot layout as the repo's model (A9). Only the artwork
+    differs, so the repo's geometry can be used to calibrate this video.
 - Teams: yellow/blue figures against white/blue figures.
 - The goal at the left end has a yellow goalie. The right goalie's colour was not confirmed at this resolution.
-- Two red goal cages, no visible inserts. The game rules require the cups to be removed (2.2); whether a
-  deflector was used is open (Q6).
+- Two red goal cages. The user: the cups were removed and deflectors were used (A6).
 - **The players stand at the two short ends.** Rods come out at the ends (visible on the left).
   - The left player wears a dark shirt and red trousers.
   - The right player wears a grey T-shirt and glasses.
-  - Which of them is Fylling and which is Moe is open (Q1).
+  - **Fylling is the left player and Moe the right player** (A1).
+  - Each player's goalie rod comes out behind the goal at their own end, so Fylling defends the left goal (the yellow
+    goalie) and attacks the right goal; Moe the reverse. The team colours follow from the rods, not from a user
+    statement.
 
 ### Camera (observed)
 
@@ -186,7 +195,7 @@ The timer is audible. A spectrogram of the soundtrack shows:
 - The two interval signals fall at 100 s and 200 s of match time, which fits thirds.
 - The music starts about 30 s before the end, but the onset is not sharp.
 - The pre-start signal (15-30 s before) is not in the video; the recording starts about 7.5 s before the start.
-- Whether these sounds are the ones the players heard is open (Q4).
+- The user confirmed the start and final signals and the thirds (A4).
 
 ### The start (observed)
 
@@ -194,42 +203,45 @@ The timer is audible. A spectrogram of the soundtrack shows:
 - By 7.9 s the centre figures move (motion blur) and the puck has left the spot.
 - This matches rule 5.1 and the start signal at about 7.5 s.
 
-## 4. Observed but not interpreted
+## 4. Goals, stoppages and hands in the recording
 
-A hand over or near the ice marks a dead puck (a face-off drop or a retrieval), or a possible infringement. Hands
-were found by differencing each stabilised frame from the median background, combined with a skin-colour test. The
-detector is **unreliable**:
-- many hits are hands on the rods or at the board edges, not over the ice;
-- a drop by a hand of the same colour as the background can be missed.
+### What the result implies
 
-Candidate episodes (video time, s):
+- **1-1 at full time (A2):** the recording holds exactly two valid goals, one by each player. Fylling (left) scores in
+  the right goal, Moe (right) in the left goal.
+- **The overtime goal is not in the recording.** The video ends at 310.25 s, 2.75 s after the final signal, and
+  overtime starts with a new face-off (4.8).
+- **No calls in this match** (A7, "I don't think so"): no passive-play, 5-second, block, hand or interruption
+  face-offs. So, apart from the opening, the only face-offs in regulation time should be the two after the goals.
 
-| Video time | What is visible | Possible meaning (not decided) |
+### Hands near the ice
+
+Hands were found by differencing each stabilised frame from the median background, combined with a skin-colour test
+(20 episodes; the detector is unreliable, and many hits are hands on the rods or at the board edges). Five were
+inspected frame by frame, zoomed:
+
+| Video time | What is visible | Reading |
 | --- | --- | --- |
-| 24.9-25.5 | the right player's hand reaches over the right goal | puck taken out of the goal after a goal against the right player? |
-| 25.7-27.5 | no clear drop at the centre spot; at 26.4 s the puck is near the left board, by the left goal | ? |
-| 51.5-52.0 | hand | ? |
-| 58.8-59.0 | hand | ? |
-| 89.0-92.2 | a hand from the far side over the left/centre area (89.0-89.7); the puck near the right face-off circle (87-92) | ? |
-| 92.8-94.5 | hand | ? |
-| 115.1 | hand | ? |
-| 125.0 | hand | ? |
-| 133.7-134.6 | hand | ? |
-| 154.7-155.7 | hand | ? |
-| 176.7-177.6 | hand | ? |
-| 206.1 | hand | ? |
-| 220.0-220.4 | hand | ? |
-| 230.8-231.6 | hand | ? |
-| 239.3-240.4 | hand | ? |
-| 249.0-252.0 | hand | ? |
-| 257.9-258.4 | hand | ? |
-| 294.6-294.9 | hand | ? |
-| 298.1-299.4 | hand | ? |
-| 309.3-310.2 | hand, after the final signal | the end of the match |
+| 24.8-25.4 | the right player's hand comes in over the right half, down to the figures in front of the right goal; the puck was not located in these frames | not decided; looks like a hand at the figures, not a retrieval |
+| 89.6 | the left player's hand reaches to a figure left of centre while the puck is near the right face-off circle | a hand at a figure, not a drop |
+| 132.4-133.2 | the puck lies **behind** the right goal (between the cage and the end board); a hand follows at 133.7-134.6 | not a goal |
+| 175.9-176.6 | the puck behind the right goal again | not a goal |
+| 176.8-177.4 | the left player's hand pinches the head of his own goalie and lets go; the goalie's pose changes slightly; the puck is at the other end | **adjusting or tapping down a figure** (rule 9.1, 9.3), not a stoppage |
 
-I have **not** decided from the video which of these are goals, face-offs, retrievals or nothing. At 360p, with this
-angle, a puck entering a goal and a drop on the centre spot cannot be told apart reliably. The score and the goal
-times are needed from the user (Q2) as ground truth.
+So the hands over the ice are **mostly players adjusting their own figures**, not face-offs. Rule 9.1 allows tapping
+down only with complete possession; whether these were legal is not judged here.
+
+Other untested episodes (video time, s): 51.5-52.0, 58.8-59.0, 92.8-94.5, 115.1, 125.0, 154.7-155.7, 206.1, 220.0-220.4,
+230.8-231.6, 239.3-240.4, 249.0-252.0, 257.9-258.4, 294.6-294.9, 298.1-299.4; 309.3-310.2 is after the final signal.
+
+### Not found yet: the two goals
+
+- The puck rests visibly on the centre spot only before the start (3.3-7.8 s). A dark-pixel test on the centre spot
+  found one other run of at least 0.4 s (177.6-178.5 s). There, figures crowd the centre circle, and no drop is visible
+  just before it.
+- A dark-pixel test inside the right cage found only the two behind-the-goal episodes above.
+- The inside of the left cage is seen through the red net from behind. The test cannot see a puck there.
+- **So I have not located either goal.** I am asking for their times (Q11) rather than guessing.
 
 ## 5. What makes this recording hard (for any later analysis)
 
@@ -244,30 +256,36 @@ times are needed from the user (Q2) as ground truth.
 - **Hands and rods** at the near side and the ends cover the ice edges.
 - **The sound helps:** the timer gives the match clock without reading any screen.
 
-## 6. Questions for the user
+## 6. Questions and answers
 
-Q1-Q2 and Q9-Q10 matter most before any modelling.
+The user's answers (2026-10-07), verbatim where short:
 
-1. **Who is who?** Is Fylling the player at the left end (dark shirt, red trousers) or the right end (grey T-shirt,
-   glasses)? Which team colour does each play: yellow or white/blue? Did they switch ends at any point?
-2. **The result:** the final score, and if you know them, the goals in order (who scored, roughly when). They are the
-   ground truth for the candidate episodes in section 4. Was there overtime (rule 4.8)?
-3. **Rule version:** which rules applied at Trondheim Open 2022? The PDF is the 2023 version, and 6.1 changed in 2023.
-   Is the old 6.1 wording needed?
-4. **Timer:** were the start and final signals the ones heard at about 7.5 s and 307.5 s? Were the interval signals
-   at thirds (100 s and 200 s)?
-5. **Who drops after a goal:** the player who conceded, the scorer, or a neutral dropper? Was there a referee?
-6. **Goals:** were the cups removed at this tournament table (your own table has none: docs/decisions.md D5)? Were
-   deflectors used (rule 2.5)?
-7. **Calls in this match:** were there any "passive play", "5 seconds", "block", hand-on-puck or interruption calls?
-   If so, roughly when?
-8. **Unofficial habits:** is there anything players commonly do that the rules don't describe and that would appear
-   in a recording? For example, placing the puck instead of dropping it, or retrieving the puck from under the boards.
-9. **The table:** is this the same table family and slot layout as the repo's model (Play Off 21, 71-1145-XX)? Or is
-   the "Peter Forsberg edition" a different variant? It decides whether the repo's geometry can be used to calibrate
-   this video.
-10. **"Puck on a player" for the possession counts** (the earlier proposal): which definition do you want?
-    - every touch by a figure;
-    - control (the puck stays with one figure);
-    - the "figure's area" of rule 8.3, as a referee would judge it.
-    - Do goalie touches count? Do touches during a face-off scramble count?
+| # | Question | Answer |
+| --- | --- | --- |
+| A1 | Who is who? | "left": **Fylling is the left player** (dark shirt, red trousers), Moe the right (grey T-shirt, glasses). |
+| A2 | The result | "2-1 overtime to Fylling. So 1-1 after 5 minutes." |
+| A3 | Rule version (2022 vs the 2023 PDF) | "does not matter in this case" |
+| A4 | Timer signals at about 7.5 s and 307.5 s, interval signals at thirds | "yes" |
+| A5 | Who drops after a goal; a referee? | "no clear rule. No referee was there" |
+| A6 | Cups removed; deflectors used? | "yes and yes" |
+| A7 | Any passive-play, 5-second, block, hand or interruption calls? | "i dont think so" |
+| A8 | Unofficial habits that would show in a recording? | "no" |
+| A9 | Same table family and slot layout as the repo's model? | "yes" |
+| A10 | What "puck on a player" means for the possession counts | "figures area I would say. If no other figures can reach the puck" |
+
+**The possession definition (A10), as I read it.** The puck is *on* a figure while it lies where that figure, and no
+other figure, can reach it. That is the "figure's area" of rule 8.3.
+- Each figure's area is everything its stick and body can touch, over all slot positions and rotations. It comes from
+  the table geometry (A9: the repo's slots apply), not from the video.
+- Where two or more figures' areas overlap, the puck is on nobody.
+- Touches do not matter by themselves: the count follows where the puck *is*.
+
+### Open questions
+
+11. **When were the two regulation goals?** Roughly, in video time, and who scored first. I could not find either
+    (section 4).
+12. **"No other figures":** does that mean no figure of *either* team, or only no *opposing* figure? For example, the
+    puck between your own centre and your own wing, out of the opponent's reach: is that on nobody, or on your team?
+13. **The count:** per figure (6 per side), or per player? And as time on the puck, the number of times, or both?
+14. **The goalie:** does the puck in the goalie's area count as on the goalie, like any other figure?
+15. **Dead puck:** is the puck on nobody during a stoppage, a retrieval, or while a hand adjusts a figure?

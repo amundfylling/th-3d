@@ -235,8 +235,13 @@
   - Established from the audio timer: the match runs from video time about 7.5 s to 307.5 s (start and final tone
     300 s apart, interval signals at 107.8 s and 207.7 s, music in the last 30 s). The puck rests on the centre spot
     before the start.
-  - Not decided: goals, face-offs and retrievals in the 20 hand episodes; who is who; the score. **Waiting on the
-    user's answers** (docs/game-mechanics.md section 6) before any tracking work.
+  - User answers A1-A10 (same day): Fylling is the left player; 1-1 after 5 min, Fylling won 2-1 in overtime (the
+    overtime is not in the recording); no calls; same table layout as the repo's model; "puck on a player" = the
+    figure's area, i.e. no other figure can reach the puck.
+  - Five hand episodes inspected: hands at figures (one is the left player adjusting his own goalie at 176.8-177.4 s),
+    the puck twice behind the right goal; none is a goal. **The two regulation goals are not located yet.**
+  - Open: Q11 (the goal times) and Q12-Q15 (the details of the possession definition). Waiting on the user before
+    any tracking work.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
