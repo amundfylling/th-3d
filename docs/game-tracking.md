@@ -13,6 +13,7 @@ errors listed below. The rules and the user's answers that define the count are 
 | 3. Puck track | `scripts/game-puck.py`, labels `puck-labels.json` → `puck-track.json` (cache `out/game/candidates.json`, not committed) |
 | 4. Possession | `scripts/game-possession.py` → `possession.json`, `validation/game-figure-areas.png`, **`validation/game-possession.png`** |
 | 5. Review | `scripts/game-review.py` → `validation/game-puck-spotcheck.jpg`, `validation/game-possession-review.jpg`; judgements in `review.json` |
+| 6. Board page | `scripts/game-board-page.py` + `scripts/game-board.template.html` → **`validation/game-possession-board.html`** (interactive: areas shaded on the top-view table, illustrative figures, every seen puck position, a 5:00 timeline that scrubs the puck; `npm run game:board`) |
 | Tests | `tests/game-tracking.test.ts` |
 
 Reproduce: `npm run game:track` (about 10 min on the 4-CPU container).

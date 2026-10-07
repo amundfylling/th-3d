@@ -1,0 +1,533 @@
+<title>Fylling vs Moe Possession Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the rink is the scoreboard. Summary strip on top, the top-down board with a reading panel beside it,
+   a 5:00 swimlane timeline below that scrubs the board. */
+:root {
+  --bg: #eef1f4;
+  --surface: #f8fafb;
+  --ink: #12161b;
+  --ink-2: #4c5562;
+  --ink-3: #7b8592;
+  --rule: #d5dbe2;
+  --ice: #fbfcfd;
+  --rim: #1c2128;
+  --slot: #2a3038;
+  --line-red: #c8323a;
+  --line-blue: #2f5fb3;
+  --fyl: #d19100;      /* Fylling: yellow kit */
+  --moe: #2a78d6;      /* Moe: white/blue kit */
+  --kit-fyl: #f2c230;
+  --kit-moe: #f4f6f8;
+  --kit-trim: #23408f;
+  --fig-edge: #1b2029;
+  --stick: #6d7480;
+  --hatch: #8c96a3;
+  --puck: #111418;
+  --halo: #fbfcfd;
+  --focus: #2f5fb3;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --f-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1115; --surface: #141a20; --ink: #eef2f5; --ink-2: #aab3be; --ink-3: #7c8794; --rule: #27303a;
+    --ice: #1a2129; --rim: #05070a; --slot: #556070; --line-red: #e0575d; --line-blue: #6a93e3;
+    --fyl: #c98500; --moe: #3987e5; --kit-fyl: #e8b923; --kit-moe: #e6eaee; --kit-trim: #3b5cb8;
+    --fig-edge: #05070a; --stick: #9aa2ad; --hatch: #6b7682; --puck: #f1f3f5; --halo: #1a2129; --focus: #6a93e3;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1115; --surface: #141a20; --ink: #eef2f5; --ink-2: #aab3be; --ink-3: #7c8794; --rule: #27303a;
+  --ice: #1a2129; --rim: #05070a; --slot: #556070; --line-red: #e0575d; --line-blue: #6a93e3;
+  --fyl: #c98500; --moe: #3987e5; --kit-fyl: #e8b923; --kit-moe: #e6eaee; --kit-trim: #3b5cb8;
+  --fig-edge: #05070a; --stick: #9aa2ad; --hatch: #6b7682; --puck: #f1f3f5; --halo: #1a2129; --focus: #6a93e3;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.45; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 40px; display: grid; gap: 22px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; letter-spacing: 0.01em; margin: 0; text-wrap: balance; }
+.eyebrow { font-family: var(--f-display); font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; color: var(--ink-2); }
+.num { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* header + scoreboard */
+header { display: grid; gap: 14px; }
+.title-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
+h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1; text-transform: uppercase; }
+.result { color: var(--ink-2); font-size: 15px; }
+.score { display: grid; grid-template-columns: auto 1fr auto; gap: 8px 20px; align-items: center; }
+.side { display: grid; gap: 2px; min-width: 0; }
+.side.right { text-align: right; }
+.side .who { font-family: var(--f-display); font-weight: 700; font-size: 22px; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; gap: 8px; }
+.side.right .who { justify-content: flex-end; }
+.swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; flex: none; }
+.side .big { font-family: var(--f-display); font-weight: 700; font-size: 40px; line-height: 1; }
+.side .big small { font-family: var(--f-body); font-weight: 500; font-size: 15px; color: var(--ink-2); margin-left: 4px; }
+.split { display: grid; gap: 6px; min-width: 0; }
+.split-bar { display: flex; height: 16px; border-radius: 4px; overflow: hidden; gap: 2px; }
+.split-bar span { display: block; height: 100%; }
+.split-legend { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); }
+.split-legend .num { color: var(--ink); }
+.hatch-chip { background: repeating-linear-gradient(135deg, var(--hatch) 0 2px, transparent 2px 5px); border: 1px solid var(--hatch); }
+
+/* main grid */
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; }
+.board-card { padding: 14px 14px 10px; display: grid; gap: 10px; min-width: 0; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 7px; overflow: hidden; }
+.seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; font-weight: 500; }
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.check { display: inline-flex; gap: 7px; align-items: center; color: var(--ink-2); cursor: pointer; font-size: 14px; }
+.check input { accent-color: var(--ink); width: 16px; height: 16px; }
+.board-svg { width: 100%; height: auto; display: block; touch-action: manipulation; }
+.board-svg .area { cursor: pointer; transition: fill-opacity 160ms ease, opacity 160ms ease; }
+.board-svg .area.dim { opacity: 0.28; }
+.board-svg .area:focus { outline: none; }
+.board-svg .area:focus-visible path { stroke: var(--focus); stroke-width: 3.2; }
+.tl-svg g:focus { outline: none; }
+.tl-svg g:focus-visible text { text-decoration: underline; }
+.board-svg .fig { cursor: pointer; }
+.board-svg .lbl { pointer-events: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); align-items: center; }
+.legend .ramp { display: inline-flex; align-items: center; gap: 6px; }
+.ramp-bar { width: 84px; height: 10px; border-radius: 3px; }
+
+/* reading panel */
+.detail { padding: 16px; display: grid; gap: 14px; min-width: 0; }
+.detail h2 { font-size: 26px; text-transform: uppercase; line-height: 1.05; }
+.detail .sub { color: var(--ink-2); font-size: 14px; }
+.kv { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.kv div { display: grid; gap: 1px; }
+.kv .k { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); font-family: var(--f-display); font-weight: 600; }
+.kv .v { font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1.05; }
+.kv .v small { font-size: 14px; font-weight: 500; color: var(--ink-2); font-family: var(--f-body); }
+.seenbar { display: flex; height: 10px; border-radius: 3px; overflow: hidden; gap: 2px; }
+.note { font-size: 13px; color: var(--ink-2); }
+.fly { display: grid; gap: 7px; }
+.fly-row { display: grid; grid-template-columns: 1fr 34px 1fr; gap: 8px; align-items: center; cursor: pointer; border-radius: 4px; padding: 2px 0; background: transparent; border: 0; color: inherit; text-align: inherit; }
+.fly-row:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.fly-role { text-align: center; font-family: var(--f-display); font-weight: 700; font-size: 15px; }
+.fly-l, .fly-r { display: flex; align-items: center; gap: 6px; font-size: 12.5px; min-width: 0; }
+.fly-l { justify-content: flex-end; }
+.fly-l i, .fly-r i { display: block; height: 12px; border-radius: 3px; min-width: 2px; }
+.fly-head { display: grid; grid-template-columns: 1fr 34px 1fr; gap: 8px; font-size: 12px; color: var(--ink-3); font-family: var(--f-display); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.fly-head span:last-child { text-align: left; }
+.fly-head span:first-child { text-align: right; }
+.clear { justify-self: start; background: transparent; border: 1px solid var(--rule); color: var(--ink-2); border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 13px; }
+
+/* timeline */
+.tl-card { padding: 14px 14px 8px; display: grid; gap: 8px; min-width: 0; }
+.tl-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.tl-head h3 { font-size: 20px; text-transform: uppercase; }
+.clock { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.clock .t { font-family: var(--f-data); font-size: 20px; font-variant-numeric: tabular-nums; }
+.clock .owner { font-size: 14px; color: var(--ink-2); min-width: 0; }
+.play { background: var(--ink); color: var(--surface); border: 0; border-radius: 7px; padding: 7px 14px; cursor: pointer; font-weight: 600; }
+.tl-scroll { overflow-x: auto; }
+.tl-svg { width: 100%; min-width: 640px; height: auto; display: block; cursor: crosshair; touch-action: none; }
+
+footer { display: grid; gap: 8px; color: var(--ink-2); font-size: 13.5px; max-width: 78ch; }
+footer h3 { font-size: 16px; text-transform: uppercase; color: var(--ink); }
+footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+details { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; margin-top: 8px; }
+th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--rule); }
+th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
+td.num { font-family: var(--f-data); }
+
+@media (max-width: 900px) {
+  .main { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .score { grid-template-columns: 1fr 1fr; }
+  .split { grid-column: 1 / -1; grid-row: 2; }
+  .side .big { font-size: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .board-svg .area { transition: none; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="event"></div>
+    <div class="title-row">
+      <h1 id="title"></h1>
+      <div class="result" id="result"></div>
+    </div>
+    <div class="score" id="score"></div>
+  </header>
+
+  <section class="main">
+    <div class="panel board-card">
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Shade the areas by">
+          <button type="button" id="m-time" aria-pressed="true">Time on the puck</button>
+          <button type="button" id="m-times" aria-pressed="false">Number of times</button>
+        </div>
+        <label class="check"><input type="checkbox" id="show-puck" checked> Every place the puck was seen</label>
+      </div>
+      <svg class="board-svg" id="board" viewBox="-470 -268 940 536" role="img" aria-labelledby="board-desc">
+        <desc id="board-desc">Top view of the table. Each skater's area is shaded by how long the puck was on that skater.</desc>
+      </svg>
+      <div class="legend" id="legend"></div>
+    </div>
+    <aside class="panel detail" id="detail" aria-live="polite"></aside>
+  </section>
+
+  <section class="panel tl-card">
+    <div class="tl-head">
+      <h3>Who had the puck, second by second</h3>
+      <div class="clock">
+        <button type="button" class="play" id="play">Replay at 10×</button>
+        <span class="t" id="clock">0:00.0</span>
+        <span class="owner" id="owner"></span>
+      </div>
+    </div>
+    <div class="tl-scroll"><svg class="tl-svg" id="tl" role="img" aria-label="Timeline of possession per skater over the five minutes"></svg></div>
+    <div class="note">Drag across the timeline to move the puck on the board. Click a row, an area or a figure to follow one skater.</div>
+  </section>
+
+  <details>
+    <summary>All numbers as a table</summary>
+    <div class="tbl-wrap"><table id="table"></table></div>
+  </details>
+
+  <footer>
+    <h3>How this was measured</h3>
+    <ul id="notes"></ul>
+  </footer>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const ROLE = { LD: "Left defence", RD: "Right defence", C: "Centre", LW: "Left wing", RW: "Right wing" };
+const ROLES = ["LD", "RD", "C", "LW", "RW"];
+const SKATERS = ["W-LD", "W-RD", "W-C", "W-LW", "W-RW", "E-LD", "E-RD", "E-C", "E-LW", "E-RW"];
+const TEAMVAR = { W: "var(--fyl)", E: "var(--moe)" };
+const NAME = { W: D.players.W.name, E: D.players.E.name };
+const NS = "http://www.w3.org/2000/svg";
+const state = { metric: "time", sel: null, hover: null, t: null, playing: false };
+
+const el = (tag, attrs = {}, parent) => {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+};
+const S = ([x, y]) => [x, -y];                    // world mm -> screen (y up -> y down)
+const path = (pts, close = true) => "M" + pts.map((p) => S(p).map((v) => v.toFixed(1)).join(",")).join("L") + (close ? "Z" : "");
+const fmtT = (s) => `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, "0")}`;
+const sec = (v) => `${v.toFixed(1)} s`;
+const metricVal = (pid) => (state.metric === "time" ? D.per_skater[pid].time_s : D.per_skater[pid].times);
+const maxMetric = () => Math.max(...SKATERS.map(metricVal));
+const stays = (pid) => D.episodes.filter((e) => e[0] === pid);
+
+/* ---------- header ---------- */
+document.getElementById("event").textContent = D.match.event;
+document.getElementById("title").textContent = D.match.title;
+document.getElementById("result").textContent = D.match.result;
+(function score() {
+  const W = D.per_team.W, E = D.per_team.E, nob = D.match.length_s - W.time_s - E.time_s, L = D.match.length_s;
+  document.getElementById("score").innerHTML = `
+    <div class="side"><div class="who"><span class="swatch" style="background:var(--fyl)"></span>${NAME.W}</div>
+      <div class="big">${W.time_s.toFixed(1)}<small>s · ${W.times} times</small></div></div>
+    <div class="split" aria-hidden="true">
+      <div class="split-bar"><span style="width:${(100 * W.time_s) / L}%;background:var(--fyl)"></span><span class="hatch-chip" style="width:${(100 * nob) / L}%"></span><span style="width:${(100 * E.time_s) / L}%;background:var(--moe)"></span></div>
+      <div class="split-legend"><span>Puck on nobody <span class="num">${nob.toFixed(1)} s</span></span><span>of <span class="num">5:00</span> played</span></div>
+    </div>
+    <div class="side right"><div class="who">${NAME.E}<span class="swatch" style="background:var(--moe)"></span></div>
+      <div class="big">${E.time_s.toFixed(1)}<small>s · ${E.times} times</small></div></div>`;
+})();
+
+/* ---------- board ---------- */
+const svg = document.getElementById("board");
+const defs = el("defs", {}, svg);
+const hatch = el("pattern", { id: "hatch", width: 7, height: 7, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
+el("line", { x1: 0, y1: 0, x2: 0, y2: 7, stroke: "var(--hatch)", "stroke-width": 1.4, "stroke-opacity": 0.55 }, hatch);
+const net = el("pattern", { id: "net", width: 5, height: 5, patternUnits: "userSpaceOnUse" }, defs);
+el("path", { d: "M0,0L5,5M5,0L0,5", stroke: "var(--line-red)", "stroke-width": 0.6, "stroke-opacity": 0.6 }, net);
+const clip = el("clipPath", { id: "ice-clip" }, defs);
+el("path", { d: path(D.board) }, clip);
+
+el("path", { d: path(D.board), fill: "none", stroke: "var(--rim)", "stroke-width": 16, "stroke-linejoin": "round" }, svg);
+el("path", { d: path(D.board), fill: "var(--ice)" }, svg);
+const ice = el("g", { "clip-path": "url(#ice-clip)" }, svg);
+for (const l of D.lines) {
+  const w = l.id === "centre_line" ? 4 : l.kind === "blue" ? 5 : 1.6;
+  el("line", { x1: S(l.a)[0], y1: S(l.a)[1], x2: S(l.b)[0], y2: S(l.b)[1], stroke: l.kind === "red" ? "var(--line-red)" : "var(--line-blue)", "stroke-width": w, "stroke-opacity": 0.75 }, ice);
+}
+for (const [pid, pts] of Object.entries(D.slots))
+  el("path", { d: path(pts, false), fill: "none", stroke: "var(--slot)", "stroke-width": 3.4, "stroke-linecap": "round", "stroke-opacity": 0.55 }, ice);
+const gContested = el("g", {}, ice);
+for (const q of D.contested) el("path", { d: path(q), fill: "url(#hatch)" }, gContested);
+const gAreas = el("g", {}, ice);
+const areaEls = {};
+for (const pid of SKATERS) {
+  const g = el("g", { class: "area", "data-pid": pid, tabindex: 0, role: "button", "aria-label": `${NAME[pid[0]]} ${ROLE[pid.slice(2)]}` }, gAreas);
+  for (const q of D.areas[pid]) el("path", { d: path(q), fill: TEAMVAR[pid[0]], stroke: TEAMVAR[pid[0]], "stroke-width": 1.2, "stroke-opacity": 0.9 }, g);
+  areaEls[pid] = g;
+  wire(g, pid);
+}
+const gHeat = el("g", { "pointer-events": "none" }, ice);
+for (const [, x, y] of D.puck) el("circle", { cx: x, cy: -y, r: 2.6, fill: "var(--ink)", "fill-opacity": 0.13 }, gHeat);
+
+// goals: cage behind the goal line, mouth on the line
+for (const [t, g] of Object.entries(D.goals)) {
+  const x0 = g.x, x1 = g.x + g.back * g.depth, y0 = g.y - g.width / 2, y1 = g.y + g.width / 2, r = 14;
+  const xs = Math.min(x0, x1), w = Math.abs(x1 - x0);
+  el("rect", { x: xs, y: -y1, width: w, height: g.width, rx: r, fill: "url(#net)", stroke: "var(--line-red)", "stroke-width": 2.2 }, svg);
+  el("line", { x1: x0, y1: -y0, x2: x0, y2: -y1, stroke: "var(--line-red)", "stroke-width": 3 }, svg);
+}
+
+// figures (illustrative poses)
+const gFig = el("g", {}, svg);
+const figEls = {};
+function placed(poly, pose) {
+  const h = (pose.heading * Math.PI) / 180, c = Math.cos(h), s = Math.sin(h);
+  return poly.map(([x, y]) => [pose.x + c * x - s * y, pose.y + s * x + c * y]);
+}
+for (const [pid, pose] of Object.entries(D.poses)) {
+  const sil = D.silhouettes[pose.kind];
+  const g = el("g", { class: "fig", "data-pid": pid }, gFig);
+  for (const q of sil.stick) el("path", { d: path(placed(q, pose)), fill: "var(--stick)", stroke: "var(--fig-edge)", "stroke-width": 0.5 }, g);
+  for (const q of sil.body) el("path", { d: path(placed(q, pose)), fill: pid[0] === "W" ? "var(--kit-fyl)" : "var(--kit-moe)", stroke: "var(--fig-edge)", "stroke-width": 0.8 }, g);
+  el("circle", { cx: pose.x, cy: -pose.y, r: 3.2, fill: "var(--kit-trim)" }, g); // fixture axis
+  figEls[pid] = g;
+  if (!pid.endsWith("-G")) wire(g, pid);
+}
+
+// labels
+const gLbl = el("g", { class: "lbl" }, svg);
+const lblEls = {};
+for (const pid of SKATERS) {
+  const [x, y] = S(D.labels[pid]);
+  const g = el("g", { transform: `translate(${x},${y})` }, gLbl);
+  const t1 = el("text", { y: -2, "text-anchor": "middle", "font-family": "var(--f-display)", "font-weight": 700, "font-size": 17, fill: "var(--ink)", stroke: "var(--halo)", "stroke-width": 4, "paint-order": "stroke", "stroke-linejoin": "round" }, g);
+  const t2 = el("text", { y: 14, "text-anchor": "middle", "font-family": "var(--f-data)", "font-size": 12.5, fill: "var(--ink)", stroke: "var(--halo)", "stroke-width": 3.5, "paint-order": "stroke", "stroke-linejoin": "round" }, g);
+  lblEls[pid] = { t1, t2 };
+}
+// ends
+for (const [t, side] of [["W", -1], ["E", 1]]) {
+  const x = side * 452;
+  const g = el("g", { transform: `translate(${x},0) rotate(${side * 90})` }, svg);
+  el("rect", { x: -54, y: -12, width: 8, height: 8, rx: 2, fill: TEAMVAR[t], transform: "translate(0,4)" }, g);
+  const tx = el("text", { x: -40, y: 0, "dominant-baseline": "middle", "font-family": "var(--f-display)", "font-weight": 700, "font-size": 15, "letter-spacing": "0.08em", fill: "var(--ink-2)" }, g);
+  tx.textContent = NAME[t].toUpperCase() + "’S END";
+}
+// puck marker (scrubbing)
+const puckG = el("g", { "pointer-events": "none", visibility: "hidden" }, svg);
+const puckC = el("circle", { r: 12.7, fill: "var(--puck)", stroke: "var(--halo)", "stroke-width": 2.5 }, puckG);
+
+function wire(node, pid) {
+  node.addEventListener("pointerenter", () => { state.hover = pid; render(); });
+  node.addEventListener("pointerleave", () => { state.hover = null; render(); });
+  node.addEventListener("click", () => { state.sel = state.sel === pid ? null : pid; render(); });
+  node.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); state.sel = state.sel === pid ? null : pid; render(); } });
+}
+
+/* ---------- controls ---------- */
+const mTime = document.getElementById("m-time"), mTimes = document.getElementById("m-times");
+mTime.onclick = () => { state.metric = "time"; render(); };
+mTimes.onclick = () => { state.metric = "times"; render(); };
+document.getElementById("show-puck").onchange = (e) => { gHeat.style.display = e.target.checked ? "" : "none"; };
+
+/* ---------- timeline ---------- */
+const tl = document.getElementById("tl");
+const TL = { x0: 96, x1: 972, top: 26, lane: 21, gap: 12 };
+const laneY = (i) => TL.top + i * TL.lane + (i >= 5 ? TL.gap : 0);
+const TLH = laneY(10) + 26;
+tl.setAttribute("viewBox", `0 0 1000 ${TLH}`);
+const X = (s) => TL.x0 + ((TL.x1 - TL.x0) * s) / D.match.length_s;
+// last-30-s music band and thirds
+el("rect", { x: X(270), y: TL.top - 6, width: X(300) - X(270), height: laneY(10) - TL.top + 6, fill: "var(--ink)", "fill-opacity": 0.05 }, tl);
+el("text", { x: X(285), y: TL.top - 10, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--f-body)" }, tl).textContent = "music: last 30 s";
+for (const [s, txt] of [[100, "⅓ signal"], [200, "⅔ signal"]]) {
+  el("line", { x1: X(s), x2: X(s), y1: TL.top - 6, y2: laneY(10), stroke: "var(--ink-3)", "stroke-dasharray": "3 3", "stroke-width": 1 }, tl);
+  el("text", { x: X(s), y: TL.top - 10, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--f-body)" }, tl).textContent = txt;
+}
+for (let s = 0; s <= 300; s += 30) {
+  el("line", { x1: X(s), x2: X(s), y1: laneY(10), y2: laneY(10) + 5, stroke: "var(--ink-3)", "stroke-width": 1 }, tl);
+  if (s % 60 === 0) el("text", { x: X(s), y: laneY(10) + 19, "text-anchor": "middle", "font-size": 12, fill: "var(--ink-2)", "font-family": "var(--f-data)" }, tl).textContent = `${s / 60}:00`;
+}
+const laneEls = {};
+SKATERS.forEach((pid, i) => {
+  const y = laneY(i);
+  const row = el("g", { "data-pid": pid, tabindex: 0, role: "button", "aria-label": `${NAME[pid[0]]} ${ROLE[pid.slice(2)]}` }, tl);
+  const bg = el("rect", { x: 0, y: y, width: 1000, height: TL.lane - 3, rx: 3, fill: "var(--ink)", "fill-opacity": 0 }, row);
+  el("rect", { x: 6, y: y + 4, width: 8, height: 10, rx: 2, fill: TEAMVAR[pid[0]] }, row);
+  const lab = el("text", { x: 20, y: y + 13, "font-size": 13, "font-family": "var(--f-display)", "font-weight": 600, fill: "var(--ink)" }, row);
+  lab.textContent = `${NAME[pid[0]]} ${pid.slice(2)}`;
+  el("line", { x1: TL.x0, x2: TL.x1, y1: y + 9, y2: y + 9, stroke: "var(--rule)", "stroke-width": 1 }, row);
+  for (const [, a, b] of stays(pid)) el("rect", { x: X(a), y: y + 2, width: Math.max(1.2, X(b) - X(a)), height: TL.lane - 7, rx: 1.5, fill: TEAMVAR[pid[0]] }, row);
+  laneEls[pid] = { row, bg };
+  row.addEventListener("click", () => { state.sel = state.sel === pid ? null : pid; render(); });
+  row.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); state.sel = state.sel === pid ? null : pid; render(); } });
+});
+el("text", { x: 6, y: TL.top + 5 * TL.lane + 7, "font-size": 10, fill: "var(--ink-3)" }, tl);
+const scrub = el("line", { y1: TL.top - 6, y2: laneY(10), stroke: "var(--ink)", "stroke-width": 1.6, visibility: "hidden" }, tl);
+function tlTime(ev) {
+  const r = tl.getBoundingClientRect();
+  const vx = ((ev.clientX - r.left) / r.width) * 1000;
+  return Math.min(D.match.length_s, Math.max(0, ((vx - TL.x0) / (TL.x1 - TL.x0)) * D.match.length_s));
+}
+let dragging = false;
+tl.addEventListener("pointerdown", (ev) => {
+  const vx = ((ev.clientX - tl.getBoundingClientRect().left) / tl.getBoundingClientRect().width) * 1000;
+  if (vx < TL.x0 - 4) return; // the label column selects rows
+  dragging = true; tl.setPointerCapture(ev.pointerId); stop(); state.t = tlTime(ev); render();
+});
+tl.addEventListener("pointermove", (ev) => { if (dragging || ev.pointerType === "mouse") { const vx = ((ev.clientX - tl.getBoundingClientRect().left) / tl.getBoundingClientRect().width) * 1000; if (vx >= TL.x0 - 4 && !state.playing) { state.t = tlTime(ev); render(); } } });
+tl.addEventListener("pointerup", () => { dragging = false; });
+
+/* ---------- time lookups ---------- */
+const puckT = D.puck.map((r) => r[0]);
+function puckAt(t) {
+  let lo = 0, hi = puckT.length - 1;
+  while (lo < hi) { const m = (lo + hi + 1) >> 1; if (puckT[m] <= t) lo = m; else hi = m - 1; }
+  const r = D.puck[lo];
+  if (!r || r[0] > t) return null;
+  return { x: r[1], y: r[2], age: t - r[0] };
+}
+function ownerAt(t) {
+  for (const e of D.episodes) if (t >= e[1] && t < e[2]) return e[0];
+  return "nobody";
+}
+
+/* ---------- play ---------- */
+let raf = null, last = 0;
+const playBtn = document.getElementById("play");
+function stop() { state.playing = false; playBtn.textContent = "Replay at 10×"; if (raf) cancelAnimationFrame(raf); raf = null; }
+function step(ts) {
+  if (!state.playing) return;
+  const dt = last ? (ts - last) / 1000 : 0; last = ts;
+  state.t = (state.t ?? 0) + dt * 10;
+  if (state.t >= D.match.length_s) { state.t = D.match.length_s; render(); stop(); return; }
+  render(); raf = requestAnimationFrame(step);
+}
+playBtn.onclick = () => {
+  if (state.playing) { stop(); render(); return; }
+  if (state.t == null || state.t >= D.match.length_s) state.t = 0;
+  state.playing = true; playBtn.textContent = "Pause"; last = 0; raf = requestAnimationFrame(step);
+};
+
+/* ---------- detail panel ---------- */
+const detail = document.getElementById("detail");
+function overview() {
+  const mx = Math.max(...SKATERS.map((p) => D.per_skater[p].time_s));
+  const rows = ROLES.map((r) => {
+    const a = D.per_skater["W-" + r], b = D.per_skater["E-" + r];
+    return `<button type="button" class="fly-row" data-pid="W-${r}" aria-label="${ROLE[r]}">
+      <span class="fly-l"><span class="num">${a.time_s.toFixed(1)}</span><i style="width:${(100 * a.time_s) / mx}%;background:var(--fyl)"></i></span>
+      <span class="fly-role">${r}</span>
+      <span class="fly-r"><i style="width:${(100 * b.time_s) / mx}%;background:var(--moe)"></i><span class="num">${b.time_s.toFixed(1)}</span></span></button>`;
+  }).join("");
+  const top = [...SKATERS].sort((p, q) => D.per_skater[q].time_s - D.per_skater[p].time_s)[0];
+  return `<div class="eyebrow">Position by position</div>
+    <h2>Seconds on the puck</h2>
+    <div class="sub">${NAME[top[0]]}’s ${ROLE[top.slice(2)].toLowerCase()} had the puck longest: ${sec(D.per_skater[top].time_s)}. Click a position, an area or a figure for its stays.</div>
+    <div class="fly"><div class="fly-head"><span>${NAME.W}</span><span></span><span>${NAME.E}</span></div>${rows}</div>
+    <div class="note">Puck on nobody: ${sec(D.nobody.contested)} where two skaters could reach it, ${sec(D.nobody.gap_nobody + D.nobody.long_gap)} while it was hidden with no clear holder, ${sec(D.nobody.short_episode)} in touches shorter than ${D.settings.min_episode_s} s.</div>`;
+}
+function skaterView(pid) {
+  const v = D.per_skater[pid], team = pid[0], st = stays(pid);
+  const longest = st.reduce((m, e) => Math.max(m, e[2] - e[1]), 0);
+  const share = (100 * v.time_s) / D.per_team[team].time_s;
+  const hidden = Math.max(0, v.time_s - v.time_seen_s);
+  const strip = st.map(([, a, b]) => `<rect x="${(a / 300) * 100}" y="0" width="${Math.max(0.35, ((b - a) / 300) * 100)}" height="10" fill="${TEAMVAR[team]}"/>`).join("");
+  return `<div class="eyebrow"><span class="swatch" style="background:${TEAMVAR[team]};margin-right:6px;vertical-align:-1px"></span>${NAME[team]} · defends the ${D.players[team].goal}</div>
+    <h2>${ROLE[pid.slice(2)]}</h2>
+    <div class="kv">
+      <div><span class="k">Time on the puck</span><span class="v">${v.time_s.toFixed(1)}<small> s</small></span></div>
+      <div><span class="k">Times</span><span class="v">${v.times}</span></div>
+      <div><span class="k">Longest stay</span><span class="v">${longest.toFixed(1)}<small> s</small></span></div>
+      <div><span class="k">Share of ${NAME[team]}</span><span class="v">${share.toFixed(0)}<small> %</small></span></div>
+    </div>
+    <div style="display:grid;gap:6px">
+      <div class="seenbar"><span style="width:${(100 * v.time_seen_s) / v.time_s}%;background:${TEAMVAR[team]}"></span><span class="hatch-chip" style="flex:1"></span></div>
+      <div class="note"><span class="num">${v.time_seen_s.toFixed(1)} s</span> with the puck in view, <span class="num">${hidden.toFixed(1)} s</span> carried through moments where it was hidden (up to ${D.settings.max_gap_s} s).</div>
+    </div>
+    <div style="display:grid;gap:4px"><div class="k" style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);font-family:var(--f-display);font-weight:600">Stays across the 5:00</div>
+      <svg viewBox="0 0 100 10" preserveAspectRatio="none" style="width:100%;height:14px;background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:3px">${strip}</svg></div>
+    <button type="button" class="clear" id="clear">Show all positions</button>`;
+}
+
+/* ---------- render ---------- */
+function render() {
+  mTime.setAttribute("aria-pressed", state.metric === "time");
+  mTimes.setAttribute("aria-pressed", state.metric === "times");
+  const mx = maxMetric();
+  const live = state.t != null ? ownerAt(state.t) : null;
+  const focus = state.sel ?? state.hover ?? (live && live !== "nobody" ? live : null);
+  for (const pid of SKATERS) {
+    const g = areaEls[pid];
+    const op = 0.1 + 0.62 * (metricVal(pid) / mx);
+    for (const p of g.children) { p.setAttribute("fill-opacity", op.toFixed(3)); p.setAttribute("stroke-width", focus === pid ? 3.2 : 1.2); }
+    g.classList.toggle("dim", !!focus && focus !== pid);
+    const v = D.per_skater[pid];
+    lblEls[pid].t1.textContent = pid.slice(2);
+    lblEls[pid].t2.textContent = state.metric === "time" ? `${v.time_s.toFixed(1)} s` : `${v.times}×`;
+    laneEls[pid].bg.setAttribute("fill-opacity", focus === pid ? 0.08 : 0);
+  }
+  for (const [pid, g] of Object.entries(figEls)) g.style.opacity = !focus || focus === pid || pid.endsWith("-G") ? 1 : 0.45;
+  detail.innerHTML = state.sel || state.hover ? skaterView(state.sel ?? state.hover) : overview();
+  detail.querySelectorAll(".fly-row").forEach((b) => {
+    const r = b.querySelector(".fly-role").textContent;
+    b.onclick = (e) => { const side = e.clientX < b.getBoundingClientRect().left + b.offsetWidth / 2 ? "W" : "E"; state.sel = `${side}-${r}`; render(); };
+  });
+  const c = detail.querySelector("#clear");
+  if (c) c.onclick = () => { state.sel = null; state.hover = null; render(); };
+  // clock + puck
+  const clock = document.getElementById("clock"), owner = document.getElementById("owner");
+  if (state.t == null) {
+    clock.textContent = "–:––.–"; owner.textContent = "Drag on the timeline or press replay.";
+    scrub.setAttribute("visibility", "hidden"); puckG.setAttribute("visibility", "hidden");
+  } else {
+    clock.textContent = fmtT(state.t);
+    owner.textContent = live === "nobody" ? "Puck on nobody" : `Puck on ${NAME[live[0]]}’s ${ROLE[live.slice(2)].toLowerCase()}`;
+    scrub.setAttribute("x1", X(state.t)); scrub.setAttribute("x2", X(state.t)); scrub.setAttribute("visibility", "visible");
+    const p = puckAt(state.t);
+    if (p && p.age < D.settings.max_gap_s) {
+      puckG.setAttribute("visibility", "visible");
+      puckC.setAttribute("cx", p.x); puckC.setAttribute("cy", -p.y);
+      const seen = p.age < 0.15;
+      puckC.setAttribute("fill-opacity", seen ? 1 : 0.25);
+      puckC.setAttribute("stroke-dasharray", seen ? "none" : "4 3");
+      puckC.setAttribute("stroke", seen ? "var(--halo)" : "var(--ink)");
+    } else puckG.setAttribute("visibility", "hidden");
+  }
+}
+
+/* ---------- legend, table, notes ---------- */
+document.getElementById("legend").innerHTML = `
+  <span class="ramp"><span class="ramp-bar" style="background:linear-gradient(90deg,color-mix(in srgb,var(--fyl) 12%,var(--ice)),var(--fyl))"></span>${NAME.W}</span>
+  <span class="ramp"><span class="ramp-bar" style="background:linear-gradient(90deg,color-mix(in srgb,var(--moe) 12%,var(--ice)),var(--moe))"></span>${NAME.E}</span>
+  <span>Darker = more of the selected measure</span>
+  <span class="ramp"><span class="swatch hatch-chip"></span>Two skaters can reach it: puck on nobody</span>
+  <span class="ramp"><svg width="14" height="14" viewBox="-7 -7 14 14"><circle r="5" fill="var(--puck)"/></svg>Puck, true size</span>`;
+document.getElementById("table").innerHTML =
+  `<thead><tr><th>Player</th><th>Position</th><th>Time (s)</th><th>Times</th><th>Seen (s)</th><th>Longest stay (s)</th></tr></thead><tbody>` +
+  SKATERS.map((p) => { const v = D.per_skater[p]; const l = stays(p).reduce((m, e) => Math.max(m, e[2] - e[1]), 0);
+    return `<tr><td>${NAME[p[0]]}</td><td>${ROLE[p.slice(2)]}</td><td class="num">${v.time_s.toFixed(1)}</td><td class="num">${v.times}</td><td class="num">${v.time_seen_s.toFixed(1)}</td><td class="num">${l.toFixed(1)}</td></tr>`; }).join("") +
+  ["W", "E"].map((t) => `<tr><td><b>${NAME[t]}</b></td><td>all skaters</td><td class="num"><b>${D.per_team[t].time_s.toFixed(1)}</b></td><td class="num"><b>${D.per_team[t].times}</b></td><td></td><td></td></tr>`).join("") +
+  `<tr><td>Nobody</td><td></td><td class="num">${(D.match.length_s - D.per_team.W.time_s - D.per_team.E.time_s).toFixed(1)}</td><td></td><td></td><td></td></tr></tbody>`;
+document.getElementById("notes").innerHTML = [
+  `Tracked from one handheld phone video of the match (5:00 of regulation; the overtime goal is not in the recording). The puck was found in ${Math.round(D.match.seen_fraction * 100)}% of the frames; the rest of the time it was hidden under figures, behind the goals or blurred.`,
+  `The puck is <b>on a skater</b> while it lies where only that skater can reach it: anywhere along its slot, at any turn (${D.settings.reach_mm} mm from the slot, figure plus puck). That makes ${Math.round(D.areas_share.exclusive * 100)}% of the ice one skater’s alone. Goalies are not counted.`,
+  `Touches shorter than ${D.settings.min_episode_s} s count as nobody. When the puck is hidden for up to ${D.settings.max_gap_s} s it stays with the skater who had it; longer, it is on nobody.`,
+  `Figures stand where they would reach the average spot the puck had while it was theirs. They show the idea, not their tracked positions: the figures themselves are not tracked.`,
+  `Which goal is which comes from the table’s symmetry plus the players’ ends (Fylling at the left). These counts are a first version; see docs/game-tracking.md in the project for the checks and known errors.`,
+].map((s) => `<li>${s}</li>`).join("");
+render();
+</script>
