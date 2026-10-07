@@ -19,38 +19,43 @@ Reproduce: `npm run game:track` (about 10 min on the 4-CPU container).
 
 ## Result (5:00 regulation)
 
+Settings chosen by the user (2026-10-07):
+- **minimum episode 0.5 s:** a stay on one skater shorter than 0.5 s counts as nobody;
+- **maximum gap 7 s:** the puck is held through a hidden stretch of up to 7 s, otherwise it is on nobody.
+
 | Skater | Time on the puck | Times | Of which the puck was seen |
 | --- | --- | --- | --- |
-| W-LD | 37.4 s | 18 | 7.6 s |
-| W-RD | 26.1 s | 11 | 13.4 s |
-| W-C | 14.5 s | 8 | 8.0 s |
-| W-LW | 41.0 s | 15 | 21.5 s |
-| W-RW | 14.0 s | 11 | 3.2 s |
-| **Fylling (W, left)** | **133.0 s** | **63** | |
-| E-LD | 19.9 s | 14 | 11.6 s |
-| E-RD | 6.2 s | 5 | 1.4 s |
-| E-C | 14.8 s | 7 | 10.0 s |
-| E-LW | 24.5 s | 16 | 7.0 s |
-| E-RW | 22.6 s | 13 | 15.1 s |
-| **Moe (E, right)** | **88.0 s** | **55** | |
-| Nobody | 79.0 s | | contested 19.0 s, gaps between different skaters or after "nobody" 45.0 s, one gap over 10 s 12.0 s (134.0-147.4 s), short episodes 3.0 s |
+| W-LD | 32.5 s | 15 | 6.8 s |
+| W-RD | 22.2 s | 9 | 13.1 s |
+| W-C | 13.9 s | 6 | 7.7 s |
+| W-LW | 39.9 s | 12 | 21.1 s |
+| W-RW | 13.4 s | 9 | 3.0 s |
+| **Fylling (W, left)** | **121.9 s** | **51** | |
+| E-LD | 17.9 s | 9 | 11.2 s |
+| E-RD | 5.0 s | 2 | 0.8 s |
+| E-C | 14.3 s | 6 | 9.9 s |
+| E-LW | 23.1 s | 12 | 6.6 s |
+| E-RW | 21.5 s | 10 | 14.4 s |
+| **Moe (E, right)** | **81.8 s** | **39** | |
+| Nobody | 96.3 s | | contested 19.0 s, gaps between different skaters or after "nobody" 37.6 s, three gaps over 7 s 26.9 s, stays under 0.5 s 12.8 s |
 
 Team W is the left player (Fylling, A1). Which goal is goal.W is assumed (see Calibration). "Seen" is the time the
 puck was actually detected while on that skater; the rest was carried through gaps where the puck was hidden.
 
-**How much the numbers move** (`possession.json` → `sensitivity`, each choice changed alone):
+**How much the numbers move** (`possession.json` → `sensitivity`, each choice changed alone from the user's settings):
 
 | Variant | Fylling | Moe |
 | --- | --- | --- |
-| Baseline | 133.0 s, 63 | 88.0 s, 55 |
-| Long gap: nobody only after the first 10 s (Q16) | 133.0 s, 63 | 88.0 s, 55 (the only long gap follows "nobody") |
-| Goalies block (puck in a goalie's reach is on nobody) | 122.1 s, 62 | 72.9 s, 48 |
-| Minimum episode 0.4 s instead of 0.2 s | 131.1 s, 56 | 85.9 s, 48 |
-| No minimum episode | 134.6 s, 84 | 89.2 s, 72 |
-| Gaps held only up to 3 s | 102.2 s, 60 | 79.9 s, 55 |
+| Baseline | 121.9 s, 51 | 81.8 s, 39 |
+| Long gap: nobody only after the limit (Q16) | 121.9 s, 51 | 81.8 s, 39 |
+| Goalies block (puck in a goalie's reach is on nobody) | 109.8 s, 47 | 68.0 s, 35 |
+| Previous defaults (max gap 10 s, minimum episode 0.2 s) | 133.0 s, 63 | 88.0 s, 55 |
+| Minimum episode 0.3 s | 124.0 s, 56 | 87.1 s, 52 |
+| Minimum episode 1.0 s | 113.4 s, 39 | 72.1 s, 26 |
+| Max gap 10 s | 129.3 s, 52 | 81.8 s, 39 |
+| Max gap 3 s | 97.2 s, 45 | 73.5 s, 38 |
 
-The **number of times** depends strongly on the minimum episode length (55-84 for Fylling); the time much less. The
-time depends on how gaps are bridged (102-133 s for Fylling). Both are tuning choices, not facts of the match.
+The long-gap rule (Q16) makes no difference in this match: each gap over 7 s follows a "nobody" stretch.
 
 ## How it works
 
@@ -103,10 +108,10 @@ because the chosen slot-end points are hard to place exactly.
   - 65% of the rink is exclusive to one skater, 31% is contested, 4% no skater reaches.
   - Goalies are not counted (A14) and, in the baseline, do not block.
 - **Gaps** (puck not seen):
-  - up to 10 s with the same skater before and after: held;
-  - up to 10 s with different owners: split in the middle;
-  - over 10 s: nobody (A15).
-- **Minimum episode:** a stay on one skater shorter than 0.2 s counts as nobody (edge jitter).
+  - up to 7 s with the same skater before and after: held;
+  - up to 7 s with different owners: split in the middle;
+  - over 7 s: nobody (user, 2026-10-07; A15 had said 10 s for a stoppage).
+- **Minimum episode:** a stay on one skater shorter than 0.5 s counts as nobody (user, 2026-10-07).
 - **Counts:** time on the puck, and the number of entries into the skater's area.
 
 ## Accuracy: what the review found (`review.json`)
@@ -114,19 +119,21 @@ because the chosen slot-end points are hard to place exactly.
 - **Puck, 40 random match frames:**
   - 16 tracked: 10 clearly correct, 6 plausible but not verifiable at the sheet's resolution, none clearly wrong;
   - 24 not seen: in at least one (212.1 s), probably two, the puck was visible.
-- **Possession, 24 random episodes:**
-  - 18 had the puck seen at their middle: 17 consistent, 1 wrong (match 0.0-0.3 s: the puck was still on the centre
-    spot; the track had a false spot on the near side);
-  - 6 were carried through gaps and can't be checked (four of them W-LD).
+- **Possession, 24 random episodes** (with the user's settings):
+  - the puck is seen at the middle of 22;
+  - 8 are clearly consistent and 7 plausible; 5 can't be checked at the sheet's resolution;
+  - 2 are probably wrong: the circle sits on the dark edge of the near board, where the housing hides the ice
+    (E-LW at match 31.7 s and 180.3 s).
 - **Fixed false spots:** the dark rim of the green ice logo next to the left goal (88 → 34 tracked frames), and the
   left goalie's navy trousers.
 
 ## Known weaknesses (most important first)
 
 1. **Gap bridging carries much of the time.** Only 40% of frames see the puck, so 60% of the time is inferred. W-LD
-   has 37 s, of which 7.6 s seen. Its area runs along the far side behind the left goal, where figures and the cage
+   has 32.5 s, of which 6.8 s seen. Its area runs along the far side behind the left goal, where figures and the cage
    hide the puck.
-2. **The minimum episode length decides the number of times** (55-84 for Fylling). It should be set with the user.
+2. **False detections on the near board edge.** The detection area reaches into the strip of ice hidden by the
+   housing. Limiting it to the visible ice would remove them (not done yet).
 3. **Remaining false detections** (about 34 frames at the logo rim, possibly others) and **missed visible pucks**.
    More labels, or a small learned detector on the stabilised crops, would help.
 4. **Stoppages are not detected.** Goals and face-offs (A2: two regulation goals, times unknown, Q11) are counted like
@@ -140,6 +147,7 @@ because the chosen slot-end points are hard to place exactly.
 ## Next steps (not done)
 
 - The user's goal times (Q11), to mark the two stoppages and check them.
-- Agree the minimum episode length and the gap rule (or check them against a few seconds the user counts by hand).
+- Limit puck candidates to the visible ice (the near board edge).
+- Check the counts against a minute the user counts by hand.
 - Label more frames in the weak areas (far side by the left goal), or train a small CNN on the labelled crops.
 - Then a fixed-camera recording, which should raise the seen fraction a lot.

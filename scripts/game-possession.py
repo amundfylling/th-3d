@@ -14,10 +14,11 @@ Definition (user answers A10-A15, docs/game-mechanics.md section 6):
   not counted (A14) and do not block (simplest reading of "don't count the goalie").
 - Per skater: the time the puck is on it, and the number of times it gets the puck (entries into its exclusive
   area).
-- Frames where the puck is not seen: a gap of up to MAX_GAP_S keeps the owner when the puck is on the same skater
+- Frames where the puck is not seen: a gap of up to MAX_GAP_S (7 s, user) keeps the owner when the puck is on the same skater
   before and after; otherwise the first half goes to the owner before and the second half to the owner after. A gap
-  longer than MAX_GAP_S is on nobody (A15; whether the whole gap or only the part after 10 s is open, Q16).
-- An episode shorter than MIN_EPISODE_S on a skater is counted as nobody (detection jitter at area edges).
+  longer than MAX_GAP_S is on nobody (A15 said 10 s for a stoppage; the user then chose 7 s for the tracking gaps;
+  whether the whole gap or only the part after the limit is open, Q16).
+- An episode shorter than MIN_EPISODE_S (0.5 s, user) on a skater is counted as nobody (detection jitter at area edges).
 """
 import json
 
@@ -30,7 +31,7 @@ from shapely.prepared import prep
 
 from game_common import FPS, GAME, MATCH_START_S, REPO, geometry, load, match_frames, proj, save, world_to_crop
 
-MAX_GAP_S, MIN_EPISODE_S = 10.0, 0.2
+MAX_GAP_S, MIN_EPISODE_S = 7.0, 0.5  # user, 2026-10-07
 G = geometry()
 R_PUCK = G["puck"]["diameter"]["value"] / 2
 TEAM = {"W": "Fylling (left)", "E": "Moe (right)"}
@@ -156,10 +157,12 @@ def classify_goalie_blocks(x, y):
 
 SENS = {
     "baseline": summary(own),
-    "long gap: nobody only after 10 s (Q16)": summary(assign(POS, gap_rule="after")[0]),
+    "long gap: nobody only after the limit (Q16)": summary(assign(POS, gap_rule="after")[0]),
     "goalies block (puck in a goalie's reach is on nobody)": summary(assign(POS, classify=classify_goalie_blocks)[0]),
-    "minimum episode 0.4 s": summary(assign(POS, min_episode_s=0.4)[0]),
-    "no minimum episode": summary(assign(POS, min_episode_s=0.0)[0]),
+    "previous defaults (max gap 10 s, minimum episode 0.2 s)": summary(assign(POS, max_gap_s=10.0, min_episode_s=0.2)[0]),
+    "minimum episode 0.3 s": summary(assign(POS, min_episode_s=0.3)[0]),
+    "minimum episode 1.0 s": summary(assign(POS, min_episode_s=1.0)[0]),
+    "max gap 10 s": summary(assign(POS, max_gap_s=10.0)[0]),
     "max gap 3 s": summary(assign(POS, max_gap_s=3.0)[0]),
 }
 

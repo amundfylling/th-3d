@@ -305,6 +305,13 @@ Second round (2026-10-07):
   - a stoppage longer than 10 s puts the puck on nobody (A15).
 - **Time base:** the match clock from the audio timer (7.5-307.5 s of video time in this recording).
 
+Third round (2026-10-07, after the first tracking run):
+
+| # | Question | Answer |
+| --- | --- | --- |
+| A17 | Shortest stay on a skater that counts | "0.5 seconds minimum" |
+| A18 | Longest hidden stretch the puck is held through | "I think 7 seconds is better" (instead of 10 s) |
+
 ### Open questions
 
 11. The two regulation goals in video time (the user will check).

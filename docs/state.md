@@ -251,11 +251,11 @@
     - rink-plane calibration to the repo geometry (goal.W at the video's left, assumed from symmetry);
     - puck candidates, a logistic classifier on 1967 hand labels, a Viterbi track (puck seen in 40% of match frames);
     - possession per skater by exclusive reach areas (A10-A15).
-  - Result `validation/game-possession.png`, `data/games/fylling-vs-moe-2022/possession.json`: Fylling 133.0 s / 63
-    times, Moe 88.0 s / 55, nobody 79.0 s.
-    - Sensitivity: Fylling 102-135 s and 55-84 times depending on gap and minimum-episode choices.
-  - Review (`review.json`): 10/16 tracked spot-check frames clearly right, 0 clearly wrong; 17/18 checkable episodes
-    consistent.
+  - User settings (A17, A18): minimum episode 0.5 s, maximum gap 7 s.
+  - Result `validation/game-possession.png`, `data/games/fylling-vs-moe-2022/possession.json`: Fylling
+    121.9 s / 51 times, Moe 81.8 s / 39, nobody 96.3 s.
+  - Review (`review.json`): 10/16 tracked spot-check frames clearly right, 0 clearly wrong; of 22 checkable episodes 8
+    consistent, 7 plausible, 5 not verifiable, 2 probably wrong (false detections on the near board edge).
   - Weaknesses and next steps: `docs/game-tracking.md`. Stoppages (goals, face-offs) are not detected yet.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
