@@ -769,6 +769,21 @@
       "format": "pdf (6 pages)",
       "url": "https://ithf.info/stiga/ithf/docs/GameRules.pdf",
       "text": "Official game rules: equipment (Stiga games, goal cups removed, Play-off figures), 5-minute matches with an audio timer, face-offs, scoring, goal crease, possession (passive play, 5 seconds), interference, interruption, the defender-goalie-defender pass. Digest in docs/game-mechanics.md. Changes of the 2023 vote are printed in red (only rule 6.1)."
+    },
+    {
+      "id": "user_game_video_nygard_vs_fjermestad_nm26_semifinal",
+      "title": "Daniel Nygård vs Andreas Fjermestad, NM 2026 semi-final: all seven games, broadcast stream with score overlay",
+      "provenance": "user_upload (GitHub release of this repository, 2026-10-07)",
+      "local_path": null,
+      "url": "https://github.com/amundfylling/th-3d/releases/download/daniel_andreas_NM26.mp4/daniel_andreas_NM26.mp4.webm",
+      "release_tag": "daniel_andreas_NM26.mp4",
+      "sha256": "7de5bc6b5ac1127942404fcfb81c43234d70e7682e041d8a5a9c56819a0d1707",
+      "bytes": 656495087,
+      "format": "webm (AV1 1920 x 1080, 30 fps, 3553.0 s; Opus stereo 48 kHz). OpenCV in the container cannot decode AV1; PyAV (libdav1d) decodes about 290 fps.",
+      "native_width_px": 1920,
+      "native_height_px": 1080,
+      "view": "Fixed broadcast camera from the near long side, steep oblique; rink about 1500 px wide (about 0.6 mm/px along the rink, 1.5 mm/px across). Score overlay top-left (names, game score, series score); player camera inset top-right (does not cover the rink). The table shifts up to about 20 px during play.",
+      "notes": "Not committed to git (656 MB); download from the release URL. Series results from Nygård's side (user): 3:4 OT, 3:1, 3:5, 3:2 OT, 3:4 OT, 5:1, 1:3. Nygård plays white/blue, Fjermestad yellow (overlay panel colours). Ends switch in the pattern 2-2-1-1-1 (user). Same table layout as the repo model (user). Game 1 investigation: docs/nm26-game1-investigation.md."
     }
   ],
   "not_obtained": [

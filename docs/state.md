@@ -262,6 +262,14 @@
   - Interactive board page `validation/game-possession-board.html` (`npm run game:board`; published as a private
     artifact for the user). Figure poses on it are illustrative, not tracked.
   - Weaknesses and next steps: `docs/game-tracking.md`. Stoppages (goals, face-offs) are not detected yet.
+- **NM 2026 semi-final, Nygård vs Fjermestad (2026-10-07): all seven games added by the user (GitHub release, not in
+  git; indexed by URL and sha256).** Game 1 investigated for exact pass mapping; nothing built yet.
+  - Findings: game 1 runs from about 22 s to about 535 s of the video (3-3, then Fjermestad's overtime goal); all
+    frames register to the table; the puck is a clear disk at rest and a grey smudge in flight; about 0.6 / 1.5 mm per
+    px.
+  - Recommendation: a scripted two-kind puck detector plus a motion tracker, flights fitted between contacts, and a
+    user confirm page.
+  - Calibration for this view is still to be done. See `docs/nm26-game1-investigation.md`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
