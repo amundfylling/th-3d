@@ -1,0 +1,425 @@
+{
+ "description": "Game structure of the NM 2026 semi-final video: timer tones, game windows, ends and every goal from the score overlay (docs/nm26-game-patterns.md).",
+ "status": "observed",
+ "method": [
+  "Timer tones: correlation of each 0.1 s audio spectrum with game 1's start tone (about 1.85 kHz with harmonics, 3.4 s); clear tones at 21.6 (23.3 peak), 773.4, 1073.5, 1357.0, 1654.5, 1772.8, 2323.4, 2622.9, 2781.0, 3080.6 and 3254.5 s. Pairs 300 s apart are a game's start and end.",
+  "Score overlay: one crop per second over the whole video; the two game-score cells and the series cell were clustered into glyphs and labelled by Claude (0-5, series 0-0 to 3-2). A goal is a step up in one cell lasting at least 3 s.",
+  "The overlay updates at about the restart drop (in game 1 it changes when the puck reappears on the centre spot: 181, 233 and 243 s), so a goal happens some seconds before its overlay time.",
+  "Ends: goalie colours per game (the left goalie is always white/blue) and the picture-in-picture camera of the players (who stands where)."
+ ],
+ "overlay_semantics": "The overlay prints 'Nygård' over the left score cell and 'Fjermestad' over the right, but each cell counts the goals of an END (left = white/blue figures, right = yellow). Read by end, all seven results match the user's (Nygård first). The overlay's series score is not reliable (it shows 2-1 after game 3 and 3-2 from 2899 s, where the results give 1-2 and 2-3).",
+ "games": {
+  "g1": {
+   "start_signal_s": 21.6,
+   "regulation_end_s": 321.6,
+   "left_end_player": "nygard",
+   "result_user_nygard_first": "3:4 OT",
+   "result_overlay_read_by_end": "3:4 OT",
+   "goals": [
+    {
+     "overlay_change_s": 92,
+     "game_time_s": 70.4,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 95,
+     "game_time_s": 73.4,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 181,
+     "game_time_s": 159.4,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 234,
+     "game_time_s": 212.4,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 243,
+     "game_time_s": 221.4,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 289,
+     "game_time_s": 267.4,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 533,
+     "game_time_s": 511.4,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": false,
+     "note": "overtime winner; the overlay resets to 0-0 at 534 s and the series shows 0-1 from 539 s"
+    }
+   ],
+   "live_play_s": [
+    [
+     21.6,
+     383.0
+    ],
+    [
+     468.8,
+     533.0
+    ]
+   ],
+   "end_tone_s": null,
+   "note": "Play runs without a break from the start signal (21.6 s) to about 382 s, 360 s, not 300 s: no end tone is heard at 321.6 s and play continues through it (open question). The puck then rests in the neutral zone with the players away from the rods until about 405 s; hands place the puck; it rests on the centre spot 447.9-468.8 s; overtime play 468.8 s to Fjermestad's winner (overlay change at 533 s). The overlay shows N 1-0 at 92 s and 2-0 at 95 s, 3 s apart; whether that is two goals or a late entry is not checked."
+  },
+  "g2": {
+   "start_signal_s": 772.4,
+   "regulation_end_s": 1072.4,
+   "left_end_player": "nygard",
+   "result_user_nygard_first": "3:1",
+   "result_overlay_read_by_end": "3:1",
+   "goals": [
+    {
+     "overlay_change_s": 884,
+     "game_time_s": 111.6,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 930,
+     "game_time_s": 157.6,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 949,
+     "game_time_s": 176.6,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 960,
+     "game_time_s": 187.6,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    }
+   ],
+   "live_play_s": [
+    [
+     772.4,
+     1072.4
+    ]
+   ],
+   "end_tone_s": 1073.5,
+   "note": "Play stops exactly at the end tone (1073.5 s)."
+  },
+  "g3": {
+   "start_signal_s": 1356.1,
+   "regulation_end_s": 1656.1,
+   "left_end_player": "fjermestad",
+   "result_user_nygard_first": "3:5",
+   "result_overlay_read_by_end": "3:5",
+   "goals": [
+    {
+     "overlay_change_s": 1399,
+     "game_time_s": 42.9,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 1409,
+     "game_time_s": 52.9,
+     "scorer": "fjermestad",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 1429,
+     "game_time_s": 72.9,
+     "scorer": "fjermestad",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 1512,
+     "game_time_s": 155.9,
+     "scorer": "fjermestad",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 1534,
+     "game_time_s": 177.9,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 1546,
+     "game_time_s": 189.9,
+     "scorer": "fjermestad",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 1571,
+     "game_time_s": 214.9,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 1638,
+     "game_time_s": 281.9,
+     "scorer": "fjermestad",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    }
+   ],
+   "live_play_s": [
+    [
+     1356.1,
+     1656.1
+    ]
+   ],
+   "end_tone_s": 1654.5,
+   "note": "Ends switched (Fjermestad left, white/blue figures)."
+  },
+  "g4": {
+   "start_signal_s": 1771.6,
+   "regulation_end_s": 2071.6,
+   "left_end_player": "fjermestad",
+   "result_user_nygard_first": "3:2 OT",
+   "result_overlay_read_by_end": "3:2 OT",
+   "goals": [
+    {
+     "overlay_change_s": 1867,
+     "game_time_s": 95.4,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2055,
+     "game_time_s": 283.4,
+     "scorer": "fjermestad",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2060,
+     "game_time_s": 288.4,
+     "scorer": "fjermestad",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2080,
+     "game_time_s": 308.4,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": false
+    },
+    {
+     "overlay_change_s": null,
+     "game_time_s": null,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": false,
+     "note": "overtime winner, from the user's result; the overlay never shows it (it resets at 2193 s)"
+    }
+   ],
+   "live_play_s": [
+    [
+     1771.6,
+     2190.0
+    ]
+   ],
+   "end_tone_s": null,
+   "note": "Ends switched. 2-1 to the left (Fjermestad) at the end of regulation (2071.6 s); the right (Nygård) equaliser shows at 2080 s, then the overlay flips 2-1/2-2 four times until 2108 s; the puck rests on the centre spot several times 2083-2108 s. Nygård's overtime winner is never shown (reset at 2193 s); the live window ends at 2190 s."
+  },
+  "g5": {
+   "start_signal_s": 2322.3,
+   "regulation_end_s": 2622.3,
+   "left_end_player": "nygard",
+   "result_user_nygard_first": "3:4 OT",
+   "result_overlay_read_by_end": "3:4 OT",
+   "goals": [
+    {
+     "overlay_change_s": 2356,
+     "game_time_s": 33.7,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2396,
+     "game_time_s": 73.7,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2527,
+     "game_time_s": 204.7,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2561,
+     "game_time_s": 238.7,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2575,
+     "game_time_s": 252.7,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2608,
+     "game_time_s": 285.7,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2680,
+     "game_time_s": 357.7,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": false
+    }
+   ],
+   "live_play_s": [
+    [
+     2322.3,
+     2680.0
+    ]
+   ],
+   "end_tone_s": 2622.9,
+   "note": "Regulation ends at the tone (2622.9 s) at 3-3; the puck rests on the centre spot 2633.9-2654.7 s (20.8 s, as before game 1's overtime); Fjermestad's winner shows at 2680 s."
+  },
+  "g6": {
+   "start_signal_s": 2779.7,
+   "regulation_end_s": 3079.7,
+   "left_end_player": "fjermestad",
+   "result_user_nygard_first": "5:1",
+   "result_overlay_read_by_end": "5:1",
+   "goals": [
+    {
+     "overlay_change_s": 2813,
+     "game_time_s": 33.3,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2905,
+     "game_time_s": 125.3,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2916,
+     "game_time_s": 136.3,
+     "scorer": "fjermestad",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2955,
+     "game_time_s": 175.3,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 2991,
+     "game_time_s": 211.3,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 3007,
+     "game_time_s": 227.3,
+     "scorer": "nygard",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    }
+   ],
+   "live_play_s": [
+    [
+     2779.7,
+     3079.7
+    ]
+   ],
+   "end_tone_s": 3080.6,
+   "note": "Ends switched. 237 frames 3047-3055 s did not register (something in front of the camera); the puck is seen in only 53% of frames."
+  },
+  "g7": {
+   "start_signal_s": 3253.7,
+   "regulation_end_s": 3553.7,
+   "left_end_player": "nygard",
+   "result_user_nygard_first": "1:3",
+   "result_overlay_read_by_end": "1:3",
+   "goals": [
+    {
+     "overlay_change_s": 3383,
+     "game_time_s": 129.3,
+     "scorer": "nygard",
+     "scoring_figures": "W (left end, white/blue)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 3401,
+     "game_time_s": 147.3,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 3482,
+     "game_time_s": 228.3,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    },
+    {
+     "overlay_change_s": 3516,
+     "game_time_s": 262.3,
+     "scorer": "fjermestad",
+     "scoring_figures": "E (right end, yellow)",
+     "in_regulation": true
+    }
+   ],
+   "live_play_s": [
+    [
+     3253.7,
+     3552.9
+    ]
+   ],
+   "end_tone_s": null,
+   "note": "The video ends at 3552.9 s, about when the game does (start + 300 s = 3553.7 s)."
+  }
+ }
+}

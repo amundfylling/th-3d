@@ -37,7 +37,9 @@ SIGMA, D_MAX, SWITCH = 45.0, 140.0, 4.0
 STATIC_PENALTY = 2.5
 R_PUCK = load(REPO / "data/geometry.json")["puck"]["diameter"]["value"] / 2
 F = load(OUT / GAME / "frames.json")
-H = np.array(load(game_dir(GAME) / "calibration.json")["H_world_mm_to_stab_px"])
+# games registered to another game's reference frame share its calibration (config "calibration_from")
+CAL_GAME = CFG["games"][GAME].get("calibration_from", GAME)
+H = np.array(load(game_dir(CAL_GAME) / "calibration.json")["H_world_mm_to_stab_px"])
 Hi = np.linalg.inv(H)
 
 # expected puck-top size in stab px at each candidate (projected 25.4 mm circle)

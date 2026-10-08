@@ -13,7 +13,7 @@ result.
 | 4. Flights and passes | `scripts/nm26-passes.py g1` | `g1/passes.json` |
 | 5. Review page | `scripts/nm26-review-page.py g1` | `validation/nm26-g1-review.html`, published with a `db` for the verdicts |
 
-**Run:** `npm run nm26:g1`. It needs the video at `out/dl/nm26.webm` (download from the release URL in
+**Run:** `npm run nm26:g1` (games 2-7 and the cross-game patterns: `npm run nm26:all`, see `docs/nm26-game-patterns.md`). It needs the video at `out/dl/nm26.webm` (download from the release URL in
 `config.json`) and PyAV in the Blender venv. About 14 minutes on 4 CPUs, mostly step 1.
 
 ## Results for game 1 (video 20-545 s)

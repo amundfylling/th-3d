@@ -284,6 +284,23 @@
     - Main error sources found: stoppages with a hand in the rink (8), out-and-back tracking jumps with few detections,
       and moves split mid-flight. Next: the user checks the low-confidence cards; then build the confirmed pass map and
       add stoppage removal and jump rejection to the pipeline.
+- **NM26, how the game works (2026-10-08, `docs/nm26-game-patterns.md`):**
+  - **Ends and kit colours:** the figures stay with the table ends: white/blue at the left end, yellow at the right.
+    - The players switch ends 2-2-1-1-1, so Nygård plays the yellow figures in games 3, 4 and 6.
+    - The score box counts goals by end. Read that way, all seven results match the user's.
+  - **Game structure:** timer tones give 5-minute games; game windows and every goal (41) are in
+    `data/games/nm26-semifinal/timeline.json`.
+  - **Tracking:** all seven games are tracked on one calibration (games 2-7 register to game 1's reference frame;
+    `calibration_from` in `config.json`). Patterns are in `data/games/nm26-semifinal/patterns.json`
+    (`npm run nm26:patterns`), with control maps `validation/nm26-control-*.png`. All PROPOSED.
+  - **Main patterns:**
+    - left defence → left wing is the standard outlet for both players;
+    - the left wing holds the puck in the attacking corner, and the opponent's right defence wins it back;
+    - Nygård plays through his left wing (19% of all puck time, median hold 3.3 s; rim passes right wing → left wing);
+    - Fjermestad uses both wings evenly;
+    - leads don't hold: the first scorer won 2 of 7 games.
+  - **Open:** game 1 ran 360 s before play stopped, not 300 s; the two Nygård goals 3 s apart in game 1; exact goal
+    moments; the 21 s centre-spot wait before overtime.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.

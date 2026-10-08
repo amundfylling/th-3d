@@ -119,3 +119,26 @@ test("nm26 game 1: Claude's review covers every review-page candidate once, with
     assert.equal(r.verdict === "fix", !!r.fix, r.id);
   }
 });
+
+test("nm26: the timeline reproduces every result; every game has a track on the shared calibration", () => {
+  const N = "data/games/nm26-semifinal";
+  const tl = json(`${N}/timeline.json`).games;
+  const cfg = json(`${N}/config.json`);
+  const g1cal = json(`${N}/g1/calibration.json`).H_world_mm_to_stab_px;
+  for (const g of ["g1", "g2", "g3", "g4", "g5", "g6", "g7"]) {
+    // goals read by end reproduce the user's result (Nygård first)
+    assert.equal(tl[g].result_overlay_read_by_end, tl[g].result_user_nygard_first, g);
+    assert.equal(cfg.games[g].result_nygard_fjermestad, tl[g].result_user_nygard_first, g);
+    assert.equal(cfg.games[g].team_W, tl[g].left_end_player, g);
+    assert.deepEqual(json(`${N}/${g}/calibration.json`).H_world_mm_to_stab_px, g1cal, g);
+    const tr = json(`${N}/${g}/puck-track.json`);
+    assert.ok(tr.rows.length > 3000, g);
+  }
+  // ends switch 2-2-1-1-1
+  assert.deepEqual(["g1", "g2", "g3", "g4", "g5", "g6", "g7"].map((g) => tl[g].left_end_player[0]), ["n", "n", "f", "f", "n", "f", "n"]);
+  const p = json(`${N}/patterns.json`);
+  for (const pl of ["nygard", "fjermestad"]) {
+    const z = p.per_player[pl].puck_zone;
+    assert.ok(Math.abs(z["own end"] + z["neutral"] + z["attacking end"] - 1) < 0.01, pl);
+  }
+});
