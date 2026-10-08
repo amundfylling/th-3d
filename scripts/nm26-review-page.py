@@ -72,7 +72,8 @@ lines = [{"kind": k, "a": [round(float(v), 1) for v in LM[f"lm.board.{n}.top"]],
 DATA = {
     "game": GAME, "title": "Nygård vs Fjermestad · NM 2026 semi-final · game 1" if GAME == "g1" else GAME,
     "result": CG.get("result_nygard_fjermestad", ""), "teams": TEAM, "names": NAMES,
-    "kits": {k: CFG["players"][TEAM[k]]["kit"] for k in "WE"},
+    # the figures stay with the table ends, so the kit colour follows the end, not the player (config.json)
+    "kits": {k: CFG["figure_colours_by_end"][k] for k in "WE"},
     "board": [[round(x, 1), round(y, 1)] for x, y in G["board"]["inner_boundary"]["world"]["points_mm"][::3]],
     "lines": lines,
     "slots": {f["player_id"]: [[round(x, 1), round(y, 1)] for x, y in f["centreline"]["points_mm"][::2]] for f in G["fixture_paths"]},

@@ -7,19 +7,158 @@
     "local_path": "out/dl/nm26.webm",
     "fps": 30
   },
-  "players": {"nygard": {"name": "Daniel Nygård", "kit": "white/blue"}, "fjermestad": {"name": "Andreas Fjermestad", "kit": "yellow"}},
-  "roi_px": [240, 440, 1820, 900],
-  "registration_mask_half_px": [120, 235, 910, 440],
-  "ice_polygon_stab_px": [[130, 95], [1450, 95], [1500, 140], [1505, 370], [1460, 400], [120, 400], [70, 360], [75, 140]],
+  "players": {
+    "nygard": {
+      "name": "Daniel Nygård",
+      "kit_in_g1": "white/blue"
+    },
+    "fjermestad": {
+      "name": "Andreas Fjermestad",
+      "kit_in_g1": "yellow"
+    }
+  },
+  "roi_px": [
+    240,
+    440,
+    1820,
+    900
+  ],
+  "registration_mask_half_px": [
+    120,
+    235,
+    910,
+    440
+  ],
+  "ice_polygon_stab_px": [
+    [
+      130,
+      95
+    ],
+    [
+      1450,
+      95
+    ],
+    [
+      1500,
+      140
+    ],
+    [
+      1505,
+      370
+    ],
+    [
+      1460,
+      400
+    ],
+    [
+      120,
+      400
+    ],
+    [
+      70,
+      360
+    ],
+    [
+      75,
+      140
+    ]
+  ],
   "games": {
     "g1": {
       "result_nygard_fjermestad": "3:4 OT",
-      "video_window_s": [20.0, 545.0],
+      "video_window_s": [
+        20.0,
+        545.0
+      ],
       "start_signal_s": 21.6,
       "note": "Start: timer tone at 21.6-25.0 s. 3-3 after regulation; Fjermestad's overtime goal at about 535 s (series 0-1 from 539 s). Nygård's goalie (white/blue) at the left end, so Nygård = team W in data/geometry.json terms.",
       "reference_frame_s": 180.0,
       "team_W": "nygard",
       "team_E": "fjermestad"
+    },
+    "g2": {
+      "result_nygard_fjermestad": "3:1",
+      "video_window_s": [
+        770.0,
+        1086.0
+      ],
+      "start_signal_s": 772.4,
+      "note": "Nygård at the left end (white/blue figures). Window from the timer tones and the score overlay (docs/nm26-game-patterns.md).",
+      "reference_frame_s": 180.0,
+      "calibration_from": "g1",
+      "team_W": "nygard",
+      "team_E": "fjermestad"
+    },
+    "g3": {
+      "result_nygard_fjermestad": "3:5",
+      "video_window_s": [
+        1354.0,
+        1690.0
+      ],
+      "start_signal_s": 1356.1,
+      "note": "Ends switched: Fjermestad at the left end with the white/blue figures, Nygård at the right with the yellow figures. Window from the timer tones and the score overlay (docs/nm26-game-patterns.md).",
+      "reference_frame_s": 180.0,
+      "calibration_from": "g1",
+      "team_W": "fjermestad",
+      "team_E": "nygard"
+    },
+    "g4": {
+      "result_nygard_fjermestad": "3:2 OT",
+      "video_window_s": [
+        1769.0,
+        2192.0
+      ],
+      "start_signal_s": 1771.6,
+      "note": "Ends switched as in g3. Window from the timer tones and the score overlay (docs/nm26-game-patterns.md).",
+      "reference_frame_s": 180.0,
+      "calibration_from": "g1",
+      "team_W": "fjermestad",
+      "team_E": "nygard"
+    },
+    "g5": {
+      "result_nygard_fjermestad": "3:4 OT",
+      "video_window_s": [
+        2320.0,
+        2764.0
+      ],
+      "start_signal_s": 2322.3,
+      "note": "Ends as in g1. Window from the timer tones and the score overlay (docs/nm26-game-patterns.md).",
+      "reference_frame_s": 180.0,
+      "calibration_from": "g1",
+      "team_W": "nygard",
+      "team_E": "fjermestad"
+    },
+    "g6": {
+      "result_nygard_fjermestad": "5:1",
+      "video_window_s": [
+        2777.0,
+        3100.0
+      ],
+      "start_signal_s": 2779.7,
+      "note": "Ends switched as in g3. Window from the timer tones and the score overlay (docs/nm26-game-patterns.md).",
+      "reference_frame_s": 180.0,
+      "calibration_from": "g1",
+      "team_W": "fjermestad",
+      "team_E": "nygard"
+    },
+    "g7": {
+      "result_nygard_fjermestad": "1:3",
+      "video_window_s": [
+        3251.0,
+        3552.9
+      ],
+      "start_signal_s": 3253.7,
+      "note": "Ends as in g1; the video ends about when the game does. Window from the timer tones and the score overlay (docs/nm26-game-patterns.md).",
+      "reference_frame_s": 180.0,
+      "calibration_from": "g1",
+      "team_W": "nygard",
+      "team_E": "fjermestad"
     }
-  }
+  },
+  "figure_colours_by_end": {
+    "W": "white/blue",
+    "E": "yellow",
+    "note": "The figures stay with the table: the left end (goal.W) always has the white/blue figures. Players switch ends 2-2-1-1-1, so a player's kit colour changes with the end (PiP camera and goalie colours, docs/nm26-game-patterns.md)."
+  },
+  "players_note": "kit_in_g1: the figure colour each player used in game 1 (left end white/blue). Figures stay with the table ends (figure_colours_by_end), so in g3, g4 and g6 Nygård plays the yellow figures."
 }
