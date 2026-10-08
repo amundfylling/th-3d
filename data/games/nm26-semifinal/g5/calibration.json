@@ -1,0 +1,73 @@
+{
+ "H_world_mm_to_stab_px": [
+  [
+   1.6368403774970262,
+   0.3356118029669077,
+   784.6944109793212
+  ],
+  [
+   0.02176311238713385,
+   -0.6462901559417852,
+   254.09807885732852
+  ],
+  [
+   -1.8733850273592925e-06,
+   0.0003792929250170233,
+   1.0
+  ]
+ ],
+ "plane": "ice top (z = 0)",
+ "status": "assumed",
+ "status_note": "Fitted to the repo's slot centrelines (traced from the official overhead with the assumed preview scale); the user confirmed the same table layout. No dimension of this table was measured.",
+ "residuals": {
+  "slot_samples": 914,
+  "initial_median_px": 8.69,
+  "median_px": 0.86,
+  "within_2px": 0.713,
+  "within_4px": 0.774,
+  "note": "Distance from each projected slot sample to the nearest dark slot pixel; samples hidden by figures in the background stay far."
+ },
+ "local_scale": [
+  {
+   "world_mm": [
+    0,
+    0
+   ],
+   "mm_per_px_along_x": 0.61,
+   "mm_per_px_across_y": 1.345
+  },
+  {
+   "world_mm": [
+    -300,
+    150
+   ],
+   "mm_per_px_along_x": 0.646,
+   "mm_per_px_across_y": 1.446
+  },
+  {
+   "world_mm": [
+    300,
+    150
+   ],
+   "mm_per_px_along_x": 0.644,
+   "mm_per_px_across_y": 1.47
+  },
+  {
+   "world_mm": [
+    -300,
+    -150
+   ],
+   "mm_per_px_along_x": 0.576,
+   "mm_per_px_across_y": 1.151
+  },
+  {
+   "world_mm": [
+    300,
+    -150
+   ],
+   "mm_per_px_along_x": 0.575,
+   "mm_per_px_across_y": 1.17
+  }
+ ],
+ "note": "Copied from g1: this game is registered to the same reference frame (g1 at 180 s), so stab px and the rink-plane homography are shared."
+}
