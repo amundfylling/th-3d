@@ -142,3 +142,17 @@ test("nm26: the timeline reproduces every result; every game has a track on the 
     assert.ok(Math.abs(z["own end"] + z["neutral"] + z["attacking end"] - 1) < 0.01, pl);
   }
 });
+
+test("playbook sources: the NTHF catalogue is parsed completely and its pages are indexed unchanged", () => {
+  const cat = json("data/combinations/nthf-catalogue.json");
+  assert.equal(cat.combinations.length, 121);
+  assert.equal(cat.combinations.filter((c: { player: string }) => c.player === "Centre").length, 55);
+  assert.equal(cat.combinations.filter((c: { player: string }) => c.player === "Right wing").length, 66);
+  for (const c of cat.combinations) assert.ok(c.level >= 0 && c.level <= 10 && c.name && c.description, c.name);
+  const idx = json("references/index.json");
+  for (const id of ["puck_no_combination_catalogue_en", "puck_no_combination_catalogue_no", "puck_no_timers_en", "bordshockeyskolan_pages_2026_10_08"]) {
+    const s = idx.sources.find((x: { id: string }) => x.id === id);
+    assert.ok(s, id);
+    assert.equal(sha(s.local_path), s.sha256, id);
+  }
+});

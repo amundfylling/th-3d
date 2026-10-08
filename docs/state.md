@@ -284,6 +284,15 @@
     - Main error sources found: stoppages with a hand in the rink (8), out-and-back tracking jumps with few detections,
       and moves split mid-flight. Next: the user checks the low-confidence cards; then build the confirmed pass map and
       add stoppage removal and jump rejection to the pipeline.
+- **Playbook (2026-10-08, `docs/table-hockey-playbook.md`):** how the game is played beyond the written rules, for
+  future projects.
+  - **Sources:** the NTHF combination catalogue (121 moves, parsed to `data/combinations/nthf-catalogue.json`), all 46
+    Bordshockeyskolan lessons and the NTHF timer page (all saved under `references/` and indexed), the repo geometry, the
+    NM26 measurements and the user's TikToks.
+  - **Contents:** figures and slots, 1-on-1 matchups, build-up from each defender, keeping the puck, the attacking
+    families with their feint pairs, defence (Box, Flipper, mix), the catalogue by family, top-level play, and a
+    vocabulary with source-attested Swedish and Norwegian terms.
+  - **Open:** the catalogue's "forward/back" definition contradicts its own example.
 - **NM26, how the game works (2026-10-08, `docs/nm26-game-patterns.md`):**
   - **Ends and kit colours:** the figures stay with the table ends: white/blue at the left end, yellow at the right.
     - The players switch ends 2-2-1-1-1, so Nygård plays the yellow figures in games 3, 4 and 6.

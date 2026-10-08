@@ -42,6 +42,10 @@ switch ends 2-2-1-1-1).
 
 ## Key files
 
+- `docs/table-hockey-playbook.md` - how table hockey is played beyond the rules: figures and slots, matchups, build-up,
+  the attacking families (shovel, centrifuge, velodrome, centre tricks), defence (Box/Flipper), the NTHF catalogue
+  (`data/combinations/nthf-catalogue.json`), vocabulary. Read it before any task about play, shots or tactics.
+
 - `docs/state.md` - handoff: last/next iteration, verification status, decisions, missing inputs.
 - `docs/reference.md` - reference brief: PDF identity, page pointers, published dimensions, conflicts, gaps.
 - `Stiga_Play_Off_21_References.pdf` - eight-page research guide. Preserve unchanged.

@@ -1,0 +1,755 @@
+{
+ "description": "The NTHF combination catalogue (121 named moves for the centre and the right wing), parsed from references/combinations/puck-no-combination-catalogue-en.html. Names, positions, difficulty (0-10) and descriptions are NTHF's, unchanged. See docs/table-hockey-playbook.md.",
+ "source_id": "puck_no_combination_catalogue_en",
+ "status": "source_text",
+ "fetched": "2026-10-08",
+ "difficulty_scale": {
+  "0": "Impossible to miss",
+  "1": "Crazy easy",
+  "2": "Very easy",
+  "3": "Easy",
+  "4": "Fairly easy",
+  "5": "Manageable",
+  "6": "Fairly hard",
+  "7": "Hard",
+  "8": "Very hard",
+  "9": "Crazy hard",
+  "10": "Impossible"
+ },
+ "terms": {
+  "forward/back": "NTHF defines 'forward' and 'back' as the ends of the board nearest and furthest from the player, but its example (the centre is near the opponent's goalie when it stands forward in the slot) needs forward = toward the opponent's goal. Unresolved (docs/table-hockey-playbook.md, Open 5).",
+  "fakie": "the mirror version (usually from the other side, e.g. left instead of right)",
+  "invers": "the same trick in the opposite order",
+  "-o suffix": "usually a harder variant of the trick without the o",
+  "not in bold on the site": "the author doubts a goal has been scored with it in an official match"
+ },
+ "combinations": [
+  {
+   "player": "Centre",
+   "level": 4,
+   "name": "Näcka",
+   "description": "Center starts with the puck in the heel groove, passes with the heel a few centimeters out to the right, and shoots with the blade into the right corner"
+  },
+  {
+   "player": "Centre",
+   "level": 5,
+   "name": "Spjass",
+   "description": "Center starts with the puck in the heel groove, passes with the blade a few centimeters out to the left, spins all the way around and shoots with the blade into the left corner"
+  },
+  {
+   "player": "Centre",
+   "level": 5,
+   "name": "Lillhæl",
+   "description": "Center starts with the puck in the heel groove, passes with the blade about one centimeter out to the left, and shoots with the heel into the left corner"
+  },
+  {
+   "player": "Centre",
+   "level": 3,
+   "name": "Lillstøvel",
+   "description": "Center starts with the puck in the toe groove, passes with the toe a few centimeters out to the left, and shoots with the blade into the left corner. Named after the legendary Djurgården player Carl-Göran 'Lill-Stöveln' Öberg, younger brother of Hans 'Stöveln' Öberg"
+  },
+  {
+   "player": "Centre",
+   "level": 5,
+   "name": "Omvendspjass",
+   "description": "Center starts with the puck in the toe groove, passes with the blade a few centimeters out to the right, spins all the way around and shoots with the blade into the right corner"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Fakie Näcka",
+   "description": "Center starts with the puck in the toe groove, quickly shifts to having the puck in the heel groove, and performs a Näcka"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Fakie Spjass",
+   "description": "Center starts with the puck in the toe groove, quickly shifts to having the puck in the heel groove, and performs a Spjass"
+  },
+  {
+   "player": "Centre",
+   "level": 5,
+   "name": "Fakie Lillstøvel",
+   "description": "Center starts with the puck in the heel groove, quickly shifts to having the puck in the toe groove, and performs a Lillstøvel"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Fakie Omvendspjass",
+   "description": "Center starts with the puck in the heel groove, quickly shifts to having the puck in the toe groove, and performs an Omvendspjass"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Hjerpe",
+   "description": "Center starts with the puck out on the blade to the right of the slot, carries the puck over to the left side of the slot, and shoots into the left corner"
+  },
+  {
+   "player": "Centre",
+   "level": 2,
+   "name": "Hjerpefinte",
+   "description": "Center starts with the puck out on the blade to the right of the slot, and shoots directly into the right corner. Only works against a goalie expecting a Hjerpe"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Søren",
+   "description": "Center starts with the puck out on the blade to the left of the slot, carries the puck over to the right side of the slot, and shoots into the right corner. Named after the legendary table hockey and ice hockey player Sören Johansson, who did a similar feint in ice hockey"
+  },
+  {
+   "player": "Centre",
+   "level": 2,
+   "name": "Sørenfinte",
+   "description": "Center starts with the puck out on the blade to the left of the slot and shoots directly into the left corner. Only works against a goalie expecting a Søren"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Senterkiosk",
+   "description": "Center starts with the puck a couple of centimeters to the left of the slot and performs a Kiosk into the left or right top corner"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Näckafinte",
+   "description": "Center performs a Näcka, but places the puck in the left corner. Only works against a reacting goalie"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Spjassfinte",
+   "description": "Center performs a Spjass, but places the puck in the right corner. Only works against a reacting goalie"
+  },
+  {
+   "player": "Centre",
+   "level": 5,
+   "name": "Lillstøvelfinte / C 29",
+   "description": "Center performs a Lillstøvel, but places the puck in the right corner. Only works against a reacting goalie"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Omvendspjassfinte",
+   "description": "Center performs an Omvendspjass, but places the puck in the left corner. Only works against a reacting goalie"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Senter-Ceuleman",
+   "description": "Center shoots the puck from the toe groove via the right boards and into the goal behind (or via) the goalie"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Senter-Ceuleman",
+   "description": "Center shoots the puck from the heel groove via the left boards and into the goal behind (or via) the goalie"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Horvath",
+   "description": "Center starts with the puck a bit out on the blade to the right of the slot, shoots into the left rounded boards, gets the rebound, and shoots into the right corner"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Horvath",
+   "description": "Center shoots into the right boards behind the opponent's goal, gets the rebound, and shoots into the left corner"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Spjass-Horvath",
+   "description": "Center performs a Spjass, deliberately misses the goal and hits the left rounded boards, gets the rebound, and shoots into the right corner"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Veggdyr",
+   "description": "Center shoots the puck from the heel groove via the left boards, back to the center and into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Fakie Veggdyr",
+   "description": "Center shoots the puck from the toe groove via the right boards, back to the center and into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Agdur",
+   "description": "Pass from center to left wing, back to the center and into the right corner"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Halv-Agdur",
+   "description": "Pass from center to left wing, who shoots directly into the left corner"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Agduro",
+   "description": "Pass from center to left wing, who carries the puck backward in the slot and passes behind the opponent's center back to their own center at the very back of the slot and into the goal (see Sentrifugo)"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Invers Agduro",
+   "description": "Center carries the puck backward in the slot and passes behind the opponent's center to the left wing, who passes back to the center and into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Invers Halv-Agduro",
+   "description": "Center carries the puck backward in the slot and passes behind the opponent's center to the left wing, who shoots directly into the left corner"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Fakie Agdur",
+   "description": "Pass from center to right wing, back to the center and into the left corner"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Halv-Agdur",
+   "description": "Pass from center to right wing, who shoots directly into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Invers Agduro",
+   "description": "Center carries the puck backward in the slot and passes behind the opponent's left defenseman to the right wing, who carries the puck forward in the slot and passes in front of the opponent's left defenseman back to the center and into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Invers Halv-Agduro",
+   "description": "Center carries the puck backward in the slot and passes behind the opponent's left defenseman to the right wing, who shoots directly into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Holmin",
+   "description": "Center shoots into the boards at the start of the right rounded boards, so that the puck glides along the boards to the left wing, who shoots directly into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Holms",
+   "description": "Center shoots into the boards at the start of the right rounded boards, so that the puck glides along the boards to the left wing and on to the center, who shoots directly into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Holms-Gretzky",
+   "description": "Center shoots into the boards at the start of the right rounded boards, so that the puck glides along the boards to the left wing, who is placed just to the left of the opponent's goal and passes backward to the center, who shoots directly into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Senter-Velodrom",
+   "description": "Center passes to the left wing, who sends the puck in a Velodrom over to the right wing, who shoots directly into the right corner"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Senter-Karusell",
+   "description": "Center passes to the left wing, who sends the puck in a Velodrom over to the right wing and in to the center and into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Senter-Velodrom",
+   "description": "Center passes to the right wing, who sends the puck in a Velodrom over to the left wing, who shoots directly into the left corner"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Senter-Karusell",
+   "description": "Center passes to the right wing, who sends the puck in a Velodrom over to the left wing and in to the center and into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 9,
+   "name": "Skalpell",
+   "description": "Pass from center to the goalie, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "General Reiersen",
+   "description": "Pass from center along the right boards behind their own goal to the left defenseman, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Senterkniv",
+   "description": "Pass from center to the left defenseman, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Senterknivo",
+   "description": "Pass from center behind the opponent's center to the left defenseman, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Rambokniv",
+   "description": "Pass from center to the left defenseman, who passes behind the opponent's center and in to their own center, who shoots one-timed from the very back of the slot"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Senterkniv",
+   "description": "Pass from center to the right defenseman, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Senter-Backnäcka",
+   "description": "Pass from center to the right defenseman, who shoots around the opponent's left defenseman and into the goal (see Backnäcka)"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Invers Kano",
+   "description": "Pass from center via the right boards to the right defenseman, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Invers Kano",
+   "description": "Pass from center via the left boards to the left defenseman, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 6,
+   "name": "Senter-Rokkade",
+   "description": "Pass from center to the right defenseman and on to the left defenseman, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Fakie Senter-Rokkade",
+   "description": "Pass from center to the left defenseman and on to the right defenseman, who shoots one-timed into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 8,
+   "name": "Bacalao",
+   "description": "Pass from center to the right defenseman, who shoots one-timed via the right boards and into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 7,
+   "name": "Newton",
+   "description": "Center shoots via the opponent's right defenseman and into the goal"
+  },
+  {
+   "player": "Centre",
+   "level": 9,
+   "name": "Mission Impossible 3",
+   "description": "Center plays the puck off the goal frame and puts the rebound into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 3,
+   "name": "Direkteskudd",
+   "description": "Right wing shoots directly into the goal, preferably lifting it into the top corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 3,
+   "name": "Maltzev / Smygar",
+   "description": "Right wing carries the puck forward in the slot and shoots into the goal between the goalie and the right post"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Bedehus-Smygar / Tysk Smygar",
+   "description": "Right wing carries the puck forward in the slot and shoots into the goal via the goalie's back"
+  },
+  {
+   "player": "Right wing",
+   "level": 3,
+   "name": "Fakie Forulemping",
+   "description": "Right wing starts behind the opponent's goal, carries the puck backward in the slot and shoots between the goalie and the right post"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Nuttunenslegga",
+   "description": "Right wing carries the puck backward in the slot, stops and shoots directly into the nearest top corner over the goalie's stick"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Tønsbergslegga",
+   "description": "Right wing carries the puck forward in the slot, passes it a few centimeters to the left, spins around and shoots into the goal in motion"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "EMoe-smyger",
+   "description": "Right wing carries the puck in the outer stick groove forward in the slot and shoots into the goal in motion"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Lønnskipp",
+   "description": "The puck lies near the right wing, who shoots directly into the top corner with lift"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Tomahawk",
+   "description": "Right wing stands far back in the slot and shoots via the right boards and into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Fakie Tomahawk",
+   "description": "Right wing shoots via the left boards and into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Brustadbu",
+   "description": "Right wing scores with a kiosk shot"
+  },
+  {
+   "player": "Right wing",
+   "level": 8,
+   "name": "Lille Trille",
+   "description": "Right wing scores with a weak kiosk shot that rolls into the left corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Smygero",
+   "description": "Right wing carries the puck quickly forward along the boards and flicks the puck into the goal between the goalie and the right post"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Invers Smygero / Eidsneskølle",
+   "description": "Right wing carries the puck quickly backward along the boards, goes past the puck and shoots with a set blade into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Fakie Jon Spesial / Korabel",
+   "description": "Right wing shoots via the blade of a stationary center and into the left corner of the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Hagerup",
+   "description": "Right wing and center stand at the very back of the slot, and the right wing passes in to the center, who shoots directly into the right corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Spade",
+   "description": "Right wing and center stand at the very back of the slot, and the right wing passes in to the center, who shoots directly into the left corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Lindahlskyffel kort",
+   "description": "Right wing carries the puck forward in the slot and passes in to the center, who shoots into the right corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Lindahlskyffel lang",
+   "description": "Right wing carries the puck forward in the slot and passes in to the center, who shoots into the left corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Edwallskyffel kort",
+   "description": "Right wing carries the puck forward in the slot with the heel groove and passes in to the center, who shoots into the right corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Edwallskyffel lang",
+   "description": "Right wing carries the puck forward in the slot with the heel groove and passes in to the center, who shoots into the left corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Hælskyffel kort",
+   "description": "Right wing carries the puck backward in the slot with the stick groove and passes in with the heel to the center, who shoots into the right corner. Can also be performed with a blade pass"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Hælskyffel lang",
+   "description": "Right wing carries the puck backward in the slot with the stick groove and passes in with the heel to the center, who shoots into the left corner. Can also be performed with a blade pass"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Tryykari kort",
+   "description": "Right wing carries the puck quickly forward in the slot with the heel groove (Edwall drag), stops and performs a heel shovel into the near corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Tryykari lang",
+   "description": "Right wing carries the puck quickly forward in the slot with the heel groove (Edwall drag), stops and performs a heel shovel into the far corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Tryykarifinte",
+   "description": "Right wing carries the puck quickly forward in the slot with the heel groove (Edwall drag), stops before the goal line, turns 180 degrees counterclockwise and shoots with the heel into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Gangsøyskyffel kort",
+   "description": "Right wing carries the puck quickly backward along the boards, spins around counterclockwise and passes in to the center, who shoots into the right corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Gangsøyskyffel lang",
+   "description": "Right wing carries the puck quickly backward along the boards, spins around counterclockwise and passes in to the center, who shoots into the left corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 4,
+   "name": "Truls",
+   "description": "Right wing carries the puck on the outside of the blade backward and passes in to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Wilkens",
+   "description": "Right wing pretends to drag the puck backward, stops, and passes in forward to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Pettersonskyffel",
+   "description": "Right wing carries the puck forward in the slot, goes slightly past the puck, spins clockwise and passes in to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Furious G",
+   "description": "Smygero with a pass to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Marcus Andersson",
+   "description": "Right shovel directly into the right corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Fakie Harlem Shuffle",
+   "description": "Right wing passes to the center, who with a swinging blade flicks the puck into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Veggskyffel",
+   "description": "Right wing stands far forward in the slot with the puck and shoots via the right boards to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Fakie Velodrom",
+   "description": "Pass from the right wing along the boards behind the goal to the left wing, who shoots into the left corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Fakie Karusell",
+   "description": "Pass from the right wing along the boards behind the goal to the left wing, who passes in to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Snok / Mexikaner",
+   "description": "Right wing shoots the puck via the boards to the center, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 5,
+   "name": "Snik",
+   "description": "Right wing shoots the puck via the goalie to the center, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Fakie kniv",
+   "description": "Pass from right wing to the right defenseman, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Fakie lang-kniv",
+   "description": "Pass from right wing to the left defenseman, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Langorv",
+   "description": "Pass from right wing along the boards behind the goal so that the puck ends up with the left defenseman, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Invers Kryssar",
+   "description": "Pass from right wing to left wing, who shoots into the left corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Invers Kryssar med innspill",
+   "description": "Pass from right wing to left wing, who sends it on to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Invers Kryssar med Velodrom",
+   "description": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Invers Kryssar med Karusell",
+   "description": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who sends it in to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 8,
+   "name": "Fakie Lang-Agdur",
+   "description": "Pass from right wing to left wing, who sends it back to the right wing, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Nuttunen",
+   "description": "Pass from right wing to the left defenseman and on to the center, who scores from far back in the slot"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Nuttunen goes useless",
+   "description": "Pass from right wing to the center far back in the slot, who flicks it on to the left defenseman, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Reiersen",
+   "description": "Pass from right wing along the right boards behind their own goal to the left defenseman, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 9,
+   "name": "Reiersen på bærtur",
+   "description": "Pass from right wing along the right boards behind their own goal to the left defenseman, who sends it behind their own goal to the right defenseman, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Gretzky",
+   "description": "Pass from right wing along the boards behind the goal to the left wing, who sends it backward to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 8,
+   "name": "Fakie Mors Kök / Fars Kök",
+   "description": "Pass from right wing at the very front of the slot via the left rounded boards to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 8,
+   "name": "Burkgurk",
+   "description": "Pass from right wing along the boards behind their own goal to the left wing, who flicks directly into the left corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 8,
+   "name": "Burkgurkskyffel",
+   "description": "Pass from right wing along the boards behind their own goal to the left wing, who sends it on to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 9,
+   "name": "Jorda Rundt",
+   "description": "Pass from right wing along the boards behind their own goal and all the way around back to the right wing, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 9,
+   "name": "Jorda Rundt-skyffel",
+   "description": "Pass from right wing along the boards behind their own goal and all the way around back to the right wing, who sends it to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Fakie Gutshot",
+   "description": "Pass from right wing to the goalie, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 8,
+   "name": "Fakie Gutshot-Hansen",
+   "description": "Pass from right wing to the goalie, who sends it back to the right wing, who shoots into the right corner"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Invers Rookierokkade",
+   "description": "Pass from right wing far back in the slot to the right defenseman, who sends it back to the right wing, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 7,
+   "name": "Fakie Zorro",
+   "description": "Pass from right wing to center, on to the right defenseman, and finally to the left defenseman, who shoots directly into the goal"
+  },
+  {
+   "player": "Right wing",
+   "level": 9,
+   "name": "Mission Impossible 2",
+   "description": "Right wing sends the puck along the boards to the left wing, who sends it directly to the center, who scores"
+  },
+  {
+   "player": "Right wing",
+   "level": 2,
+   "name": "Edwall-innspill",
+   "description": "Right wing carries the puck forward in the slot with the heel groove and sends it in to the center"
+  },
+  {
+   "player": "Right wing",
+   "level": 2,
+   "name": "Lindahl-innspill",
+   "description": "Right wing carries the puck forward in the slot with the stick groove and sends it in to the center"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Østerman-innspill",
+   "description": "Right wing carries the puck quickly forward in the slot, turns 180 degrees counterclockwise, stops, spins back and sends the puck in to the center"
+  },
+  {
+   "player": "Right wing",
+   "level": 6,
+   "name": "Silis-innspill",
+   "description": "Right wing carries the puck quickly backward in the slot with the heel groove and sends it in to the center in motion"
+  }
+ ],
+ "norwegian_source_id": "puck_no_combination_catalogue_no"
+}

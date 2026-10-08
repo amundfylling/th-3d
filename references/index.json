@@ -784,6 +784,50 @@
       "native_height_px": 1080,
       "view": "Fixed broadcast camera from the near long side, steep oblique; rink about 1500 px wide (about 0.6 mm/px along the rink, 1.5 mm/px across). Score overlay top-left (names, game score, series score); player camera inset top-right (does not cover the rink). The table shifts up to about 20 px during play.",
       "notes": "Not committed to git (656 MB); download from the release URL. Series results from Nygård's side (user): 3:4 OT, 3:1, 3:5, 3:2 OT, 3:4 OT, 5:1, 1:3. Nygård plays white/blue, Fjermestad yellow (overlay panel colours). Ends switch in the pattern 2-2-1-1-1 (user). Same table layout as the repo model (user). Game 1 investigation: docs/nm26-game1-investigation.md."
+    },
+    {
+      "id": "puck_no_combination_catalogue_en",
+      "local_path": "references/combinations/puck-no-combination-catalogue-en.html",
+      "url": "https://www.puck.no/en/lær-bordhockey-kombinasjoner/",
+      "title": "NTHF 'Learn table hockey - combinations': the full catalogue (121 combinations for the centre and right wing, difficulty 0-10, terminology)",
+      "text": "121 combinations: 55 centre, 66 right wing; parsed in data/combinations/nthf-catalogue.json",
+      "format": "html",
+      "bytes": 187610,
+      "sha256": "6bf476ba5d67fb9d6fb8d5f2e20313390dcf77f5b6613187b6ba2bddbe76cddc",
+      "provenance": "web (found by Claude, fetched 2026-10-08)"
+    },
+    {
+      "id": "puck_no_timers_en",
+      "local_path": "references/rules/puck-no-timers-en.html",
+      "url": "https://www.puck.no/en/timere/",
+      "title": "NTHF timers page: match length and signals",
+      "text": "A match lasts 5 minutes. 30 seconds of music are played before the start signal and 30 seconds of music before the end signal. At Norwegian tournaments there are also signals at 1/3 and 2/3.",
+      "format": "html",
+      "bytes": 24514,
+      "sha256": "d2ffb26c409f0b71b80eb7edff0dc074cd772eb1444941a8b873f21dd2571913",
+      "provenance": "web (found by Claude, fetched 2026-10-08)"
+    },
+    {
+      "id": "bordshockeyskolan_pages_2026_10_08",
+      "local_path": "references/coaching/bordshockeyskolan-pages-2026-10-08.json",
+      "url": "https://public-api.wordpress.com/wp/v2/sites/bordshockeyskolan.wordpress.com/pages?per_page=100",
+      "title": "Bordshockeyskolan (Swedish table hockey school): all 87 pages as JSON from the WordPress API, including lessons 1-46 (English 1-22, Swedish 23-46), game care and rules",
+      "text": "Lessons on passing, the shovel, centrifuge, velodrome, Maltsev, the Insult, the hook, bulldozer, castlings, centre tricks, defence (Box, Flipper), build-up from each defender, keeping the puck, tournament play",
+      "format": "json",
+      "bytes": 324962,
+      "sha256": "29755bcb3ed811b57e52f6b983b3f27455eddd65ebce48e85d84f6760ec9eb4d",
+      "provenance": "web (found by Claude, fetched 2026-10-08)"
+    },
+    {
+      "id": "puck_no_combination_catalogue_no",
+      "local_path": "references/combinations/puck-no-combination-catalogue-no.html",
+      "url": "https://www.puck.no/lær-bordhockey-kombinasjoner/",
+      "title": "NTHF 'Lær bordhockey - kombinasjoner': the same catalogue in Norwegian (the original terms)",
+      "text": "Original Norwegian (partly Nynorsk) wording: hælgropa, tågropa, kølle, vant, spor, keeper, back, ving, innspill, skyffel, kontring",
+      "format": "html",
+      "bytes": 183519,
+      "sha256": "5df20d97499b93058a787f4155489c3f437e92963e32571eae09e9dbc60afe2d",
+      "provenance": "web (found by Claude, fetched 2026-10-08)"
     }
   ],
   "not_obtained": [
