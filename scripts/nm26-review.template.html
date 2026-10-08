@@ -56,6 +56,9 @@ button { font: inherit; cursor: pointer; }
 .verdict { display: flex; gap: 6px; flex-wrap: wrap; }
 .fixrow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
 .fixrow select { width: 100%; min-width: 0; }
+.claude { border-left: 3px solid var(--fix); padding: 6px 8px; display: grid; gap: 3px; font-size: 13.5px; background: color-mix(in srgb, var(--fix) 7%, transparent); border-radius: 0 6px 6px 0; }
+.claude .cv { font-weight: 700; }
+.conf { font-family: var(--f-data); font-variant-numeric: tabular-nums; font-weight: 700; padding: 0 6px; border-radius: 4px; color: #fff; }
 .status { font-size: 12.5px; color: var(--ink-3); min-height: 1.2em; }
 .zoom { position: fixed; inset: 0; background: rgba(0,0,0,.82); display: grid; place-items: center; padding: 20px; z-index: 10; cursor: zoom-out; }
 .zoom img { max-width: 100%; max-height: 100%; }
@@ -73,6 +76,7 @@ button { font: inherit; cursor: pointer; }
     <div class="eyebrow" id="sub"></div>
     <h1 id="title"></h1>
     <div class="note">Every candidate the tracker found, each with three frames from the video: where the puck left (line and ring drawn), the middle of its path, and where it arrived (ring). Mark each one. Your answers are saved for everyone who opens this page, and Claude reads them back.</div>
+    <div class="note">Claude has reviewed every candidate first; its verdict and a confidence from 0 to 100 are shown on each card. The page opens on the ones Claude is least sure of (below 50). "Use Claude's answer" saves Claude's verdict as yours, and "Clear my mark" removes yours.</div>
   </header>
 
   <section class="panel bar">
@@ -80,7 +84,9 @@ button { font: inherit; cursor: pointer; }
     <div class="filters">
       <label class="note" for="fkind">Show</label>
       <select id="fkind"><option value="all">All candidates</option><option value="pass">Passes</option><option value="turnover">Turnovers</option><option value="shot">Shots</option><option value="loose">Loose pucks</option></select>
-      <select id="fstate"><option value="open">Not reviewed yet</option><option value="any">Reviewed and not</option><option value="done">Reviewed</option></select>
+      <select id="fstate"><option value="open">Not reviewed yet</option><option value="any" selected>Reviewed and not</option><option value="done">Reviewed</option></select>
+      <select id="fconf" aria-label="Claude's confidence"><option value="all">Any Claude confidence</option><option value="low" selected>Claude below 50</option><option value="high">Claude 50 and up</option><option value="dis">Claude disagrees with my mark</option></select>
+      <select id="fsort" aria-label="Order"><option value="time">Game order</option><option value="conf" selected>Claude least sure first</option></select>
     </div>
   </section>
   <div class="note" id="dbnote" hidden>Saving is not available in this view (sign in to claude.ai, or ask the owner for edit access). You can still look through the candidates.</div>
@@ -165,6 +171,13 @@ function renderProgress() {
 }
 
 function options(sel, list, val) { sel.replaceChildren(...list.map(([v, t]) => { const o = document.createElement("option"); o.value = v; o.textContent = t; if (v === val) o.selected = true; return o; })); }
+const CV = { ok: "Correct", wrong: "Not a pass", fix: "Fix", unsure: "Unsure" };
+const confCol = (c) => (c < 40 ? "var(--bad)" : c < 60 ? "var(--fix)" : "var(--ok)");
+function disagrees(e) {
+  const r = reviews[e.id], c = e.claude; if (!r || !c) return false;
+  if (c.verdict === "unsure" || r.verdict !== c.verdict) return true;
+  return r.verdict === "fix" && (r.kind !== c.fix.kind || (r.from || null) !== c.fix.from || (r.to || null) !== c.fix.to);
+}
 const pidOpts = [["", "nobody"], ...PIDS.map((p) => [p, pname(p)])];
 const kindOpts = ["pass", "turnover", "shot", "loose", "battle", "none"].map((k) => [k, KIND[k]]);
 
@@ -180,18 +193,28 @@ function makeCard(e) {
     const fc = document.createElement("figcaption"); fc.textContent = cap; f.append(im, fc); strip.appendChild(f);
   });
   const side = document.createElement("div"); side.className = "side";
-  side.innerHTML = `<div class="head"><span class="kind">${KIND[e.kind]}</span><span class="num note">video ${fmt(e.t)} → ${fmt(e.t_end)}</span></div>
+  side.innerHTML = `<div class="head"><span class="kind">${KIND[e.kind]} <span class="num note">#${D.events.indexOf(e)}</span></span><span class="num note">video ${fmt(e.t)} → ${fmt(e.t_end)}</span></div>
     <div class="who"><span class="chip" style="background:${col(e.from)}"></span>${pname(e.from)} → <span class="chip" style="background:${col(e.to)}"></span>${pname(e.to)}${e.uncertain ? ' <span class="note">(two figures could reach one end)</span>' : ""}</div>
     <div class="note num">${Math.round(e.len)} mm · ${(e.speed / 1000).toFixed(2)} m/s${e.bounces ? ` · ${e.bounces} board bounce${e.bounces > 1 ? "s" : ""}` : ""}</div>`;
   const mini = el("svg", { viewBox: "-460 -255 920 510", width: "100%" }); drawBoard(mini);
   el("path", { d: pathOf(e.line, false), fill: "none", stroke: col(e.from), "stroke-width": 7, "stroke-linecap": "round" }, mini);
   const st = S(e.line[0]); el("circle", { cx: st[0], cy: st[1], r: 12, fill: "var(--surface)", stroke: col(e.from), "stroke-width": 5 }, mini);
   side.appendChild(mini);
+  let bUse = null;
+  if (e.claude) {
+    const q = e.claude, cl = document.createElement("div"); cl.className = "claude";
+    const what = q.verdict === "fix" ? `Fix: ${KIND[q.fix.kind]}, ${pname(q.fix.from)} → ${pname(q.fix.to)}` : CV[q.verdict];
+    cl.innerHTML = `<div><span class="cv">Claude: ${what}</span> · confidence <span class="conf" style="background:${confCol(q.confidence)}">${q.confidence}</span></div><div class="note"></div>`;
+    cl.querySelector(".note").textContent = q.why;
+    side.appendChild(cl);
+    if (q.verdict !== "unsure") bUse = Object.assign(document.createElement("button"), { type: "button", className: "btn", textContent: "Use Claude's answer" });
+  }
   const v = document.createElement("div"); v.className = "verdict";
   const bOk = Object.assign(document.createElement("button"), { type: "button", className: "btn ok", textContent: "Correct" });
   const bBad = Object.assign(document.createElement("button"), { type: "button", className: "btn bad", textContent: "Not a pass" });
   const bFix = Object.assign(document.createElement("button"), { type: "button", className: "btn fix", textContent: "Fix" });
-  v.append(bOk, bBad, bFix);
+  const bClr = Object.assign(document.createElement("button"), { type: "button", className: "btn", textContent: "Clear my mark" });
+  v.append(bOk, bBad, bFix); if (bUse) v.append(bUse); v.append(bClr);
   const fx = document.createElement("div"); fx.className = "fixrow"; fx.hidden = true;
   const sk = document.createElement("select"), sf = document.createElement("select"), stt = document.createElement("select");
   sk.setAttribute("aria-label", "Kind"); sf.setAttribute("aria-label", "From"); stt.setAttribute("aria-label", "To");
@@ -203,6 +226,8 @@ function makeCard(e) {
   const save = (verdict) => write(e, verdict === "fix" ? { verdict, kind: sk.value, from: sf.value, to: stt.value } : { verdict }, status);
   bOk.onclick = () => save("ok"); bBad.onclick = () => save("wrong");
   bFix.onclick = () => { fx.hidden = false; save("fix"); };
+  if (bUse) bUse.onclick = () => { const q = e.claude; if (q.verdict === "fix") { fx.hidden = false; sk.value = q.fix.kind; sf.value = q.fix.from || ""; stt.value = q.fix.to || ""; } save(q.verdict); };
+  bClr.onclick = () => clear(e, status);
   for (const s of [sk, sf, stt]) s.onchange = () => save("fix");
   cardEls[e.id] = { c, bOk, bBad, bFix, fx, sk, sf, stt, status };
 }
@@ -212,18 +237,24 @@ function paintCard(e) {
   const k = cardEls[e.id], r = reviews[e.id];
   k.bOk.setAttribute("aria-pressed", r?.verdict === "ok"); k.bBad.setAttribute("aria-pressed", r?.verdict === "wrong"); k.bFix.setAttribute("aria-pressed", r?.verdict === "fix");
   if (r?.verdict === "fix") { k.fx.hidden = false; k.sk.value = r.kind; k.sf.value = r.from || ""; k.stt.value = r.to || ""; }
+  else { k.fx.hidden = true; k.sk.value = e.kind; k.sf.value = e.from || ""; k.stt.value = e.to || ""; }
   k.c.classList.toggle("done", !!r);
 }
 function applyFilter() {
   const fk = document.getElementById("fkind").value, fs = document.getElementById("fstate").value;
+  const fc = document.getElementById("fconf").value, so = document.getElementById("fsort").value;
+  const order = D.events.slice(); if (so === "conf") order.sort((a, b) => (a.claude?.confidence ?? 101) - (b.claude?.confidence ?? 101) || a.t - b.t);
+  for (const e of order) cards.appendChild(cardEls[e.id].c);
   for (const e of D.events) {
+    const cc = e.claude?.confidence ?? 101;
+    const confOk = fc === "all" || (fc === "low" ? cc < 50 : fc === "high" ? cc >= 50 && cc <= 100 : disagrees(e));
     const r = reviews[e.id];
     const kindOk = fk === "all" || e.kind === fk || (fk === "loose" && e.kind.startsWith("loose"));
     const stOk = fs === "any" || (fs === "open" ? !r : !!r);
-    cardEls[e.id].c.hidden = !(kindOk && stOk);
+    cardEls[e.id].c.hidden = !(kindOk && stOk && confOk);
   }
 }
-document.getElementById("fkind").onchange = applyFilter; document.getElementById("fstate").onchange = applyFilter;
+for (const id of ["fkind", "fstate", "fconf", "fsort"]) document.getElementById(id).onchange = applyFilter;
 
 async function write(e, data, status) {
   reviews[e.id] = { id: e.id, ...data }; paintCard(e); renderMap(); renderProgress();
@@ -231,6 +262,14 @@ async function write(e, data, status) {
   status.textContent = "Saving…";
   try { await db.collection("reviews").doc(e.id).set({ id: e.id, game: D.game, ...data, t_video_s: e.t, at: new Date().toISOString() }); status.textContent = "Saved"; }
   catch (err) { status.textContent = `Not saved (${err?.code || "error"}). Try again.`; }
+}
+
+async function clear(e, status) {
+  delete reviews[e.id]; paintCard(e); renderMap(); renderProgress();
+  if (!db) { status.textContent = "Not saved: saving is not available in this view."; return; }
+  status.textContent = "Clearing…";
+  try { await db.collection("reviews").doc(e.id).delete(); status.textContent = "Cleared"; }
+  catch (err) { status.textContent = `Not cleared (${err?.code || "error"}). Try again.`; }
 }
 
 // missed passes

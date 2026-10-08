@@ -104,3 +104,18 @@ test("nm26 game 1: calibration fits the slots; passes rest on the puck track", (
     if (e.kind === "turnover" || e.kind === "battle") assert.notEqual(e.from[0], e.to[0]);
   }
 });
+
+test("nm26 game 1: Claude's review covers every review-page candidate once, with a confidence", () => {
+  const N = "data/games/nm26-semifinal/g1";
+  const ps = json(`${N}/passes.json`);
+  const want = (ps.events as { kind: string; length_mm: number; frame_release: number }[])
+    .filter((e) => ["pass", "turnover", "shot", "loose", "loose_received"].includes(e.kind) && e.length_mm >= 100)
+    .map((e) => `g1-${e.frame_release}`);
+  const rc = json(`${N}/review-claude.json`);
+  assert.deepEqual(rc.events.map((r: { id: string }) => r.id), want);
+  for (const r of rc.events) {
+    assert.ok(["ok", "fix", "wrong", "unsure"].includes(r.verdict), r.id);
+    assert.ok(Number.isInteger(r.confidence) && r.confidence >= 0 && r.confidence <= 100, r.id);
+    assert.equal(r.verdict === "fix", !!r.fix, r.id);
+  }
+});

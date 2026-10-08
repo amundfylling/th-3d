@@ -87,3 +87,46 @@ result.
 - A form adds missed passes: the video time, the players, and two clicks on the board. Claude snaps them to the track.
 - Verdicts are stored in `reviews` and missed passes in `missed`. Claude reads both back with `ArtifactData` to
   produce the confirmed pass map.
+
+## Claude's review (2026-10-08)
+
+The user asked Claude to review all 136 candidates with a confidence from 0 to 100, including the 10 they had marked
+("I did not do it properly"). The result is `data/games/nm26-semifinal/g1/review-claude.json` (**proposed**). The
+review page shows it on every card and opens on the cards below 50, least sure first.
+
+**Method.** For each candidate, one image row:
+- puck-centred crops 0.3 s before the release, at the release and at the reception, with the claimed figure's slot drawn;
+- a crop 0.4 s after the reception;
+- a darkest-pixel composite of the whole flight with the measured line.
+
+Claude judged:
+- whether the puck really moves along the line;
+- which kit is at each end (white/blue = Nygård, yellow = Fjermestad);
+- hands in the rink, split moves and tracking jumps.
+
+Reach lists (every slot within 75 mm of an end) name the figure when the kit at the puck disagrees with the nearest slot.
+
+**Result:**
+
+| Verdict | Count |
+| --- | --- |
+| ok | 74 |
+| fix | 15 |
+| wrong | 24 |
+| unsure | 23 |
+
+Confidence: 33 below 40, 86 from 40 to 59, 17 at 60 or above.
+
+**What goes wrong (to fix in the pipeline):**
+- **Stoppages:** a hand in the rink at #76, #94, #112, #113, #126, #127, #134 and #135. The last two come after the
+  overtime winner.
+- **Tracking jumps:** out-and-back moves with few detections and impossible speeds: #9, #37/#38, #43/#44, #51, #68/#69
+  and #80.
+- **Split moves:** a "release" at a board bounce or mid-flight, e.g. #15, #23/#24 and #65/#66.
+- **Who:**
+  - A figure standing nearer the camera covers the puck without touching it, so kit-at-the-puck judgements are
+    limited.
+  - The nearest slot is sometimes the wrong team: #17, #66, #70 and #97 end at white '14' (W-RW) while E-LW's slot is
+    nearer.
+- **Shot or pass:** cross-ice plays past the far post into the corner (#18, #35, #90, #119) are toss-ups. The four
+  centre shots by yellow '2' (#58, #84, #103, #124) end beside the W net, not in it.

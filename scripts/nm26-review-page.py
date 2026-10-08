@@ -7,7 +7,8 @@ data/geometry.json. Template: scripts/nm26-review.template.html (this script inj
 
 For every candidate (pass, turnover, shot, loose; at least MIN_LEN_MM long) it cuts three registered frames from the
 video (release, middle, reception), crops them around the measured line, and draws the line thinly on the first and
-last. The page stores the user's verdicts in the artifact's db (collections "reviews" and "missed"); Claude reads them
+last. Claude's review (<game>/review-claude.json: verdict and confidence 0-100 per candidate) is shown on each card
+when present. The page stores the user's verdicts in the artifact's db (collections "reviews" and "missed"); Claude reads them
 back with ArtifactData.
 """
 import base64
@@ -28,6 +29,9 @@ G = load(REPO / "data/geometry.json")
 CG = CFG["games"][GAME]
 HW = load(REPO / "validation/12-hardware-report.json")["goal"]
 EV = [e for e in P["events"] if e["kind"] in KINDS and e["length_mm"] >= MIN_LEN_MM]
+# Claude's own review (verdict + confidence per candidate), when it exists
+RC = game_dir(GAME) / "review-claude.json"
+CL = {r["id"]: {k: r[k] for k in ("verdict", "confidence", "why", "fix") if k in r} for r in load(RC)["events"]} if RC.exists() else {}
 want = {}
 for n, e in enumerate(EV):
     mid = (e["frame_release"] + e["frame_reception"]) // 2
@@ -78,6 +82,7 @@ DATA = {
         "uncertain": e["from_uncertain"] or e["to_uncertain"], "t": e["t_release_s"], "t_end": e["t_reception_s"],
         "line": e["line_mm"], "len": e["length_mm"], "speed": e["speed_mm_s"][1], "bounces": e["bounces"],
         "img": [crops.get((n, tag), "") for tag in ("rel", "mid", "rec")],
+        "claude": CL.get(f"{GAME}-{e['frame_release']}"),
     } for n, e in enumerate(EV)],
 }
 import json

@@ -275,7 +275,15 @@
     - puck positions in 73% of frames;
     - candidates: 67 passes, 64 turnovers, 13 shots.
     - The review page `validation/nm26-g1-review.html` (artifact with a `db`) collects the user's verdicts and missed
-      passes. Next: read them back and build the confirmed pass map.
+      passes.
+    - **Claude's review (2026-10-08, PROPOSED, `data/games/nm26-semifinal/g1/review-claude.json`):** all 136
+      candidates judged from image rows, each with a confidence 0-100. Result: 74 correct, 15 fix, 24 wrong, 23 unsure;
+      92 below 50. The user asked for it and said their own 10 marks were not done properly, so these 10 were
+      re-judged too. The page now shows Claude's verdict, sorts and filters by confidence, and has "Use Claude's
+      answer" and "Clear my mark" buttons.
+    - Main error sources found: stoppages with a hand in the rink (8), out-and-back tracking jumps with few detections,
+      and moves split mid-flight. Next: the user checks the low-confidence cards; then build the confirmed pass map and
+      add stoppage removal and jump rejection to the pipeline.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
