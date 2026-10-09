@@ -20,7 +20,10 @@ A = sys.argv[1:]; MODEL = A[0]; NAME = Path(MODEL).stem
 TEST = A[A.index("--test-games") + 1].split(",") if "--test-games" in A else ["g3", "g5", "g7"]
 spec = importlib.util.spec_from_file_location("ts", REPO / "scripts/synth/train-skater-pose.py"); ts = importlib.util.module_from_spec(spec)
 argv = sys.argv; sys.argv = [argv[0], "0"]; spec.loader.exec_module(ts); sys.argv = argv
-net = ts.model(); net.load_state_dict(torch.load(REPO / MODEL)); net.eval()
+sd = torch.load(REPO / MODEL); V1 = sd["fc.weight"].shape[0] == 3  # v1 predicted u directly; v2 the pivot pixel
+net = ts.model()
+if V1: net.fc = torch.nn.Linear(512, 3)
+net.load_state_dict(sd); net.eval()
 CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
 K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
 G = json.loads((REPO / "data/geometry.json").read_text())
@@ -47,11 +50,14 @@ items = ts.real_labelled()
 with torch.no_grad():
     P = torch.cat([net(torch.stack([ts.to_tensor(r[0], r[1]) for r in items[k:k + 64]])) for k in range(0, len(items), 64)]).numpy()
 rows = []
-for (img, pid, th, game, cid, u_user), p in zip(items, P):
-    th_m = float(np.degrees(np.arctan2(p[1], p[2])) % 360); u_m = float(np.clip(p[0], 0, 1))
+for (img, pid, th, game, cid, u_user, feet), p in zip(items, P):
+    th_m = float(np.degrees(np.arctan2(p[-2], p[-1])) % 360)
+    if V1: u_m = float(np.clip(p[0], 0, 1)); piv = None
+    else: piv = ts.net_to_px(p[:2]); u_m, _ = ts.pivot_to_u(pid, piv, crops[cid]["crop_origin_ref_px"])
     err = (th_m - th + 180) % 360 - 180
     rows.append({"id": cid, "pid": pid, "game": game, "test": game in TEST, "user_theta": th, "model_theta": round(th_m, 1),
-                 "err_deg": round(err, 1), "user_u": u_user, "model_u": round(u_m, 4), "du_mm": round(abs(u_m - u_user) * slot_len(pid), 1)})
+                 "err_deg": round(err, 1), "user_u": u_user, "model_u": round(u_m, 4), "du_mm": round(abs(u_m - u_user) * slot_len(pid), 1),
+                 "pivot_px_err": None if piv is None else round(float(np.hypot(piv[0] - feet[0], piv[1] - feet[1])), 1)})
 
 
 def summ(rs):
