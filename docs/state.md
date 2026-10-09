@@ -310,6 +310,16 @@
     - leads don't hold: the first scorer won 2 of 7 games.
   - **Open:** game 1 ran 360 s before play stopped, not 300 s; the two Nygård goals 3 s apart in game 1; exact goal
     moments; the 21 s centre-spot wait before overtime.
+- **Synthetic goalie-pose pilot (2026-10-09, `docs/synthetic-goalie-pilot.md`, PROPOSED):** renders of the 3D model
+  in the NM26 broadcast camera train a goalie-pose network with no hand labels.
+  - **Camera:** `data/games/nm26-semifinal/camera-ref.json` (assumed; decomposed from the ice-plane calibration, one
+    degree of freedom fixed; serves all seven games after registration).
+  - **Scripts:** `scripts/synth/` (renderer, compositor on real clean plates, trainer, silhouette fitter, real
+    evaluation). Renders, plates and the model are generated under `out/synth/` (not committed).
+  - **Results:** synthetic validation θ median 1.2°, u error 0.8 mm. On 120 real crops (no labels): slot position
+    agrees with a silhouette search to 5 mm median; rotation axis 12° at E (yellow) but 31° at W (white), with
+    front/back jumps at W. Overlay `validation/synth-goalie-pilot-real.jpg`.
+  - **Open:** real front/back labels (a click page for the user); the white kit's domain gap.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
