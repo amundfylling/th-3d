@@ -1,0 +1,74 @@
+{
+ "description": "Reference camera of the NM26 broadcast (game 1, video frame at 180 s): OpenCV pinhole, world mm (data/geometry.json, z up) -> video px. Every game's frames register to this frame, and games 3-7 differ only by zoom (camera centre within about 2 cm), so the camera serves all seven games after registration.",
+ "status": "assumed",
+ "method": "Decomposed from the ice-plane calibration (g1/calibration.json, the slot ICP) with square pixels and the principal point row fixed at the image centre (the plane alone leaves one degree of freedom; a 54 mm goalie projects to 80-81 px across that whole family). Least-squares refit of f, cx and the pose reproduces the plane homography to 0.00 px. Checked in Blender (identical projection) and against the real goalie slots and cages (docs/synthetic-goalie-pilot.md).",
+ "image_size": [
+  1920,
+  1080
+ ],
+ "K": [
+  [
+   3925.2181,
+   0.0,
+   1083.0506
+  ],
+  [
+   0.0,
+   3925.2181,
+   540.0
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "R": [
+  [
+   0.9999002,
+   0.00967218,
+   0.01029761
+  ],
+  [
+   0.01339599,
+   -0.4175677,
+   -0.90854706
+  ],
+  [
+   -0.00448768,
+   0.90859433,
+   -0.4176556
+  ]
+ ],
+ "t_mm": [
+  -35.614,
+  94.043,
+  2395.495
+ ],
+ "camera_centre_mm": [
+  45.1,
+  -2136.9,
+  1086.3
+ ],
+ "zoom_per_game": {
+  "g1": 1.0,
+  "g2": 1.006,
+  "g3": 1.135,
+  "g5": 1.131,
+  "g7": 1.135
+ },
+ "goal_crop_boxes_video_px": {
+  "W": [
+   520,
+   550,
+   720,
+   750
+  ],
+  "E": [
+   1338,
+   575,
+   1538,
+   775
+  ]
+ }
+}
