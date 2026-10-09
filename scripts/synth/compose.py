@@ -16,21 +16,23 @@ def load_plates():
     return P
 
 
-def compose(rgba, plate, rnd: random.Random):
+def compose(rgba, plate, rnd: random.Random, out_M=None):
     a = rgba[..., 3:4].astype(np.float32) / 255.0
     fg = rgba[..., :3].astype(np.float32)
     # figure colour/brightness to the broadcast look: contrast and saturation up a little, random gain
     fg = np.clip((fg - 128) * rnd.uniform(1.0, 1.35) + 128 + rnd.uniform(-15, 15), 0, 255)
-    return degrade(plate * (1 - a) + fg * a, rnd)
+    return degrade(plate * (1 - a) + fg * a, rnd, out_M=out_M)
 
 
-def degrade(img, rnd: random.Random, blur=(0.4, 1.3), jpeg=(35, 85)):
-    """Camera-like degradations of a composited (or, with lighter settings, a real) crop."""
+def degrade(img, rnd: random.Random, blur=(0.4, 1.3), jpeg=(35, 85), out_M=None):
+    """Camera-like degradations of a composited (or, with lighter settings, a real) crop. out_M (a list) receives the
+    2 x 3 affine applied to the image, for labels given in image coordinates."""
     img = np.asarray(img, np.float32)
     # table drift and calibration error: small shift and scale
     h, w = img.shape[:2]
     M = cv2.getRotationMatrix2D((w / 2, h / 2), rnd.uniform(-1.5, 1.5), rnd.uniform(0.96, 1.04)); M[:, 2] += [rnd.uniform(-6, 6), rnd.uniform(-6, 6)]
     img = cv2.warpAffine(img, M, (w, h), borderMode=cv2.BORDER_REFLECT)
+    if out_M is not None: out_M.append(M)
     # camera softness, colour, noise, compression
     img = cv2.GaussianBlur(img, (0, 0), rnd.uniform(*blur))
     hsv = cv2.cvtColor(np.clip(img, 0, 255).astype(np.uint8), cv2.COLOR_BGR2HSV).astype(np.float32)
