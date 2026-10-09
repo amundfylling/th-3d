@@ -21,16 +21,21 @@ def compose(rgba, plate, rnd: random.Random):
     fg = rgba[..., :3].astype(np.float32)
     # figure colour/brightness to the broadcast look: contrast and saturation up a little, random gain
     fg = np.clip((fg - 128) * rnd.uniform(1.0, 1.35) + 128 + rnd.uniform(-15, 15), 0, 255)
-    img = plate * (1 - a) + fg * a
+    return degrade(plate * (1 - a) + fg * a, rnd)
+
+
+def degrade(img, rnd: random.Random, blur=(0.4, 1.3), jpeg=(35, 85)):
+    """Camera-like degradations of a composited (or, with lighter settings, a real) crop."""
+    img = np.asarray(img, np.float32)
     # table drift and calibration error: small shift and scale
     h, w = img.shape[:2]
     M = cv2.getRotationMatrix2D((w / 2, h / 2), rnd.uniform(-1.5, 1.5), rnd.uniform(0.96, 1.04)); M[:, 2] += [rnd.uniform(-6, 6), rnd.uniform(-6, 6)]
     img = cv2.warpAffine(img, M, (w, h), borderMode=cv2.BORDER_REFLECT)
     # camera softness, colour, noise, compression
-    img = cv2.GaussianBlur(img, (0, 0), rnd.uniform(0.4, 1.3))
+    img = cv2.GaussianBlur(img, (0, 0), rnd.uniform(*blur))
     hsv = cv2.cvtColor(np.clip(img, 0, 255).astype(np.uint8), cv2.COLOR_BGR2HSV).astype(np.float32)
     hsv[..., 0] = (hsv[..., 0] + rnd.uniform(-4, 4)) % 180; hsv[..., 1] *= rnd.uniform(0.8, 1.25); hsv[..., 2] *= rnd.uniform(0.85, 1.15)
     img = cv2.cvtColor(np.clip(hsv, 0, 255).astype(np.uint8), cv2.COLOR_HSV2BGR).astype(np.float32)
     img += np.random.default_rng(rnd.randrange(1 << 30)).normal(0, rnd.uniform(1, 4), img.shape)
-    ok, buf = cv2.imencode(".jpg", np.clip(img, 0, 255).astype(np.uint8), [cv2.IMWRITE_JPEG_QUALITY, rnd.randint(35, 85)])
+    ok, buf = cv2.imencode(".jpg", np.clip(img, 0, 255).astype(np.uint8), [cv2.IMWRITE_JPEG_QUALITY, rnd.randint(*jpeg)])
     return cv2.imdecode(buf, cv2.IMREAD_COLOR)
