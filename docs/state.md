@@ -330,6 +330,10 @@
     silhouette search. Before/after: `validation/goalie-facing-fixed.jpg`.
   - **Correction:** the first run's synthetic validation was all E (seeds ending in 9 are odd).
   - **Open:** label precision not measured; test set small (88 crops); slot position not user-checked.
+- **First real goal to rebuild (2026-10-09, user's choice):** Nygård's three "Edwallskyffel lang" goals in game 2
+  (`docs/rebuild-g2-edwall.md`). Evidence packs (frames, puck track, goalie poses) are built; skater poses and a
+  frame-by-frame puck read come next. Goal review page (user labels, 25 of 40 so far):
+  https://claude.ai/artifact/8CQAfC4k7Qjrmnz573zLUT → `data/games/nm26-semifinal/goal-labels.json`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
