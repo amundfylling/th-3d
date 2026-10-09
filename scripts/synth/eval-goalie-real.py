@@ -1,6 +1,9 @@
 """Evaluate the pilot goalie-pose model on real NM26 crops (docs/synthetic-goalie-pilot.md).
 
-    /root/venvs/blender/bin/python scripts/synth/eval-goalie-real.py
+    /root/venvs/blender/bin/python scripts/synth/eval-goalie-real.py [out/synth/<name>.pt]
+
+A model other than out/synth/goalie-pose.pt writes out/synth/eval-real-<name>.json and
+validation/synth-goalie-pilot-real-<name>.jpg.
 
 There are no hand-labelled real poses (front/back cannot be judged reliably at this resolution). The checks are:
 1. silhouette agreement: the IoU-free soft F1 of the model's predicted pose silhouette against the real foreground,
@@ -16,12 +19,14 @@ import cv2, numpy as np, torch
 sys.path.insert(0, str(Path(__file__).resolve().parent)); sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import importlib.util
 spec = importlib.util.spec_from_file_location("tr", Path(__file__).resolve().parent / "train-goalie-pose.py"); tr = importlib.util.module_from_spec(spec)
+MODEL = sys.argv[1] if len(sys.argv) > 1 else "out/synth/goalie-pose.pt"
+SUF = "" if Path(MODEL).stem == "goalie-pose" else "-" + Path(MODEL).stem
 sys.argv = [sys.argv[0], "0"]; spec.loader.exec_module(tr)
 from fit_goalie import silhouette, column, foreground, fit, SLOT  # noqa: E402
 from nm26_common import frames, load, OUT  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-net = tr.model(); net.load_state_dict(torch.load(REPO / "out/synth/goalie-pose.pt")); net.eval()
+net = tr.model(); net.load_state_dict(torch.load(REPO / MODEL)); net.eval()
 plates = {e: cv2.imread(str(REPO / f"out/synth/plates/plate_{e}_raw.png")).astype(np.float32) for e in "WE"}
 cols = {e: column(e) for e in "WE"}
 slot_len = {e: float(np.linalg.norm(np.diff(SLOT[f"{e}-G"], axis=0), axis=1).sum()) for e in "WE"}
@@ -55,7 +60,7 @@ for c, crop, u, th in zip(C, crops, U, TH):
         v = crop.copy(); cnt, _ = cv2.findContours(silhouette(c["end"], u, th), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
         cv2.drawContours(v, cnt, -1, (0, 255, 0), 1); cv2.putText(v, f"th {th:.0f} f1 {fp:.2f}/{fb:.2f}", (2, 12), 0, 0.35, (0, 0, 0), 1)
         tiles.append(v[15:195, 10:190])
-cv2.imwrite(str(REPO / "validation/synth-goalie-pilot-real.jpg"), np.vstack([np.hstack(tiles[i:i + 8]) for i in range(0, 24, 8)]), [cv2.IMWRITE_JPEG_QUALITY, 85])
+cv2.imwrite(str(REPO / f"validation/synth-goalie-pilot-real{SUF}.jpg"), np.vstack([np.hstack(tiles[i:i + 8]) for i in range(0, 24, 8)]), [cv2.IMWRITE_JPEG_QUALITY, 85])
 # temporal smoothness: 10 s of continuous frames per end
 F = {f[0]: f for f in load(OUT / "g5/frames.json")}
 BOX = tr.json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())["goal_crop_boxes_video_px"]
@@ -77,5 +82,5 @@ summary = {"crops": len(rows), "pred_f1_median": round(float(np.median(R[:, 0]))
            "pred_f1_ge_90pct_of_search": round(float(np.mean(R[:, 0] >= 0.9 * R[:, 1])), 3),
            "du_mm_median": round(float(np.median(R[:, 2])), 1), "axis_diff_deg_median": round(float(np.median(R[:, 3])), 1),
            "axis_diff_le_20deg": round(float(np.mean(R[:, 3] <= 20)), 3), "temporal": temporal}
-json.dump({"summary": summary, "crops": rows}, open(REPO / "out/synth/eval-real.json", "w"), indent=1)
+json.dump({"summary": summary, "crops": rows}, open(REPO / f"out/synth/eval-real{SUF}.json", "w"), indent=1)
 print(json.dumps(summary, indent=1))

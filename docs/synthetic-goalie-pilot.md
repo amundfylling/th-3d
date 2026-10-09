@@ -70,14 +70,16 @@ scale 0.96-1.04, Gaussian blur σ 0.4-1.3, HSV jitter, noise, JPEG quality 35-85
   both ends).
 - Outputs u, sin θ and cos θ. Loss: L1 on u plus squared error on (sin, cos). AdamW, one-cycle learning rate,
   batch 32, CPU.
-- Validation: the renders with seed ending in 9 (500), composited with fixed randomness.
+- Validation: the renders with seed ending in 9, composited with fixed randomness. **Correction (found 2026-10-09):**
+  a seed ending in 9 is odd, so in the first run (even seeds W, odd E) all 500 validation renders were E. The first
+  run's synthetic numbers below are for the yellow goalie only. The white-goalie runs (section 5) validate both ends.
 
 ## 2. Results
 
 Run on 2026-10-09: 5,000 renders (4,500 train, 500 validation), 12 epochs, 2.5 min per epoch on 4 CPU cores.
 Numbers from `out/synth/train-report.json` and `out/synth/eval-real.json`.
 
-**Synthetic validation (composited renders the model never saw):**
+**Synthetic validation (composited renders the model never saw; E only, see the correction in 1E):**
 
 | Epoch | θ error median | θ error p90 | u error (mean) |
 | --- | --- | --- | --- |
@@ -85,7 +87,7 @@ Numbers from `out/synth/train-report.json` and `out/synth/eval-real.json`.
 | 6 | 2.5° | 6.9° | 0.053 |
 | 12 | **1.2°** | **3.1°** | **0.0097 (about 0.8 mm)** |
 
-So on its own data the model reads the pose almost exactly, front and back included.
+So on its own (yellow-goalie) renders the model reads the pose almost exactly, front and back included.
 
 **Real NM26 crops (120 crops, all seven games, 60 per end, every 15th frame).** There are no real labels, so these
 checks are indirect (`eval-goalie-real.py`):
@@ -155,8 +157,53 @@ model's facing (the mold's +x axis at heading home + θ). Labels with world head
 with a 9% flip rate concentrated in one pose. Slot position agrees with the silhouette search to 5 mm (not
 user-checked).
 
+### White-goalie fix (2026-10-09, at the user's request)
+
+**Cause.** Renders of the W goalie at the user's and the model's headings, next to the failing crops, show that the
+reference kit does not look like the NM26 W goalie: on the NM26 table it has blue legs and pads below a white jersey, a
+"1" on the back (reference print "FINLAND 31"), and a darker, more saturated blue. The user's labels match what the
+crops show (at about 103° the back faces the camera squarely; at 120-130° the goalie is turned with the "1" in view).
+
+**Changes:**
+- `render-goalie-crops.py ... W nm26`: the "nm26" kit for the W goalie. Kit faces below a jersey hem of 22, 26 or 30 mm
+  (picked at random) become blue; the reference kit is kept in 15%; the back print is the reference "1" alone
+  (`out/synth/textures/print_goalie_FIN_1.png`, generated); the blue is darker and more saturated, set from the real
+  crops (sRGB median (34, 57, 116) against the reference renders' (75, 96, 146)). The hem heights and colours are
+  traced by eye from broadcast crops: **assumed**, not measured on a figure.
+- 2,500 new W renders (`out/synth/train_w2`, seeds 10000-12499); the old W renders with the reference kit are left out
+  (`--drop-ref-w`). Training set: 2,000 E (first batch) + 2,250 W; validation 500 E + 250 W.
+- `train-goalie-pose.py --real-train`: the user's labelled crops of games 1, 2, 4 and 6 (112 crops) join training,
+  each repeated 6 times per epoch with light degradations; games 3, 5 and 7 (88 crops: 44 W, 44 E) are the real test
+  set. `--real-u-from`: slot-position targets for those crops from the renders-only model (without them the slot
+  output drifted on real images, see run B).
+
+**Results** (facing error against the user: median / 90th percentile / front-back wrong; "test" = games 3, 5, 7, whose
+labels no model saw; "slot" = median slot difference from the silhouette search, 120 crops; "jumps" = rotation steps
+over 90° in 10 s of game 5, 300 frames):
+
+| Model | Trained on | Test W | Test E | Slot W / E | Jumps W / E |
+| --- | --- | --- | --- | --- | --- |
+| First pilot (`goalie-pose.pt`) | reference-kit renders | 27° / 80° / 9% | 15° / 31° / 0% | 5.6 / 5.2 mm | 8 / 0 |
+| A (`goalie-pose-v2a.pt`) | renders, NM26 W kit | 14° / 40° / 0% | 13° / 35° / 0% | 4.2 / 6.1 mm | 4 / 0 |
+| B (`goalie-pose-v2b.pt`) | A + real labels (rotation only) | 5° / 18° / 0% | 5° / 15° / 0% | 12.4 / 7.0 mm | 0 / 0 |
+| **C (`goalie-pose-v2c.pt`)** | **A + real labels + slot targets from A** | **5° / 16° / 0%** | **5° / 16° / 0%** | **4.2 / 6.2 mm** | **0 / 0** |
+
+- **The kit fix alone (A, still no real labels) removes the white end's front/back failures:** 0% flipped in the test
+  games (1 of 100 over all W crops), the median halves to 14°, and the −11° W bias drops to −2.5°.
+- **A hundred labelled crops then bring both ends to about 5°** (C): about the precision a single tap allows. In
+  10 s of continuous video the W rotation no longer jumps (rotation step p95 9°, was 31°).
+- **C is the model to use.** B reads the rotation as well but its slot position scatters on real W crops (12 mm from
+  the search); C keeps A's slot accuracy.
+- Before/after on the 12 largest first-pilot errors in the test games: `validation/goalie-facing-fixed.jpg` (user pink,
+  model green); the worst went from 115° to 2°. Silhouette overlays of C: `validation/synth-goalie-pilot-real-goalie-pose-v2c.jpg`.
+- Numbers: `out/synth/facing-eval-goalie-pose-v2c.json`, `out/synth/eval-real-goalie-pose-v2c.json` (and -v2a, -v2b),
+  training logs `out/synth/goalie-pose-v2*-report.json`. Over all 200 crops C is at 2.6° (W) and 2.8° (E), but half of
+  those were training labels; only the test numbers above are fair.
+
 ## 3. Limitations
 
+- **Small real test set.** 44 crops per end from three games; the same table, figures and camera as the training
+  labels. A new event or table needs new plates, a kit check and some labels.
 - **One labeller, one pass.** The 200 facing labels are the user's single taps; their precision is not measured, and
   the slot position has no user labels.
 - **The silhouette search is not ground truth.** It uses the same model mesh and the same camera, so a shared error
@@ -170,9 +217,7 @@ user-checked).
 
 1. **Real labels: done** (2026-10-09; label page https://claude.ai/artifact/PZYZ99CUBmmQkp8pjKnbr6, built by
    `scripts/synth/goalie-facing-page.py`, crop list `data/games/nm26-semifinal/goalie-facing-crops.json`).
-2. **White end:** check the W goalie's back print and kit in the renders against the failure pose
-   (`validation/goalie-facing-worst.jpg`), render more of that pose, and fine-tune on part of the 200 labelled crops
-   (keeping the rest for testing).
+2. **White end: done** (section "White-goalie fix"; model C, `out/synth/goalie-pose-v2c.pt`).
 3. **Temporal model:** smooth the per-frame output (or predict from 3-5 frames) to remove the front/back jumps.
 4. **Then skaters:** the same pipeline per slot, with occlusion by the neighbouring figures; that is the step that
    would feed figure poses into the pass map and into Remotion reconstructions of real NM26 plays.

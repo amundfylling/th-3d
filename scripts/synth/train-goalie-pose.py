@@ -7,7 +7,8 @@ Options (defaults reproduce the first pilot run): --renders, render directories 
 --drop-ref-w, leave out W renders made with the reference kit (the white end fix, kit "nm26" in the labels);
 --real-train, add the user-labelled real crops of these games (data/games/nm26-semifinal/goalie-facing-labels.json;
 rotation loss only, u unlabelled; the other games' labelled crops are the real test set reported each epoch);
---out, model file name under out/synth (default goalie-pose; the report is <name>-report.json, or train-report.json).
+--real-u-from <model.pt>, slot-position targets for the real training crops from that model's predictions (without
+it, real crops train the rotation only and the slot output drifts on real images); --out, model file name under out/synth (default goalie-pose; the report is <name>-report.json, or train-report.json).
 
 Input: out/synth/train/<seed>.png (RGBA renders) + labels.jsonl, composited on the fly onto the real clean plates
 (scripts/synth/compose.py). Output: out/synth/goalie-pose.pt and out/synth/train-report.json.
@@ -85,13 +86,14 @@ class DS(torch.utils.data.Dataset):
 
 class RealDS(torch.utils.data.Dataset):
     """Labelled real crops, lightly degraded (they are already broadcast frames); the 4th target (u weight) is 0."""
-    def __init__(self, items, train, repeat=1): self.items, self.train, self.repeat = items, train, repeat
+    def __init__(self, items, train, repeat=1, u=None): self.items, self.train, self.repeat, self.u = items, train, repeat, u
     def __len__(self): return len(self.items) * self.repeat
     def __getitem__(self, i):
         img, end, th, _, _ = self.items[i % len(self.items)]
         if self.train: img = degrade(img, random.Random(np.random.randint(1 << 30)), blur=(0.01, 0.6), jpeg=(60, 92))
         th = math.radians(th)
-        return to_tensor(img, end), torch.tensor([0.0, math.sin(th), math.cos(th), 0.0], dtype=torch.float32)
+        uu = self.u[i % len(self.items)] if self.u is not None else 0.0
+        return to_tensor(img, end), torch.tensor([uu, math.sin(th), math.cos(th), 1.0 if self.u is not None else 0.0], dtype=torch.float32)
 
 
 def model():
@@ -109,8 +111,11 @@ if __name__ == "__main__":
     net = model(); opt = torch.optim.AdamW(net.parameters(), 1e-3, weight_decay=1e-4)
     real = real_labelled() if (REAL_TRAIN or "--real-train" in A) else []
     rtr = [r for r in real if r[3] in REAL_TRAIN]; rte = [r for r in real if r[3] not in REAL_TRAIN]
-    tds = DS(TR, True)
-    if rtr: tds = torch.utils.data.ConcatDataset([tds, RealDS(rtr, True, repeat=max(1, len(TR) // (6 * len(rtr))))])
+    tds = DS(TR, True); ru = None
+    if rtr and "--real-u-from" in A:
+        teacher = model(); teacher.load_state_dict(torch.load(REPO / A[A.index("--real-u-from") + 1])); teacher.eval()
+        with torch.no_grad(): ru = teacher(torch.stack([to_tensor(r[0], r[1]) for r in rtr]))[:, 0].clamp(0, 1).tolist()
+    if rtr: tds = torch.utils.data.ConcatDataset([tds, RealDS(rtr, True, repeat=max(1, len(TR) // (6 * len(rtr))), u=ru)])
     tl = torch.utils.data.DataLoader(tds, batch_size=32, shuffle=True, num_workers=3, persistent_workers=True)
     vl = torch.utils.data.DataLoader(DS(VAL, False), batch_size=64, num_workers=3)
     if not real and "--no-real-test" not in A: real = real_labelled(); rte = real

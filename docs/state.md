@@ -323,7 +323,13 @@
     https://claude.ai/artifact/PZYZ99CUBmmQkp8pjKnbr6 (`data/games/nm26-semifinal/goalie-facing-labels.json`,
     `scripts/synth/goalie-facing-eval.py`). Model facing error: median 19° (E 14°, W 23°); front/back wrong in 4.5%
     (E 0%, W 9%, one recurring W pose: `validation/goalie-facing-worst.jpg`).
-  - **Open:** the W failure pose and −11° W bias; label precision not measured.
+  - **White-goalie fix (2026-10-09, user request):** the NM26 W goalie has blue legs/pads, a "1" back print and a darker
+    blue (renderer option `W nm26`, assumed from crops); 2,500 new W renders; model C (`out/synth/goalie-pose-v2c.pt`,
+    renders + the user's labels of games 1, 2, 4, 6, slot targets from the renders-only model). On the held-out games
+    3, 5, 7: facing median 5° at both ends, no front/back errors, no jumps in 10 s of video; slot within 4-6 mm of the
+    silhouette search. Before/after: `validation/goalie-facing-fixed.jpg`.
+  - **Correction:** the first run's synthetic validation was all E (seeds ending in 9 are odd).
+  - **Open:** label precision not measured; test set small (88 crops); slot position not user-checked.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
