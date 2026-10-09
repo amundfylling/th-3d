@@ -319,9 +319,11 @@
   - **Results:** synthetic validation θ median 1.2°, u error 0.8 mm. On 120 real crops (no labels): slot position
     agrees with a silhouette search to 5 mm median; rotation axis 12° at E (yellow) but 31° at W (white), with
     front/back jumps at W. Overlay `validation/synth-goalie-pilot-real.jpg`.
-  - **Open:** real front/back labels: the label page https://claude.ai/artifact/PZYZ99CUBmmQkp8pjKnbr6
-    (`validation/goalie-facing-review.html`, 200 crops, db collection `facing`) waits for the user's taps; the white
-    kit's domain gap.
+  - **User labels (2026-10-09):** the user marked the facing of all 200 crops on the label page
+    https://claude.ai/artifact/PZYZ99CUBmmQkp8pjKnbr6 (`data/games/nm26-semifinal/goalie-facing-labels.json`,
+    `scripts/synth/goalie-facing-eval.py`). Model facing error: median 19° (E 14°, W 23°); front/back wrong in 4.5%
+    (E 0%, W 9%, one recurring W pose: `validation/goalie-facing-worst.jpg`).
+  - **Open:** the W failure pose and −11° W bias; label precision not measured.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.

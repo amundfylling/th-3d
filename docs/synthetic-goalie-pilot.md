@@ -118,18 +118,47 @@ misses are in the outline's width (which way the blocker and catcher point), mos
   smooth with no jumps. At W it agrees to 31° and the sequence jumps by more than 90° eight times in 10 s: the model
   hesitates between front and back. The white kit on white ice is the hard case: the plate and render contrast are
   low, and the real white figure is bluer and glossier than the render.
-- **Front and back are not checked on real crops.** Neither the search nor the eye can tell them apart reliably, so the
-  real accuracy of the most important part (which way the goalie faces) is unknown.
+- **Front and back:** see the user labels below.
 - **The domain gap is real but not large.** Synthetic validation gives 1.2°; real agreement with the search is 12-31°.
   Part of that is the search's own error (its median F1 is only 0.50).
 
-**Verdict (PROPOSED):** the pipeline works end to end and, with no hand labels, already gives the goalie's slot position
-reliably and the E goalie's rotation axis. It is not yet good enough to state which way the W goalie faces.
+### Real accuracy against the user's labels (2026-10-09)
+
+The user marked all 200 crops on the label page (`validation/goalie-facing-review.html`): a tap on the ice in the
+direction the goalie faces (chest and mask), none marked "can't tell". `scripts/synth/goalie-facing-eval.py` maps the
+tap and the pivot to the ice through the reference camera (taps lie a median 54 mm from the pivot) and compares the
+model's facing (the mold's +x axis at heading home + θ). Labels with world headings:
+`data/games/nm26-semifinal/goalie-facing-labels.json`.
+
+| Facing error against the user | W (white/blue) | E (yellow) | All |
+| --- | --- | --- | --- |
+| **Model:** median | 23° | 14° | 19° |
+| Model: 90th percentile | 84° | 35° | 51° |
+| Model: within 20° / within 45° | 42% / 78% | 65% / 95% | 54% / 87% |
+| **Model: front and back wrong (error over 90°)** | **9%** | **0%** | **4.5%** |
+| Model: mean signed error (crops within 90°) | −11° | +1° | |
+| Silhouette search (120 crops): median / front-back wrong | 48° / 37% | 25° / 20% | 40° / 28% |
+
+- **The model reads front and back.** It agrees with the user on front/back in 191 of 200 crops, which the silhouette
+  search cannot (it gets 28% backwards). So the model learned more from the renders than the outline alone: the
+  mask, the back print and the shading.
+- **E (yellow) works:** median 14°, no flips, no bias. That is close to what a tap label can resolve.
+- **W (white) has one failure pattern** (`validation/goalie-facing-worst.jpg`, the 16 largest errors, all at W; user
+  pink, model green): the goalie turned with its back to the camera and towards its own goal's far post, the number on
+  its back in view. The user marks it facing up and to the left (away from the camera, towards the cage); the model says
+  it faces the rink (+x). The same pose recurs across games 3-7, so it is a systematic error, not noise. The W crops also
+  carry a −11° bias (the model turns the goalie clockwise of the user's direction).
+- **Label precision is not measured.** A tap 5 mm off at 54 mm from the pivot is about 5°; no crop was marked twice.
+
+**Verdict (PROPOSED, now with real labels):** trained only on renders, the model gives the goalie's facing to a median
+19° and gets front and back right in 95.5% of real crops: the yellow goalie to 14° with no flips, the white goalie to 23°
+with a 9% flip rate concentrated in one pose. Slot position agrees with the silhouette search to 5 mm (not
+user-checked).
 
 ## 3. Limitations
 
-- **No real labels.** Front and back of the goalie cannot be told apart reliably by eye at about 88 px, so the real
-  checks compare the axis only (folded to 0-90°) and the silhouette. A real accuracy needs labelled crops.
+- **One labeller, one pass.** The 200 facing labels are the user's single taps; their precision is not measured, and
+  the slot position has no user labels.
 - **The silhouette search is not ground truth.** It uses the same model mesh and the same camera, so a shared error
   (camera height, mesh) passes both. Its own median best F1 is only 0.50 on real crops (hands, sticks, plate remnants, blur).
 - **Assumptions:** the camera (one degree of freedom fixed), the pivot on the slot centreline, the 54 mm goalie mesh
@@ -139,14 +168,11 @@ reliably and the E goalie's rotation axis. It is not yet good enough to state wh
 
 ## 4. Next steps
 
-1. **Real labels (needs the user, about 15 minutes; page published 2026-10-09):** the label page
-   https://claude.ai/artifact/PZYZ99CUBmmQkp8pjKnbr6 (`validation/goalie-facing-review.html`, built by
-   `scripts/synth/goalie-facing-page.py`; crop list `data/games/nm26-semifinal/goalie-facing-crops.json`) shows 200 real
-   crops (the 120 evaluation crops plus 40 more per end); the user taps the ice where the goalie faces. Original plan: a click page with about 100 real crops per end where the user
-   marks the goalie's facing (and corrects obviously wrong outlines). That gives the first real accuracy and
-   settles front/back.
-2. **White end:** render the white kit closer to the real one (bluer white, more gloss), add hands and arms over the
-   goal (the real occluders), and fine-tune on the labelled real crops.
+1. **Real labels: done** (2026-10-09; label page https://claude.ai/artifact/PZYZ99CUBmmQkp8pjKnbr6, built by
+   `scripts/synth/goalie-facing-page.py`, crop list `data/games/nm26-semifinal/goalie-facing-crops.json`).
+2. **White end:** check the W goalie's back print and kit in the renders against the failure pose
+   (`validation/goalie-facing-worst.jpg`), render more of that pose, and fine-tune on part of the 200 labelled crops
+   (keeping the rest for testing).
 3. **Temporal model:** smooth the per-frame output (or predict from 3-5 frames) to remove the front/back jumps.
 4. **Then skaters:** the same pipeline per slot, with occlusion by the neighbouring figures; that is the step that
    would feed figure poses into the pass map and into Remotion reconstructions of real NM26 plays.
