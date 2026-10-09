@@ -1,0 +1,177 @@
+<title>NM26 Goal Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: one-column phone tool. Clip on top, controls under the thumb, the questions as chip rows, the goal grid last. */
+:root {
+  --ice: #f3f6f9; --panel: #ffffff; --ink: #14202b; --muted: #5a6977; --line: #d5dee6;
+  --blue: #1f4fa3; --mark: #e0157a; --ok: #1d7f4e; --warn: #b26a00; --yellow: #b8860b;
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --ice: #0f161d; --panel: #17212b; --ink: #e7eef4; --muted: #94a3b1; --line: #2a3846;
+  --blue: #7fa8ee; --mark: #ff4fa3; --ok: #4cc08a; --warn: #f0a640; --yellow: #f2c14e; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --ice: #0f161d; --panel: #17212b; --ink: #e7eef4; --muted: #94a3b1; --line: #2a3846;
+  --blue: #7fa8ee; --mark: #ff4fa3; --ok: #4cc08a; --warn: #f0a640; --yellow: #f2c14e; color-scheme: dark }
+html, body { background: var(--ice); color: var(--ink); }
+body { font: 16px/1.45 var(--body); padding-inline: 16px; padding-block: 12px 32px; }
+main { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+header { display: flex; flex-direction: column; gap: 6px; }
+h1 { font: 700 1.7rem/1 var(--display); letter-spacing: .02em; margin: 0; text-transform: uppercase; }
+h2 { font: 700 1.05rem var(--display); letter-spacing: .05em; text-transform: uppercase; margin: 0; color: var(--muted); }
+.count { font: 600 1.05rem var(--display); color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .03em; }
+.bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--blue); transition: width .2s; }
+.how { margin: 0; color: var(--muted); font-size: .95rem; }
+.how b { color: var(--ink); font-weight: 600; }
+.title { display: flex; flex-direction: column; gap: 2px; }
+.title .who { font: 700 1.35rem/1.15 var(--display); letter-spacing: .02em; }
+.title .who.W { color: var(--blue); } .title .who.E { color: var(--yellow); }
+.title .sub { color: var(--muted); font-size: .92rem; font-variant-numeric: tabular-nums; }
+video { width: 100%; max-width: 100%; aspect-ratio: 1024 / 376; background: #000; border-radius: 6px; display: block; }
+.tbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.time { font: 600 1.1rem var(--display); font-variant-numeric: tabular-nums; min-width: 6.5em; }
+.q { display: flex; flex-direction: column; gap: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: 600 1rem var(--display); letter-spacing: .04em; text-transform: uppercase; border-radius: 8px; padding: 11px 12px; border: 1.5px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+button.small { padding: 8px 10px; font-size: .95rem; }
+button.on { background: var(--blue); border-color: var(--blue); color: var(--panel); }
+button.primary { background: var(--mark); border-color: var(--mark); color: #fff; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--mark); outline-offset: 2px; }
+.marked { color: var(--ok); font-weight: 600; }
+input[type=text], textarea { font: 16px var(--body); width: 100%; box-sizing: border-box; border: 1.5px solid var(--line); border-radius: 8px; padding: 10px; background: var(--panel); color: var(--ink); }
+textarea { min-height: 60px; resize: vertical; }
+.actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.state { min-height: 1.4em; font-size: .95rem; color: var(--muted); }
+.state.saved { color: var(--ok); } .state.bad { color: var(--warn); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 6px; }
+.cell { padding: 6px 2px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); font: 600 .8rem var(--display); color: var(--muted); letter-spacing: .02em; }
+.cell.done { background: var(--ok); border-color: var(--ok); color: var(--panel); }
+.cell.cur { outline: 2px solid var(--mark); outline-offset: 1px; }
+.note { border: 1.5px solid var(--warn); border-radius: 8px; padding: 10px 12px; font-size: .95rem; }
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+</style>
+
+<main>
+  <header>
+    <h1>NM26 goals</h1>
+    <div class="count" id="count">0 of 0 reviewed</div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <p class="how">Each clip ends just after the score box changes; the goal is before that. Play it, pause when the puck crosses the goal line and press <b>Goal is now</b>. Then pick the scorer, the last pass and the kind of attack. Skip any question you can't answer.</p>
+  <div class="note" id="dbnote" hidden>Your answers can't be saved in this view. Open the page in the Claude app while signed in.</div>
+
+  <div class="title"><span class="who" id="who"></span><span class="sub" id="sub"></span></div>
+  <video id="vid" controls playsinline muted preload="metadata"></video>
+  <div class="tbar">
+    <span class="time" id="time">0.0 s</span>
+    <button class="small" type="button" data-step="-1">−1 s</button>
+    <button class="small" type="button" data-step="-0.1">−0.1</button>
+    <button class="small" type="button" data-step="0.1">+0.1</button>
+    <button class="small" type="button" id="speed">Speed 1×</button>
+  </div>
+  <div class="tbar">
+    <button type="button" class="primary" id="mark">Goal is now</button>
+    <span id="marked" class="marked"></span>
+  </div>
+
+  <div class="q"><h2>Scorer</h2><div class="chips" id="scorer"></div></div>
+  <div class="q"><h2>Last pass from</h2><div class="chips" id="assist"></div></div>
+  <div class="q"><h2>Kind of attack</h2><div class="chips" id="family"></div></div>
+  <div class="q"><h2>Combination (optional)</h2>
+    <input type="text" id="combo" list="names" placeholder="e.g. Skyffel, Spjass, Näcka" autocomplete="off">
+    <datalist id="names"></datalist>
+  </div>
+  <div class="q"><h2>3D video</h2><div class="chips"><button type="button" id="rebuild">Good one to rebuild in 3D</button></div></div>
+  <div class="q"><h2>Notes (optional)</h2><textarea id="notes" placeholder="Anything odd: two goals, a deflection, a hand in the way…"></textarea></div>
+
+  <div class="state" id="state"></div>
+  <div class="actions">
+    <button type="button" id="prev">‹ Prev</button>
+    <button type="button" class="on" id="save">Save</button>
+    <button type="button" id="next">Next ›</button>
+  </div>
+  <h2>All goals</h2>
+  <div class="grid" id="grid"></div>
+</main>
+
+<script>
+const D = [{"id":"g1-goal1","game":"1","n":1,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"1:10","src":"clips/g1-goal1.mp4"},{"id":"g1-goal2","game":"1","n":2,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"1:13","src":"clips/g1-goal2.mp4"},{"id":"g1-goal3","game":"1","n":3,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"2:39","src":"clips/g1-goal3.mp4"},{"id":"g1-goal4","game":"1","n":4,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"3:32","src":"clips/g1-goal4.mp4"},{"id":"g1-goal5","game":"1","n":5,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"3:41","src":"clips/g1-goal5.mp4"},{"id":"g1-goal6","game":"1","n":6,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"4:27","src":"clips/g1-goal6.mp4"},{"id":"g1-goal7","game":"1","n":7,"scorer":"Fjermestad","end":"E","ot":true,"box":30.0,"clock":"8:31","src":"clips/g1-goal7.mp4"},{"id":"g2-goal1","game":"2","n":1,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"1:51","src":"clips/g2-goal1.mp4"},{"id":"g2-goal2","game":"2","n":2,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"2:37","src":"clips/g2-goal2.mp4"},{"id":"g2-goal3","game":"2","n":3,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"2:56","src":"clips/g2-goal3.mp4"},{"id":"g2-goal4","game":"2","n":4,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"3:07","src":"clips/g2-goal4.mp4"},{"id":"g3-goal1","game":"3","n":1,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"0:42","src":"clips/g3-goal1.mp4"},{"id":"g3-goal2","game":"3","n":2,"scorer":"Fjermestad","end":"W","ot":false,"box":30.0,"clock":"0:52","src":"clips/g3-goal2.mp4"},{"id":"g3-goal3","game":"3","n":3,"scorer":"Fjermestad","end":"W","ot":false,"box":30.0,"clock":"1:12","src":"clips/g3-goal3.mp4"},{"id":"g3-goal4","game":"3","n":4,"scorer":"Fjermestad","end":"W","ot":false,"box":30.0,"clock":"2:35","src":"clips/g3-goal4.mp4"},{"id":"g3-goal5","game":"3","n":5,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"2:57","src":"clips/g3-goal5.mp4"},{"id":"g3-goal6","game":"3","n":6,"scorer":"Fjermestad","end":"W","ot":false,"box":30.0,"clock":"3:09","src":"clips/g3-goal6.mp4"},{"id":"g3-goal7","game":"3","n":7,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"3:34","src":"clips/g3-goal7.mp4"},{"id":"g3-goal8","game":"3","n":8,"scorer":"Fjermestad","end":"W","ot":false,"box":30.0,"clock":"4:41","src":"clips/g3-goal8.mp4"},{"id":"g4-goal1","game":"4","n":1,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"1:35","src":"clips/g4-goal1.mp4"},{"id":"g4-goal2","game":"4","n":2,"scorer":"Fjermestad","end":"W","ot":false,"box":30.0,"clock":"4:43","src":"clips/g4-goal2.mp4"},{"id":"g4-goal3","game":"4","n":3,"scorer":"Fjermestad","end":"W","ot":false,"box":30.0,"clock":"4:48","src":"clips/g4-goal3.mp4"},{"id":"g4-goal4","game":"4","n":4,"scorer":"Nygård","end":"E","ot":true,"box":30.0,"clock":"5:08","src":"clips/g4-goal4.mp4"},{"id":"g5-goal1","game":"5","n":1,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"0:33","src":"clips/g5-goal1.mp4"},{"id":"g5-goal2","game":"5","n":2,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"1:13","src":"clips/g5-goal2.mp4"},{"id":"g5-goal3","game":"5","n":3,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"3:24","src":"clips/g5-goal3.mp4"},{"id":"g5-goal4","game":"5","n":4,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"3:58","src":"clips/g5-goal4.mp4"},{"id":"g5-goal5","game":"5","n":5,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"4:12","src":"clips/g5-goal5.mp4"},{"id":"g5-goal6","game":"5","n":6,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"4:45","src":"clips/g5-goal6.mp4"},{"id":"g5-goal7","game":"5","n":7,"scorer":"Fjermestad","end":"E","ot":true,"box":30.0,"clock":"5:57","src":"clips/g5-goal7.mp4"},{"id":"g6-goal1","game":"6","n":1,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"0:33","src":"clips/g6-goal1.mp4"},{"id":"g6-goal2","game":"6","n":2,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"2:05","src":"clips/g6-goal2.mp4"},{"id":"g6-goal3","game":"6","n":3,"scorer":"Fjermestad","end":"W","ot":false,"box":30.0,"clock":"2:16","src":"clips/g6-goal3.mp4"},{"id":"g6-goal4","game":"6","n":4,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"2:55","src":"clips/g6-goal4.mp4"},{"id":"g6-goal5","game":"6","n":5,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"3:31","src":"clips/g6-goal5.mp4"},{"id":"g6-goal6","game":"6","n":6,"scorer":"Nygård","end":"E","ot":false,"box":30.0,"clock":"3:47","src":"clips/g6-goal6.mp4"},{"id":"g7-goal1","game":"7","n":1,"scorer":"Nygård","end":"W","ot":false,"box":30.0,"clock":"2:09","src":"clips/g7-goal1.mp4"},{"id":"g7-goal2","game":"7","n":2,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"2:27","src":"clips/g7-goal2.mp4"},{"id":"g7-goal3","game":"7","n":3,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"3:48","src":"clips/g7-goal3.mp4"},{"id":"g7-goal4","game":"7","n":4,"scorer":"Fjermestad","end":"E","ot":false,"box":30.0,"clock":"4:22","src":"clips/g7-goal4.mp4"}];
+const NAMES = ["Agdur", "Agduro", "Bacalao", "Bedehus-Smygar / Tysk Smygar", "Brustadbu", "Burkgurk", "Burkgurkskyffel", "Direkteskudd", "EMoe-smyger", "Edwall-innspill", "Edwallskyffel kort", "Edwallskyffel lang", "Fakie Agdur", "Fakie Forulemping", "Fakie Gutshot", "Fakie Gutshot-Hansen", "Fakie Halv-Agdur", "Fakie Harlem Shuffle", "Fakie Horvath", "Fakie Invers Agduro", "Fakie Invers Halv-Agduro", "Fakie Invers Kano", "Fakie Jon Spesial / Korabel", "Fakie Karusell", "Fakie Lang-Agdur", "Fakie Lillstøvel", "Fakie Mors Kök / Fars Kök", "Fakie Näcka", "Fakie Omvendspjass", "Fakie Senter-Ceuleman", "Fakie Senter-Karusell", "Fakie Senter-Rokkade", "Fakie Senter-Velodrom", "Fakie Senterkniv", "Fakie Spjass", "Fakie Tomahawk", "Fakie Veggdyr", "Fakie Velodrom", "Fakie Zorro", "Fakie kniv", "Fakie lang-kniv", "Furious G", "Gangsøyskyffel kort", "Gangsøyskyffel lang", "General Reiersen", "Gretzky", "Hagerup", "Halv-Agdur", "Hjerpe", "Hjerpefinte", "Holmin", "Holms", "Holms-Gretzky", "Horvath", "Hælskyffel kort", "Hælskyffel lang", "Invers Agduro", "Invers Halv-Agduro", "Invers Kano", "Invers Kryssar", "Invers Kryssar med Karusell", "Invers Kryssar med Velodrom", "Invers Kryssar med innspill", "Invers Rookierokkade", "Invers Smygero / Eidsneskølle", "Jorda Rundt", "Jorda Rundt-skyffel", "Langorv", "Lille Trille", "Lillhæl", "Lillstøvel", "Lillstøvelfinte / C 29", "Lindahl-innspill", "Lindahlskyffel kort", "Lindahlskyffel lang", "Lønnskipp", "Maltzev / Smygar", "Marcus Andersson", "Mission Impossible 2", "Mission Impossible 3", "Newton", "Nuttunen", "Nuttunen goes useless", "Nuttunenslegga", "Näcka", "Näckafinte", "Omvendspjass", "Omvendspjassfinte", "Pettersonskyffel", "Rambokniv", "Reiersen", "Reiersen på bærtur", "Senter-Backnäcka", "Senter-Ceuleman", "Senter-Karusell", "Senter-Rokkade", "Senter-Velodrom", "Senterkiosk", "Senterkniv", "Senterknivo", "Silis-innspill", "Skalpell", "Smygero", "Snik", "Snok / Mexikaner", "Spade", "Spjass", "Spjass-Horvath", "Spjassfinte", "Søren", "Sørenfinte", "Tomahawk", "Truls", "Tryykari kort", "Tryykari lang", "Tryykarifinte", "Tønsbergslegga", "Veggdyr", "Veggskyffel", "Wilkens", "Østerman-innspill"];
+const ROLES = [["LW", "Left wing"], ["RW", "Right wing"], ["C", "Centre"], ["LD", "Left def."], ["RD", "Right def."], ["G", "Goalie"]];
+const SCORER = [...ROLES, ["own", "Own goal"], ["unknown", "Can't tell"]];
+const ASSIST = [...ROLES, ["none", "No pass"], ["unknown", "Can't tell"]];
+const FAMILY = [["shovel", "Shovel (RW → C)"], ["centrifuge", "Centrifuge (LW → C)"], ["behind", "Behind the goal / velodrome"],
+  ["wing", "Wing shoots itself"], ["centre", "Centre trick"], ["defence", "Shot from defence"], ["rebound", "Rebound / scramble"],
+  ["counter", "Counter / quick break"], ["faceoff", "From the face-off"], ["other", "Other"]];
+const answers = {};
+let cur = 0, db = null, form = {};
+const $ = (id) => document.getElementById(id);
+const vid = $("vid");
+
+function chips(box, opts, key) {
+  box.replaceChildren();
+  for (const [v, label] of opts) {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.dataset.v = v;
+    b.onclick = () => { form[key] = form[key] === v ? null : v; paint(); }; box.appendChild(b);
+  }
+}
+chips($("scorer"), SCORER, "scorer"); chips($("assist"), ASSIST, "assist"); chips($("family"), FAMILY, "family");
+$("names").replaceChildren(...NAMES.map((n) => { const o = document.createElement("option"); o.value = n; return o; }));
+
+function paint() {
+  for (const k of ["scorer", "assist", "family"]) for (const b of $(k).children) b.classList.toggle("on", form[k] === b.dataset.v);
+  $("rebuild").classList.toggle("on", !!form.rebuild);
+  $("marked").textContent = form.goal_clip_s != null ? `Goal marked at ${form.goal_clip_s.toFixed(1)} s` : "";
+}
+function say(t, cls) { $("state").className = "state" + (cls ? " " + cls : ""); $("state").textContent = t; }
+function show(i) {
+  cur = (i + D.length) % D.length; const g = D[cur], a = answers[g.id];
+  const team = g.end === "W" ? "white/blue, left end" : "yellow, right end";
+  $("who").textContent = `Game ${g.game} · goal ${g.n}: ${g.scorer}`; $("who").className = "who " + g.end;
+  $("sub").textContent = `${team} · clock ${g.clock}${g.ot ? " · overtime" : ""} · score box changes at ${g.box} s`;
+  if (vid.dataset.src !== g.src) { vid.src = g.src; vid.dataset.src = g.src; vid.playbackRate = speeds[sp]; }
+  form = a ? { ...a } : {}; $("combo").value = form.combination || ""; $("notes").value = form.notes || "";
+  paint(); say(a ? "Saved. Change anything and save again." : "", a ? "saved" : ""); grid();
+}
+function grid() {
+  const g = $("grid");
+  if (!g.children.length) D.forEach((x, i) => { const b = document.createElement("button"); b.type = "button"; b.className = "cell"; b.textContent = `G${x.game} #${x.n}`; b.onclick = () => show(i); g.appendChild(b); });
+  D.forEach((x, i) => { g.children[i].className = "cell" + (answers[x.id] ? " done" : "") + (i === cur ? " cur" : ""); });
+  const n = D.filter((x) => answers[x.id]).length;
+  $("count").textContent = `${n} of ${D.length} reviewed`; $("barfill").style.width = `${(100 * n) / D.length}%`;
+}
+const speeds = [1, 0.5, 0.25]; let sp = 0;
+$("speed").onclick = () => { sp = (sp + 1) % speeds.length; vid.playbackRate = speeds[sp]; $("speed").textContent = `Speed ${speeds[sp]}×`; };
+document.querySelectorAll("[data-step]").forEach((b) => { b.onclick = () => { vid.pause(); vid.currentTime = Math.max(0, vid.currentTime + Number(b.dataset.step)); }; });
+vid.addEventListener("timeupdate", () => { $("time").textContent = `${vid.currentTime.toFixed(1)} s`; });
+vid.addEventListener("seeked", () => { $("time").textContent = `${vid.currentTime.toFixed(1)} s`; });
+$("mark").onclick = () => { vid.pause(); form.goal_clip_s = Math.round(vid.currentTime * 10) / 10; paint(); say("Moment marked. Answer what you can, then save."); };
+$("rebuild").onclick = () => { form.rebuild = !form.rebuild; paint(); };
+
+async function save() {
+  const g = D[cur];
+  const doc = { id: g.id, game: g.game, n: g.n, goal_clip_s: form.goal_clip_s ?? null, scorer: form.scorer ?? null, assist: form.assist ?? null,
+    family: form.family ?? null, combination: $("combo").value.trim() || null, rebuild: !!form.rebuild, notes: $("notes").value.trim() || null, at: new Date().toISOString() };
+  if (!db) { say("Not saved: this view has no storage.", "bad"); return; }
+  try { await db.collection("goals").doc(g.id).set(doc); answers[g.id] = doc; const j = D.findIndex((x, k) => k > cur && !answers[x.id]); show(j >= 0 ? j : cur + 1); }
+  catch (e) { say(`Not saved (${e && e.code ? e.code : "error"}). Try again.`, "bad"); }
+}
+$("save").onclick = save;
+$("prev").onclick = () => show(cur - 1);
+$("next").onclick = () => show(cur + 1);
+
+show(0);
+(async () => {
+  try { db = await window.claude?.use?.("db"); } catch { db = null; }
+  if (!db) { $("dbnote").hidden = false; return; }
+  let first = true;
+  db.collection("goals").onSnapshot((snap) => {
+    for (const k of Object.keys(answers)) delete answers[k];
+    for (const d of snap.docs) { const x = d.data(); if (x && x.id) answers[x.id] = x; }
+    if (first) { first = false; const j = D.findIndex((x) => !answers[x.id]); show(j >= 0 ? j : 0); } else grid();
+  }, () => {});
+})();
+</script>
