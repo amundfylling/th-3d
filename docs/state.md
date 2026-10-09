@@ -330,6 +330,10 @@
     silhouette search. Before/after: `validation/goalie-facing-fixed.jpg`.
   - **Correction:** the first run's synthetic validation was all E (seeds ending in 9 are odd).
   - **Open:** label precision not measured; test set small (88 crops); slot position not user-checked.
+- **Skater poses (2026-10-09, `docs/synthetic-goalie-pilot.md` section 5, PROPOSED):** 6,000 skater renders (NM26 kit
+  blue), the user's 352 real skater labels, model v2b (`out/synth/skater-pose-v2b.pt`, predicts the pivot pixel and
+  the rotation). On held-out games 3, 5, 7: rotation 7° median, no front/back errors, slot position 1.3 mm from the
+  user's feet taps. Sheet `validation/skater-pose-v2b-real.jpg`. Next: run it over the Edwall hat-trick frames.
 - **First real goal to rebuild (2026-10-09, user's choice):** Nygård's three "Edwallskyffel lang" goals in game 2
   (`docs/rebuild-g2-edwall.md`). Evidence packs (frames, puck track, goalie poses) are built; skater poses and a
   frame-by-frame puck read come next. Goal review page (user labels, 25 of 40 so far):

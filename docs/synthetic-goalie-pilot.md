@@ -221,3 +221,50 @@ over 90° in 10 s of game 5, 300 frames):
 3. **Temporal model:** smooth the per-frame output (or predict from 3-5 frames) to remove the front/back jumps.
 4. **Then skaters:** the same pipeline per slot, with occlusion by the neighbouring figures; that is the step that
    would feed figure poses into the pass map and into Remotion reconstructions of real NM26 plays.
+
+## 5. Skaters (2026-10-09, at the user's request)
+
+The same approach for the ten skaters.
+
+**Kit check.** Renders of the reference skater kits against real crops: the layout matches (white or yellow jersey, blue
+pants, light socks, blue skates); only the blue differs (real sRGB median (40, 60, 114) against (69, 96, 151)), the
+same gap as on the W goalie. Kit "nm26" (`scripts/synth/skater_kits_nm26.py`) gives every blue material the goalie's
+NM26 blue. Status: assumed from broadcast crops.
+
+**Pipeline:**
+- `scripts/synth/skater-frames.py`: 40 random live-play frames per game, registered to the reference frame.
+- `scripts/synth/skater-plates.py`: rink plates (per-pixel median, all 280 frames and per game).
+- `scripts/synth/render-skater-crops.py ... nm26`: 6,000 renders (600 per skater). All twelve figures on the ice at
+  random positions and rotations (no pivot closer than 60 mm), so neighbours and occlusion are real; puck in 40%;
+  200 x 200 crop around the target's pivot with up to 16 px offset (the localiser's error).
+- `scripts/synth/train-skater-pose.py`: ResNet-18 with a one-hot plane per skater (which figure in the crop is meant).
+- Real labels: the user's label page (https://claude.ai/artifact/64gKazbqzoPrksuutxE7Nm, 400 crops, 40 per skater,
+  centred by a kit-colour localiser along the slot): two taps per crop, feet and facing. 352 poses, 48 "can't see it"
+  (`data/games/nm26-semifinal/skater-labels.json`, `scripts/synth/skater-labels.py`). The feet taps lie a median
+  3.9 mm from the slot centreline: consistent with the geometry.
+- Evaluation: `scripts/synth/eval-skater-real.py` (games 3, 5, 7 held out, 152 labelled crops).
+
+**Results** (rotation error against the user: median / 90th percentile / front-back wrong; slot = position along the
+slot against the user's feet tap):
+
+| Model | Trained on | Test rotation | Test slot |
+| --- | --- | --- | --- |
+| v1a (`skater-pose-v1a.pt`, 8 epochs) | renders only; predicts u directly | 14° / 35° / 1.3% | 18 mm median, 54 mm p90 |
+| **v2b (`skater-pose-v2b.pt`, 10 epochs)** | **renders + user labels of games 1, 2, 4, 6; predicts the pivot pixel** | **7.0° / 17.5° / 0%** | **1.3 mm median, 3.6 mm p90** |
+
+Per skater (v2b, test games): rotation 5-11° median (worst W-RD 10.9°, E-LD 9.5°), slot 0.8-2.3 mm, no front/back error.
+Sheet: `validation/skater-pose-v2b-real.jpg` (the six largest test errors first, then ten at random; user pink, model
+green, model pivot as a green dot). The largest errors are crowded scenes (two figures overlapping), one skater behind
+the corner plexiglass, and one crop where the model put the pivot on a neighbouring figure (39 mm).
+
+**What changed between v1 and v2.** v1 predicted the slot position u directly; from a 200 px crop of a slot up to
+495 mm long it read it worse than the crop centre (17 mm against the user, while the crop centre was 4 mm from the user).
+v2 predicts where the pivot is in the crop; u follows from the crop origin and the camera. The compositor now returns
+its affine so the pixel label follows the augmentation.
+
+**Caveats.**
+- v2 was only trained with the real labels: a renders-only v2 (to separate the head change from the labels) was not
+  run. The container restarted twice; v1a stopped at 8 of 12 epochs, the first v1b was stopped in favour of v2.
+- The real crops are centred by the localiser (4 mm from the user); on full video the localiser must find each skater
+  first. The slot accuracy holds only when it does.
+- The test labels come from the same table and camera, one labeller, one pass.

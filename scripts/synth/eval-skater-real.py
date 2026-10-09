@@ -4,7 +4,7 @@
 
 Facing error = model heading vs the user's direction tap; slot error = model u vs the user's feet tap (projected onto
 the slot), in mm along the slot. Summaries over all labelled crops and over the test games only (the games whose
-labels a model did not train on). --sheet draws validation/skater-pose-<name>.jpg: 16 test crops, the user's
+labels a model did not train on). --sheet draws validation/<name>-real.jpg: 16 test crops, the user's
 direction (pink) and the model's (green) from the user's feet point, the model's slot position (green dot).
 Writes out/synth/eval-skater-<name>.json.
 """
@@ -91,4 +91,4 @@ if "--sheet" in A:
         cv2.putText(im, f"{r['pid']} {abs(r['err_deg']):.0f}deg {r['du_mm']:.0f}mm", (3, 14), 0, 0.42, (0, 0, 0), 2)
         cv2.putText(im, f"{r['pid']} {abs(r['err_deg']):.0f}deg {r['du_mm']:.0f}mm", (3, 14), 0, 0.42, (255, 255, 255), 1)
         tiles.append(im)
-    cv2.imwrite(str(REPO / f"validation/skater-pose-{NAME}.jpg"), np.vstack([np.hstack(tiles[k:k + 4]) for k in range(0, 16, 4)]), [cv2.IMWRITE_JPEG_QUALITY, 85])
+    cv2.imwrite(str(REPO / f"validation/{NAME}-real.jpg"), np.vstack([np.hstack(tiles[k:k + 4]) for k in range(0, 16, 4)]), [cv2.IMWRITE_JPEG_QUALITY, 85])
