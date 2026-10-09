@@ -1,0 +1,4805 @@
+{
+ "description": "Real NM26 skater crops for the user's feet and facing taps (scripts/synth/skater-facing-page.py). Crop px + crop_origin_ref_px = reference video px (data/games/nm26-semifinal/camera-ref.json). found_u: the slot position where the kit colour was strongest (used only to centre the crop).",
+ "crops": [
+  {
+   "id": "W-LW-g1_2884",
+   "player_id": "W-LW",
+   "game": "g1",
+   "frame": 2884,
+   "crop_origin_ref_px": [
+    1320,
+    432
+   ],
+   "found_u": 0.37,
+   "found_score": 29.77777862548828
+  },
+  {
+   "id": "W-LW-g2_28043",
+   "player_id": "W-LW",
+   "game": "g2",
+   "frame": 28043,
+   "crop_origin_ref_px": [
+    1112,
+    438
+   ],
+   "found_u": 0.091,
+   "found_score": 35.77777862548828
+  },
+  {
+   "id": "W-LW-g3_47898",
+   "player_id": "W-LW",
+   "game": "g3",
+   "frame": 47898,
+   "crop_origin_ref_px": [
+    1521,
+    481
+   ],
+   "found_u": 0.685,
+   "found_score": 22.44444465637207
+  },
+  {
+   "id": "W-LW-g4_60453",
+   "player_id": "W-LW",
+   "game": "g4",
+   "frame": 60453,
+   "crop_origin_ref_px": [
+    1056,
+    447
+   ],
+   "found_u": 0.012,
+   "found_score": 34.55555725097656
+  },
+  {
+   "id": "W-LW-g5_70971",
+   "player_id": "W-LW",
+   "game": "g5",
+   "frame": 70971,
+   "crop_origin_ref_px": [
+    1060,
+    446
+   ],
+   "found_u": 0.018,
+   "found_score": 20.77777862548828
+  },
+  {
+   "id": "W-LW-g6_86754",
+   "player_id": "W-LW",
+   "game": "g6",
+   "frame": 86754,
+   "crop_origin_ref_px": [
+    1082,
+    443
+   ],
+   "found_u": 0.049,
+   "found_score": 11.333333969116211
+  },
+  {
+   "id": "W-LW-g7_99752",
+   "player_id": "W-LW",
+   "game": "g7",
+   "frame": 99752,
+   "crop_origin_ref_px": [
+    1407,
+    435
+   ],
+   "found_u": 0.485,
+   "found_score": 28.666667938232422
+  },
+  {
+   "id": "W-LW-g1_8801",
+   "player_id": "W-LW",
+   "game": "g1",
+   "frame": 8801,
+   "crop_origin_ref_px": [
+    1517,
+    477
+   ],
+   "found_u": 0.673,
+   "found_score": 28.11111068725586
+  },
+  {
+   "id": "W-LW-g2_29887",
+   "player_id": "W-LW",
+   "game": "g2",
+   "frame": 29887,
+   "crop_origin_ref_px": [
+    1320,
+    432
+   ],
+   "found_u": 0.37,
+   "found_score": 25.11111068725586
+  },
+  {
+   "id": "W-LW-g3_49217",
+   "player_id": "W-LW",
+   "game": "g3",
+   "frame": 49217,
+   "crop_origin_ref_px": [
+    1503,
+    466
+   ],
+   "found_u": 0.637,
+   "found_score": 36.333335876464844
+  },
+  {
+   "id": "W-LW-g4_61264",
+   "player_id": "W-LW",
+   "game": "g4",
+   "frame": 61264,
+   "crop_origin_ref_px": [
+    1238,
+    431
+   ],
+   "found_u": 0.261,
+   "found_score": 16.666667938232422
+  },
+  {
+   "id": "W-LW-g5_77233",
+   "player_id": "W-LW",
+   "game": "g5",
+   "frame": 77233,
+   "crop_origin_ref_px": [
+    1047,
+    448
+   ],
+   "found_u": 0.0,
+   "found_score": 26.44444465637207
+  },
+  {
+   "id": "W-LW-g6_92033",
+   "player_id": "W-LW",
+   "game": "g6",
+   "frame": 92033,
+   "crop_origin_ref_px": [
+    1544,
+    546
+   ],
+   "found_u": 0.873,
+   "found_score": 26.666667938232422
+  },
+  {
+   "id": "W-LW-g7_106224",
+   "player_id": "W-LW",
+   "game": "g7",
+   "frame": 106224,
+   "crop_origin_ref_px": [
+    1491,
+    459
+   ],
+   "found_u": 0.613,
+   "found_score": 29.22222328186035
+  },
+  {
+   "id": "W-LW-g1_4477",
+   "player_id": "W-LW",
+   "game": "g1",
+   "frame": 4477,
+   "crop_origin_ref_px": [
+    1334,
+    432
+   ],
+   "found_u": 0.388,
+   "found_score": 34.11111068725586
+  },
+  {
+   "id": "W-LW-g2_23621",
+   "player_id": "W-LW",
+   "game": "g2",
+   "frame": 23621,
+   "crop_origin_ref_px": [
+    1407,
+    435
+   ],
+   "found_u": 0.485,
+   "found_score": 13.777778625488281
+  },
+  {
+   "id": "W-LW-g3_41897",
+   "player_id": "W-LW",
+   "game": "g3",
+   "frame": 41897,
+   "crop_origin_ref_px": [
+    1474,
+    451
+   ],
+   "found_u": 0.582,
+   "found_score": 30.11111068725586
+  },
+  {
+   "id": "W-LW-g4_55198",
+   "player_id": "W-LW",
+   "game": "g4",
+   "frame": 55198,
+   "crop_origin_ref_px": [
+    1545,
+    553
+   ],
+   "found_u": 0.892,
+   "found_score": 32.5555534362793
+  },
+  {
+   "id": "W-LW-g5_74033",
+   "player_id": "W-LW",
+   "game": "g5",
+   "frame": 74033,
+   "crop_origin_ref_px": [
+    1060,
+    446
+   ],
+   "found_u": 0.018,
+   "found_score": 27.11111068725586
+  },
+  {
+   "id": "W-LW-g6_84851",
+   "player_id": "W-LW",
+   "game": "g6",
+   "frame": 84851,
+   "crop_origin_ref_px": [
+    1536,
+    518
+   ],
+   "found_u": 0.794,
+   "found_score": 27.88888931274414
+  },
+  {
+   "id": "W-LW-g7_106474",
+   "player_id": "W-LW",
+   "game": "g7",
+   "frame": 106474,
+   "crop_origin_ref_px": [
+    1474,
+    451
+   ],
+   "found_u": 0.582,
+   "found_score": 26.55555534362793
+  },
+  {
+   "id": "W-LW-g1_1022",
+   "player_id": "W-LW",
+   "game": "g1",
+   "frame": 1022,
+   "crop_origin_ref_px": [
+    1533,
+    508
+   ],
+   "found_u": 0.764,
+   "found_score": 35.44444274902344
+  },
+  {
+   "id": "W-LW-g2_30881",
+   "player_id": "W-LW",
+   "game": "g2",
+   "frame": 30881,
+   "crop_origin_ref_px": [
+    1056,
+    447
+   ],
+   "found_u": 0.012,
+   "found_score": 38.88888931274414
+  },
+  {
+   "id": "W-LW-g3_45482",
+   "player_id": "W-LW",
+   "game": "g3",
+   "frame": 45482,
+   "crop_origin_ref_px": [
+    1325,
+    432
+   ],
+   "found_u": 0.376,
+   "found_score": 25.88888931274414
+  },
+  {
+   "id": "W-LW-g4_57019",
+   "player_id": "W-LW",
+   "game": "g4",
+   "frame": 57019,
+   "crop_origin_ref_px": [
+    1481,
+    454
+   ],
+   "found_u": 0.594,
+   "found_score": 30.0
+  },
+  {
+   "id": "W-LW-g5_75898",
+   "player_id": "W-LW",
+   "game": "g5",
+   "frame": 75898,
+   "crop_origin_ref_px": [
+    1052,
+    447
+   ],
+   "found_u": 0.006,
+   "found_score": 38.44444274902344
+  },
+  {
+   "id": "W-LW-g6_87516",
+   "player_id": "W-LW",
+   "game": "g6",
+   "frame": 87516,
+   "crop_origin_ref_px": [
+    1069,
+    445
+   ],
+   "found_u": 0.03,
+   "found_score": 10.666666984558105
+  },
+  {
+   "id": "W-LW-g7_104728",
+   "player_id": "W-LW",
+   "game": "g7",
+   "frame": 104728,
+   "crop_origin_ref_px": [
+    1201,
+    432
+   ],
+   "found_u": 0.212,
+   "found_score": 21.33333396911621
+  },
+  {
+   "id": "W-LW-g1_6678",
+   "player_id": "W-LW",
+   "game": "g1",
+   "frame": 6678,
+   "crop_origin_ref_px": [
+    1060,
+    446
+   ],
+   "found_u": 0.018,
+   "found_score": 37.66666793823242
+  },
+  {
+   "id": "W-LW-g2_29356",
+   "player_id": "W-LW",
+   "game": "g2",
+   "frame": 29356,
+   "crop_origin_ref_px": [
+    1060,
+    446
+   ],
+   "found_u": 0.018,
+   "found_score": 26.44444465637207
+  },
+  {
+   "id": "W-LW-g3_48840",
+   "player_id": "W-LW",
+   "game": "g3",
+   "frame": 48840,
+   "crop_origin_ref_px": [
+    1535,
+    514
+   ],
+   "found_u": 0.782,
+   "found_score": 35.77777862548828
+  },
+  {
+   "id": "W-LW-g4_54014",
+   "player_id": "W-LW",
+   "game": "g4",
+   "frame": 54014,
+   "crop_origin_ref_px": [
+    1519,
+    479
+   ],
+   "found_u": 0.679,
+   "found_score": 35.55555725097656
+  },
+  {
+   "id": "W-LW-g5_74858",
+   "player_id": "W-LW",
+   "game": "g5",
+   "frame": 74858,
+   "crop_origin_ref_px": [
+    1069,
+    445
+   ],
+   "found_u": 0.03,
+   "found_score": 31.0
+  },
+  {
+   "id": "W-LW-g6_84655",
+   "player_id": "W-LW",
+   "game": "g6",
+   "frame": 84655,
+   "crop_origin_ref_px": [
+    1169,
+    432
+   ],
+   "found_u": 0.17,
+   "found_score": 29.444442749023438
+  },
+  {
+   "id": "W-LW-g7_99854",
+   "player_id": "W-LW",
+   "game": "g7",
+   "frame": 99854,
+   "crop_origin_ref_px": [
+    1416,
+    436
+   ],
+   "found_u": 0.497,
+   "found_score": 29.333332061767578
+  },
+  {
+   "id": "W-LW-g1_9469",
+   "player_id": "W-LW",
+   "game": "g1",
+   "frame": 9469,
+   "crop_origin_ref_px": [
+    1060,
+    446
+   ],
+   "found_u": 0.018,
+   "found_score": 27.66666603088379
+  },
+  {
+   "id": "W-LW-g2_27862",
+   "player_id": "W-LW",
+   "game": "g2",
+   "frame": 27862,
+   "crop_origin_ref_px": [
+    1116,
+    438
+   ],
+   "found_u": 0.097,
+   "found_score": 32.88888931274414
+  },
+  {
+   "id": "W-LW-g3_44787",
+   "player_id": "W-LW",
+   "game": "g3",
+   "frame": 44787,
+   "crop_origin_ref_px": [
+    1491,
+    459
+   ],
+   "found_u": 0.613,
+   "found_score": 31.11111068725586
+  },
+  {
+   "id": "W-LW-g4_60632",
+   "player_id": "W-LW",
+   "game": "g4",
+   "frame": 60632,
+   "crop_origin_ref_px": [
+    1073,
+    444
+   ],
+   "found_u": 0.036,
+   "found_score": 28.555557250976562
+  },
+  {
+   "id": "W-LW-g5_72194",
+   "player_id": "W-LW",
+   "game": "g5",
+   "frame": 72194,
+   "crop_origin_ref_px": [
+    1069,
+    445
+   ],
+   "found_u": 0.03,
+   "found_score": 26.88888931274414
+  },
+  {
+   "id": "E-LW-g1_8801",
+   "player_id": "E-LW",
+   "game": "g1",
+   "frame": 8801,
+   "crop_origin_ref_px": [
+    277,
+    616
+   ],
+   "found_u": 0.25,
+   "found_score": 17.333332061767578
+  },
+  {
+   "id": "E-LW-g2_27862",
+   "player_id": "E-LW",
+   "game": "g2",
+   "frame": 27862,
+   "crop_origin_ref_px": [
+    495,
+    704
+   ],
+   "found_u": 0.664,
+   "found_score": 0.6666666865348816
+  },
+  {
+   "id": "E-LW-g3_41012",
+   "player_id": "E-LW",
+   "game": "g3",
+   "frame": 41012,
+   "crop_origin_ref_px": [
+    731,
+    690
+   ],
+   "found_u": 0.938,
+   "found_score": 17.66666603088379
+  },
+  {
+   "id": "E-LW-g4_58469",
+   "player_id": "E-LW",
+   "game": "g4",
+   "frame": 58469,
+   "crop_origin_ref_px": [
+    369,
+    700
+   ],
+   "found_u": 0.518,
+   "found_score": 17.333332061767578
+  },
+  {
+   "id": "E-LW-g5_74858",
+   "player_id": "E-LW",
+   "game": "g5",
+   "frame": 74858,
+   "crop_origin_ref_px": [
+    287,
+    667
+   ],
+   "found_u": 0.384,
+   "found_score": 7.777777671813965
+  },
+  {
+   "id": "E-LW-g6_89796",
+   "player_id": "E-LW",
+   "game": "g6",
+   "frame": 89796,
+   "crop_origin_ref_px": [
+    751,
+    687
+   ],
+   "found_u": 0.962,
+   "found_score": 14.222222328186035
+  },
+  {
+   "id": "E-LW-g7_106040",
+   "player_id": "E-LW",
+   "game": "g7",
+   "frame": 106040,
+   "crop_origin_ref_px": [
+    771,
+    684
+   ],
+   "found_u": 0.987,
+   "found_score": 29.66666603088379
+  },
+  {
+   "id": "E-LW-g1_2138",
+   "player_id": "E-LW",
+   "game": "g1",
+   "frame": 2138,
+   "crop_origin_ref_px": [
+    287,
+    588
+   ],
+   "found_u": 0.177,
+   "found_score": 11.0
+  },
+  {
+   "id": "E-LW-g2_29356",
+   "player_id": "E-LW",
+   "game": "g2",
+   "frame": 29356,
+   "crop_origin_ref_px": [
+    311,
+    523
+   ],
+   "found_u": 0.0,
+   "found_score": 28.77777862548828
+  },
+  {
+   "id": "E-LW-g3_49314",
+   "player_id": "E-LW",
+   "game": "g3",
+   "frame": 49314,
+   "crop_origin_ref_px": [
+    766,
+    684
+   ],
+   "found_u": 0.981,
+   "found_score": 15.444443702697754
+  },
+  {
+   "id": "E-LW-g4_61264",
+   "player_id": "E-LW",
+   "game": "g4",
+   "frame": 61264,
+   "crop_origin_ref_px": [
+    766,
+    684
+   ],
+   "found_u": 0.981,
+   "found_score": 32.0
+  },
+  {
+   "id": "E-LW-g5_77233",
+   "player_id": "E-LW",
+   "game": "g5",
+   "frame": 77233,
+   "crop_origin_ref_px": [
+    278,
+    614
+   ],
+   "found_u": 0.244,
+   "found_score": 21.44444465637207
+  },
+  {
+   "id": "E-LW-g6_85052",
+   "player_id": "E-LW",
+   "game": "g6",
+   "frame": 85052,
+   "crop_origin_ref_px": [
+    505,
+    704
+   ],
+   "found_u": 0.676,
+   "found_score": 22.22222137451172
+  },
+  {
+   "id": "E-LW-g7_106224",
+   "player_id": "E-LW",
+   "game": "g7",
+   "frame": 106224,
+   "crop_origin_ref_px": [
+    279,
+    609
+   ],
+   "found_u": 0.231,
+   "found_score": 18.666667938232422
+  },
+  {
+   "id": "E-LW-g1_812",
+   "player_id": "E-LW",
+   "game": "g1",
+   "frame": 812,
+   "crop_origin_ref_px": [
+    622,
+    703
+   ],
+   "found_u": 0.81,
+   "found_score": 5.6666669845581055
+  },
+  {
+   "id": "E-LW-g2_30789",
+   "player_id": "E-LW",
+   "game": "g2",
+   "frame": 30789,
+   "crop_origin_ref_px": [
+    282,
+    602
+   ],
+   "found_u": 0.213,
+   "found_score": 3.555555582046509
+  },
+  {
+   "id": "E-LW-g3_46762",
+   "player_id": "E-LW",
+   "game": "g3",
+   "frame": 46762,
+   "crop_origin_ref_px": [
+    746,
+    688
+   ],
+   "found_u": 0.956,
+   "found_score": 13.88888931274414
+  },
+  {
+   "id": "E-LW-g4_60975",
+   "player_id": "E-LW",
+   "game": "g4",
+   "frame": 60975,
+   "crop_origin_ref_px": [
+    771,
+    684
+   ],
+   "found_u": 0.987,
+   "found_score": 30.555557250976562
+  },
+  {
+   "id": "E-LW-g5_73397",
+   "player_id": "E-LW",
+   "game": "g5",
+   "frame": 73397,
+   "crop_origin_ref_px": [
+    282,
+    602
+   ],
+   "found_u": 0.213,
+   "found_score": 11.44444465637207
+  },
+  {
+   "id": "E-LW-g6_89223",
+   "player_id": "E-LW",
+   "game": "g6",
+   "frame": 89223,
+   "crop_origin_ref_px": [
+    751,
+    687
+   ],
+   "found_u": 0.962,
+   "found_score": 11.0
+  },
+  {
+   "id": "E-LW-g7_99752",
+   "player_id": "E-LW",
+   "game": "g7",
+   "frame": 99752,
+   "crop_origin_ref_px": [
+    659,
+    701
+   ],
+   "found_u": 0.853,
+   "found_score": 15.777777671813965
+  },
+  {
+   "id": "E-LW-g1_7862",
+   "player_id": "E-LW",
+   "game": "g1",
+   "frame": 7862,
+   "crop_origin_ref_px": [
+    595,
+    703
+   ],
+   "found_u": 0.78,
+   "found_score": 20.55555534362793
+  },
+  {
+   "id": "E-LW-g2_31217",
+   "player_id": "E-LW",
+   "game": "g2",
+   "frame": 31217,
+   "crop_origin_ref_px": [
+    766,
+    684
+   ],
+   "found_u": 0.981,
+   "found_score": 30.66666603088379
+  },
+  {
+   "id": "E-LW-g3_48840",
+   "player_id": "E-LW",
+   "game": "g3",
+   "frame": 48840,
+   "crop_origin_ref_px": [
+    643,
+    702
+   ],
+   "found_u": 0.835,
+   "found_score": 15.000000953674316
+  },
+  {
+   "id": "E-LW-g4_53449",
+   "player_id": "E-LW",
+   "game": "g4",
+   "frame": 53449,
+   "crop_origin_ref_px": [
+    761,
+    685
+   ],
+   "found_u": 0.975,
+   "found_score": 16.33333396911621
+  },
+  {
+   "id": "E-LW-g5_78653",
+   "player_id": "E-LW",
+   "game": "g5",
+   "frame": 78653,
+   "crop_origin_ref_px": [
+    298,
+    556
+   ],
+   "found_u": 0.091,
+   "found_score": 32.44444274902344
+  },
+  {
+   "id": "E-LW-g6_86955",
+   "player_id": "E-LW",
+   "game": "g6",
+   "frame": 86955,
+   "crop_origin_ref_px": [
+    595,
+    703
+   ],
+   "found_u": 0.78,
+   "found_score": 17.22222328186035
+  },
+  {
+   "id": "E-LW-g7_101448",
+   "player_id": "E-LW",
+   "game": "g7",
+   "frame": 101448,
+   "crop_origin_ref_px": [
+    275,
+    621
+   ],
+   "found_u": 0.262,
+   "found_score": 6.222222328186035
+  },
+  {
+   "id": "E-LW-g1_1470",
+   "player_id": "E-LW",
+   "game": "g1",
+   "frame": 1470,
+   "crop_origin_ref_px": [
+    495,
+    704
+   ],
+   "found_u": 0.664,
+   "found_score": 3.6666669845581055
+  },
+  {
+   "id": "E-LW-g2_31477",
+   "player_id": "E-LW",
+   "game": "g2",
+   "frame": 31477,
+   "crop_origin_ref_px": [
+    756,
+    686
+   ],
+   "found_u": 0.969,
+   "found_score": 22.0
+  },
+  {
+   "id": "E-LW-g3_42475",
+   "player_id": "E-LW",
+   "game": "g3",
+   "frame": 42475,
+   "crop_origin_ref_px": [
+    776,
+    683
+   ],
+   "found_u": 0.993,
+   "found_score": 25.88888931274414
+  },
+  {
+   "id": "E-LW-g4_59604",
+   "player_id": "E-LW",
+   "game": "g4",
+   "frame": 59604,
+   "crop_origin_ref_px": [
+    761,
+    685
+   ],
+   "found_u": 0.975,
+   "found_score": 21.555557250976562
+  },
+  {
+   "id": "E-LW-g5_77442",
+   "player_id": "E-LW",
+   "game": "g5",
+   "frame": 77442,
+   "crop_origin_ref_px": [
+    279,
+    611
+   ],
+   "found_u": 0.238,
+   "found_score": 12.777778625488281
+  },
+  {
+   "id": "E-LW-g6_85638",
+   "player_id": "E-LW",
+   "game": "g6",
+   "frame": 85638,
+   "crop_origin_ref_px": [
+    638,
+    702
+   ],
+   "found_u": 0.828,
+   "found_score": 14.11111068725586
+  },
+  {
+   "id": "E-LW-g7_98594",
+   "player_id": "E-LW",
+   "game": "g7",
+   "frame": 98594,
+   "crop_origin_ref_px": [
+    771,
+    684
+   ],
+   "found_u": 0.987,
+   "found_score": 28.88888931274414
+  },
+  {
+   "id": "E-LW-g1_4477",
+   "player_id": "E-LW",
+   "game": "g1",
+   "frame": 4477,
+   "crop_origin_ref_px": [
+    276,
+    618
+   ],
+   "found_u": 0.256,
+   "found_score": 12.44444465637207
+  },
+  {
+   "id": "E-LW-g2_25556",
+   "player_id": "E-LW",
+   "game": "g2",
+   "frame": 25556,
+   "crop_origin_ref_px": [
+    279,
+    609
+   ],
+   "found_u": 0.231,
+   "found_score": 13.11111068725586
+  },
+  {
+   "id": "E-LW-g3_47898",
+   "player_id": "E-LW",
+   "game": "g3",
+   "frame": 47898,
+   "crop_origin_ref_px": [
+    726,
+    691
+   ],
+   "found_u": 0.932,
+   "found_score": 17.0
+  },
+  {
+   "id": "E-LW-g4_60632",
+   "player_id": "E-LW",
+   "game": "g4",
+   "frame": 60632,
+   "crop_origin_ref_px": [
+    479,
+    703
+   ],
+   "found_u": 0.646,
+   "found_score": 17.11111068725586
+  },
+  {
+   "id": "E-LW-g5_78422",
+   "player_id": "E-LW",
+   "game": "g5",
+   "frame": 78422,
+   "crop_origin_ref_px": [
+    281,
+    604
+   ],
+   "found_u": 0.219,
+   "found_score": 25.77777862548828
+  },
+  {
+   "id": "W-RW-g1_4477",
+   "player_id": "W-RW",
+   "game": "g1",
+   "frame": 4477,
+   "crop_origin_ref_px": [
+    812,
+    708
+   ],
+   "found_u": 0.026,
+   "found_score": 37.666664123535156
+  },
+  {
+   "id": "W-RW-g2_31217",
+   "player_id": "W-RW",
+   "game": "g2",
+   "frame": 31217,
+   "crop_origin_ref_px": [
+    812,
+    708
+   ],
+   "found_u": 0.026,
+   "found_score": 24.44444465637207
+  },
+  {
+   "id": "W-RW-g3_46354",
+   "player_id": "W-RW",
+   "game": "g3",
+   "frame": 46354,
+   "crop_origin_ref_px": [
+    1473,
+    712
+   ],
+   "found_u": 0.853,
+   "found_score": 14.666666984558105
+  },
+  {
+   "id": "W-RW-g4_57785",
+   "player_id": "W-RW",
+   "game": "g4",
+   "frame": 57785,
+   "crop_origin_ref_px": [
+    812,
+    708
+   ],
+   "found_u": 0.026,
+   "found_score": 24.11111068725586
+  },
+  {
+   "id": "W-RW-g5_77849",
+   "player_id": "W-RW",
+   "game": "g5",
+   "frame": 77849,
+   "crop_origin_ref_px": [
+    1426,
+    712
+   ],
+   "found_u": 0.794,
+   "found_score": 38.333335876464844
+  },
+  {
+   "id": "W-RW-g6_90429",
+   "player_id": "W-RW",
+   "game": "g6",
+   "frame": 90429,
+   "crop_origin_ref_px": [
+    1568,
+    693
+   ],
+   "found_u": 0.992,
+   "found_score": 15.333333969116211
+  },
+  {
+   "id": "W-RW-g7_97879",
+   "player_id": "W-RW",
+   "game": "g7",
+   "frame": 97879,
+   "crop_origin_ref_px": [
+    908,
+    708
+   ],
+   "found_u": 0.146,
+   "found_score": 31.88888931274414
+  },
+  {
+   "id": "W-RW-g1_6920",
+   "player_id": "W-RW",
+   "game": "g1",
+   "frame": 6920,
+   "crop_origin_ref_px": [
+    802,
+    708
+   ],
+   "found_u": 0.013,
+   "found_score": 25.111112594604492
+  },
+  {
+   "id": "W-RW-g2_29887",
+   "player_id": "W-RW",
+   "game": "g2",
+   "frame": 29887,
+   "crop_origin_ref_px": [
+    918,
+    708
+   ],
+   "found_u": 0.159,
+   "found_score": 36.0
+  },
+  {
+   "id": "W-RW-g3_43475",
+   "player_id": "W-RW",
+   "game": "g3",
+   "frame": 43475,
+   "crop_origin_ref_px": [
+    807,
+    708
+   ],
+   "found_u": 0.02,
+   "found_score": 24.33333396911621
+  },
+  {
+   "id": "W-RW-g4_57686",
+   "player_id": "W-RW",
+   "game": "g4",
+   "frame": 57686,
+   "crop_origin_ref_px": [
+    796,
+    709
+   ],
+   "found_u": 0.007,
+   "found_score": 24.0
+  },
+  {
+   "id": "W-RW-g5_73534",
+   "player_id": "W-RW",
+   "game": "g5",
+   "frame": 73534,
+   "crop_origin_ref_px": [
+    818,
+    708
+   ],
+   "found_u": 0.033,
+   "found_score": 37.88888931274414
+  },
+  {
+   "id": "W-RW-g6_83464",
+   "player_id": "W-RW",
+   "game": "g6",
+   "frame": 83464,
+   "crop_origin_ref_px": [
+    1087,
+    707
+   ],
+   "found_u": 0.37,
+   "found_score": 31.0
+  },
+  {
+   "id": "W-RW-g7_100533",
+   "player_id": "W-RW",
+   "game": "g7",
+   "frame": 100533,
+   "crop_origin_ref_px": [
+    1082,
+    707
+   ],
+   "found_u": 0.364,
+   "found_score": 31.77777862548828
+  },
+  {
+   "id": "W-RW-g1_3287",
+   "player_id": "W-RW",
+   "game": "g1",
+   "frame": 3287,
+   "crop_origin_ref_px": [
+    955,
+    708
+   ],
+   "found_u": 0.205,
+   "found_score": 34.22222137451172
+  },
+  {
+   "id": "W-RW-g2_30385",
+   "player_id": "W-RW",
+   "game": "g2",
+   "frame": 30385,
+   "crop_origin_ref_px": [
+    1568,
+    693
+   ],
+   "found_u": 0.992,
+   "found_score": 47.55555725097656
+  },
+  {
+   "id": "W-RW-g3_48840",
+   "player_id": "W-RW",
+   "game": "g3",
+   "frame": 48840,
+   "crop_origin_ref_px": [
+    1405,
+    712
+   ],
+   "found_u": 0.767,
+   "found_score": 25.55555534362793
+  },
+  {
+   "id": "W-RW-g4_60632",
+   "player_id": "W-RW",
+   "game": "g4",
+   "frame": 60632,
+   "crop_origin_ref_px": [
+    1557,
+    698
+   ],
+   "found_u": 0.972,
+   "found_score": 18.33333396911621
+  },
+  {
+   "id": "W-RW-g5_75156",
+   "player_id": "W-RW",
+   "game": "g5",
+   "frame": 75156,
+   "crop_origin_ref_px": [
+    1325,
+    711
+   ],
+   "found_u": 0.668,
+   "found_score": 38.55555725097656
+  },
+  {
+   "id": "W-RW-g6_86310",
+   "player_id": "W-RW",
+   "game": "g6",
+   "frame": 86310,
+   "crop_origin_ref_px": [
+    1304,
+    710
+   ],
+   "found_u": 0.642,
+   "found_score": 13.666666984558105
+  },
+  {
+   "id": "W-RW-g7_103653",
+   "player_id": "W-RW",
+   "game": "g7",
+   "frame": 103653,
+   "crop_origin_ref_px": [
+    923,
+    708
+   ],
+   "found_u": 0.165,
+   "found_score": 31.0
+  },
+  {
+   "id": "W-RW-g1_8451",
+   "player_id": "W-RW",
+   "game": "g1",
+   "frame": 8451,
+   "crop_origin_ref_px": [
+    807,
+    708
+   ],
+   "found_u": 0.02,
+   "found_score": 35.333335876464844
+  },
+  {
+   "id": "W-RW-g2_30503",
+   "player_id": "W-RW",
+   "game": "g2",
+   "frame": 30503,
+   "crop_origin_ref_px": [
+    807,
+    708
+   ],
+   "found_u": 0.02,
+   "found_score": 37.66666793823242
+  },
+  {
+   "id": "W-RW-g3_48569",
+   "player_id": "W-RW",
+   "game": "g3",
+   "frame": 48569,
+   "crop_origin_ref_px": [
+    807,
+    708
+   ],
+   "found_u": 0.02,
+   "found_score": 22.33333396911621
+  },
+  {
+   "id": "W-RW-g4_60975",
+   "player_id": "W-RW",
+   "game": "g4",
+   "frame": 60975,
+   "crop_origin_ref_px": [
+    1029,
+    707
+   ],
+   "found_u": 0.298,
+   "found_score": 24.22222137451172
+  },
+  {
+   "id": "W-RW-g5_76380",
+   "player_id": "W-RW",
+   "game": "g5",
+   "frame": 76380,
+   "crop_origin_ref_px": [
+    823,
+    708
+   ],
+   "found_u": 0.04,
+   "found_score": 36.0
+  },
+  {
+   "id": "W-RW-g6_92033",
+   "player_id": "W-RW",
+   "game": "g6",
+   "frame": 92033,
+   "crop_origin_ref_px": [
+    1571,
+    692
+   ],
+   "found_u": 0.999,
+   "found_score": 12.333333969116211
+  },
+  {
+   "id": "W-RW-g7_100676",
+   "player_id": "W-RW",
+   "game": "g7",
+   "frame": 100676,
+   "crop_origin_ref_px": [
+    1549,
+    701
+   ],
+   "found_u": 0.959,
+   "found_score": 20.66666603088379
+  },
+  {
+   "id": "W-RW-g1_5413",
+   "player_id": "W-RW",
+   "game": "g1",
+   "frame": 5413,
+   "crop_origin_ref_px": [
+    807,
+    708
+   ],
+   "found_u": 0.02,
+   "found_score": 33.22222137451172
+  },
+  {
+   "id": "W-RW-g2_28043",
+   "player_id": "W-RW",
+   "game": "g2",
+   "frame": 28043,
+   "crop_origin_ref_px": [
+    1257,
+    710
+   ],
+   "found_u": 0.582,
+   "found_score": 33.000003814697266
+  },
+  {
+   "id": "W-RW-g3_47719",
+   "player_id": "W-RW",
+   "game": "g3",
+   "frame": 47719,
+   "crop_origin_ref_px": [
+    1473,
+    712
+   ],
+   "found_u": 0.853,
+   "found_score": 7.555555820465088
+  },
+  {
+   "id": "W-RW-g4_54690",
+   "player_id": "W-RW",
+   "game": "g4",
+   "frame": 54690,
+   "crop_origin_ref_px": [
+    1564,
+    695
+   ],
+   "found_u": 0.986,
+   "found_score": 20.666667938232422
+  },
+  {
+   "id": "W-RW-g5_77138",
+   "player_id": "W-RW",
+   "game": "g5",
+   "frame": 77138,
+   "crop_origin_ref_px": [
+    1410,
+    712
+   ],
+   "found_u": 0.774,
+   "found_score": 35.33333206176758
+  },
+  {
+   "id": "W-RW-g6_91180",
+   "player_id": "W-RW",
+   "game": "g6",
+   "frame": 91180,
+   "crop_origin_ref_px": [
+    1568,
+    693
+   ],
+   "found_u": 0.992,
+   "found_score": 11.11111068725586
+  },
+  {
+   "id": "W-RW-g7_104105",
+   "player_id": "W-RW",
+   "game": "g7",
+   "frame": 104105,
+   "crop_origin_ref_px": [
+    807,
+    708
+   ],
+   "found_u": 0.02,
+   "found_score": 34.88888931274414
+  },
+  {
+   "id": "W-RW-g1_8058",
+   "player_id": "W-RW",
+   "game": "g1",
+   "frame": 8058,
+   "crop_origin_ref_px": [
+    913,
+    708
+   ],
+   "found_u": 0.152,
+   "found_score": 22.444446563720703
+  },
+  {
+   "id": "W-RW-g2_26575",
+   "player_id": "W-RW",
+   "game": "g2",
+   "frame": 26575,
+   "crop_origin_ref_px": [
+    807,
+    708
+   ],
+   "found_u": 0.02,
+   "found_score": 35.888893127441406
+  },
+  {
+   "id": "W-RW-g3_47351",
+   "player_id": "W-RW",
+   "game": "g3",
+   "frame": 47351,
+   "crop_origin_ref_px": [
+    1003,
+    707
+   ],
+   "found_u": 0.265,
+   "found_score": 26.444442749023438
+  },
+  {
+   "id": "W-RW-g4_61169",
+   "player_id": "W-RW",
+   "game": "g4",
+   "frame": 61169,
+   "crop_origin_ref_px": [
+    1145,
+    708
+   ],
+   "found_u": 0.443,
+   "found_score": 31.22222137451172
+  },
+  {
+   "id": "W-RW-g5_70531",
+   "player_id": "W-RW",
+   "game": "g5",
+   "frame": 70531,
+   "crop_origin_ref_px": [
+    807,
+    708
+   ],
+   "found_u": 0.02,
+   "found_score": 31.66666603088379
+  },
+  {
+   "id": "E-RW-g1_4652",
+   "player_id": "E-RW",
+   "game": "g1",
+   "frame": 4652,
+   "crop_origin_ref_px": [
+    551,
+    426
+   ],
+   "found_u": 0.294,
+   "found_score": 9.666666984558105
+  },
+  {
+   "id": "E-RW-g2_30503",
+   "player_id": "E-RW",
+   "game": "g2",
+   "frame": 30503,
+   "crop_origin_ref_px": [
+    905,
+    428
+   ],
+   "found_u": 0.808,
+   "found_score": 11.666666030883789
+  },
+  {
+   "id": "E-RW-g3_45989",
+   "player_id": "E-RW",
+   "game": "g3",
+   "frame": 45989,
+   "crop_origin_ref_px": [
+    1033,
+    427
+   ],
+   "found_u": 0.995,
+   "found_score": 20.44444465637207
+  },
+  {
+   "id": "E-RW-g4_54690",
+   "player_id": "E-RW",
+   "game": "g4",
+   "frame": 54690,
+   "crop_origin_ref_px": [
+    404,
+    428
+   ],
+   "found_u": 0.08,
+   "found_score": 15.666666984558105
+  },
+  {
+   "id": "E-RW-g5_72436",
+   "player_id": "E-RW",
+   "game": "g5",
+   "frame": 72436,
+   "crop_origin_ref_px": [
+    390,
+    430
+   ],
+   "found_u": 0.06,
+   "found_score": 14.11111068725586
+  },
+  {
+   "id": "E-RW-g6_89104",
+   "player_id": "E-RW",
+   "game": "g6",
+   "frame": 89104,
+   "crop_origin_ref_px": [
+    496,
+    425
+   ],
+   "found_u": 0.214,
+   "found_score": 15.55555534362793
+  },
+  {
+   "id": "E-RW-g7_101653",
+   "player_id": "E-RW",
+   "game": "g7",
+   "frame": 101653,
+   "crop_origin_ref_px": [
+    964,
+    428
+   ],
+   "found_u": 0.895,
+   "found_score": 16.88888931274414
+  },
+  {
+   "id": "E-RW-g1_7380",
+   "player_id": "E-RW",
+   "game": "g1",
+   "frame": 7380,
+   "crop_origin_ref_px": [
+    377,
+    433
+   ],
+   "found_u": 0.04,
+   "found_score": 14.222222328186035
+  },
+  {
+   "id": "E-RW-g2_23621",
+   "player_id": "E-RW",
+   "game": "g2",
+   "frame": 23621,
+   "crop_origin_ref_px": [
+    1028,
+    427
+   ],
+   "found_u": 0.989,
+   "found_score": 14.222221374511719
+  },
+  {
+   "id": "E-RW-g3_41897",
+   "player_id": "E-RW",
+   "game": "g3",
+   "frame": 41897,
+   "crop_origin_ref_px": [
+    1019,
+    427
+   ],
+   "found_u": 0.975,
+   "found_score": 9.55555534362793
+  },
+  {
+   "id": "E-RW-g4_53211",
+   "player_id": "E-RW",
+   "game": "g4",
+   "frame": 53211,
+   "crop_origin_ref_px": [
+    1001,
+    428
+   ],
+   "found_u": 0.949,
+   "found_score": 15.333333969116211
+  },
+  {
+   "id": "E-RW-g5_76380",
+   "player_id": "E-RW",
+   "game": "g5",
+   "frame": 76380,
+   "crop_origin_ref_px": [
+    377,
+    433
+   ],
+   "found_u": 0.04,
+   "found_score": 16.11111068725586
+  },
+  {
+   "id": "E-RW-g6_92033",
+   "player_id": "E-RW",
+   "game": "g6",
+   "frame": 92033,
+   "crop_origin_ref_px": [
+    382,
+    432
+   ],
+   "found_u": 0.047,
+   "found_score": 15.666667938232422
+  },
+  {
+   "id": "E-RW-g7_99186",
+   "player_id": "E-RW",
+   "game": "g7",
+   "frame": 99186,
+   "crop_origin_ref_px": [
+    382,
+    432
+   ],
+   "found_u": 0.047,
+   "found_score": 14.666666030883789
+  },
+  {
+   "id": "E-RW-g1_2138",
+   "player_id": "E-RW",
+   "game": "g1",
+   "frame": 2138,
+   "crop_origin_ref_px": [
+    1019,
+    427
+   ],
+   "found_u": 0.975,
+   "found_score": 14.222221374511719
+  },
+  {
+   "id": "E-RW-g2_26947",
+   "player_id": "E-RW",
+   "game": "g2",
+   "frame": 26947,
+   "crop_origin_ref_px": [
+    413,
+    427
+   ],
+   "found_u": 0.094,
+   "found_score": 15.333333015441895
+  },
+  {
+   "id": "E-RW-g3_44408",
+   "player_id": "E-RW",
+   "game": "g3",
+   "frame": 44408,
+   "crop_origin_ref_px": [
+    1033,
+    427
+   ],
+   "found_u": 0.995,
+   "found_score": 20.0
+  },
+  {
+   "id": "E-RW-g4_55449",
+   "player_id": "E-RW",
+   "game": "g4",
+   "frame": 55449,
+   "crop_origin_ref_px": [
+    413,
+    427
+   ],
+   "found_u": 0.094,
+   "found_score": 13.555556297302246
+  },
+  {
+   "id": "E-RW-g5_70089",
+   "player_id": "E-RW",
+   "game": "g5",
+   "frame": 70089,
+   "crop_origin_ref_px": [
+    868,
+    428
+   ],
+   "found_u": 0.755,
+   "found_score": 11.11111068725586
+  },
+  {
+   "id": "E-RW-g6_91180",
+   "player_id": "E-RW",
+   "game": "g6",
+   "frame": 91180,
+   "crop_origin_ref_px": [
+    377,
+    433
+   ],
+   "found_u": 0.04,
+   "found_score": 13.333333015441895
+  },
+  {
+   "id": "E-RW-g7_103987",
+   "player_id": "E-RW",
+   "game": "g7",
+   "frame": 103987,
+   "crop_origin_ref_px": [
+    382,
+    432
+   ],
+   "found_u": 0.047,
+   "found_score": 16.11111068725586
+  },
+  {
+   "id": "E-RW-g1_6485",
+   "player_id": "E-RW",
+   "game": "g1",
+   "frame": 6485,
+   "crop_origin_ref_px": [
+    955,
+    428
+   ],
+   "found_u": 0.882,
+   "found_score": 14.55555534362793
+  },
+  {
+   "id": "E-RW-g2_26263",
+   "player_id": "E-RW",
+   "game": "g2",
+   "frame": 26263,
+   "crop_origin_ref_px": [
+    357,
+    439
+   ],
+   "found_u": 0.007,
+   "found_score": 12.666666984558105
+  },
+  {
+   "id": "E-RW-g3_40887",
+   "player_id": "E-RW",
+   "game": "g3",
+   "frame": 40887,
+   "crop_origin_ref_px": [
+    973,
+    428
+   ],
+   "found_u": 0.908,
+   "found_score": 24.77777671813965
+  },
+  {
+   "id": "E-RW-g4_58469",
+   "player_id": "E-RW",
+   "game": "g4",
+   "frame": 58469,
+   "crop_origin_ref_px": [
+    964,
+    428
+   ],
+   "found_u": 0.895,
+   "found_score": 15.666667938232422
+  },
+  {
+   "id": "E-RW-g5_78653",
+   "player_id": "E-RW",
+   "game": "g5",
+   "frame": 78653,
+   "crop_origin_ref_px": [
+    519,
+    426
+   ],
+   "found_u": 0.247,
+   "found_score": 12.55555534362793
+  },
+  {
+   "id": "E-RW-g6_90429",
+   "player_id": "E-RW",
+   "game": "g6",
+   "frame": 90429,
+   "crop_origin_ref_px": [
+    382,
+    432
+   ],
+   "found_u": 0.047,
+   "found_score": 15.666666030883789
+  },
+  {
+   "id": "E-RW-g7_101448",
+   "player_id": "E-RW",
+   "game": "g7",
+   "frame": 101448,
+   "crop_origin_ref_px": [
+    1033,
+    427
+   ],
+   "found_u": 0.995,
+   "found_score": 10.222222328186035
+  },
+  {
+   "id": "E-RW-g1_9247",
+   "player_id": "E-RW",
+   "game": "g1",
+   "frame": 9247,
+   "crop_origin_ref_px": [
+    373,
+    434
+   ],
+   "found_u": 0.033,
+   "found_score": 12.55555534362793
+  },
+  {
+   "id": "E-RW-g2_27506",
+   "player_id": "E-RW",
+   "game": "g2",
+   "frame": 27506,
+   "crop_origin_ref_px": [
+    417,
+    426
+   ],
+   "found_u": 0.1,
+   "found_score": 15.44444465637207
+  },
+  {
+   "id": "E-RW-g3_48569",
+   "player_id": "E-RW",
+   "game": "g3",
+   "frame": 48569,
+   "crop_origin_ref_px": [
+    417,
+    426
+   ],
+   "found_u": 0.1,
+   "found_score": 14.222223281860352
+  },
+  {
+   "id": "E-RW-g4_56248",
+   "player_id": "E-RW",
+   "game": "g4",
+   "frame": 56248,
+   "crop_origin_ref_px": [
+    987,
+    428
+   ],
+   "found_u": 0.929,
+   "found_score": 15.333333969116211
+  },
+  {
+   "id": "E-RW-g5_77849",
+   "player_id": "E-RW",
+   "game": "g5",
+   "frame": 77849,
+   "crop_origin_ref_px": [
+    377,
+    433
+   ],
+   "found_u": 0.04,
+   "found_score": 11.11111068725586
+  },
+  {
+   "id": "E-RW-g6_87516",
+   "player_id": "E-RW",
+   "game": "g6",
+   "frame": 87516,
+   "crop_origin_ref_px": [
+    382,
+    432
+   ],
+   "found_u": 0.047,
+   "found_score": 11.11111068725586
+  },
+  {
+   "id": "E-RW-g7_101064",
+   "player_id": "E-RW",
+   "game": "g7",
+   "frame": 101064,
+   "crop_origin_ref_px": [
+    946,
+    428
+   ],
+   "found_u": 0.868,
+   "found_score": 19.33333396911621
+  },
+  {
+   "id": "E-RW-g1_7473",
+   "player_id": "E-RW",
+   "game": "g1",
+   "frame": 7473,
+   "crop_origin_ref_px": [
+    382,
+    432
+   ],
+   "found_u": 0.047,
+   "found_score": 13.88888931274414
+  },
+  {
+   "id": "E-RW-g2_26684",
+   "player_id": "E-RW",
+   "game": "g2",
+   "frame": 26684,
+   "crop_origin_ref_px": [
+    463,
+    425
+   ],
+   "found_u": 0.167,
+   "found_score": 12.666666030883789
+  },
+  {
+   "id": "E-RW-g3_43152",
+   "player_id": "E-RW",
+   "game": "g3",
+   "frame": 43152,
+   "crop_origin_ref_px": [
+    1010,
+    428
+   ],
+   "found_u": 0.962,
+   "found_score": 9.0
+  },
+  {
+   "id": "E-RW-g4_58617",
+   "player_id": "E-RW",
+   "game": "g4",
+   "frame": 58617,
+   "crop_origin_ref_px": [
+    969,
+    428
+   ],
+   "found_u": 0.902,
+   "found_score": 18.555557250976562
+  },
+  {
+   "id": "E-RW-g5_77976",
+   "player_id": "E-RW",
+   "game": "g5",
+   "frame": 77976,
+   "crop_origin_ref_px": [
+    377,
+    433
+   ],
+   "found_u": 0.04,
+   "found_score": 11.88888931274414
+  },
+  {
+   "id": "W-C-g1_6920",
+   "player_id": "W-C",
+   "game": "g1",
+   "frame": 6920,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 32.0
+  },
+  {
+   "id": "W-C-g2_28926",
+   "player_id": "W-C",
+   "game": "g2",
+   "frame": 28926,
+   "crop_origin_ref_px": [
+    1222,
+    566
+   ],
+   "found_u": 0.959,
+   "found_score": 36.0
+  },
+  {
+   "id": "W-C-g3_42723",
+   "player_id": "W-C",
+   "game": "g3",
+   "frame": 42723,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 29.11111068725586
+  },
+  {
+   "id": "W-C-g4_60632",
+   "player_id": "W-C",
+   "game": "g4",
+   "frame": 60632,
+   "crop_origin_ref_px": [
+    858,
+    581
+   ],
+   "found_u": 0.072,
+   "found_score": 23.33333396911621
+  },
+  {
+   "id": "W-C-g5_72436",
+   "player_id": "W-C",
+   "game": "g5",
+   "frame": 72436,
+   "crop_origin_ref_px": [
+    833,
+    582
+   ],
+   "found_u": 0.012,
+   "found_score": 21.333332061767578
+  },
+  {
+   "id": "W-C-g6_88566",
+   "player_id": "W-C",
+   "game": "g6",
+   "frame": 88566,
+   "crop_origin_ref_px": [
+    1002,
+    575
+   ],
+   "found_u": 0.419,
+   "found_score": 33.666664123535156
+  },
+  {
+   "id": "W-C-g7_100062",
+   "player_id": "W-C",
+   "game": "g7",
+   "frame": 100062,
+   "crop_origin_ref_px": [
+    838,
+    582
+   ],
+   "found_u": 0.024,
+   "found_score": 23.666667938232422
+  },
+  {
+   "id": "W-C-g1_2471",
+   "player_id": "W-C",
+   "game": "g1",
+   "frame": 2471,
+   "crop_origin_ref_px": [
+    838,
+    582
+   ],
+   "found_u": 0.024,
+   "found_score": 34.22222137451172
+  },
+  {
+   "id": "W-C-g2_29197",
+   "player_id": "W-C",
+   "game": "g2",
+   "frame": 29197,
+   "crop_origin_ref_px": [
+    853,
+    582
+   ],
+   "found_u": 0.06,
+   "found_score": 30.44444465637207
+  },
+  {
+   "id": "W-C-g3_41646",
+   "player_id": "W-C",
+   "game": "g3",
+   "frame": 41646,
+   "crop_origin_ref_px": [
+    848,
+    582
+   ],
+   "found_u": 0.048,
+   "found_score": 34.0
+  },
+  {
+   "id": "W-C-g4_53757",
+   "player_id": "W-C",
+   "game": "g4",
+   "frame": 53757,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 38.77777862548828
+  },
+  {
+   "id": "W-C-g5_74858",
+   "player_id": "W-C",
+   "game": "g5",
+   "frame": 74858,
+   "crop_origin_ref_px": [
+    863,
+    581
+   ],
+   "found_u": 0.084,
+   "found_score": 33.33333206176758
+  },
+  {
+   "id": "W-C-g6_88110",
+   "player_id": "W-C",
+   "game": "g6",
+   "frame": 88110,
+   "crop_origin_ref_px": [
+    1207,
+    566
+   ],
+   "found_u": 0.923,
+   "found_score": 38.0
+  },
+  {
+   "id": "W-C-g7_100533",
+   "player_id": "W-C",
+   "game": "g7",
+   "frame": 100533,
+   "crop_origin_ref_px": [
+    863,
+    581
+   ],
+   "found_u": 0.084,
+   "found_score": 44.888885498046875
+  },
+  {
+   "id": "W-C-g1_1120",
+   "player_id": "W-C",
+   "game": "g1",
+   "frame": 1120,
+   "crop_origin_ref_px": [
+    848,
+    582
+   ],
+   "found_u": 0.048,
+   "found_score": 18.88888931274414
+  },
+  {
+   "id": "W-C-g2_30881",
+   "player_id": "W-C",
+   "game": "g2",
+   "frame": 30881,
+   "crop_origin_ref_px": [
+    987,
+    576
+   ],
+   "found_u": 0.384,
+   "found_score": 27.22222137451172
+  },
+  {
+   "id": "W-C-g3_47898",
+   "player_id": "W-C",
+   "game": "g3",
+   "frame": 47898,
+   "crop_origin_ref_px": [
+    838,
+    582
+   ],
+   "found_u": 0.024,
+   "found_score": 19.88888931274414
+  },
+  {
+   "id": "W-C-g4_58023",
+   "player_id": "W-C",
+   "game": "g4",
+   "frame": 58023,
+   "crop_origin_ref_px": [
+    838,
+    582
+   ],
+   "found_u": 0.024,
+   "found_score": 27.555557250976562
+  },
+  {
+   "id": "W-C-g5_74167",
+   "player_id": "W-C",
+   "game": "g5",
+   "frame": 74167,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 30.88888931274414
+  },
+  {
+   "id": "W-C-g6_89928",
+   "player_id": "W-C",
+   "game": "g6",
+   "frame": 89928,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 38.33333206176758
+  },
+  {
+   "id": "W-C-g7_104728",
+   "player_id": "W-C",
+   "game": "g7",
+   "frame": 104728,
+   "crop_origin_ref_px": [
+    1100,
+    571
+   ],
+   "found_u": 0.659,
+   "found_score": 38.55555725097656
+  },
+  {
+   "id": "W-C-g1_3287",
+   "player_id": "W-C",
+   "game": "g1",
+   "frame": 3287,
+   "crop_origin_ref_px": [
+    1041,
+    573
+   ],
+   "found_u": 0.515,
+   "found_score": 29.555557250976562
+  },
+  {
+   "id": "W-C-g2_30789",
+   "player_id": "W-C",
+   "game": "g2",
+   "frame": 30789,
+   "crop_origin_ref_px": [
+    1222,
+    566
+   ],
+   "found_u": 0.959,
+   "found_score": 36.22222137451172
+  },
+  {
+   "id": "W-C-g3_47719",
+   "player_id": "W-C",
+   "game": "g3",
+   "frame": 47719,
+   "crop_origin_ref_px": [
+    1139,
+    569
+   ],
+   "found_u": 0.755,
+   "found_score": 36.77777862548828
+  },
+  {
+   "id": "W-C-g4_62094",
+   "player_id": "W-C",
+   "game": "g4",
+   "frame": 62094,
+   "crop_origin_ref_px": [
+    853,
+    582
+   ],
+   "found_u": 0.06,
+   "found_score": 22.77777862548828
+  },
+  {
+   "id": "W-C-g5_72194",
+   "player_id": "W-C",
+   "game": "g5",
+   "frame": 72194,
+   "crop_origin_ref_px": [
+    858,
+    581
+   ],
+   "found_u": 0.072,
+   "found_score": 26.11111068725586
+  },
+  {
+   "id": "W-C-g6_85447",
+   "player_id": "W-C",
+   "game": "g6",
+   "frame": 85447,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 34.0
+  },
+  {
+   "id": "W-C-g7_99419",
+   "player_id": "W-C",
+   "game": "g7",
+   "frame": 99419,
+   "crop_origin_ref_px": [
+    952,
+    577
+   ],
+   "found_u": 0.3,
+   "found_score": 24.88888931274414
+  },
+  {
+   "id": "W-C-g1_4477",
+   "player_id": "W-C",
+   "game": "g1",
+   "frame": 4477,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 20.0
+  },
+  {
+   "id": "W-C-g2_30243",
+   "player_id": "W-C",
+   "game": "g2",
+   "frame": 30243,
+   "crop_origin_ref_px": [
+    863,
+    581
+   ],
+   "found_u": 0.084,
+   "found_score": 44.0
+  },
+  {
+   "id": "W-C-g3_45989",
+   "player_id": "W-C",
+   "game": "g3",
+   "frame": 45989,
+   "crop_origin_ref_px": [
+    1227,
+    566
+   ],
+   "found_u": 0.971,
+   "found_score": 36.77777862548828
+  },
+  {
+   "id": "W-C-g4_59875",
+   "player_id": "W-C",
+   "game": "g4",
+   "frame": 59875,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 23.111112594604492
+  },
+  {
+   "id": "W-C-g5_73397",
+   "player_id": "W-C",
+   "game": "g5",
+   "frame": 73397,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 35.22222137451172
+  },
+  {
+   "id": "W-C-g6_84397",
+   "player_id": "W-C",
+   "game": "g6",
+   "frame": 84397,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 30.22222137451172
+  },
+  {
+   "id": "W-C-g7_99854",
+   "player_id": "W-C",
+   "game": "g7",
+   "frame": 99854,
+   "crop_origin_ref_px": [
+    883,
+    580
+   ],
+   "found_u": 0.132,
+   "found_score": 25.22222328186035
+  },
+  {
+   "id": "W-C-g1_7473",
+   "player_id": "W-C",
+   "game": "g1",
+   "frame": 7473,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 32.333335876464844
+  },
+  {
+   "id": "W-C-g2_24001",
+   "player_id": "W-C",
+   "game": "g2",
+   "frame": 24001,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 38.333335876464844
+  },
+  {
+   "id": "W-C-g3_43835",
+   "player_id": "W-C",
+   "game": "g3",
+   "frame": 43835,
+   "crop_origin_ref_px": [
+    1061,
+    573
+   ],
+   "found_u": 0.563,
+   "found_score": 39.11111068725586
+  },
+  {
+   "id": "W-C-g4_56394",
+   "player_id": "W-C",
+   "game": "g4",
+   "frame": 56394,
+   "crop_origin_ref_px": [
+    838,
+    582
+   ],
+   "found_u": 0.024,
+   "found_score": 22.666667938232422
+  },
+  {
+   "id": "W-C-g5_70089",
+   "player_id": "W-C",
+   "game": "g5",
+   "frame": 70089,
+   "crop_origin_ref_px": [
+    843,
+    582
+   ],
+   "found_u": 0.036,
+   "found_score": 34.88888931274414
+  },
+  {
+   "id": "E-C-g1_8451",
+   "player_id": "E-C",
+   "game": "g1",
+   "frame": 8451,
+   "crop_origin_ref_px": [
+    647,
+    549
+   ],
+   "found_u": 0.096,
+   "found_score": 20.77777671813965
+  },
+  {
+   "id": "E-C-g2_24473",
+   "player_id": "E-C",
+   "game": "g2",
+   "frame": 24473,
+   "crop_origin_ref_px": [
+    988,
+    535
+   ],
+   "found_u": 0.935,
+   "found_score": 2.3333334922790527
+  },
+  {
+   "id": "E-C-g3_46990",
+   "player_id": "E-C",
+   "game": "g3",
+   "frame": 46990,
+   "crop_origin_ref_px": [
+    608,
+    551
+   ],
+   "found_u": 0.0,
+   "found_score": 0.0
+  },
+  {
+   "id": "E-C-g4_56394",
+   "player_id": "E-C",
+   "game": "g4",
+   "frame": 56394,
+   "crop_origin_ref_px": [
+    1007,
+    534
+   ],
+   "found_u": 0.983,
+   "found_score": 13.777778625488281
+  },
+  {
+   "id": "E-C-g5_76651",
+   "player_id": "E-C",
+   "game": "g5",
+   "frame": 76651,
+   "crop_origin_ref_px": [
+    642,
+    550
+   ],
+   "found_u": 0.084,
+   "found_score": 12.333333969116211
+  },
+  {
+   "id": "E-C-g6_83974",
+   "player_id": "E-C",
+   "game": "g6",
+   "frame": 83974,
+   "crop_origin_ref_px": [
+    978,
+    535
+   ],
+   "found_u": 0.911,
+   "found_score": 12.44444465637207
+  },
+  {
+   "id": "E-C-g7_101448",
+   "player_id": "E-C",
+   "game": "g7",
+   "frame": 101448,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 9.55555534362793
+  },
+  {
+   "id": "E-C-g1_812",
+   "player_id": "E-C",
+   "game": "g1",
+   "frame": 812,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 10.222222328186035
+  },
+  {
+   "id": "E-C-g2_27042",
+   "player_id": "E-C",
+   "game": "g2",
+   "frame": 27042,
+   "crop_origin_ref_px": [
+    997,
+    535
+   ],
+   "found_u": 0.959,
+   "found_score": 17.22222328186035
+  },
+  {
+   "id": "E-C-g3_48569",
+   "player_id": "E-C",
+   "game": "g3",
+   "frame": 48569,
+   "crop_origin_ref_px": [
+    823,
+    542
+   ],
+   "found_u": 0.527,
+   "found_score": 16.666667938232422
+  },
+  {
+   "id": "E-C-g4_55320",
+   "player_id": "E-C",
+   "game": "g4",
+   "frame": 55320,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 12.55555534362793
+  },
+  {
+   "id": "E-C-g5_72194",
+   "player_id": "E-C",
+   "game": "g5",
+   "frame": 72194,
+   "crop_origin_ref_px": [
+    627,
+    550
+   ],
+   "found_u": 0.048,
+   "found_score": 27.0
+  },
+  {
+   "id": "E-C-g6_86020",
+   "player_id": "E-C",
+   "game": "g6",
+   "frame": 86020,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 9.777778625488281
+  },
+  {
+   "id": "E-C-g7_105616",
+   "player_id": "E-C",
+   "game": "g7",
+   "frame": 105616,
+   "crop_origin_ref_px": [
+    983,
+    535
+   ],
+   "found_u": 0.923,
+   "found_score": 17.22222137451172
+  },
+  {
+   "id": "E-C-g1_4652",
+   "player_id": "E-C",
+   "game": "g1",
+   "frame": 4652,
+   "crop_origin_ref_px": [
+    988,
+    535
+   ],
+   "found_u": 0.935,
+   "found_score": 27.22222137451172
+  },
+  {
+   "id": "E-C-g2_30243",
+   "player_id": "E-C",
+   "game": "g2",
+   "frame": 30243,
+   "crop_origin_ref_px": [
+    750,
+    545
+   ],
+   "found_u": 0.348,
+   "found_score": 15.333333969116211
+  },
+  {
+   "id": "E-C-g3_49034",
+   "player_id": "E-C",
+   "game": "g3",
+   "frame": 49034,
+   "crop_origin_ref_px": [
+    997,
+    535
+   ],
+   "found_u": 0.959,
+   "found_score": 20.88888931274414
+  },
+  {
+   "id": "E-C-g4_59315",
+   "player_id": "E-C",
+   "game": "g4",
+   "frame": 59315,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 10.44444465637207
+  },
+  {
+   "id": "E-C-g5_70777",
+   "player_id": "E-C",
+   "game": "g5",
+   "frame": 70777,
+   "crop_origin_ref_px": [
+    652,
+    549
+   ],
+   "found_u": 0.108,
+   "found_score": 19.77777862548828
+  },
+  {
+   "id": "E-C-g6_89104",
+   "player_id": "E-C",
+   "game": "g6",
+   "frame": 89104,
+   "crop_origin_ref_px": [
+    662,
+    549
+   ],
+   "found_u": 0.132,
+   "found_score": 13.333333969116211
+  },
+  {
+   "id": "E-C-g7_104325",
+   "player_id": "E-C",
+   "game": "g7",
+   "frame": 104325,
+   "crop_origin_ref_px": [
+    608,
+    551
+   ],
+   "found_u": 0.0,
+   "found_score": 0.0
+  },
+  {
+   "id": "E-C-g1_3573",
+   "player_id": "E-C",
+   "game": "g1",
+   "frame": 3573,
+   "crop_origin_ref_px": [
+    799,
+    543
+   ],
+   "found_u": 0.467,
+   "found_score": 14.0
+  },
+  {
+   "id": "E-C-g2_28926",
+   "player_id": "E-C",
+   "game": "g2",
+   "frame": 28926,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 10.44444465637207
+  },
+  {
+   "id": "E-C-g3_43250",
+   "player_id": "E-C",
+   "game": "g3",
+   "frame": 43250,
+   "crop_origin_ref_px": [
+    993,
+    535
+   ],
+   "found_u": 0.947,
+   "found_score": 11.0
+  },
+  {
+   "id": "E-C-g4_57686",
+   "player_id": "E-C",
+   "game": "g4",
+   "frame": 57686,
+   "crop_origin_ref_px": [
+    983,
+    535
+   ],
+   "found_u": 0.923,
+   "found_score": 11.222222328186035
+  },
+  {
+   "id": "E-C-g5_77233",
+   "player_id": "E-C",
+   "game": "g5",
+   "frame": 77233,
+   "crop_origin_ref_px": [
+    1007,
+    534
+   ],
+   "found_u": 0.983,
+   "found_score": 16.55555534362793
+  },
+  {
+   "id": "E-C-g6_90898",
+   "player_id": "E-C",
+   "game": "g6",
+   "frame": 90898,
+   "crop_origin_ref_px": [
+    642,
+    550
+   ],
+   "found_u": 0.084,
+   "found_score": 15.88888931274414
+  },
+  {
+   "id": "E-C-g7_106474",
+   "player_id": "E-C",
+   "game": "g7",
+   "frame": 106474,
+   "crop_origin_ref_px": [
+    993,
+    535
+   ],
+   "found_u": 0.947,
+   "found_score": 9.222222328186035
+  },
+  {
+   "id": "E-C-g1_5413",
+   "player_id": "E-C",
+   "game": "g1",
+   "frame": 5413,
+   "crop_origin_ref_px": [
+    1002,
+    534
+   ],
+   "found_u": 0.971,
+   "found_score": 19.333332061767578
+  },
+  {
+   "id": "E-C-g2_30789",
+   "player_id": "E-C",
+   "game": "g2",
+   "frame": 30789,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 10.55555534362793
+  },
+  {
+   "id": "E-C-g3_43475",
+   "player_id": "E-C",
+   "game": "g3",
+   "frame": 43475,
+   "crop_origin_ref_px": [
+    642,
+    550
+   ],
+   "found_u": 0.084,
+   "found_score": 19.555557250976562
+  },
+  {
+   "id": "E-C-g4_58469",
+   "player_id": "E-C",
+   "game": "g4",
+   "frame": 58469,
+   "crop_origin_ref_px": [
+    983,
+    535
+   ],
+   "found_u": 0.923,
+   "found_score": 16.33333396911621
+  },
+  {
+   "id": "E-C-g5_78148",
+   "player_id": "E-C",
+   "game": "g5",
+   "frame": 78148,
+   "crop_origin_ref_px": [
+    978,
+    535
+   ],
+   "found_u": 0.911,
+   "found_score": 10.44444465637207
+  },
+  {
+   "id": "E-C-g6_90691",
+   "player_id": "E-C",
+   "game": "g6",
+   "frame": 90691,
+   "crop_origin_ref_px": [
+    642,
+    550
+   ],
+   "found_u": 0.084,
+   "found_score": 15.111111640930176
+  },
+  {
+   "id": "E-C-g7_98374",
+   "player_id": "E-C",
+   "game": "g7",
+   "frame": 98374,
+   "crop_origin_ref_px": [
+    842,
+    541
+   ],
+   "found_u": 0.575,
+   "found_score": 11.88888931274414
+  },
+  {
+   "id": "E-C-g1_2884",
+   "player_id": "E-C",
+   "game": "g1",
+   "frame": 2884,
+   "crop_origin_ref_px": [
+    828,
+    542
+   ],
+   "found_u": 0.539,
+   "found_score": 14.222222328186035
+  },
+  {
+   "id": "E-C-g2_31667",
+   "player_id": "E-C",
+   "game": "g2",
+   "frame": 31667,
+   "crop_origin_ref_px": [
+    696,
+    547
+   ],
+   "found_u": 0.216,
+   "found_score": 12.88888931274414
+  },
+  {
+   "id": "E-C-g3_49314",
+   "player_id": "E-C",
+   "game": "g3",
+   "frame": 49314,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 10.55555534362793
+  },
+  {
+   "id": "E-C-g4_57892",
+   "player_id": "E-C",
+   "game": "g4",
+   "frame": 57892,
+   "crop_origin_ref_px": [
+    1007,
+    534
+   ],
+   "found_u": 0.983,
+   "found_score": 16.44444465637207
+  },
+  {
+   "id": "E-C-g5_71176",
+   "player_id": "E-C",
+   "game": "g5",
+   "frame": 71176,
+   "crop_origin_ref_px": [
+    1012,
+    534
+   ],
+   "found_u": 0.995,
+   "found_score": 10.777777671813965
+  },
+  {
+   "id": "W-LD-g1_3974",
+   "player_id": "W-LD",
+   "game": "g1",
+   "frame": 3974,
+   "crop_origin_ref_px": [
+    839,
+    485
+   ],
+   "found_u": 0.762,
+   "found_score": 37.22222137451172
+  },
+  {
+   "id": "W-LD-g2_27042",
+   "player_id": "W-LD",
+   "game": "g2",
+   "frame": 27042,
+   "crop_origin_ref_px": [
+    970,
+    500
+   ],
+   "found_u": 0.963,
+   "found_score": 40.88888931274414
+  },
+  {
+   "id": "W-LD-g3_40887",
+   "player_id": "W-LD",
+   "game": "g3",
+   "frame": 40887,
+   "crop_origin_ref_px": [
+    923,
+    490
+   ],
+   "found_u": 0.887,
+   "found_score": 34.333335876464844
+  },
+  {
+   "id": "W-LD-g4_54237",
+   "player_id": "W-LD",
+   "game": "g4",
+   "frame": 54237,
+   "crop_origin_ref_px": [
+    882,
+    486
+   ],
+   "found_u": 0.824,
+   "found_score": 35.55555725097656
+  },
+  {
+   "id": "W-LD-g5_76380",
+   "player_id": "W-LD",
+   "game": "g5",
+   "frame": 76380,
+   "crop_origin_ref_px": [
+    958,
+    497
+   ],
+   "found_u": 0.942,
+   "found_score": 23.22222137451172
+  },
+  {
+   "id": "W-LD-g6_87999",
+   "player_id": "W-LD",
+   "game": "g6",
+   "frame": 87999,
+   "crop_origin_ref_px": [
+    966,
+    499
+   ],
+   "found_u": 0.956,
+   "found_score": 41.11111068725586
+  },
+  {
+   "id": "W-LD-g7_105718",
+   "player_id": "W-LD",
+   "game": "g7",
+   "frame": 105718,
+   "crop_origin_ref_px": [
+    928,
+    490
+   ],
+   "found_u": 0.894,
+   "found_score": 27.22222328186035
+  },
+  {
+   "id": "W-LD-g1_8690",
+   "player_id": "W-LD",
+   "game": "g1",
+   "frame": 8690,
+   "crop_origin_ref_px": [
+    764,
+    484
+   ],
+   "found_u": 0.651,
+   "found_score": 33.0
+  },
+  {
+   "id": "W-LD-g2_26575",
+   "player_id": "W-LD",
+   "game": "g2",
+   "frame": 26575,
+   "crop_origin_ref_px": [
+    982,
+    504
+   ],
+   "found_u": 0.984,
+   "found_score": 33.0
+  },
+  {
+   "id": "W-LD-g3_41167",
+   "player_id": "W-LD",
+   "game": "g3",
+   "frame": 41167,
+   "crop_origin_ref_px": [
+    333,
+    479
+   ],
+   "found_u": 0.021,
+   "found_score": 30.88888931274414
+  },
+  {
+   "id": "W-LD-g4_58469",
+   "player_id": "W-LD",
+   "game": "g4",
+   "frame": 58469,
+   "crop_origin_ref_px": [
+    333,
+    479
+   ],
+   "found_u": 0.021,
+   "found_score": 29.555557250976562
+  },
+  {
+   "id": "W-LD-g5_72194",
+   "player_id": "W-LD",
+   "game": "g5",
+   "frame": 72194,
+   "crop_origin_ref_px": [
+    338,
+    479
+   ],
+   "found_u": 0.028,
+   "found_score": 31.22222328186035
+  },
+  {
+   "id": "W-LD-g6_88412",
+   "player_id": "W-LD",
+   "game": "g6",
+   "frame": 88412,
+   "crop_origin_ref_px": [
+    966,
+    499
+   ],
+   "found_u": 0.956,
+   "found_score": 44.111114501953125
+  },
+  {
+   "id": "W-LD-g7_99419",
+   "player_id": "W-LD",
+   "game": "g7",
+   "frame": 99419,
+   "crop_origin_ref_px": [
+    626,
+    482
+   ],
+   "found_u": 0.45,
+   "found_score": 34.77777862548828
+  },
+  {
+   "id": "W-LD-g1_9247",
+   "player_id": "W-LD",
+   "game": "g1",
+   "frame": 9247,
+   "crop_origin_ref_px": [
+    385,
+    480
+   ],
+   "found_u": 0.097,
+   "found_score": 34.333335876464844
+  },
+  {
+   "id": "W-LD-g2_31313",
+   "player_id": "W-LD",
+   "game": "g2",
+   "frame": 31313,
+   "crop_origin_ref_px": [
+    986,
+    505
+   ],
+   "found_u": 0.991,
+   "found_score": 32.88888931274414
+  },
+  {
+   "id": "W-LD-g3_43931",
+   "player_id": "W-LD",
+   "game": "g3",
+   "frame": 43931,
+   "crop_origin_ref_px": [
+    853,
+    485
+   ],
+   "found_u": 0.783,
+   "found_score": 32.666664123535156
+  },
+  {
+   "id": "W-LD-g4_55320",
+   "player_id": "W-LD",
+   "game": "g4",
+   "frame": 55320,
+   "crop_origin_ref_px": [
+    896,
+    486
+   ],
+   "found_u": 0.845,
+   "found_score": 42.333335876464844
+  },
+  {
+   "id": "W-LD-g5_73936",
+   "player_id": "W-LD",
+   "game": "g5",
+   "frame": 73936,
+   "crop_origin_ref_px": [
+    342,
+    479
+   ],
+   "found_u": 0.035,
+   "found_score": 33.333335876464844
+  },
+  {
+   "id": "W-LD-g6_91832",
+   "player_id": "W-LD",
+   "game": "g6",
+   "frame": 91832,
+   "crop_origin_ref_px": [
+    966,
+    499
+   ],
+   "found_u": 0.956,
+   "found_score": 34.22222137451172
+  },
+  {
+   "id": "W-LD-g7_99752",
+   "player_id": "W-LD",
+   "game": "g7",
+   "frame": 99752,
+   "crop_origin_ref_px": [
+    338,
+    479
+   ],
+   "found_u": 0.028,
+   "found_score": 32.333335876464844
+  },
+  {
+   "id": "W-LD-g1_4142",
+   "player_id": "W-LD",
+   "game": "g1",
+   "frame": 4142,
+   "crop_origin_ref_px": [
+    849,
+    485
+   ],
+   "found_u": 0.776,
+   "found_score": 34.11111068725586
+  },
+  {
+   "id": "W-LD-g2_31930",
+   "player_id": "W-LD",
+   "game": "g2",
+   "frame": 31930,
+   "crop_origin_ref_px": [
+    923,
+    490
+   ],
+   "found_u": 0.887,
+   "found_score": 26.44444465637207
+  },
+  {
+   "id": "W-LD-g3_45482",
+   "player_id": "W-LD",
+   "game": "g3",
+   "frame": 45482,
+   "crop_origin_ref_px": [
+    914,
+    488
+   ],
+   "found_u": 0.873,
+   "found_score": 45.333335876464844
+  },
+  {
+   "id": "W-LD-g4_62094",
+   "player_id": "W-LD",
+   "game": "g4",
+   "frame": 62094,
+   "crop_origin_ref_px": [
+    990,
+    506
+   ],
+   "found_u": 0.998,
+   "found_score": 28.88888931274414
+  },
+  {
+   "id": "W-LD-g5_74033",
+   "player_id": "W-LD",
+   "game": "g5",
+   "frame": 74033,
+   "crop_origin_ref_px": [
+    986,
+    505
+   ],
+   "found_u": 0.991,
+   "found_score": 38.55555725097656
+  },
+  {
+   "id": "W-LD-g6_92033",
+   "player_id": "W-LD",
+   "game": "g6",
+   "frame": 92033,
+   "crop_origin_ref_px": [
+    966,
+    499
+   ],
+   "found_u": 0.956,
+   "found_score": 34.88888931274414
+  },
+  {
+   "id": "W-LD-g7_101448",
+   "player_id": "W-LD",
+   "game": "g7",
+   "frame": 101448,
+   "crop_origin_ref_px": [
+    759,
+    484
+   ],
+   "found_u": 0.644,
+   "found_score": 34.111114501953125
+  },
+  {
+   "id": "W-LD-g1_2471",
+   "player_id": "W-LD",
+   "game": "g1",
+   "frame": 2471,
+   "crop_origin_ref_px": [
+    858,
+    485
+   ],
+   "found_u": 0.79,
+   "found_score": 43.0
+  },
+  {
+   "id": "W-LD-g2_27659",
+   "player_id": "W-LD",
+   "game": "g2",
+   "frame": 27659,
+   "crop_origin_ref_px": [
+    962,
+    498
+   ],
+   "found_u": 0.949,
+   "found_score": 41.11111068725586
+  },
+  {
+   "id": "W-LD-g3_42568",
+   "player_id": "W-LD",
+   "game": "g3",
+   "frame": 42568,
+   "crop_origin_ref_px": [
+    877,
+    485
+   ],
+   "found_u": 0.818,
+   "found_score": 36.111114501953125
+  },
+  {
+   "id": "W-LD-g4_59698",
+   "player_id": "W-LD",
+   "game": "g4",
+   "frame": 59698,
+   "crop_origin_ref_px": [
+    338,
+    479
+   ],
+   "found_u": 0.028,
+   "found_score": 31.111112594604492
+  },
+  {
+   "id": "W-LD-g5_72343",
+   "player_id": "W-LD",
+   "game": "g5",
+   "frame": 72343,
+   "crop_origin_ref_px": [
+    375,
+    479
+   ],
+   "found_u": 0.083,
+   "found_score": 18.77777862548828
+  },
+  {
+   "id": "W-LD-g6_84851",
+   "player_id": "W-LD",
+   "game": "g6",
+   "frame": 84851,
+   "crop_origin_ref_px": [
+    966,
+    499
+   ],
+   "found_u": 0.956,
+   "found_score": 43.22222137451172
+  },
+  {
+   "id": "W-LD-g7_100676",
+   "player_id": "W-LD",
+   "game": "g7",
+   "frame": 100676,
+   "crop_origin_ref_px": [
+    849,
+    485
+   ],
+   "found_u": 0.776,
+   "found_score": 36.11111068725586
+  },
+  {
+   "id": "W-LD-g1_6678",
+   "player_id": "W-LD",
+   "game": "g1",
+   "frame": 6678,
+   "crop_origin_ref_px": [
+    982,
+    504
+   ],
+   "found_u": 0.984,
+   "found_score": 33.111114501953125
+  },
+  {
+   "id": "W-LD-g2_26684",
+   "player_id": "W-LD",
+   "game": "g2",
+   "frame": 26684,
+   "crop_origin_ref_px": [
+    816,
+    485
+   ],
+   "found_u": 0.727,
+   "found_score": 38.44444274902344
+  },
+  {
+   "id": "W-LD-g3_42723",
+   "player_id": "W-LD",
+   "game": "g3",
+   "frame": 42723,
+   "crop_origin_ref_px": [
+    872,
+    485
+   ],
+   "found_u": 0.811,
+   "found_score": 25.11111068725586
+  },
+  {
+   "id": "W-LD-g4_61264",
+   "player_id": "W-LD",
+   "game": "g4",
+   "frame": 61264,
+   "crop_origin_ref_px": [
+    863,
+    485
+   ],
+   "found_u": 0.797,
+   "found_score": 37.33333206176758
+  },
+  {
+   "id": "W-LD-g5_75156",
+   "player_id": "W-LD",
+   "game": "g5",
+   "frame": 75156,
+   "crop_origin_ref_px": [
+    844,
+    485
+   ],
+   "found_u": 0.769,
+   "found_score": 36.77777862548828
+  },
+  {
+   "id": "E-LD-g1_4652",
+   "player_id": "E-LD",
+   "game": "g1",
+   "frame": 4652,
+   "crop_origin_ref_px": [
+    1470,
+    643
+   ],
+   "found_u": 0.853,
+   "found_score": 17.22222137451172
+  },
+  {
+   "id": "E-LD-g2_31477",
+   "player_id": "E-LD",
+   "game": "g2",
+   "frame": 31477,
+   "crop_origin_ref_px": [
+    1362,
+    642
+   ],
+   "found_u": 0.709,
+   "found_score": 11.000000953674316
+  },
+  {
+   "id": "E-LD-g3_41646",
+   "player_id": "E-LD",
+   "game": "g3",
+   "frame": 41646,
+   "crop_origin_ref_px": [
+    1148,
+    639
+   ],
+   "found_u": 0.42,
+   "found_score": 16.888887405395508
+  },
+  {
+   "id": "E-LD-g4_57686",
+   "player_id": "E-LD",
+   "game": "g4",
+   "frame": 57686,
+   "crop_origin_ref_px": [
+    1148,
+    639
+   ],
+   "found_u": 0.42,
+   "found_score": 16.666667938232422
+  },
+  {
+   "id": "E-LD-g5_74167",
+   "player_id": "E-LD",
+   "game": "g5",
+   "frame": 74167,
+   "crop_origin_ref_px": [
+    1342,
+    642
+   ],
+   "found_u": 0.681,
+   "found_score": 11.000000953674316
+  },
+  {
+   "id": "E-LD-g6_85638",
+   "player_id": "E-LD",
+   "game": "g6",
+   "frame": 85638,
+   "crop_origin_ref_px": [
+    974,
+    636
+   ],
+   "found_u": 0.186,
+   "found_score": 14.11111068725586
+  },
+  {
+   "id": "E-LD-g7_103470",
+   "player_id": "E-LD",
+   "game": "g7",
+   "frame": 103470,
+   "crop_origin_ref_px": [
+    1342,
+    642
+   ],
+   "found_u": 0.681,
+   "found_score": 20.0
+  },
+  {
+   "id": "E-LD-g1_4477",
+   "player_id": "E-LD",
+   "game": "g1",
+   "frame": 4477,
+   "crop_origin_ref_px": [
+    1219,
+    640
+   ],
+   "found_u": 0.516,
+   "found_score": 19.33333396911621
+  },
+  {
+   "id": "E-LD-g2_24724",
+   "player_id": "E-LD",
+   "game": "g2",
+   "frame": 24724,
+   "crop_origin_ref_px": [
+    1536,
+    644
+   ],
+   "found_u": 0.943,
+   "found_score": 16.77777862548828
+  },
+  {
+   "id": "E-LD-g3_40887",
+   "player_id": "E-LD",
+   "game": "g3",
+   "frame": 40887,
+   "crop_origin_ref_px": [
+    1260,
+    640
+   ],
+   "found_u": 0.571,
+   "found_score": 16.33333396911621
+  },
+  {
+   "id": "E-LD-g4_59219",
+   "player_id": "E-LD",
+   "game": "g4",
+   "frame": 59219,
+   "crop_origin_ref_px": [
+    1352,
+    642
+   ],
+   "found_u": 0.695,
+   "found_score": 10.222223281860352
+  },
+  {
+   "id": "E-LD-g5_73397",
+   "player_id": "E-LD",
+   "game": "g5",
+   "frame": 73397,
+   "crop_origin_ref_px": [
+    928,
+    632
+   ],
+   "found_u": 0.124,
+   "found_score": 17.55555534362793
+  },
+  {
+   "id": "E-LD-g6_89223",
+   "player_id": "E-LD",
+   "game": "g6",
+   "frame": 89223,
+   "crop_origin_ref_px": [
+    869,
+    619
+   ],
+   "found_u": 0.034,
+   "found_score": 21.33333396911621
+  },
+  {
+   "id": "E-LD-g7_100062",
+   "player_id": "E-LD",
+   "game": "g7",
+   "frame": 100062,
+   "crop_origin_ref_px": [
+    1066,
+    638
+   ],
+   "found_u": 0.31,
+   "found_score": 14.222222328186035
+  },
+  {
+   "id": "E-LD-g1_1470",
+   "player_id": "E-LD",
+   "game": "g1",
+   "frame": 1470,
+   "crop_origin_ref_px": [
+    1342,
+    642
+   ],
+   "found_u": 0.681,
+   "found_score": 15.000000953674316
+  },
+  {
+   "id": "E-LD-g2_25556",
+   "player_id": "E-LD",
+   "game": "g2",
+   "frame": 25556,
+   "crop_origin_ref_px": [
+    1367,
+    642
+   ],
+   "found_u": 0.715,
+   "found_score": 21.333335876464844
+  },
+  {
+   "id": "E-LD-g3_44505",
+   "player_id": "E-LD",
+   "game": "g3",
+   "frame": 44505,
+   "crop_origin_ref_px": [
+    1311,
+    641
+   ],
+   "found_u": 0.64,
+   "found_score": 19.44444465637207
+  },
+  {
+   "id": "E-LD-g4_53449",
+   "player_id": "E-LD",
+   "game": "g4",
+   "frame": 53449,
+   "crop_origin_ref_px": [
+    869,
+    619
+   ],
+   "found_u": 0.034,
+   "found_score": 20.44444465637207
+  },
+  {
+   "id": "E-LD-g5_74383",
+   "player_id": "E-LD",
+   "game": "g5",
+   "frame": 74383,
+   "crop_origin_ref_px": [
+    850,
+    612
+   ],
+   "found_u": 0.0,
+   "found_score": 11.11111068725586
+  },
+  {
+   "id": "E-LD-g6_85052",
+   "player_id": "E-LD",
+   "game": "g6",
+   "frame": 85052,
+   "crop_origin_ref_px": [
+    953,
+    635
+   ],
+   "found_u": 0.158,
+   "found_score": 16.88888931274414
+  },
+  {
+   "id": "E-LD-g7_101307",
+   "player_id": "E-LD",
+   "game": "g7",
+   "frame": 101307,
+   "crop_origin_ref_px": [
+    953,
+    635
+   ],
+   "found_u": 0.158,
+   "found_score": 20.11111068725586
+  },
+  {
+   "id": "E-LD-g1_9247",
+   "player_id": "E-LD",
+   "game": "g1",
+   "frame": 9247,
+   "crop_origin_ref_px": [
+    873,
+    620
+   ],
+   "found_u": 0.041,
+   "found_score": 23.22222137451172
+  },
+  {
+   "id": "E-LD-g2_31930",
+   "player_id": "E-LD",
+   "game": "g2",
+   "frame": 31930,
+   "crop_origin_ref_px": [
+    1557,
+    644
+   ],
+   "found_u": 0.97,
+   "found_score": 10.666666984558105
+  },
+  {
+   "id": "E-LD-g3_46354",
+   "player_id": "E-LD",
+   "game": "g3",
+   "frame": 46354,
+   "crop_origin_ref_px": [
+    1137,
+    639
+   ],
+   "found_u": 0.406,
+   "found_score": 21.55555534362793
+  },
+  {
+   "id": "E-LD-g4_58262",
+   "player_id": "E-LD",
+   "game": "g4",
+   "frame": 58262,
+   "crop_origin_ref_px": [
+    857,
+    615
+   ],
+   "found_u": 0.014,
+   "found_score": 22.44444465637207
+  },
+  {
+   "id": "E-LD-g5_77233",
+   "player_id": "E-LD",
+   "game": "g5",
+   "frame": 77233,
+   "crop_origin_ref_px": [
+    989,
+    637
+   ],
+   "found_u": 0.206,
+   "found_score": 10.88888931274414
+  },
+  {
+   "id": "E-LD-g6_84119",
+   "player_id": "E-LD",
+   "game": "g6",
+   "frame": 84119,
+   "crop_origin_ref_px": [
+    1372,
+    642
+   ],
+   "found_u": 0.722,
+   "found_score": 18.77777862548828
+  },
+  {
+   "id": "E-LD-g7_106224",
+   "player_id": "E-LD",
+   "game": "g7",
+   "frame": 106224,
+   "crop_origin_ref_px": [
+    1096,
+    638
+   ],
+   "found_u": 0.351,
+   "found_score": 16.66666603088379
+  },
+  {
+   "id": "E-LD-g1_6065",
+   "player_id": "E-LD",
+   "game": "g1",
+   "frame": 6065,
+   "crop_origin_ref_px": [
+    994,
+    637
+   ],
+   "found_u": 0.213,
+   "found_score": 28.11111068725586
+  },
+  {
+   "id": "E-LD-g2_27144",
+   "player_id": "E-LD",
+   "game": "g2",
+   "frame": 27144,
+   "crop_origin_ref_px": [
+    861,
+    616
+   ],
+   "found_u": 0.021,
+   "found_score": 25.88888931274414
+  },
+  {
+   "id": "E-LD-g3_48106",
+   "player_id": "E-LD",
+   "game": "g3",
+   "frame": 48106,
+   "crop_origin_ref_px": [
+    1050,
+    637
+   ],
+   "found_u": 0.289,
+   "found_score": 16.33333396911621
+  },
+  {
+   "id": "E-LD-g4_59875",
+   "player_id": "E-LD",
+   "game": "g4",
+   "frame": 59875,
+   "crop_origin_ref_px": [
+    1357,
+    642
+   ],
+   "found_u": 0.702,
+   "found_score": 24.77777862548828
+  },
+  {
+   "id": "E-LD-g5_71176",
+   "player_id": "E-LD",
+   "game": "g5",
+   "frame": 71176,
+   "crop_origin_ref_px": [
+    933,
+    633
+   ],
+   "found_u": 0.131,
+   "found_score": 25.0
+  },
+  {
+   "id": "E-LD-g6_89104",
+   "player_id": "E-LD",
+   "game": "g6",
+   "frame": 89104,
+   "crop_origin_ref_px": [
+    882,
+    623
+   ],
+   "found_u": 0.055,
+   "found_score": 16.44444465637207
+  },
+  {
+   "id": "E-LD-g7_99419",
+   "player_id": "E-LD",
+   "game": "g7",
+   "frame": 99419,
+   "crop_origin_ref_px": [
+    989,
+    637
+   ],
+   "found_u": 0.206,
+   "found_score": 23.55555534362793
+  },
+  {
+   "id": "E-LD-g1_5253",
+   "player_id": "E-LD",
+   "game": "g1",
+   "frame": 5253,
+   "crop_origin_ref_px": [
+    1061,
+    638
+   ],
+   "found_u": 0.303,
+   "found_score": 24.0
+  },
+  {
+   "id": "E-LD-g2_29887",
+   "player_id": "E-LD",
+   "game": "g2",
+   "frame": 29887,
+   "crop_origin_ref_px": [
+    1342,
+    642
+   ],
+   "found_u": 0.681,
+   "found_score": 21.11111068725586
+  },
+  {
+   "id": "E-LD-g3_45482",
+   "player_id": "E-LD",
+   "game": "g3",
+   "frame": 45482,
+   "crop_origin_ref_px": [
+    1342,
+    642
+   ],
+   "found_u": 0.681,
+   "found_score": 19.333332061767578
+  },
+  {
+   "id": "E-LD-g4_58717",
+   "player_id": "E-LD",
+   "game": "g4",
+   "frame": 58717,
+   "crop_origin_ref_px": [
+    1454,
+    643
+   ],
+   "found_u": 0.832,
+   "found_score": 27.88888931274414
+  },
+  {
+   "id": "E-LD-g5_70307",
+   "player_id": "E-LD",
+   "game": "g5",
+   "frame": 70307,
+   "crop_origin_ref_px": [
+    1321,
+    641
+   ],
+   "found_u": 0.654,
+   "found_score": 21.333332061767578
+  },
+  {
+   "id": "W-RD-g1_7113",
+   "player_id": "W-RD",
+   "game": "g1",
+   "frame": 7113,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 35.77777862548828
+  },
+  {
+   "id": "W-RD-g2_23854",
+   "player_id": "W-RD",
+   "game": "g2",
+   "frame": 23854,
+   "crop_origin_ref_px": [
+    776,
+    624
+   ],
+   "found_u": 0.924,
+   "found_score": 26.33333396911621
+  },
+  {
+   "id": "W-RD-g3_44683",
+   "player_id": "W-RD",
+   "game": "g3",
+   "frame": 44683,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 32.0
+  },
+  {
+   "id": "W-RD-g4_58023",
+   "player_id": "W-RD",
+   "game": "g4",
+   "frame": 58023,
+   "crop_origin_ref_px": [
+    786,
+    624
+   ],
+   "found_u": 0.949,
+   "found_score": 28.0
+  },
+  {
+   "id": "W-RD-g5_73936",
+   "player_id": "W-RD",
+   "game": "g5",
+   "frame": 73936,
+   "crop_origin_ref_px": [
+    776,
+    624
+   ],
+   "found_u": 0.924,
+   "found_score": 25.66666603088379
+  },
+  {
+   "id": "W-RD-g6_85052",
+   "player_id": "W-RD",
+   "game": "g6",
+   "frame": 85052,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 27.88888931274414
+  },
+  {
+   "id": "W-RD-g7_104105",
+   "player_id": "W-RD",
+   "game": "g7",
+   "frame": 104105,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 52.44444274902344
+  },
+  {
+   "id": "W-RD-g1_6920",
+   "player_id": "W-RD",
+   "game": "g1",
+   "frame": 6920,
+   "crop_origin_ref_px": [
+    771,
+    624
+   ],
+   "found_u": 0.911,
+   "found_score": 39.22222137451172
+  },
+  {
+   "id": "W-RD-g2_28148",
+   "player_id": "W-RD",
+   "game": "g2",
+   "frame": 28148,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 33.77777862548828
+  },
+  {
+   "id": "W-RD-g3_49314",
+   "player_id": "W-RD",
+   "game": "g3",
+   "frame": 49314,
+   "crop_origin_ref_px": [
+    796,
+    624
+   ],
+   "found_u": 0.974,
+   "found_score": 22.33333396911621
+  },
+  {
+   "id": "W-RD-g4_53449",
+   "player_id": "W-RD",
+   "game": "g4",
+   "frame": 53449,
+   "crop_origin_ref_px": [
+    786,
+    624
+   ],
+   "found_u": 0.949,
+   "found_score": 48.88888931274414
+  },
+  {
+   "id": "W-RD-g5_77849",
+   "player_id": "W-RD",
+   "game": "g5",
+   "frame": 77849,
+   "crop_origin_ref_px": [
+    786,
+    624
+   ],
+   "found_u": 0.949,
+   "found_score": 36.111114501953125
+  },
+  {
+   "id": "W-RD-g6_88110",
+   "player_id": "W-RD",
+   "game": "g6",
+   "frame": 88110,
+   "crop_origin_ref_px": [
+    750,
+    624
+   ],
+   "found_u": 0.86,
+   "found_score": 24.0
+  },
+  {
+   "id": "W-RD-g7_102375",
+   "player_id": "W-RD",
+   "game": "g7",
+   "frame": 102375,
+   "crop_origin_ref_px": [
+    806,
+    624
+   ],
+   "found_u": 1.0,
+   "found_score": 26.22222137451172
+  },
+  {
+   "id": "W-RD-g1_9146",
+   "player_id": "W-RD",
+   "game": "g1",
+   "frame": 9146,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 55.666664123535156
+  },
+  {
+   "id": "W-RD-g2_24724",
+   "player_id": "W-RD",
+   "game": "g2",
+   "frame": 24724,
+   "crop_origin_ref_px": [
+    771,
+    624
+   ],
+   "found_u": 0.911,
+   "found_score": 31.88888931274414
+  },
+  {
+   "id": "W-RD-g3_42475",
+   "player_id": "W-RD",
+   "game": "g3",
+   "frame": 42475,
+   "crop_origin_ref_px": [
+    725,
+    624
+   ],
+   "found_u": 0.797,
+   "found_score": 26.444446563720703
+  },
+  {
+   "id": "W-RD-g4_56248",
+   "player_id": "W-RD",
+   "game": "g4",
+   "frame": 56248,
+   "crop_origin_ref_px": [
+    796,
+    624
+   ],
+   "found_u": 0.974,
+   "found_score": 37.44444274902344
+  },
+  {
+   "id": "W-RD-g5_71176",
+   "player_id": "W-RD",
+   "game": "g5",
+   "frame": 71176,
+   "crop_origin_ref_px": [
+    776,
+    624
+   ],
+   "found_u": 0.924,
+   "found_score": 33.66666793823242
+  },
+  {
+   "id": "W-RD-g6_85143",
+   "player_id": "W-RD",
+   "game": "g6",
+   "frame": 85143,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 26.22222328186035
+  },
+  {
+   "id": "W-RD-g7_100533",
+   "player_id": "W-RD",
+   "game": "g7",
+   "frame": 100533,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 48.55555725097656
+  },
+  {
+   "id": "W-RD-g1_3196",
+   "player_id": "W-RD",
+   "game": "g1",
+   "frame": 3196,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 31.0
+  },
+  {
+   "id": "W-RD-g2_31313",
+   "player_id": "W-RD",
+   "game": "g2",
+   "frame": 31313,
+   "crop_origin_ref_px": [
+    735,
+    624
+   ],
+   "found_u": 0.822,
+   "found_score": 31.444442749023438
+  },
+  {
+   "id": "W-RD-g3_46131",
+   "player_id": "W-RD",
+   "game": "g3",
+   "frame": 46131,
+   "crop_origin_ref_px": [
+    791,
+    624
+   ],
+   "found_u": 0.962,
+   "found_score": 35.44444274902344
+  },
+  {
+   "id": "W-RD-g4_58262",
+   "player_id": "W-RD",
+   "game": "g4",
+   "frame": 58262,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 34.333335876464844
+  },
+  {
+   "id": "W-RD-g5_69842",
+   "player_id": "W-RD",
+   "game": "g5",
+   "frame": 69842,
+   "crop_origin_ref_px": [
+    776,
+    624
+   ],
+   "found_u": 0.924,
+   "found_score": 40.666664123535156
+  },
+  {
+   "id": "W-RD-g6_89928",
+   "player_id": "W-RD",
+   "game": "g6",
+   "frame": 89928,
+   "crop_origin_ref_px": [
+    750,
+    624
+   ],
+   "found_u": 0.86,
+   "found_score": 29.44444465637207
+  },
+  {
+   "id": "W-RD-g7_101653",
+   "player_id": "W-RD",
+   "game": "g7",
+   "frame": 101653,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 26.77777862548828
+  },
+  {
+   "id": "W-RD-g1_6065",
+   "player_id": "W-RD",
+   "game": "g1",
+   "frame": 6065,
+   "crop_origin_ref_px": [
+    771,
+    624
+   ],
+   "found_u": 0.911,
+   "found_score": 43.77777862548828
+  },
+  {
+   "id": "W-RD-g2_30243",
+   "player_id": "W-RD",
+   "game": "g2",
+   "frame": 30243,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 39.22222137451172
+  },
+  {
+   "id": "W-RD-g3_46887",
+   "player_id": "W-RD",
+   "game": "g3",
+   "frame": 46887,
+   "crop_origin_ref_px": [
+    755,
+    624
+   ],
+   "found_u": 0.873,
+   "found_score": 33.333335876464844
+  },
+  {
+   "id": "W-RD-g4_59315",
+   "player_id": "W-RD",
+   "game": "g4",
+   "frame": 59315,
+   "crop_origin_ref_px": [
+    786,
+    624
+   ],
+   "found_u": 0.949,
+   "found_score": 29.11111068725586
+  },
+  {
+   "id": "W-RD-g5_73534",
+   "player_id": "W-RD",
+   "game": "g5",
+   "frame": 73534,
+   "crop_origin_ref_px": [
+    771,
+    624
+   ],
+   "found_u": 0.911,
+   "found_score": 29.666667938232422
+  },
+  {
+   "id": "W-RD-g6_89796",
+   "player_id": "W-RD",
+   "game": "g6",
+   "frame": 89796,
+   "crop_origin_ref_px": [
+    786,
+    624
+   ],
+   "found_u": 0.949,
+   "found_score": 31.22222137451172
+  },
+  {
+   "id": "W-RD-g7_103653",
+   "player_id": "W-RD",
+   "game": "g7",
+   "frame": 103653,
+   "crop_origin_ref_px": [
+    791,
+    624
+   ],
+   "found_u": 0.962,
+   "found_score": 19.77777862548828
+  },
+  {
+   "id": "W-RD-g1_3287",
+   "player_id": "W-RD",
+   "game": "g1",
+   "frame": 3287,
+   "crop_origin_ref_px": [
+    781,
+    624
+   ],
+   "found_u": 0.936,
+   "found_score": 32.888885498046875
+  },
+  {
+   "id": "W-RD-g2_26947",
+   "player_id": "W-RD",
+   "game": "g2",
+   "frame": 26947,
+   "crop_origin_ref_px": [
+    771,
+    624
+   ],
+   "found_u": 0.911,
+   "found_score": 31.11111068725586
+  },
+  {
+   "id": "W-RD-g3_49615",
+   "player_id": "W-RD",
+   "game": "g3",
+   "frame": 49615,
+   "crop_origin_ref_px": [
+    771,
+    624
+   ],
+   "found_u": 0.911,
+   "found_score": 26.77777862548828
+  },
+  {
+   "id": "W-RD-g4_53600",
+   "player_id": "W-RD",
+   "game": "g4",
+   "frame": 53600,
+   "crop_origin_ref_px": [
+    776,
+    624
+   ],
+   "found_u": 0.924,
+   "found_score": 33.44444274902344
+  },
+  {
+   "id": "W-RD-g5_78653",
+   "player_id": "W-RD",
+   "game": "g5",
+   "frame": 78653,
+   "crop_origin_ref_px": [
+    786,
+    624
+   ],
+   "found_u": 0.949,
+   "found_score": 35.88888931274414
+  },
+  {
+   "id": "E-RD-g1_8690",
+   "player_id": "E-RD",
+   "game": "g1",
+   "frame": 8690,
+   "crop_origin_ref_px": [
+    1055,
+    496
+   ],
+   "found_u": 0.063,
+   "found_score": 5.777777671813965
+  },
+  {
+   "id": "E-RD-g2_29197",
+   "player_id": "E-RD",
+   "game": "g2",
+   "frame": 29197,
+   "crop_origin_ref_px": [
+    1050,
+    496
+   ],
+   "found_u": 0.05,
+   "found_score": 15.333333015441895
+  },
+  {
+   "id": "E-RD-g3_44408",
+   "player_id": "E-RD",
+   "game": "g3",
+   "frame": 44408,
+   "crop_origin_ref_px": [
+    1064,
+    496
+   ],
+   "found_u": 0.088,
+   "found_score": 19.11111068725586
+  },
+  {
+   "id": "E-RD-g4_55449",
+   "player_id": "E-RD",
+   "game": "g4",
+   "frame": 55449,
+   "crop_origin_ref_px": [
+    1074,
+    496
+   ],
+   "found_u": 0.113,
+   "found_score": 16.22222137451172
+  },
+  {
+   "id": "E-RD-g5_72989",
+   "player_id": "E-RD",
+   "game": "g5",
+   "frame": 72989,
+   "crop_origin_ref_px": [
+    1069,
+    496
+   ],
+   "found_u": 0.1,
+   "found_score": 6.888889312744141
+  },
+  {
+   "id": "E-RD-g6_83974",
+   "player_id": "E-RD",
+   "game": "g6",
+   "frame": 83974,
+   "crop_origin_ref_px": [
+    1031,
+    496
+   ],
+   "found_u": 0.0,
+   "found_score": 9.11111068725586
+  },
+  {
+   "id": "E-RD-g7_100317",
+   "player_id": "E-RD",
+   "game": "g7",
+   "frame": 100317,
+   "crop_origin_ref_px": [
+    1036,
+    496
+   ],
+   "found_u": 0.013,
+   "found_score": 16.0
+  },
+  {
+   "id": "E-RD-g1_4652",
+   "player_id": "E-RD",
+   "game": "g1",
+   "frame": 4652,
+   "crop_origin_ref_px": [
+    1064,
+    496
+   ],
+   "found_u": 0.088,
+   "found_score": 9.11111068725586
+  },
+  {
+   "id": "E-RD-g2_31217",
+   "player_id": "E-RD",
+   "game": "g2",
+   "frame": 31217,
+   "crop_origin_ref_px": [
+    1055,
+    496
+   ],
+   "found_u": 0.063,
+   "found_score": 18.44444465637207
+  },
+  {
+   "id": "E-RD-g3_47719",
+   "player_id": "E-RD",
+   "game": "g3",
+   "frame": 47719,
+   "crop_origin_ref_px": [
+    1397,
+    497
+   ],
+   "found_u": 0.967,
+   "found_score": 14.0
+  },
+  {
+   "id": "E-RD-g4_59219",
+   "player_id": "E-RD",
+   "game": "g4",
+   "frame": 59219,
+   "crop_origin_ref_px": [
+    1040,
+    496
+   ],
+   "found_u": 0.025,
+   "found_score": 10.333333969116211
+  },
+  {
+   "id": "E-RD-g5_73534",
+   "player_id": "E-RD",
+   "game": "g5",
+   "frame": 73534,
+   "crop_origin_ref_px": [
+    1164,
+    496
+   ],
+   "found_u": 0.352,
+   "found_score": 12.111111640930176
+  },
+  {
+   "id": "E-RD-g6_87999",
+   "player_id": "E-RD",
+   "game": "g6",
+   "frame": 87999,
+   "crop_origin_ref_px": [
+    1069,
+    496
+   ],
+   "found_u": 0.1,
+   "found_score": 14.333333969116211
+  },
+  {
+   "id": "E-RD-g7_101653",
+   "player_id": "E-RD",
+   "game": "g7",
+   "frame": 101653,
+   "crop_origin_ref_px": [
+    1040,
+    496
+   ],
+   "found_u": 0.025,
+   "found_score": 10.55555534362793
+  },
+  {
+   "id": "E-RD-g1_9469",
+   "player_id": "E-RD",
+   "game": "g1",
+   "frame": 9469,
+   "crop_origin_ref_px": [
+    1311,
+    497
+   ],
+   "found_u": 0.741,
+   "found_score": 7.111111640930176
+  },
+  {
+   "id": "E-RD-g2_24921",
+   "player_id": "E-RD",
+   "game": "g2",
+   "frame": 24921,
+   "crop_origin_ref_px": [
+    1254,
+    497
+   ],
+   "found_u": 0.59,
+   "found_score": 25.444442749023438
+  },
+  {
+   "id": "E-RD-g3_43250",
+   "player_id": "E-RD",
+   "game": "g3",
+   "frame": 43250,
+   "crop_origin_ref_px": [
+    1117,
+    496
+   ],
+   "found_u": 0.226,
+   "found_score": 17.55555534362793
+  },
+  {
+   "id": "E-RD-g4_61390",
+   "player_id": "E-RD",
+   "game": "g4",
+   "frame": 61390,
+   "crop_origin_ref_px": [
+    1093,
+    496
+   ],
+   "found_u": 0.163,
+   "found_score": 17.11111068725586
+  },
+  {
+   "id": "E-RD-g5_70089",
+   "player_id": "E-RD",
+   "game": "g5",
+   "frame": 70089,
+   "crop_origin_ref_px": [
+    1045,
+    496
+   ],
+   "found_u": 0.038,
+   "found_score": 15.666667938232422
+  },
+  {
+   "id": "E-RD-g6_90898",
+   "player_id": "E-RD",
+   "game": "g6",
+   "frame": 90898,
+   "crop_origin_ref_px": [
+    1036,
+    496
+   ],
+   "found_u": 0.013,
+   "found_score": 10.333333015441895
+  },
+  {
+   "id": "E-RD-g7_103987",
+   "player_id": "E-RD",
+   "game": "g7",
+   "frame": 103987,
+   "crop_origin_ref_px": [
+    1174,
+    496
+   ],
+   "found_u": 0.377,
+   "found_score": 20.11111068725586
+  },
+  {
+   "id": "E-RD-g1_5692",
+   "player_id": "E-RD",
+   "game": "g1",
+   "frame": 5692,
+   "crop_origin_ref_px": [
+    1378,
+    497
+   ],
+   "found_u": 0.916,
+   "found_score": 12.88888931274414
+  },
+  {
+   "id": "E-RD-g2_31313",
+   "player_id": "E-RD",
+   "game": "g2",
+   "frame": 31313,
+   "crop_origin_ref_px": [
+    1283,
+    497
+   ],
+   "found_u": 0.665,
+   "found_score": 20.44444465637207
+  },
+  {
+   "id": "E-RD-g3_45804",
+   "player_id": "E-RD",
+   "game": "g3",
+   "frame": 45804,
+   "crop_origin_ref_px": [
+    1069,
+    496
+   ],
+   "found_u": 0.1,
+   "found_score": 14.333333969116211
+  },
+  {
+   "id": "E-RD-g4_53757",
+   "player_id": "E-RD",
+   "game": "g4",
+   "frame": 53757,
+   "crop_origin_ref_px": [
+    1074,
+    496
+   ],
+   "found_u": 0.113,
+   "found_score": 9.44444465637207
+  },
+  {
+   "id": "E-RD-g5_69742",
+   "player_id": "E-RD",
+   "game": "g5",
+   "frame": 69742,
+   "crop_origin_ref_px": [
+    1069,
+    496
+   ],
+   "found_u": 0.1,
+   "found_score": 11.55555534362793
+  },
+  {
+   "id": "E-RD-g6_87066",
+   "player_id": "E-RD",
+   "game": "g6",
+   "frame": 87066,
+   "crop_origin_ref_px": [
+    1050,
+    496
+   ],
+   "found_u": 0.05,
+   "found_score": 12.44444465637207
+  },
+  {
+   "id": "E-RD-g7_98594",
+   "player_id": "E-RD",
+   "game": "g7",
+   "frame": 98594,
+   "crop_origin_ref_px": [
+    1340,
+    497
+   ],
+   "found_u": 0.816,
+   "found_score": 16.666667938232422
+  },
+  {
+   "id": "E-RD-g1_1470",
+   "player_id": "E-RD",
+   "game": "g1",
+   "frame": 1470,
+   "crop_origin_ref_px": [
+    1264,
+    497
+   ],
+   "found_u": 0.615,
+   "found_score": 21.88888931274414
+  },
+  {
+   "id": "E-RD-g2_27144",
+   "player_id": "E-RD",
+   "game": "g2",
+   "frame": 27144,
+   "crop_origin_ref_px": [
+    1264,
+    497
+   ],
+   "found_u": 0.615,
+   "found_score": 22.666667938232422
+  },
+  {
+   "id": "E-RD-g3_49034",
+   "player_id": "E-RD",
+   "game": "g3",
+   "frame": 49034,
+   "crop_origin_ref_px": [
+    1107,
+    496
+   ],
+   "found_u": 0.201,
+   "found_score": 11.222222328186035
+  },
+  {
+   "id": "E-RD-g4_56248",
+   "player_id": "E-RD",
+   "game": "g4",
+   "frame": 56248,
+   "crop_origin_ref_px": [
+    1254,
+    497
+   ],
+   "found_u": 0.59,
+   "found_score": 30.666667938232422
+  },
+  {
+   "id": "E-RD-g5_76380",
+   "player_id": "E-RD",
+   "game": "g5",
+   "frame": 76380,
+   "crop_origin_ref_px": [
+    1207,
+    496
+   ],
+   "found_u": 0.465,
+   "found_score": 20.333335876464844
+  },
+  {
+   "id": "E-RD-g6_89104",
+   "player_id": "E-RD",
+   "game": "g6",
+   "frame": 89104,
+   "crop_origin_ref_px": [
+    1055,
+    496
+   ],
+   "found_u": 0.063,
+   "found_score": 16.33333396911621
+  },
+  {
+   "id": "E-RD-g7_103470",
+   "player_id": "E-RD",
+   "game": "g7",
+   "frame": 103470,
+   "crop_origin_ref_px": [
+    1031,
+    496
+   ],
+   "found_u": 0.0,
+   "found_score": 20.77777671813965
+  },
+  {
+   "id": "E-RD-g1_5253",
+   "player_id": "E-RD",
+   "game": "g1",
+   "frame": 5253,
+   "crop_origin_ref_px": [
+    1321,
+    497
+   ],
+   "found_u": 0.766,
+   "found_score": 7.555555820465088
+  },
+  {
+   "id": "E-RD-g2_28614",
+   "player_id": "E-RD",
+   "game": "g2",
+   "frame": 28614,
+   "crop_origin_ref_px": [
+    1102,
+    496
+   ],
+   "found_u": 0.188,
+   "found_score": 10.222222328186035
+  },
+  {
+   "id": "E-RD-g3_43655",
+   "player_id": "E-RD",
+   "game": "g3",
+   "frame": 43655,
+   "crop_origin_ref_px": [
+    1050,
+    496
+   ],
+   "found_u": 0.05,
+   "found_score": 16.666667938232422
+  },
+  {
+   "id": "E-RD-g4_58941",
+   "player_id": "E-RD",
+   "game": "g4",
+   "frame": 58941,
+   "crop_origin_ref_px": [
+    1060,
+    496
+   ],
+   "found_u": 0.075,
+   "found_score": 9.11111068725586
+  },
+  {
+   "id": "E-RD-g5_75589",
+   "player_id": "E-RD",
+   "game": "g5",
+   "frame": 75589,
+   "crop_origin_ref_px": [
+    1045,
+    496
+   ],
+   "found_u": 0.038,
+   "found_score": 12.11111068725586
+  }
+ ]
+}
