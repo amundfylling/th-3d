@@ -139,7 +139,10 @@ reliably and the E goalie's rotation axis. It is not yet good enough to state wh
 
 ## 4. Next steps
 
-1. **Real labels (needs the user, about 15 minutes):** a click page with about 100 real crops per end where the user
+1. **Real labels (needs the user, about 15 minutes; page published 2026-10-09):** the label page
+   https://claude.ai/artifact/PZYZ99CUBmmQkp8pjKnbr6 (`validation/goalie-facing-review.html`, built by
+   `scripts/synth/goalie-facing-page.py`; crop list `data/games/nm26-semifinal/goalie-facing-crops.json`) shows 200 real
+   crops (the 120 evaluation crops plus 40 more per end); the user taps the ice where the goalie faces. Original plan: a click page with about 100 real crops per end where the user
    marks the goalie's facing (and corrects obviously wrong outlines). That gives the first real accuracy and
    settles front/back.
 2. **White end:** render the white kit closer to the real one (bluer white, more gloss), add hands and arms over the

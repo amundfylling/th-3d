@@ -1,0 +1,161 @@
+<title>Goalie Facing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: one-column phone tool. The crop fills the width, actions sit under the thumb, the progress grid is below. */
+:root {
+  --ice: #f3f6f9; --panel: #ffffff; --ink: #14202b; --muted: #5a6977; --line: #d5dee6;
+  --blue: #1f4fa3; --mark: #e0157a; --ok: #1d7f4e; --warn: #b26a00;
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --ice: #0f161d; --panel: #17212b; --ink: #e7eef4; --muted: #94a3b1; --line: #2a3846;
+  --blue: #7fa8ee; --mark: #ff4fa3; --ok: #4cc08a; --warn: #f0a640; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --ice: #0f161d; --panel: #17212b; --ink: #e7eef4; --muted: #94a3b1; --line: #2a3846;
+  --blue: #7fa8ee; --mark: #ff4fa3; --ok: #4cc08a; --warn: #f0a640; color-scheme: dark }
+html, body { background: var(--ice); color: var(--ink); }
+body { font: 16px/1.45 var(--body); padding-inline: 16px; padding-block: 12px 32px; }
+main { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+header { display: flex; flex-direction: column; gap: 6px; }
+h1 { font: 700 1.7rem/1 var(--display); letter-spacing: .02em; margin: 0; text-transform: uppercase; }
+.count { font: 600 1.05rem var(--display); color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .03em; }
+.bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--blue); transition: width .2s; }
+.how { margin: 0; color: var(--muted); font-size: .95rem; }
+.how b { color: var(--ink); font-weight: 600; }
+.meta { display: flex; justify-content: space-between; gap: 8px; font: 600 1rem var(--display); letter-spacing: .04em; text-transform: uppercase; }
+.meta span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+.stage { position: relative; width: 100%; aspect-ratio: 1; max-width: 100%; border-radius: 6px; overflow: hidden; background: var(--line); touch-action: manipulation; cursor: crosshair; }
+.stage svg { display: block; width: 100%; height: 100%; }
+.state { min-height: 1.4em; font-size: .95rem; color: var(--muted); }
+.state.saved { color: var(--ok); } .state.unsure { color: var(--warn); }
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.nav { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+button { font: 600 1.05rem var(--display); letter-spacing: .04em; text-transform: uppercase; border-radius: 8px; padding: 14px 10px; border: 1.5px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+button.primary { background: var(--blue); border-color: var(--blue); color: var(--panel); }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible, .cell:focus-visible { outline: 3px solid var(--mark); outline-offset: 2px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(26px, 1fr)); gap: 4px; }
+.cell { aspect-ratio: 1; border-radius: 4px; border: 1px solid var(--line); background: var(--panel); padding: 0; font: 500 .62rem var(--body); color: var(--muted); }
+.cell.done { background: var(--ok); border-color: var(--ok); color: var(--panel); }
+.cell.unsure { background: var(--warn); border-color: var(--warn); color: var(--panel); }
+.cell.cur { outline: 2px solid var(--mark); outline-offset: 1px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .85rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.note { border: 1.5px solid var(--warn); border-radius: 8px; padding: 10px 12px; font-size: .95rem; }
+h2 { font: 700 1.1rem var(--display); letter-spacing: .05em; text-transform: uppercase; margin: 6px 0 0; }
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+</style>
+
+<main>
+  <header>
+    <h1>Goalie facing</h1>
+    <div class="count" id="count">0 of 0 marked</div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <p class="how">Tap the ice in the direction the goalie <b>faces</b> (its chest and mask). The arrow starts at the pink dot, where the goalie stands on its slot. Tap again to adjust, then save.</p>
+  <div class="note" id="dbnote" hidden>Your taps can't be saved in this view. Open the page in the Claude app while signed in.</div>
+  <div class="meta"><span id="where"></span><span id="pos"></span></div>
+  <div class="stage" id="stage">
+    <svg id="svg" viewBox="0 0 200 200" role="img" aria-label="Goal crop">
+      <defs>
+        <marker id="head" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--mark)"></path>
+        </marker>
+      </defs>
+      <image id="img" x="0" y="0" width="200" height="200" href=""></image>
+      <line id="halo" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round" opacity=".85" visibility="hidden"></line>
+      <line id="arrow" stroke="var(--mark)" stroke-width="2" stroke-linecap="round" marker-end="url(#head)" visibility="hidden"></line>
+      <circle id="pivot" r="2.6" fill="var(--mark)" stroke="#ffffff" stroke-width="1"></circle>
+    </svg>
+  </div>
+  <div class="state" id="state"></div>
+  <div class="actions">
+    <button id="unsure" type="button">Can't tell</button>
+    <button id="save" type="button" class="primary" disabled>Save</button>
+  </div>
+  <div class="nav">
+    <button id="prev" type="button">‹ Prev</button>
+    <button id="clear" type="button">Clear</button>
+    <button id="next" type="button">Next ›</button>
+  </div>
+  <h2>All crops</h2>
+  <div class="legend"><span><i style="background:var(--ok)"></i>Marked</span><span><i style="background:var(--warn)"></i>Can't tell</span><span><i style="background:var(--panel);border:1px solid var(--line)"></i>Open</span></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<script>
+const D = /*DATA*/[];
+const END = { W: "Left end · white/blue", E: "Right end · yellow" };
+const labels = {};
+let cur = 0, tap = null, db = null;
+const $ = (id) => document.getElementById(id);
+
+function setLine(el, a, b) { el.setAttribute("x1", a[0]); el.setAttribute("y1", a[1]); el.setAttribute("x2", b[0]); el.setAttribute("y2", b[1]); el.setAttribute("visibility", "visible"); }
+function drawArrow(p) {
+  const c = D[cur];
+  if (!p) { $("arrow").setAttribute("visibility", "hidden"); $("halo").setAttribute("visibility", "hidden"); return; }
+  setLine($("halo"), c.pivot_px, p); setLine($("arrow"), c.pivot_px, p);
+}
+function show(i) {
+  cur = (i + D.length) % D.length; const c = D[cur], L = labels[c.id];
+  $("img").setAttribute("href", c.img);
+  $("pivot").setAttribute("cx", c.pivot_px[0]); $("pivot").setAttribute("cy", c.pivot_px[1]);
+  $("where").textContent = `Game ${c.game.slice(1)} · ${END[c.end]}`;
+  $("pos").textContent = `${cur + 1} / ${D.length}`;
+  tap = L && L.verdict === "facing" ? L.tap_px : null; drawArrow(tap);
+  const st = $("state"); st.className = "state";
+  if (L && L.verdict === "facing") { st.textContent = "Saved. Tap to change it."; st.classList.add("saved"); }
+  else if (L && L.verdict === "unsure") { st.textContent = "Marked as can't tell."; st.classList.add("unsure"); }
+  else st.textContent = "";
+  $("save").disabled = !tap; renderGrid();
+}
+function renderProgress() {
+  const n = Object.keys(labels).length;
+  $("count").textContent = `${n} of ${D.length} marked`;
+  $("barfill").style.width = `${(100 * n) / D.length}%`;
+}
+function renderGrid() {
+  const g = $("grid");
+  if (!g.children.length) D.forEach((c, i) => { const b = document.createElement("button"); b.type = "button"; b.className = "cell"; b.textContent = i + 1; b.setAttribute("aria-label", `Crop ${i + 1}`); b.onclick = () => show(i); g.appendChild(b); });
+  D.forEach((c, i) => { const b = g.children[i], L = labels[c.id]; b.className = "cell" + (L ? (L.verdict === "unsure" ? " unsure" : " done") : "") + (i === cur ? " cur" : ""); });
+  renderProgress();
+}
+function nextOpen() { for (let k = 1; k <= D.length; k++) { const j = (cur + k) % D.length; if (!labels[D[j].id]) return j; } return (cur + 1) % D.length; }
+
+$("svg").addEventListener("click", (ev) => {
+  const r = $("svg").getBoundingClientRect(); const p = [((ev.clientX - r.left) / r.width) * 200, ((ev.clientY - r.top) / r.height) * 200];
+  const c = D[cur]; const d = Math.hypot(p[0] - c.pivot_px[0], p[1] - c.pivot_px[1]);
+  if (d < 12) { $("state").className = "state unsure"; $("state").textContent = "Tap a little further from the pink dot."; return; }
+  tap = [Math.round(p[0] * 10) / 10, Math.round(p[1] * 10) / 10]; drawArrow(tap); $("save").disabled = false;
+  $("state").className = "state"; $("state").textContent = "Save to keep this direction.";
+});
+async function store(verdict) {
+  const c = D[cur]; const doc = { id: c.id, game: c.game, end: c.end, verdict, pivot_px: c.pivot_px, tap_px: verdict === "facing" ? tap : null, at: new Date().toISOString() };
+  if (!db) { $("state").className = "state unsure"; $("state").textContent = "Not saved: this view has no storage."; return; }
+  try { await db.collection("facing").doc(c.id).set(doc); labels[c.id] = doc; show(nextOpen()); }
+  catch (e) { $("state").className = "state unsure"; $("state").textContent = `Not saved (${e && e.code ? e.code : "error"}). Try again.`; }
+}
+$("save").onclick = () => tap && store("facing");
+$("unsure").onclick = () => store("unsure");
+$("prev").onclick = () => show(cur - 1);
+$("next").onclick = () => show(cur + 1);
+$("clear").onclick = async () => {
+  const c = D[cur]; if (!db || !labels[c.id]) { tap = null; drawArrow(null); $("save").disabled = true; return; }
+  try { await db.collection("facing").doc(c.id).delete(); delete labels[c.id]; show(cur); } catch { $("state").textContent = "Could not clear. Try again."; }
+};
+
+show(0);
+(async () => {
+  try { db = await window.claude?.use?.("db"); } catch { db = null; }
+  if (!db) { $("dbnote").hidden = false; return; }
+  let first = true;
+  db.collection("facing").onSnapshot((snap) => {
+    for (const k of Object.keys(labels)) delete labels[k];
+    for (const d of snap.docs) { const x = d.data(); if (x && x.id) labels[x.id] = x; }
+    if (first) { first = false; show(labels[D[0].id] ? nextOpen() : 0); } else renderGrid();
+  }, () => {});
+})();
+</script>
