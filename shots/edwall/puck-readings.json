@@ -1,0 +1,15 @@
+{
+ "description": "Puck positions read by eye (AI) from the registered broadcast frames (out/edwall/<goal_id>/<frame>.png: E half of the game-2 reference frame at 2x; scripts/edwall-frames.py) for Nygård's three Edwall long-shovel goals in game 2. Pixel = the centre of the dark puck blob (motion-blurred streaks: the streak centre, i.e. mid-exposure). kind: rest = puck still at the right wing's blade by the near board; streak = moving, blurred along its path; flight = free slide, blob still readable; hidden = not visible (under or behind a figure). Read with a 50 px grid; reading error about 10 px (2.5-3 mm) for sharp blobs, 20-30 px along a streak. World positions are back-projected onto the plane z = 6 mm (half the preview puck thickness) by scripts/edwall-observe.py. Status: PROPOSED (AI reading, not checked by the user).",
+ "z_mm": 6.0,
+ "goals": {
+  "g2-goal2": {"label_frame": 27723, "readings": [
+   [27700, 236, 942, "rest"], [27705, 246, 942, "rest"], [27709, 290, 938, "rest"], [27712, 294, 937, "rest"], [27715, 297, 938, "rest"],
+   [27716, 455, 934, "streak"], [27717, 650, 866, "streak"], [27718, 738, 740, "flight"], [27719, 790, 680, "flight"], [27720, null, null, "hidden"], [27721, null, null, "hidden"]]},
+  "g2-goal3": {"label_frame": 28347, "readings": [
+   [28336, 240, 938, "rest"], [28338, 240, 938, "rest"], [28341, 246, 937, "rest"],
+   [28342, 276, 938, "streak"], [28343, 440, 935, "streak"], [28344, 605, 900, "streak"], [28345, 716, 795, "flight"], [28346, 769, 741, "flight"], [28347, null, null, "hidden"], [28348, null, null, "hidden"]]},
+  "g2-goal4": {"label_frame": 28707, "readings": [
+   [28696, 257, 936, "rest"], [28698, 264, 936, "rest"], [28700, 272, 935, "rest"],
+   [28701, 369, 936, "streak"], [28702, 618, 897, "streak"], [28703, 725, 791, "flight"], [28704, 774, 739, "flight"], [28705, 818, 685, "flight"], [28706, null, null, "hidden"], [28707, null, null, "hidden"]]}
+ }
+}
