@@ -92,10 +92,31 @@ def summ(rows, slot=True):
     return o
 
 
+def temporal(pattern):
+    """Jumps between consecutive 30 fps frames (slot over 30 mm, rotation over 60 deg: faster than a figure moves, as
+    docs/nm26-figure-tracks.md), and the share of unknown frames, over all skaters and all seven games."""
+    js = jr = n = unk = tot = 0; jg = ng = 0
+    for g in GAMES:
+        p = Path(str(pattern).format(game=g))
+        if not p.exists(): continue
+        rows, ci = load_track(p); fr = sorted(rows)
+        for f in [c[:-2] for c in ci if c.endswith("_u")]:
+            src = ci.get(f"{f}_src"); u = ci[f"{f}_u"]; th = ci[f"{f}_theta_deg"]; L = SLOT_LEN[f]
+            for a, b in zip(fr[:-1], fr[1:]):
+                ra, rb = rows[a], rows[b]; tot += 1
+                if ra[u] is None or (src and ra[src] == 2): unk += 1
+                if b - a != 1 or ra[u] is None or rb[u] is None or (src and (ra[src] == 2 or rb[src] == 2)): continue
+                if f.endswith("-G"):
+                    ng += 1; jg += abs(float(dec.circ(ra[th] - rb[th]))) > 60; continue
+                n += 1; js += abs(ra[u] - rb[u]) * L > 30; jr += abs(float(dec.circ(ra[th] - rb[th]))) > 60
+    return {"steps": n, "slot_jumps": round(js / max(n, 1), 4), "rotation_jumps": round(jr / max(n, 1), 4),
+            "goalie_rotation_jumps": round(jg / max(ng, 1), 4), "unknown": round(unk / max(tot, 1), 4)}
+
+
 def report(name, pattern, ids=None):
     sk, gk = score(pattern)
     if ids is not None: sk = [r for r in sk if r["id"] in ids["sk"]]; gk = [r for r in gk if r["id"] in ids["gk"]]
-    return {"skaters": {"all": summ(sk), "test": summ([r for r in sk if r["game"] in TEST]),
+    return {"temporal": temporal(pattern), "skaters": {"all": summ(sk), "test": summ([r for r in sk if r["game"] in TEST]),
                         "by_figure_all": {p: summ([r for r in sk if r["pid"] == p]) for p in sorted({r["pid"] for r in sk})}},
             "goalies": {"all": summ(gk, False), "test": summ([r for r in gk if r["game"] in TEST], False)},
             "rows": {"skaters": sk, "goalies": gk}}
@@ -104,9 +125,10 @@ def report(name, pattern, ids=None):
 if __name__ == "__main__":
     A = sys.argv[1:]; outp = Path(A[A.index("--out") + 1]) if "--out" in A else REPO / "out/synth/v3/eval.json"
     specs = [a.split("=", 1) for a in A if "=" in a and not a.startswith("--")]
-    if "--lite" in A:
+    if "--lite" in A and "--no-build" not in A:
         (REPO / "out/synth/v3").mkdir(parents=True, exist_ok=True)
         for g in GAMES: (REPO / f"out/synth/v3/lite-{g}.json").write_text(json.dumps(lite(g), separators=(",", ":")))
+    if "--lite" in A:
         specs = [["raw (committed)", str(D / "{game}/figure-tracks.json")], ["cleaned (committed)", str(D / "{game}/figure-tracks-smooth.json")],
                  ["v3-lite", str(REPO / "out/synth/v3/lite-{game}.json")]] + specs
     R = {n: report(n, p) for n, p in specs}
@@ -121,6 +143,6 @@ if __name__ == "__main__":
                "common_labels": {n: {k: v for k, v in r.items() if k != "rows"} for n, r in C.items()},
                "rows": {n: r["rows"] for n, r in R.items()}}, open(outp, "w"), indent=1)
     for n, r in C.items():
-        print(f"== {n} (common labels)")
+        print(f"== {n} (common labels)", r["temporal"])
         for k in ("skaters", "goalies"):
             for s in ("all", "test"): print(f"  {k:8s} {s:4s}", r[k][s])

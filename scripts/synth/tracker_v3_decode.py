@@ -102,9 +102,12 @@ def decode(frames, cands, dense):
     return s3, th3, src, flipped
 
 
-def reading_cost(slot_dist_mm=None, presence=None, rank=0):
-    """Cost of one reading: far from the slot (the pivot off its slot) and, with the v3 model, a low presence."""
+def reading_cost(slot_dist_mm=None, presence=None, rank=0, colour=None):
+    """Cost of one reading: far from the slot (the pivot off its slot), a very weak kit-colour peak (on the 352 label
+    frames true first peaks score 10-23 (5th-50th percentile), so under 6 is mostly noise) and, with the v3 model, a low
+    presence; the second colour peak pays a little more than the first."""
     c = 0.0
+    if colour is not None: c += max(0.0, 6.0 - colour) / 3.0
     if slot_dist_mm is not None:
         if slot_dist_mm > 25: return None
         c += max(0.0, slot_dist_mm - 6.0) / 6.0

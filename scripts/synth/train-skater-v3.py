@@ -51,8 +51,20 @@ def arc_point(P, u):
 SLOTPX = {p: np.array([project(arc_point(ts.SLOT[p], u)) for u in np.linspace(0, 1, 120)]) for p in ORDER}
 
 
-def model():
-    m = ts.model(); m.fc = nn.Linear(512, 5); return m
+# ImageNet ResNet-18 weights. download.pytorch.org (torchvision's IMAGENET1K_V1, used by v2) is blocked by this
+# container's network policy (2026-10-10), so v3 starts from timm's ResNet-18 ImageNet weights (RSB recipe A1, same
+# architecture and parameter names), fetched from timm's GitHub release:
+# https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-rsb-weights/resnet18_a1_0-d63eafa0.pth
+INIT = Path("/root/.cache/torch/hub/checkpoints/alt/resnet18_a1.pth")
+
+
+def model(pretrained=True):
+    m = torchvision.models.resnet18(weights=None)
+    if pretrained and INIT.exists():
+        sd = torch.load(INIT, map_location="cpu"); m.load_state_dict({k: v for k, v in sd.items() if k in m.state_dict()}, strict=False)
+    w = m.conv1.weight.data; m.conv1 = nn.Conv2d(3 + len(ORDER), 64, 7, 2, 3, bias=False)
+    m.conv1.weight.data[:, :3] = w; m.conv1.weight.data[:, 3:] = 0
+    m.fc = nn.Linear(512, 5); return m
 
 
 def inside(xy): return WIN[0] <= xy[0] <= WIN[1] and WIN[2] <= xy[1] <= WIN[3]
