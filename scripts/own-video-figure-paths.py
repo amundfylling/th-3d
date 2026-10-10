@@ -58,11 +58,54 @@ def viterbi(S, pid):
     return u, h
 
 
+def boxes():
+    """Per figure: (T, U, 4) image box (x0, y0, x1, y1) of an upright 30 x 50 mm column at every slot position."""
+    out = {}
+    for pid in ovf.FIGS:
+        xy = slot_point(pid, ovf.poses(pid)); n = len(xy)
+        P = np.concatenate([np.c_[xy, np.zeros(n)], np.c_[xy, np.full(n, 50.0)], np.c_[xy + [15, 0], np.full(n, 25.0)], np.c_[xy - [15, 0], np.full(n, 25.0)],
+                            np.c_[xy + [0, 15], np.full(n, 25.0)], np.c_[xy - [0, 15], np.full(n, 25.0)]])
+        B = np.zeros((len(fr), n, 4), np.float32)
+        for k, i in enumerate(fr):
+            q = project(int(i), P).reshape(6, n, 2)
+            B[k] = np.c_[q[..., 0].min(0), q[..., 1].min(0), q[..., 0].max(0), q[..., 1].max(0)]
+        out[pid] = B
+    return out
+
+
+def overlap(BA, bB):
+    """Share of each box in BA (T, U, 4) covered by the box bB (T, 4)."""
+    ix = np.clip(np.minimum(BA[..., 2], bB[:, None, 2]) - np.maximum(BA[..., 0], bB[:, None, 0]), 0, None)
+    iy = np.clip(np.minimum(BA[..., 3], bB[:, None, 3]) - np.maximum(BA[..., 1], bB[:, None, 1]), 0, None)
+    return ix * iy / ((BA[..., 2] - BA[..., 0]) * (BA[..., 3] - BA[..., 1]) + 1e-6)
+
+
+# Pass 1: every figure alone. Passes 2-3 (explain-away): two figures cannot both be explained by one blob, so a pose
+# whose image column is covered more than IOA_MIN by another figure's current column loses LAMBDA * (excess share)
+# * that figure's score. Figures are updated in order of their median score (best first), each against the others'
+# latest paths. Genuine occlusion (one figure behind another) is penalised too; the Viterbi bridges short ones.
+IOA_MIN, LAMBDA, PASSES = 0.25, 2.0, 3
+SV = {pid: np.concatenate([z[pid] for z in Z]).astype(np.float32) for pid in ovf.FIGS}
+BX = boxes(); PATH = {}
+for it in range(PASSES):
+    order = sorted(ovf.FIGS, key=lambda p: -float(np.median(SV[p].max((1, 2)))))
+    for pid in order:
+        S = SV[pid].copy()
+        if it:
+            pen = np.zeros(S.shape[:2], np.float32)
+            for o in ovf.FIGS:
+                if o == pid or o not in PATH: continue
+                uo, ho = PATH[o]; so = SV[o][np.arange(len(fr)), uo, ho]
+                ioa = overlap(BX[pid], BX[o][np.arange(len(fr)), uo])
+                pen += LAMBDA * np.clip(ioa - IOA_MIN, 0, None) / (1 - IOA_MIN) * so[:, None]
+            S -= pen[..., None]
+        PATH[pid] = viterbi(S, pid)
+    print("pass", it + 1, "done", flush=True)
+
 cols = ["u", "heading_deg", "x_mm", "y_mm", "score", "flip_margin"]
 tracks = {}; summary = {}
 for pid in ovf.FIGS:
-    S = np.concatenate([z[pid] for z in Z]).astype(np.float32)
-    ui, hi = viterbi(S, pid)
+    S = SV[pid]; ui, hi = PATH[pid]
     us = ovf.poses(pid)[ui]; hs = ovf.HEADS[hi].astype(float); xy = slot_point(pid, us)
     sc = S[np.arange(len(S)), ui, hi]; opp = S[np.arange(len(S)), ui, (hi + NH // 2) % NH]
     tracks[pid] = np.c_[us.round(4), hs, xy.round(1), sc.round(4), (sc - opp).round(4)].tolist()
@@ -81,6 +124,7 @@ out = {"description": "Figure tracks of the handheld match (scripts/own-video-fi
        "status": "proposed", "kits": {"W": ovf.KIT_OF_END["W"], "E": ovf.KIT_OF_END["E"],
                                       "evidence": "out/own-video/kit-test.json: 11 of 12 slots score higher with this kit (E-G does not)"},
        "grid": {"u_step_mm": ovf.DU_MM, "heading_step_deg": int(ovf.DH)},
+       "explain_away": {"passes": PASSES, "ioa_min": IOA_MIN, "lambda": LAMBDA},
        "viterbi": {"reward_scale": SCALE, "slot_cost_mm": UMM, "heading_step_cost": HSTEP_COST, "max_speed_mm_s": VMAX},
        "frames": [int(fr[0]), int(fr[-1])], "fps": FPS, "columns": cols, "summary": summary, "tracks": tracks}
 save(OUTD / "figure-tracks.json", out)

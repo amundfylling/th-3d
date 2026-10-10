@@ -87,6 +87,7 @@ def score_frame(M, Q, kit):
 
 def work(rng_):
     a, b, kit_test = rng_
+    cv2.setNumThreads(1)
     WP = world_points(); bg = cv2.imread(str(GAME / "background.png"))
     Hs = stabilisation(); Tc = crop_matrix()
     flat = np.concatenate([WP[p].reshape(-1, 3) for p in FIGS]); sizes = [WP[p].shape for p in FIGS]
