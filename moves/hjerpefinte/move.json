@@ -1,0 +1,151 @@
+{
+ "schema": "move-spec/1",
+ "id": "hjerpefinte",
+ "name": "Hjerpefinte (centre, NTHF)",
+ "nthf": {
+  "name": "Hjerpefinte",
+  "player": "Centre",
+  "level": 2
+ },
+ "trace_id": "trace.hjerpefinte.v1",
+ "status": "proposed",
+ "kind": "designed",
+ "source_text": "Center starts with the puck out on the blade to the right of the slot, and shoots directly into the right corner. Only works against a goalie expecting a Hjerpe",
+ "references": [
+  "data/combinations/nthf-catalogue.json"
+ ],
+ "approved_reading": null,
+ "reading": "DESIGNED by Claude as the first move of the move engine; NOT reviewed by the user. The centre stands at the front of its slot with its back to the goal (the Näcka/spjass set-up), the puck resting against the blade on the right (-y) of the slot. A counter-clockwise turn with a short step up the slot pushes the puck from rest (a push, not a strike: CLAUDE.md 'Slide or bounce') into the right corner, while the goalie leans to the left post expecting the Hjerpe.",
+ "window_s": [
+  0.0,
+  0.7
+ ],
+ "puck": {
+  "start": {
+   "against": "W-C",
+   "local_mm": [
+    -10.0,
+    26.8
+   ],
+   "why": "at rest against the blade, on the goal side, where the Näcka shot meets it (trace.nacka.v1 contact.shot local point [2.58, 26.82])"
+  },
+  "start_phase": "on_the_blade"
+ },
+ "figures": {
+  "W-C": {
+   "status": "moving: shooter (designed)",
+   "arc": {
+    "keys": [
+     [
+      0.0,
+      232.0,
+      "front of the slot, as the Näcka shot (248.9 mm at contact) minus the step"
+     ],
+     [
+      0.1,
+      232.0,
+      "waits"
+     ]
+    ],
+    "moves": [
+     [
+      0.1,
+      0.2,
+      232.0,
+      0.0,
+      246.0,
+      0.0,
+      "short step up the slot with the shot"
+     ]
+    ]
+   },
+   "theta": {
+    "start": 181.0,
+    "turns": [
+     [
+      0.1,
+      0.07,
+      181.0,
+      205.0,
+      "counter-clockwise turn: the blade pushes the puck from rest toward the right corner"
+     ]
+    ]
+   }
+  },
+  "E-G": {
+   "static": {
+    "y_mm": 28.0,
+    "theta_deg": 0.0,
+    "why": "ASSUMED: leans to the left post, expecting the Hjerpe (y = +28 mm of its slot's +33)"
+   }
+  }
+ },
+ "events": [
+  {
+   "id": "turn.onset",
+   "t": 0.1,
+   "why": "the centre starts the counter-clockwise turn"
+  }
+ ],
+ "contacts": [
+  {
+   "id": "shot",
+   "figure": "W-C",
+   "group": -1,
+   "part": "blade, push from rest",
+   "phase": "shot_push",
+   "after": "shot_free",
+   "min_touches": 5
+  }
+ ],
+ "expect": {
+  "goal": "E",
+  "goal_y_mm": [
+   -28.7,
+   -8.0
+  ],
+  "contact_sequence": [
+   "W-C:stick/blade",
+   "goal_net"
+  ]
+ },
+ "limitations": [
+  "No recording: the whole move is DESIGNED from the one-line NTHF text; the reading is Claude's and needs the user's approval.",
+  "Set-up borrowed from trace.nacka.v1 (centre at the front of its slot, back to the goal); the goalie pose is assumed.",
+  "Contact rules, ice friction and figure geometry as every move-engine trace (scripts/shotlib): restitution 0.5 assumed, friction from the spjass fit, AI-modelled molds at the preview scale."
+ ],
+ "tuning": "Turn angles, duration and step chosen with scripts/build-move.py --quick scans (2026-10-10): 181 -> 205 deg in 70 ms with a 14 mm step puts the shot 19 mm right of centre without touching the goalie; the release is a push of about 45-65 small touches.",
+ "story": {
+  "title": "HJERPEFINTE",
+  "subtitle": "Table hockey · centre feint · designed from the NTHF description",
+  "bug": "HJERPEFINTE",
+  "end_steps": [
+   "PUCK OUT ON THE BLADE",
+   "GOALIE EXPECTS THE HJERPE",
+   "PUSH SHOT, RIGHT CORNER"
+  ],
+  "setup": {
+   "title": "THE SET-UP",
+   "text": "Back to the goal, the puck resting out on the blade to the right of the slot.",
+   "highlight": {
+    "W-C": "CENTRE",
+    "E-G": "GOALIE"
+   },
+   "puck_label": "PUCK ON THE BLADE"
+  },
+  "beats": [
+   {
+    "contact": "shot",
+    "title": "THE SHOT",
+    "text": "He turns counter-clockwise and pushes the puck straight into the right corner.",
+    "label": "SHOT · BLADE PUSH",
+    "turn": {
+     "figure": "W-C",
+     "event": "turn.onset",
+     "direction": "ccw",
+     "label": "TURN"
+    }
+   }
+  ]
+ }
+}

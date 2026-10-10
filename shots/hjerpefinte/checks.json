@@ -1,0 +1,600 @@
+{
+ "trace_id": "trace.hjerpefinte.v1",
+ "passed": true,
+ "sampling_s": 0.00025,
+ "max_puck_step_mm": 0.145,
+ "penetration_tolerance_mm": 0.1,
+ "contact_rule": "CLAUDE.md 'Contact physics': the puck may touch figures, boards and goal but never overlap them (every 0.25 ms, whole trace, all 12 figures, boards, posts, cages; no phase exemptions)",
+ "min_clearance_by_obstacle_and_phase": [
+  {
+   "obstacle": "E-G",
+   "phase": "shot_free",
+   "min_clearance_mm": 5.136,
+   "t_at_min": 0.237
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "on_the_blade",
+   "min_clearance_mm": 0.05,
+   "t_at_min": 0.1
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "shot_free",
+   "min_clearance_mm": 0.123,
+   "t_at_min": 0.1465
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "shot_push",
+   "min_clearance_mm": 0.05,
+   "t_at_min": 0.142
+  },
+  {
+   "obstacle": "goal_E_cage",
+   "phase": "shot_free",
+   "min_clearance_mm": 11.297,
+   "t_at_min": 0.31675
+  },
+  {
+   "obstacle": "goal_E_post_neg_y",
+   "phase": "shot_free",
+   "min_clearance_mm": 9.797,
+   "t_at_min": 0.31675
+  }
+ ],
+ "unexpected_penetrations": [],
+ "approved_exceptions": [],
+ "slide_check": {
+  "rule": "CLAUDE.md 'Slide or bounce': every contact must leave the puck flat on the ice; the net catching the puck is exempt",
+  "figure_impact_max_mm_s": 500.0,
+  "wall_impact_max_mm_s": 300.0,
+  "limits_status": "assumed (CLAUDE.md 'Slide or bounce', user rule 2026-10-06)",
+  "per_contact": [
+   {
+    "contact": "shot",
+    "figure": "W-C",
+    "t": [
+     0.00125,
+     0.142
+    ],
+    "touches": 65,
+    "peak_impact_mm_s": 32.8
+   }
+  ],
+  "peak_board_impact_mm_s": 0.0,
+  "peak_post_impact_mm_s": 0.0,
+  "peak_cage_impact_mm_s": 0.0,
+  "figure_violations": [],
+  "wall_violations": [],
+  "passed": true
+ },
+ "unexplained_velocity_changes": [],
+ "unexplained_count": 0,
+ "contact_sequence": [
+  "W-C:stick/blade",
+  "goal_net"
+ ],
+ "contact_sequence_merged": [
+  "W-C:stick/blade",
+  "goal_net"
+ ],
+ "contact_episodes": [
+  {
+   "obstacle": "W-C:stick/blade",
+   "t": [
+    0.00025,
+    0.142
+   ]
+  },
+  {
+   "obstacle": "goal_net",
+   "t": [
+    0.43325,
+    0.43325
+   ]
+  }
+ ],
+ "expectations": [
+  {
+   "what": "goal",
+   "expected": "E",
+   "got": "E",
+   "passed": true
+  },
+  {
+   "what": "goal_y_mm",
+   "expected": [
+    -28.7,
+    -8.0
+   ],
+   "got": -18.71,
+   "passed": true
+  },
+  {
+   "what": "contact_sequence",
+   "expected": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "got": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "passed": true
+  },
+  {
+   "what": "contact.shot touches (a push, not a strike)",
+   "expected": ">= 5",
+   "got": 65,
+   "passed": true
+  }
+ ],
+ "problems": [],
+ "impulses": [
+  {
+   "t": 0.00125,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0025,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.00325,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.00625,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.00775,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.008,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0085,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.01275,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.01425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.01725,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.019,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0195,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02575,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.034,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.04025,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.041,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.04325,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0455,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.10025,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.5,
+   "dv": 2.2
+  },
+  {
+   "t": 0.10075,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.5,
+   "dv": 0.8
+  },
+  {
+   "t": 0.101,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.4,
+   "dv": 0.5
+  },
+  {
+   "t": 0.10125,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.4,
+   "dv": 0.6
+  },
+  {
+   "t": 0.1015,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.4,
+   "dv": 0.6
+  },
+  {
+   "t": 0.10175,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.4,
+   "dv": 0.6
+  },
+  {
+   "t": 0.102,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.4,
+   "dv": 0.5
+  },
+  {
+   "t": 0.10225,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 7.5,
+   "dv": 11.3
+  },
+  {
+   "t": 0.10425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 13.3,
+   "dv": 20.0
+  },
+  {
+   "t": 0.10625,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 22.5,
+   "dv": 33.8
+  },
+  {
+   "t": 0.1085,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 24.2,
+   "dv": 36.3
+  },
+  {
+   "t": 0.11075,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 24.9,
+   "dv": 37.3
+  },
+  {
+   "t": 0.11225,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 28.7,
+   "dv": 43.1
+  },
+  {
+   "t": 0.1145,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 27.6,
+   "dv": 41.4
+  },
+  {
+   "t": 0.1165,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 32.8,
+   "dv": 49.2
+  },
+  {
+   "t": 0.1185,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 29.0,
+   "dv": 43.6
+  },
+  {
+   "t": 0.12075,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 29.5,
+   "dv": 44.2
+  },
+  {
+   "t": 0.1225,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 28.4,
+   "dv": 42.6
+  },
+  {
+   "t": 0.1245,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 23.7,
+   "dv": 35.5
+  },
+  {
+   "t": 0.1265,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 27.1,
+   "dv": 40.7
+  },
+  {
+   "t": 0.1285,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 21.0,
+   "dv": 31.5
+  },
+  {
+   "t": 0.1305,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 17.1,
+   "dv": 25.6
+  },
+  {
+   "t": 0.132,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 8.3,
+   "dv": 12.5
+  },
+  {
+   "t": 0.13225,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 4.7,
+   "dv": 7.1
+  },
+  {
+   "t": 0.13275,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 2.4,
+   "dv": 3.7
+  },
+  {
+   "t": 0.133,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.0,
+   "dv": 1.6
+  },
+  {
+   "t": 0.13325,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.7,
+   "dv": 2.5
+  },
+  {
+   "t": 0.1335,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.3,
+   "dv": 1.9
+  },
+  {
+   "t": 0.13375,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.4,
+   "dv": 2.1
+  },
+  {
+   "t": 0.134,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.2,
+   "dv": 1.9
+  },
+  {
+   "t": 0.13425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 3.2,
+   "dv": 4.7
+  },
+  {
+   "t": 0.13475,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.8,
+   "dv": 2.7
+  },
+  {
+   "t": 0.135,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.7,
+   "dv": 1.0
+  },
+  {
+   "t": 0.13525,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.8,
+   "dv": 2.7
+  },
+  {
+   "t": 0.1355,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.8,
+   "dv": 2.8
+  },
+  {
+   "t": 0.13575,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.7,
+   "dv": 2.6
+  },
+  {
+   "t": 0.136,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.7,
+   "dv": 2.6
+  },
+  {
+   "t": 0.1365,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.9,
+   "dv": 2.8
+  },
+  {
+   "t": 0.13675,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.4,
+   "dv": 2.1
+  },
+  {
+   "t": 0.137,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.6,
+   "dv": 2.3
+  },
+  {
+   "t": 0.13725,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.4,
+   "dv": 2.1
+  },
+  {
+   "t": 0.1375,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.4,
+   "dv": 2.1
+  },
+  {
+   "t": 0.13775,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.3,
+   "dv": 2.0
+  },
+  {
+   "t": 0.138,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.3,
+   "dv": 1.9
+  },
+  {
+   "t": 0.14125,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 4.9,
+   "dv": 7.3
+  },
+  {
+   "t": 0.14175,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.4,
+   "dv": 2.1
+  },
+  {
+   "t": 0.142,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 1.1,
+   "dv": 1.7
+  }
+ ],
+ "walls": [],
+ "goal_line": {
+  "goal": "E",
+  "crossing_y_mm": -18.71,
+  "inside_mouth_window_y_mm": [
+   -28.7,
+   29.8
+  ]
+ }
+}

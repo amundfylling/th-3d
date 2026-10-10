@@ -10,6 +10,9 @@ Everything below is grounded in `docs/state.md`, `docs/nm26-figure-tracks.md`, `
 recognition, tracker v3, all-goals replays, own-video pipeline, tests) were still running when this was written; their
 results are not assumed here.
 
+**Update (2026-10-10):** the user chose the shot encyclopedia (item 2) as the priority. The groundwork (move engine,
+move files, robustness check, generated videos, index of all 121 NTHF moves) is in `docs/shot-encyclopedia.md`.
+
 ## 1. The one-line vision
 
 **A match video in, an explained 3D shot out.** The project already does both halves separately: it explains designed

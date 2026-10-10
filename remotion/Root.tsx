@@ -8,6 +8,7 @@ import { NACKA_ANALYSIS, NackaAnalysis } from "./NackaAnalysis.tsx";
 import { PosePreview } from "./PosePreview.tsx";
 import { IKV_ANALYSIS, IkvAnalysis } from "./IkvAnalysis.tsx";
 import { DEFENCE_ANALYSIS, DefenceAnalysis } from "./DefenceAnalysis.tsx";
+import { ENCYCLOPEDIA_VIDEOS } from "./EncyclopediaAnalysis.tsx";
 
 // Iteration 25: final export settings (presentation choice, not geometry precision): 1920 x 1080 at 60 fps.
 export const FINAL_FPS = 60;
@@ -47,6 +48,10 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="analysis-nacka" component={NackaAnalysis} durationInFrames={NACKA_ANALYSIS.durationInFrames} fps={NACKA_ANALYSIS.spec.fps} width={NACKA_ANALYSIS.spec.width} height={NACKA_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     <Composition id="analysis-ikv" component={IkvAnalysis} durationInFrames={IKV_ANALYSIS.durationInFrames} fps={IKV_ANALYSIS.spec.fps} width={IKV_ANALYSIS.spec.width} height={IKV_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     <Composition id="analysis-defence-lw" component={DefenceAnalysis} durationInFrames={DEFENCE_ANALYSIS.durationInFrames} fps={DEFENCE_ANALYSIS.spec.fps} width={DEFENCE_ANALYSIS.spec.width} height={DEFENCE_ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
+    {/* Shot encyclopedia: one generated analysis video per move (remotion/encyclopedia-registry.ts). */}
+    {ENCYCLOPEDIA_VIDEOS.map((v) => (
+      <Composition key={v.id} id={v.id} component={v.Component} durationInFrames={v.ANALYSIS.durationInFrames} fps={v.ANALYSIS.spec.fps} width={v.ANALYSIS.spec.width} height={v.ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
+    ))}
     <Composition id="pose-preview" component={PosePreview} durationInFrames={1} fps={30} width={1600} height={1300} defaultProps={{ poses: {}, puckMm: [0, 0] as [number, number], camera: { cx: 150, cy: 0, widthMm: 640 } }} />
     <Composition id="static-checks" component={StaticInspection} durationInFrames={30} fps={30} width={1920} height={1080} defaultProps={{ camera: "oblique", showChecks: true }} />
   </>

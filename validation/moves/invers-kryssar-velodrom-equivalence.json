@@ -1,0 +1,62 @@
+{
+ "move": "invers-kryssar-velodrom",
+ "legacy_trace": "data/traces/invers-kryssar-velodrom.trace.json",
+ "legacy_script": "scripts/ikv-trace.py",
+ "engine_trace": "out/moves/invers-kryssar-velodrom/trace.json",
+ "puck_nodes": [
+  4701,
+  4701
+ ],
+ "max_puck_node_diff_mm": 0.0,
+ "figures": {
+  "W-RW": {
+   "arc_keyframes": [
+    93,
+    93
+   ],
+   "max_arc_diff": 0.0,
+   "theta_keyframes": [
+    274,
+    274
+   ],
+   "max_theta_diff": 0.0
+  },
+  "W-LW": {
+   "arc_keyframes": [
+    127,
+    127
+   ],
+   "max_arc_diff": 0.0,
+   "theta_keyframes": [
+    433,
+    433
+   ],
+   "max_theta_diff": 0.0
+  },
+  "W-C": {
+   "arc_keyframes": [
+    1,
+    1
+   ],
+   "max_arc_diff": 0.0,
+   "theta_keyframes": [
+    1,
+    1
+   ],
+   "max_theta_diff": 0.0
+  },
+  "E-G": {
+   "arc_keyframes": [
+    1,
+    1
+   ],
+   "max_arc_diff": 0.0,
+   "theta_keyframes": [
+    1,
+    1
+   ],
+   "max_theta_diff": 0.0
+  }
+ },
+ "identical_within_0_01_mm": true
+}

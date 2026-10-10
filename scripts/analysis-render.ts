@@ -30,7 +30,13 @@ const VIDEOS = {
     files: ["remotion/NackaAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: "nacka", out: "validation/analysis-nacka.mp4", report: "validation/analysis-nacka-report.json", title: "Näcka - sports-analysis video" },
 } as const;
 const NAME = (process.argv[2] ?? "shovel-17") as keyof typeof VIDEOS;
-const V = VIDEOS[NAME];
+// shot encyclopedia moves (scripts/build-move.py --video-spec): node scripts/analysis-render.ts move:<id>
+const MOVE = String(NAME).startsWith("move:") ? String(NAME).slice(5) : null;
+const V = MOVE
+  ? { composition: `move-${MOVE}`, spec: `data/presentations/${MOVE}.analysis.json`, trace: `data/traces/${MOVE}.trace.json`,
+      files: ["remotion/EncyclopediaAnalysis.tsx", "remotion/encyclopedia-registry.ts", "remotion/AnalysisVideo.tsx"], tag: `move-${MOVE}`,
+      out: `validation/moves/${MOVE}.mp4`, report: `validation/moves/${MOVE}-video-report.json`, title: `${MOVE} - shot encyclopedia video` }
+  : VIDEOS[NAME];
 if (!V) throw new Error(`unknown video ${NAME}; one of ${Object.keys(VIDEOS).join(", ")}`);
 const COMPOSITION = V.composition;
 const SPEC = V.spec;
