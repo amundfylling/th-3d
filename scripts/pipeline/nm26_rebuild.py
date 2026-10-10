@@ -48,6 +48,7 @@ class Step:
     modules: list = field(default_factory=list)    # Python modules the step interpreter must import
     outputs: list = field(default_factory=list)    # files the step writes (repo-relative)
     note: str = ""
+    log: str = ""                 # also write the step's stdout to this file (repo-relative)
 
 
 def py(script, *args): return ["{py}", script, *args]
@@ -94,8 +95,9 @@ def steps(games):
     S.append(Step("review-page-g1", "pages", py("scripts/nm26-review-page.py", "g1"),
                   [VIDEO, CACHE.format(g="g1"), f"{DATA}/g1/passes.json"], ["av", "cv2"], ["validation/nm26-g1-review.html"]))
     S.append(Step("goal-clips", "pages", py("scripts/nm26-goal-clips.py"), [VIDEO] + [CACHE.format(g=g) for g in GAMES], ["av", "cv2"],
-                  ["out/nm26/goal-clips/clips.json"], "about 40 short H.264 clips (not committed; published with the page)"))
-    S.append(Step("goal-page", "pages", py("scripts/nm26-goal-page.py"), ["out/nm26/goal-clips/clips.json"], [],
+                  ["out/nm26/goal-clips/clips.json", "out/nm26/goal-clips/log.txt"], "about 40 short H.264 clips (not committed; published with the page)",
+                  log="out/nm26/goal-clips/log.txt"))
+    S.append(Step("goal-page", "pages", py("scripts/nm26-goal-page.py"), ["out/nm26/goal-clips/clips.json", "out/nm26/goal-clips/log.txt"], [],
                   ["validation/nm26-goals-review.html"]))
 
     # ---- stage models: from zero, hours of CPU; out/synth is not committed. Listed for completeness, never default. ----
@@ -189,6 +191,15 @@ def fetch_video():
     ok = sha256(dst) == v["sha256"]; print("  sha256", "ok" if ok else "MISMATCH"); return 0 if ok else 1
 
 
+def run(argv, log=""):
+    """Run a step; with `log`, its stdout is also written to that file (nm26-goal-page.py reads the clip log)."""
+    if not log: return subprocess.run(argv, cwd=REPO).returncode
+    p = subprocess.Popen(argv, cwd=REPO, stdout=subprocess.PIPE, text=True); lines = []
+    for line in p.stdout: print(line, end="", flush=True); lines.append(line)
+    rc = p.wait(); (REPO / log).parent.mkdir(parents=True, exist_ok=True); (REPO / log).write_text("".join(lines))
+    return rc
+
+
 def sha256(p):
     h = hashlib.sha256()
     with open(p, "rb") as f:
@@ -241,7 +252,7 @@ def main(argv):
             print(f"SKIP {s.id}: {r}"); entry.update(result="skipped", reason=r); report["steps"].append(entry); continue
         print(f"RUN  {s.id}: {' '.join(c.replace('{py}', Path(PY).name) for c in s.cmd)}", flush=True)
         t0 = time.time()
-        rc = fetch_video() if s.cmd == ["@fetch"] else subprocess.run([c.replace("{py}", PY) for c in s.cmd], cwd=REPO).returncode
+        rc = fetch_video() if s.cmd == ["@fetch"] else run([c.replace("{py}", PY) for c in s.cmd], s.log)
         entry.update(result="ok" if rc == 0 else f"failed (exit {rc})", seconds=round(time.time() - t0, 1))
         print(f"     {entry['result']} in {entry['seconds']} s", flush=True)
         report["steps"].append(entry)

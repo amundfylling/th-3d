@@ -87,7 +87,20 @@ calibration, `calibration_from` in `config.json`).
 
 ### What was verified (2026-10-10)
 
-RESULTS-PLACEHOLDER
+Fresh container, pinned Blender venv (section 0), `npm run rebuild:nm26:from-zero` in pieces, then `--check`:
+
+- **Cache:** video downloaded (sha256 matches `config.json`), `nm26-detect.py` for all seven games: 66 min on 4 CPUs
+  (g1 770 s ... g7 430 s). Registration fallbacks 0 except g5 (9) and g6 (237), as before.
+- **Byte-identical to the committed files (40 outputs):** `g1/calibration.json` and its jpg; all seven `puck-track.json`
+  and `passes.json`; `patterns.json` and both control maps; all seven `figure-tracks-smooth.json`; `figure-analysis.json`
+  and the three hat-trick `rebuild/*-figures.json`; `board-g2-goal2-smooth.png`; all seven `figure-tracks-<g>.jpg`;
+  `nm26-g1-review.html`; `nm26-goals-review.html`. The figure meshes give the committed reach (skater 56.3 mm, goalie
+  48.7 mm).
+- **Differs:** `validation/board-g2-goal2.png` (stale, see section 6).
+- **Not rebuilt:** `rebuild/g2-goal{2,3,4}-evidence.json` and their sheets need goalie model C (not committed);
+  `<g>/figure-tracks.json` need both models (section 3).
+- The whole cache-to-outputs run (`npm run rebuild:nm26`) takes about 15 min, mostly the goal clips and the review page.
+- An OpenCV 5.0 / NumPy 2 environment was not compared; use the pinned venv.
 
 ## 3. Synthetic-data models (stage `models`, not rebuilt)
 
