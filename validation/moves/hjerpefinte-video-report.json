@@ -1,0 +1,76 @@
+{
+ "analysis": "hjerpefinte - shot encyclopedia video",
+ "composition": "move-hjerpefinte",
+ "versions": {
+  "node": "v22.22.0",
+  "remotion": "4.0.531",
+  "@remotion/three": "4.0.531",
+  "three": "0.186.1",
+  "@react-three/fiber": "9.4.0",
+  "react": "19.2.0",
+  "browser": "chrome-headless-shell Chromium 141.0.7390.37",
+  "gl": "swangle (SwiftShader, CPU)"
+ },
+ "model": {
+  "geometry_version": "0.6.0",
+  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+ },
+ "trace": {
+  "trace_id": "trace.hjerpefinte.v1",
+  "status": "proposed",
+  "sha256": "5a22e1736385f02d625d110be2d9bfbc46673e6fc0c34b07653f381d98f8263e"
+ },
+ "analysis_spec": {
+  "analysis_id": "analysis.hjerpefinte.v1",
+  "sha256": "b4f3ef99dcbfa9b8efa3080d29bc6fbfb2c02d857127075821fe8413a92dcd6f",
+  "composition_files": [
+   "remotion/EncyclopediaAnalysis.tsx",
+   "remotion/encyclopedia-registry.ts",
+   "remotion/AnalysisVideo.tsx"
+  ],
+  "composition_sha256": "548d57a9da759caeeeb405aa55cc5f8e9fd901d18bfccbf715e2811557bcf50d"
+ },
+ "output": {
+  "path": "validation/moves/hjerpefinte.mp4",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 631,
+  "duration_s": 21.033333333333335,
+  "codec": "h264",
+  "crf": 20,
+  "pixel_format": "yuv420p",
+  "ffprobe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuvj420p",
+     "r_frame_rate": "30/1",
+     "nb_frames": "631",
+     "side_data_list": [
+      {}
+     ]
+    }
+   ],
+   "format": {
+    "duration": "21.033333"
+   }
+  },
+  "bytes": 8009809,
+  "megabytes": 8.01,
+  "below_25_mb": true,
+  "sha256": "4054e3ad7e9d20299d2c76fe15e811d115fba5be0beccd446fe97af0caf26968"
+ },
+ "checks": {
+  "frames_logged": 631,
+  "frames_differing_from_pure": [],
+  "max_readback_diff": 2.84e-14,
+  "camera_frames_logged": 631,
+  "camera_max_diff_vs_track": 0.005
+ },
+ "render_seconds": 2552
+}
