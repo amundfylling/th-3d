@@ -90,11 +90,16 @@ for k, g in enumerate(T["goals"]):
 step = int(round(30 / FPS)); gstep = int(round(30 / GFPS))
 F = {f[0]: f for f in load(OUT / game / "frames.json")}
 rows = []; H = None; t_start = time.time()
+part = REPO / f"out/synth/tracks/{game}.partial.json"; part.parent.mkdir(parents=True, exist_ok=True)
+if part.exists() and "--test-seconds" not in A:  # resume after a container restart
+    rows = json.loads(part.read_text()); w0 = max(w0, rows[-1][0] / 30.0 - 2.0) if rows else w0
+    print(game, "resuming after frame", rows[-1][0] if rows else None, flush=True)
+done_frames = {r[0] for r in rows}
 if "--test-seconds" in A: w0 = w0 + 120; w1 = w0 + float(arg("--test-seconds", 2)); dest = REPO / "out/synth/track-test.json"
 for i, a in frames(w0, w1):
     tt = i / 30.0; dn = any(s <= tt <= e for s, e in dense)
     if i in F: H = np.r_[F[i][2], 1].reshape(3, 3)
-    if H is None or (i % (gstep if dn else step)): continue
+    if H is None or (i % (gstep if dn else step)) or i in done_frames: continue
     img = cv2.warpPerspective(a, T0 @ H, (x1 - x0, y1 - y0))
     masks = {e: team_mask(img, e) for e in "WE"}; crops, origins, scores = [], [], []
     for pid in ORDER:
@@ -115,7 +120,8 @@ for i, a in frames(w0, w1):
     for q in Q:
         row += [round(float(np.clip(q[0], 0, 1)), 4), round(float(np.degrees(np.arctan2(q[1], q[2])) % 360), 1)]
     rows.append(row)
-    if len(rows) % 500 == 0: print(game, len(rows), "frames", round(time.time() - t_start), "s", flush=True)
+    if len(rows) % 300 == 0:
+        part.write_text(json.dumps(rows, separators=(",", ":"))); print(game, len(rows), "frames", round(time.time() - t_start), "s", flush=True)
 cols = ["frame", "dense"] + [f"{p}_{c}" for p in ORDER for c in ("u", "theta_deg", "slot_dist_mm")] + [f"{e}-G_{c}" for e in "WE" for c in ("u", "theta_deg")]
 out = {"description": f"Figure tracks for NM26 {game} (scripts/synth/track-figures.py): every {step} frames, and every frame "
        "around each goal (dense = 1). Skaters: model v2b on kit-colour-localised crops; goalies: model C. u = slot position "
@@ -123,4 +129,5 @@ out = {"description": f"Figure tracks for NM26 {game} (scripts/synth/track-figur
        "E 180); slot_dist_mm = how far the predicted pivot lies from the slot (large = doubtful). PROPOSED, unsmoothed.",
        "columns": cols, "rows": rows}
 dest.write_text(json.dumps(out, separators=(",", ":")) + "\n")
+if part.exists() and "--test-seconds" not in A: part.unlink()
 print(game, "done", len(rows), "frames", round(time.time() - t_start), "s")
