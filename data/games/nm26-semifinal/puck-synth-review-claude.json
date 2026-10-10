@@ -1,0 +1,453 @@
+{
+ "description": "Claude's visual verdicts on 56 frames of games 1-2 sampled from where the current track (old) and the synthetic-detector track with emission bias 1.0 (new) agree (A, <10 px), disagree (B, >30 px), or only one has a position (C old only, D new only). 1 = the marker is on the puck, 0 = not, ? = cannot tell. PROPOSED (one reviewer, one pass).",
+ "rows": [
+  {
+   "id": 0,
+   "game": "g2",
+   "frame": 24038,
+   "category": "A",
+   "old_right": 1,
+   "new_right": 1
+  },
+  {
+   "id": 1,
+   "game": "g1",
+   "frame": 15347,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 2,
+   "game": "g2",
+   "frame": 25559,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 3,
+   "game": "g1",
+   "frame": 1795,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 4,
+   "game": "g1",
+   "frame": 6234,
+   "category": "A",
+   "old_right": 1,
+   "new_right": 1
+  },
+  {
+   "id": 5,
+   "game": "g1",
+   "frame": 10482,
+   "category": "B",
+   "old_right": "?",
+   "new_right": "?"
+  },
+  {
+   "id": 6,
+   "game": "g2",
+   "frame": 24781,
+   "category": "D",
+   "old_right": null,
+   "new_right": "?"
+  },
+  {
+   "id": 7,
+   "game": "g2",
+   "frame": 25310,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 8,
+   "game": "g1",
+   "frame": 5270,
+   "category": "D",
+   "old_right": null,
+   "new_right": 0
+  },
+  {
+   "id": 9,
+   "game": "g2",
+   "frame": 24016,
+   "category": "C",
+   "old_right": 1,
+   "new_right": null
+  },
+  {
+   "id": 10,
+   "game": "g2",
+   "frame": 29552,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 11,
+   "game": "g1",
+   "frame": 8473,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 12,
+   "game": "g1",
+   "frame": 2492,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 13,
+   "game": "g1",
+   "frame": 6830,
+   "category": "B",
+   "old_right": 0,
+   "new_right": "?"
+  },
+  {
+   "id": 14,
+   "game": "g1",
+   "frame": 5241,
+   "category": "B",
+   "old_right": "?",
+   "new_right": "?"
+  },
+  {
+   "id": 15,
+   "game": "g2",
+   "frame": 27260,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 16,
+   "game": "g2",
+   "frame": 29443,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 17,
+   "game": "g1",
+   "frame": 3719,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 18,
+   "game": "g2",
+   "frame": 24208,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 0
+  },
+  {
+   "id": 19,
+   "game": "g1",
+   "frame": 10487,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 20,
+   "game": "g1",
+   "frame": 7515,
+   "category": "A",
+   "old_right": 1,
+   "new_right": 1
+  },
+  {
+   "id": 21,
+   "game": "g1",
+   "frame": 2732,
+   "category": "A",
+   "old_right": 1,
+   "new_right": 1
+  },
+  {
+   "id": 22,
+   "game": "g2",
+   "frame": 30648,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 0
+  },
+  {
+   "id": 23,
+   "game": "g2",
+   "frame": 29185,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 24,
+   "game": "g2",
+   "frame": 27342,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 25,
+   "game": "g1",
+   "frame": 7407,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 26,
+   "game": "g1",
+   "frame": 10905,
+   "category": "D",
+   "old_right": null,
+   "new_right": 0
+  },
+  {
+   "id": 27,
+   "game": "g2",
+   "frame": 24315,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 28,
+   "game": "g2",
+   "frame": 29726,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 29,
+   "game": "g1",
+   "frame": 10696,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 30,
+   "game": "g1",
+   "frame": 14169,
+   "category": "A",
+   "old_right": 1,
+   "new_right": 1
+  },
+  {
+   "id": 31,
+   "game": "g1",
+   "frame": 1411,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 32,
+   "game": "g1",
+   "frame": 2823,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 33,
+   "game": "g2",
+   "frame": 24345,
+   "category": "A",
+   "old_right": 1,
+   "new_right": 1
+  },
+  {
+   "id": 34,
+   "game": "g1",
+   "frame": 10614,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 35,
+   "game": "g2",
+   "frame": 24336,
+   "category": "D",
+   "old_right": null,
+   "new_right": 0
+  },
+  {
+   "id": 36,
+   "game": "g2",
+   "frame": 30682,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 37,
+   "game": "g2",
+   "frame": 30961,
+   "category": "D",
+   "old_right": null,
+   "new_right": 0
+  },
+  {
+   "id": 38,
+   "game": "g2",
+   "frame": 29177,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 39,
+   "game": "g1",
+   "frame": 1673,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 40,
+   "game": "g2",
+   "frame": 28795,
+   "category": "C",
+   "old_right": 1,
+   "new_right": null
+  },
+  {
+   "id": 41,
+   "game": "g1",
+   "frame": 1496,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 42,
+   "game": "g1",
+   "frame": 3979,
+   "category": "C",
+   "old_right": 1,
+   "new_right": null
+  },
+  {
+   "id": 43,
+   "game": "g1",
+   "frame": 7215,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 44,
+   "game": "g1",
+   "frame": 1898,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 45,
+   "game": "g2",
+   "frame": 29919,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 46,
+   "game": "g2",
+   "frame": 25395,
+   "category": "B",
+   "old_right": 0,
+   "new_right": "?"
+  },
+  {
+   "id": 47,
+   "game": "g2",
+   "frame": 29674,
+   "category": "A",
+   "old_right": 1,
+   "new_right": 1
+  },
+  {
+   "id": 48,
+   "game": "g1",
+   "frame": 2927,
+   "category": "D",
+   "old_right": null,
+   "new_right": 1
+  },
+  {
+   "id": 49,
+   "game": "g2",
+   "frame": 28377,
+   "category": "D",
+   "old_right": null,
+   "new_right": "?"
+  },
+  {
+   "id": 50,
+   "game": "g1",
+   "frame": 15376,
+   "category": "D",
+   "old_right": null,
+   "new_right": 0
+  },
+  {
+   "id": 51,
+   "game": "g2",
+   "frame": 25012,
+   "category": "B",
+   "old_right": 0,
+   "new_right": 1
+  },
+  {
+   "id": 52,
+   "game": "g2",
+   "frame": 30978,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 53,
+   "game": "g2",
+   "frame": 26594,
+   "category": "A",
+   "old_right": 1,
+   "new_right": 1
+  },
+  {
+   "id": 54,
+   "game": "g1",
+   "frame": 6666,
+   "category": "C",
+   "old_right": 0,
+   "new_right": null
+  },
+  {
+   "id": 55,
+   "game": "g2",
+   "frame": 24889,
+   "category": "B",
+   "old_right": 0,
+   "new_right": "?"
+  }
+ ]
+}

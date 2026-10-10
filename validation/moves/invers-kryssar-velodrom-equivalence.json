@@ -1,0 +1,75 @@
+{
+ "inputs_sha256": {
+  "moves/invers-kryssar-velodrom/move.json": "ca693f697be8653ce0cdfb5f5be630142cddd838ac65357503045d47198df13b",
+  "data/traces/invers-kryssar-velodrom.trace.json": "6359b2d9f58ca49bdf6baf06ede2167abff7f5b8072cdba11a63532717fa9c37",
+  "scripts/shotlib/__init__.py": "a14cdb4efdaccc7cea0d1e6e70ca16ee5952904ecdbc91bebf02d69d38e0bbec",
+  "scripts/shotlib/build.py": "03dcc651fafae1493d07e88eb2f85250c4f86b8565bec2de2f6048183ce23685",
+  "scripts/shotlib/export_footprints.py": "d17075f57f9fa0fa5a6cfe72281ed729d6974d036e42b7156bad87e1df9ce670",
+  "scripts/shotlib/motion.py": "afe0744a819f1008971ec2b2e3c301839d410779dcada4bc2fb4a7e0d7cb9e72",
+  "scripts/shotlib/presentation.py": "710c1a02e607a2894914eea642d93ed1f1cb984abf04c27d2c327a7a58f22c0e",
+  "scripts/shotlib/puck.py": "1f6297aceb7f01aa1a68723a41011900b06d9f5bed9ea772068d2f4809c31a10",
+  "scripts/shotlib/robustness.py": "5c86f1ad0a2ae0c65efc6cf768dbd2bd0479fa6d54dd1335938b0fa6b7dff978",
+  "scripts/shotlib/world.py": "59e2d911b61834ce70d15e4a31544743f46db104dc5f90ba6313a8a91e86bdf7",
+  "data/figures/contact-footprints.json": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563"
+ },
+ "move": "invers-kryssar-velodrom",
+ "legacy_trace": "data/traces/invers-kryssar-velodrom.trace.json",
+ "legacy_script": "scripts/ikv-trace.py",
+ "engine_trace": "out/moves/invers-kryssar-velodrom/trace.json",
+ "puck_nodes": [
+  4701,
+  4701
+ ],
+ "max_puck_node_diff_mm": 0.0,
+ "figures": {
+  "W-RW": {
+   "arc_keyframes": [
+    93,
+    93
+   ],
+   "max_arc_diff": 0.0,
+   "theta_keyframes": [
+    274,
+    274
+   ],
+   "max_theta_diff": 0.0
+  },
+  "W-LW": {
+   "arc_keyframes": [
+    127,
+    127
+   ],
+   "max_arc_diff": 0.0,
+   "theta_keyframes": [
+    433,
+    433
+   ],
+   "max_theta_diff": 0.0
+  },
+  "W-C": {
+   "arc_keyframes": [
+    1,
+    1
+   ],
+   "max_arc_diff": 0.0,
+   "theta_keyframes": [
+    1,
+    1
+   ],
+   "max_theta_diff": 0.0
+  },
+  "E-G": {
+   "arc_keyframes": [
+    1,
+    1
+   ],
+   "max_arc_diff": 0.0,
+   "theta_keyframes": [
+    1,
+    1
+   ],
+   "max_theta_diff": 0.0
+  }
+ },
+ "identical_within_0_01_mm": true
+}

@@ -1,0 +1,208 @@
+{
+ "move": "invers-kryssar-velodrom",
+ "trace_id": "trace.invers-kryssar-velodrom.v2",
+ "rule": "the move must keep its outcome (goal, contact sequence) and the slide limits under every variant; variant sizes ASSUMED",
+ "variants_passed": "1/11",
+ "robust": false,
+ "goal_y_spread_mm": [
+  0.01,
+  0.01
+ ],
+ "rows": [
+  {
+   "variant": "nominal",
+   "goal": "E",
+   "goal_y_mm": 0.01,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 227.0,
+   "peak_wall_impact_mm_s": 255.5,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "geometry +0.001 mm (numerical conditioning)",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "boards"
+   ],
+   "peak_figure_impact_mm_s": 1096.3,
+   "peak_wall_impact_mm_s": 580.4,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "geometry -0.001 mm (numerical conditioning)",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "boards"
+   ],
+   "peak_figure_impact_mm_s": 1215.7,
+   "peak_wall_impact_mm_s": 832.7,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "figure footprint 2% larger (mold scale)",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards"
+   ],
+   "peak_figure_impact_mm_s": 673.0,
+   "peak_wall_impact_mm_s": 441.6,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "figure footprint 2% smaller (mold scale)",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade"
+   ],
+   "peak_figure_impact_mm_s": 391.7,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": false
+  },
+  {
+   "variant": "puck start +0.2 mm x",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade"
+   ],
+   "peak_figure_impact_mm_s": 373.1,
+   "peak_wall_impact_mm_s": 325.9,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "puck start +0.2 mm y",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_cage"
+   ],
+   "peak_figure_impact_mm_s": 622.0,
+   "peak_wall_impact_mm_s": 326.3,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "ice friction +25%",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "W-LW:skate/body",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade"
+   ],
+   "peak_figure_impact_mm_s": 1195.1,
+   "peak_wall_impact_mm_s": 695.8,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "ice friction -25%",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards"
+   ],
+   "peak_figure_impact_mm_s": 616.9,
+   "peak_wall_impact_mm_s": 561.2,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "restitution 0.3",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "E-G:stick/blade"
+   ],
+   "peak_figure_impact_mm_s": 1204.5,
+   "peak_wall_impact_mm_s": 285.7,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "restitution 0.7",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards"
+   ],
+   "peak_figure_impact_mm_s": 211.3,
+   "peak_wall_impact_mm_s": 291.5,
+   "slide_ok": true,
+   "outcome_ok": false
+  }
+ ]
+}

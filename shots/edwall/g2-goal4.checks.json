@@ -1,0 +1,359 @@
+{
+ "trace_id": "trace.edwall-g2-goal4.v1",
+ "sampling_s": 0.00025,
+ "max_puck_step_mm": 0.656,
+ "penetration_tolerance_mm": 0.1,
+ "contact_rule": "CLAUDE.md 'Contact physics': the puck may touch figures, boards and goal but never overlap them (every 0.25 ms, whole trace, all 12 figures, boards, posts, cage; no phase exemptions)",
+ "min_clearance_by_obstacle_and_phase": [
+  {
+   "obstacle": "E-G",
+   "phase": "shot_slide",
+   "min_clearance_mm": 27.622,
+   "t_at_min": 1.04675
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "pass_slide",
+   "min_clearance_mm": 0.116,
+   "t_at_min": 0.94975
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "shot_slide",
+   "min_clearance_mm": 0.05,
+   "t_at_min": 0.9825
+  },
+  {
+   "obstacle": "W-C",
+   "phase": "shovel_carry",
+   "min_clearance_mm": 0.048,
+   "t_at_min": 0.95325
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "pass_carry",
+   "min_clearance_mm": -0.002,
+   "t_at_min": 0.79125
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "pass_slide",
+   "min_clearance_mm": 0.001,
+   "t_at_min": 0.8085
+  },
+  {
+   "obstacle": "W-RW",
+   "phase": "rest_at_blade",
+   "min_clearance_mm": 0.001,
+   "t_at_min": 0.71675
+  },
+  {
+   "obstacle": "boards",
+   "phase": "pass_carry",
+   "min_clearance_mm": 0.02,
+   "t_at_min": 0.7175
+  },
+  {
+   "obstacle": "boards",
+   "phase": "rest_at_blade",
+   "min_clearance_mm": 0.02,
+   "t_at_min": 0.0
+  },
+  {
+   "obstacle": "goal_cage",
+   "phase": "shot_slide",
+   "min_clearance_mm": 5.289,
+   "t_at_min": 1.09425
+  },
+  {
+   "obstacle": "goal_post_pos_y",
+   "phase": "in_goal",
+   "min_clearance_mm": 27.361,
+   "t_at_min": 1.14325
+  },
+  {
+   "obstacle": "goal_post_pos_y",
+   "phase": "shot_slide",
+   "min_clearance_mm": 3.74,
+   "t_at_min": 1.09575
+  }
+ ],
+ "unexpected_penetrations": [],
+ "approved_exceptions": [],
+ "slide_check": {
+  "rule": "CLAUDE.md 'Slide or bounce': every contact must leave the puck flat on the ice; the net catching the puck is exempt",
+  "figure_impact_max_mm_s": 500.0,
+  "wall_impact_max_mm_s": 300.0,
+  "limits_status": "assumed (CLAUDE.md 'Slide or bounce', user rule 2026-10-06)",
+  "per_contact": [
+   {
+    "contact": "pass",
+    "figure": "W-RW",
+    "t": [
+     0.71687,
+     0.71687
+    ],
+    "touches": 1,
+    "peak_impact_mm_s": 0.0
+   },
+   {
+    "contact": "shovel",
+    "figure": "W-C",
+    "t": [
+     0.95,
+     0.95
+    ],
+    "touches": 1,
+    "peak_impact_mm_s": 383.8
+   }
+  ],
+  "carries": [
+   {
+    "figure": "W-RW",
+    "t_catch": 0.0,
+    "t_release": 0.80841,
+    "catch_impact_mm_s": 0.0,
+    "local_mm": [
+     -4.324,
+     54.539
+    ],
+    "part": "stick/blade",
+    "pull_check": {
+     "normal_fan_deg": 5.5,
+     "friction_angle_deg_assumed": 17.0,
+     "steps_checked": 89,
+     "steps_needing_pull": 56,
+     "share_needing_pull": 0.629,
+     "worst_outside_fan_deg": 151.8
+    }
+   },
+   {
+    "figure": "W-C",
+    "t_catch": 0.95,
+    "t_release": 0.98246,
+    "catch_impact_mm_s": 383.8,
+    "relative_speed_mm_s": 500.1,
+    "local_mm": [
+     7.128,
+     -22.391
+    ],
+    "part": "skate/body",
+    "pull_check": {
+     "normal_fan_deg": 29.4,
+     "friction_angle_deg_assumed": 17.0,
+     "steps_checked": 29,
+     "steps_needing_pull": 29,
+     "share_needing_pull": 1.0,
+     "worst_outside_fan_deg": 147.2
+    }
+   }
+  ],
+  "peak_board_impact_mm_s": 0.0,
+  "peak_post_impact_mm_s": 0.0,
+  "peak_cage_impact_mm_s": 0.0,
+  "figure_violations": [],
+  "wall_violations": [],
+  "passed": true
+ },
+ "other_figures_touched": [],
+ "impulses": [
+  {
+   "t": 0.95,
+   "figure": "W-C",
+   "part": "skate/body",
+   "impact_mm_s": 383.8,
+   "dv": null,
+   "catch": true
+  }
+ ],
+ "unexplained_velocity_changes": [],
+ "unexplained_count": 0,
+ "goal_line": {
+  "x_mm": 286.79,
+  "crossing_y_mm": 26.03,
+  "inside_mouth_window_y_mm": [
+   -28.7,
+   29.8
+  ],
+  "frame": 28709.83,
+  "user_goal_frame": 28707
+ },
+ "carry_force_check": {
+  "rule": "this rebuild's own plausibility check (not a CLAUDE.md rule): during a heel-groove carry the force the puck needs must lie inside the contact-normal fan of the figure's low outline at the carry point, widened by an ASSUMED 17 deg friction angle; otherwise the stick would have to pull the puck",
+  "carries": [
+   {
+    "figure": "W-RW",
+    "t": [
+     0.0,
+     0.80841
+    ],
+    "normal_fan_deg": 5.5,
+    "friction_angle_deg_assumed": 17.0,
+    "steps_checked": 89,
+    "steps_needing_pull": 56,
+    "share_needing_pull": 0.629,
+    "worst_outside_fan_deg": 151.8
+   },
+   {
+    "figure": "W-C",
+    "t": [
+     0.95,
+     0.98246
+    ],
+    "normal_fan_deg": 29.4,
+    "friction_angle_deg_assumed": 17.0,
+    "steps_checked": 29,
+    "steps_needing_pull": 29,
+    "share_needing_pull": 1.0,
+    "worst_outside_fan_deg": 147.2
+   }
+  ],
+  "passed": false
+ },
+ "observation_fit": [
+  {
+   "frame": 28696,
+   "kind": "rest",
+   "t": 0.63333,
+   "observed_mm": [
+    6.3,
+    -179.46
+   ],
+   "trace_mm": [
+    8.59,
+    -222.0
+   ],
+   "error_mm": 42.6
+  },
+  {
+   "frame": 28698,
+   "kind": "rest",
+   "t": 0.7,
+   "observed_mm": [
+    8.29,
+    -179.4
+   ],
+   "trace_mm": [
+    8.59,
+    -222.0
+   ],
+   "error_mm": 42.6
+  },
+  {
+   "frame": 28700,
+   "kind": "rest",
+   "t": 0.76667,
+   "observed_mm": [
+    10.55,
+    -178.75
+   ],
+   "trace_mm": [
+    49.23,
+    -216.75
+   ],
+   "error_mm": 54.22
+  },
+  {
+   "frame": 28701,
+   "kind": "streak",
+   "t": 0.8,
+   "observed_mm": [
+    38.11,
+    -178.56
+   ],
+   "trace_mm": [
+    111.04,
+    -169.95
+   ],
+   "error_mm": 73.44
+  },
+  {
+   "frame": 28702,
+   "kind": "streak",
+   "t": 0.83333,
+   "observed_mm": [
+    109.34,
+    -153.42
+   ],
+   "trace_mm": [
+    126.01,
+    -128.44
+   ],
+   "error_mm": 30.03
+  },
+  {
+   "frame": 28703,
+   "kind": "flight",
+   "t": 0.86667,
+   "observed_mm": [
+    142.15,
+    -87.38
+   ],
+   "trace_mm": [
+    138.67,
+    -89.29
+   ],
+   "error_mm": 3.97
+  },
+  {
+   "frame": 28704,
+   "kind": "flight",
+   "t": 0.9,
+   "observed_mm": [
+    157.85,
+    -53.72
+   ],
+   "trace_mm": [
+    150.93,
+    -51.41
+   ],
+   "error_mm": 7.3
+  },
+  {
+   "frame": 28705,
+   "kind": "flight",
+   "t": 0.93333,
+   "observed_mm": [
+    172.51,
+    -17.87
+   ],
+   "trace_mm": [
+    162.86,
+    -14.51
+   ],
+   "error_mm": 10.22
+  }
+ ],
+ "fitted": {
+  "method": "two stages (scripts/edwall-trace.py --fit pass|shot), each a differential-evolution search inside fit.bounds and a Nelder-Mead polish: pass = the passer's rest rotation, lunge and turn against the puck readings (streak weight 0.15) and the slide-rule limits; shot = the shooter's lunge and turns against the goal window, the goal-line target and the slide-rule limits",
+  "objective": {
+   "pass": 1168.95,
+   "shot": 1117.63
+  },
+  "evaluations": {
+   "pass": 1174,
+   "shot": 3478
+  },
+  "values": {
+   "rw_theta0": 227.96918,
+   "rw_t_lunge": 0.71687,
+   "rw_d_lunge": 0.1227,
+   "rw_lunge_mm": 115.73838,
+   "rw_t_turn": 0.74924,
+   "rw_d_turn": 0.08765,
+   "rw_turn_deg": 82.39472,
+   "rw_t_release": 0.80841,
+   "wc_t_lunge": 0.78274,
+   "wc_d_lunge": 0.17056,
+   "wc_theta0": 327.32614,
+   "wc_t_turn0": 0.89098,
+   "wc_d_turn0": 0.02591,
+   "wc_turn0_deg": -72.83783,
+   "wc_d_shot": 0.11659,
+   "wc_shot_deg": -143.95129,
+   "wc_t_release": 0.98246,
+   "wc_arc1": 250.04418
+  }
+ },
+ "passed": true
+}

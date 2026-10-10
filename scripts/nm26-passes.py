@@ -2,7 +2,7 @@
 
     /root/venvs/blender/bin/python scripts/nm26-passes.py g1
 
-Inputs: data/games/nm26-semifinal/<game>/puck-track.json, config.json (which player is team W), data/geometry.json,
+Inputs: data/games/nm26-semifinal/<game>/<puck track> (scripts/nm26_tracks.py: puck-track-synth.json, or $NM26_PUCK_TRACK), config.json (which player is team W), data/geometry.json,
 validation/players/figures-report.json + out/figures/skater.npz (skater reach).
 Output: data/games/nm26-semifinal/<game>/passes.json.
 
@@ -38,13 +38,14 @@ import numpy as np
 from shapely.geometry import LineString, Point, Polygon
 
 from nm26_common import CFG, FPS, REPO, game_dir, load, save
+from nm26_tracks import PUCK_TRACK, puck_path
 
 GAME = sys.argv[1] if len(sys.argv) > 1 else "g1"
 MAX_GAP, MIN_SPEED, SIMPLIFY_MM, NEAR_BOARD_MM = 3, 300.0, 15.0, 40.0
 LINE_TOL_MM, CONTEST_MM, MIN_FLIGHT_MM = 20.0, 15.0, 60.0
 MIN_TURN_DEG, BATTLE_MM, SHOT_REACH_MM = 30.0, 150.0, 150.0
 G = load(REPO / "data/geometry.json")
-TR = load(game_dir(GAME) / "puck-track.json")
+TR = load(puck_path(GAME))
 CG = CFG["games"][GAME]
 BOARD = Polygon(G["board"]["inner_boundary"]["world"]["points_mm"])
 R_PUCK = G["puck"]["diameter"]["value"] / 2
@@ -248,6 +249,7 @@ by_player = {pl: {"passes": sum(1 for e in events if e["kind"] == "pass" and e["
                   "turnovers_lost": sum(1 for e in events if e["kind"] == "turnover" and e["player_from"] == pl)} for pl in TEAM.values()}
 save(game_dir(GAME) / "passes.json", {
     "description": "Flights of the puck classified as passes, shots, turnovers, carries and loose pucks (scripts/nm26-passes.py). Video seconds. PROPOSED: definitions assumed, to be confirmed by the user.",
+    "puck_track": PUCK_TRACK,
     "definition": __doc__.split("\n\n", 1)[1].strip(),
     "parameters": {"min_turn_deg": MIN_TURN_DEG, "battle_mm": BATTLE_MM, "shot_reach_mm": SHOT_REACH_MM, "max_gap_frames": MAX_GAP, "min_speed_mm_s": MIN_SPEED, "simplify_mm": SIMPLIFY_MM, "near_board_mm": NEAR_BOARD_MM,
                    "line_tol_mm": LINE_TOL_MM, "contest_mm": CONTEST_MM, "min_flight_mm": MIN_FLIGHT_MM,

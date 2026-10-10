@@ -1,0 +1,1173 @@
+{
+ "description": "User taps scored against both tracks (scripts/nm26-tap-review.py eval).",
+ "thresholds_mm": {
+  "puck": 15.0,
+  "figure": 25.0
+ },
+ "summary": {
+  "puck": {
+   "old": {
+    "n": 63,
+    "right": 18,
+    "share": 0.286
+   },
+   "new": {
+    "n": 63,
+    "right": 32,
+    "share": 0.508
+   },
+   "by_case": {
+    "agree": {
+     "old": {
+      "n": 5,
+      "right": 4,
+      "share": 0.8
+     },
+     "new": {
+      "n": 5,
+      "right": 4,
+      "share": 0.8
+     }
+    },
+    "both": {
+     "old": {
+      "n": 20,
+      "right": 3,
+      "share": 0.15
+     },
+     "new": {
+      "n": 20,
+      "right": 9,
+      "share": 0.45
+     }
+    },
+    "goal": {
+     "old": {
+      "n": 10,
+      "right": 1,
+      "share": 0.1
+     },
+     "new": {
+      "n": 10,
+      "right": 7,
+      "share": 0.7
+     }
+    },
+    "new_only": {
+     "old": {
+      "n": 14,
+      "right": 6,
+      "share": 0.429
+     },
+     "new": {
+      "n": 14,
+      "right": 5,
+      "share": 0.357
+     }
+    },
+    "old_only": {
+     "old": {
+      "n": 14,
+      "right": 4,
+      "share": 0.286
+     },
+     "new": {
+      "n": 14,
+      "right": 7,
+      "share": 0.5
+     }
+    }
+   }
+  },
+  "figure": {
+   "old": {
+    "n": 30,
+    "right": 1,
+    "share": 0.033
+   },
+   "new": {
+    "n": 30,
+    "right": 26,
+    "share": 0.867
+   },
+   "by_case": {
+    "rate5": {
+     "old": {
+      "n": 15,
+      "right": 0,
+      "share": 0.0
+     },
+     "new": {
+      "n": 15,
+      "right": 12,
+      "share": 0.8
+     }
+    },
+    "window": {
+     "old": {
+      "n": 15,
+      "right": 1,
+      "share": 0.067
+     },
+     "new": {
+      "n": 15,
+      "right": 14,
+      "share": 0.933
+     }
+    }
+   }
+  }
+ },
+ "items": [
+  {
+   "item": "t001",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g1",
+   "frame": 2142,
+   "answer": "tap",
+   "old_err_mm": 74.1,
+   "old": "wrong",
+   "new_err_mm": 7.5,
+   "new": "right"
+  },
+  {
+   "item": "t002",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g1",
+   "frame": 2166,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 9.8,
+   "new": "right"
+  },
+  {
+   "item": "t003",
+   "kind": "puck",
+   "case": "both",
+   "game": "g1",
+   "frame": 2237,
+   "answer": "tap",
+   "old_err_mm": 63.2,
+   "old": "wrong",
+   "new_err_mm": 16.8,
+   "new": "wrong"
+  },
+  {
+   "item": "t004",
+   "kind": "figure",
+   "case": "window",
+   "game": "g1",
+   "frame": 2296,
+   "answer": "tap",
+   "old_err_mm": 42.9,
+   "old": "wrong",
+   "new_err_mm": 5.7,
+   "new": "right"
+  },
+  {
+   "item": "t005",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g1",
+   "frame": 2449,
+   "answer": "tap",
+   "old_err_mm": 128.9,
+   "old": "wrong",
+   "new": "missing"
+  },
+  {
+   "item": "t006",
+   "kind": "puck",
+   "case": "agree",
+   "game": "g1",
+   "frame": 2991,
+   "answer": "tap",
+   "old_err_mm": 11.2,
+   "old": "right",
+   "new_err_mm": 10.1,
+   "new": "right"
+  },
+  {
+   "item": "t007",
+   "kind": "puck",
+   "case": "both",
+   "game": "g1",
+   "frame": 3680,
+   "answer": "tap",
+   "old_err_mm": 11.5,
+   "old": "right",
+   "new_err_mm": 24.3,
+   "new": "wrong"
+  },
+  {
+   "item": "t008",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g1",
+   "frame": 3726,
+   "answer": "tap",
+   "old_err_mm": 85.6,
+   "old": "wrong",
+   "new_err_mm": 3.3,
+   "new": "right"
+  },
+  {
+   "item": "t009",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g1",
+   "frame": 3838,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 1.5,
+   "new": "right"
+  },
+  {
+   "item": "t010",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g1",
+   "frame": 5605,
+   "answer": "tap",
+   "old_err_mm": 71.9,
+   "old": "wrong",
+   "new": "missing"
+  },
+  {
+   "item": "t011",
+   "kind": "figure",
+   "case": "window",
+   "game": "g1",
+   "frame": 6688,
+   "answer": "tap",
+   "old_err_mm": 9.2,
+   "old": "right",
+   "new_err_mm": 40.2,
+   "new": "wrong"
+  },
+  {
+   "item": "t012",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g1",
+   "frame": 7633,
+   "answer": "tap",
+   "old_err_mm": 6.9,
+   "old": "right",
+   "new": "missing"
+  },
+  {
+   "item": "t013",
+   "kind": "figure",
+   "case": "window",
+   "game": "g1",
+   "frame": 8341,
+   "answer": "tap",
+   "old_err_mm": 163.4,
+   "old": "wrong",
+   "new_err_mm": 6.1,
+   "new": "right"
+  },
+  {
+   "item": "t014",
+   "kind": "puck",
+   "case": "both",
+   "game": "g1",
+   "frame": 14936,
+   "answer": "tap",
+   "old_err_mm": 12.3,
+   "old": "right",
+   "new_err_mm": 15.3,
+   "new": "wrong"
+  },
+  {
+   "item": "t015",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g1",
+   "frame": 15051,
+   "answer": "tap",
+   "old_err_mm": 38.0,
+   "old": "wrong",
+   "new": "missing"
+  },
+  {
+   "item": "t016",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g1",
+   "frame": 15222,
+   "answer": "tap",
+   "old_err_mm": 139.6,
+   "old": "wrong",
+   "new_err_mm": 1.9,
+   "new": "right"
+  },
+  {
+   "item": "t017",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g1",
+   "frame": 15230,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 9.4,
+   "new": "right"
+  },
+  {
+   "item": "t018",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g2",
+   "frame": 23282,
+   "answer": "tap",
+   "old_err_mm": 44.6,
+   "old": "wrong",
+   "new": "missing"
+  },
+  {
+   "item": "t019",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g2",
+   "frame": 23619,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 51.7,
+   "new": "wrong"
+  },
+  {
+   "item": "t021",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g2",
+   "frame": 25325,
+   "answer": "none",
+   "old": "wrong",
+   "new": "missing_ok"
+  },
+  {
+   "item": "t022",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g2",
+   "frame": 26167,
+   "answer": "none",
+   "old": "missing_ok",
+   "new": "wrong"
+  },
+  {
+   "item": "t023",
+   "kind": "figure",
+   "case": "window",
+   "game": "g2",
+   "frame": 27506,
+   "answer": "tap",
+   "old_err_mm": 137.9,
+   "old": "wrong",
+   "new_err_mm": 2.3,
+   "new": "right"
+  },
+  {
+   "item": "t024",
+   "kind": "figure",
+   "case": "window",
+   "game": "g2",
+   "frame": 28146,
+   "answer": "tap",
+   "old_err_mm": 59.5,
+   "old": "wrong",
+   "new_err_mm": 11.2,
+   "new": "right"
+  },
+  {
+   "item": "t025",
+   "kind": "puck",
+   "case": "both",
+   "game": "g2",
+   "frame": 29028,
+   "answer": "tap",
+   "old_err_mm": 12.9,
+   "old": "right",
+   "new_err_mm": 13.0,
+   "new": "right"
+  },
+  {
+   "item": "t026",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g2",
+   "frame": 29295,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 19.7,
+   "new": "wrong"
+  },
+  {
+   "item": "t027",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g2",
+   "frame": 29917,
+   "answer": "none",
+   "old": "wrong",
+   "new": "missing_ok"
+  },
+  {
+   "item": "t028",
+   "kind": "puck",
+   "case": "both",
+   "game": "g2",
+   "frame": 29973,
+   "answer": "tap",
+   "old_err_mm": 134.7,
+   "old": "wrong",
+   "new_err_mm": 8.4,
+   "new": "right"
+  },
+  {
+   "item": "t029",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g2",
+   "frame": 31284,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 5.1,
+   "new": "right"
+  },
+  {
+   "item": "t030",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g3",
+   "frame": 40838,
+   "answer": "tap",
+   "old_err_mm": 14.7,
+   "old": "right",
+   "new": "missing"
+  },
+  {
+   "item": "t031",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g3",
+   "frame": 41543,
+   "answer": "tap",
+   "old_err_mm": 42.9,
+   "old": "wrong",
+   "new_err_mm": 2.9,
+   "new": "right"
+  },
+  {
+   "item": "t032",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g3",
+   "frame": 42538,
+   "answer": "tap",
+   "old_err_mm": 251.4,
+   "old": "wrong",
+   "new_err_mm": 6.6,
+   "new": "right"
+  },
+  {
+   "item": "t033",
+   "kind": "puck",
+   "case": "agree",
+   "game": "g3",
+   "frame": 42994,
+   "answer": "tap",
+   "old_err_mm": 1.8,
+   "old": "right",
+   "new_err_mm": 4.7,
+   "new": "right"
+  },
+  {
+   "item": "t034",
+   "kind": "puck",
+   "case": "agree",
+   "game": "g3",
+   "frame": 43115,
+   "answer": "none",
+   "old": "wrong",
+   "new": "wrong"
+  },
+  {
+   "item": "t035",
+   "kind": "puck",
+   "case": "both",
+   "game": "g3",
+   "frame": 44138,
+   "answer": "none",
+   "old": "wrong",
+   "new": "wrong"
+  },
+  {
+   "item": "t036",
+   "kind": "figure",
+   "case": "window",
+   "game": "g3",
+   "frame": 45003,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 3.2,
+   "new": "right"
+  },
+  {
+   "item": "t038",
+   "kind": "figure",
+   "case": "window",
+   "game": "g3",
+   "frame": 45702,
+   "answer": "tap",
+   "old_err_mm": 280.6,
+   "old": "wrong",
+   "new_err_mm": 3.7,
+   "new": "right"
+  },
+  {
+   "item": "t039",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g3",
+   "frame": 46802,
+   "answer": "tap",
+   "old_err_mm": 20.8,
+   "old": "wrong",
+   "new_err_mm": 25.6,
+   "new": "wrong"
+  },
+  {
+   "item": "t040",
+   "kind": "puck",
+   "case": "both",
+   "game": "g3",
+   "frame": 48072,
+   "answer": "none",
+   "old": "wrong",
+   "new": "wrong"
+  },
+  {
+   "item": "t041",
+   "kind": "figure",
+   "case": "window",
+   "game": "g3",
+   "frame": 48787,
+   "answer": "tap",
+   "old_err_mm": 56.0,
+   "old": "wrong",
+   "new_err_mm": 15.3,
+   "new": "right"
+  },
+  {
+   "item": "t042",
+   "kind": "puck",
+   "case": "both",
+   "game": "g3",
+   "frame": 49311,
+   "answer": "tap",
+   "old_err_mm": 29.9,
+   "old": "wrong",
+   "new_err_mm": 8.2,
+   "new": "right"
+  },
+  {
+   "item": "t043",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g4",
+   "frame": 53719,
+   "answer": "none",
+   "old": "wrong",
+   "new": "missing_ok"
+  },
+  {
+   "item": "t044",
+   "kind": "puck",
+   "case": "agree",
+   "game": "g4",
+   "frame": 54280,
+   "answer": "tap",
+   "old_err_mm": 2.1,
+   "old": "right",
+   "new_err_mm": 4.4,
+   "new": "right"
+  },
+  {
+   "item": "t045",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g4",
+   "frame": 54408,
+   "answer": "none",
+   "old": "wrong",
+   "new": "missing_ok"
+  },
+  {
+   "item": "t046",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g4",
+   "frame": 54660,
+   "answer": "tap",
+   "old_err_mm": 157.0,
+   "old": "wrong",
+   "new_err_mm": 3.0,
+   "new": "right"
+  },
+  {
+   "item": "t047",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g4",
+   "frame": 54984,
+   "answer": "tap",
+   "old_err_mm": 195.3,
+   "old": "wrong",
+   "new_err_mm": 13.6,
+   "new": "right"
+  },
+  {
+   "item": "t048",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 55380,
+   "answer": "tap",
+   "old_err_mm": 37.1,
+   "old": "wrong",
+   "new_err_mm": 34.0,
+   "new": "wrong"
+  },
+  {
+   "item": "t049",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g4",
+   "frame": 55679,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 10.2,
+   "new": "right"
+  },
+  {
+   "item": "t050",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 58908,
+   "answer": "tap",
+   "old_err_mm": 211.5,
+   "old": "wrong",
+   "new_err_mm": 13.0,
+   "new": "right"
+  },
+  {
+   "item": "t051",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 59135,
+   "answer": "tap",
+   "old_err_mm": 77.4,
+   "old": "wrong",
+   "new_err_mm": 3.4,
+   "new": "right"
+  },
+  {
+   "item": "t052",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g4",
+   "frame": 59634,
+   "answer": "tap",
+   "old_err_mm": 93.6,
+   "old": "wrong",
+   "new_err_mm": 7.2,
+   "new": "right"
+  },
+  {
+   "item": "t053",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 59651,
+   "answer": "tap",
+   "old_err_mm": 53.5,
+   "old": "wrong",
+   "new_err_mm": 15.7,
+   "new": "wrong"
+  },
+  {
+   "item": "t054",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 61118,
+   "answer": "tap",
+   "old_err_mm": 52.0,
+   "old": "wrong",
+   "new_err_mm": 6.0,
+   "new": "right"
+  },
+  {
+   "item": "t055",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g4",
+   "frame": 61290,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 7.3,
+   "new": "right"
+  },
+  {
+   "item": "t056",
+   "kind": "figure",
+   "case": "window",
+   "game": "g4",
+   "frame": 61336,
+   "answer": "tap",
+   "old_err_mm": 222.4,
+   "old": "wrong",
+   "new_err_mm": 7.3,
+   "new": "right"
+  },
+  {
+   "item": "t057",
+   "kind": "figure",
+   "case": "window",
+   "game": "g4",
+   "frame": 62002,
+   "answer": "tap",
+   "old_err_mm": 57.8,
+   "old": "wrong",
+   "new_err_mm": 9.1,
+   "new": "right"
+  },
+  {
+   "item": "t058",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g4",
+   "frame": 62073,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 11.1,
+   "new": "right"
+  },
+  {
+   "item": "t059",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g4",
+   "frame": 62463,
+   "answer": "none",
+   "old": "missing_ok",
+   "new": "wrong"
+  },
+  {
+   "item": "t060",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g4",
+   "frame": 62688,
+   "answer": "tap",
+   "old_err_mm": 59.6,
+   "old": "wrong",
+   "new_err_mm": 4.1,
+   "new": "right"
+  },
+  {
+   "item": "t061",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g4",
+   "frame": 62738,
+   "answer": "none",
+   "old": "missing_ok",
+   "new": "wrong"
+  },
+  {
+   "item": "t062",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g4",
+   "frame": 63061,
+   "answer": "none",
+   "old": "missing_ok",
+   "new": "wrong"
+  },
+  {
+   "item": "t063",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 63406,
+   "answer": "none",
+   "old": "wrong",
+   "new": "wrong"
+  },
+  {
+   "item": "t064",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 63529,
+   "answer": "tap",
+   "old_err_mm": 210.1,
+   "old": "wrong",
+   "new_err_mm": 8.7,
+   "new": "right"
+  },
+  {
+   "item": "t065",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g4",
+   "frame": 63943,
+   "answer": "none",
+   "old": "missing_ok",
+   "new": "wrong"
+  },
+  {
+   "item": "t066",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 64590,
+   "answer": "none",
+   "old": "wrong",
+   "new": "wrong"
+  },
+  {
+   "item": "t067",
+   "kind": "puck",
+   "case": "both",
+   "game": "g4",
+   "frame": 64798,
+   "answer": "none",
+   "old": "wrong",
+   "new": "wrong"
+  },
+  {
+   "item": "t068",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g4",
+   "frame": 65004,
+   "answer": "none",
+   "old": "missing_ok",
+   "new": "wrong"
+  },
+  {
+   "item": "t069",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g4",
+   "frame": 65498,
+   "answer": "none",
+   "old": "missing_ok",
+   "new": "wrong"
+  },
+  {
+   "item": "t070",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g5",
+   "frame": 70238,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 7.1,
+   "new": "right"
+  },
+  {
+   "item": "t071",
+   "kind": "puck",
+   "case": "goal",
+   "game": "g5",
+   "frame": 71553,
+   "answer": "none",
+   "old": "wrong",
+   "new": "missing_ok"
+  },
+  {
+   "item": "t072",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g5",
+   "frame": 72700,
+   "answer": "none",
+   "old": "wrong",
+   "new": "missing_ok"
+  },
+  {
+   "item": "t073",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g5",
+   "frame": 73440,
+   "answer": "tap",
+   "old_err_mm": 46.9,
+   "old": "wrong",
+   "new_err_mm": 6.3,
+   "new": "right"
+  },
+  {
+   "item": "t074",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g5",
+   "frame": 73485,
+   "answer": "tap",
+   "old_err_mm": 13.4,
+   "old": "right",
+   "new": "missing"
+  },
+  {
+   "item": "t075",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g5",
+   "frame": 73962,
+   "answer": "tap",
+   "old_err_mm": 408.0,
+   "old": "wrong",
+   "new_err_mm": 14.5,
+   "new": "right"
+  },
+  {
+   "item": "t076",
+   "kind": "puck",
+   "case": "both",
+   "game": "g5",
+   "frame": 75204,
+   "answer": "tap",
+   "old_err_mm": 188.2,
+   "old": "wrong",
+   "new_err_mm": 10.9,
+   "new": "right"
+  },
+  {
+   "item": "t077",
+   "kind": "figure",
+   "case": "window",
+   "game": "g5",
+   "frame": 75457,
+   "answer": "tap",
+   "old_err_mm": 80.7,
+   "old": "wrong",
+   "new_err_mm": 4.0,
+   "new": "right"
+  },
+  {
+   "item": "t078",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g5",
+   "frame": 79747,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 13.5,
+   "new": "right"
+  },
+  {
+   "item": "t079",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g6",
+   "frame": 84558,
+   "answer": "tap",
+   "old_err_mm": 27.9,
+   "old": "wrong",
+   "new_err_mm": 53.4,
+   "new": "wrong"
+  },
+  {
+   "item": "t080",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g6",
+   "frame": 84690,
+   "answer": "tap",
+   "old_err_mm": 275.8,
+   "old": "wrong",
+   "new_err_mm": 9.2,
+   "new": "right"
+  },
+  {
+   "item": "t081",
+   "kind": "puck",
+   "case": "agree",
+   "game": "g6",
+   "frame": 86009,
+   "answer": "tap",
+   "old_err_mm": 2.5,
+   "old": "right",
+   "new_err_mm": 2.2,
+   "new": "right"
+  },
+  {
+   "item": "t082",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g6",
+   "frame": 87864,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 86.8,
+   "new": "wrong"
+  },
+  {
+   "item": "t083",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g6",
+   "frame": 88932,
+   "answer": "none",
+   "old": "wrong",
+   "new": "wrong"
+  },
+  {
+   "item": "t084",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g6",
+   "frame": 88991,
+   "answer": "none",
+   "old": "wrong",
+   "new": "missing_ok"
+  },
+  {
+   "item": "t085",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g6",
+   "frame": 89146,
+   "answer": "none",
+   "old": "wrong",
+   "new": "missing_ok"
+  },
+  {
+   "item": "t086",
+   "kind": "figure",
+   "case": "window",
+   "game": "g6",
+   "frame": 89376,
+   "answer": "tap",
+   "old_err_mm": 136.7,
+   "old": "wrong",
+   "new_err_mm": 2.6,
+   "new": "right"
+  },
+  {
+   "item": "t087",
+   "kind": "figure",
+   "case": "window",
+   "game": "g6",
+   "frame": 89890,
+   "answer": "tap",
+   "old_err_mm": 70.1,
+   "old": "wrong",
+   "new_err_mm": 5.7,
+   "new": "right"
+  },
+  {
+   "item": "t088",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g7",
+   "frame": 98766,
+   "answer": "tap",
+   "old_err_mm": 161.9,
+   "old": "wrong",
+   "new_err_mm": 2.3,
+   "new": "right"
+  },
+  {
+   "item": "t089",
+   "kind": "figure",
+   "case": "rate5",
+   "game": "g7",
+   "frame": 99120,
+   "answer": "tap",
+   "old_err_mm": 289.4,
+   "old": "wrong",
+   "new_err_mm": 6.8,
+   "new": "right"
+  },
+  {
+   "item": "t090",
+   "kind": "puck",
+   "case": "old_only",
+   "game": "g7",
+   "frame": 99354,
+   "answer": "tap",
+   "old_err_mm": 4.0,
+   "old": "right",
+   "new": "missing"
+  },
+  {
+   "item": "t091",
+   "kind": "puck",
+   "case": "new_only",
+   "game": "g7",
+   "frame": 101025,
+   "answer": "tap",
+   "old": "missing",
+   "new_err_mm": 51.1,
+   "new": "wrong"
+  },
+  {
+   "item": "t092",
+   "kind": "puck",
+   "case": "both",
+   "game": "g7",
+   "frame": 102406,
+   "answer": "tap",
+   "old_err_mm": 15.8,
+   "old": "wrong",
+   "new_err_mm": 9.0,
+   "new": "right"
+  },
+  {
+   "item": "t094",
+   "kind": "figure",
+   "case": "window",
+   "game": "g7",
+   "frame": 104135,
+   "answer": "tap",
+   "old_err_mm": 36.0,
+   "old": "wrong",
+   "new_err_mm": 9.6,
+   "new": "right"
+  },
+  {
+   "item": "t095",
+   "kind": "figure",
+   "case": "window",
+   "game": "g7",
+   "frame": 105159,
+   "answer": "tap",
+   "old_err_mm": 149.1,
+   "old": "wrong",
+   "new_err_mm": 7.1,
+   "new": "right"
+  },
+  {
+   "item": "t096",
+   "kind": "puck",
+   "case": "both",
+   "game": "g7",
+   "frame": 105904,
+   "answer": "tap",
+   "old_err_mm": 22.9,
+   "old": "wrong",
+   "new_err_mm": 22.7,
+   "new": "wrong"
+  }
+ ]
+}

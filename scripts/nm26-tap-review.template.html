@@ -1,0 +1,120 @@
+<title>NM26 Track Taps</title>
+<style>
+/* Layout: one frame at a time, full width; the picture is the tap target, answers sit under it. */
+:root {
+  --bg: #f3f5f2; --panel: #ffffff; --ink: #1d2320; --muted: #5d6862; --line: #d5dbd6;
+  --accent: #0b6e8a; --accent-ink: #ffffff; --done: #2f7d4f; --mark: #e0352b;
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --panel: #1b201d; --ink: #e7ece8; --muted: #9aa69f; --line: #2f3632;
+  --accent: #4fb3d1; --accent-ink: #0d1416; --done: #6cc28f; --mark: #ff5a4f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --panel: #1b201d; --ink: #e7ece8; --muted: #9aa69f; --line: #2f3632;
+  --accent: #4fb3d1; --accent-ink: #0d1416; --done: #6cc28f; --mark: #ff5a4f; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 16px; padding-block: 12px 32px; display: grid; gap: 12px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: 1.6rem; margin: 0; letter-spacing: .01em; text-wrap: balance; }
+.lead { color: var(--muted); margin: 0; max-width: 65ch; line-height: 1.45; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-variant-numeric: tabular-nums; }
+.meter { flex: 1 1 200px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; min-width: 0; }
+.meter > i { display: block; height: 100%; background: var(--done); width: 0; }
+.tag { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.prompt { font-family: var(--display); font-size: 1.35rem; font-weight: 500; margin: 0; }
+.stage { position: relative; background: #000; border-radius: 6px; overflow: hidden; touch-action: manipulation; cursor: crosshair; }
+.stage img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-drag: none; }
+.stage svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: inherit; font-size: 1rem; padding: 10px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+button[aria-pressed="true"] { outline: 2px solid var(--accent); }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .45; cursor: default; }
+.status { color: var(--muted); font-size: .9rem; min-height: 1.3em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 4px; }
+.grid button { padding: 6px 0; font-size: .8rem; font-variant-numeric: tabular-nums; }
+.grid button.done { background: var(--done); border-color: var(--done); color: var(--accent-ink); }
+.grid button.cur { outline: 2px solid var(--accent); }
+details summary { cursor: pointer; color: var(--muted); }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@500;600&display=swap">
+<div class="wrap">
+  <h1>NM26 track taps</h1>
+  <p class="lead">Each picture is one broadcast frame, warped to the reference view. Tap where the puck (or the named figure) really is. If it is not in the picture, say so. Your taps measure both the old and the new tracks; neither track is drawn.</p>
+  <div class="bar"><span class="tag" id="count">0 of 0 answered</span><div class="meter"><i id="meter"></i></div><span class="tag" id="where"></span></div>
+  <p class="prompt" id="prompt"></p>
+  <div class="stage" id="stage"><img id="img" alt="Broadcast frame to tap"><svg id="ov" preserveAspectRatio="none"></svg></div>
+  <div class="btns">
+    <button id="none">Not in this picture</button>
+    <button id="unsure">Can't tell</button>
+    <button id="prev">Back</button>
+    <button id="next" class="primary">Save and next</button>
+  </div>
+  <div class="status" id="status">Connecting to the shared store…</div>
+  <details><summary>All frames</summary><div class="grid" id="grid"></div></details>
+</div>
+<script>
+const ITEMS = /*ITEMS*/[];
+const answers = {};          // id -> {answer, x_stab, y_stab}
+let cur = 0, pending = null, db = null;
+const $ = (id) => document.getElementById(id);
+function first() { const i = ITEMS.findIndex(it => !answers[it.id]); return i < 0 ? 0 : i; }
+function render() {
+  const it = ITEMS[cur]; if (!it) return;
+  $("img").src = it.img;
+  $("ov").setAttribute("viewBox", `0 0 ${it.w} ${it.h}`);
+  $("prompt").textContent = it.prompt;
+  $("where").textContent = `${it.id} · game ${it.game} · ${it.t.toFixed(2)} s`;
+  const a = pending || answers[it.id];
+  let svg = "";
+  if (it.slot) svg += `<polyline points="${it.slot.map(p => p.join(",")).join(" ")}" fill="none" stroke="#4fb3d1" stroke-opacity=".55" stroke-width="3" stroke-dasharray="8 6"/>`;
+  if (a && a.answer === "tap") {
+    const x = a.x_stab - it.cx, y = a.y_stab - it.cy;
+    svg += `<circle cx="${x}" cy="${y}" r="13" fill="none" stroke="#ff3b30" stroke-width="3"/><circle cx="${x}" cy="${y}" r="2.5" fill="#ff3b30"/>`;
+  }
+  $("ov").innerHTML = svg;
+  $("none").setAttribute("aria-pressed", a && a.answer === "none" ? "true" : "false");
+  $("unsure").setAttribute("aria-pressed", a && a.answer === "unsure" ? "true" : "false");
+  $("next").disabled = !a; $("prev").disabled = cur === 0;
+  const n = Object.keys(answers).length;
+  $("count").textContent = `${n} of ${ITEMS.length} answered`;
+  $("meter").style.width = `${100 * n / ITEMS.length}%`;
+  [...$("grid").children].forEach((b, i) => { b.classList.toggle("done", !!answers[ITEMS[i].id]); b.classList.toggle("cur", i === cur); });
+}
+$("stage").addEventListener("click", (e) => {
+  const it = ITEMS[cur], r = $("img").getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width * it.w, y = (e.clientY - r.top) / r.height * it.h;
+  pending = { answer: "tap", x_stab: +(it.cx + x).toFixed(1), y_stab: +(it.cy + y).toFixed(1) }; render();
+});
+$("none").onclick = () => { pending = { answer: "none" }; render(); };
+$("unsure").onclick = () => { pending = { answer: "unsure" }; render(); };
+$("prev").onclick = () => { pending = null; cur = Math.max(0, cur - 1); render(); };
+$("next").onclick = async () => {
+  const it = ITEMS[cur], a = pending || answers[it.id]; if (!a) return;
+  if (pending) {
+    const doc = { item: it.id, answer: a.answer, x_stab: a.x_stab ?? null, y_stab: a.y_stab ?? null, saved_at: new Date().toISOString() };
+    if (!db) { $("status").textContent = "Not saved: the shared store is not available in this view. Open the page in Claude to save taps."; return; }
+    try { await db.collection("taps").doc(it.id).set(doc); answers[it.id] = a; $("status").textContent = `Saved ${it.id}.`; }
+    catch (err) { $("status").textContent = `Not saved (${err && err.code || "error"}). Try again in a moment.`; return; }
+  }
+  pending = null; cur = Math.min(ITEMS.length - 1, cur + 1);
+  if (Object.keys(answers).length === ITEMS.length) $("status").textContent = "All frames answered. Thank you. Tell Claude in the thread and it will score both tracks.";
+  render();
+};
+ITEMS.forEach((it, i) => {
+  it.cx = it.crop ? it.crop[0] : 0; it.cy = it.crop ? it.crop[1] : 0;
+  const b = document.createElement("button"); b.textContent = i + 1; b.onclick = () => { pending = null; cur = i; render(); }; $("grid").appendChild(b);
+});
+render();
+(async () => {
+  db = window.claude ? await window.claude.use("db") : null;
+  if (!db) { $("status").textContent = "The shared store is not available in this view, so taps cannot be saved here."; return; }
+  try {
+    const snap = await db.collection("taps").get();
+    snap.docs.forEach(d => { const v = d.data(); if (v && v.item) answers[v.item] = { answer: v.answer, x_stab: v.x_stab, y_stab: v.y_stab }; });
+    cur = first(); $("status").textContent = snap.size ? `Loaded ${snap.size} saved answers.` : "Ready. Answers save as you go.";
+  } catch (err) { $("status").textContent = `Could not read saved answers (${err && err.code || "error"}).`; }
+  render();
+})();
+</script>

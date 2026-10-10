@@ -343,6 +343,70 @@
   (`docs/rebuild-g2-edwall.md`). Evidence packs (frames, puck track, goalie poses) are built; skater poses and a
   frame-by-frame puck read come next. Goal review page (user labels, 25 of 40 so far):
   https://claude.ai/artifact/8CQAfC4k7Qjrmnz573zLUT → `data/games/nm26-semifinal/goal-labels.json`.
+- **Parallel batch 2026-10-10 (eight workstreams), consolidated on branch `claude/consolidation-batch-2026-10-10`.
+  Everything below is PROPOSED model output or design; nothing is user-confirmed except the Hjerpefinte reading. Not
+  merged to main.** The old inputs stay in place: `<game>/puck-track.json` and `<game>/figure-tracks(-smooth).json` are
+  unchanged, and no downstream analysis was re-run on the new tracks at consolidation.
+  1. **Synthetic puck detector** (`docs/synthetic-puck.md`): Blender puck renders composited on real frames train a
+     detector; all seven games re-tracked to `<game>/puck-track-synth.json`. Live-play coverage 70.3% → 76.4%; last
+     2 s before the 25 marked goals 78.0% → 84.3%; no impossible steps (old 0.3%); Claude's 56-frame review: on the
+     puck about 89% (old 78%). Shot flights are still missed (real smudge recall 44%). **x/y is the puck centre, about
+     13 mm nearer the camera (−y) than the old blob convention.** Recommended to replace `puck-track.json` (not done).
+  2. **Edwall hat-trick rebuild v2** (`docs/rebuild-g2-edwall-v2.md`): traces `data/traces/edwall-g2-goal{2,3,4}.trace.json`
+     pass the contact and slide checks; videos `validation/analysis-edwall-g2-goal{2,3,4}.mp4` (own Remotion entry
+     `remotion/edwall-index.ts`, `node scripts/edwall-render.ts <goal>`). Fails its own carry-force check in all three
+     (the carry is kinematic: no heel groove in the figure geometry); the shot is hidden and designed (goal 4 shoots
+     with the back of the figure); the puck's rest is probably 44 mm off (snapped to the board; the detector and the
+     hand readings agree on y ≈ −178).
+  3. **Combination recognition** (`docs/nm26-combinations.md`, `scripts/nm26-combo-recognition.py [--puck <file>]`):
+     vote of tree, 1-NN and playbook rules 23/25 leave-one-out at the user's goal moment (20/25 at the estimated
+     moment); PROPOSED labels for the 15 unreviewed goals in `combo-labels.json` (11 high, 4 medium). The two
+     single-example families (wing goal, rebound) are always missed.
+  4. **Tracker v3** (`docs/tracker-v3.md`, `scripts/synth/track-figures-v3.py`): candidates + presence output + temporal
+     decoder; `<game>/figure-tracks-v3.json` for all seven games (same columns as `figure-tracks-smooth.json`). On the
+     labels gross slot errors 0.9% → 0.3%, flips 0.3% → 0; in 48 goal-window disagreements v3 right 31, v2 right 2
+     (Claude's visual check). Rotation of the rebuilt model 8.3° vs v2b 7.0°. Recommended to switch readers to v3
+     (not done).
+  5. **All-goals replays** (`validation/replays/README.md`, `scripts/nm26-replays.py`, `npm run nm26:replays`): 40
+     top-down replays with registered broadcast clips and a phone review page (`validation/replays/index.html`,
+     37.5 MB). Built from the old puck track and the v2 smoothed tracks; g4-goal5 has no box time and no replay.
+  6. **Own-video tracking** (`docs/own-video-tracking.md`, `scripts/own-video-*.py`): per-frame camera for the handheld
+     match (f 518 px, residual 0.48 px) and analysis-by-synthesis figure tracks
+     (`data/games/fylling-vs-moe-2022/own-video/`). Positions usable for W-LD, W-RD, W-LW, W-RW, E-LD (and W-G); they
+     fail for both centres, E-LW, E-RW, E-RD; rotation unusable at 640 × 360.
+  7. **Tests and reproducibility** (`docs/pipeline.md`): 36 Python unit tests in `tests/synth/` run by `npm test`; the NM26
+     rebuild runner `scripts/pipeline/nm26_rebuild.py` (`npm run rebuild:nm26*`), verified from a fresh container (40
+     outputs byte-identical). Models are not rebuildable: the `.pt` files are not committed, the training command lines
+     were not recorded, and the goal-box plates have no script.
+  8. **Vision and shot encyclopedia** (`docs/vision.md`, `docs/shot-encyclopedia.md`): 12 ranked directions (the user
+     chose the encyclopedia); move engine `scripts/shotlib/`, move files `moves/<id>/move.json`, `scripts/build-move.py`,
+     contact footprints, robustness check, generated videos (`move-<id>` compositions via `remotion/encyclopedia-registry.ts`),
+     index of all 121 NTHF moves (`data/encyclopedia/index.json`). The engine reproduces the IKV trace exactly. New move
+     Hjerpefinte (`validation/moves/hjerpefinte.mp4`): reading approved by the user 2026-10-10 (same stance threatens a
+     Hjerpe so the goalie opens the right corner); the goalie lean (+28 mm) is assumed; the trace stays proposed.
+     Finding: IKV v2 holds in only 1 of 11 robustness variants (fixed-clock chain).
+  - **Consolidation (2026-10-10):** the eight branches merged in order with no textual conflicts. Added to the runner:
+    the puck-detector and tracker-v3 model steps, a new default stage `analysis` (combination recognition, puck-track
+    comparison), the replays in `pages`, a non-default stage `edwall`, and a SOURCES entry for Claude's puck review
+    (`docs/pipeline.md` section 5). `assets/blender/__pycache__/*.pyc` removed from the index. Checks: `npm run check`
+    165/165 tests pass (typecheck and validate pass); Python tests 36/36; the `analysis` stage and the Edwall video specs
+    rebuild byte-identical; the Hjerpefinte move rebuilds identically (except the recorded git commit).
+  - **Next (recommended):** switch to `puck-track-synth.json` and `figure-tracks-v3.json` and re-run passes, combinations
+    and replays (with a ~100-tap user truth set); solved receptions in the move engine; publish the trained `.pt` models
+    as release assets with their sha256.
+- **NM26 on the new tracks (2026-10-10, step 1 of the consolidation summary, branch `claude/switch-new-tracks-0nujjo`,
+  `docs/nm26-new-tracks.md`, PROPOSED):** the analysis reads `puck-track-synth.json` and `figure-tracks-v3.json`
+  (`scripts/nm26_tracks.py`; a `slow` flag replaces the old `disk`). Re-run: passes, patterns, figure analysis,
+  combinations, the 40 replays, the Edwall refit. Fewer, longer flights (shots 61 → 49, battles 482 → 338); the two
+  tracks agree on only about a third of the passes; a shot in the last 2 s before a user goal 3/25 → 1/25. Combination
+  vote at the user's moment 23/25 unchanged, at the estimated moment 20 → 18 (goal-moment median error 0.32 → 0.78 s,
+  replay rule tuned on the old track); eight PROPOSED label changes. Edwall: goal 3 rebuilt as v2 (rest on the readings,
+  blade shovel; carry-force check still fails); goals 2 and 4 found no scoring v2 fit and stay v1. Thresholds not
+  retuned. **User taps done (2026-10-10,** 96 frames where the tracks disagree,
+  `validation/tap-review/results.json`): figures v3 26/30 right vs old 1/30 (median 7 vs 94 mm); puck new 32/63 vs old
+  18/63, median 10 vs 34 mm where a position exists, last 2 s before goals 7/10 vs 1/10. Both tracks still report a puck
+  the user could not see in about 2/3 of the "none" frames (next: the detector's false alarms). Taps mark the visible
+  puck centre, scored after moving them up the documented 8.8 px. Edwall videos not re-rendered.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -378,6 +442,8 @@ Iteration 20 closed without repair cycles:
 | Blender (iteration 11) | bpy 4.5.14 LTS (PyPI) in /root/venvs/blender; Cycles CPU. Rink built headless; GLB bounds and ID-render scale checks pass (tests 40/40). See docs/blender.md. |
 | Figure molds (2026-09-30) | `npm run check` passes (73 tests: typecheck, validate, figures/assembly/appearance/Remotion tests). Silhouette IoU skater 0.808 (7 views) / goalie 0.816 (8 views); overhead k = 1.071 mm/mold unit (4 Sweden skaters, IoU 0.69-0.79); stick check within 1.5 mm; assembly without intersections; Remotion import checks pass; reprojection worst slot mean 0.80 px (check made colour-aware: figure plastic over the E-G slot, recorded in scripts/review-reprojection.ts). Renders inspected (AI review). |
 | Dimensional accuracy | Goalie height and stick blade measured by the user (2026-10-01). Everything else not measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
+| Batch consolidation (2026-10-10) | Branch `claude/consolidation-batch-2026-10-10`: `npm run check` passes (typecheck, validate, 165/165 tests, including the 36 Python tests in `tests/synth/`). Rebuild runner: `analysis` stage and Edwall video specs byte-identical to the committed files; model, video and mesh steps not run (no video, Blender or PyTorch in that container). |
+| NM26 new tracks (2026-10-10) | Branch `claude/switch-new-tracks-0nujjo`: `npm run check` passes (typecheck, validate, 165/165 tests; Python tests 43/43 incl. 7 new track-selection tests). `npm run rebuild:nm26:analysis` reruns cleanly (its outputs differ from main by design). Old inputs reproduce the old outputs (env override). Edwall goals 2 and 4 v1 traces rebuild identical apart from the git commit. Not run: Edwall videos, g1 review page, evidence sheets. Taps pending. |
 
 ## Key decisions
 
@@ -442,6 +508,13 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **NM26 new tracks (2026-10-10, PROPOSED):** `docs/nm26-new-tracks.md`, tap page https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp
+  (`validation/tap-review/`), `validation/nm26-track-switch.json`, `validation/edwall-g2-goal3-trace.png`, `validation/replays/`.
+- **Batch 2026-10-10 (all PROPOSED):** `validation/analysis-edwall-g2-goal{2,3,4}.mp4` (with `-review.jpg`,
+  `-report.json`; `edwall-g2-goal*-trace.png`), `validation/moves/hjerpefinte.mp4` (sheet
+  `validation/moves/hjerpefinte-sheet.png`), `validation/replays/index.html` (40 goal replays and clips),
+  `validation/synthetic-puck-*.jpg`, `validation/tracker-v2-v3-*.jpg`, `validation/nm26-combo-spots.png`,
+  `validation/own-video-tracks.jpg` and `own-video-tracks-clip.mp4`. Notes: the docs listed in "Current position".
 - **`validation/analysis-ikv.mp4`** - Invers Kryssar med Velodrom analysis video, with `analysis-ikv-review.png`,
   `analysis-ikv-report.json`, `analysis-ikv-occlusion.json`; sketch `validation/ikv-sketch.png`; trace sheet
   `validation/ikv-trace.png`. Notes: `docs/invers-kryssar-velodrom.md`.

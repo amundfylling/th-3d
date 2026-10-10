@@ -1,0 +1,237 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NM26 Goal Replays</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: one player (broadcast clip over the top-down replay, side by side when wide), controls under the thumb,
+   the goal list as a grid of replay posters grouped by game. Same tokens as the NM26 goal review page. */
+:root {
+  --ice: #f3f6f9; --panel: #ffffff; --ink: #14202b; --muted: #5a6977; --line: #d5dee6;
+  --blue: #1f4fa3; --mark: #c8146d; --ok: #1d7f4e; --warn: #a35f00; --yellow: #a87a00;
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --ice: #0f161d; --panel: #18222c; --ink: #e6edf3; --muted: #93a3b2; --line: #2c3a47;
+  --blue: #7fa8ff; --mark: #ff5fa8; --ok: #5fd39a; --warn: #f0a640; --yellow: #f0c040; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --ice: #0f161d; --panel: #18222c; --ink: #e6edf3; --muted: #93a3b2; --line: #2c3a47;
+  --blue: #7fa8ff; --mark: #ff5fa8; --ok: #5fd39a; --warn: #f0a640; --yellow: #f0c040; color-scheme: dark }
+* { box-sizing: border-box }
+body { margin: 0; background: var(--ice); color: var(--ink); font: 15px/1.45 var(--body); }
+.wrap { max-width: 1400px; margin: 0 auto; padding-inline: 16px; padding-block: 12px 40px; display: grid; gap: 14px }
+h1 { font: 700 1.9rem/1.05 var(--display); letter-spacing: .01em; margin: 0; text-wrap: balance }
+h2 { font: 700 1.25rem/1.1 var(--display); margin: 0; letter-spacing: .02em }
+.lead { color: var(--muted); margin: 4px 0 0; max-width: 70ch }
+.player { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 10px;
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2 }
+.vids { display: grid; gap: 8px; grid-template-columns: 1fr }
+@media (min-width: 900px) { .vids { grid-template-columns: 1.35fr 1fr; align-items: start } }
+.vbox { position: relative; min-width: 0 }
+.vbox video { width: 100%; max-width: 100%; display: block; border-radius: 6px; background: #000 }
+.vbox .tag { position: absolute; right: 6px; bottom: 10px; font: 600 .7rem/1 var(--body); letter-spacing: .06em; text-transform: uppercase;
+  background: rgba(0,0,0,.6); color: #fff; padding: 4px 6px; border-radius: 4px }
+.nocl { display: grid; place-items: center; aspect-ratio: 1044/384; border: 1px dashed var(--line); border-radius: 6px; color: var(--muted); max-width: 100% }
+.head { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline }
+.head .t { font: 700 1.3rem/1.1 var(--display) }
+.pill { font-size: .78rem; padding: 2px 8px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap }
+.pill.w { color: var(--blue); border-color: var(--blue) } .pill.e { color: var(--yellow); border-color: var(--yellow) }
+.pill.marked { color: var(--ok); border-color: var(--ok) } .pill.unmarked { color: var(--warn); border-color: var(--warn) }
+.ctrl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+button { font: 600 .95rem/1 var(--body); color: var(--ink); background: var(--ice); border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 12px; min-height: 42px; cursor: pointer }
+button:hover { border-color: var(--blue) } button:focus-visible, input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px }
+button.on { background: var(--blue); color: var(--panel); border-color: var(--blue) }
+button.goal { color: var(--mark); border-color: var(--mark) }
+.time { font: 600 1rem/1 var(--body); font-variant-numeric: tabular-nums; margin-left: auto; white-space: nowrap }
+input[type=range] { width: 100%; accent-color: var(--blue) }
+.scrub { position: relative }
+.scrub .gm { position: absolute; top: -3px; width: 3px; height: 10px; background: var(--mark); border-radius: 2px; pointer-events: none }
+.info { color: var(--muted); font-size: .85rem; display: flex; flex-wrap: wrap; gap: 4px 14px }
+.info b { color: var(--ink); font-weight: 600 }
+.filters { display: flex; flex-wrap: wrap; gap: 6px }
+.filters button { min-height: 36px; padding: 8px 12px; font-size: .88rem }
+.game { display: grid; gap: 8px }
+.grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) }
+.card { display: grid; gap: 4px; text-align: left; padding: 6px; background: var(--panel); min-height: 0; font-weight: 500 }
+.card img { width: 100%; max-width: 100%; aspect-ratio: 1044/624; object-fit: cover; border-radius: 4px; display: block; background: var(--ice) }
+.card .c1 { display: flex; justify-content: space-between; gap: 6px; font-size: .85rem; align-items: baseline }
+.card .c1 b { font-family: var(--display); font-size: 1.05rem }
+.card .c2 { font-size: .78rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.card.cur { border-color: var(--mark); box-shadow: 0 0 0 1px var(--mark) }
+.card.skip { opacity: .65; cursor: default }
+.legend { color: var(--muted); font-size: .85rem; max-width: 90ch }
+.legend ul { margin: 4px 0 0; padding-left: 18px }
+@media (max-width: 600px) { .player { position: static } h1 { font-size: 1.6rem } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>NM26 Goal Replays</h1>
+    <p class="lead">Every goal of the Nygård vs Fjermestad semi-final as a top-down replay of the tracked figures and puck, with the broadcast clip of the same seconds. Both play together. Drawn from model tracks: PROPOSED, not checked against the video frame by frame.</p>
+  </header>
+
+  <section class="player" aria-label="Player">
+    <div class="head" id="head"></div>
+    <div class="vids">
+      <div class="vbox" id="clipbox"><video id="clip" playsinline muted preload="auto"></video><span class="tag">Broadcast</span></div>
+      <div class="vbox"><video id="rep" playsinline muted preload="auto"></video><span class="tag">Replay, from above</span></div>
+    </div>
+    <div class="scrub"><input type="range" id="scrub" min="0" max="1000" value="0" aria-label="Position in the clip"><div class="gm" id="gm" hidden></div></div>
+    <div class="ctrl">
+      <button id="play" aria-label="Play">Play</button>
+      <button id="back" aria-label="One frame back">−1 f</button>
+      <button id="fwd" aria-label="One frame forward">+1 f</button>
+      <button id="toGoal" class="goal">Goal −1 s</button>
+      <button data-rate="1" class="on">1×</button><button data-rate="0.5">½×</button><button data-rate="0.25">¼×</button>
+      <button id="prev" aria-label="Previous goal">◀</button><button id="next" aria-label="Next goal">▶</button>
+      <span class="time" id="time">0.00 s</span>
+    </div>
+    <div class="info" id="info"></div>
+  </section>
+
+  <nav class="filters" id="filters" aria-label="Filter goals"></nav>
+  <main id="list" style="display:grid;gap:18px"></main>
+
+  <section class="legend">
+    <h2>How to read the replay</h2>
+    <ul>
+      <li>White/blue figures (left end) are blue, yellow figures (right end) are orange. The figures stay with the table; the players switch ends 2-2-1-1-1, so the title names who played which end in that game.</li>
+      <li>Each figure: a dot on its tracked pivot, an arrow for where it faces, a short stick to the blade. A hollow dot is interpolated (the model reading was rejected or between 5-per-second readings). Figures the tracker lost are left out.</li>
+      <li>Puck (synthetic puck detector): black disk when it is slow (under 0.3 m/s), black ring when it moves faster. No puck means not seen in that frame. The grey line is its last half second.</li>
+      <li>Marked goals run from 8 s before to 1 s after your goal mark (red tick). The other <span id="nun"></span> goals have only the score-box time; the box changes 3 to 14 s after the goal (median <span id="lag"></span> s in your marks), so their window is the 17 s before the box and the goal is somewhere inside it.</li>
+      <li>Blue and centre lines are nominal; the goals are the preview cage. Game 4's overtime winner has no replay: the score box never shows it, so there is no time for it.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+const GOALS = /*DATA*/[];
+const LAG = /*LAG*/0;
+const FPS = 30;
+const $ = id => document.getElementById(id);
+const clip = $("clip"), rep = $("rep");
+let cur = null, rate = 1, filter = "all";
+const playable = GOALS.filter(g => !g.skipped);
+$("nun").textContent = playable.filter(g => g.moment === "unmarked").length;
+$("lag").textContent = LAG;
+
+function fam(g) {
+  if (!g.label) return "goal moment not marked";
+  const l = g.label; return [l.scorer && (l.scorer + " scores"), l.family, l.combination].filter(Boolean).join(", ");
+}
+
+function buildFilters() {
+  const opts = [["all", "All 40"], ...[1,2,3,4,5,6,7].map(n => ["g" + n, "Game " + n]), ["marked", "Marked"], ["unmarked", "Not marked"]];
+  opts[0][1] = "All " + playable.length;
+  $("filters").innerHTML = "";
+  for (const [k, t] of opts) {
+    const b = document.createElement("button"); b.textContent = t; b.id = "f-" + k;
+    if (k === filter) b.classList.add("on");
+    b.onclick = () => { filter = k; try { localStorage.setItem("nm26rep.filter", k) } catch (e) {} buildFilters(); buildList(); };
+    $("filters").appendChild(b);
+  }
+}
+
+function shown(g) {
+  if (filter === "all") return true;
+  if (filter === "marked" || filter === "unmarked") return !g.skipped && g.moment === filter;
+  return "g" + g.game === filter;
+}
+
+function buildList() {
+  const L = $("list"); L.innerHTML = "";
+  for (let n = 1; n <= 7; n++) {
+    const gs = GOALS.filter(g => g.game === n && shown(g)); if (!gs.length) continue;
+    const sec = document.createElement("section"); sec.className = "game";
+    sec.innerHTML = `<h2>Game ${n}</h2>`;
+    const grid = document.createElement("div"); grid.className = "grid";
+    for (const g of gs) {
+      const b = document.createElement("button"); b.className = "card" + (g.skipped ? " skip" : "") + (cur && cur.id === g.id ? " cur" : "");
+      b.id = "card-" + g.id;
+      const img = g.skipped ? `<div class="nocl" style="aspect-ratio:1044/624">no replay</div>` : `<img loading="lazy" src="${g.id}.jpg" alt="">`;
+      b.innerHTML = `${img}<div class="c1"><b>Goal ${g.n}${g.ot ? " · OT" : ""}</b><span class="pill ${g.end.toLowerCase()}">${g.scorer}</span></div>
+        <div class="c2">${g.skipped ? "score box never shows it" : fam(g)}</div>`;
+      if (!g.skipped) b.onclick = () => { load(g, true); };
+      grid.appendChild(b);
+    }
+    sec.appendChild(grid); L.appendChild(sec);
+  }
+}
+
+function load(g, autoplay) {
+  cur = g; clip.pause(); rep.pause(); setPlay(false);
+  rep.src = g.id + ".mp4"; rep.poster = g.id + ".jpg";
+  const hasClip = g.reg !== undefined && g.reg !== null;
+  $("clipbox").hidden = !hasClip;
+  if (hasClip) { clip.src = "clips/" + g.id + ".mp4"; clip.poster = "clips/" + g.id + ".jpg"; } else clip.removeAttribute("src");
+  clip.playbackRate = rep.playbackRate = rate;
+  const kit = g.end === "W" ? "white/blue, left end" : "yellow, right end";
+  $("head").innerHTML = `<span class="t">Game ${g.game}, goal ${g.n}</span>
+    <span class="pill ${g.end.toLowerCase()}">${g.scorer} (${kit})</span>${g.ot ? '<span class="pill">overtime</span>' : ""}
+    <span class="pill ${g.moment}">${g.moment === "user_marked" ? "your goal mark" : "goal not marked"}</span>`;
+  const c = g.cov;
+  $("info").innerHTML = `<span>${fam(g)}</span>
+    <span>Puck seen <b>${Math.round(c.puck_seen * 100)}%</b> of frames (slow ${Math.round(c.puck_disk * 100)}%)</span>
+    <span>Figures shown <b>${c.figures_shown_mean.toFixed(1)}</b> of 12 on average</span>
+    <span>Figure readings every frame: <b>${Math.round(c.figure_rows_every_frame * 100)}%</b> of the window</span>
+    ${g.reg === false ? "<span>Broadcast clip not registered: raw crop</span>" : ""}`;
+  $("toGoal").hidden = g.goal_at === null;
+  $("toGoal").textContent = g.goal_at === null ? "" : "Goal −1 s";
+  const gm = $("gm");
+  if (g.goal_at !== null) { gm.hidden = false; gm.style.left = (100 * g.goal_at / g.dur) + "%"; } else gm.hidden = true;
+  document.querySelectorAll(".card").forEach(e => e.classList.toggle("cur", e.id === "card-" + g.id));
+  try { history.replaceState(null, "", "#" + g.id) } catch (e) {}
+  if (autoplay) { rep.currentTime = 0; play(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+  tick();
+}
+
+function setPlay(on) { $("play").textContent = on ? "Pause" : "Play"; $("play").classList.toggle("on", on); }
+function play() {
+  const p = rep.play(); if (p) p.catch(() => setPlay(false));
+  if (!$("clipbox").hidden) { clip.currentTime = rep.currentTime; const q = clip.play(); if (q) q.catch(() => {}); }
+  setPlay(true);
+}
+function pause() { rep.pause(); clip.pause(); setPlay(false); sync(true); }
+function seek(t) { t = Math.max(0, Math.min(cur.dur - 0.001, t)); rep.currentTime = t; if (!$("clipbox").hidden) clip.currentTime = t; tick(); }
+function sync(force) {
+  if ($("clipbox").hidden || !clip.src) return;
+  const d = Math.abs(clip.currentTime - rep.currentTime);
+  if (force || d > 0.12) clip.currentTime = rep.currentTime;
+}
+function tick() {
+  if (!cur) return;
+  const t = rep.currentTime || 0;
+  $("scrub").value = Math.round(1000 * t / cur.dur);
+  const rel = cur.goal_at !== null ? t - cur.goal_at : t - cur.box_at;
+  $("time").textContent = (rel >= 0 ? "+" : "−") + Math.abs(rel).toFixed(2) + (cur.goal_at !== null ? " s to goal" : " s to box");
+}
+function loop() { if (!rep.paused) { sync(false); tick(); } requestAnimationFrame(loop); }
+
+$("play").onclick = () => rep.paused ? play() : pause();
+rep.addEventListener("ended", () => { clip.pause(); setPlay(false); });
+$("back").onclick = () => { pause(); seek(rep.currentTime - 1 / FPS); };
+$("fwd").onclick = () => { pause(); seek(rep.currentTime + 1 / FPS); };
+$("toGoal").onclick = () => { seek(cur.goal_at - 1); if (rep.paused) play(); };
+$("scrub").oninput = e => { pause(); seek(cur.dur * e.target.value / 1000); };
+document.querySelectorAll("[data-rate]").forEach(b => b.onclick = () => {
+  rate = +b.dataset.rate; clip.playbackRate = rep.playbackRate = rate;
+  document.querySelectorAll("[data-rate]").forEach(x => x.classList.toggle("on", x === b));
+});
+function step(d) { const i = playable.indexOf(cur); load(playable[(i + d + playable.length) % playable.length], true); }
+$("prev").onclick = () => step(-1); $("next").onclick = () => step(1);
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  if (e.key === " ") { e.preventDefault(); $("play").click(); }
+  else if (e.key === "ArrowLeft") $("back").click(); else if (e.key === "ArrowRight") $("fwd").click();
+});
+
+try { filter = localStorage.getItem("nm26rep.filter") || "all" } catch (e) {}
+buildFilters();
+const h = (location.hash || "").slice(1);
+load(playable.find(g => g.id === h) || playable.find(g => g.id === "g2-goal2") || playable[0], false);
+buildList();
+requestAnimationFrame(loop);
+</script>
