@@ -4,9 +4,8 @@
  "counts": {
   "moves": 121,
   "by_stage": {
-   "video": 3,
-   "not started": 117,
-   "trace": 1
+   "video": 4,
+   "not started": 117
   },
   "by_family": {
    "centre trick": 22,
@@ -124,9 +123,9 @@
    "trace": "data/traces/hjerpefinte.trace.json",
    "checks": "shots/hjerpefinte/checks.json",
    "robustness": "validation/moves/hjerpefinte-robustness.json",
-   "video": null,
+   "video": "validation/moves/hjerpefinte.mp4",
    "legacy": null,
-   "stage": "trace",
+   "stage": "video",
    "suggested_order": 5
   },
   {

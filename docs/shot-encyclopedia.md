@@ -77,9 +77,11 @@ back to the goal, the puck resting on the blade to the right of the slot. A 70 m
 with a 14 mm step pushes the puck from rest into the right corner (goal line at y = −18.7 mm, 575 mm/s).
 - Checks: no overlap; one contact, a push of 65 small touches with a peak impact of 33 mm/s; no unexplained motion change.
 - Robust in 11 of 11 variants; the goal-line crossing moves by 0.4 mm at most.
-- Sheet `validation/moves/hjerpefinte-sheet.png`. Video: PENDING (the render of `move-hjerpefinte` is running; it will
-  be `validation/moves/hjerpefinte.mp4` with the report `validation/moves/hjerpefinte-video-report.json`). Stills of the
-  generated composition were checked: title, set-up, slow-motion approach, contact freeze, goal.
+- Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (631 frames, 21.0 s,
+  1920x1080 30 fps, 7.96 MB; rendered in about 35 min on CPU; rerender with `node scripts/analysis-render.ts
+  move:hjerpefinte`). Its report `validation/moves/hjerpefinte-video-report.json` finds every frame equal to the pure
+  evaluation of the trace. Frames of the mp4 were checked: rewind, slow-motion approach, contact freeze with the push
+  arrow, replay.
 - The goalie leans to the left post (assumed: "only works against a goalie expecting a Hjerpe"). The reading is Claude's
   and needs the user's approval.
 
@@ -123,7 +125,7 @@ contacts by hand, and the render (about 4 s per 1080p frame on this CPU; an anal
 ## 6. The index and what to build next
 
 `data/encyclopedia/index.json`: 121 moves; 3 with a video from the earlier scripts (Spjass, Näcka, IKV), 1 with an
-engine trace (Hjerpefinte), 117 not started. Suggested order (NM26 goals first, then easy before hard):
+engine video (Hjerpefinte), 117 not started. Suggested order (NM26 goals first, then easy before hard):
 Edwallskyffel lang (5 NM26 goals), Spade (3), Spjass (2, done), then the level-2 moves (Edwall-innspill,
 Lindahl-innspill, Sørenfinte) and the level-3 ones (Direkteskudd, Lillstøvel, Maltzev).
 - "Short centrifuge" and "Ceuleman" are user goal labels that are not catalogue names; they are listed separately.
