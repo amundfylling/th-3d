@@ -117,19 +117,24 @@ class Localiser:
             pts, s_mm = resample(SLOT[pid]); q = np.stack([proj3(ring + [p[0], p[1], 0]) for p in pts])
             self.CAND[pid] = (pts, np.round(q).astype(int), proj3(np.c_[pts, np.zeros(len(pts))]), s_mm)
 
-    def team_mask(self, img, end):
-        cv2 = self.cv2; im = img.astype(np.int16)
-        if self.variant == "v2":
-            d = np.abs(im - self.plate).sum(-1) > 60
-        else:  # below the ice (near board, adverts): the plate's local range; elsewhere v2's plain difference
-            d = np.abs(im - self.plate).sum(-1) > 60
-            off = self.near; d[off] = ((np.maximum(0, self.pmin - im) + np.maximum(0, im - self.pmax)).sum(-1) > 60)[off]
-        h = cv2.cvtColor(img, cv2.COLOR_BGR2HSV); H, Sa, V = h[..., 0], h[..., 1], h[..., 2]
+    def team_mask(self, img, end, hsv=None, d=None):
+        cv2 = self.cv2
+        if d is None: d = self.difference(img)
+        h = hsv if hsv is not None else cv2.cvtColor(img, cv2.COLOR_BGR2HSV); H, Sa, V = h[..., 0], h[..., 1], h[..., 2]
         col = ((H >= 15) & (H <= 35) & (Sa > 110) & (V > 110)) if end == "E" else (((H >= 100) & (H <= 130) & (Sa > 100)) | ((Sa < 45) & (V > 185)))
         return cv2.blur((d & col).astype(np.float32), (3, 3))
 
+    def difference(self, img):
+        im = img.astype(np.int16); d = np.abs(im - self.plate).sum(-1) > 60
+        if self.variant != "v2":  # below the ice (near board, adverts): the plate's local range; elsewhere v2's plain difference
+            r0 = int(np.argmax(self.near.any(1)))  # first image row with near-board pixels
+            sub = im[r0:]; dn = (np.maximum(0, self.pmin[r0:] - sub) + np.maximum(0, sub - self.pmax[r0:])).sum(-1) > 60
+            nr = self.near[r0:]; d[r0:][nr] = dn[nr]
+        return d
+
     def set_image(self, img):
-        self.masks = {e: self.team_mask(img, e) for e in "WE"}; self.shape = img.shape
+        hsv = self.cv2.cvtColor(img, self.cv2.COLOR_BGR2HSV); d = self.difference(img)
+        self.masks = {e: self.team_mask(img, e, hsv, d) for e in "WE"}; self.shape = img.shape
 
     def profile(self, pid):
         m = self.masks[pid[0]]; pts, q, foot, s_mm = self.CAND[pid]; hh, ww = m.shape
@@ -174,7 +179,7 @@ def load_mod(name, path):
 
 if CMD == "obs":
     import cv2, torch
-    game = A[1]; LAB = "--labels" in A; torch.set_num_threads(int(arg("--threads", 4)))
+    game = A[1]; LAB = "--labels" in A; torch.set_num_threads(int(arg("--threads", 4))); cv2.setNumThreads(int(arg("--threads", 4)))
     ts = load_mod("ts", REPO / "scripts/synth/train-skater-pose.py"); tv = load_mod("tv", REPO / "scripts/synth/train-skater-v3.py")
     net = tv.model(False); net.load_state_dict(torch.load(REPO / arg("--model", "out/synth/skater-pose-v3.pt"))); net.eval()
     loc = Localiser(cv2.imread(str(REPO / f"out/synth/skaters/plate_{game}.png")), arg("--loc", "v3"))
@@ -185,15 +190,31 @@ if CMD == "obs":
         RAW = json.loads((DATA / game / "figure-tracks.json").read_text()); fl = [r[0] for r in RAW["rows"]]
         dense_set = {r[0] for r in RAW["rows"] if r[1]}
     dest = V3 / f"obs-{game}{'-labels' if LAB else ''}.json"; part = dest.with_suffix(".partial.json")
-    rows = json.loads(part.read_text()) if part.exists() else []; done = {r[0] for r in rows}; t_start = time.time()
+    rows = json.loads(part.read_text()) if part.exists() else json.loads(dest.read_text())["rows"] if dest.exists() and not LAB else []
+    done = {r[0] for r in rows}; t_start = time.time()
+    if "--dense-only" in A: fl = [f for f in fl if f in dense_set]  # the goal windows first (resumed later without the flag)
     if "--max-frames" in A: fl = fl[:int(arg("--max-frames", 0))]
     for i, img in registered([f for f in fl if f not in done]):
-        crops, meta = [], []; loc.set_image(img)
-        for pid in ORDER:
-            for rank, (foot, s_mm, sc) in enumerate(loc.peaks(pid)):
+        loc.set_image(img); pk = {pid: loc.peaks(pid) for pid in ORDER}
+
+        def read(items):
+            crops, meta = [], []
+            for pid, rank in items:
+                foot, s_mm, sc = pk[pid][rank]
                 cx = min(max(int(round(foot[0] - 100)), 0), img.shape[1] - 200); cy = min(max(int(round(foot[1] - 136)), 0), img.shape[0] - 200)
                 crops.append(ts.to_tensor(img[cy:cy + 200, cx:cx + 200], pid)); meta.append((pid, rank, s_mm, sc, (cx + x0, cy + y0)))
-        with torch.no_grad(): P = net(torch.stack(crops)).numpy()
+            with torch.no_grad(): return meta, net(torch.stack(crops)).numpy()
+
+        meta, P = read([(pid, 0) for pid in ORDER])
+        # the second colour peak is read only when the first reading is doubtful (presence under 0.9 or the pivot over
+        # 10 mm from the slot): on the label frames 99.7% of right spots have presence over 0.5 (docs/tracker-v3.md)
+        doubt = []
+        for (pid, rank, s_mm, sc, o), p in zip(meta, P):
+            if len(pk[pid]) > 1 and (1 / (1 + np.exp(-p[4])) < 0.9 or ts.pivot_to_u(pid, ts.net_to_px(p[:2]), o)[1] > 10): doubt.append((pid, 1))
+        if doubt and "--all-candidates" not in A:
+            m2, P2 = read(doubt); meta += m2; P = np.concatenate([P, P2])
+        elif "--all-candidates" in A:
+            m2, P2 = read([(pid, 1) for pid in ORDER if len(pk[pid]) > 1]); meta += m2; P = np.concatenate([P, P2])
         row = [i, int(i in dense_set), {}]
         for (pid, rank, s_mm, sc, o), p in zip(meta, P):
             u, d = ts.pivot_to_u(pid, ts.net_to_px(p[:2]), o)

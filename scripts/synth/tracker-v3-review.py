@@ -48,6 +48,7 @@ def get(rc, f, pid):
 
 cases = []
 for g in [f"g{k}" for k in range(1, 8)]:
+    if not (Path(PA.format(game=g)).exists() and Path(PB.format(game=g)).exists()): continue
     a, b = load(PA.format(game=g)), load(PB.format(game=g))
     for f in sorted(set(a[0]) & set(b[0])):
         for pid in tv3.ORDER:
