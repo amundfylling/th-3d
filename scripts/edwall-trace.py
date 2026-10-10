@@ -493,6 +493,39 @@ def local_contact(g, k, p):
     return [round(float(x), 2) for x in nb.coords[0]], round(math.degrees(math.atan2(nw[1], nw[0])), 2)
 
 
+def pull_check(g, c, P, contact_mm=1.0, friction_deg=17.0, h=8):
+    """Can the figure hold the puck as the carry needs? Within contact_mm of the puck rim the figure's low outline offers
+    contact normals (one for a flat face, a fan of them in the heel groove). Every step of the carry the force the puck
+    needs (its acceleration plus the ice friction) must lie inside that fan widened by a friction angle; otherwise the
+    figure would have to pull the puck. friction_deg (17 deg, mu about 0.3) is ASSUMED."""
+    loc = np.array(c["local_mm"]); bd = sp.LOW[g.kind].boundary
+    pts = [np.array(bd.interpolate(d).coords[0]) for d in np.arange(0, bd.length, 0.25)]
+    ns = [loc - q for q in pts if np.linalg.norm(loc - q) <= R_PUCK + contact_mm]
+    ang = np.unwrap(sorted(math.atan2(n[1], n[0]) for n in ns)) if ns else np.array([])
+    if len(ang):  # the fan: the smallest arc covering all normal directions
+        a = np.sort(np.mod(ang, 2 * math.pi)); gaps = np.diff(np.r_[a, a[0] + 2 * math.pi]); i = int(np.argmax(gaps))
+        lo, span = a[(i + 1) % len(a)], 2 * math.pi - gaps[i]
+    k0, k1 = int(round(c["t_catch"] / DT)) + h, int(round(c["t_release"] / DT)) - h
+    bad = tot = 0; worst = 0.0
+    for k in range(max(k0, h), min(k1, len(P) - h - 1), 4):
+        acc = (P[k + h] - 2 * P[k] + P[k - h]) / (h * DT) ** 2
+        vel = (P[k + h] - P[k - h]) / (2 * h * DT); sv = float(np.linalg.norm(vel))
+        F = acc + (A_FRIC * vel / sv if sv > 1 else 0)
+        if np.linalg.norm(F) < 3 * A_FRIC:
+            continue
+        tot += 1
+        fl = math.atan2(F[1], F[0]) - g.h[k]  # force direction in the figure frame
+        if not len(ang):
+            bad += 1; continue
+        d = (fl - lo) % (2 * math.pi); fr = math.radians(friction_deg)
+        out = 0.0 if d <= span else min(d - span, 2 * math.pi - d)
+        out = max(0.0, out - fr)
+        if out > 0:
+            bad += 1; worst = max(worst, math.degrees(out))
+    return {"normal_fan_deg": round(math.degrees(span), 1) if len(ang) else 0.0, "friction_angle_deg_assumed": friction_deg,
+            "steps_checked": tot, "steps_needing_pull": bad, "share_needing_pull": round(bad / tot, 3) if tot else 0.0, "worst_outside_fan_deg": round(worst, 1)}
+
+
 def groups_of(imp, gap=0.06):
     out = {}
     for x in imp:
@@ -511,21 +544,25 @@ def main():
     kg = goal_cross(P)
     assert kg is not None, "no goal: refit"
     grp = groups_of(imp)
-    rw_g, wc_g = grp.get("W-RW", []), grp.get("W-C", [])
-    assert rw_g and wc_g, f"missing contacts: {list(grp)}"
-    pass_g = rw_g[0]
-    shot_g = [x for g in wc_g for x in g]  # every shooter touch (one episode expected)
-    pass_t0, pass_t1 = pass_g[0]["t"], pass_g[-1]["t"]
-    sh_t0, sh_t1 = shot_g[0]["t"], shot_g[-1]["t"]
+    rw_c = next((c for c in clog if c["figure"] == "W-RW"), None)
+    wc_c = next((c for c in clog if c["figure"] == "W-C"), None)
+    assert rw_c and wc_c, f"missing carries: {clog}"
+    rw_imp = [x for x in imp if x["figure"] == "W-RW"]
+    wc_imp = [x for x in imp if x["figure"] == "W-C"]
+    pass_t0, pass_t1 = round(p["rw_t_lunge"], 5), round(rw_c["t_release"], 5)
+    sh_t0 = wc_c["t_catch"]
+    sh_t1 = round(max([wc_c["t_release"]] + [x["t"] for x in wc_imp if x["t"] < wc_c["t_release"] + 0.03]), 5)
+    pass_g = [x for x in rw_imp if x["t"] <= pass_t1 + 0.004] or [{"t": pass_t0, "figure": "W-RW", "part": rw_c["part"], "impact_mm_s": 0.0}]
+    shot_g = [x for x in wc_imp if x["t"] <= sh_t1 + 0.004]
     net = [k for k in range(len(T)) if "goal_net" in touching[k]]
     t_goal = round(kg * DT, 5); t_net = round(net[0] * DT, 5) if net else None
     others = sorted({x["figure"] for x in imp} - {"W-RW", "W-C"})
 
     def phase(t):
         if t < pass_t0: return "rest_at_blade"
-        if t <= pass_t1 + 0.004: return "pass_push"
+        if t <= pass_t1: return "pass_carry"
         if t < sh_t0: return "pass_slide"
-        if t <= sh_t1 + 0.004: return "shovel_push"
+        if t <= sh_t1: return "shovel_carry"
         if t_net is None or t < t_net: return "shot_slide"
         return "in_goal"
     nodes = [{"t": round(float(T[k]), 5), "x_mm": round(float(P[k, 0]), 4), "y_mm": round(float(P[k, 1]), 4), "phase": phase(float(T[k]))} for k in range(0, len(T), sp.NODE_EVERY)]
@@ -574,7 +611,8 @@ def main():
                    "figure_impact_max_mm_s": lim_f, "wall_impact_max_mm_s": lim_w, "limits_status": INP["slide_rule"]["status"],
                    "per_contact": [{"contact": n, "figure": g[0]["figure"], "t": [g[0]["t"], g[-1]["t"]], "touches": len(g), "peak_impact_mm_s": peak(g)} for n, g in named]
                                   + [{"contact": f"other ({g[0]['figure']})", "figure": g[0]["figure"], "t": [g[0]["t"], g[-1]["t"]], "touches": len(g), "peak_impact_mm_s": peak(g)}
-                                     for k_, gs in grp.items() for g in gs if not any(g is x for x in (pass_g,)) and k_ != "W-C"],
+                                     for k_, gs in grp.items() for g in gs if k_ not in ("W-RW", "W-C")],
+                   "carries": [{**c, "pull_check": pull_check(figs_by[c["figure"]], c, P)} for c in clog],
                    "peak_board_impact_mm_s": round(max([w["impact_mm_s"] for w in walls if w["obstacle"] == "boards"] + [0.0]), 1),
                    "peak_post_impact_mm_s": round(max([w["impact_mm_s"] for w in walls if w["obstacle"] == "goal_post"] + [0.0]), 1),
                    "peak_cage_impact_mm_s": round(max([w["impact_mm_s"] for w in walls if w["obstacle"] == "goal_cage"] + [0.0]), 1),
@@ -590,15 +628,16 @@ def main():
     fit_res = [{"frame": o["frame"], "kind": o["kind"], "t": o["t"], "observed_mm": o["world_mm"], "trace_mm": [round(float(x), 2) for x in P[kat(o["t"])]],
                 "error_mm": round(float(np.linalg.norm(P[kat(o["t"])] - o["world_mm"])), 2)} for o in OBS]
     events = [
-        {"id": "pass.start", "t_estimate": pass_t0, "part": "W-RW:" + pass_g[0]["part"], "contact_point_local_mm": loc_p, "model_contact_normal_deg": n_p,
-         "status": "derived: the right wing starts its lunge with the puck resting against the figure by the board"},
-        {"id": "pass.release", "t_estimate": pass_t1, "t_start": pass_t0, "part": "W-RW:" + pass_g[-1]["part"], "contact_point_local_mm": loc_r, "model_contact_normal_deg": n_r,
+        {"id": "pass.start", "t_estimate": pass_t0, "part": "W-RW:" + rw_c["part"], "contact_point_local_mm": rw_c["local_mm"], "model_contact_normal_deg": n_p,
+         "status": "derived: the right wing starts its lunge with the puck resting in the heel groove of its stick by the board"},
+        {"id": "pass.release", "t_estimate": pass_t1, "t_start": pass_t0, "part": "W-RW:" + rw_c["part"], "contact_point_local_mm": rw_c["local_mm"], "model_contact_normal_deg": n_r,
          "peak_impact_mm_s": peak(pass_g), "touches": len(pass_g), "speed_mm_s": round(float(np.linalg.norm(v_p)), 1), "direction_deg": deg(v_p),
-         "status": "derived (sustained push: the right wing lunges up its slot and turns counter-clockwise; the puck leaves the board diagonally)"},
-        {"id": "contact.shot", "t_estimate": sh_t0, "t_end": sh_t1, "part": "W-C:" + shot_g[0]["part"], "contact_point_local_mm": loc_s, "model_contact_normal_deg": n_s,
+         "status": "derived (heel-groove carry: the right wing lunges up its slot with the puck in the heel groove and turns counter-clockwise; the puck leaves with the groove's velocity)"},
+        {"id": "contact.shot", "t_estimate": sh_t0, "t_end": sh_t1, "part": "W-C:" + wc_c["part"], "contact_point_local_mm": wc_c["local_mm"], "model_contact_normal_deg": n_s,
          "end_contact_point_local_mm": loc_e, "peak_impact_mm_s": peak(shot_g), "touches": len(shot_g), "speed_mm_s": round(float(np.linalg.norm(v_s)), 1), "direction_deg": deg(v_s),
          "heading_at_contact_deg": round(math.degrees(figs_by["W-C"].h[kat(sh_t0)]), 2), "arc_at_contact_mm": round(wc.arc(sh_t0), 2),
-         "status": "derived (the centre lunges to the front of its slot, meets the pass and shovels it with a turn; the contact is hidden in the broadcast: DESIGNED)"},
+         "catch_relative_normal_speed_mm_s": wc_c["catch_impact_mm_s"], "catch_relative_speed_mm_s": wc_c.get("relative_speed_mm_s"),
+         "status": "derived (the centre lunges to the front of its slot, catches the pass in the heel groove moving with it, and shovels it with a turn; hidden in the broadcast: DESIGNED)"},
         {"id": "goal_entry", "t_estimate": t_goal, "frame": round(F0 + t_goal * FPS, 2), "goal_line_y_mm": round(float(P[kg, 1]), 2), "user_goal_frame": LABEL,
          "status": "derived (hidden in the broadcast; the user's goal moment is the label frame)"},
     ] + ([{"id": "goal_net", "t_estimate": t_net, "status": "rule: the puck stops against the back of the preview cage"}] if t_net else [])
@@ -638,11 +677,14 @@ def main():
               "other_figures_touched": others, "impulses": imp, "unexplained_velocity_changes": unexplained[:20], "unexplained_count": len(unexplained),
               "goal_line": {"x_mm": sp.GX, "crossing_y_mm": round(float(P[kg, 1]), 2), "inside_mouth_window_y_mm": [round(sp.GY - sp.HALF + sp.POST_R + R_PUCK, 1), round(sp.GY + sp.HALF - sp.POST_R - R_PUCK, 1)],
                             "frame": round(F0 + t_goal * FPS, 2), "user_goal_frame": LABEL},
+              "carry_force_check": {"rule": "this rebuild's own plausibility check (not a CLAUDE.md rule): during a heel-groove carry the force the puck needs must lie inside the contact-normal fan of the figure's low outline at the carry point, widened by an ASSUMED 17 deg friction angle; otherwise the stick would have to pull the puck",
+                                    "carries": [{"figure": c["figure"], "t": [c["t_catch"], c["t_release"]], **pull_check(figs_by[c["figure"]], c, P)} for c in clog],
+                                    "passed": all(pull_check(figs_by[c["figure"]], c, P)["steps_needing_pull"] == 0 for c in clog)},
               "observation_fit": fit_res, "fitted": INP.get("fitted"),
               "passed": not vint and not f_bad and not w_bad and not unexplained}
     OUT_CHECKS.write_text(json.dumps(checks, indent=1, ensure_ascii=False) + "\n")
     sheet(S, P, nt, nx, ny, events)
-    print(json.dumps({"passed": checks["passed"], "events": events, "slide": {k: slide_check[k] for k in ("per_contact", "peak_board_impact_mm_s", "peak_post_impact_mm_s", "passed")},
+    print(json.dumps({"passed": checks["passed"], "carry_force_check": checks["carry_force_check"]["passed"], "events": events, "slide": {k: slide_check[k] for k in ("per_contact", "peak_board_impact_mm_s", "peak_post_impact_mm_s", "passed")},
                       "unexpected": checks["unexpected_penetrations"], "unexplained": len(unexplained), "fit": fit_res, "others": others}, indent=1, ensure_ascii=False))
 
 

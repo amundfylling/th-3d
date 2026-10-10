@@ -169,7 +169,7 @@
   "method": "two stages (scripts/edwall-trace.py --fit pass|shot), each a differential-evolution search inside fit.bounds and a Nelder-Mead polish: pass = the passer's rest rotation, lunge and turn against the puck readings (streak weight 0.15) and the slide-rule limits; shot = the shooter's lunge and turns against the goal window, the goal-line target and the slide-rule limits",
   "objective": {
    "pass": 1995.63,
-   "shot": 5418.09
+   "shot": 2005.53
   },
   "evaluations": {
    "pass": 1174,
@@ -184,15 +184,16 @@
    "rw_d_turn": 0.14632,
    "rw_turn_deg": 141.57365,
    "rw_t_release": 0.75871,
-   "wc_t_lunge": 0.74847,
-   "wc_d_lunge": 0.1885,
-   "wc_theta0": 339.17717,
-   "wc_t_turn0": 0.80861,
-   "wc_d_turn0": 0.09158,
-   "wc_turn0_deg": -4.9115,
-   "wc_d_shot": 0.06235,
-   "wc_shot_deg": 54.40186,
-   "wc_t_release": 0.91006
+   "wc_t_lunge": 0.79331,
+   "wc_d_lunge": 0.15643,
+   "wc_theta0": 342.65835,
+   "wc_t_turn0": 0.82675,
+   "wc_d_turn0": 0.05468,
+   "wc_turn0_deg": -29.07477,
+   "wc_d_shot": 0.0678,
+   "wc_shot_deg": -7.13013,
+   "wc_t_release": 0.91687,
+   "wc_arc1": 246.29894
   }
  },
  "rw_return": {
@@ -203,5 +204,15 @@
   ],
   "note": "after the pass the right wing goes back to the pose the cleaned track reads just after the goal (model readings), in a designed smootherstep move"
  },
- "wc_front_frame": -3
+ "wc_front_frame": -3,
+ "limitations": [
+  "PROPOSED rebuild from one broadcast camera; nothing is measured on the table.",
+  "Puck: hand readings of the broadcast frames (shots/edwall/puck-readings.json), back-projected to z = 6 mm; motion-blurred streak frames weigh less; readings near the near board are biased toward +y because the board's top edge hides the ice, so the rest position is snapped to the board.",
+  "No newer puck detector track was available on the remote (no claude/puck-detector-* branch at build time); this trace uses the hand readings above.",
+  "Right wing (passer) and centre (shooter): the lunges and turns are DESIGNED smootherstep moves fitted to the puck readings and the goal; the cleaned figure tracks are interpolated through these fast moves and only fix the rest poses and the return.",
+  "Both plays are modelled as heel-groove carries: the puck stays at the touching point of the stick heel from catch to release and leaves with that point's velocity (NTHF: 'carries the puck with the heel groove'). slide_check.carries reports whether the needed force stays inside the contact-normal fan of the groove.",
+  "The centre's shovel and the goal are hidden in the broadcast (behind the E goalie and the near goal frame): the shot is DESIGNED to score into the open far (+y) corner; its exact contact and line are not observed.",
+  "The other ten figures follow the cleaned model tracks (data/games/nm26-semifinal/g2/figure-tracks-smooth.json, PROPOSED, not verified frame by frame).",
+  "Ice friction 926.1 mm/s^2 is borrowed from the spjass slide fit; figure restitution 0.5 frictionless; puck thickness 12 mm assumed."
+ ]
 }

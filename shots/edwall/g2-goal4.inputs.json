@@ -173,5 +173,34 @@
   ],
   "note": "after the pass the right wing goes back to the pose the cleaned track reads just after the goal (model readings), in a designed smootherstep move"
  },
- "wc_front_frame": -1
+ "wc_front_frame": -1,
+ "limitations": [
+  "PROPOSED rebuild from one broadcast camera; nothing is measured on the table.",
+  "Puck: hand readings of the broadcast frames (shots/edwall/puck-readings.json), back-projected to z = 6 mm; motion-blurred streak frames weigh less; readings near the near board are biased toward +y because the board's top edge hides the ice, so the rest position is snapped to the board.",
+  "No newer puck detector track was available on the remote (no claude/puck-detector-* branch at build time); this trace uses the hand readings above.",
+  "Right wing (passer) and centre (shooter): the lunges and turns are DESIGNED smootherstep moves fitted to the puck readings and the goal; the cleaned figure tracks are interpolated through these fast moves and only fix the rest poses and the return.",
+  "Both plays are modelled as heel-groove carries: the puck stays at the touching point of the stick heel from catch to release and leaves with that point's velocity (NTHF: 'carries the puck with the heel groove'). slide_check.carries reports whether the needed force stays inside the contact-normal fan of the groove.",
+  "The centre's shovel and the goal are hidden in the broadcast (behind the E goalie and the near goal frame): the shot is DESIGNED to score into the open far (+y) corner; its exact contact and line are not observed.",
+  "The other ten figures follow the cleaned model tracks (data/games/nm26-semifinal/g2/figure-tracks-smooth.json, PROPOSED, not verified frame by frame).",
+  "Ice friction 926.1 mm/s^2 is borrowed from the spjass slide fit; figure restitution 0.5 frictionless; puck thickness 12 mm assumed."
+ ],
+ "fitted": {
+  "method": "two stages (scripts/edwall-trace.py --fit pass|shot), each a differential-evolution search inside fit.bounds and a Nelder-Mead polish: pass = the passer's rest rotation, lunge and turn against the puck readings (streak weight 0.15) and the slide-rule limits; shot = the shooter's lunge and turns against the goal window, the goal-line target and the slide-rule limits",
+  "objective": {
+   "pass": 1168.95
+  },
+  "evaluations": {
+   "pass": 1174
+  },
+  "values": {
+   "rw_theta0": 227.96918,
+   "rw_t_lunge": 0.71687,
+   "rw_d_lunge": 0.1227,
+   "rw_lunge_mm": 115.73838,
+   "rw_t_turn": 0.74924,
+   "rw_d_turn": 0.08765,
+   "rw_turn_deg": 82.39472,
+   "rw_t_release": 0.80841
+  }
+ }
 }
