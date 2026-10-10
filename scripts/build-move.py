@@ -34,7 +34,7 @@ for m in a.moves:
         r["video_spec"] = presentation.write(build.load_move(m)[1])
     if a.robustness:
         from shotlib import robustness
-        rb = robustness.robustness(m, build.load_move(m, a.set)[1])
+        rb = robustness.robustness(m, build.load_move(m, a.set)[1], canonical=not (a.scratch or a.set))
         r["robustness"] = {k: rb[k] for k in ("variants_passed", "robust", "goal_y_spread_mm")}
         r["robustness"]["failed"] = [x["variant"] for x in rb["rows"] if not (x["outcome_ok"] and x["slide_ok"])]
     print(json.dumps(r, indent=1, ensure_ascii=False))

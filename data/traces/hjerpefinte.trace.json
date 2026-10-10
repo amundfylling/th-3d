@@ -10,7 +10,7 @@
   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
   "skater_scale_k": 1.0814,
   "goalie_scale_k": 1.1421889791935147,
-  "git_commit": "d7fc2da25e551b397aed8b69519fce815b483135"
+  "git_commit": "8ce1a53001aed242ccdb1dd7b073a432a875d498"
  },
  "source": {
   "move_file": "moves/hjerpefinte/move.json",
@@ -26,7 +26,7 @@
  "engine": {
   "path": "scripts/shotlib",
   "contact_footprints": "data/figures/contact-footprints.json",
-  "contact_footprints_sha256": "8eb6298798bcce9de9b0976f34cd81db9aea26a73393338d1327274a18cc183b"
+  "contact_footprints_sha256": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563"
  },
  "time_base": {
   "t": "designed time (s); no recording",

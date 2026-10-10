@@ -403,7 +403,9 @@ def equivalence(move_id, spec, trace, out_dir):
         da = max(abs(x["arc_mm"] - y["arc_mm"]) + abs(x["t"] - y["t"]) for x, y in zip(f["arc_keyframes"], g["arc_keyframes"])) if len(f["arc_keyframes"]) == len(g["arc_keyframes"]) else None
         dt = max(abs(x["theta_deg"] - y["theta_deg"]) + abs(x["t"] - y["t"]) for x, y in zip(f["theta_keyframes"], g["theta_keyframes"])) if len(f["theta_keyframes"]) == len(g["theta_keyframes"]) else None
         figs[pid] = {"arc_keyframes": [len(f["arc_keyframes"]), len(g["arc_keyframes"])], "max_arc_diff": da, "theta_keyframes": [len(f["theta_keyframes"]), len(g["theta_keyframes"])], "max_theta_diff": dt}
-    rep = {"move": move_id, "legacy_trace": spec["legacy"]["trace"], "legacy_script": spec["legacy"]["script"], "engine_trace": str((out_dir / "trace.json").relative_to(REPO)),
+    engine = sorted((REPO / "scripts/shotlib").glob("*.py")) + [REPO / "data/figures/contact-footprints.json"]
+    rep = {"inputs_sha256": {str(p.relative_to(REPO)): sha(p) for p in [REPO / "moves" / move_id / "move.json", REPO / spec["legacy"]["trace"], *engine]},
+           "move": move_id, "legacy_trace": spec["legacy"]["trace"], "legacy_script": spec["legacy"]["script"], "engine_trace": str((out_dir / "trace.json").relative_to(REPO)),
            "puck_nodes": [len(a), len(b)], "max_puck_node_diff_mm": round(dp, 6), "figures": figs,
            "identical_within_0_01_mm": len(a) == len(b) and dp <= 0.01 and all(v["max_arc_diff"] is not None and v["max_arc_diff"] <= 0.01 and v["max_theta_diff"] is not None and v["max_theta_diff"] <= 0.01 for v in figs.values())}
     dst = REPO / f"validation/moves/{move_id}-equivalence.json"

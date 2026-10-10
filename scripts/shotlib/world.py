@@ -32,6 +32,9 @@ ALL_FIGURES = sorted(ASM)
 
 def _check_footprints():
     stale = [p for p, h in FOOT["inputs_sha256"].items() if hashlib.sha256((REPO / p).read_bytes()).hexdigest() != h]
+    for p, h in FOOT.get("meshes_sha256", {}).items():  # generated meshes: checked when present
+        if (REPO / p).exists() and hashlib.sha256((REPO / p).read_bytes()).hexdigest() != h:
+            stale.append(p)
     if stale or FOOT["puck_thickness_mm"] != PUCK_T:
         raise SystemExit(f"data/figures/contact-footprints.json is stale ({stale or 'puck thickness'}); re-run scripts/shotlib/export_footprints.py")
 

@@ -24,7 +24,10 @@ FIG = json.loads((REPO / "validation/players/figures-report.json").read_text())
 PUCK_T = HW["puck"]["thickness_mm_preview"]
 SCALE = {"skater": FIG["scale_k_mm_per_mold_unit"], "goalie": FIG["scales"]["goalie"]}
 OUT = REPO / "data/figures/contact-footprints.json"
-INPUTS = ["data/figure-molds.json", "validation/players/figures-report.json", "validation/12-hardware-report.json"]
+# everything that decides the footprints: the mold data and the code that builds the meshes (out/figures/*.npz, not
+# committed), the figure scale and the puck thickness. The engine and the tests refuse the file when any of them changed.
+INPUTS = ["data/figure-molds.json", "assets/blender/figure_molds.py", "assets/blender/face_sections.py", "assets/blender/stiga_blender.py",
+          "assets/blender/preview_molds.py", "scripts/shotlib/export_footprints.py", "validation/players/figures-report.json", "validation/12-hardware-report.json"]
 
 
 def sha(p):
@@ -56,6 +59,8 @@ def main():
            "status": "derived from the AI-modelled molds at the assumed preview scale (docs/players.md); not measured",
            "puck_thickness_mm": PUCK_T, "puck_thickness_status": "assumed (preview)",
            "scale_mm_per_mold_unit": SCALE, "inputs_sha256": {p: sha(p) for p in INPUTS},
+           "meshes_sha256": {f"out/figures/{k}.npz": sha(f"out/figures/{k}.npz") for k in ("skater", "goalie")},
+           "meshes_note": "the generated meshes the footprints were cut from (not committed; regenerate with preview_molds.py and compare when present)",
            "made_by": "scripts/shotlib/export_footprints.py from out/figures/<kind>.npz (assets/blender/preview_molds.py)",
            "figures": {}}
     for kind in ("skater", "goalie"):

@@ -11,7 +11,7 @@ user-reviewed; the one new move (Hjerpefinte) is Claude's reading of a one-line 
 | Move engine | `scripts/shotlib/` (`world`, `motion`, `puck`, `build`, `robustness`, `presentation`) | One code path for every designed move: figure motion → puck by the contact rules → every CLAUDE.md check → `shot-trace/1`. Replaces copying a 300-500 line script per move. |
 | Move files | `moves/<id>/move.json` | A move is data: figure keyframes and moves, the puck's start, named contacts, expectations, the video story. |
 | Build command | `scripts/build-move.py` | Builds in about 7 s on any Python with numpy, shapely and pillow; saves only if every check passes. |
-| Contact footprints | `data/figures/contact-footprints.json` (`scripts/shotlib/export_footprints.py`) | The figure geometry the puck can touch, exported once from the molds. No Blender or mesh files needed to build a move; one place to update when the figures are measured. |
+| Contact footprints | `data/figures/contact-footprints.json` (`scripts/shotlib/export_footprints.py`) | The figure geometry the puck can touch, exported once from the molds. No Blender or mesh files needed to build a move; one place to update when the figures are measured. Records the hashes of the mold data, the mesh-building code, the scale and puck files and the generated meshes; the engine and tests refuse a stale file. |
 | Robustness check | `scripts/shotlib/robustness.py`, `--robustness` | Reruns the move with each uncertain input changed and reports whether the goal and contact sequence hold. |
 | Generated video | `scripts/shotlib/presentation.py`, `--video-spec`; `remotion/EncyclopediaAnalysis.tsx`, `remotion/encyclopedia-registry.ts` | The analysis video (same template as the five hand-made ones) from a short `story` block: timeline, slow-motion rates, camera views, chapters and graphics are derived from the trace. Composition `move-<id>`. |
 | Index | `data/encyclopedia/index.json` (`scripts/encyclopedia-index.py`) | All 121 NTHF combinations with their stage (not started, move file, trace, video), a family (keyword heuristic), NM26 goal count and a suggested build order. |
@@ -77,8 +77,9 @@ back to the goal, the puck resting on the blade to the right of the slot. A 70 m
 with a 14 mm step pushes the puck from rest into the right corner (goal line at y = −18.7 mm, 575 mm/s).
 - Checks: no overlap; one contact, a push of 65 small touches with a peak impact of 33 mm/s; no unexplained motion change.
 - Robust in 11 of 11 variants; the goal-line crossing moves by 0.4 mm at most.
-- Sheet `validation/moves/hjerpefinte-sheet.png`; video `validation/moves/hjerpefinte.mp4` (render report
-  `validation/moves/hjerpefinte-video-report.json`).
+- Sheet `validation/moves/hjerpefinte-sheet.png`. Video: PENDING (the render of `move-hjerpefinte` is running; it will
+  be `validation/moves/hjerpefinte.mp4` with the report `validation/moves/hjerpefinte-video-report.json`). Stills of the
+  generated composition were checked: title, set-up, slow-motion approach, contact freeze, goal.
 - The goalie leans to the left post (assumed: "only works against a goalie expecting a Hjerpe"). The reading is Claude's
   and needs the user's approval.
 

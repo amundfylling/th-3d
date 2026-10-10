@@ -163,5 +163,7 @@
    "slide_ok": true,
    "outcome_ok": true
   }
- ]
+ ],
+ "move_file_sha256": "5c67206138bc755fba2b1da3ef99326b09b92caa9e06b8efb9cb912b6ff5358e",
+ "canonical": true
 }

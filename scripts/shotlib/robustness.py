@@ -11,7 +11,7 @@ the outcome holds:
 
     /root/venvs/blender/bin/python scripts/build-move.py <move-id> --robustness
 
-Output: validation/moves/<id>-robustness.json (and the summary in the build report). The variants and their sizes are
+Output: validation/moves/<id>-robustness.json (scratch and --set runs: out/moves/<id>/robustness.json, never the saved one). The variants and their sizes are
 ASSUMED (below); they are the questions "what if the model is off by this much", not measured uncertainties.
 """
 import json
@@ -80,7 +80,8 @@ def _run(args):
             "outcome_ok": (entered == exp.get("goal", entered)) and (seq == exp["contact_sequence"] if "contact_sequence" in exp else True)}
 
 
-def robustness(move_id, spec):
+def robustness(move_id, spec, canonical=True):
+    """canonical=False (scratch or --set runs): the report goes to out/moves/<id>/ and never replaces the saved one."""
     with mp.get_context("fork").Pool(min(4, len(VARIANTS))) as pool:
         rows = pool.map(_run, [(spec, v) for v in VARIANTS])
     ys = [r["goal_y_mm"] for r in rows if r["goal_y_mm"] is not None]
@@ -89,7 +90,9 @@ def robustness(move_id, spec):
            "rule": "the move must keep its outcome (goal, contact sequence) and the slide limits under every variant; variant sizes ASSUMED",
            "variants_passed": f"{len(ok)}/{len(rows)}", "robust": len(ok) == len(rows),
            "goal_y_spread_mm": [min(ys), max(ys)] if ys else None, "rows": rows}
-    out = W.REPO / f"validation/moves/{move_id}-robustness.json"
+    rep["move_file_sha256"] = build.sha(W.REPO / "moves" / move_id / "move.json")
+    rep["canonical"] = canonical
+    out = W.REPO / (f"validation/moves/{move_id}-robustness.json" if canonical else f"out/moves/{move_id}/robustness.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(rep, indent=1, ensure_ascii=False) + "\n")
     return rep
