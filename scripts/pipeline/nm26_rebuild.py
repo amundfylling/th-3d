@@ -9,9 +9,12 @@ Stages, in order (default: every stage marked "default" below):
 - meshes    the figure meshes (out/figures/*.npz, Blender) that nm26-passes.py reads the reach of a figure from;
 - puck      puck track, flights and passes per game, cross-game patterns;
 - figures   cleaned figure tracks, figure analysis, tactics boards (committed tracks only: no video, no models);
+- analysis  combination recognition and the old/synthetic puck-track comparison (committed tracks and labels only);
 - sheets    checking sheets drawn on the video frames;
-- pages     the pass review page (game 1) and the goal clips and goal review page;
-- models    renders, training and figure tracking (hours; out/synth/*.pt are not committed). Never run by default.
+- pages     the pass review page (game 1), the goal clips and goal review page, the all-goals replays;
+- edwall    the Edwall hat-trick traces and video specs from their fitted inputs (not default; videos rendered outside);
+- models    renders, training and tracking of the figure (v2, v3) and puck (synthetic detector) models (hours;
+            out/synth/*.pt are not committed). Never run by default.
 
 Every step names its inputs and outputs. A step whose inputs or Python modules are missing is SKIPPED with the reason;
 nothing is faked. --check compares the outputs that git tracks with the committed versions afterwards (git status and,
@@ -131,6 +134,94 @@ def steps(games):
 
     # ---- Steps from the parallel workstreams (puck detector, tracker v3, combination recognition, all-goals replays,
     # Edwall rebuild) go here: one Step per script with its stage, inputs, modules and outputs. ----
+    # Registered at consolidation (2026-10-10, docs/pipeline.md section 5). Command lines are taken from each workstream's
+    # doc; only the "analysis" steps were run here. The own-video pipeline is not an NM26 step (docs/own-video-tracking.md).
+
+    # Synthetic puck detector (docs/synthetic-puck.md): stage models (video, Blender, PyTorch; out/synth is not committed).
+    for g in games:
+        S.append(Step(f"puck-frames-{g}", "models", py("scripts/synth/puck-frames.py", g), [VIDEO, f"{DATA}/{g}/puck-track.json"],
+                      ["av", "cv2"], [f"out/nm26/{g}/H.npz", f"out/synth/puck/real/{g}.jsonl"],
+                      "every 6th frame registered (the tracker interpolates) and real training triplets; about 45 min for all games"))
+    for k in range(3):
+        S.append(Step(f"puck-renders-{k}", "models", py("scripts/synth/render-puck-crops.py", "out/synth/puck/renders", str(500 * k), "500"),
+                      ["assets/scene/full_static.blend"], ["bpy"], ["out/synth/puck/renders/labels.jsonl"], "Blender Cycles, 3 frames per sample"))
+    S.append(Step("puck-blob-offset", "models", py("scripts/synth/puck-blob-offset.py"), [f"{DATA}/camera-ref.json"], ["cv2"],
+                  ["out/synth/puck/blob-offset.json"], "blob centre to top-face centre in the reference camera (geometry only)"))
+    S.append(Step("train-puck-v0", "models", py("scripts/synth/train-puck-detector.py", "--epochs", "2", "--steps", "250", "--name", "puck-det-v0"),
+                  ["out/synth/puck/renders/labels.jsonl", "out/synth/puck/blob-offset.json"] + [f"out/synth/puck/real/{g}.jsonl" for g in GAMES],
+                  ["torch", "cv2"], ["out/synth/puck-det-v0.pt"], "500-step pilot"))
+    S.append(Step("train-puck-v1", "models", py("scripts/synth/train-puck-detector.py", "--epochs", "7", "--steps", "1000", "--name", "puck-det-v1",
+                  "--init", "puck-det-v0"), ["out/synth/puck-det-v0.pt"], ["torch", "cv2"], ["out/synth/puck-det-v1.pt"],
+                  "about 14 min per epoch on CPU; not bit-reproducible"))
+    S.append(Step("eval-puck-v1", "models", py("scripts/synth/eval-puck-detector.py", "--n", "500"), ["out/synth/puck-det-v1.pt"],
+                  ["torch", "cv2"], ["out/synth/puck-det-v1-eval.json"], "held-out games 3 and 7"))
+    for g in games:
+        S.append(Step(f"track-puck-synth-{g}", "models", py("scripts/synth/track-puck.py", g),
+                      [VIDEO, f"out/nm26/{g}/H.npz", "out/synth/puck-det-v1.pt", f"{DATA}/{g}/background.png"], ["av", "cv2", "torch"],
+                      [f"{DATA}/{g}/puck-track-synth.json", f"out/nm26/{g}/puck-cands-puck-det-v1.json"],
+                      "about 8-10 min per game; with the candidates cached, track-puck.py <game> --track-only re-runs the tracker in seconds"))
+
+    # Figure tracker v3 (docs/tracker-v3.md): stage models (video, Blender, PyTorch, timm's ResNet-18 start weights at
+    # /root/.cache/torch/hub/checkpoints/alt/resnet18_a1.pth). The base renders are the v2 recipe (render-skater-hard.py
+    # "base" draws the same samples as skater-renders and skips seeds already rendered); v3 used seeds 0-999 and 1500-2499.
+    for first in ("0", "1500"):
+        S.append(Step(f"skater-renders-v3-base-{first}", "models",
+                      py("scripts/synth/render-skater-hard.py", "out/synth/skaters/train", first, "1000", "base", "--threads", "2"), [], ["bpy"],
+                      ["out/synth/skaters/train/labels.jsonl"], "Blender Cycles, about 1.7 s per render"))
+    S.append(Step("skater-renders-v3-hard", "models",
+                  py("scripts/synth/render-skater-hard.py", "out/synth/skaters/hard", "100000", "1000", "hard", "--threads", "2"), [], ["bpy"],
+                  ["out/synth/skaters/hard/labels.jsonl"], "hard examples: near-board wings, slot ends, crowding, offset and hidden negatives"))
+    S.append(Step("figure-plates-v3", "models", py("scripts/synth/track-figures-v3.py", "plates"), [VIDEO, f"{DATA}/skater-facing-crops.json"],
+                  ["av", "cv2"], ["out/synth/skaters/frames", "out/synth/skaters/plate_all.png"] + [f"out/synth/skaters/plate_{g}.png" for g in GAMES],
+                  "registers the 280 label frames and writes the rink plates"))
+    S.append(Step("train-skater-v3-a", "models", py("scripts/synth/train-skater-v3.py", "4", "--presence-weight", "1", "--out", "skater-pose-v3-ep4"),
+                  ["out/synth/skaters/train/labels.jsonl", "out/synth/skaters/hard/labels.jsonl", "out/synth/skaters/plate_all.png"],
+                  ["torch", "torchvision"], ["out/synth/skater-pose-v3-ep4.pt"],
+                  "as run (docs/tracker-v3.md); --out added so the three runs chain (the doc names the checkpoints -ep4, -ep16)"))
+    S.append(Step("train-skater-v3-b", "models", py("scripts/synth/train-skater-v3.py", "12", "--init", "out/synth/skater-pose-v3-ep4.pt",
+                  "--out", "skater-pose-v3-ep16"), ["out/synth/skater-pose-v3-ep4.pt"], ["torch", "torchvision"], ["out/synth/skater-pose-v3-ep16.pt"],
+                  "presence weight 5 (default)"))
+    S.append(Step("train-skater-v3-c", "models", py("scripts/synth/train-skater-v3.py", "8", "--init", "out/synth/skater-pose-v3-ep16.pt",
+                  "--lr", "3e-4"), ["out/synth/skater-pose-v3-ep16.pt"], ["torch", "torchvision"], ["out/synth/skater-pose-v3.pt"],
+                  "fine-tune; about 2.7 min per epoch; not bit-reproducible"))
+    for g in games:
+        S.append(Step(f"figure-obs-v3-{g}", "models", py("scripts/synth/track-figures-v3.py", "obs", g),
+                      [VIDEO, "out/synth/skater-pose-v3.pt", f"out/synth/skaters/plate_{g}.png", f"{DATA}/{g}/figure-tracks.json"],
+                      ["av", "cv2", "torch", "torchvision"], [f"out/synth/v3/obs-{g}.json"],
+                      "every frame of the v2 raw track; about 0.45 s per frame (2.7 h for all seven games)"))
+        S.append(Step(f"figure-tracks-v3-{g}", "models", py("scripts/synth/track-figures-v3.py", "decode", g),
+                      [f"out/synth/v3/obs-{g}.json", f"{DATA}/{g}/figure-tracks.json"], ["numpy"], [f"{DATA}/{g}/figure-tracks-v3.json"],
+                      "decoder only (seconds); goalies: model C readings from figure-tracks.json"))
+
+    # Stage analysis (default): from committed tracks and labels only, numpy (+ Pillow), seconds; no video, no models.
+    S.append(Step("combo-recognition", "analysis", py("scripts/nm26-combo-recognition.py"),
+                  [f"{DATA}/{g}/figure-tracks-smooth.json" for g in GAMES] + [f"{DATA}/{g}/puck-track.json" for g in GAMES]
+                  + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json"], ["numpy", "PIL"],
+                  [f"{DATA}/combo-labels.json", "validation/nm26-combo-spots.png"],
+                  "docs/nm26-combinations.md; --puck puck-track-synth.json re-runs it on the synthetic puck track (not the default yet)"))
+    S.append(Step("puck-synth-compare", "analysis", py("scripts/synth/puck-compare.py"),
+                  [f"{DATA}/{g}/{f}" for g in GAMES for f in ("puck-track.json", "puck-track-synth.json", "passes.json")]
+                  + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json", "validation/12-hardware-report.json"], ["numpy"],
+                  [f"{DATA}/puck-synth-compare.json"],
+                  "uses out/synth/puck/blob-offset.json when present, else its recorded mean (0.15, -8.81) px"))
+
+    # All-goals replays (validation/replays/README.md): stage pages (the broadcast clips need the video).
+    S.append(Step("goal-replays", "pages", py("scripts/nm26-replays.py"),
+                  [VIDEO] + [f"{DATA}/{g}/figure-tracks-smooth.json" for g in GAMES] + [f"{DATA}/{g}/puck-track.json" for g in GAMES]
+                  + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json"], ["av", "cv2"],
+                  ["validation/replays/replays.json", "validation/replays/index.html"],
+                  "40 replays and broadcast clips (validation/replays/*.mp4); about 7 min on 4 cores"))
+
+    # Edwall hat-trick rebuild v2 (docs/rebuild-g2-edwall-v2.md): stage edwall (not default). Replays the fitted
+    # parameters in shots/edwall/<goal>.inputs.json (edwall-trace.py --fit pass / --fit shot refit them, slow). The videos
+    # are rendered outside the runner: node scripts/edwall-render.ts <goal> (about 75 min each).
+    for gid in HATTRICK:
+        S.append(Step(f"edwall-trace-{gid}", "edwall", py("scripts/edwall-trace.py", gid),
+                      [f"shots/edwall/{gid}.inputs.json", "shots/edwall/puck-readings.json", f"{DATA}/g2/figure-tracks-smooth.json",
+                       "out/figures/skater.npz", "out/figures/goalie.npz"], ["numpy", "shapely", "PIL"],
+                      [f"data/traces/edwall-{gid}.trace.json", f"shots/edwall/{gid}.checks.json", f"validation/edwall-{gid}-trace.png"]))
+        S.append(Step(f"edwall-presentation-{gid}", "edwall", py("scripts/edwall-presentation.py", gid), [f"data/traces/edwall-{gid}.trace.json"],
+                      [], [f"data/presentations/edwall-{gid}.analysis.json"]))
     return S
 
 
@@ -148,14 +239,16 @@ SOURCES = {
     f"{DATA}/goalie-facing-labels.json": "user labels: scripts/synth/goalie-facing-eval.py <db export of validation/goalie-facing-review.html>",
     f"{DATA}/skater-facing-crops.json": "crop list of the skater label page (scripts/synth/skater-facing-page.py; needs out/synth/skaters/frames)",
     f"{DATA}/goalie-facing-crops.json": "crop list of the goalie label page (scripts/synth/goalie-facing-page.py; needs the pilot model)",
+    f"{DATA}/puck-synth-review-claude.json": "Claude's verdicts on 56 frames, old vs synthetic puck track (docs/synthetic-puck.md section 3); "
+                                             "not scripted (the sheet is drawn by scripts/synth/puck-review-sheet.py)",
     **{f"{DATA}/{g}/background.png": "scripts/nm26-detect.py <game> --bg (median of registered frames); reused, not rebuilt by default"
        for g in GAMES},
     **{f"{DATA}/{g}/calibration.json": "earlier per-game calibration; unused since all games share g1's (config calibration_from)"
        for g in GAMES[1:]},
 }
 
-STAGES = ["fetch", "cache", "calibrate", "meshes", "puck", "figures", "sheets", "pages", "models"]
-DEFAULT = ["calibrate", "meshes", "puck", "figures", "sheets", "pages"]
+STAGES = ["fetch", "cache", "calibrate", "meshes", "puck", "figures", "analysis", "sheets", "pages", "edwall", "models"]
+DEFAULT = ["calibrate", "meshes", "puck", "figures", "analysis", "sheets", "pages"]
 _mod_cache = {}
 
 

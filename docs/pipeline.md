@@ -30,6 +30,8 @@ These are the existing npm scripts, in dependency order. Each iteration's doc ha
 | 6 | Shots | `shot:21` ... `shot:24`, `video:shovel-17` | docs/shot21.md ... docs/shot25.md |
 | 7 | Analysis videos | `trace:spjass` / `video:analysis-spjass`, `trace:nacka` / `video:analysis-nacka`, `trace:ikv` / `video:analysis-ikv`, `trace:defence-lw` / `video:analysis-defence-lw`, `video:analysis-shovel-17` | docs/spjass.md, docs/nacka.md, docs/invers-kryssar-velodrom.md, docs/defence-left-wing.md |
 | 8 | Own recorded match | `npm run game:track` (about 10 min) | docs/game-tracking.md |
+| 9 | Own match, per-frame camera and figure tracks | `own-video-camera.py`, `own-video-figures.py`, `own-video-figure-paths.py`, `own-video-review.py` (about 20 min; commands in the doc) | docs/own-video-tracking.md |
+| 10 | Shot encyclopedia moves | `scripts/build-move.py <id> --robustness --video-spec`, `python3 scripts/encyclopedia-index.py`, `node scripts/analysis-render.ts move:<id>` | docs/shot-encyclopedia.md |
 
 Remotion renders need the headless shell `/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell` with
 `--gl=swangle` (docs/remotion.md). Not re-verified in this workstream: steps 2-8 (they predate it and have their own
@@ -45,11 +47,13 @@ outputs; a step whose input or module is missing is skipped with the reason, nev
 | `npm run rebuild:nm26:list` | all | Lists every step and whether it can run here. |
 | `npm run rebuild:nm26:fetch` | fetch | Downloads the video (656 MB) from the GitHub release to `out/dl/nm26.webm` and checks its sha256. |
 | `npm run rebuild:nm26:cache` | fetch, cache | `nm26-detect.py` per game: `out/nm26/<game>/frames.json`, **the cache** (per frame: registration homography and puck candidates). About 12 min per game on 4 CPUs. |
-| `npm run rebuild:nm26` | calibrate, meshes, puck, figures, sheets, pages | **Every NM26 output from the cache.** |
+| `npm run rebuild:nm26` | calibrate, meshes, puck, figures, analysis, sheets, pages | **Every NM26 output from the cache.** |
 | `npm run rebuild:nm26:check` | same | The same, then compares every committed output with the rebuilt one (`git status`, row diffs for JSON) and writes `out/pipeline/rebuild-report.json`. |
 | `npm run rebuild:nm26:puck` | meshes, puck | Puck tracks, passes and patterns only, with the check. |
 | `npm run rebuild:nm26:figures` | figures | Cleaned figure tracks, figure analysis and tactics boards from the committed tracks (seconds; no video). |
-| `npm run rebuild:nm26:from-zero` | fetch ... pages | Everything except the models, in one go (about 1.5 h). |
+| `npm run rebuild:nm26:analysis` | analysis | Combination recognition and the old/synthetic puck-track comparison from the committed tracks (seconds; no video). |
+| `npm run rebuild:nm26:edwall` | meshes, edwall | The three Edwall hat-trick traces, checks and video specs from their fitted inputs (not in the default run). |
+| `npm run rebuild:nm26:from-zero` | fetch ... pages | Everything except the models and the Edwall stage, in one go (about 1.5 h, measured before the replays step was added). |
 
 Run one game with `--games g2`; `--keep-going` continues past a failed step, and any later step that reads a failed
 step's output is skipped (an old copy on disk is not used). The step interpreter is `$NM26_PY`, else the
@@ -69,11 +73,17 @@ Blender venv, else the runner's own Python.
 | figures | `synth/smooth-tracks.py` | `<g>/figure-tracks.json` | `<g>/figure-tracks-smooth.json` |
 | figures | `nm26-figure-analysis.py` | figure and puck tracks, goal labels | `figure-analysis.json`, `rebuild/g2-goal{2,3,4}-figures.json` |
 | figures | `synth/figure-tracks-board.py g2-goal2 [--smooth]` | the above | `validation/board-g2-goal2[-smooth].png` |
+| analysis | `nm26-combo-recognition.py` | smoothed figure tracks, puck tracks, goal labels, timeline | `combo-labels.json`, `validation/nm26-combo-spots.png` |
+| analysis | `synth/puck-compare.py` | both puck tracks, passes, goal labels, timeline | `puck-synth-compare.json` |
 | sheets | `synth/figure-tracks-sheet.py <g> 4` | video, cache, figure tracks | `validation/figure-tracks-<g>.jpg` |
 | sheets | `nm26-rebuild-evidence.py g2-goal{2,3,4}` | video, cache, goalie model C | `rebuild/<goal>-evidence.json`, `validation/rebuild-<goal>-sheet.jpg` |
 | pages | `nm26-review-page.py g1` | video, cache, passes | `validation/nm26-g1-review.html` |
 | pages | `nm26-goal-clips.py`, `nm26-goal-page.py` | video, cache, timeline | `out/nm26/goal-clips/`, `validation/nm26-goals-review.html` |
+| pages | `nm26-replays.py` | video, smoothed figure tracks, puck tracks, goal labels, timeline | `validation/replays/` (40 replays, clips, `replays.json`, `index.html`) |
+| edwall | `edwall-trace.py g2-goal{2,3,4}`, `edwall-presentation.py g2-goal{2,3,4}` | `shots/edwall/*.inputs.json` (fitted), puck readings, g2 smoothed tracks, meshes | `data/traces/edwall-*.trace.json`, `shots/edwall/*.checks.json`, `validation/edwall-*-trace.png`, `data/presentations/edwall-*.analysis.json` |
 | models | renders, training, `synth/track-figures.py` | see section 3 | `out/synth/*.pt`, `<g>/figure-tracks.json` |
+| models | `synth/puck-frames.py`, `render-puck-crops.py`, `puck-blob-offset.py`, `train-puck-detector.py`, `eval-puck-detector.py`, `track-puck.py <g>` | video, Blender, PyTorch | `out/synth/puck-det-v1.pt`, `<g>/puck-track-synth.json` |
+| models | `synth/render-skater-hard.py`, `track-figures-v3.py plates`, `train-skater-v3.py` (3 runs), `track-figures-v3.py obs/decode <g>` | video, Blender, PyTorch | `out/synth/skater-pose-v3.pt`, `<g>/figure-tracks-v3.json` |
 
 Paths without a folder are under `data/games/nm26-semifinal/`.
 
@@ -81,7 +91,7 @@ Paths without a folder are under `data/games/nm26-semifinal/`.
 `g1/calibration-inputs.json` are hand-made; `camera-ref.json` was decomposed from the g1 calibration by hand (no script);
 the user's labels (`goal-labels.json`, `skater-labels.json`, `goalie-facing-labels.json`) are made by
 `nm26-goal-labels.py`, `synth/skater-labels.py` and `synth/goalie-facing-eval.py` from exports of the label pages'
-databases; `g1/review-claude.json` is Claude's pass review. `<g>/background.png` is reused by the detector unless `--bg`
+databases; `g1/review-claude.json` is Claude's pass review, and `puck-synth-review-claude.json` Claude's 56-frame puck-track review. `<g>/background.png` is reused by the detector unless `--bg`
 is given. `g2/calibration.json` ... `g7/calibration.json` are unused (all games are registered to game 1 and use its
 calibration, `calibration_from` in `config.json`).
 
@@ -147,25 +157,34 @@ would fix it; that belongs to the tracker work (docs/tracker-v3.md).
 
 The puck detector (docs/synthetic-puck.md), tracker v3 (docs/tracker-v3.md), combination recognition
 (docs/nm26-combinations.md), the all-goals replays (validation/replays/), the Edwall rebuild (docs/rebuild-g2-edwall-v2.md)
-and the own-video pipeline (docs/own-video-tracking.md) add scripts in parallel. To add one:
+and the own-video pipeline (docs/own-video-tracking.md) added scripts in parallel. To add a step:
 
 1. Add a `Step(...)` in `steps()` of `scripts/pipeline/nm26_rebuild.py` (the marked section at the end): stage, command,
    inputs, Python modules, outputs. A new stage name goes into `STAGES` (and `DEFAULT` if it should run from the cache).
 2. If the step writes under `data/games/nm26-semifinal/`, `test_rebuild_steps.py` fails until it is a step output.
 3. Add a row to the stage table above and, if useful, an npm script `rebuild:nm26:<stage>`.
 
+Registered at consolidation (2026-10-10, branch `claude/consolidation-batch-2026-10-10`). Command lines come from each
+workstream's doc. Steps execute in list order and this section comes last, so a run of `models analysis` tracks first and
+compares after.
+
 | Workstream | Stage | Steps | Status |
 | --- | --- | --- | --- |
-| Puck detector | | | to add at consolidation |
-| Tracker v3 | | | to add at consolidation |
-| Combination recognition | | | to add at consolidation |
-| All-goals replays | | | to add at consolidation |
-| Edwall rebuild | | | to add at consolidation |
-| Own-video pipeline | | | to add at consolidation |
+| Puck detector | models | `puck-frames-<g>`, `puck-renders-0..2`, `puck-blob-offset`, `train-puck-v0`, `train-puck-v1`, `eval-puck-v1`, `track-puck-synth-<g>` | registered; not run here (no video, Blender or PyTorch). Not bit-reproducible (training). |
+| Puck detector | analysis | `puck-synth-compare` | **verified 2026-10-10: byte-identical** (python3 3.13, NumPy 2.5, without `out/synth/puck/blob-offset.json`) |
+| Tracker v3 | models | `skater-renders-v3-base-0`, `-1500`, `skater-renders-v3-hard`, `figure-plates-v3`, `train-skater-v3-a/b/c`, `figure-obs-v3-<g>`, `figure-tracks-v3-<g>` | registered; not run here. `--out` names added to the training runs so they chain (the doc calls the checkpoints `-ep4` and `-ep16`). Needs timm's ResNet-18 weights (docs/tracker-v3.md). |
+| Combination recognition | analysis | `combo-recognition` | **verified 2026-10-10: byte-identical** (`combo-labels.json`, `validation/nm26-combo-spots.png`) |
+| All-goals replays | pages | `goal-replays` (`npm run nm26:replays` runs the script alone) | registered; not run here (needs the video) |
+| Edwall rebuild | edwall (not default) | `edwall-trace-<goal>`, `edwall-presentation-<goal>` | presentation steps **verified: byte-identical**; trace steps not run (need the figure meshes, bpy). Videos: `node scripts/edwall-render.ts <goal>`, outside the runner. |
+| Own-video pipeline | — | not an NM26 step | section 1, row 9 |
+
+Review sheets without recorded command lines (not registered): `validation/synthetic-puck-*.jpg`
+(`synth/puck-review-sheet.py`), the tracker v3 review sheets and evaluations (`synth/tracker-v3-review.py`,
+`tracker-v3-eval.py`, see docs/tracker-v3.md "Reproducing").
 
 ## 6. Housekeeping found on the way
 
-- `assets/blender/__pycache__/stiga_blender.cpython-311.pyc` is committed although `.gitignore` excludes `__pycache__/`;
-  every Blender run rewrites it and leaves the tree dirty. Remove it from the index (`git rm --cached`).
+- `assets/blender/__pycache__/stiga_blender.cpython-311.pyc` was committed although `.gitignore` excludes `__pycache__/`;
+  every Blender run rewrote it and left the tree dirty. Removed from the index at consolidation (`git rm --cached`).
 - `validation/board-g2-goal2.png` was drawn by an earlier version of `figure-tracks-board.py`; the current script differs
   in 0.07% of the pixels (small drawing differences). Rebuilding replaces it.
