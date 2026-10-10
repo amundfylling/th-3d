@@ -1,0 +1,584 @@
+{
+ "a": "data/games/nm26-semifinal/{game}/figure-tracks-smooth.json",
+ "b": "data/games/nm26-semifinal/{game}/figure-tracks-v3.json",
+ "stats": {
+  "disagreements": 16630
+ },
+ "cases": [
+  {
+   "k": 0,
+   "game": "g1",
+   "frame": 843,
+   "pid": "E-LW",
+   "a": null,
+   "b": [
+    0.3147,
+    184.2,
+    0
+   ],
+   "why": "one unknown",
+   "verdict": "b"
+  },
+  {
+   "k": 1,
+   "game": "g1",
+   "frame": 6090,
+   "pid": "W-RD",
+   "a": [
+    0.9558,
+    221.1,
+    0
+   ],
+   "b": [
+    0.4734,
+    259.1,
+    0
+   ],
+   "why": "114 mm, 38 deg",
+   "verdict": "b"
+  },
+  {
+   "k": 2,
+   "game": "g1",
+   "frame": 6474,
+   "pid": "W-LW",
+   "a": [
+    0.0097,
+    200.9,
+    0
+   ],
+   "b": [
+    0.5358,
+    168.0,
+    1
+   ],
+   "why": "260 mm, 33 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 3,
+   "game": "g1",
+   "frame": 7476,
+   "pid": "E-RD",
+   "a": [
+    0.7197,
+    122.7,
+    0
+   ],
+   "b": [
+    0.0611,
+    60.4,
+    0
+   ],
+   "why": "157 mm, 62 deg",
+   "verdict": "b"
+  },
+  {
+   "k": 4,
+   "game": "g1",
+   "frame": 7698,
+   "pid": "E-RW",
+   "a": [
+    0.0071,
+    214.9,
+    0
+   ],
+   "b": [
+    0.6395,
+    316.7,
+    1
+   ],
+   "why": "284 mm, 102 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 5,
+   "game": "g1",
+   "frame": 7884,
+   "pid": "E-C",
+   "a": [
+    0.748,
+    223.9,
+    0
+   ],
+   "b": [
+    0.8546,
+    301.6,
+    1
+   ],
+   "why": "27 mm, 78 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 6,
+   "game": "g1",
+   "frame": 10194,
+   "pid": "W-C",
+   "a": [
+    0.7083,
+    221.9,
+    0
+   ],
+   "b": [
+    0.1801,
+    262.9,
+    0
+   ],
+   "why": "132 mm, 41 deg",
+   "verdict": "b"
+  },
+  {
+   "k": 7,
+   "game": "g1",
+   "frame": 10992,
+   "pid": "W-RW",
+   "a": [
+    0.8616,
+    210.6,
+    0
+   ],
+   "b": [
+    0.5098,
+    233.2,
+    0
+   ],
+   "why": "160 mm, 23 deg",
+   "verdict": "b"
+  },
+  {
+   "k": 8,
+   "game": "g1",
+   "frame": 11874,
+   "pid": "W-LD",
+   "a": [
+    1.0,
+    85.9,
+    0
+   ],
+   "b": [
+    0.8246,
+    4.1,
+    0
+   ],
+   "why": "76 mm, 82 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 9,
+   "game": "g1",
+   "frame": 13206,
+   "pid": "E-LD",
+   "a": [
+    0.6802,
+    185.7,
+    0
+   ],
+   "b": [
+    0.1175,
+    60.9,
+    0
+   ],
+   "why": "245 mm, 125 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 10,
+   "game": "g2",
+   "frame": 23973,
+   "pid": "E-LW",
+   "a": [
+    0.6412,
+    172.4,
+    1
+   ],
+   "b": [
+    0.2237,
+    303.6,
+    1
+   ],
+   "why": "206 mm, 131 deg",
+   "verdict": "neither"
+  },
+  {
+   "k": 11,
+   "game": "g2",
+   "frame": 24102,
+   "pid": "W-C",
+   "a": [
+    0.4587,
+    227.4,
+    0
+   ],
+   "b": [
+    0.4471,
+    303.8,
+    1
+   ],
+   "why": "3 mm, 76 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 12,
+   "game": "g2",
+   "frame": 25416,
+   "pid": "E-RW",
+   "a": [
+    0.0059,
+    215.5,
+    0
+   ],
+   "b": [
+    0.4599,
+    73.7,
+    1
+   ],
+   "why": "204 mm, 142 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 13,
+   "game": "g2",
+   "frame": 25758,
+   "pid": "W-LW",
+   "a": [
+    0.0149,
+    354.1,
+    0
+   ],
+   "b": [
+    0.5203,
+    16.4,
+    1
+   ],
+   "why": "250 mm, 22 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 14,
+   "game": "g2",
+   "frame": 25890,
+   "pid": "E-RD",
+   "a": [
+    0.7274,
+    109.0,
+    0
+   ],
+   "b": [
+    0.7618,
+    36.8,
+    1
+   ],
+   "why": "8 mm, 72 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 15,
+   "game": "g2",
+   "frame": 27756,
+   "pid": "E-C",
+   "a": [
+    0.5611,
+    138.4,
+    1
+   ],
+   "b": [
+    0.1463,
+    109.3,
+    0
+   ],
+   "why": "104 mm, 29 deg",
+   "verdict": "b"
+  },
+  {
+   "k": 16,
+   "game": "g2",
+   "frame": 29658,
+   "pid": "W-RD",
+   "a": [
+    0.9856,
+    208.3,
+    1
+   ],
+   "b": [
+    0.213,
+    198.7,
+    0
+   ],
+   "why": "183 mm, 10 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 17,
+   "game": "g2",
+   "frame": 30306,
+   "pid": "W-LD",
+   "a": [
+    1.0,
+    215.5,
+    0
+   ],
+   "b": [
+    0.1407,
+    203.7,
+    1
+   ],
+   "why": "372 mm, 12 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 18,
+   "game": "g2",
+   "frame": 31530,
+   "pid": "E-LD",
+   "a": [
+    0.7021,
+    226.8,
+    0
+   ],
+   "b": [
+    0.2442,
+    273.8,
+    0
+   ],
+   "why": "200 mm, 47 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 19,
+   "game": "g2",
+   "frame": 32250,
+   "pid": "W-RW",
+   "a": [
+    0.0286,
+    199.3,
+    0
+   ],
+   "b": [
+    0.9796,
+    309.8,
+    0
+   ],
+   "why": "431 mm, 110 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 20,
+   "game": "g3",
+   "frame": 41310,
+   "pid": "E-RW",
+   "a": [
+    0.5188,
+    291.0,
+    0
+   ],
+   "b": [
+    0.5993,
+    14.7,
+    1
+   ],
+   "why": "36 mm, 84 deg",
+   "verdict": "a"
+  },
+  {
+   "k": 21,
+   "game": "g3",
+   "frame": 42600,
+   "pid": "W-RW",
+   "a": [
+    0.3673,
+    184.5,
+    0
+   ],
+   "b": [
+    0.9781,
+    264.8,
+    0
+   ],
+   "why": "277 mm, 80 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 22,
+   "game": "g3",
+   "frame": 42834,
+   "pid": "E-LW",
+   "a": [
+    0.7138,
+    150.4,
+    0
+   ],
+   "b": [
+    0.3423,
+    206.4,
+    1
+   ],
+   "why": "183 mm, 56 deg",
+   "verdict": "neither"
+  },
+  {
+   "k": 23,
+   "game": "g3",
+   "frame": 43488,
+   "pid": "E-C",
+   "a": [
+    0.3145,
+    162.2,
+    0
+   ],
+   "b": [
+    0.1884,
+    255.7,
+    1
+   ],
+   "why": "32 mm, 94 deg",
+   "verdict": "a"
+  },
+  {
+   "k": 24,
+   "game": "g3",
+   "frame": 44730,
+   "pid": "W-LD",
+   "a": [
+    1.0,
+    20.7,
+    0
+   ],
+   "b": [
+    0.4927,
+    145.2,
+    1
+   ],
+   "why": "220 mm, 124 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 25,
+   "game": "g3",
+   "frame": 45888,
+   "pid": "W-LW",
+   "a": [
+    0.4351,
+    210.7,
+    1
+   ],
+   "b": null,
+   "why": "one unknown",
+   "verdict": "unclear"
+  },
+  {
+   "k": 26,
+   "game": "g3",
+   "frame": 46938,
+   "pid": "W-RD",
+   "a": [
+    1.0,
+    202.8,
+    0
+   ],
+   "b": [
+    0.4991,
+    152.5,
+    1
+   ],
+   "why": "119 mm, 50 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 27,
+   "game": "g3",
+   "frame": 47496,
+   "pid": "E-LD",
+   "a": [
+    0.642,
+    216.2,
+    0
+   ],
+   "b": [
+    0.8178,
+    253.1,
+    1
+   ],
+   "why": "77 mm, 37 deg",
+   "verdict": "a"
+  },
+  {
+   "k": 28,
+   "game": "g3",
+   "frame": 49062,
+   "pid": "W-C",
+   "a": [
+    0.6928,
+    233.3,
+    0
+   ],
+   "b": [
+    0.0187,
+    175.9,
+    1
+   ],
+   "why": "169 mm, 57 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 29,
+   "game": "g3",
+   "frame": 49332,
+   "pid": "E-RD",
+   "a": [
+    0.7072,
+    159.2,
+    0
+   ],
+   "b": [
+    0.2828,
+    178.7,
+    1
+   ],
+   "why": "101 mm, 20 deg",
+   "verdict": "a"
+  },
+  {
+   "k": 30,
+   "game": "g4",
+   "frame": 58392,
+   "pid": "E-C",
+   "a": [
+    0.3535,
+    139.4,
+    0
+   ],
+   "b": [
+    0.3419,
+    203.1,
+    1
+   ],
+   "why": "3 mm, 64 deg",
+   "verdict": "unclear"
+  },
+  {
+   "k": 31,
+   "game": "g4",
+   "frame": 62208,
+   "pid": "E-LD",
+   "a": [
+    0.6805,
+    180.5,
+    0
+   ],
+   "b": [
+    0.9921,
+    50.5,
+    0
+   ],
+   "why": "136 mm, 130 deg",
+   "verdict": "b"
+  }
+ ],
+ "verdict_note": "AI visual check of the broadcast tiles (Claude, 2026-10-10): a = v2 cleaned (red) on the right figure, b = v3 (green), neither, unclear. Not user labels. Frames: the 5 fps part of all seven games (outside the goal windows).",
+ "verdict_counts": {
+  "b": 7,
+  "unclear": 19,
+  "neither": 2,
+  "a": 4
+ }
+}

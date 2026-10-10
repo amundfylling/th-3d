@@ -1,0 +1,40 @@
+{
+ "v2": {
+  "n": 352,
+  "first_peak_median_mm": 4.3,
+  "lock_on_first_over_30mm": 0.023,
+  "lock_on_both_over_30mm": 0.006,
+  "two_peaks": 0.469,
+  "lock_on_by_skater": {
+   "W-LW": 0.028,
+   "E-LW": 0.083,
+   "W-RW": 0.0,
+   "E-RW": 0.0,
+   "W-C": 0.026,
+   "E-C": 0.0,
+   "W-LD": 0.0,
+   "E-LD": 0.071,
+   "W-RD": 0.033,
+   "E-RD": 0.0
+  }
+ },
+ "v3": {
+  "n": 352,
+  "first_peak_median_mm": 4.3,
+  "lock_on_first_over_30mm": 0.023,
+  "lock_on_both_over_30mm": 0.006,
+  "two_peaks": 0.469,
+  "lock_on_by_skater": {
+   "W-LW": 0.028,
+   "E-LW": 0.083,
+   "W-RW": 0.0,
+   "E-RW": 0.0,
+   "W-C": 0.026,
+   "E-C": 0.0,
+   "W-LD": 0.0,
+   "E-LD": 0.071,
+   "W-RD": 0.033,
+   "E-RD": 0.0
+  }
+ }
+}

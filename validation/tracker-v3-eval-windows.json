@@ -1,0 +1,989 @@
+{
+ "per_file": {
+  "v2 rule, raw (windows)": {
+   "temporal": {
+    "steps": 0,
+    "slot_jumps": 0.0,
+    "rotation_jumps": 0.0,
+    "goalie_rotation_jumps": 0.0,
+    "unknown": 0.0
+   },
+   "skaters": {
+    "all": {
+     "n": 352,
+     "unknown": 0.0,
+     "deg_median": 5.8,
+     "deg_p90": 16.2,
+     "flipped": 0.003,
+     "slot_mm_median": 1.0,
+     "slot_mm_p90": 3.5,
+     "gross_over_30mm": 0.009,
+     "unsure_n": 48,
+     "unsure_reported_unknown": 0.0
+    },
+    "test": {
+     "n": 152,
+     "unknown": 0.0,
+     "deg_median": 8.3,
+     "deg_p90": 21.7,
+     "flipped": 0.0,
+     "slot_mm_median": 1.4,
+     "slot_mm_p90": 5.0,
+     "gross_over_30mm": 0.007,
+     "unsure_n": 18,
+     "unsure_reported_unknown": 0.0
+    },
+    "by_figure_all": {
+     "E-C": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.7,
+      "deg_p90": 11.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.7,
+      "slot_mm_p90": 3.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LD": {
+      "n": 28,
+      "unknown": 0.0,
+      "deg_median": 8.9,
+      "deg_p90": 22.8,
+      "flipped": 0.0,
+      "slot_mm_median": 1.2,
+      "slot_mm_p90": 3.2,
+      "gross_over_30mm": 0.071,
+      "unsure_n": 12,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 5.6,
+      "deg_p90": 22.4,
+      "flipped": 0.0,
+      "slot_mm_median": 1.6,
+      "slot_mm_p90": 5.9,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RD": {
+      "n": 35,
+      "unknown": 0.0,
+      "deg_median": 4.7,
+      "deg_p90": 16.2,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 3.4,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 5,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RW": {
+      "n": 40,
+      "unknown": 0.0,
+      "deg_median": 6.1,
+      "deg_p90": 14.0,
+      "flipped": 0.0,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.2,
+      "gross_over_30mm": 0.0
+     },
+     "W-C": {
+      "n": 39,
+      "unknown": 0.0,
+      "deg_median": 5.1,
+      "deg_p90": 14.0,
+      "flipped": 0.026,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.2,
+      "gross_over_30mm": 0.026,
+      "unsure_n": 1,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LD": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.3,
+      "deg_p90": 12.0,
+      "flipped": 0.0,
+      "slot_mm_median": 1.1,
+      "slot_mm_p90": 4.4,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 7.5,
+      "deg_p90": 17.5,
+      "flipped": 0.0,
+      "slot_mm_median": 1.8,
+      "slot_mm_p90": 3.8,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RD": {
+      "n": 30,
+      "unknown": 0.0,
+      "deg_median": 6.6,
+      "deg_p90": 15.3,
+      "flipped": 0.0,
+      "slot_mm_median": 1.0,
+      "slot_mm_p90": 2.9,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 10,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RW": {
+      "n": 34,
+      "unknown": 0.0,
+      "deg_median": 5.4,
+      "deg_p90": 18.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 2.1,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 6,
+      "unsure_reported_unknown": 0.0
+     }
+    }
+   },
+   "goalies": {
+    "all": null,
+    "test": null
+   }
+  },
+  "v2 rule + clean-up (windows)": {
+   "temporal": {
+    "steps": 0,
+    "slot_jumps": 0.0,
+    "rotation_jumps": 0.0,
+    "goalie_rotation_jumps": 0.0,
+    "unknown": 0.0116
+   },
+   "skaters": {
+    "all": {
+     "n": 352,
+     "unknown": 0.0,
+     "deg_median": 6.1,
+     "deg_p90": 16.2,
+     "flipped": 0.0,
+     "slot_mm_median": 1.0,
+     "slot_mm_p90": 3.5,
+     "gross_over_30mm": 0.009,
+     "unsure_n": 48,
+     "unsure_reported_unknown": 0.021
+    },
+    "test": {
+     "n": 152,
+     "unknown": 0.0,
+     "deg_median": 8.3,
+     "deg_p90": 21.0,
+     "flipped": 0.0,
+     "slot_mm_median": 1.4,
+     "slot_mm_p90": 4.6,
+     "gross_over_30mm": 0.007,
+     "unsure_n": 18,
+     "unsure_reported_unknown": 0.0
+    },
+    "by_figure_all": {
+     "E-C": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.7,
+      "deg_p90": 11.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.7,
+      "slot_mm_p90": 3.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LD": {
+      "n": 28,
+      "unknown": 0.0,
+      "deg_median": 8.9,
+      "deg_p90": 22.8,
+      "flipped": 0.0,
+      "slot_mm_median": 1.2,
+      "slot_mm_p90": 3.2,
+      "gross_over_30mm": 0.071,
+      "unsure_n": 12,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 5.6,
+      "deg_p90": 22.4,
+      "flipped": 0.0,
+      "slot_mm_median": 1.6,
+      "slot_mm_p90": 6.2,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RD": {
+      "n": 35,
+      "unknown": 0.0,
+      "deg_median": 4.7,
+      "deg_p90": 16.2,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 3.4,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 5,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RW": {
+      "n": 40,
+      "unknown": 0.0,
+      "deg_median": 6.5,
+      "deg_p90": 14.0,
+      "flipped": 0.0,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.2,
+      "gross_over_30mm": 0.0
+     },
+     "W-C": {
+      "n": 39,
+      "unknown": 0.0,
+      "deg_median": 5.1,
+      "deg_p90": 13.4,
+      "flipped": 0.0,
+      "slot_mm_median": 0.7,
+      "slot_mm_p90": 2.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 1,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LD": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.4,
+      "deg_p90": 14.3,
+      "flipped": 0.0,
+      "slot_mm_median": 1.2,
+      "slot_mm_p90": 5.4,
+      "gross_over_30mm": 0.027,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 7.5,
+      "deg_p90": 17.5,
+      "flipped": 0.0,
+      "slot_mm_median": 1.8,
+      "slot_mm_p90": 3.8,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RD": {
+      "n": 30,
+      "unknown": 0.0,
+      "deg_median": 6.6,
+      "deg_p90": 15.3,
+      "flipped": 0.0,
+      "slot_mm_median": 1.0,
+      "slot_mm_p90": 2.9,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 10,
+      "unsure_reported_unknown": 0.1
+     },
+     "W-RW": {
+      "n": 34,
+      "unknown": 0.0,
+      "deg_median": 5.4,
+      "deg_p90": 18.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 2.1,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 6,
+      "unsure_reported_unknown": 0.0
+     }
+    }
+   },
+   "goalies": {
+    "all": null,
+    "test": null
+   }
+  },
+  "v3 (windows)": {
+   "temporal": {
+    "steps": 0,
+    "slot_jumps": 0.0,
+    "rotation_jumps": 0.0,
+    "goalie_rotation_jumps": 0.0,
+    "unknown": 0.1524
+   },
+   "skaters": {
+    "all": {
+     "n": 352,
+     "unknown": 0.006,
+     "deg_median": 5.9,
+     "deg_p90": 16.1,
+     "flipped": 0.0,
+     "slot_mm_median": 1.0,
+     "slot_mm_p90": 3.4,
+     "gross_over_30mm": 0.003,
+     "unsure_n": 48,
+     "unsure_reported_unknown": 0.042
+    },
+    "test": {
+     "n": 152,
+     "unknown": 0.007,
+     "deg_median": 8.5,
+     "deg_p90": 20.9,
+     "flipped": 0.0,
+     "slot_mm_median": 1.4,
+     "slot_mm_p90": 4.7,
+     "gross_over_30mm": 0.0,
+     "unsure_n": 18,
+     "unsure_reported_unknown": 0.056
+    },
+    "by_figure_all": {
+     "E-C": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.7,
+      "deg_p90": 11.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.7,
+      "slot_mm_p90": 3.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.333
+     },
+     "E-LD": {
+      "n": 28,
+      "unknown": 0.0,
+      "deg_median": 8.5,
+      "deg_p90": 16.4,
+      "flipped": 0.0,
+      "slot_mm_median": 1.1,
+      "slot_mm_p90": 2.3,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 12,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 5.6,
+      "deg_p90": 22.4,
+      "flipped": 0.0,
+      "slot_mm_median": 1.6,
+      "slot_mm_p90": 6.2,
+      "gross_over_30mm": 0.028,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.25
+     },
+     "E-RD": {
+      "n": 35,
+      "unknown": 0.0,
+      "deg_median": 4.7,
+      "deg_p90": 16.2,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 3.4,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 5,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RW": {
+      "n": 40,
+      "unknown": 0.0,
+      "deg_median": 6.5,
+      "deg_p90": 14.0,
+      "flipped": 0.0,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.2,
+      "gross_over_30mm": 0.0
+     },
+     "W-C": {
+      "n": 39,
+      "unknown": 0.0,
+      "deg_median": 5.1,
+      "deg_p90": 13.4,
+      "flipped": 0.0,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 1,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LD": {
+      "n": 37,
+      "unknown": 0.027,
+      "deg_median": 6.3,
+      "deg_p90": 12.2,
+      "flipped": 0.0,
+      "slot_mm_median": 1.1,
+      "slot_mm_p90": 4.5,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LW": {
+      "n": 36,
+      "unknown": 0.028,
+      "deg_median": 7.3,
+      "deg_p90": 18.5,
+      "flipped": 0.0,
+      "slot_mm_median": 1.8,
+      "slot_mm_p90": 4.6,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RD": {
+      "n": 30,
+      "unknown": 0.0,
+      "deg_median": 6.6,
+      "deg_p90": 15.3,
+      "flipped": 0.0,
+      "slot_mm_median": 1.0,
+      "slot_mm_p90": 2.9,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 10,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RW": {
+      "n": 34,
+      "unknown": 0.0,
+      "deg_median": 5.4,
+      "deg_p90": 18.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 2.1,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 6,
+      "unsure_reported_unknown": 0.0
+     }
+    }
+   },
+   "goalies": {
+    "all": {
+     "n": 7,
+     "unknown": 0.857,
+     "deg_median": 2.8,
+     "deg_p90": 2.8,
+     "flipped": 0.0
+    },
+    "test": {
+     "n": 4,
+     "unknown": 1.0,
+     "deg_median": NaN,
+     "deg_p90": NaN,
+     "flipped": 0.0
+    }
+   }
+  }
+ },
+ "common_labels": {
+  "v2 rule, raw (windows)": {
+   "temporal": {
+    "steps": 0,
+    "slot_jumps": 0.0,
+    "rotation_jumps": 0.0,
+    "goalie_rotation_jumps": 0.0,
+    "unknown": 0.0
+   },
+   "skaters": {
+    "all": {
+     "n": 352,
+     "unknown": 0.0,
+     "deg_median": 5.8,
+     "deg_p90": 16.2,
+     "flipped": 0.003,
+     "slot_mm_median": 1.0,
+     "slot_mm_p90": 3.5,
+     "gross_over_30mm": 0.009,
+     "unsure_n": 48,
+     "unsure_reported_unknown": 0.0
+    },
+    "test": {
+     "n": 152,
+     "unknown": 0.0,
+     "deg_median": 8.3,
+     "deg_p90": 21.7,
+     "flipped": 0.0,
+     "slot_mm_median": 1.4,
+     "slot_mm_p90": 5.0,
+     "gross_over_30mm": 0.007,
+     "unsure_n": 18,
+     "unsure_reported_unknown": 0.0
+    },
+    "by_figure_all": {
+     "E-C": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.7,
+      "deg_p90": 11.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.7,
+      "slot_mm_p90": 3.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LD": {
+      "n": 28,
+      "unknown": 0.0,
+      "deg_median": 8.9,
+      "deg_p90": 22.8,
+      "flipped": 0.0,
+      "slot_mm_median": 1.2,
+      "slot_mm_p90": 3.2,
+      "gross_over_30mm": 0.071,
+      "unsure_n": 12,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 5.6,
+      "deg_p90": 22.4,
+      "flipped": 0.0,
+      "slot_mm_median": 1.6,
+      "slot_mm_p90": 5.9,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RD": {
+      "n": 35,
+      "unknown": 0.0,
+      "deg_median": 4.7,
+      "deg_p90": 16.2,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 3.4,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 5,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RW": {
+      "n": 40,
+      "unknown": 0.0,
+      "deg_median": 6.1,
+      "deg_p90": 14.0,
+      "flipped": 0.0,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.2,
+      "gross_over_30mm": 0.0
+     },
+     "W-C": {
+      "n": 39,
+      "unknown": 0.0,
+      "deg_median": 5.1,
+      "deg_p90": 14.0,
+      "flipped": 0.026,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.2,
+      "gross_over_30mm": 0.026,
+      "unsure_n": 1,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LD": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.3,
+      "deg_p90": 12.0,
+      "flipped": 0.0,
+      "slot_mm_median": 1.1,
+      "slot_mm_p90": 4.4,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 7.5,
+      "deg_p90": 17.5,
+      "flipped": 0.0,
+      "slot_mm_median": 1.8,
+      "slot_mm_p90": 3.8,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RD": {
+      "n": 30,
+      "unknown": 0.0,
+      "deg_median": 6.6,
+      "deg_p90": 15.3,
+      "flipped": 0.0,
+      "slot_mm_median": 1.0,
+      "slot_mm_p90": 2.9,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 10,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RW": {
+      "n": 34,
+      "unknown": 0.0,
+      "deg_median": 5.4,
+      "deg_p90": 18.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 2.1,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 6,
+      "unsure_reported_unknown": 0.0
+     }
+    }
+   },
+   "goalies": {
+    "all": null,
+    "test": null
+   }
+  },
+  "v2 rule + clean-up (windows)": {
+   "temporal": {
+    "steps": 0,
+    "slot_jumps": 0.0,
+    "rotation_jumps": 0.0,
+    "goalie_rotation_jumps": 0.0,
+    "unknown": 0.0116
+   },
+   "skaters": {
+    "all": {
+     "n": 352,
+     "unknown": 0.0,
+     "deg_median": 6.1,
+     "deg_p90": 16.2,
+     "flipped": 0.0,
+     "slot_mm_median": 1.0,
+     "slot_mm_p90": 3.5,
+     "gross_over_30mm": 0.009,
+     "unsure_n": 48,
+     "unsure_reported_unknown": 0.021
+    },
+    "test": {
+     "n": 152,
+     "unknown": 0.0,
+     "deg_median": 8.3,
+     "deg_p90": 21.0,
+     "flipped": 0.0,
+     "slot_mm_median": 1.4,
+     "slot_mm_p90": 4.6,
+     "gross_over_30mm": 0.007,
+     "unsure_n": 18,
+     "unsure_reported_unknown": 0.0
+    },
+    "by_figure_all": {
+     "E-C": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.7,
+      "deg_p90": 11.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.7,
+      "slot_mm_p90": 3.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LD": {
+      "n": 28,
+      "unknown": 0.0,
+      "deg_median": 8.9,
+      "deg_p90": 22.8,
+      "flipped": 0.0,
+      "slot_mm_median": 1.2,
+      "slot_mm_p90": 3.2,
+      "gross_over_30mm": 0.071,
+      "unsure_n": 12,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 5.6,
+      "deg_p90": 22.4,
+      "flipped": 0.0,
+      "slot_mm_median": 1.6,
+      "slot_mm_p90": 6.2,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RD": {
+      "n": 35,
+      "unknown": 0.0,
+      "deg_median": 4.7,
+      "deg_p90": 16.2,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 3.4,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 5,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RW": {
+      "n": 40,
+      "unknown": 0.0,
+      "deg_median": 6.5,
+      "deg_p90": 14.0,
+      "flipped": 0.0,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.2,
+      "gross_over_30mm": 0.0
+     },
+     "W-C": {
+      "n": 39,
+      "unknown": 0.0,
+      "deg_median": 5.1,
+      "deg_p90": 13.4,
+      "flipped": 0.0,
+      "slot_mm_median": 0.7,
+      "slot_mm_p90": 2.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 1,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LD": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.4,
+      "deg_p90": 14.3,
+      "flipped": 0.0,
+      "slot_mm_median": 1.2,
+      "slot_mm_p90": 5.4,
+      "gross_over_30mm": 0.027,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 7.5,
+      "deg_p90": 17.5,
+      "flipped": 0.0,
+      "slot_mm_median": 1.8,
+      "slot_mm_p90": 3.8,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RD": {
+      "n": 30,
+      "unknown": 0.0,
+      "deg_median": 6.6,
+      "deg_p90": 15.3,
+      "flipped": 0.0,
+      "slot_mm_median": 1.0,
+      "slot_mm_p90": 2.9,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 10,
+      "unsure_reported_unknown": 0.1
+     },
+     "W-RW": {
+      "n": 34,
+      "unknown": 0.0,
+      "deg_median": 5.4,
+      "deg_p90": 18.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 2.1,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 6,
+      "unsure_reported_unknown": 0.0
+     }
+    }
+   },
+   "goalies": {
+    "all": null,
+    "test": null
+   }
+  },
+  "v3 (windows)": {
+   "temporal": {
+    "steps": 0,
+    "slot_jumps": 0.0,
+    "rotation_jumps": 0.0,
+    "goalie_rotation_jumps": 0.0,
+    "unknown": 0.1524
+   },
+   "skaters": {
+    "all": {
+     "n": 352,
+     "unknown": 0.006,
+     "deg_median": 5.9,
+     "deg_p90": 16.1,
+     "flipped": 0.0,
+     "slot_mm_median": 1.0,
+     "slot_mm_p90": 3.4,
+     "gross_over_30mm": 0.003,
+     "unsure_n": 48,
+     "unsure_reported_unknown": 0.042
+    },
+    "test": {
+     "n": 152,
+     "unknown": 0.007,
+     "deg_median": 8.5,
+     "deg_p90": 20.9,
+     "flipped": 0.0,
+     "slot_mm_median": 1.4,
+     "slot_mm_p90": 4.7,
+     "gross_over_30mm": 0.0,
+     "unsure_n": 18,
+     "unsure_reported_unknown": 0.056
+    },
+    "by_figure_all": {
+     "E-C": {
+      "n": 37,
+      "unknown": 0.0,
+      "deg_median": 6.7,
+      "deg_p90": 11.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.7,
+      "slot_mm_p90": 3.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.333
+     },
+     "E-LD": {
+      "n": 28,
+      "unknown": 0.0,
+      "deg_median": 8.5,
+      "deg_p90": 16.4,
+      "flipped": 0.0,
+      "slot_mm_median": 1.1,
+      "slot_mm_p90": 2.3,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 12,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-LW": {
+      "n": 36,
+      "unknown": 0.0,
+      "deg_median": 5.6,
+      "deg_p90": 22.4,
+      "flipped": 0.0,
+      "slot_mm_median": 1.6,
+      "slot_mm_p90": 6.2,
+      "gross_over_30mm": 0.028,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.25
+     },
+     "E-RD": {
+      "n": 35,
+      "unknown": 0.0,
+      "deg_median": 4.7,
+      "deg_p90": 16.2,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 3.4,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 5,
+      "unsure_reported_unknown": 0.0
+     },
+     "E-RW": {
+      "n": 40,
+      "unknown": 0.0,
+      "deg_median": 6.5,
+      "deg_p90": 14.0,
+      "flipped": 0.0,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.2,
+      "gross_over_30mm": 0.0
+     },
+     "W-C": {
+      "n": 39,
+      "unknown": 0.0,
+      "deg_median": 5.1,
+      "deg_p90": 13.4,
+      "flipped": 0.0,
+      "slot_mm_median": 0.8,
+      "slot_mm_p90": 2.0,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 1,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LD": {
+      "n": 37,
+      "unknown": 0.027,
+      "deg_median": 6.3,
+      "deg_p90": 12.2,
+      "flipped": 0.0,
+      "slot_mm_median": 1.1,
+      "slot_mm_p90": 4.5,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 3,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-LW": {
+      "n": 36,
+      "unknown": 0.028,
+      "deg_median": 7.3,
+      "deg_p90": 18.5,
+      "flipped": 0.0,
+      "slot_mm_median": 1.8,
+      "slot_mm_p90": 4.6,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 4,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RD": {
+      "n": 30,
+      "unknown": 0.0,
+      "deg_median": 6.6,
+      "deg_p90": 15.3,
+      "flipped": 0.0,
+      "slot_mm_median": 1.0,
+      "slot_mm_p90": 2.9,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 10,
+      "unsure_reported_unknown": 0.0
+     },
+     "W-RW": {
+      "n": 34,
+      "unknown": 0.0,
+      "deg_median": 5.4,
+      "deg_p90": 18.3,
+      "flipped": 0.0,
+      "slot_mm_median": 0.9,
+      "slot_mm_p90": 2.1,
+      "gross_over_30mm": 0.0,
+      "unsure_n": 6,
+      "unsure_reported_unknown": 0.0
+     }
+    }
+   },
+   "goalies": {
+    "all": null,
+    "test": null
+   }
+  }
+ },
+ "presence_on_labels": {
+  "right_spot": {
+   "n": 376,
+   "presence_over_0.5": 0.997,
+   "presence_median": 1.0
+  },
+  "wrong_spot": {
+   "n": 142,
+   "presence_over_0.5": 0.085,
+   "presence_median": 0.0
+  },
+  "unsure_first_candidate": {
+   "n": 48,
+   "presence_over_0.5": 0.188,
+   "presence_median": 0.001
+  }
+ }
+}

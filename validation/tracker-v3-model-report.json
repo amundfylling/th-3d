@@ -1,0 +1,117 @@
+{
+ "args": [
+  "8",
+  "--init",
+  "out/synth/skater-pose-v3-ep16.pt",
+  "--lr",
+  "3e-4"
+ ],
+ "train_entries": 3013,
+ "val_entries": 312,
+ "real_train_games": [
+  "g1",
+  "g2",
+  "g4",
+  "g6"
+ ],
+ "real_train": 200,
+ "real_test": 152,
+ "history": [
+  {
+   "epoch": 1,
+   "train_loss": 0.3141,
+   "val_theta_median_deg": 6.08,
+   "val_pivot_px_median": 2.65,
+   "val_presence_acc": 0.987,
+   "val_absent_called_present": 0.056,
+   "val_present_called_absent": 0.0,
+   "s": 169,
+   "real_test_median_deg": 8.9,
+   "real_test_flipped": 0.0
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.3351,
+   "val_theta_median_deg": 5.69,
+   "val_pivot_px_median": 3.02,
+   "val_presence_acc": 0.981,
+   "val_absent_called_present": 0.085,
+   "val_present_called_absent": 0.0,
+   "s": 166,
+   "real_test_median_deg": 9.4,
+   "real_test_flipped": 0.0
+  },
+  {
+   "epoch": 3,
+   "train_loss": 0.349,
+   "val_theta_median_deg": 5.64,
+   "val_pivot_px_median": 2.9,
+   "val_presence_acc": 0.984,
+   "val_absent_called_present": 0.07,
+   "val_present_called_absent": 0.0,
+   "s": 161,
+   "real_test_median_deg": 9.7,
+   "real_test_flipped": 0.0
+  },
+  {
+   "epoch": 4,
+   "train_loss": 0.3491,
+   "val_theta_median_deg": 5.41,
+   "val_pivot_px_median": 2.72,
+   "val_presence_acc": 0.987,
+   "val_absent_called_present": 0.056,
+   "val_present_called_absent": 0.0,
+   "s": 163,
+   "real_test_median_deg": 9.9,
+   "real_test_flipped": 0.0
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.2895,
+   "val_theta_median_deg": 5.23,
+   "val_pivot_px_median": 2.66,
+   "val_presence_acc": 0.984,
+   "val_absent_called_present": 0.07,
+   "val_present_called_absent": 0.0,
+   "s": 163,
+   "real_test_median_deg": 9.4,
+   "real_test_flipped": 0.0
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.2679,
+   "val_theta_median_deg": 5.31,
+   "val_pivot_px_median": 2.54,
+   "val_presence_acc": 0.987,
+   "val_absent_called_present": 0.056,
+   "val_present_called_absent": 0.0,
+   "s": 167,
+   "real_test_median_deg": 8.3,
+   "real_test_flipped": 0.0
+  },
+  {
+   "epoch": 7,
+   "train_loss": 0.2491,
+   "val_theta_median_deg": 4.95,
+   "val_pivot_px_median": 2.33,
+   "val_presence_acc": 0.981,
+   "val_absent_called_present": 0.085,
+   "val_present_called_absent": 0.0,
+   "s": 164,
+   "real_test_median_deg": 8.7,
+   "real_test_flipped": 0.0
+  },
+  {
+   "epoch": 8,
+   "train_loss": 0.2265,
+   "val_theta_median_deg": 5.02,
+   "val_pivot_px_median": 2.27,
+   "val_presence_acc": 0.984,
+   "val_absent_called_present": 0.07,
+   "val_present_called_absent": 0.0,
+   "s": 162,
+   "real_test_median_deg": 8.3,
+   "real_test_flipped": 0.0
+  }
+ ]
+}
