@@ -10,7 +10,7 @@ broadcast camera or designed.
 |---|---|---|---|---|---|---|
 | g2-goal2 | `data/traces/edwall-g2-goal2.trace.json` | pass | pass (shovel catch 449 mm/s) | FAILS | 27722.0 / 27723 | `validation/analysis-edwall-g2-goal2.mp4` |
 | g2-goal3 | `data/traces/edwall-g2-goal3.trace.json` | pass | pass (shovel catch 280 mm/s) | FAILS | 28351.0 / 28347 | `validation/analysis-edwall-g2-goal3.mp4` |
-| g2-goal4 | `data/traces/edwall-g2-goal4.trace.json` | GOAL4_CONTACT | GOAL4_SLIDE | GOAL4_CARRY | GOAL4_FRAME | `validation/analysis-edwall-g2-goal4.mp4` |
+| g2-goal4 | `data/traces/edwall-g2-goal4.trace.json` | pass | pass (shovel catch 384 mm/s) | FAILS | 28709.8 / 28707 | `validation/analysis-edwall-g2-goal4.mp4` |
 
 Checks per goal: `shots/edwall/<goal>.checks.json` (contact: whole trace, every 0.25 ms, all 12 figures, boards, posts,
 cage, 0.1 mm tolerance, no exceptions; `slide_check`; `unexplained_velocity_changes`; `carry_force_check`;
@@ -22,7 +22,8 @@ cage, 0.1 mm tolerance, no exceptions; `slide_check`; `unexplained_velocity_chan
    puck stays at the touching point of the stick from catch to release). The CLAUDE.md checks pass (the puck touches and
    never overlaps), but my own `carry_force_check` asks whether the force the puck needs lies inside the contact normals
    that the figure's low outline offers there (widened by an ASSUMED 17 degree friction angle). It does not: in goal 2 the
-   right wing would have to pull the puck in all 47 checked steps of the drag; in goal 3 in 38 of 60. The preview low
+   right wing would have to pull the puck in all 47 checked steps of the drag, in goal 3 in 38 of 60, in goal 4 in 56 of 89;
+   the centre's short carries need a pull in every checked step. The preview low
    outline has no real groove at the carry point (normal fan 4.5-7 degrees, i.e. a flat face), so the puck is, in effect,
    glued to the blade while the figure turns. A plain push (no carry) could not reach the observed pass direction (the
    search got stuck near 40 degrees against about 66 degrees observed). What would fix it: the real heel-groove shape of
@@ -31,15 +32,16 @@ cage, 0.1 mm tolerance, no exceptions; `slide_check`; `unexplained_velocity_chan
    1-3 frames before the user's goal frame, before the centre touches it. The centre's lunge, turn and the shot line are fitted to "score into the
    open far (+y) corner near the goal frame", not to observations. Goal 2's shovel is a 4 ms touch that turns the puck
    from 54 to -1 degrees at 1.36 m/s; with a 449 mm/s relative normal speed it is just inside the slide limit, but it is
-   really a redirect, which the slide rule warns bounces. Goal 3's shovel catches the puck on the centre's skate/body
-   (280 mm/s), not the blade.
+   really a redirect, which the slide rule warns bounces. Goals 3 and 4 shovel the puck with the centre's skate/body
+   (280 and 384 mm/s), not the blade; in goal 4 the centre has turned so far (heading 234 degrees at the contact) that it
+   plays the puck with the back of the figure. That is what the fit found, not what an Edwall shovel looks like.
 3. **No newer puck track.** There was no `claude/puck-detector-*` branch on the remote when this was built (checked with
    `git fetch` twice), so the traces use my hand readings (`shots/edwall/puck-readings.json`).
-4. **Pass fit residuals.** Flight readings are matched within 8-10 mm in goal 3 but 26-35 mm in goal 2 (the trace's pass
-   leaves at 54 degrees, the readings at about 66). Rest readings sit about 41 mm off because the rest is snapped to the
+4. **Pass fit residuals.** Flight readings are matched within 4-10 mm in goals 3 and 4 but 26-35 mm in goal 2 (the trace's pass
+   leaves at 54 degrees, the readings at about 66). The first streak frame of goal 4 is off by 73 mm. Rest readings sit about 41-54 mm off because the rest is snapped to the
    board (see "Puck readings").
-5. **Goal 3 label.** The trace crosses the line 4 frames after the user's goal frame 28347. The broadcast shows the puck
-   still in flight at 28346, so the label looks 2-3 frames early.
+5. **Goal frames.** Goal 2 crosses the line 1 frame before the user's goal frame, goal 3 4 frames after (28351 vs 28347;
+   the broadcast shows the puck still in flight at 28346, so that label looks 2-3 frames early), goal 4 3 frames after.
 6. **Other ten figures** follow the cleaned model tracks unverified frame by frame (`g2/figure-tracks-smooth.json`).
    In goal 2 the shot grazes the E goalie (179 mm/s) on its way into the corner.
 
@@ -72,13 +74,14 @@ point's velocity. The catch is logged as a touch with its relative normal speed,
 `fitted`): pass = passer's rest rotation, lunge, turn and release against the puck readings; shot = shooter's lunge,
 turns and release against the goal window (`goal_window_frames`), a goal-line target y = 26 mm (the open far corner), the
 shooter arriving at the front of its slot by `wc_front_frame`, no overlap with other figures or posts during the carry,
-and the slide limits.
+and the slide limits. Goal 4's first shot search missed the goal; the second started from goal 2's shot shifted by
++0.03 s with a larger search (population 10, 25 generations).
 
 | goal | passer rest rotation (fit / track) | lunge | turn | pass speed, direction | flight residuals |
 |---|---|---|---|---|---|
 | g2-goal2 | 236 / 212 deg | 43 mm in 82 ms | 142 deg | 1.79 m/s, 54 deg | 35, 26 mm |
 | g2-goal3 | 219 / 220 deg | 142 mm in 219 ms | 67 deg | 1.60 m/s, 48 deg | 10, 8 mm |
-| g2-goal4 | GOAL4_RW | | | | |
+| g2-goal4 | 228 / 223 deg | 116 mm in 123 ms | 82 deg | 1.26 m/s, 72 deg | 4, 7, 10 mm |
 
 Goal 2's passer fit disagrees with the video: its rest rotation is 24 degrees off the track and its lunge is 43 mm where
 the video shows roughly 95 mm.
