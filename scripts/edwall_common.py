@@ -4,6 +4,7 @@ Pixel frames: out/edwall/<goal_id>/<frame>.png are the E half of the game's refe
 (crop px = 2 * (reference px - (900, 360))). World mm: data/geometry.json (z up); the reference camera
 (camera-ref.json) maps world to reference px.
 """
+import os
 import json
 from pathlib import Path
 
@@ -37,7 +38,7 @@ def goal_frame(gid):
 
 def tracks(gid):
     """Cleaned figure tracks (game file, 30 fps inside the goal windows): {frame: {pid: (u, theta_deg, src)}}."""
-    g = GOALS[gid]["game"]; S = json.loads((D / g / "figure-tracks-smooth.json").read_text())
+    g = GOALS[gid]["game"]; S = json.loads(Path(os.environ.get("EDWALL_TRACKS", D / g / "figure-tracks-smooth.json")).read_text())  # override: scripts/edwall-track-compare.py
     C = S["columns"]; f0 = goal_frame(gid); out = {}
     pids = [c[:-2] for c in C if c.endswith("_u")]
     for r in S["rows"]:

@@ -96,6 +96,29 @@ Render and check: `node scripts/edwall-render.ts <goal>` (per-frame state equals
 the camera track; file below 25 MB; report `validation/analysis-edwall-<goal>-report.json`).
 RENDER_NOTES
 
+## Check against tracker v3 (added after the renders; traces and videos unchanged)
+
+Tracker v3 (`data/games/nm26-semifinal/g2/figure-tracks-v3.json` on branch `claude/tracker-v3-j1by4n`, PROPOSED) was
+compared with `EDWALL_TRACKS=<v3 file> scripts/edwall-track-compare.py <goal>`: the ten tracked figures rebuilt from v3,
+the saved puck path checked against them every 0.25 ms, and the pose differences over each goal window.
+
+- **No overlaps.** With v3's figures the saved puck path still never overlaps any tracked figure in any goal. Closest:
+  goal 2 E goalie 0.05 mm (the same graze as in the trace) and E-LD 19 mm; goal 3 E goalie 14 mm, E-LD 35 mm; goal 4 E
+  goalie 28 mm.
+- **E-LD moves.** v3 puts E-LD about 190-220 mm (median) away from the cleaned track in all three windows, and E-LW about
+  210 mm away in goal 2. Neither comes into the play in either version.
+- **v3 reads inside the lunges, where the cleaned tracks only interpolate.** That tests the designed moves:
+  - Passer's lunge length agrees: goal 3 trace 121/155 mm vs v3 135/142 mm (frames 28344/28345); goal 4 trace
+    152 mm vs v3 141/149 mm (28702/28703).
+  - Passer's turn is too small in the traces: v3 reads 333-360 degrees at the release frames, the traces 287-310 (goal 3
+    by 45-65 degrees, goal 4 by 25-50). A bigger turn would also steer the pass closer to the observed 66 degrees.
+  - Goal 4 shooter disagrees: v3 has the centre at 226-231 mm facing 263-278 degrees at frames 28706-28707; the trace
+    has it at the front (250 mm) and turned round to 202 then 132 degrees (the back-of-figure shot). This supports
+    treating goal 4's shot as wrong.
+  - Goal 2 shooter: v3's next real reading after the play has the centre at 145 mm (frame 27724), where the trace holds
+    it at the front (246 mm). Either the centre pulls back fast after the shot or it never reached the front.
+- Next step from this: refit the passer's turn and both shots with v3's in-lunge readings as constraints.
+
 ## Reproduce
 
 ```
