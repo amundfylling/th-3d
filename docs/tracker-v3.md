@@ -12,10 +12,12 @@ AI visual check of the broadcast; no new user labels.
 - **The labels are the easy frames.** They were made on crops a kit-colour localiser had centred, so the localiser's
   failures are mostly missing from them (they are the 48 "can't see it" answers). The weak cases show up only on full
   video, so the main evidence there is a visual check.
-- **On full video v3 is clearly better where the two disagree.** In game 2's goal windows v2 (cleaned) and v3 put a
-  skater more than 30 mm apart in 12% of skater-frames. In 32 random disagreements, checked by eye on the broadcast,
-  v3 was on the right figure 14 times and v2 5 times (5 neither, 8 unclear). Full-game numbers: section 4.
-- **Re-track: done** for all seven games, written to new files `data/games/nm26-semifinal/<game>/figure-tracks-v3.json`
+- **On full video v3 is clearly better in the goal windows, and somewhat better elsewhere.** v2 (cleaned) and v3 put a
+  skater more than 30 mm apart in 12% of skater-frames. In 48 random disagreements in the goal windows of all seven
+  games, checked by eye on the broadcast, v3 was on the right figure 31 times and v2 twice (4 neither, 11 unclear). In
+  32 at the 5 fps rate outside them: v3 7, v2 4 (2 neither, 19 unclear).
+- **Re-track: done** for all seven games (every frame of the v2 tracks: 5 fps plus every frame of the 40 goal windows),
+  written to new files `data/games/nm26-semifinal/<game>/figure-tracks-v3.json`
   (the v2 files are unchanged). **Recommendation for consolidation:** switch readers of `figure-tracks-smooth.json` to
   `figure-tracks-v3.json` (same columns: `<fig>_u`, `<fig>_theta_deg`, `<fig>_src`).
 - **What fell short:** the rebuilt skater model reads rotation slightly worse than v2b (8.3° against 7.0° median on
@@ -125,7 +127,52 @@ presence right in 98.4% (absent crops called present 7%).
 
 ## 4. Results on full video
 
-(Filled in from the full re-track; see below.)
+**The re-track** (`track-figures-v3.py obs/decode <game>`): all 23,756 frames of the v2 tracks, the goal windows first.
+`data/games/nm26-semifinal/<game>/figure-tracks-v3.json`.
+
+**On the labels at the committed frames** (the same 101 skater and 126 goalie labels as section 3; `tracker-v3-eval.py
+--lite ... v3=...`, `validation/tracker-v3-eval-final.json`):
+
+| Track | Skater slot median / p90 | Facing median / p90 | Gross (>30 mm) | Goalie facing (test) |
+| --- | --- | --- | --- | --- |
+| v2 raw | 1.0 / 3.1 mm | 5.0° / 15.6° | 2.0% (2) | 5.1° |
+| v2 cleaned | 1.1 / 3.0 mm | 6.6° / 16.5° | 1.0% (1) | 5.2° |
+| **v3** | **0.9 / 3.6 mm** | **5.9° / 19.2°** | **0** | **5.2°** |
+
+Test games only (52 labels): v3 1.3 mm / 8.8°, no gross error (cleaned 1.6 mm / 8.6°, 1.9%).
+
+**Agreement and gaps** (skater-frames, all seven games):
+
+| | Goal windows (121,520) | 5 fps rest (116,040) |
+| --- | --- | --- |
+| v2 and v3 more than 30 mm apart | 12.4% | 11.3% |
+| ... more than 60° apart | 7.5% | 7.3% |
+| v2 cleaned: interpolated / unknown | 11.9% / 0.9% | 2.3% / 1.0% |
+| v3: interpolated / unknown | 6.5% / 0.04% | 5.4% / 1.7% |
+
+Jumps between consecutive 30 fps frames (over 30 mm or 60°; all skaters, 121,096 steps): v3 1.1% slot / 0.05%
+rotation (v2 cleaned 0.9% / 0, raw 7.6% / 5.0%); goalies 0.01% (raw 0.31%). Some of these "jumps" are real fast rod
+moves.
+
+**Visual check of disagreements** (`scripts/synth/tracker-v3-review.py`; tiles of the registered broadcast, v2 red, v3
+green, hollow = interpolated; verdicts by Claude, not the user):
+
+| Sample | v3 right | v2 right | Neither | Unclear | Sheets |
+| --- | --- | --- | --- | --- | --- |
+| Game 2 goal windows (32) | 14 | 5 | 5 | 8 | `validation/tracker-g2-v2-v3-review-{1,2}.jpg` |
+| All goal windows (48) | **31** | **2** | 4 | 11 | `validation/tracker-v2-v3-review-{1,2,3}.jpg` |
+| 5 fps rest (32) | 7 | 4 | 2 | 19 | `validation/tracker-v2-v3-5fps-review-{1,2}.jpg` |
+
+Verdicts per tile: `validation/tracker-v3-review-{g2,all,5fps}.json`. (The game 2 sample was drawn while only game 2
+was done; the "all" sample came later from all seven games.) What the sheets show:
+- v3 puts the defenders and wings on the figure where v2 is often on empty ice nearby. The largest single source is
+  E-LD (44% of its goal-window frames disagree), whose slot crosses the busy area in front of the W goal; in the
+  samples v3 was right every time it could be judged (5 of 5).
+- Wings behind the corner plexiglass are found by v3 (presence keeps them) where v2 jumps to the near board.
+- Both still fail on some near-board wings (tiles with a marker on the board and no figure) and on heavily blurred
+  frames.
+- At 5 fps v3's interpolated points (over gaps it dropped) are the main source of its misses: a 1 s gap at 5 fps
+  hides real moves.
 
 ## 5. What fell short / open
 
@@ -134,6 +181,10 @@ presence right in 98.4% (absent crops called present 7%).
   likely close it.
 - **Long hidden stretches.** A near-board wing hidden for more than a second is unknown (src 2) rather than guessed;
   when the localiser's spots are all wrong and presence is fooled (8.5% of wrong spots pass), v3 still follows them.
+- **At 5 fps v3 drops and interpolates more** (5.4% interpolated against v2's 2.3%); interpolating a 1 s gap at 5 fps
+  misses real moves. A shorter interpolation limit outside the goal windows (or tracking them at 10 fps) would help.
+- **Fast moves count as jumps.** v3's 1.1% jump rate is close to v2 cleaned's 0.9%; whether these are real rod moves
+  or switches between candidates was not separated.
 - **The decoder limits are assumed**, not fitted to labelled motion.
 - **The label windows read every candidate; the full re-track reads the second spot only when the first is doubtful**
   (for speed). On the label frames the first spot's presence is over 0.9 for nearly every right spot, so the two
@@ -162,10 +213,16 @@ $P scripts/synth/track-figures-v3.py loc-eval
 for g in g1 g2 g3 g4 g5 g6 g7; do $P scripts/synth/track-figures-v3.py obs $g --labels --all-candidates; $P scripts/synth/track-figures-v3.py decode $g --labels; done
 python3 scripts/synth/tracker-v3-eval.py --windows --out out/synth/v3/eval-windows.json
 python3 scripts/synth/tracker-v3-eval.py --lite
+for g in g1 g2 g3 g4 g5 g6 g7; do $P scripts/synth/track-figures-v3.py obs $g --dense-only; $P scripts/synth/track-figures-v3.py decode $g; done
 for g in g1 g2 g3 g4 g5 g6 g7; do $P scripts/synth/track-figures-v3.py obs $g; $P scripts/synth/track-figures-v3.py decode $g; done
-$P scripts/synth/tracker-v3-review.py "data/games/nm26-semifinal/{game}/figure-tracks-smooth.json" "data/games/nm26-semifinal/{game}/figure-tracks-v3.json" --n 48 --name v2-v3
+python3 scripts/synth/tracker-v3-eval.py --lite --no-build "v3=data/games/nm26-semifinal/{game}/figure-tracks-v3.json" --out out/synth/v3/eval-final.json
+R="data/games/nm26-semifinal/{game}/figure-tracks-smooth.json data/games/nm26-semifinal/{game}/figure-tracks-v3.json"
+$P scripts/synth/tracker-v3-review.py $R --n 48 --name v2-v3 --part dense
+$P scripts/synth/tracker-v3-review.py $R --n 32 --name v2-v3-5fps --part sparse
 ```
 
 The label-window run above read every candidate (the doubt gate did not exist yet); `--all-candidates` reproduces it.
 Times on 4 CPU cores: renders about 1.7 s each (3 processes × 2 threads), training 2.7 min per epoch, the observation
-pass about 0.45 s per frame (one process; parallel processes were slower).
+pass about 0.45 s per frame in one process (2.7 h for all seven games; parallel processes were slower).
+The "all goal windows" review above was drawn before `--part` existed (all common frames, which were then the goal
+windows only).

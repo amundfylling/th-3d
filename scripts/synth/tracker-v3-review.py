@@ -1,6 +1,6 @@
 """Review sheets for frames where two figure tracks disagree (docs/tracker-v3.md).
 
-    /root/venvs/blender/bin/python scripts/synth/tracker-v3-review.py <a.json pattern {game}> <b.json pattern {game}> [--n 48] [--name v2-v3]
+    /root/venvs/blender/bin/python scripts/synth/tracker-v3-review.py <a.json pattern {game}> <b.json pattern {game}> [--n 48] [--name v2-v3] [--part dense|sparse]
 
 Picks up to --n frames (spread over all seven games and all skaters, seeded) where the two tracks place a skater more
 than 30 mm apart along its slot, or turn it more than 60 degrees apart, and draws each on the registered broadcast
@@ -21,6 +21,7 @@ _argv = sys.argv; sys.argv = [_argv[0], "-"]; spec.loader.exec_module(tv3); sys.
 A = sys.argv[1:]; PA, PB = A[0], A[1]
 def arg(n, d): return A[A.index(n) + 1] if n in A else d
 N = int(arg("--n", 48)); NAME = arg("--name", "v2-v3")
+PART = {"dense": 1, "sparse": 0}.get(arg("--part", ""))  # dense = the goal windows (30 fps), sparse = the 5 fps rest
 CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text()); K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
 HOME = {"W": 0.0, "E": 180.0}; x0, y0 = tv3.x0, tv3.y0
 
@@ -51,6 +52,7 @@ for g in [f"g{k}" for k in range(1, 8)]:
     if not (Path(PA.format(game=g)).exists() and Path(PB.format(game=g)).exists()): continue
     a, b = load(PA.format(game=g)), load(PB.format(game=g))
     for f in sorted(set(a[0]) & set(b[0])):
+        if PART is not None and a[0][f][1] != PART: continue
         for pid in tv3.ORDER:
             va, vb = get(a, f, pid), get(b, f, pid)
             if va is None and vb is None: continue
