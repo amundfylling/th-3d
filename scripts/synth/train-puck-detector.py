@@ -1,7 +1,7 @@
 """Train the synthetic puck detector (docs/synthetic-puck.md).
 
     /root/venvs/blender/bin/python scripts/synth/train-puck-detector.py [--epochs 12] [--name puck-det-v1]
-        [--val-games g3,g7] [--steps 1200] [--threads 4]
+        [--val-games g3,g7] [--steps 1200] [--threads 4] [--init <model to start from>]
 
 Training sample = one crop (384 x 256 stab px) of a real NM26 frame triplet (t-1, t, t+1; scripts/synth/puck-frames.py)
 plus the game's background (empty rink), with:
@@ -123,7 +123,7 @@ def occluders(img, bg, rect):
     return lab, st
 
 
-def make_sample(real, renders, rnd, n_synth=None):
+def make_sample(real, renders, rnd, n_synth=None, erase_p=0.5, info=None):
     g, f = real["game"], real["frame"]
     imgs = [cv2.imread(str(RD / f"{g}_{f}_{c}.jpg")) for c in "abc"]
     bg = BGS[g]
@@ -133,18 +133,21 @@ def make_sample(real, renders, rnd, n_synth=None):
     rp = [np.array(p, float) for p in real["track_stab_px"]]
     # the real puck: erase it (all three frames) when it is a resting disk with clean surroundings, else label it
     erase = False
-    if all(k == "disk" for k in real["kinds"]) and rnd.random() < 0.5:
+    if all(k == "disk" for k in real["kinds"]) and rnd.random() < erase_p:
         ok = True
         for im, p in zip(imgs, rp):
             x, y = int(p[0]), int(p[1])
-            ann = np.zeros((H, W), np.uint8); cv2.ellipse(ann, (x, y), (40, 28), 0, 0, 360, 1, -1); cv2.ellipse(ann, (x, y), (26, 17), 0, 0, 360, 0, -1)
-            if np.abs(im.astype(np.int16) - bg.astype(np.int16)).max(2)[ann > 0].mean() > 14: ok = False
+            if not (45 <= x < W - 45 and 32 <= y < H - 32): ok = False; break
+            ann = np.zeros((64, 90), np.uint8); cv2.ellipse(ann, (45, 32), (40, 28), 0, 0, 360, 1, -1); cv2.ellipse(ann, (45, 32), (26, 17), 0, 0, 360, 0, -1)
+            loc = np.abs(im[y - 32:y + 32, x - 45:x + 45].astype(np.int16) - bg[y - 32:y + 32, x - 45:x + 45].astype(np.int16)).max(2)
+            if loc[ann > 0].mean() > 14: ok = False
         if ok:
             erase = True
             for im, p in zip(imgs, rp):
-                m = np.zeros((H, W), np.float32); cv2.ellipse(m, (int(p[0]), int(p[1])), (28, 19), 0, 0, 360, 1, -1)
+                x, y = int(p[0]), int(p[1]); sl = np.s_[y - 32:y + 32, x - 45:x + 45]
+                m = np.zeros((64, 90), np.float32); cv2.ellipse(m, (45, 32), (28, 19), 0, 0, 360, 1, -1)
                 m = cv2.GaussianBlur(m, (0, 0), 2)[..., None]
-                im[:] = (im * (1 - m) + bg * m).astype(np.uint8)
+                im[sl] = (im[sl] * (1 - m) + bg[sl] * m).astype(np.uint8)
     if not erase:
         labels.append(rp[1] + BLOB_TO_TOP)
     # synthetic pucks
@@ -194,6 +197,7 @@ def make_sample(real, renders, rnd, n_synth=None):
             if k == 1:
                 puck_a = a_full if a_full > 0 else 1.0
                 vis_mid = a.sum() / puck_a
+        if info is not None: info.append({"speed": float(np.hypot(*s["vel_mm_s"])), "visible": vis_mid})
         if vis_mid is not None and vis_mid >= 0.25:
             labels.append(L[1])
         else:
@@ -279,6 +283,7 @@ if __name__ == "__main__":
     dl = torch.utils.data.DataLoader(DS(ftr, rtr, STEPS * BS), batch_size=BS, num_workers=3, persistent_workers=True)
     dv_syn = torch.utils.data.DataLoader(DS(fva, rva, 400, fixed=True), batch_size=BS, num_workers=3)
     net = PuckNet()
+    if "--init" in A: net.load_state_dict(torch.load(REPO / f"out/synth/{arg('--init', '')}.pt"))
     opt = torch.optim.AdamW(net.parameters(), 2e-3, weight_decay=1e-4)
     sch = torch.optim.lr_scheduler.OneCycleLR(opt, 2e-3, total_steps=EPOCHS * STEPS, pct_start=0.15)
     log = []

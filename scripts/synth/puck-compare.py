@@ -107,7 +107,10 @@ for g in CFG["games"]:
             hit = [k for k in range(f - 30, f + 16) if k in tr and mouth(conc, tr[k][0])]
             gx, gy = HW["placement_mm"][conc]
             dist = [np.hypot(tr[k][0][0] - gx, tr[k][0][1] - gy) for k in range(f - 30, f + 16) if k in tr]
-            reach[nm] = {"at_mouth": bool(hit), "first_at_mouth_s": round((hit[0] - f) / FPS, 3) if hit else None,
+            seen = [k for k in range(f - 30, f + 1) if k in tr]
+            reach[nm] = {"last_seen_before_goal_s": round((seen[-1] - f) / FPS, 3) if seen else None,
+                         "goal_dist_at_last_seen_mm": round(float(np.hypot(tr[seen[-1]][0][0] - gx, tr[seen[-1]][0][1] - gy)), 1) if seen else None,
+                         "at_mouth": bool(hit), "first_at_mouth_s": round((hit[0] - f) / FPS, 3) if hit else None,
                          "closest_to_goal_mm": round(float(min(dist)), 1) if dist else None,
                          "coverage_last_2s": cov(tr, w2), "coverage_last_0_5s": cov(tr, w05)}
         out["goals"].append({"id": l["id"], "combination": l["combination"], "family": l["family"], "conceding_end": conc, **reach})
@@ -123,6 +126,10 @@ G = out["goals"]
 out["summary"] = {
     "user_goals": len(G),
     "at_mouth_old": sum(x["old"]["at_mouth"] for x in G), "at_mouth_new": sum(x["new"]["at_mouth"] for x in G),
+    "seen_in_last_0.2s_old": sum((x["old"]["last_seen_before_goal_s"] or -9) >= -0.2 for x in G),
+    "seen_in_last_0.2s_new": sum((x["new"]["last_seen_before_goal_s"] or -9) >= -0.2 for x in G),
+    "median_goal_dist_at_last_seen_old_mm": float(np.median([x["old"]["goal_dist_at_last_seen_mm"] for x in G if x["old"]["goal_dist_at_last_seen_mm"] is not None])) if G else None,
+    "median_goal_dist_at_last_seen_new_mm": float(np.median([x["new"]["goal_dist_at_last_seen_mm"] for x in G if x["new"]["goal_dist_at_last_seen_mm"] is not None])) if G else None,
     "goal_last2s_coverage_old": round(float(np.mean([x["old"]["coverage_last_2s"] for x in G])), 3) if G else None,
     "goal_last2s_coverage_new": round(float(np.mean([x["new"]["coverage_last_2s"] for x in G])), 3) if G else None,
     "goal_last0.5s_coverage_old": round(float(np.mean([x["old"]["coverage_last_0_5s"] for x in G])), 3) if G else None,

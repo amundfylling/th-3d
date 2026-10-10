@@ -33,7 +33,9 @@ def arg(n, d): return A[A.index(n) + 1] if n in A else d
 MODEL = arg("--model", "puck-det-v1"); WORKERS = int(arg("--workers", 4))
 T0, T1 = float(arg("--t0", CFG["games"][GAME]["video_window_s"][0])), float(arg("--t1", CFG["games"][GAME]["video_window_s"][1]))
 CANDS = OUT / GAME / f"puck-cands-{MODEL}.json"
-SIGMA, D_MAX, SWITCH = 60.0, 230.0, 3.0
+SIGMA, D_MAX, SWITCH = 60.0, float(arg("--dmax", 350.0)), 3.0
+BIAS = float(arg("--bias", 1.0))  # added to every emission (1.0 chosen by the frame review, docs/synthetic-puck.md)
+OUT_NAME = arg("--out", "puck-track-synth.json")
 TOP_MM = 12.0
 CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
 Kc, Rc, tc = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
@@ -101,7 +103,7 @@ def track(C):
         if not cs: rows_in.append((i, [])); continue
         P = np.array([[c[0], c[1]] for c in cs])
         q = np.c_[P, np.ones(len(P))] @ H_TOP_INV.T; Wd = q[:, :2] / q[:, 2:]
-        rows_in.append((i, [(float(w[0]), float(w[1]), float(np.clip(np.log(c[2] / (1 - c[2] + 1e-6)), -4, 5)), c[0], c[1], c[2]) for c, w in zip(cs, Wd)]))
+        rows_in.append((i, [(float(w[0]), float(w[1]), float(np.clip(np.log(c[2] / (1 - c[2] + 1e-6)), -4, 5) + BIAS), c[0], c[1], c[2]) for c, w in zip(cs, Wd)]))
     prevS, prevXY, prevI, back = np.array([0.0]), np.zeros((0, 2)), None, []
     for i, cs in rows_in:
         gap = 1 if prevI is None else max(1, i - prevI); prevI = i
@@ -150,11 +152,11 @@ if __name__ == "__main__":
     C = json.loads(CANDS.read_text())
     rows = track(C)
     nf = len(C)
-    save(game_dir(GAME) / "puck-track-synth.json", {
+    save(game_dir(GAME) / OUT_NAME, {
         "description": "Puck track from the synthetic puck detector (scripts/synth/track-puck.py, docs/synthetic-puck.md). One row per frame where a peak was chosen; other frames are not seen. PROPOSED.",
         "columns": ["frame", "video_t_s", "x_mm", "y_mm", "u_stab_px", "v_stab_px", "kind", "score"],
         "position_note": "x_mm, y_mm: the puck centre, from the detected top-face centre mapped through the reference camera onto the plane 12 mm above the ice (the Blender puck's top; real thickness unknown). puck-track.json maps the blob centre onto the ice plane instead, which puts it about 13 mm further +y (away from the camera). u/v_stab_px: the detected top-face centre.",
-        "model": MODEL, "tracker": {"sigma_mm": SIGMA, "d_max_mm_per_frame": D_MAX, "switch_cost": SWITCH, "emission": "logit(score) clipped to [-4, 5]"},
+        "model": MODEL, "tracker": {"sigma_mm": SIGMA, "d_max_mm_per_frame": D_MAX, "switch_cost": SWITCH, "emission": "logit(score) clipped to [-4, 5], plus bias", "bias": BIAS},
         "frames": nf, "seen_fraction": round(len(rows) / max(nf, 1), 3),
         "rows": rows,
     })
