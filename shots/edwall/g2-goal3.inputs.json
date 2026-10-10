@@ -177,10 +177,12 @@
  "fitted": {
   "method": "two stages (scripts/edwall-trace.py --fit pass|shot), each a differential-evolution search inside fit.bounds and a Nelder-Mead polish: pass = the passer's rest rotation, lunge and turn against the puck readings (streak weight 0.15) and the slide-rule limits; shot = the shooter's lunge and turns against the goal window, the goal-line target and the slide-rule limits",
   "objective": {
-   "pass": 408.67
+   "pass": 408.67,
+   "shot": 408.75
   },
   "evaluations": {
-   "pass": 1174
+   "pass": 1174,
+   "shot": 1174
   },
   "values": {
    "rw_theta0": 219.15509,
@@ -190,7 +192,17 @@
    "rw_t_turn": 0.89872,
    "rw_d_turn": 0.09418,
    "rw_turn_deg": 67.3969,
-   "rw_t_release": 0.94282
+   "rw_t_release": 0.94282,
+   "wc_t_lunge": 0.9832,
+   "wc_d_lunge": 0.10639,
+   "wc_theta0": 316.73787,
+   "wc_t_turn0": 1.05935,
+   "wc_d_turn0": 0.07414,
+   "wc_turn0_deg": 85.81893,
+   "wc_d_shot": 0.02974,
+   "wc_shot_deg": 7.67721,
+   "wc_t_release": 1.10142,
+   "wc_arc1": 244.38509
   }
  },
  "limitations": [
