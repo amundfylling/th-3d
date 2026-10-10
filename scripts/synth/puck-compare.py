@@ -117,7 +117,7 @@ for g in CFG["games"]:
     st["user_goals"] = len(gl)
     st["goal_last2s_coverage_old"], st["goal_last2s_coverage_new"] = cov(old, win2), cov(new, win2)
     st["goal_last0.5s_coverage_old"], st["goal_last0.5s_coverage_new"] = cov(old, win05), cov(new, win05)
-    box = [f for gg in TL[g]["goals"] if not any(abs(gg["overlay_change_s"] - m) < 15 for m in marked)
+    box = [f for gg in TL[g]["goals"] if gg.get("overlay_change_s") is not None and not any(abs(gg["overlay_change_s"] - m) < 15 for m in marked)
            for f in range(int((gg["overlay_change_s"] - 12) * FPS), int(gg["overlay_change_s"] * FPS))]
     st["other_goal_windows_frames"] = len(box); st["other_goal_windows_coverage_old"] = cov(old, box); st["other_goal_windows_coverage_new"] = cov(new, box)
     out["games"][g] = st

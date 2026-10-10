@@ -1,0 +1,834 @@
+{
+ "description": "Compare the synthetic-detector puck track with the current one (docs/synthetic-puck.md).",
+ "new_file": "puck-track-synth.json",
+ "games": {
+  "g1": {
+   "live_frames": 12768,
+   "coverage_old": 0.754,
+   "coverage_new": 0.772,
+   "both": 8545,
+   "agree_median_mm": 4.1,
+   "agree_within_15mm": 0.812,
+   "disagree_over_50mm": 0.075,
+   "only_old": 0.085,
+   "only_new": 0.103,
+   "impossible_steps_old": 0.005,
+   "impossible_steps_new": 0.0,
+   "pass_frames": 701,
+   "pass_coverage_old": 0.812,
+   "pass_coverage_new": 0.708,
+   "shot_frames": 175,
+   "shot_coverage_old": 0.811,
+   "shot_coverage_new": 0.709,
+   "new_fast_frames": 1916,
+   "new_fast_coverage_old": 0.772,
+   "user_goals": 7,
+   "goal_last2s_coverage_old": 0.799,
+   "goal_last2s_coverage_new": 0.843,
+   "goal_last0.5s_coverage_old": 0.688,
+   "goal_last0.5s_coverage_new": 0.786,
+   "other_goal_windows_frames": 0,
+   "other_goal_windows_coverage_old": null,
+   "other_goal_windows_coverage_new": null
+  },
+  "g2": {
+   "live_frames": 9000,
+   "coverage_old": 0.781,
+   "coverage_new": 0.792,
+   "both": 6261,
+   "agree_median_mm": 4.1,
+   "agree_within_15mm": 0.824,
+   "disagree_over_50mm": 0.073,
+   "only_old": 0.086,
+   "only_new": 0.096,
+   "impossible_steps_old": 0.0034,
+   "impossible_steps_new": 0.0,
+   "pass_frames": 417,
+   "pass_coverage_old": 0.859,
+   "pass_coverage_new": 0.808,
+   "shot_frames": 193,
+   "shot_coverage_old": 0.767,
+   "shot_coverage_new": 0.591,
+   "new_fast_frames": 1478,
+   "new_fast_coverage_old": 0.809,
+   "user_goals": 4,
+   "goal_last2s_coverage_old": 0.68,
+   "goal_last2s_coverage_new": 0.746,
+   "goal_last0.5s_coverage_old": 0.781,
+   "goal_last0.5s_coverage_new": 0.922,
+   "other_goal_windows_frames": 0,
+   "other_goal_windows_coverage_old": null,
+   "other_goal_windows_coverage_new": null
+  },
+  "g3": {
+   "live_frames": 9000,
+   "coverage_old": 0.728,
+   "coverage_new": 0.837,
+   "both": 5930,
+   "agree_median_mm": 5.3,
+   "agree_within_15mm": 0.714,
+   "disagree_over_50mm": 0.187,
+   "only_old": 0.069,
+   "only_new": 0.178,
+   "impossible_steps_old": 0.0026,
+   "impossible_steps_new": 0.0,
+   "pass_frames": 628,
+   "pass_coverage_old": 0.814,
+   "pass_coverage_new": 0.873,
+   "shot_frames": 132,
+   "shot_coverage_old": 0.72,
+   "shot_coverage_new": 0.879,
+   "new_fast_frames": 1292,
+   "new_fast_coverage_old": 0.741,
+   "user_goals": 8,
+   "goal_last2s_coverage_old": 0.842,
+   "goal_last2s_coverage_new": 0.924,
+   "goal_last0.5s_coverage_old": 0.781,
+   "goal_last0.5s_coverage_new": 0.859,
+   "other_goal_windows_frames": 0,
+   "other_goal_windows_coverage_old": null,
+   "other_goal_windows_coverage_new": null
+  },
+  "g4": {
+   "live_frames": 12552,
+   "coverage_old": 0.688,
+   "coverage_new": 0.821,
+   "both": 7668,
+   "agree_median_mm": 4.4,
+   "agree_within_15mm": 0.78,
+   "disagree_over_50mm": 0.109,
+   "only_old": 0.077,
+   "only_new": 0.21,
+   "impossible_steps_old": 0.0022,
+   "impossible_steps_new": 0.0,
+   "pass_frames": 590,
+   "pass_coverage_old": 0.807,
+   "pass_coverage_new": 0.827,
+   "shot_frames": 86,
+   "shot_coverage_old": 0.837,
+   "shot_coverage_new": 0.93,
+   "new_fast_frames": 1559,
+   "new_fast_coverage_old": 0.758,
+   "user_goals": 4,
+   "goal_last2s_coverage_old": 0.803,
+   "goal_last2s_coverage_new": 0.844,
+   "goal_last0.5s_coverage_old": 0.859,
+   "goal_last0.5s_coverage_new": 0.859,
+   "other_goal_windows_frames": 0,
+   "other_goal_windows_coverage_old": null,
+   "other_goal_windows_coverage_new": null
+  },
+  "g5": {
+   "live_frames": 10731,
+   "coverage_old": 0.732,
+   "coverage_new": 0.837,
+   "both": 7320,
+   "agree_median_mm": 4.0,
+   "agree_within_15mm": 0.81,
+   "disagree_over_50mm": 0.077,
+   "only_old": 0.049,
+   "only_new": 0.155,
+   "impossible_steps_old": 0.0029,
+   "impossible_steps_new": 0.0,
+   "pass_frames": 652,
+   "pass_coverage_old": 0.831,
+   "pass_coverage_new": 0.842,
+   "shot_frames": 114,
+   "shot_coverage_old": 0.825,
+   "shot_coverage_new": 0.956,
+   "new_fast_frames": 1356,
+   "new_fast_coverage_old": 0.782,
+   "user_goals": 2,
+   "goal_last2s_coverage_old": 0.623,
+   "goal_last2s_coverage_new": 0.713,
+   "goal_last0.5s_coverage_old": 0.438,
+   "goal_last0.5s_coverage_new": 0.531,
+   "other_goal_windows_frames": 1800,
+   "other_goal_windows_coverage_old": 0.516,
+   "other_goal_windows_coverage_new": 0.716
+  },
+  "g6": {
+   "live_frames": 9000,
+   "coverage_old": 0.512,
+   "coverage_new": 0.542,
+   "both": 4022,
+   "agree_median_mm": 4.7,
+   "agree_within_15mm": 0.813,
+   "disagree_over_50mm": 0.059,
+   "only_old": 0.065,
+   "only_new": 0.095,
+   "impossible_steps_old": 0.0017,
+   "impossible_steps_new": 0.0,
+   "pass_frames": 390,
+   "pass_coverage_old": 0.823,
+   "pass_coverage_new": 0.71,
+   "shot_frames": 43,
+   "shot_coverage_old": 0.86,
+   "shot_coverage_new": 0.814,
+   "new_fast_frames": 1045,
+   "new_fast_coverage_old": 0.736,
+   "user_goals": 0,
+   "goal_last2s_coverage_old": null,
+   "goal_last2s_coverage_new": null,
+   "goal_last0.5s_coverage_old": null,
+   "goal_last0.5s_coverage_new": null,
+   "other_goal_windows_frames": 2160,
+   "other_goal_windows_coverage_old": 0.341,
+   "other_goal_windows_coverage_new": 0.37
+  },
+  "g7": {
+   "live_frames": 8976,
+   "coverage_old": 0.707,
+   "coverage_new": 0.704,
+   "both": 5550,
+   "agree_median_mm": 4.3,
+   "agree_within_15mm": 0.819,
+   "disagree_over_50mm": 0.066,
+   "only_old": 0.089,
+   "only_new": 0.086,
+   "impossible_steps_old": 0.0037,
+   "impossible_steps_new": 0.0,
+   "pass_frames": 538,
+   "pass_coverage_old": 0.853,
+   "pass_coverage_new": 0.857,
+   "shot_frames": 42,
+   "shot_coverage_old": 0.762,
+   "shot_coverage_new": 0.786,
+   "new_fast_frames": 1167,
+   "new_fast_coverage_old": 0.818,
+   "user_goals": 0,
+   "goal_last2s_coverage_old": null,
+   "goal_last2s_coverage_new": null,
+   "goal_last0.5s_coverage_old": null,
+   "goal_last0.5s_coverage_new": null,
+   "other_goal_windows_frames": 1440,
+   "other_goal_windows_coverage_old": 0.36,
+   "other_goal_windows_coverage_new": 0.394
+  }
+ },
+ "goals": [
+  {
+   "id": "g1-goal1",
+   "combination": "Edwallskyffel lang",
+   "family": "shovel",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 176.5,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 129.3,
+    "coverage_last_2s": 0.607,
+    "coverage_last_0_5s": 0.875
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.1,
+    "goal_dist_at_last_seen_mm": 173.8,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 173.8,
+    "coverage_last_2s": 0.508,
+    "coverage_last_0_5s": 0.812
+   }
+  },
+  {
+   "id": "g1-goal2",
+   "combination": null,
+   "family": "wing",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 204.5,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 183.0,
+    "coverage_last_2s": 0.967,
+    "coverage_last_0_5s": 0.938
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.033,
+    "goal_dist_at_last_seen_mm": 201.8,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 179.9,
+    "coverage_last_2s": 0.984,
+    "coverage_last_0_5s": 0.938
+   }
+  },
+  {
+   "id": "g1-goal3",
+   "combination": null,
+   "family": "centrifuge",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": -0.033,
+    "goal_dist_at_last_seen_mm": 103.6,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 94.3,
+    "coverage_last_2s": 0.803,
+    "coverage_last_0_5s": 0.5
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.233,
+    "goal_dist_at_last_seen_mm": 151.5,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 134.6,
+    "coverage_last_2s": 0.623,
+    "coverage_last_0_5s": 0.562
+   }
+  },
+  {
+   "id": "g1-goal4",
+   "combination": null,
+   "family": "centrifuge",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 112.7,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 112.7,
+    "coverage_last_2s": 0.607,
+    "coverage_last_0_5s": 0.062
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.1,
+    "goal_dist_at_last_seen_mm": 192.5,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 147.2,
+    "coverage_last_2s": 0.951,
+    "coverage_last_0_5s": 0.812
+   }
+  },
+  {
+   "id": "g1-goal5",
+   "combination": null,
+   "family": "centrifuge",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 197.6,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 192.2,
+    "coverage_last_2s": 0.885,
+    "coverage_last_0_5s": 0.875
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.133,
+    "goal_dist_at_last_seen_mm": 178.4,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 165.0,
+    "coverage_last_2s": 0.934,
+    "coverage_last_0_5s": 0.75
+   }
+  },
+  {
+   "id": "g1-goal6",
+   "combination": null,
+   "family": "centrifuge",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": -0.067,
+    "goal_dist_at_last_seen_mm": 262.5,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 105.4,
+    "coverage_last_2s": 0.803,
+    "coverage_last_0_5s": 0.625
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.133,
+    "goal_dist_at_last_seen_mm": 189.1,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 145.1,
+    "coverage_last_2s": 0.934,
+    "coverage_last_0_5s": 0.75
+   }
+  },
+  {
+   "id": "g1-goal7",
+   "combination": null,
+   "family": "shovel",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 337.8,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 133.0,
+    "coverage_last_2s": 0.918,
+    "coverage_last_0_5s": 0.938
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.067,
+    "goal_dist_at_last_seen_mm": 157.0,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 157.0,
+    "coverage_last_2s": 0.967,
+    "coverage_last_0_5s": 0.875
+   }
+  },
+  {
+   "id": "g2-goal1",
+   "combination": "Short centrifuge",
+   "family": "centrifuge",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 158.7,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 99.8,
+    "coverage_last_2s": 0.721,
+    "coverage_last_0_5s": 0.625
+   },
+   "new": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 150.6,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 141.2,
+    "coverage_last_2s": 0.984,
+    "coverage_last_0_5s": 1.0
+   }
+  },
+  {
+   "id": "g2-goal2",
+   "combination": "Edwallskyffel lang",
+   "family": "shovel",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 102.8,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 102.8,
+    "coverage_last_2s": 0.623,
+    "coverage_last_0_5s": 0.875
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.133,
+    "goal_dist_at_last_seen_mm": 131.7,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 131.7,
+    "coverage_last_2s": 0.426,
+    "coverage_last_0_5s": 0.75
+   }
+  },
+  {
+   "id": "g2-goal3",
+   "combination": "Edwallskyffel lang",
+   "family": "shovel",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": -0.033,
+    "goal_dist_at_last_seen_mm": 272.0,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 199.6,
+    "coverage_last_2s": 0.902,
+    "coverage_last_0_5s": 0.75
+   },
+   "new": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 64.5,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 64.5,
+    "coverage_last_2s": 0.59,
+    "coverage_last_0_5s": 1.0
+   }
+  },
+  {
+   "id": "g2-goal4",
+   "combination": "Edwallskyffel lang",
+   "family": "shovel",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 244.2,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 187.9,
+    "coverage_last_2s": 0.475,
+    "coverage_last_0_5s": 0.875
+   },
+   "new": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 542.3,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 139.4,
+    "coverage_last_2s": 0.984,
+    "coverage_last_0_5s": 0.938
+   }
+  },
+  {
+   "id": "g3-goal1",
+   "combination": "Spade",
+   "family": "shovel",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 194.7,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 155.4,
+    "coverage_last_2s": 0.951,
+    "coverage_last_0_5s": 0.938
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.133,
+    "goal_dist_at_last_seen_mm": 298.8,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 298.5,
+    "coverage_last_2s": 0.934,
+    "coverage_last_0_5s": 0.75
+   }
+  },
+  {
+   "id": "g3-goal2",
+   "combination": null,
+   "family": "centrifuge",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 195.1,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 162.0,
+    "coverage_last_2s": 0.934,
+    "coverage_last_0_5s": 0.938
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.1,
+    "goal_dist_at_last_seen_mm": 200.1,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 163.1,
+    "coverage_last_2s": 0.951,
+    "coverage_last_0_5s": 0.812
+   }
+  },
+  {
+   "id": "g3-goal3",
+   "combination": "Spade",
+   "family": "shovel",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 246.0,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 211.6,
+    "coverage_last_2s": 0.918,
+    "coverage_last_0_5s": 0.812
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.067,
+    "goal_dist_at_last_seen_mm": 263.4,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 263.4,
+    "coverage_last_2s": 0.787,
+    "coverage_last_0_5s": 0.875
+   }
+  },
+  {
+   "id": "g3-goal4",
+   "combination": "Edwallskyffel lang",
+   "family": "shovel",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": -0.033,
+    "goal_dist_at_last_seen_mm": 122.1,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 122.1,
+    "coverage_last_2s": 0.754,
+    "coverage_last_0_5s": 0.438
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.133,
+    "goal_dist_at_last_seen_mm": 229.6,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 178.5,
+    "coverage_last_2s": 0.82,
+    "coverage_last_0_5s": 0.75
+   }
+  },
+  {
+   "id": "g3-goal5",
+   "combination": "Spjass",
+   "family": "centre",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": -0.033,
+    "goal_dist_at_last_seen_mm": 119.6,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 76.0,
+    "coverage_last_2s": 0.754,
+    "coverage_last_0_5s": 0.938
+   },
+   "new": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 116.1,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 44.4,
+    "coverage_last_2s": 1.0,
+    "coverage_last_0_5s": 1.0
+   }
+  },
+  {
+   "id": "g3-goal6",
+   "combination": "Short centrifuge",
+   "family": "centrifuge",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 114.1,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 98.7,
+    "coverage_last_2s": 0.82,
+    "coverage_last_0_5s": 0.812
+   },
+   "new": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 535.9,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 166.0,
+    "coverage_last_2s": 0.984,
+    "coverage_last_0_5s": 1.0
+   }
+  },
+  {
+   "id": "g3-goal7",
+   "combination": null,
+   "family": "rebound",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 137.6,
+    "at_mouth": true,
+    "first_at_mouth_s": -0.133,
+    "closest_to_goal_mm": 27.3,
+    "coverage_last_2s": 0.738,
+    "coverage_last_0_5s": 0.5
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.067,
+    "goal_dist_at_last_seen_mm": 10.1,
+    "at_mouth": true,
+    "first_at_mouth_s": -0.133,
+    "closest_to_goal_mm": 10.1,
+    "coverage_last_2s": 0.967,
+    "coverage_last_0_5s": 0.875
+   }
+  },
+  {
+   "id": "g3-goal8",
+   "combination": "Spade",
+   "family": "shovel",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": -0.033,
+    "goal_dist_at_last_seen_mm": 232.7,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 231.4,
+    "coverage_last_2s": 0.869,
+    "coverage_last_0_5s": 0.875
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.1,
+    "goal_dist_at_last_seen_mm": 286.6,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 286.6,
+    "coverage_last_2s": 0.951,
+    "coverage_last_0_5s": 0.812
+   }
+  },
+  {
+   "id": "g4-goal1",
+   "combination": "Spjass",
+   "family": "centre",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 123.8,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 115.2,
+    "coverage_last_2s": 0.787,
+    "coverage_last_0_5s": 0.938
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.1,
+    "goal_dist_at_last_seen_mm": 70.0,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 70.0,
+    "coverage_last_2s": 0.951,
+    "coverage_last_0_5s": 0.812
+   }
+  },
+  {
+   "id": "g4-goal2",
+   "combination": "Short centrifuge",
+   "family": "centrifuge",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 196.8,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 87.9,
+    "coverage_last_2s": 0.951,
+    "coverage_last_0_5s": 1.0
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.1,
+    "goal_dist_at_last_seen_mm": 142.6,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 130.2,
+    "coverage_last_2s": 0.951,
+    "coverage_last_0_5s": 0.812
+   }
+  },
+  {
+   "id": "g4-goal3",
+   "combination": null,
+   "family": "centrifuge",
+   "conceding_end": "E",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 220.0,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 111.4,
+    "coverage_last_2s": 0.623,
+    "coverage_last_0_5s": 0.625
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.067,
+    "goal_dist_at_last_seen_mm": 144.2,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 144.2,
+    "coverage_last_2s": 0.574,
+    "coverage_last_0_5s": 0.875
+   }
+  },
+  {
+   "id": "g4-goal4",
+   "combination": null,
+   "family": "defence",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 200.7,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 198.8,
+    "coverage_last_2s": 0.852,
+    "coverage_last_0_5s": 0.875
+   },
+   "new": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 198.5,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 198.3,
+    "coverage_last_2s": 0.902,
+    "coverage_last_0_5s": 0.938
+   }
+  },
+  {
+   "id": "g5-goal1",
+   "combination": null,
+   "family": "centrifuge",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": -0.633,
+    "goal_dist_at_last_seen_mm": 177.3,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 166.5,
+    "coverage_last_2s": 0.426,
+    "coverage_last_0_5s": 0.0
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.233,
+    "goal_dist_at_last_seen_mm": 150.9,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 149.2,
+    "coverage_last_2s": 0.787,
+    "coverage_last_0_5s": 0.562
+   }
+  },
+  {
+   "id": "g5-goal2",
+   "combination": "Ceuleman",
+   "family": "defence",
+   "conceding_end": "W",
+   "old": {
+    "last_seen_before_goal_s": 0.0,
+    "goal_dist_at_last_seen_mm": 555.4,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 505.0,
+    "coverage_last_2s": 0.82,
+    "coverage_last_0_5s": 0.875
+   },
+   "new": {
+    "last_seen_before_goal_s": -0.233,
+    "goal_dist_at_last_seen_mm": 515.0,
+    "at_mouth": false,
+    "first_at_mouth_s": null,
+    "closest_to_goal_mm": 514.7,
+    "coverage_last_2s": 0.639,
+    "coverage_last_0_5s": 0.5
+   }
+  }
+ ],
+ "summary": {
+  "user_goals": 25,
+  "at_mouth_old": 1,
+  "at_mouth_new": 1,
+  "seen_in_last_0.2s_old": 6,
+  "seen_in_last_0.2s_new": 16,
+  "median_goal_dist_at_last_seen_old_mm": 195.1,
+  "median_goal_dist_at_last_seen_new_mm": 178.4,
+  "goal_last2s_coverage_old": 0.78,
+  "goal_last2s_coverage_new": 0.843,
+  "goal_last0.5s_coverage_old": 0.74,
+  "goal_last0.5s_coverage_new": 0.822,
+  "coverage_old": 0.703,
+  "coverage_new": 0.764,
+  "pass_coverage_old": 0.827,
+  "pass_coverage_new": 0.801,
+  "shot_coverage_old": 0.801,
+  "shot_coverage_new": 0.814,
+  "impossible_steps_old": 0.003,
+  "impossible_steps_new": 0.0,
+  "agree_within_15mm": 0.796,
+  "new_fast_coverage_old": 0.773
+ }
+}
