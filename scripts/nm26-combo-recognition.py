@@ -20,7 +20,7 @@ Steps:
    is a run of at least 4 disk detections (gaps of at most 3 frames, steps under 15 mm). Holds at the centre spot, on
    static false spots (a place where the game has a 1 s hold that moves less than 1.5 mm, at least twice) and in the
    FALSE_SPOT box (a candidate at the near board of the left corner, about world (-240, -178) mm, that the track holds
-   in five games while the real puck is elsewhere; found by inspection) are ignored.
+   for 7-21 s in each of games 2-5 while the real puck is elsewhere; found by inspection) are ignored.
    - REPLAY: the broadcast shows a replay of many goals about 5 s after the goal; it is found as the delay at which the
      moving puck's detections repeat (replay_match). The goal is the end of the matched live segment plus a constant.
    - Otherwise: the end of the hold followed by the longest stretch without another hold (the puck went into the
