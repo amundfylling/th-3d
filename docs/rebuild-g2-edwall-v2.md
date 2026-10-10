@@ -4,6 +4,10 @@ Status: PROPOSED (2026-10-10). Three traces, one per goal, and three analysis vi
 `docs/rebuild-g2-edwall.md` (v1: evidence sheets only). Nothing here is measured on the table; every value is read from one
 broadcast camera or designed.
 
+**Update 2026-10-10 (docs/nm26-new-tracks.md section 5):** goal 3's trace is now v2 (detector readings, rest at the
+readings, the passer's and shooter's tracker readings); its row below and its video are from v1. Goals 2 and 4 stay v1:
+no v2 fit scored.
+
 **Results**
 
 | goal | trace | contact check | slide check | carry force check | goal frame (trace / user label) | video |

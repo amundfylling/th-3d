@@ -6,8 +6,12 @@ broadcast (figure tracks, puck readings) with the occluded moves designed. docs/
 Inputs:
 - shots/edwall/<goal_id>.inputs.json: the window, the designed moves of the passer (W-RW) and the shooter (W-C) and
   their fitted parameters, the contact and slide-rule parameters;
-- shots/edwall/puck-readings.json (scripts/edwall-observe.py turns the pixel readings into world mm);
-- data/games/nm26-semifinal/g2/figure-tracks-smooth.json (all other figures: the cleaned model tracks, PROPOSED);
+- shots/edwall/puck-readings.json (hand readings; scripts/edwall-observe.py turns the pixel readings into world mm);
+- the puck detector's track inputs.observations.puck_track (data/games/nm26-semifinal/g2/puck-track-synth.json, PROPOSED;
+  x/y = the puck centre): when inputs.observations is set, its detections are the puck observations (hand readings only
+  where it has none), and its slow detections before the play give the rest position (inputs.rest_mode "readings");
+- the figure tracks (scripts/nm26_tracks.py: data/games/nm26-semifinal/g2/figure-tracks-v3.json, PROPOSED): all other
+  figures, the rest poses, and (inputs.figure_constraints) the passer's and shooter's own readings inside their moves;
 - geometry, preview goal, figure meshes (helpers from scripts/spjass-trace.py).
 Outputs: data/traces/edwall-<goal_id>.trace.json, shots/edwall/<goal_id>.checks.json, validation/edwall-<goal_id>-trace.png.
 
@@ -16,7 +20,10 @@ ice friction (constant deceleration, spjass slide fit); figure contact (all 12 f
 touching, collision impulse along the normal with restitution e when approaching, frictionless); boards and posts
 (inelastic, slides along them); goal cage from outside (inelastic), side nets from inside, back net stops it.
 --fit: fits the designed parameters (Nelder-Mead) to the puck readings, the goal timing and the slide rule, and writes
-them into the inputs file under "fitted". --quick: run and print the summary only (no files).
+them into the inputs file under "fitted". With inputs.figure_constraints the fit also matches the moving figure's own
+track readings (src 0), with inputs.carry_force_weight it penalises carries that need a pull (carry_force_check), and
+with inputs.shovel_part it penalises a shovel caught by another part of the centre. --quick: run and print the summary
+only (no files).
 """
 import importlib.util
 import json
@@ -39,6 +46,7 @@ sys.argv = sys.argv[:1]
 _spec.loader.exec_module(sp)  # helpers only
 sys.argv = _argv
 from edwall_common import crop_to_world, tracks  # noqa: E402
+from nm26_tracks import FIGURE_TRACKS, slow_flags  # noqa: E402
 
 GID = sys.argv[1]
 FIT, QUICK = "--fit" in sys.argv, "--quick" in sys.argv
@@ -81,13 +89,36 @@ for f, x, y, kind in READ["goals"][GID]["readings"]:
         continue
     w = crop_to_world([x, y], READ["z_mm"])[0]
     OBS.append({"frame": f, "t": round(fr_t(f), 5), "px": [x, y], "world_mm": [round(float(w[0]), 2), round(float(w[1]), 2)], "kind": kind})
-REST = [o for o in OBS if o["kind"] == "rest" and o["frame"] >= LABEL + INP["rest_from_frame"]]
-MOVING = [o for o in OBS if o["kind"] in ("streak", "flight")]
+OBS_CFG = INP.get("observations")
+if OBS_CFG:  # the detector track: its detections replace the hand readings on the same frames
+    _PT = json.loads((REPO / OBS_CFG["puck_track"]).read_text()); _pc = _PT["columns"]
+    _slow = dict(zip((r[0] for r in _PT["rows"]), slow_flags(_PT)))
+    a, b = LABEL + OBS_CFG["frames"][0], LABEL + OBS_CFG["frames"][1]
+    det = [r for r in _PT["rows"] if a <= r[0] <= b and r[_pc.index("score")] >= OBS_CFG["min_score"]]
+    dfr = {r[0] for r in det}
+    OBS = [o for o in OBS if o["frame"] not in dfr]
+    for r in det:
+        OBS.append({"frame": r[0], "t": round(fr_t(r[0]), 5), "px": [r[_pc.index("u_stab_px")], r[_pc.index("v_stab_px")]],
+                    "world_mm": [r[_pc.index("x_mm")], r[_pc.index("y_mm")]], "kind": "det_rest" if _slow[r[0]] else "det", "score": r[_pc.index("score")]})
+    OBS.sort(key=lambda o: o["frame"])
+REST = [o for o in OBS if o["kind"] in ("rest", "det_rest") and LABEL + INP["rest_from_frame"] <= o["frame"] < LABEL + INP.get("rest_to_frame", 0)]
+MOVING = [o for o in OBS if o["kind"] in ("streak", "flight", "det") and o["frame"] <= LABEL + INP.get("obs_to_frame", 10 ** 6)]
+PASS_TO = LABEL + INP.get("pass_obs_to_frame", 10 ** 6)  # moving observations after this frame belong to the shot stage
 HIDDEN = [f for f, x, y, k in READ["goals"][GID]["readings"] if x is None]
 
 
+def obs_weight(o):
+    if o["kind"] == "streak":
+        return INP["fit"]["weight_streak"]
+    if o["kind"] == "det":
+        return 1.0 if o["score"] >= OBS_CFG["full_weight_score"] else OBS_CFG["weight_low_score"]
+    return 1.0
+
+
 # ---------------------------------------------------------------- figures
-TR = tracks(GID)
+# v1 inputs (no trace_version) keep the figure tracks they were fitted on; v2 reads the selected tracks
+FIG_FILE = INP.get("figure_tracks", FIGURE_TRACKS if INP.get("trace_version") else "figure-tracks-smooth.json")
+TR = tracks(GID, FIG_FILE)
 SLOTS = {pid: sp.Slot(pid) for pid in sp.ASM}
 
 
@@ -302,9 +333,13 @@ def simulate(S, p_rest, k_end=None, carries=()):
 
 # ---------------------------------------------------------------- rest pose
 def rest_setup(p, others_S):
-    """Puck at rest: the mean rest reading, moved onto the board (touching the inset boundary). W-RW at rest: the
-    tracked rotation; the arc is backed off along the slot until the puck just touches the figure (clearance 0.0-0.3 mm)."""
+    """Puck at rest: the mean rest reading; with rest_mode "board" (v1) moved onto the board (touching the inset
+    boundary). W-RW at rest: the tracked rotation; the arc is backed off along the slot until the puck just touches the
+    figure (clearance 0.0-0.3 mm)."""
     m = np.mean([o["world_mm"] for o in REST], axis=0)
+    if INP.get("rest_mode") == "readings":
+        assert INSET.contains(Point(*m)), "rest reading overlaps the board"
+        return np.array(m, float)
     q = np.array(INSET_RING.interpolate(INSET_RING.project(Point(*m))).coords[0])
     nrm = q - np.asarray(sp.BOARD.centroid.coords[0]); nrm = nrm / max(1e-9, np.linalg.norm(nrm))
     p_rest = q - nrm * 0.02  # just inside the inset: touching the board
@@ -374,16 +409,26 @@ def goal_cross(P):
 
 def score(p, verbose=False, stage=None):
     if stage == "pass":
-        k_end = int(round((MOVING[-1]["t"] + 0.01) / DT))
+        k_end = int(round((max(o["t"] for o in MOVING if o["frame"] <= PASS_TO) + 0.01) / DT))
     else:
         k_end = int(round((fr_t(LABEL) + INP["goal_window_frames"][1] / FPS + 0.08) / DT))
     p, p_rest, rw, wc, S, P, V, touching, imp, walls, clog = run(p, min(k_end, NSTEP))
     err = []
     for o in MOVING:
+        if stage == "pass" and o["frame"] > PASS_TO:
+            continue
         k = int(round(o["t"] / DT))
-        w = INP["fit"]["weight_streak"] if o["kind"] == "streak" else 1.0
-        err.append(w * float(np.sum((P[k] - o["world_mm"]) ** 2)))
+        if k >= len(P):
+            continue
+        err.append(obs_weight(o) * float(np.sum((P[k] - o["world_mm"]) ** 2)))
     J = sum(err)
+    J += figure_penalty(rw if stage != "shot" else wc, "W-RW" if stage != "shot" else "W-C") if stage else 0.0
+    cw = INP.get("carry_force_weight")
+    if cw and stage:
+        pid = "W-RW" if stage == "pass" else "W-C"
+        c = next((c for c in clog if c["figure"] == pid), None)
+        if c is not None:
+            J += cw * pull_check(next(g for g in S if g.pid == pid), c, P)["share_needing_pull"]
     kg = goal_cross(P)
     if stage == "pass":
         kg = 0
@@ -418,6 +463,9 @@ def score(p, verbose=False, stage=None):
                     J += 200.0 * c * c + 50.0
         if not any(x.get("catch") and x["figure"] == "W-C" for x in imp):
             J += 3000.0
+        want = INP.get("shovel_part")
+        if want and any(x.get("catch") and x["figure"] == "W-C" and x["part"] != want for x in imp):
+            J += INP.get("shovel_part_penalty", 2000.0)
     lim_f, lim_w = INP["slide_rule"]["figure_impact_max_mm_s"], INP["slide_rule"]["wall_impact_max_mm_s"]
     J += sum(0.05 * (x["impact_mm_s"] - 0.9 * lim_f) ** 2 for x in imp if x["impact_mm_s"] > 0.9 * lim_f)
     J += sum(0.05 * (x["impact_mm_s"] - 0.9 * lim_w) ** 2 for x in walls if x["impact_mm_s"] > 0.9 * lim_w and x["obstacle"] != "goal_net")
@@ -425,72 +473,6 @@ def score(p, verbose=False, stage=None):
     if verbose:
         return J, P, V, imp, walls, kg, p
     return J
-
-
-def summary(P, V, imp, walls, kg):
-    out = {"obs": [(o["frame"], o["kind"], [round(float(x), 1) for x in P[int(round(o["t"] / DT))]], o["world_mm"]) for o in MOVING]}
-    out["goal"] = None if kg is None else {"t": round(kg * DT, 4), "frame": round(F0 + kg * DT * FPS, 2), "y": round(float(P[kg, 1]), 1)}
-    out["max_fig"] = max(((x["impact_mm_s"], x["t"], x["figure"], x["part"]) for x in imp), default=None)
-    out["max_wall"] = max(((x["impact_mm_s"], x["t"], x["obstacle"]) for x in walls), default=None)
-    out["figs_touched"] = sorted(set(x["figure"] for x in imp))
-    return out
-
-
-KEYS = INP["fit"]["keys"][STAGE] if STAGE else []
-
-
-def _obj(z):
-    p = dict(_P0); p.update({k: float(v) for k, v in zip(KEYS, z)})
-    try:
-        return score(p, stage=STAGE)
-    except SystemExit:
-        return 1e9
-
-
-_P0 = None
-
-
-def fit():
-    """Global search (differential evolution inside the bounds of inputs.fit.bounds), then Nelder-Mead polish."""
-    global _P0
-    from scipy.optimize import differential_evolution, minimize
-    _P0 = params()
-    bounds = [tuple(INP["fit"]["bounds"][k]) for k in KEYS]
-    x0 = np.clip([_P0[k] for k in KEYS], [b[0] for b in bounds], [b[1] for b in bounds])
-    r = differential_evolution(_obj, bounds, x0=x0, maxiter=INP["fit"]["de_maxiter"], popsize=INP["fit"]["de_popsize"], tol=1e-6, seed=1, workers=4, updating="deferred", polish=False, init="sobol")
-    print("DE", r.fun, dict(zip(KEYS, np.round(r.x, 4))), flush=True)
-    r2 = minimize(_obj, r.x, method="Nelder-Mead", options={"maxfev": INP["fit"]["maxfev"], "xatol": 1e-4, "fatol": 0.5})
-    xb, Jb = (r2.x, r2.fun) if r2.fun < r.fun else (r.x, r.fun)
-    vals = {k: round(float(v), 5) for k, v in zip(KEYS, xb)}
-    cur = json.loads(INP_PATH.read_text())  # re-read: the file may have been edited while the fit ran
-    old = cur.get("fitted", {})
-    INP["fitted"] = cur["fitted"] = {"method": "two stages (scripts/edwall-trace.py --fit pass|shot), each a differential-evolution search inside fit.bounds and a Nelder-Mead polish: pass = the passer's rest rotation, lunge and turn against the puck readings (streak weight %s) and the slide-rule limits; shot = the shooter's lunge and turns against the goal window, the goal-line target and the slide-rule limits" % INP["fit"]["weight_streak"],
-                     "objective": {**old.get("objective", {}), STAGE: round(float(Jb), 2)}, "evaluations": {**old.get("evaluations", {}), STAGE: int(r.nfev + r2.nfev)}, "values": {**old.get("values", {}), **vals}}
-    INP_PATH.write_text(json.dumps(cur, indent=1, ensure_ascii=False) + "\n")
-    print(json.dumps(INP["fitted"], indent=1))
-
-
-if __name__ == "__main__" and FIT:
-    fit()
-    raise SystemExit
-if __name__ == "__main__" and QUICK:
-    J, P, V, imp, walls, kg, p = score(params(), verbose=True)
-    print("J", round(J, 1), "rw_arc0", round(p["rw_arc0"], 2))
-    print(json.dumps(summary(P, V, imp, walls, kg)))
-    big = [(x["t"], x["figure"], x["part"], x["impact_mm_s"]) for x in imp if x["impact_mm_s"] > 150]
-    print("big impacts", big[:20])
-    print("walls>100", [(w["t"], w["obstacle"], w["impact_mm_s"]) for w in walls if w["impact_mm_s"] > 100][:20])
-    raise SystemExit
-
-
-# ---------------------------------------------------------------- outputs
-def local_contact(g, k, p):
-    loc = g.local(k, p)
-    q = Point(*loc)
-    nb = sp.LOW[g.kind].boundary.interpolate(sp.LOW[g.kind].boundary.project(q))
-    n = np.array(loc) - np.array(nb.coords[0]); h = g.h[k]
-    nw = np.array([math.cos(h) * n[0] - math.sin(h) * n[1], math.sin(h) * n[0] + math.cos(h) * n[1]])
-    return [round(float(x), 2) for x in nb.coords[0]], round(math.degrees(math.atan2(nw[1], nw[0])), 2)
 
 
 def pull_check(g, c, P, contact_mm=1.0, friction_deg=17.0, h=8):
@@ -524,6 +506,107 @@ def pull_check(g, c, P, contact_mm=1.0, friction_deg=17.0, h=8):
             bad += 1; worst = max(worst, math.degrees(out))
     return {"normal_fan_deg": round(math.degrees(span), 1) if len(ang) else 0.0, "friction_angle_deg_assumed": friction_deg,
             "steps_checked": tot, "steps_needing_pull": bad, "share_needing_pull": round(bad / tot, 3) if tot else 0.0, "worst_outside_fan_deg": round(worst, 1)}
+
+
+FC = INP.get("figure_constraints")
+
+
+def figure_readings(pid):
+    """The figure's own track readings (src 0) inside inputs.figure_constraints.frames[pid] (relative to the label)."""
+    if not FC or pid not in FC["frames"]:
+        return []
+    a, b = (LABEL + x for x in FC["frames"][pid])
+    return [(fr_t(f), TR[f][pid][0] * SLOTS[pid].length, TR[f][pid][1]) for f in sorted(TR)
+            if a <= f <= b and TR[f][pid][0] is not None and TR[f][pid][2] == 0]
+
+
+def figure_penalty(fig, pid):
+    """Robust squared misfit of the designed move against the figure's readings: weight * min(cap, (d_arc / sigma_arc)^2 +
+    (d_theta / sigma_theta)^2) per reading."""
+    if not FC:
+        return 0.0
+    J = 0.0
+    for t, a, th in figure_readings(pid):
+        dth = (fig.theta(t) - th + 180.0) % 360.0 - 180.0
+        J += FC["weight"] * min(FC["cap"], ((fig.arc(t) - a) / FC["sigma_arc_mm"]) ** 2 + (dth / FC["sigma_theta_deg"]) ** 2)
+    return J
+
+
+def figure_fit(fig, pid):
+    out = []
+    for t, a, th in figure_readings(pid):
+        out.append({"frame": int(round(F0 + t * FPS)), "track_arc_mm": round(a, 1), "trace_arc_mm": round(fig.arc(t), 1), "track_theta_deg": round(th, 1),
+                    "trace_theta_deg": round(fig.theta(t) % 360.0, 1), "theta_error_deg": round((fig.theta(t) - th + 180.0) % 360.0 - 180.0, 1)})
+    return out
+
+
+def summary(P, V, imp, walls, kg):
+    out = {"obs": [(o["frame"], o["kind"], [round(float(x), 1) for x in P[int(round(o["t"] / DT))]], o["world_mm"]) for o in MOVING]}
+    out["goal"] = None if kg is None else {"t": round(kg * DT, 4), "frame": round(F0 + kg * DT * FPS, 2), "y": round(float(P[kg, 1]), 1)}
+    out["max_fig"] = max(((x["impact_mm_s"], x["t"], x["figure"], x["part"]) for x in imp), default=None)
+    out["max_wall"] = max(((x["impact_mm_s"], x["t"], x["obstacle"]) for x in walls), default=None)
+    out["figs_touched"] = sorted(set(x["figure"] for x in imp))
+    return out
+
+
+KEYS = INP["fit"]["keys"][STAGE] if STAGE else []
+
+
+def _obj(z):
+    p = dict(_P0); p.update({k: float(v) for k, v in zip(KEYS, z)})
+    try:
+        return score(p, stage=STAGE)
+    except SystemExit:
+        return 1e9
+
+
+_P0 = params() if FIT else None  # module level: the fit's worker processes may be spawned (re-import), not forked
+
+
+def fit():
+    """Global search (differential evolution inside the bounds of inputs.fit.bounds), then a Nelder-Mead polish inside the same bounds."""
+    global _P0
+    from scipy.optimize import differential_evolution, minimize
+    _P0 = params()
+    bounds = [tuple(INP["fit"]["bounds"][k]) for k in KEYS]
+    lo, hi = np.array([b[0] for b in bounds], float), np.array([b[1] for b in bounds], float)
+    x0 = np.clip([_P0[k] for k in KEYS], lo + 1e-6 * (hi - lo), hi - 1e-6 * (hi - lo))
+    r = differential_evolution(_obj, bounds, x0=x0, maxiter=INP["fit"].get(f"de_maxiter_{STAGE}", INP["fit"]["de_maxiter"]), popsize=INP["fit"]["de_popsize"], tol=1e-6, seed=1, workers=4, updating="deferred", polish=False, init="sobol")
+    print("DE", r.fun, dict(zip(KEYS, np.round(r.x, 4))), flush=True)
+    r2 = minimize(_obj, r.x, method="Nelder-Mead", bounds=bounds, options={"maxfev": INP["fit"]["maxfev"], "xatol": 1e-4, "fatol": 0.5})
+    xb, Jb = (r2.x, r2.fun) if r2.fun < r.fun else (r.x, r.fun)
+    vals = {k: round(float(v), 5) for k, v in zip(KEYS, xb)}
+    cur = json.loads(INP_PATH.read_text())  # re-read: the file may have been edited while the fit ran
+    old = cur.get("fitted", {})
+    INP["fitted"] = cur["fitted"] = {"method": "two stages (scripts/edwall-trace.py --fit pass|shot), each a differential-evolution search inside fit.bounds and a Nelder-Mead polish: pass = the passer's rest rotation, lunge and turn against the puck readings (streak weight %s) and the slide-rule limits; shot = the shooter's lunge and turns against the goal window, the goal-line target and the slide-rule limits" % INP["fit"]["weight_streak"],
+                     "objective": {**old.get("objective", {}), STAGE: round(float(Jb), 2)}, "evaluations": {**old.get("evaluations", {}), STAGE: int(r.nfev + r2.nfev)}, "values": {**old.get("values", {}), **vals}}
+    INP_PATH.write_text(json.dumps(cur, indent=1, ensure_ascii=False) + "\n")
+    print(json.dumps(INP["fitted"], indent=1))
+
+
+if __name__ == "__main__" and FIT:
+    fit()
+    raise SystemExit
+if __name__ == "__main__" and QUICK:
+    J, P, V, imp, walls, kg, p = score(params(), verbose=True)
+    print("J", round(J, 1), "rw_arc0", round(p["rw_arc0"], 2))
+    print(json.dumps(summary(P, V, imp, walls, kg)))
+    _, _, rw_, wc_ = build(params())
+    print("figure fit W-RW", figure_fit(rw_, "W-RW")); print("figure fit W-C", figure_fit(wc_, "W-C"))
+    big = [(x["t"], x["figure"], x["part"], x["impact_mm_s"]) for x in imp if x["impact_mm_s"] > 150]
+    print("big impacts", big[:20])
+    print("walls>100", [(w["t"], w["obstacle"], w["impact_mm_s"]) for w in walls if w["impact_mm_s"] > 100][:20])
+    raise SystemExit
+
+
+# ---------------------------------------------------------------- outputs
+def local_contact(g, k, p):
+    loc = g.local(k, p)
+    q = Point(*loc)
+    nb = sp.LOW[g.kind].boundary.interpolate(sp.LOW[g.kind].boundary.project(q))
+    n = np.array(loc) - np.array(nb.coords[0]); h = g.h[k]
+    nw = np.array([math.cos(h) * n[0] - math.sin(h) * n[1], math.sin(h) * n[0] + math.cos(h) * n[1]])
+    return [round(float(x), 2) for x in nb.coords[0]], round(math.degrees(math.atan2(nw[1], nw[0])), 2)
 
 
 def groups_of(imp, gap=0.06):
@@ -626,10 +709,10 @@ def main():
     loc_e, n_e = local_contact(figs_by["W-C"], kat(sh_t1), P[kat(sh_t1)])
     v_p, v_s = vel(pass_t1 + 0.006), vel(sh_t1 + 0.006)
     fit_res = [{"frame": o["frame"], "kind": o["kind"], "t": o["t"], "observed_mm": o["world_mm"], "trace_mm": [round(float(x), 2) for x in P[kat(o["t"])]],
-                "error_mm": round(float(np.linalg.norm(P[kat(o["t"])] - o["world_mm"])), 2)} for o in OBS]
+                "error_mm": round(float(np.linalg.norm(P[kat(o["t"])] - o["world_mm"])), 2), **({"score": o["score"]} if "score" in o else {})} for o in OBS]
     events = [
         {"id": "pass.start", "t_estimate": pass_t0, "part": "W-RW:" + rw_c["part"], "contact_point_local_mm": rw_c["local_mm"], "model_contact_normal_deg": n_p,
-         "status": "derived: the right wing starts its lunge with the puck resting in the heel groove of its stick by the board"},
+         "status": "derived: the right wing starts its lunge with the puck resting in the heel groove of its stick " + ("at the rest readings" if INP.get("rest_mode") == "readings" else "by the board")},
         {"id": "pass.release", "t_estimate": pass_t1, "t_start": pass_t0, "part": "W-RW:" + rw_c["part"], "contact_point_local_mm": rw_c["local_mm"], "model_contact_normal_deg": n_r,
          "peak_impact_mm_s": peak(pass_g), "touches": len(pass_g), "speed_mm_s": round(float(np.linalg.norm(v_p)), 1), "direction_deg": deg(v_p),
          "status": "derived (heel-groove carry: the right wing lunges up its slot with the puck in the heel groove and turns counter-clockwise; the puck leaves with the groove's velocity)"},
@@ -647,14 +730,15 @@ def main():
                "W-C": fig_out(figs_by["W-C"], "moving: shooter (rest pose from the track; the lunge and shovel turn are hidden in the broadcast: DESIGNED and fitted to the goal)")}
     for pid in sp.ASM:
         if pid not in figures:
-            figures[pid] = fig_out(figs_by[pid], "moving: cleaned figure track (model output, PROPOSED; data/games/nm26-semifinal/g2/figure-tracks-smooth.json)")
+            figures[pid] = fig_out(figs_by[pid], f"moving: {'cleaned ' if FIG_FILE == 'figure-tracks-smooth.json' else ''}figure track (model output, PROPOSED; data/games/nm26-semifinal/g2/{FIG_FILE})")
     trace = {
-        "schema": "shot-trace/1", "trace_id": f"trace.edwall-{GID}.v1", "status": INP["status"],
+        "schema": "shot-trace/1", "trace_id": f"trace.edwall-{GID}.{INP.get('trace_version', 'v1')}", "status": INP["status"],
         "shot": f"Edwallskyffel lang (Nygård, NM26 semi-final game 2, {GID}): right wing pass from the board, long centre shovel",
         "geometry_version": sp.G["geometry_version"],
         "asset_refs": {**SPJ["asset_refs"], "git_commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=REPO, capture_output=True, text=True).stdout.strip()},
         "source": {"description": "NM26 broadcast (data/games/nm26-semifinal/config.json video), game 2; user goal label " + GID,
-                   "inputs": f"shots/edwall/{GID}.inputs.json", "puck_readings": "shots/edwall/puck-readings.json", "figure_tracks": "data/games/nm26-semifinal/g2/figure-tracks-smooth.json"},
+                   "inputs": f"shots/edwall/{GID}.inputs.json", "puck_readings": "shots/edwall/puck-readings.json", "figure_tracks": f"data/games/nm26-semifinal/g2/{FIG_FILE}",
+                   **({"puck_track": OBS_CFG["puck_track"]} if OBS_CFG else {})},
         "time_base": {"t": f"seconds from broadcast frame {F0} (video time {F0 / FPS:.3f} s); frame = {F0} + 30 t", "window_s": [0.0, round(T1, 5)], "video_frame_at_t0": F0, "user_goal_frame": LABEL},
         "interpolation": SPJ["interpolation"], "pose_convention": SPJ["pose_convention"],
         "figures": figures,
@@ -680,7 +764,8 @@ def main():
               "carry_force_check": {"rule": "this rebuild's own plausibility check (not a CLAUDE.md rule): during a heel-groove carry the force the puck needs must lie inside the contact-normal fan of the figure's low outline at the carry point, widened by an ASSUMED 17 deg friction angle; otherwise the stick would have to pull the puck",
                                     "carries": [{"figure": c["figure"], "t": [c["t_catch"], c["t_release"]], **pull_check(figs_by[c["figure"]], c, P)} for c in clog],
                                     "passed": all(pull_check(figs_by[c["figure"]], c, P)["steps_needing_pull"] == 0 for c in clog)},
-              "observation_fit": fit_res, "fitted": INP.get("fitted"),
+              "observation_fit": fit_res, **({"figure_fit": {"rule": "the passer's and shooter's designed moves against their own track readings (src 0) in inputs.figure_constraints.frames", "W-RW": figure_fit(rw, "W-RW"), "W-C": figure_fit(wc, "W-C")}} if FC else {}),
+              "fitted": INP.get("fitted"),
               "passed": not vint and not f_bad and not w_bad and not unexplained}
     OUT_CHECKS.write_text(json.dumps(checks, indent=1, ensure_ascii=False) + "\n")
     sheet(S, P, nt, nx, ny, events)
@@ -713,7 +798,7 @@ def sheet(S, P, nt, nx, ny, events):
         if len(tr) > 1:
             d.line(tr, fill=(255, 140, 0), width=2)
         for o in OBS:
-            c = px(o["world_mm"]); d.ellipse([c[0] - 3, c[1] - 3, c[0] + 3, c[1] + 3], fill=(220, 0, 220) if o["kind"] != "rest" else (170, 120, 220))
+            c = px(o["world_mm"]); d.ellipse([c[0] - 3, c[1] - 3, c[0] + 3, c[1] + 3], fill=(220, 0, 220) if o["kind"] not in ("rest", "det_rest") else (170, 120, 220))
         c = px(P[k]); r = R_PUCK * SC
         d.ellipse([c[0] - r, c[1] - r, c[0] + r, c[1] + r], fill=(0, 0, 0))
         d.text((8, 6), f"{name}  t={tq:.4f} s  (frame {F0 + tq * FPS:.1f})", fill=(0, 0, 0), font=sp.FB)
@@ -721,7 +806,7 @@ def sheet(S, P, nt, nx, ny, events):
     out = Image.new("RGB", (W_ * 3, H_ * 2 + 40), "white")
     for i, im in enumerate(tiles):
         out.paste(im, ((i % 3) * W_, 40 + (i // 3) * H_))
-    ImageDraw.Draw(out).text((10, 8), f"trace.edwall-{GID}.v1 (PROPOSED) - top view, goal.E right; figures' low geometry; puck path orange; puck readings magenta (rest: lilac)", fill=(0, 0, 0), font=sp.FB)
+    ImageDraw.Draw(out).text((10, 8), f"trace.edwall-{GID}.{INP.get('trace_version', 'v1')} (PROPOSED) - top view, goal.E right; figures' low geometry; puck path orange; puck readings magenta (rest: lilac)", fill=(0, 0, 0), font=sp.FB)
     out.save(OUT_PNG)
 
 

@@ -2,12 +2,13 @@
 
     python3 scripts/nm26-combo-recognition.py [--puck <name>]
 
-One command, re-runnable on new tracks. --puck picks the puck track file in each game folder (default puck-track.json;
-e.g. --puck puck-track-synth.json once a better track exists). Pure numpy; no video needed.
+One command, re-runnable on new tracks. The tracks are chosen by scripts/nm26_tracks.py (puck-track-synth.json and
+figure-tracks-v3.json, or $NM26_PUCK_TRACK / $NM26_FIGURE_TRACKS); --puck <name> overrides the puck track file.
+Pure numpy; no video needed.
 
 Inputs (all PROPOSED model output except the labels):
-- data/games/nm26-semifinal/<g>/figure-tracks-smooth.json (scripts/synth/smooth-tracks.py)
-- data/games/nm26-semifinal/<g>/<puck> (scripts/nm26-track.py)
+- data/games/nm26-semifinal/<g>/<figure tracks> (figure-tracks-v3.json, scripts/synth/track-figures-v3.py)
+- data/games/nm26-semifinal/<g>/<puck track> (puck-track-synth.json, scripts/synth/track-puck.py)
 - data/games/nm26-semifinal/goal-labels.json (the user's labels of 25 goals: family, combination, goal moment)
 - data/games/nm26-semifinal/timeline.json (every goal's score-box time and scoring end), data/geometry.json (slots)
 
@@ -17,7 +18,7 @@ Steps:
    wing plays on +y. Slot depth = distance along the slot from the figure's own-goal end. Rotations stay relative to
    the team's home heading, as in the tracks.
 2. GOAL MOMENT. Labelled goals: the user's 'goal is now' mark. Unlabelled goals: estimated from the puck track. A HOLD
-   is a run of at least 4 disk detections (gaps of at most 3 frames, steps under 15 mm). Holds at the centre spot, on
+   is a run of at least 4 slow detections (scripts/nm26_tracks.py; the old track's 'disk' kind) (gaps of at most 3 frames, steps under 15 mm). Holds at the centre spot, on
    static false spots (a place where the game has a 1 s hold that moves less than 1.5 mm, at least twice) and in the
    FALSE_SPOT box (a candidate at the near board of the left corner, about world (-240, -178) mm, that the track holds
    for 7-21 s in each of games 2-5 while the real puck is elsewhere; found by inspection) are ignored.
@@ -51,7 +52,10 @@ from pathlib import Path
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[1]; D = REPO / "data/games/nm26-semifinal"
-PUCK = sys.argv[sys.argv.index("--puck") + 1] if "--puck" in sys.argv else "puck-track.json"
+sys.path.insert(0, str(REPO / "scripts"))
+import nm26_tracks  # noqa: E402
+PUCK = sys.argv[sys.argv.index("--puck") + 1] if "--puck" in sys.argv else nm26_tracks.PUCK_TRACK
+FIGS = nm26_tracks.FIGURE_TRACKS
 G = json.loads((REPO / "data/geometry.json").read_text())
 SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
 ACC = {p: np.r_[0, np.cumsum(np.linalg.norm(np.diff(P, axis=0), axis=1))] for p, P in SLOT.items()}
@@ -80,12 +84,13 @@ def own_end_u(pid):
 
 class Game:
     def __init__(self, g):
-        T = json.loads((D / g / "figure-tracks-smooth.json").read_text()); C = T["columns"]; ci = {c: i for i, c in enumerate(C)}
+        T = json.loads((D / g / FIGS).read_text()); C = T["columns"]; ci = {c: i for i, c in enumerate(C)}
         R = np.array([[np.nan if v is None else v for v in r] for r in T["rows"]], float)
         self.t = R[:, 0] / FPS
         self.fig = {c[:-2]: (R[:, ci[c]], R[:, ci[c[:-2] + "_theta_deg"]]) for c in C if c.endswith("_u")}
-        P = json.loads((D / g / PUCK).read_text()); pc = P["columns"]; k = {c: pc.index(c) for c in ("frame", "video_t_s", "x_mm", "y_mm", "kind")}
-        self.puck = [(int(r[k["frame"]]), r[k["video_t_s"]], r[k["x_mm"]], r[k["y_mm"]], r[k["kind"]]) for r in P["rows"] if r[k["x_mm"]] is not None]
+        P = json.loads((D / g / PUCK).read_text()); pc = P["columns"]; k = {c: pc.index(c) for c in ("frame", "video_t_s", "x_mm", "y_mm")}
+        self.puck = [(int(r[k["frame"]]), r[k["video_t_s"]], r[k["x_mm"]], r[k["y_mm"]], "disk" if s else "moving")
+                     for r, s in zip(P["rows"], nm26_tracks.slow_flags(P)) if r[k["x_mm"]] is not None]
         self.pk = {r[0]: (r[2], r[3]) for r in self.puck}
         self.holds_all = holds_of(self.puck, -1e9, 1e9)
         st = [h for h in self.holds_all if h["dur"] >= 1.0 and h["std"] < 1.5]
@@ -422,7 +427,7 @@ out = {"description": "Combination recognition for the NM26 goals (scripts/nm26-
        "majority vote of the decision tree, the 1-NN and the playbook rules (each prediction alongside; agreement 3/3 and the same vote with the moment shifted by up to "
        "0.5 s = high confidence). combination for a PROPOSED goal = the user's name of the nearest labelled goal of the same family "
        "(null = an unnamed one). See docs/nm26-combinations.md.",
-       "puck_track": PUCK, "status": "PROPOSED", "goal_moment": moment_report, "leave_one_out": lo,
+       "puck_track": PUCK, "figure_tracks": FIGS, "status": "PROPOSED", "goal_moment": moment_report, "leave_one_out": lo,
        "tree_all_labels": tree_text(full_tree), "feature_names": VNAMES, "goals": labels_out}
 by_player = defaultdict(Counter)
 for r in labels_out: by_player[r["scoring_player"]][r["family"]] += 1

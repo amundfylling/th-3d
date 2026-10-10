@@ -10,6 +10,8 @@ from pathlib import Path
 
 import numpy as np
 
+from nm26_tracks import FIGURE_TRACKS
+
 REPO = Path(__file__).resolve().parents[1]
 D = REPO / "data/games/nm26-semifinal"
 CAM = json.loads((D / "camera-ref.json").read_text())
@@ -36,9 +38,11 @@ def goal_frame(gid):
     return int(round(GOALS[gid]["goal_video_s"] * FPS))
 
 
-def tracks(gid):
-    """Cleaned figure tracks (game file, 30 fps inside the goal windows): {frame: {pid: (u, theta_deg, src)}}."""
-    g = GOALS[gid]["game"]; S = json.loads(Path(os.environ.get("EDWALL_TRACKS", D / g / "figure-tracks-smooth.json")).read_text())  # override: scripts/edwall-track-compare.py
+def tracks(gid, file=None):
+    """Figure tracks (game file, 30 fps inside the goal windows): {frame: {pid: (u, theta_deg, src)}}. Default: the
+    selected tracks (scripts/nm26_tracks.py: figure-tracks-v3.json), or `file` in the game folder; EDWALL_TRACKS=<file> overrides
+    both (scripts/edwall-track-compare.py)."""
+    g = GOALS[gid]["game"]; S = json.loads(Path(os.environ.get("EDWALL_TRACKS", D / g / (file or FIGURE_TRACKS))).read_text())
     C = S["columns"]; f0 = goal_frame(gid); out = {}
     pids = [c[:-2] for c in C if c.endswith("_u")]
     for r in S["rows"]:

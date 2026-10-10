@@ -100,7 +100,7 @@ input[type=range] { width: 100%; accent-color: var(--blue) }
     <ul>
       <li>White/blue figures (left end) are blue, yellow figures (right end) are orange. The figures stay with the table; the players switch ends 2-2-1-1-1, so the title names who played which end in that game.</li>
       <li>Each figure: a dot on its tracked pivot, an arrow for where it faces, a short stick to the blade. A hollow dot is interpolated (the model reading was rejected or between 5-per-second readings). Figures the tracker lost are left out.</li>
-      <li>Puck: black disk when seen as a disk, black ring when only a motion blur was found, grey ring when the tracker filled a gap. No puck means not seen in that frame. The grey line is its last half second.</li>
+      <li>Puck (synthetic puck detector): black disk when it is slow (under 0.3 m/s), black ring when it moves faster. No puck means not seen in that frame. The grey line is its last half second.</li>
       <li>Marked goals run from 8 s before to 1 s after your goal mark (red tick). The other <span id="nun"></span> goals have only the score-box time; the box changes 3 to 14 s after the goal (median <span id="lag"></span> s in your marks), so their window is the 17 s before the box and the goal is somewhere inside it.</li>
       <li>Blue and centre lines are nominal; the goals are the preview cage. Game 4's overtime winner has no replay: the score box never shows it, so there is no time for it.</li>
     </ul>
@@ -174,7 +174,7 @@ function load(g, autoplay) {
     <span class="pill ${g.moment}">${g.moment === "user_marked" ? "your goal mark" : "goal not marked"}</span>`;
   const c = g.cov;
   $("info").innerHTML = `<span>${fam(g)}</span>
-    <span>Puck seen <b>${Math.round(c.puck_seen * 100)}%</b> of frames (as a disk ${Math.round(c.puck_disk * 100)}%)</span>
+    <span>Puck seen <b>${Math.round(c.puck_seen * 100)}%</b> of frames (slow ${Math.round(c.puck_disk * 100)}%)</span>
     <span>Figures shown <b>${c.figures_shown_mean.toFixed(1)}</b> of 12 on average</span>
     <span>Figure readings every frame: <b>${Math.round(c.figure_rows_every_frame * 100)}%</b> of the window</span>
     ${g.reg === false ? "<span>Broadcast clip not registered: raw crop</span>" : ""}`;

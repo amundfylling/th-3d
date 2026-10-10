@@ -39,6 +39,8 @@ HATTRICK = ["g2-goal2", "g2-goal3", "g2-goal4"]
 VIDEO = CFG["video"]["local_path"]
 CACHE = "out/nm26/{g}/frames.json"
 BLENDER_PY = "/root/venvs/blender/bin/python"
+sys.path.insert(0, str(REPO / "scripts"))
+from nm26_tracks import FIGURE_TRACKS as FIGS, PUCK_TRACK as PUCK  # noqa: E402  (the tracks the analysis reads)
 PY = os.environ.get("NM26_PY") or (BLENDER_PY if Path(BLENDER_PY).exists() else sys.executable)
 
 
@@ -73,19 +75,19 @@ def steps(games):
                       [f"{DATA}/{g}/puck-track.json"]))
     for g in games:
         S.append(Step(f"passes-{g}", "puck", py("scripts/nm26-passes.py", g),
-                      [f"{DATA}/{g}/puck-track.json", "out/figures/skater.npz", "out/figures/goalie.npz"], ["av", "cv2", "shapely"],
-                      [f"{DATA}/{g}/passes.json"]))
-    S.append(Step("patterns", "puck", py("scripts/nm26-patterns.py"), [f"{DATA}/{g}/passes.json" for g in GAMES], ["av", "cv2", "shapely"],
+                      [f"{DATA}/{g}/{PUCK}", "out/figures/skater.npz", "out/figures/goalie.npz"], ["av", "cv2", "shapely"],
+                      [f"{DATA}/{g}/passes.json"], f"reads {PUCK} (scripts/nm26_tracks.py)"))
+    S.append(Step("patterns", "puck", py("scripts/nm26-patterns.py"), [f"{DATA}/{g}/{f}" for g in GAMES for f in ("passes.json", PUCK)], ["av", "cv2", "shapely"],
                   [f"{DATA}/patterns.json", "validation/nm26-control-nygard.png", "validation/nm26-control-fjermestad.png"]))
     S.append(Step("smooth-tracks", "figures", py("scripts/synth/smooth-tracks.py", *games), [f"{DATA}/{g}/figure-tracks.json" for g in games],
                   ["numpy"], [f"{DATA}/{g}/figure-tracks-smooth.json" for g in games]))
     S.append(Step("figure-analysis", "figures", py("scripts/nm26-figure-analysis.py"),
-                  [f"{DATA}/{g}/figure-tracks.json" for g in GAMES] + [f"{DATA}/{g}/puck-track.json" for g in GAMES], ["numpy"],
+                  [f"{DATA}/{g}/{f}" for g in GAMES for f in ("figure-tracks.json", FIGS, PUCK)], ["numpy"],
                   [f"{DATA}/figure-analysis.json"] + [f"{DATA}/rebuild/{gid}-figures.json" for gid in HATTRICK]))
     S.append(Step("board-g2-goal2", "figures", py("scripts/synth/figure-tracks-board.py", "g2-goal2"),
-                  [f"{DATA}/rebuild/g2-goal2-figures.json"], ["cv2"], ["validation/board-g2-goal2.png"]))
+                  [f"{DATA}/rebuild/g2-goal2-figures.json", f"{DATA}/g2/{PUCK}"], ["cv2"], ["validation/board-g2-goal2.png"]))
     S.append(Step("board-g2-goal2-smooth", "figures", py("scripts/synth/figure-tracks-board.py", "g2-goal2", "--smooth"),
-                  [f"{DATA}/rebuild/g2-goal2-figures.json", f"{DATA}/g2/figure-tracks-smooth.json"], ["cv2"],
+                  [f"{DATA}/rebuild/g2-goal2-figures.json", f"{DATA}/g2/{FIGS}", f"{DATA}/g2/{PUCK}"], ["cv2"],
                   ["validation/board-g2-goal2-smooth.png"]))
     for g in games:
         S.append(Step(f"figure-sheet-{g}", "sheets", py("scripts/synth/figure-tracks-sheet.py", g, "4"),
@@ -195,10 +197,10 @@ def steps(games):
 
     # Stage analysis (default): from committed tracks and labels only, numpy (+ Pillow), seconds; no video, no models.
     S.append(Step("combo-recognition", "analysis", py("scripts/nm26-combo-recognition.py"),
-                  [f"{DATA}/{g}/figure-tracks-smooth.json" for g in GAMES] + [f"{DATA}/{g}/puck-track.json" for g in GAMES]
+                  [f"{DATA}/{g}/{f}" for g in GAMES for f in (FIGS, PUCK)]
                   + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json"], ["numpy", "PIL"],
                   [f"{DATA}/combo-labels.json", "validation/nm26-combo-spots.png"],
-                  "docs/nm26-combinations.md; --puck puck-track-synth.json re-runs it on the synthetic puck track (not the default yet)"))
+                  "docs/nm26-combinations.md; tracks from scripts/nm26_tracks.py"))
     S.append(Step("puck-synth-compare", "analysis", py("scripts/synth/puck-compare.py"),
                   [f"{DATA}/{g}/{f}" for g in GAMES for f in ("puck-track.json", "puck-track-synth.json", "passes.json")]
                   + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json", "validation/12-hardware-report.json"], ["numpy"],
@@ -207,7 +209,7 @@ def steps(games):
 
     # All-goals replays (validation/replays/README.md): stage pages (the broadcast clips need the video).
     S.append(Step("goal-replays", "pages", py("scripts/nm26-replays.py"),
-                  [VIDEO] + [f"{DATA}/{g}/figure-tracks-smooth.json" for g in GAMES] + [f"{DATA}/{g}/puck-track.json" for g in GAMES]
+                  [VIDEO] + [f"{DATA}/{g}/{f}" for g in GAMES for f in (FIGS, PUCK)]
                   + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json"], ["av", "cv2"],
                   ["validation/replays/replays.json", "validation/replays/index.html"],
                   "40 replays and broadcast clips (validation/replays/*.mp4); about 7 min on 4 cores"))
@@ -217,11 +219,20 @@ def steps(games):
     # are rendered outside the runner: node scripts/edwall-render.ts <goal> (about 75 min each).
     for gid in HATTRICK:
         S.append(Step(f"edwall-trace-{gid}", "edwall", py("scripts/edwall-trace.py", gid),
-                      [f"shots/edwall/{gid}.inputs.json", "shots/edwall/puck-readings.json", f"{DATA}/g2/figure-tracks-smooth.json",
+                      [f"shots/edwall/{gid}.inputs.json", "shots/edwall/puck-readings.json", f"{DATA}/g2/{FIGS}", f"{DATA}/g2/puck-track-synth.json",
                        "out/figures/skater.npz", "out/figures/goalie.npz"], ["numpy", "shapely", "PIL"],
                       [f"data/traces/edwall-{gid}.trace.json", f"shots/edwall/{gid}.checks.json", f"validation/edwall-{gid}-trace.png"]))
         S.append(Step(f"edwall-presentation-{gid}", "edwall", py("scripts/edwall-presentation.py", gid), [f"data/traces/edwall-{gid}.trace.json"],
                       [], [f"data/presentations/edwall-{gid}.analysis.json"]))
+
+    # Track switch (docs/nm26-new-tracks.md): the before/after numbers (default stage analysis) and the tap review page
+    # (stage pages: needs the video; seed 26, so the same frames come back).
+    S.append(Step("track-switch-compare", "analysis", py("scripts/nm26-track-switch-compare.py"),
+                  [f"{DATA}/combo-labels.json", f"{DATA}/patterns.json", f"{DATA}/figure-analysis.json"] + [f"{DATA}/{g}/passes.json" for g in GAMES],
+                  ["numpy"], ["validation/nm26-track-switch.json"], "before = the outputs at git rev ee0681d (old tracks)"))
+    S.append(Step("tap-review-page", "pages", py("scripts/nm26-tap-review.py", "page"),
+                  [VIDEO] + [f"{DATA}/{g}/{f}" for g in GAMES for f in ("puck-track.json", "puck-track-synth.json", "figure-tracks-smooth.json", "figure-tracks-v3.json")],
+                  ["av", "cv2"], ["validation/tap-review/items.json", "validation/tap-review/index.html"], "published with a db for the user's taps"))
     return S
 
 

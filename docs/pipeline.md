@@ -68,24 +68,31 @@ Blender venv, else the runner's own Python.
 | calibrate | `nm26-calibrate.py g1` | `g1/background.png`, `g1/calibration-inputs.json` | `g1/calibration.json`, `validation/nm26-g1-calibration.jpg` |
 | meshes | `assets/blender/preview_molds.py skater goalie` | figure molds (bpy) | `out/figures/{skater,goalie}.npz` (reach of a figure for the passes) |
 | puck | `nm26-track.py <g>` | cache, g1 calibration | `<g>/puck-track.json` |
-| puck | `nm26-passes.py <g>` | puck track, meshes | `<g>/passes.json` |
+| puck | `nm26-passes.py <g>` | selected puck track (`puck-track-synth.json`), meshes | `<g>/passes.json` |
 | puck | `nm26-patterns.py` | all passes, timeline | `patterns.json`, `validation/nm26-control-*.png` |
 | figures | `synth/smooth-tracks.py` | `<g>/figure-tracks.json` | `<g>/figure-tracks-smooth.json` |
-| figures | `nm26-figure-analysis.py` | figure and puck tracks, goal labels | `figure-analysis.json`, `rebuild/g2-goal{2,3,4}-figures.json` |
+| figures | `nm26-figure-analysis.py` | raw v2 figure tracks (quality, rebuild files), selected figure and puck tracks (touches), goal labels | `figure-analysis.json`, `rebuild/g2-goal{2,3,4}-figures.json` |
 | figures | `synth/figure-tracks-board.py g2-goal2 [--smooth]` | the above | `validation/board-g2-goal2[-smooth].png` |
-| analysis | `nm26-combo-recognition.py` | smoothed figure tracks, puck tracks, goal labels, timeline | `combo-labels.json`, `validation/nm26-combo-spots.png` |
+| analysis | `nm26-combo-recognition.py` | selected figure and puck tracks, goal labels, timeline | `combo-labels.json`, `validation/nm26-combo-spots.png` |
 | analysis | `synth/puck-compare.py` | both puck tracks, passes, goal labels, timeline | `puck-synth-compare.json` |
 | sheets | `synth/figure-tracks-sheet.py <g> 4` | video, cache, figure tracks | `validation/figure-tracks-<g>.jpg` |
 | sheets | `nm26-rebuild-evidence.py g2-goal{2,3,4}` | video, cache, goalie model C | `rebuild/<goal>-evidence.json`, `validation/rebuild-<goal>-sheet.jpg` |
 | pages | `nm26-review-page.py g1` | video, cache, passes | `validation/nm26-g1-review.html` |
 | pages | `nm26-goal-clips.py`, `nm26-goal-page.py` | video, cache, timeline | `out/nm26/goal-clips/`, `validation/nm26-goals-review.html` |
-| pages | `nm26-replays.py` | video, smoothed figure tracks, puck tracks, goal labels, timeline | `validation/replays/` (40 replays, clips, `replays.json`, `index.html`) |
-| edwall | `edwall-trace.py g2-goal{2,3,4}`, `edwall-presentation.py g2-goal{2,3,4}` | `shots/edwall/*.inputs.json` (fitted), puck readings, g2 smoothed tracks, meshes | `data/traces/edwall-*.trace.json`, `shots/edwall/*.checks.json`, `validation/edwall-*-trace.png`, `data/presentations/edwall-*.analysis.json` |
+| pages | `nm26-replays.py` | video, selected figure and puck tracks, goal labels, timeline | `validation/replays/` (40 replays, clips, `replays.json`, `index.html`) |
+| edwall | `edwall-trace.py g2-goal{2,3,4}`, `edwall-presentation.py g2-goal{2,3,4}` | `shots/edwall/*.inputs.json` (fitted), puck readings, g2 detector puck track, g2 selected figure tracks, meshes | `data/traces/edwall-*.trace.json`, `shots/edwall/*.checks.json`, `validation/edwall-*-trace.png`, `data/presentations/edwall-*.analysis.json` |
 | models | renders, training, `synth/track-figures.py` | see section 3 | `out/synth/*.pt`, `<g>/figure-tracks.json` |
 | models | `synth/puck-frames.py`, `render-puck-crops.py`, `puck-blob-offset.py`, `train-puck-detector.py`, `eval-puck-detector.py`, `track-puck.py <g>` | video, Blender, PyTorch | `out/synth/puck-det-v1.pt`, `<g>/puck-track-synth.json` |
 | models | `synth/render-skater-hard.py`, `track-figures-v3.py plates`, `train-skater-v3.py` (3 runs), `track-figures-v3.py obs/decode <g>` | video, Blender, PyTorch | `out/synth/skater-pose-v3.pt`, `<g>/figure-tracks-v3.json` |
 
 Paths without a folder are under `data/games/nm26-semifinal/`.
+
+**Selected tracks (2026-10-10, docs/nm26-new-tracks.md).** `scripts/nm26_tracks.py` picks the tracks the analysis reads:
+`puck-track-synth.json` (puck detector) and `figure-tracks-v3.json` (tracker v3). `NM26_PUCK_TRACK=puck-track.json` and
+`NM26_FIGURE_TRACKS=figure-tracks-smooth.json` bring back the old inputs (that is how the before numbers were made).
+The old track's `disk` kind (a sharp, slow puck) is replaced by a `slow` flag: under 300 mm/s to a neighbour detection
+within 3 frames; on the old track `slow` is `disk`, so old outputs rebuild unchanged.
+`track-switch-compare` writes the before/after numbers, `tap-review-page` the user's tap page (`validation/tap-review/`).
 
 **Sources (not rebuilt; listed in `SOURCES` in the runner).** `config.json`, `timeline.json` and
 `g1/calibration-inputs.json` are hand-made; `camera-ref.json` was decomposed from the g1 calibration by hand (no script);

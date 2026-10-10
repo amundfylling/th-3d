@@ -1,5 +1,7 @@
 {
  "description": "python3 scripts/nm26-figure-analysis.py",
+ "figure_tracks": "figure-tracks-v3.json",
+ "puck_track": "puck-track-synth.json",
  "games": {
   "g1": {
    "frames": 4347,
@@ -9,17 +11,26 @@
    "dense_steps": 22608,
    "slot_jump_share": 0.0602,
    "rotation_jump_share": 0.0454,
-   "puck_frames": 1230,
-   "touch_share": 0.146,
+   "selected_tracks": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 22582,
+    "slot_jump_share": 0.0087,
+    "rotation_jump_share": 0.0008,
+    "interpolated_share": 0.0593,
+    "unknown_share": 0.0093
+   },
+   "puck_frames": 1378,
+   "touch_share": 0.172,
    "touches_by_figure": {
-    "E-C": 12,
-    "E-LD": 4,
-    "E-LW": 4,
-    "E-RD": 36,
-    "E-RW": 8,
-    "W-C": 56,
-    "W-LD": 20,
-    "W-LW": 36,
+    "E-C": 17,
+    "E-LD": 26,
+    "E-LW": 9,
+    "E-RD": 27,
+    "E-RW": 3,
+    "W-C": 82,
+    "W-LD": 34,
+    "W-LW": 31,
+    "W-RD": 5,
     "W-RW": 3
    }
   },
@@ -31,19 +42,27 @@
    "dense_steps": 12960,
    "slot_jump_share": 0.0579,
    "rotation_jump_share": 0.0294,
-   "puck_frames": 808,
-   "touch_share": 0.168,
+   "selected_tracks": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 12960,
+    "slot_jump_share": 0.0106,
+    "rotation_jump_share": 0.0008,
+    "interpolated_share": 0.066,
+    "unknown_share": 0.0055
+   },
+   "puck_frames": 805,
+   "touch_share": 0.231,
    "touches_by_figure": {
-    "E-C": 19,
-    "E-LD": 12,
-    "E-LW": 2,
-    "E-RD": 8,
-    "E-RW": 16,
-    "W-C": 1,
+    "E-C": 25,
+    "E-LD": 25,
+    "E-LW": 5,
+    "E-RD": 5,
+    "E-RW": 24,
+    "W-C": 16,
     "W-LD": 8,
-    "W-LW": 67,
-    "W-RD": 2,
-    "W-RW": 1
+    "W-LW": 65,
+    "W-RD": 11,
+    "W-RW": 2
    }
   },
   "g3": {
@@ -54,19 +73,27 @@
    "dense_steps": 25920,
    "slot_jump_share": 0.0591,
    "rotation_jump_share": 0.0366,
-   "puck_frames": 627,
-   "touch_share": 0.131,
+   "selected_tracks": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 25920,
+    "slot_jump_share": 0.0096,
+    "rotation_jump_share": 0.0005,
+    "interpolated_share": 0.0612,
+    "unknown_share": 0.003
+   },
+   "puck_frames": 791,
+   "touch_share": 0.154,
    "touches_by_figure": {
-    "E-C": 4,
-    "E-LD": 6,
+    "E-C": 5,
+    "E-LD": 8,
     "E-LW": 5,
-    "E-RD": 5,
-    "E-RW": 11,
-    "W-C": 3,
-    "W-LD": 6,
-    "W-LW": 34,
-    "W-RD": 2,
-    "W-RW": 6
+    "E-RD": 9,
+    "E-RW": 5,
+    "W-C": 9,
+    "W-LD": 7,
+    "W-LW": 63,
+    "W-RD": 6,
+    "W-RW": 5
    }
   },
   "g4": {
@@ -77,19 +104,27 @@
    "dense_steps": 12960,
    "slot_jump_share": 0.0762,
    "rotation_jump_share": 0.0483,
-   "puck_frames": 819,
-   "touch_share": 0.112,
+   "selected_tracks": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 12942,
+    "slot_jump_share": 0.007,
+    "rotation_jump_share": 0.0006,
+    "interpolated_share": 0.0558,
+    "unknown_share": 0.0089
+   },
+   "puck_frames": 1108,
+   "touch_share": 0.092,
    "touches_by_figure": {
-    "E-C": 8,
-    "E-LD": 17,
-    "E-LW": 2,
-    "E-RD": 6,
-    "E-RW": 12,
-    "W-C": 10,
-    "W-LD": 20,
-    "W-LW": 9,
-    "W-RD": 2,
-    "W-RW": 6
+    "E-C": 9,
+    "E-LD": 19,
+    "E-LW": 4,
+    "E-RD": 8,
+    "E-RW": 7,
+    "W-C": 6,
+    "W-LD": 15,
+    "W-LW": 19,
+    "W-RD": 7,
+    "W-RW": 8
    }
   },
   "g5": {
@@ -100,18 +135,27 @@
    "dense_steps": 28080,
    "slot_jump_share": 0.0585,
    "rotation_jump_share": 0.0391,
-   "puck_frames": 950,
-   "touch_share": 0.14,
+   "selected_tracks": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 28080,
+    "slot_jump_share": 0.009,
+    "rotation_jump_share": 0.0001,
+    "interpolated_share": 0.0522,
+    "unknown_share": 0.0055
+   },
+   "puck_frames": 1077,
+   "touch_share": 0.157,
    "touches_by_figure": {
-    "E-C": 6,
-    "E-LD": 7,
-    "E-LW": 5,
-    "E-RD": 13,
-    "E-RW": 24,
-    "W-C": 61,
-    "W-LD": 2,
-    "W-LW": 14,
-    "W-RW": 1
+    "E-C": 11,
+    "E-LD": 28,
+    "E-LW": 8,
+    "E-RD": 18,
+    "E-RW": 9,
+    "W-C": 58,
+    "W-LD": 9,
+    "W-LW": 18,
+    "W-RD": 6,
+    "W-RW": 4
    }
   },
   "g6": {
@@ -122,17 +166,26 @@
    "dense_steps": 25560,
    "slot_jump_share": 0.0746,
    "rotation_jump_share": 0.0489,
-   "puck_frames": 442,
-   "touch_share": 0.1,
+   "selected_tracks": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 25560,
+    "slot_jump_share": 0.0093,
+    "rotation_jump_share": 0.0004,
+    "interpolated_share": 0.0618,
+    "unknown_share": 0.0217
+   },
+   "puck_frames": 439,
+   "touch_share": 0.134,
    "touches_by_figure": {
-    "E-C": 3,
-    "E-LD": 9,
-    "E-LW": 4,
-    "E-RD": 2,
-    "E-RW": 13,
-    "W-C": 6,
-    "W-LW": 6,
-    "W-RD": 1
+    "E-C": 5,
+    "E-LD": 14,
+    "E-LW": 3,
+    "E-RD": 4,
+    "E-RW": 6,
+    "W-C": 4,
+    "W-LD": 5,
+    "W-LW": 13,
+    "W-RD": 5
    }
   },
   "g7": {
@@ -143,64 +196,72 @@
    "dense_steps": 17280,
    "slot_jump_share": 0.0618,
    "rotation_jump_share": 0.0438,
-   "puck_frames": 612,
-   "touch_share": 0.142,
+   "selected_tracks": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 17280,
+    "slot_jump_share": 0.0091,
+    "rotation_jump_share": 0.0003,
+    "interpolated_share": 0.0656,
+    "unknown_share": 0.0033
+   },
+   "puck_frames": 584,
+   "touch_share": 0.171,
    "touches_by_figure": {
-    "E-LD": 7,
-    "E-LW": 5,
-    "E-RD": 25,
-    "E-RW": 16,
-    "W-C": 3,
-    "W-LD": 6,
-    "W-LW": 23,
-    "W-RD": 1,
-    "W-RW": 1
+    "E-LD": 20,
+    "E-LW": 3,
+    "E-RD": 9,
+    "E-RW": 10,
+    "W-C": 8,
+    "W-LD": 13,
+    "W-LW": 16,
+    "W-RD": 19,
+    "W-RW": 2
    }
   }
  },
  "touches_by_player_role": {
   "nygard": {
-   "LW": {
-    "touches": 151,
-    "share": 0.366
-   },
    "C": {
-    "touches": 136,
-    "share": 0.329
+    "touches": 183,
+    "share": 0.351
+   },
+   "LW": {
+    "touches": 142,
+    "share": 0.273
    },
    "LD": {
-    "touches": 68,
-    "share": 0.165
-   },
-   "RW": {
-    "touches": 42,
-    "share": 0.102
+    "touches": 105,
+    "share": 0.202
    },
    "RD": {
-    "touches": 16,
-    "share": 0.039
+    "touches": 62,
+    "share": 0.119
+   },
+   "RW": {
+    "touches": 29,
+    "share": 0.056
    }
   },
   "fjermestad": {
-   "RD": {
-    "touches": 87,
-    "share": 0.256
-   },
-   "RW": {
-    "touches": 76,
-    "share": 0.224
+   "LD": {
+    "touches": 126,
+    "share": 0.278
    },
    "LW": {
-    "touches": 65,
-    "share": 0.191
+    "touches": 120,
+    "share": 0.264
    },
-   "LD": {
-    "touches": 56,
-    "share": 0.165
+   "RD": {
+    "touches": 77,
+    "share": 0.17
    },
    "C": {
-    "touches": 56,
-    "share": 0.165
+    "touches": 72,
+    "share": 0.159
+   },
+   "RW": {
+    "touches": 59,
+    "share": 0.13
    }
   }
  },
@@ -215,29 +276,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.664,
-     "theta_deg": 285.6
+     "u": 0.662,
+     "theta_deg": 281.3
     },
     "W-RW": {
-     "u": 0.042,
-     "theta_deg": 211.3
+     "u": 0.08,
+     "theta_deg": 207.0
     },
     "W-C": {
-     "u": 0.038,
-     "theta_deg": 316.4
+     "u": 0.041,
+     "theta_deg": 322.4
     },
     "W-LD": {
-     "u": 0.791,
-     "theta_deg": 289.5
+     "u": 0.789,
+     "theta_deg": 291.5
     },
     "W-RD": {
-     "u": 0.936,
-     "theta_deg": 217.0
+     "u": 0.942,
+     "theta_deg": 203.5
     }
    },
    "defending_goalie": {
-    "u": 0.189,
-    "theta_deg": 21.8
+    "u": 0.22,
+    "theta_deg": 23.1
    }
   },
   {
@@ -250,29 +311,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.017,
-     "theta_deg": 169.1
+     "u": 0.455,
+     "theta_deg": 34.1
     },
     "W-RW": {
-     "u": 0.862,
-     "theta_deg": 225.1
+     "u": 0.198,
+     "theta_deg": 2.5
     },
     "W-C": {
-     "u": 0.963,
-     "theta_deg": 274.7
+     "u": 0.967,
+     "theta_deg": 270.6
     },
     "W-LD": {
-     "u": 0.84,
-     "theta_deg": 190.6
+     "u": 0.842,
+     "theta_deg": 203.1
     },
     "W-RD": {
-     "u": 0.944,
-     "theta_deg": 243.4
+     "u": 0.94,
+     "theta_deg": 234.3
     }
    },
    "defending_goalie": {
     "u": 0.437,
-    "theta_deg": 172.8
+    "theta_deg": 173.6
    }
   },
   {
@@ -285,29 +346,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.416,
-     "theta_deg": 78.8
+     "u": 0.389,
+     "theta_deg": 43.8
     },
     "E-RW": {
-     "u": 0.295,
-     "theta_deg": 52.6
+     "u": 0.296,
+     "theta_deg": 45.0
     },
     "E-C": {
-     "u": 0.243,
-     "theta_deg": 206.9
+     "u": 0.283,
+     "theta_deg": 236.7
     },
     "E-LD": {
-     "u": 0.31,
-     "theta_deg": 182.5
+     "u": 0.311,
+     "theta_deg": 181.5
     },
     "E-RD": {
-     "u": 0.73,
-     "theta_deg": 124.7
+     "u": 0.059,
+     "theta_deg": 61.8
     }
    },
    "defending_goalie": {
-    "u": 0.818,
-    "theta_deg": 124.9
+    "u": 0.832,
+    "theta_deg": 127.2
    }
   },
   {
@@ -320,29 +381,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.534,
-     "theta_deg": 32.6
+     "u": 0.524,
+     "theta_deg": 359.9
     },
     "E-RW": {
-     "u": 0.055,
-     "theta_deg": 99.0
+     "u": 0.054,
+     "theta_deg": 86.2
     },
     "E-C": {
-     "u": 0.129,
-     "theta_deg": 275.8
+     "u": 0.138,
+     "theta_deg": 270.4
     },
     "E-LD": {
-     "u": 0.205,
-     "theta_deg": 223.6
+     "u": 0.207,
+     "theta_deg": 216.3
     },
     "E-RD": {
-     "u": 0.041,
-     "theta_deg": 330.5
+     "u": 0.049,
+     "theta_deg": 10.8
     }
    },
    "defending_goalie": {
-    "u": 0.809,
-    "theta_deg": 121.2
+    "u": 0.804,
+    "theta_deg": 121.4
    }
   },
   {
@@ -355,29 +416,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.42,
-     "theta_deg": 46.1
+     "u": 0.417,
+     "theta_deg": 40.1
     },
     "W-RW": {
-     "u": 0.013,
-     "theta_deg": 96.7
+     "u": 0.011,
+     "theta_deg": 85.5
     },
     "W-C": {
-     "u": 0.963,
-     "theta_deg": 269.0
+     "u": 0.965,
+     "theta_deg": 265.4
     },
     "W-LD": {
-     "u": 0.975,
-     "theta_deg": 212.7
+     "u": 0.967,
+     "theta_deg": 205.2
     },
     "W-RD": {
-     "u": 0.943,
-     "theta_deg": 208.3
+     "u": 0.936,
+     "theta_deg": 203.5
     }
    },
    "defending_goalie": {
-    "u": 0.6,
-    "theta_deg": 167.3
+    "u": 0.577,
+    "theta_deg": 169.4
    }
   },
   {
@@ -390,29 +451,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.671,
-     "theta_deg": 218.1
+     "u": 0.428,
+     "theta_deg": 347.9
     },
     "E-RW": {
-     "u": 0.051,
-     "theta_deg": 10.8
+     "u": 0.054,
+     "theta_deg": 29.8
     },
     "E-C": {
      "u": 0.07,
-     "theta_deg": 245.2
+     "theta_deg": 263.3
     },
     "E-LD": {
-     "u": 0.28,
-     "theta_deg": 201.4
+     "u": 0.277,
+     "theta_deg": 199.3
     },
     "E-RD": {
-     "u": 0.052,
-     "theta_deg": 50.9
+     "u": 0.054,
+     "theta_deg": 54.5
     }
    },
    "defending_goalie": {
-    "u": 0.777,
-    "theta_deg": 117.1
+    "u": 0.78,
+    "theta_deg": 117.9
    }
   },
   {
@@ -425,29 +486,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.324,
-     "theta_deg": 195.1
+     "u": 0.314,
+     "theta_deg": 187.5
     },
     "E-RW": {
      "u": 0.821,
-     "theta_deg": 281.8
+     "theta_deg": 273.1
     },
     "E-C": {
-     "u": 0.066,
-     "theta_deg": 224.2
+     "u": 0.067,
+     "theta_deg": 235.3
     },
     "E-LD": {
-     "u": 0.036,
-     "theta_deg": 174.8
+     "u": 0.041,
+     "theta_deg": 177.9
     },
     "E-RD": {
-     "u": 0.208,
-     "theta_deg": 129.8
+     "u": 0.206,
+     "theta_deg": 110.8
     }
    },
    "defending_goalie": {
-    "u": 0.362,
-    "theta_deg": 57.2
+    "u": 0.361,
+    "theta_deg": 57.4
    }
   },
   {
@@ -460,29 +521,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.719,
-     "theta_deg": 183.4
+     "u": 0.446,
+     "theta_deg": 34.9
     },
     "E-RW": {
-     "u": 0.97,
-     "theta_deg": 163.7
+     "u": 0.971,
+     "theta_deg": 174.7
     },
     "E-C": {
-     "u": 0.796,
-     "theta_deg": 295.7
+     "u": 0.801,
+     "theta_deg": 285.9
     },
     "E-LD": {
      "u": 0.232,
-     "theta_deg": 222.7
+     "theta_deg": 218.1
     },
     "E-RD": {
-     "u": 0.071,
-     "theta_deg": 93.3
+     "u": 0.058,
+     "theta_deg": 93.0
     }
    },
    "defending_goalie": {
-    "u": 0.807,
-    "theta_deg": 123.8
+    "u": 0.809,
+    "theta_deg": 123.2
    }
   },
   {
@@ -495,29 +556,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.824,
-     "theta_deg": 210.0
+     "u": 0.819,
+     "theta_deg": 208.3
     },
     "W-RW": {
-     "u": 0.145,
-     "theta_deg": 208.1
+     "u": 0.144,
+     "theta_deg": 211.4
     },
     "W-C": {
-     "u": 0.028,
-     "theta_deg": 328.7
+     "u": 0.025,
+     "theta_deg": 319.6
     },
     "W-LD": {
-     "u": 0.962,
-     "theta_deg": 275.1
+     "u": 0.961,
+     "theta_deg": 273.4
     },
     "W-RD": {
-     "u": 0.939,
-     "theta_deg": 266.1
+     "u": 0.945,
+     "theta_deg": 274.4
     }
    },
    "defending_goalie": {
-    "u": 0.621,
-    "theta_deg": 70.0
+    "u": 0.579,
+    "theta_deg": 69.1
    }
   },
   {
@@ -530,29 +591,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.1,
-     "theta_deg": 238.2
+     "u": 0.099,
+     "theta_deg": 234.5
     },
     "W-RW": {
-     "u": 0.108,
-     "theta_deg": 220.2
+     "u": 0.11,
+     "theta_deg": 224.0
     },
     "W-C": {
-     "u": 0.029,
-     "theta_deg": 302.2
+     "u": 0.035,
+     "theta_deg": 301.4
     },
     "W-LD": {
-     "u": 0.62,
-     "theta_deg": 132.2
+     "u": 0.619,
+     "theta_deg": 128.0
     },
     "W-RD": {
-     "u": 0.933,
-     "theta_deg": 262.7
+     "u": 0.937,
+     "theta_deg": 264.7
     }
    },
    "defending_goalie": {
-    "u": 0.609,
-    "theta_deg": 51.9
+    "u": 0.627,
+    "theta_deg": 53.6
    }
   },
   {
@@ -565,29 +626,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.726,
-     "theta_deg": 209.3
+     "u": 0.731,
+     "theta_deg": 209.5
     },
     "W-RW": {
-     "u": 0.13,
-     "theta_deg": 224.1
+     "u": 0.131,
+     "theta_deg": 217.8
     },
     "W-C": {
-     "u": 0.101,
-     "theta_deg": 329.1
+     "u": 0.103,
+     "theta_deg": 337.5
     },
     "W-LD": {
-     "u": 0.981,
-     "theta_deg": 161.9
+     "u": 0.977,
+     "theta_deg": 160.0
     },
     "W-RD": {
-     "u": 0.942,
-     "theta_deg": 244.4
+     "u": 0.94,
+     "theta_deg": 239.5
     }
    },
    "defending_goalie": {
     "u": 0.646,
-    "theta_deg": 71.0
+    "theta_deg": 73.6
    }
   },
   {
@@ -600,29 +661,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.998,
-     "theta_deg": 174.2
+     "u": 0.996,
+     "theta_deg": 175.0
     },
     "E-RW": {
      "u": 0.914,
-     "theta_deg": 213.6
+     "theta_deg": 210.5
     },
     "E-C": {
-     "u": 0.977,
-     "theta_deg": 300.4
+     "u": 0.98,
+     "theta_deg": 305.8
     },
     "E-LD": {
-     "u": 0.061,
-     "theta_deg": 238.8
+     "u": 0.059,
+     "theta_deg": 242.2
     },
     "E-RD": {
-     "u": 0.33,
+     "u": 0.335,
      "theta_deg": 261.2
     }
    },
    "defending_goalie": {
-    "u": 0.335,
-    "theta_deg": 59.1
+    "u": 0.332,
+    "theta_deg": 58.7
    }
   },
   {
@@ -635,29 +696,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.495,
-     "theta_deg": 46.6
+     "u": 0.491,
+     "theta_deg": 53.8
     },
     "W-RW": {
-     "u": 0.994,
-     "theta_deg": 279.4
+     "u": 0.992,
+     "theta_deg": 278.3
     },
     "W-C": {
-     "u": 0.905,
-     "theta_deg": 307.6
+     "u": 0.892,
+     "theta_deg": 318.8
     },
     "W-LD": {
-     "u": 0.785,
-     "theta_deg": 217.2
+     "u": 0.784,
+     "theta_deg": 227.3
     },
     "W-RD": {
-     "u": 0.914,
-     "theta_deg": 172.7
+     "u": 0.917,
+     "theta_deg": 172.5
     }
    },
    "defending_goalie": {
-    "u": 0.141,
-    "theta_deg": 117.8
+    "u": 0.146,
+    "theta_deg": 117.9
    }
   },
   {
@@ -670,29 +731,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.813,
-     "theta_deg": 251.3
+     "u": 0.81,
+     "theta_deg": 253.6
     },
     "W-RW": {
-     "u": 0.166,
-     "theta_deg": 238.9
+     "u": 0.167,
+     "theta_deg": 236.9
     },
     "W-C": {
-     "u": 0.028,
-     "theta_deg": 175.1
+     "u": 0.025,
+     "theta_deg": 155.6
     },
     "W-LD": {
-     "u": 0.817,
-     "theta_deg": 233.5
+     "u": 0.813,
+     "theta_deg": 229.2
     },
     "W-RD": {
-     "u": 0.944,
-     "theta_deg": 152.6
+     "u": 0.784,
+     "theta_deg": 143.5
     }
    },
    "defending_goalie": {
-    "u": 0.499,
-    "theta_deg": 54.2
+    "u": 0.502,
+    "theta_deg": 54.4
    }
   },
   {
@@ -705,29 +766,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.601,
-     "theta_deg": 287.9
+     "u": 0.595,
+     "theta_deg": 296.1
     },
     "W-RW": {
      "u": 0.124,
-     "theta_deg": 253.8
+     "theta_deg": 249.0
     },
     "W-C": {
-     "u": 0.931,
-     "theta_deg": 304.0
+     "u": 0.935,
+     "theta_deg": 306.0
     },
     "W-LD": {
-     "u": 0.68,
-     "theta_deg": 127.5
+     "u": 0.681,
+     "theta_deg": 111.6
     },
     "W-RD": {
-     "u": 0.936,
-     "theta_deg": 241.3
+     "u": 0.275,
+     "theta_deg": 234.6
     }
    },
    "defending_goalie": {
-    "u": 0.523,
-    "theta_deg": 56.6
+    "u": 0.516,
+    "theta_deg": 58.3
    }
   },
   {
@@ -740,29 +801,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.977,
-     "theta_deg": 234.6
+     "u": 0.98,
+     "theta_deg": 232.3
     },
     "E-RW": {
      "u": 0.982,
-     "theta_deg": 227.3
+     "theta_deg": 226.1
     },
     "E-C": {
-     "u": 0.231,
-     "theta_deg": 170.4
+     "u": 0.233,
+     "theta_deg": 181.2
     },
     "E-LD": {
-     "u": 0.02,
-     "theta_deg": 247.3
+     "u": 0.023,
+     "theta_deg": 251.1
     },
     "E-RD": {
-     "u": 0.075,
-     "theta_deg": 48.3
+     "u": 0.072,
+     "theta_deg": 48.1
     }
    },
    "defending_goalie": {
-    "u": 0.651,
-    "theta_deg": 25.6
+    "u": 0.659,
+    "theta_deg": 22.9
    }
   },
   {
@@ -775,29 +836,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.697,
-     "theta_deg": 302.7
+     "u": 0.701,
+     "theta_deg": 317.9
     },
     "W-RW": {
-     "u": 0.984,
-     "theta_deg": 279.0
+     "u": 0.989,
+     "theta_deg": 266.8
     },
     "W-C": {
      "u": 0.249,
-     "theta_deg": 245.5
+     "theta_deg": 237.5
     },
     "W-LD": {
-     "u": 0.78,
-     "theta_deg": 246.1
+     "u": 0.779,
+     "theta_deg": 252.6
     },
     "W-RD": {
-     "u": 0.877,
-     "theta_deg": 212.1
+     "u": 0.871,
+     "theta_deg": 216.1
     }
    },
    "defending_goalie": {
-    "u": 0.095,
-    "theta_deg": 128.1
+    "u": 0.101,
+    "theta_deg": 132.5
    }
   },
   {
@@ -810,29 +871,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.708,
-     "theta_deg": 159.6
+     "u": 0.626,
+     "theta_deg": 339.1
     },
     "E-RW": {
-     "u": 0.975,
-     "theta_deg": 242.4
+     "u": 0.972,
+     "theta_deg": 244.6
     },
     "E-C": {
-     "u": 0.924,
-     "theta_deg": 205.3
+     "u": 0.043,
+     "theta_deg": 267.0
     },
     "E-LD": {
-     "u": 0.174,
-     "theta_deg": 193.1
+     "u": 0.171,
+     "theta_deg": 194.8
     },
     "E-RD": {
      "u": 0.051,
-     "theta_deg": 216.7
+     "theta_deg": 225.5
     }
    },
    "defending_goalie": {
-    "u": 0.206,
-    "theta_deg": 224.2
+    "u": 0.244,
+    "theta_deg": 226.6
    }
   },
   {
@@ -845,29 +906,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.763,
-     "theta_deg": 261.5
+     "u": 0.775,
+     "theta_deg": 250.8
     },
     "W-RW": {
-     "u": 0.188,
-     "theta_deg": 222.5
+     "u": 0.192,
+     "theta_deg": 223.1
     },
     "W-C": {
-     "u": 0.027,
-     "theta_deg": 178.9
+     "u": 0.019,
+     "theta_deg": 168.8
     },
     "W-LD": {
-     "u": 0.791,
-     "theta_deg": 212.0
+     "u": 0.792,
+     "theta_deg": 216.3
     },
     "W-RD": {
-     "u": 0.955,
-     "theta_deg": 120.3
+     "u": 0.96,
+     "theta_deg": 125.2
     }
    },
    "defending_goalie": {
-    "u": 0.533,
-    "theta_deg": 54.5
+    "u": 0.534,
+    "theta_deg": 53.5
    }
   },
   {
@@ -881,28 +942,28 @@
    "scoring_team": {
     "E-LW": {
      "u": 0.74,
-     "theta_deg": 182.9
+     "theta_deg": 188.2
     },
     "E-RW": {
-     "u": 0.1,
-     "theta_deg": 40.2
+     "u": 0.096,
+     "theta_deg": 41.5
     },
     "E-C": {
-     "u": 0.222,
-     "theta_deg": 183.4
+     "u": 0.227,
+     "theta_deg": 185.6
     },
     "E-LD": {
-     "u": 0.022,
-     "theta_deg": 274.7
+     "u": 0.015,
+     "theta_deg": 270.0
     },
     "E-RD": {
-     "u": 0.095,
-     "theta_deg": 141.8
+     "u": 0.089,
+     "theta_deg": 138.5
     }
    },
    "defending_goalie": {
     "u": 0.681,
-    "theta_deg": 348.8
+    "theta_deg": 348.6
    }
   },
   {
@@ -915,29 +976,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.594,
-     "theta_deg": 1.0
+     "u": 0.588,
+     "theta_deg": 21.1
     },
     "W-RW": {
-     "u": 0.447,
-     "theta_deg": 287.3
+     "u": 0.448,
+     "theta_deg": 279.8
     },
     "W-C": {
-     "u": 0.272,
-     "theta_deg": 255.9
+     "u": 0.268,
+     "theta_deg": 248.3
     },
     "W-LD": {
-     "u": 0.796,
-     "theta_deg": 270.2
+     "u": 0.794,
+     "theta_deg": 273.7
     },
     "W-RD": {
-     "u": 0.931,
-     "theta_deg": 117.2
+     "u": 0.941,
+     "theta_deg": 125.1
     }
    },
    "defending_goalie": {
-    "u": 0.15,
-    "theta_deg": 110.1
+    "u": 0.144,
+    "theta_deg": 110.4
    }
   },
   {
@@ -950,29 +1011,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "W-LW": {
-     "u": 0.041,
-     "theta_deg": 180.8
+     "u": 0.455,
+     "theta_deg": 26.7
     },
     "W-RW": {
      "u": 0.544,
-     "theta_deg": 198.8
+     "theta_deg": 192.0
     },
     "W-C": {
-     "u": 0.854,
-     "theta_deg": 260.6
+     "u": 0.859,
+     "theta_deg": 243.5
     },
     "W-LD": {
-     "u": 0.483,
-     "theta_deg": 200.4
+     "u": 0.485,
+     "theta_deg": 183.4
     },
     "W-RD": {
-     "u": 0.947,
-     "theta_deg": 194.8
+     "u": 0.946,
+     "theta_deg": 178.2
     }
    },
    "defending_goalie": {
     "u": 0.225,
-    "theta_deg": 136.5
+    "theta_deg": 136.3
    }
   },
   {
@@ -985,29 +1046,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.164,
-     "theta_deg": 105.7
+     "u": 0.161,
+     "theta_deg": 112.5
     },
     "E-RW": {
-     "u": 0.979,
-     "theta_deg": 272.8
+     "u": 0.976,
+     "theta_deg": 275.8
     },
     "E-C": {
-     "u": 0.171,
-     "theta_deg": 159.5
+     "u": 0.191,
+     "theta_deg": 144.0
     },
     "E-LD": {
-     "u": 0.566,
-     "theta_deg": 127.9
+     "u": 0.56,
+     "theta_deg": 124.0
     },
     "E-RD": {
      "u": 0.44,
-     "theta_deg": 294.2
+     "theta_deg": 317.1
     }
    },
    "defending_goalie": {
-    "u": 0.061,
-    "theta_deg": 186.4
+    "u": 0.107,
+    "theta_deg": 170.6
    }
   },
   {
@@ -1020,29 +1081,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.536,
-     "theta_deg": 25.3
+     "u": 0.522,
+     "theta_deg": 13.5
     },
     "E-RW": {
-     "u": 0.744,
-     "theta_deg": 91.7
+     "u": 0.746,
+     "theta_deg": 89.0
     },
     "E-C": {
-     "u": 0.16,
-     "theta_deg": 261.5
+     "u": 0.184,
+     "theta_deg": 260.1
     },
     "E-LD": {
-     "u": 0.659,
-     "theta_deg": 184.4
+     "u": 0.261,
+     "theta_deg": 149.1
     },
     "E-RD": {
-     "u": 0.067,
-     "theta_deg": 141.5
+     "u": 0.064,
+     "theta_deg": 138.6
     }
    },
    "defending_goalie": {
-    "u": 0.771,
-    "theta_deg": 113.7
+    "u": 0.783,
+    "theta_deg": 115.4
    }
   },
   {
@@ -1055,29 +1116,29 @@
    "frame_offset": 0,
    "scoring_team": {
     "E-LW": {
-     "u": 0.133,
-     "theta_deg": 177.2
+     "u": 0.128,
+     "theta_deg": 173.5
     },
     "E-RW": {
-     "u": 0.038,
-     "theta_deg": 108.2
+     "u": 0.04,
+     "theta_deg": 102.2
     },
     "E-C": {
-     "u": 0.973,
-     "theta_deg": 227.2
+     "u": 0.972,
+     "theta_deg": 227.3
     },
     "E-LD": {
      "u": 0.121,
-     "theta_deg": 176.3
+     "theta_deg": 172.0
     },
     "E-RD": {
-     "u": 0.902,
-     "theta_deg": 327.6
+     "u": 0.914,
+     "theta_deg": 3.4
     }
    },
    "defending_goalie": {
-    "u": 0.04,
-    "theta_deg": 151.1
+    "u": 0.039,
+    "theta_deg": 150.4
    }
   }
  ],
@@ -1087,24 +1148,24 @@
    "player": "nygard",
    "family": "shovel",
    "combination": "Edwallskyffel lang",
-   "centre_from_front_mm": 241,
-   "centre_theta_deg": 316.4
+   "centre_from_front_mm": 240,
+   "centre_theta_deg": 322.4
   },
   {
    "id": "g1-goal3",
    "player": "fjermestad",
    "family": "centrifuge",
    "combination": null,
-   "centre_from_front_mm": 61,
-   "centre_theta_deg": 206.9
+   "centre_from_front_mm": 71,
+   "centre_theta_deg": 236.7
   },
   {
    "id": "g1-goal4",
    "player": "fjermestad",
    "family": "centrifuge",
    "combination": null,
-   "centre_from_front_mm": 32,
-   "centre_theta_deg": 275.8
+   "centre_from_front_mm": 35,
+   "centre_theta_deg": 270.4
   },
   {
    "id": "g1-goal5",
@@ -1112,7 +1173,7 @@
    "family": "centrifuge",
    "combination": null,
    "centre_from_front_mm": 9,
-   "centre_theta_deg": 269.0
+   "centre_theta_deg": 265.4
   },
   {
    "id": "g1-goal6",
@@ -1120,7 +1181,7 @@
    "family": "centrifuge",
    "combination": null,
    "centre_from_front_mm": 18,
-   "centre_theta_deg": 245.2
+   "centre_theta_deg": 263.3
   },
   {
    "id": "g1-goal7",
@@ -1128,31 +1189,31 @@
    "family": "shovel",
    "combination": null,
    "centre_from_front_mm": 17,
-   "centre_theta_deg": 224.2
+   "centre_theta_deg": 235.3
   },
   {
    "id": "g2-goal1",
    "player": "fjermestad",
    "family": "centrifuge",
    "combination": "Short centrifuge",
-   "centre_from_front_mm": 199,
-   "centre_theta_deg": 295.7
+   "centre_from_front_mm": 200,
+   "centre_theta_deg": 285.9
   },
   {
    "id": "g2-goal2",
    "player": "nygard",
    "family": "shovel",
    "combination": "Edwallskyffel lang",
-   "centre_from_front_mm": 243,
-   "centre_theta_deg": 328.7
+   "centre_from_front_mm": 244,
+   "centre_theta_deg": 319.6
   },
   {
    "id": "g2-goal3",
    "player": "nygard",
    "family": "shovel",
    "combination": "Edwallskyffel lang",
-   "centre_from_front_mm": 243,
-   "centre_theta_deg": 302.2
+   "centre_from_front_mm": 242,
+   "centre_theta_deg": 301.4
   },
   {
    "id": "g2-goal4",
@@ -1160,7 +1221,7 @@
    "family": "shovel",
    "combination": "Edwallskyffel lang",
    "centre_from_front_mm": 225,
-   "centre_theta_deg": 329.1
+   "centre_theta_deg": 337.5
   },
   {
    "id": "g3-goal1",
@@ -1168,31 +1229,31 @@
    "family": "shovel",
    "combination": "Spade",
    "centre_from_front_mm": 245,
-   "centre_theta_deg": 300.4
+   "centre_theta_deg": 305.8
   },
   {
    "id": "g3-goal2",
    "player": "fjermestad",
    "family": "centrifuge",
    "combination": null,
-   "centre_from_front_mm": 24,
-   "centre_theta_deg": 307.6
+   "centre_from_front_mm": 27,
+   "centre_theta_deg": 318.8
   },
   {
    "id": "g3-goal3",
    "player": "fjermestad",
    "family": "shovel",
    "combination": "Spade",
-   "centre_from_front_mm": 243,
-   "centre_theta_deg": 175.1
+   "centre_from_front_mm": 244,
+   "centre_theta_deg": 155.6
   },
   {
    "id": "g3-goal4",
    "player": "fjermestad",
    "family": "shovel",
    "combination": "Edwallskyffel lang",
-   "centre_from_front_mm": 17,
-   "centre_theta_deg": 304.0
+   "centre_from_front_mm": 16,
+   "centre_theta_deg": 306.0
   },
   {
    "id": "g3-goal5",
@@ -1200,7 +1261,7 @@
    "family": "centre",
    "combination": "Spjass",
    "centre_from_front_mm": 58,
-   "centre_theta_deg": 170.4
+   "centre_theta_deg": 181.2
   },
   {
    "id": "g3-goal6",
@@ -1208,55 +1269,55 @@
    "family": "centrifuge",
    "combination": "Short centrifuge",
    "centre_from_front_mm": 188,
-   "centre_theta_deg": 245.5
+   "centre_theta_deg": 237.5
   },
   {
    "id": "g3-goal7",
    "player": "nygard",
    "family": "rebound",
    "combination": null,
-   "centre_from_front_mm": 231,
-   "centre_theta_deg": 205.3
+   "centre_from_front_mm": 11,
+   "centre_theta_deg": 267.0
   },
   {
    "id": "g3-goal8",
    "player": "fjermestad",
    "family": "shovel",
    "combination": "Spade",
-   "centre_from_front_mm": 244,
-   "centre_theta_deg": 178.9
+   "centre_from_front_mm": 246,
+   "centre_theta_deg": 168.8
   },
   {
    "id": "g4-goal1",
    "player": "nygard",
    "family": "centre",
    "combination": "Spjass",
-   "centre_from_front_mm": 56,
-   "centre_theta_deg": 183.4
+   "centre_from_front_mm": 57,
+   "centre_theta_deg": 185.6
   },
   {
    "id": "g4-goal2",
    "player": "fjermestad",
    "family": "centrifuge",
    "combination": "Short centrifuge",
-   "centre_from_front_mm": 182,
-   "centre_theta_deg": 255.9
+   "centre_from_front_mm": 183,
+   "centre_theta_deg": 248.3
   },
   {
    "id": "g4-goal3",
    "player": "fjermestad",
    "family": "centrifuge",
    "combination": null,
-   "centre_from_front_mm": 37,
-   "centre_theta_deg": 260.6
+   "centre_from_front_mm": 35,
+   "centre_theta_deg": 243.5
   },
   {
    "id": "g5-goal1",
    "player": "fjermestad",
    "family": "centrifuge",
    "combination": null,
-   "centre_from_front_mm": 40,
-   "centre_theta_deg": 261.5
+   "centre_from_front_mm": 46,
+   "centre_theta_deg": 260.1
   }
  ]
 }

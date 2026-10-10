@@ -2,10 +2,11 @@
 
     python3 scripts/synth/figure-tracks-board.py <goal_id> [seconds_before ...] [--smooth]
 
---smooth draws the cleaned tracks (<game>/figure-tracks-smooth.json; interpolated figures hollow, unknown ones left out)
-and writes validation/board-<goal_id>-smooth.png.
+--smooth draws the game's selected tracks (scripts/nm26_tracks.py: <game>/figure-tracks-v3.json, or
+$NM26_FIGURE_TRACKS; interpolated figures hollow, unknown ones left out) and writes validation/board-<goal_id>-smooth.png.
 
-Reads data/games/nm26-semifinal/rebuild/<goal_id>-figures.json (every frame of the goal window) and the puck track,
+Reads data/games/nm26-semifinal/rebuild/<goal_id>-figures.json (every frame of the goal window) and the selected puck
+track (puck-track-synth.json, or $NM26_PUCK_TRACK; slow detections only),
 and draws the rink from above (inner board boundary, slot centrelines, goal lines) at the given times before the user's
 goal moment (default -2.0 -1.2 -0.6 -0.3 -0.1 0.0 s): each figure as a dot at its tracked pivot with an arrow in its
 facing direction (white/blue end blue, yellow end orange, goalies larger), the puck (black) when detected in that
@@ -16,6 +17,8 @@ from pathlib import Path
 import cv2, numpy as np
 
 REPO = Path(__file__).resolve().parents[2]; D = REPO / "data/games/nm26-semifinal"
+sys.path.insert(0, str(REPO / "scripts"))
+from nm26_tracks import figure_path, load_puck  # noqa: E402
 SMOOTH = "--smooth" in sys.argv; argv = [a for a in sys.argv[1:] if a != "--smooth"]
 gid = argv[0]; times = [float(x) for x in argv[1:]] or [-2.0, -1.2, -0.6, -0.3, -0.1, 0.0]
 G = json.loads((REPO / "data/geometry.json").read_text())
@@ -23,10 +26,10 @@ SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G
 BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"])
 HOME = {"W": 0.0, "E": 180.0}
 lab = {r["id"]: r for r in json.loads((D / "goal-labels.json").read_text())["labels"]}[gid]
-T = json.loads(((D / lab["game"] / "figure-tracks-smooth.json") if SMOOTH else (D / "rebuild" / f"{gid}-figures.json")).read_text())
+T = json.loads((figure_path(lab["game"]) if SMOOTH else (D / "rebuild" / f"{gid}-figures.json")).read_text())
 C = T["columns"]; rows = T["rows"]
-P = json.loads((D / lab["game"] / "puck-track.json").read_text()); pc = P["columns"]
-puck = {int(r[pc.index("frame")]): (r[pc.index("x_mm")], r[pc.index("y_mm")]) for r in P["rows"] if r[pc.index("kind")] == "disk"}
+P = load_puck(lab["game"]); pc = P["columns"]
+puck = {int(r[pc.index("frame")]): (r[pc.index("x_mm")], r[pc.index("y_mm")]) for r, slow in zip(P["rows"], P["slow"]) if slow}
 FIG = [c[:-2] for c in C if c.endswith("_u")]
 S = 1.2; W, H = int(870 * S), int(470 * S)
 

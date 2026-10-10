@@ -2,6 +2,8 @@
  "description": "Claude's visual review of the 136 game-1 candidates on the review page (pass, turnover, shot, loose; at least 100 mm). One verdict per candidate with a confidence 0-100 that the verdict is right; low confidence means the user should check it.",
  "status": "proposed",
  "reviewed_on": "2026-10-08",
+ "puck_track": "puck-track.json",
+ "puck_track_note": "the candidates come from passes.json on the old puck track; since 2026-10-10 passes.json is built on puck-track-synth.json (docs/nm26-new-tracks.md), so this review no longer matches the current candidates one to one",
  "method": [
   "Per candidate, one image row: puck-centred crops 0.3 s before the release, at the release (with the passer's slot drawn) and at the reception (with the receiver's slot drawn), 0.4 s after the reception, and a darkest-pixel composite of every registered frame of the flight with the measured line.",
   "Judged: is the puck really moving along the line (streak in the composite, puck visible at both ends); which kit (white/blue = Nygård W, yellow = Fjermestad E) is at each end; hands in the rink (stoppages); splits and out-and-back tracking jumps.",

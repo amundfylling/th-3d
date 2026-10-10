@@ -15,8 +15,8 @@ top-down replay play together (1×, ½×, ¼×, frame steps, "Goal −1 s").
 
 Needs Python with opencv-python-headless, numpy and PyAV (libdav1d for the AV1 source). Broadcast clips need the
 video at `out/dl/nm26.webm` (`data/games/nm26-semifinal/config.json` → `video.url`, sha256 there). It reads only
-committed tracks, so rerun it after a new puck track (`<game>/puck-track.json`) or figure tracks
-(`<game>/figure-tracks-smooth.json`) land. A full run takes about 7 minutes on 4 cores.
+committed tracks selected by `scripts/nm26_tracks.py` (since 2026-10-10 `<game>/puck-track-synth.json` and
+`<game>/figure-tracks-v3.json`), so rerun it after a new track lands. A full run takes about 7 minutes on 4 cores.
 
 ## What is here
 
@@ -41,7 +41,7 @@ committed tracks, so rerun it after a new puck track (`<game>/puck-track.json`) 
 - Figures: dot at the pivot, arrow for the facing, a stick to the mold-frame blade point (12, 33) mm. Not the mold
   footprint. Hollow = interpolated (rejected reading, or between 5-per-second readings outside the 30 fps goal
   windows of `track-figures.py`). Unknown figures are left out.
-- Puck: seen in 32-92% of the window's frames depending on the goal (`replays.json` → `coverage`); during fast shots
-  it is usually a blur ("smudge") or missing, so the shot itself is the weakest part of each replay. The synthetic puck
-  detector (workstream 1) is meant to fix this; rerun the generator when its track lands.
+- Puck: seen in 18-100% of the window's frames depending on the goal (`replays.json` → `coverage`); during fast shots
+  it is often missing, so the shot itself is the weakest part of each replay. Since 2026-10-10 the puck comes from
+  the synthetic puck detector: a black disk when slow (under 0.3 m/s), a ring when faster (docs/nm26-new-tracks.md).
 - Blue and centre lines nominal (x = ±120, 0 mm); goals are the preview cage (validation/12-hardware-report.json).

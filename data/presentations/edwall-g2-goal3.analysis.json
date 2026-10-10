@@ -1,7 +1,7 @@
 {
  "schema": "shot-analysis/1",
  "analysis_id": "analysis.edwall-g2-goal3.v1",
- "trace_id": "trace.edwall-g2-goal3.v1",
+ "trace_id": "trace.edwall-g2-goal3.v2",
  "note": "Sports-analysis presentation of the PROPOSED rebuild of Nygård's Edwall long shovel, NM26 semi-final game 2 (g2-goal3, hat-trick goal 2 of 3; data/traces/edwall-g2-goal3.trace.json). The pass is fitted to puck readings from the broadcast; the centre's shovel is hidden in the broadcast and designed. Shot timing, camera and graphics are separate tracks.",
  "fps": 30,
  "width": 1920,
@@ -10,39 +10,39 @@
   {
    "id": "intro",
    "kind": "hold",
-   "at": 0.428,
+   "at": 0.437,
    "frames": 45
   },
   {
    "id": "full",
    "kind": "play",
-   "from": 0.428,
-   "to": 1.484,
+   "from": 0.437,
+   "to": 1.457,
    "rate": 1
   },
   {
    "id": "goal_hold",
    "kind": "hold",
-   "at": 1.484,
+   "at": 1.457,
    "frames": 25
   },
   {
    "id": "rewind",
    "kind": "rewind",
-   "from": 1.484,
-   "to": 0.7582,
+   "from": 1.457,
+   "to": 0.7669,
    "rate": 1.5
   },
   {
    "id": "pass_set",
    "kind": "hold",
-   "at": 0.7582,
+   "at": 0.7669,
    "frames": 20
   },
   {
    "id": "pass_in",
    "kind": "play",
-   "from": 0.7582,
+   "from": 0.7669,
    "to": {
     "event": "pass.release"
    },
@@ -105,14 +105,14 @@
   {
    "id": "replay",
    "kind": "play",
-   "from": 0.428,
-   "to": 1.484,
+   "from": 0.437,
+   "to": 1.457,
    "rate": 0.5
   },
   {
    "id": "outro",
    "kind": "hold",
-   "at": 1.484,
+   "at": 1.457,
    "frames": 45
   }
  ],

@@ -394,6 +394,16 @@
   - **Next (recommended):** switch to `puck-track-synth.json` and `figure-tracks-v3.json` and re-run passes, combinations
     and replays (with a ~100-tap user truth set); solved receptions in the move engine; publish the trained `.pt` models
     as release assets with their sha256.
+- **NM26 on the new tracks (2026-10-10, step 1 of the consolidation summary, branch `claude/switch-new-tracks-0nujjo`,
+  `docs/nm26-new-tracks.md`, PROPOSED):** the analysis reads `puck-track-synth.json` and `figure-tracks-v3.json`
+  (`scripts/nm26_tracks.py`; a `slow` flag replaces the old `disk`). Re-run: passes, patterns, figure analysis,
+  combinations, the 40 replays, the Edwall refit. Fewer, longer flights (shots 61 → 49, battles 482 → 338); the two
+  tracks agree on only about a third of the passes; a shot in the last 2 s before a user goal 3/25 → 1/25. Combination
+  vote at the user's moment 23/25 unchanged, at the estimated moment 20 → 18 (goal-moment median error 0.32 → 0.78 s,
+  replay rule tuned on the old track); eight PROPOSED label changes. Edwall: goal 3 rebuilt as v2 (rest on the readings,
+  blade shovel; carry-force check still fails); goals 2 and 4 found no scoring v2 fit and stay v1. Thresholds not
+  retuned. **Waiting on the user:** ~100 taps on https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp (96 frames where the
+  tracks disagree); then `scripts/nm26-tap-review.py eval` scores both tracks. Edwall videos not re-rendered.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -430,6 +440,7 @@ Iteration 20 closed without repair cycles:
 | Figure molds (2026-09-30) | `npm run check` passes (73 tests: typecheck, validate, figures/assembly/appearance/Remotion tests). Silhouette IoU skater 0.808 (7 views) / goalie 0.816 (8 views); overhead k = 1.071 mm/mold unit (4 Sweden skaters, IoU 0.69-0.79); stick check within 1.5 mm; assembly without intersections; Remotion import checks pass; reprojection worst slot mean 0.80 px (check made colour-aware: figure plastic over the E-G slot, recorded in scripts/review-reprojection.ts). Renders inspected (AI review). |
 | Dimensional accuracy | Goalie height and stick blade measured by the user (2026-10-01). Everything else not measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
 | Batch consolidation (2026-10-10) | Branch `claude/consolidation-batch-2026-10-10`: `npm run check` passes (typecheck, validate, 165/165 tests, including the 36 Python tests in `tests/synth/`). Rebuild runner: `analysis` stage and Edwall video specs byte-identical to the committed files; model, video and mesh steps not run (no video, Blender or PyTorch in that container). |
+| NM26 new tracks (2026-10-10) | Branch `claude/switch-new-tracks-0nujjo`: `npm run check` passes (typecheck, validate, 165/165 tests; Python tests 43/43 incl. 7 new track-selection tests). `npm run rebuild:nm26:analysis` reruns cleanly (its outputs differ from main by design). Old inputs reproduce the old outputs (env override). Edwall goals 2 and 4 v1 traces rebuild identical apart from the git commit. Not run: Edwall videos, g1 review page, evidence sheets. Taps pending. |
 
 ## Key decisions
 
@@ -494,6 +505,8 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **NM26 new tracks (2026-10-10, PROPOSED):** `docs/nm26-new-tracks.md`, tap page https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp
+  (`validation/tap-review/`), `validation/nm26-track-switch.json`, `validation/edwall-g2-goal3-trace.png`, `validation/replays/`.
 - **Batch 2026-10-10 (all PROPOSED):** `validation/analysis-edwall-g2-goal{2,3,4}.mp4` (with `-review.jpg`,
   `-report.json`; `edwall-g2-goal*-trace.png`), `validation/moves/hjerpefinte.mp4` (sheet
   `validation/moves/hjerpefinte-sheet.png`), `validation/replays/index.html` (40 goal replays and clips),

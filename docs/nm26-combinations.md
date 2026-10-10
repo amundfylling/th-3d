@@ -3,8 +3,11 @@
 Status: PROPOSED. Model output from the committed figure and puck tracks; checked leave-one-out against the user's 25
 goal labels. The 15 unreviewed goals carry PROPOSED labels, not user labels.
 
+**Since 2026-10-10 (docs/nm26-new-tracks.md):** the NM26 analysis reads `puck-track-synth.json` and `figure-tracks-v3.json`; the numbers below are from the old tracks, the new ones and the
+label changes are in docs/nm26-new-tracks.md by default (`scripts/nm26_tracks.py`).
+
 **Run:** `python3 scripts/nm26-combo-recognition.py [--puck <file>]` (about 3 s, numpy and Pillow only, no video).
-`--puck` picks another puck-track file in each game folder (default `puck-track.json`), so the whole analysis can be
+`--puck` picks another puck-track file in each game folder (default now `puck-track-synth.json`, was `puck-track.json`), so the whole analysis can be
 re-run on a better puck track (workstream 1) with one command.
 
 **Outputs:**

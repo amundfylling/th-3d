@@ -36,7 +36,8 @@ tracking pipeline (stabilisation, calibration, puck track, possession per skater
 `npm run game:track`) is documented in docs/game-tracking.md.
 NM 2026 semi-final (Nygård vs Fjermestad, seven games, broadcast video in a GitHub release, indexed): game 1 pass
 mapping (PROPOSED) with a user review page; see docs/nm26-game1-investigation.md and docs/nm26-passes.md.
-All seven NM26 games are tracked (PROPOSED). Game structure, goals and common patterns are in docs/nm26-game-patterns.md.
+All seven NM26 games are tracked (PROPOSED). Since 2026-10-10 the NM26 analysis reads the synthetic puck track and tracker v3
+(`scripts/nm26_tracks.py`; before/after and the user's tap check page in docs/nm26-new-tracks.md). Game structure, goals and common patterns are in docs/nm26-game-patterns.md.
 A synthetic-data pilot (goalie pose from Blender renders in the NM26 broadcast camera, `scripts/synth/`) is documented in
 docs/synthetic-goalie-pilot.md (PROPOSED).
 The figures stay with the table ends (white/blue left, yellow right): kit colour is an END, not a player (the players

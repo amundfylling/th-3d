@@ -4,6 +4,9 @@ Status: PROPOSED (2026-10-10, batch workstream 1, at the user's request). Model 
 user-checked. Same approach as the goalie and skater models (`docs/synthetic-goalie-pilot.md`): Blender renders in the
 NM26 reference camera, composited on real NM26 pictures.
 
+**Since 2026-10-10 (docs/nm26-new-tracks.md):** the NM26 analysis reads this detector's track (`puck-track-synth.json`); the before/after effect on passes,
+patterns, combinations, replays and the Edwall refit is in docs/nm26-new-tracks.md by default (`scripts/nm26_tracks.py`).
+
 **Question.** The current puck track (`<game>/puck-track.json`, `scripts/nm26-track.py`) finds the puck as a dark
 disk at rest or as a grey smudge in a straight fast run. It loses the puck in passes and shots, exactly where the
 rebuilds, the combination recognition and the replays need it (`docs/rebuild-g2-edwall.md`: "the automatic puck track

@@ -2,8 +2,8 @@
  "description": "NM26 all-goals replays (scripts/nm26-replays.py). PROPOSED: drawn from model tracks, not user-checked.",
  "status": "PROPOSED",
  "sources": {
-  "figures": "data/games/nm26-semifinal/<game>/figure-tracks-smooth.json",
-  "puck": "data/games/nm26-semifinal/<game>/puck-track.json",
+  "figures": "data/games/nm26-semifinal/<game>/figure-tracks-v3.json",
+  "puck": "data/games/nm26-semifinal/<game>/puck-track-synth.json",
   "goal_moments": "data/games/nm26-semifinal/goal-labels.json (user marks)",
   "goals": "data/games/nm26-semifinal/timeline.json"
  },
@@ -41,8 +41,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.715,
-    "puck_disk": 0.374,
+    "puck_seen": 0.537,
+    "puck_disk": 0.381,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -71,8 +71,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.652,
-    "puck_disk": 0.285,
+    "puck_seen": 0.537,
+    "puck_disk": 0.248,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -101,8 +101,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.722,
-    "puck_disk": 0.174,
+    "puck_seen": 0.785,
+    "puck_disk": 0.322,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -131,8 +131,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.748,
-    "puck_disk": 0.47,
+    "puck_seen": 0.844,
+    "puck_disk": 0.633,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -161,8 +161,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.756,
-    "puck_disk": 0.363,
+    "puck_seen": 0.737,
+    "puck_disk": 0.319,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -191,8 +191,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.589,
-    "puck_disk": 0.207,
+    "puck_seen": 0.693,
+    "puck_disk": 0.381,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -221,9 +221,9 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.919,
+    "puck_seen": 0.881,
     "puck_disk": 0.611,
-    "figures_shown_mean": 11.83
+    "figures_shown_mean": 11.91
    },
    "clip_registered": true,
    "clip_registration_inliers": 1892
@@ -251,8 +251,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.707,
-    "puck_disk": 0.337,
+    "puck_seen": 0.752,
+    "puck_disk": 0.463,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -281,8 +281,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.796,
-    "puck_disk": 0.344,
+    "puck_seen": 0.63,
+    "puck_disk": 0.241,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -311,8 +311,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.585,
-    "puck_disk": 0.5,
+    "puck_seen": 0.178,
+    "puck_disk": 0.096,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -341,8 +341,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.785,
-    "puck_disk": 0.441,
+    "puck_seen": 0.985,
+    "puck_disk": 0.581,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -371,9 +371,9 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.926,
-    "puck_disk": 0.733,
-    "figures_shown_mean": 11.94
+    "puck_seen": 0.878,
+    "puck_disk": 0.544,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 475
@@ -401,9 +401,9 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.911,
-    "puck_disk": 0.581,
-    "figures_shown_mean": 11.91
+    "puck_seen": 0.881,
+    "puck_disk": 0.563,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 448
@@ -431,9 +431,9 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.9,
-    "puck_disk": 0.863,
-    "figures_shown_mean": 11.79
+    "puck_seen": 0.544,
+    "puck_disk": 0.426,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 446
@@ -461,9 +461,9 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.707,
-    "puck_disk": 0.393,
-    "figures_shown_mean": 11.26
+    "puck_seen": 0.867,
+    "puck_disk": 0.722,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 475
@@ -491,8 +491,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.752,
-    "puck_disk": 0.552,
+    "puck_seen": 0.948,
+    "puck_disk": 0.744,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -521,8 +521,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.915,
-    "puck_disk": 0.548,
+    "puck_seen": 0.989,
+    "puck_disk": 0.704,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -551,8 +551,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.504,
-    "puck_disk": 0.13,
+    "puck_seen": 0.848,
+    "puck_disk": 0.256,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -581,8 +581,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.7,
-    "puck_disk": 0.485,
+    "puck_seen": 0.937,
+    "puck_disk": 0.748,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -612,8 +612,8 @@
     "frames": 270,
     "figure_rows_every_frame": 1.0,
     "puck_seen": 0.681,
-    "puck_disk": 0.341,
-    "figures_shown_mean": 11.33
+    "puck_disk": 0.37,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 434
@@ -641,8 +641,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.904,
-    "puck_disk": 0.581,
+    "puck_seen": 0.893,
+    "puck_disk": 0.585,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -671,9 +671,9 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.552,
-    "puck_disk": 0.367,
-    "figures_shown_mean": 11.74
+    "puck_seen": 0.4,
+    "puck_disk": 0.278,
+    "figures_shown_mean": 11.94
    },
    "clip_registered": true,
    "clip_registration_inliers": 457
@@ -701,9 +701,9 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.878,
-    "puck_disk": 0.637,
-    "figures_shown_mean": 11.98
+    "puck_seen": 0.948,
+    "puck_disk": 0.6,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 489
@@ -742,8 +742,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.285,
-    "puck_disk": 0.096,
+    "puck_seen": 0.496,
+    "puck_disk": 0.3,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -772,8 +772,8 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.815,
-    "puck_disk": 0.504,
+    "puck_seen": 0.793,
+    "puck_disk": 0.337,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -797,8 +797,8 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.739,
-    "puck_disk": 0.547,
+    "puck_seen": 0.651,
+    "puck_disk": 0.443,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -822,9 +822,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.565,
-    "puck_disk": 0.363,
-    "figures_shown_mean": 12.0
+    "puck_seen": 0.576,
+    "puck_disk": 0.333,
+    "figures_shown_mean": 11.94
    },
    "clip_registered": true,
    "clip_registration_inliers": 1050
@@ -847,8 +847,8 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.884,
-    "puck_seen": 0.602,
-    "puck_disk": 0.51,
+    "puck_seen": 0.651,
+    "puck_disk": 0.482,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -872,9 +872,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.643,
-    "puck_disk": 0.473,
-    "figures_shown_mean": 11.94
+    "puck_seen": 0.91,
+    "puck_disk": 0.58,
+    "figures_shown_mean": 11.92
    },
    "clip_registered": true,
    "clip_registration_inliers": 1067
@@ -897,9 +897,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.345,
-    "puck_disk": 0.31,
-    "figures_shown_mean": 11.94
+    "puck_seen": 0.998,
+    "puck_disk": 0.904,
+    "figures_shown_mean": 11.85
    },
    "clip_registered": true,
    "clip_registration_inliers": 1056
@@ -922,9 +922,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.627,
-    "puck_disk": 0.275,
-    "figures_shown_mean": 11.86
+    "puck_seen": 0.569,
+    "puck_disk": 0.273,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 497
@@ -947,8 +947,8 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.529,
-    "puck_disk": 0.322,
+    "puck_seen": 0.592,
+    "puck_disk": 0.343,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -972,8 +972,8 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.322,
-    "puck_disk": 0.249,
+    "puck_seen": 0.422,
+    "puck_disk": 0.261,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,
@@ -997,9 +997,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.49,
-    "puck_disk": 0.243,
-    "figures_shown_mean": 11.75
+    "puck_seen": 0.592,
+    "puck_disk": 0.31,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 445
@@ -1022,9 +1022,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.3,
-    "puck_disk": 0.192,
-    "figures_shown_mean": 11.74
+    "puck_seen": 0.353,
+    "puck_disk": 0.235,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 423
@@ -1047,9 +1047,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.767,
-    "puck_seen": 0.253,
-    "puck_disk": 0.098,
-    "figures_shown_mean": 11.82
+    "puck_seen": 0.402,
+    "puck_disk": 0.157,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 400
@@ -1072,9 +1072,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.314,
-    "puck_disk": 0.145,
-    "figures_shown_mean": 12.0
+    "puck_seen": 0.306,
+    "puck_disk": 0.214,
+    "figures_shown_mean": 11.81
    },
    "clip_registered": true,
    "clip_registration_inliers": 1106
@@ -1097,9 +1097,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.649,
-    "puck_seen": 0.59,
-    "puck_disk": 0.435,
-    "figures_shown_mean": 11.81
+    "puck_seen": 0.606,
+    "puck_disk": 0.384,
+    "figures_shown_mean": 12.0
    },
    "clip_registered": true,
    "clip_registration_inliers": 1044
@@ -1122,9 +1122,9 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.557,
-    "puck_disk": 0.325,
-    "figures_shown_mean": 12.0
+    "puck_seen": 0.622,
+    "puck_disk": 0.488,
+    "figures_shown_mean": 11.93
    },
    "clip_registered": true,
    "clip_registration_inliers": 1104
@@ -1147,8 +1147,8 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.384,
-    "puck_disk": 0.18,
+    "puck_seen": 0.357,
+    "puck_disk": 0.165,
     "figures_shown_mean": 12.0
    },
    "clip_registered": true,

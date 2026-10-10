@@ -2,7 +2,7 @@
 
     /root/venvs/blender/bin/python scripts/nm26-patterns.py
 
-Inputs: data/games/nm26-semifinal/{config.json, timeline.json, g*/puck-track.json, g*/passes.json}, data/geometry.json,
+Inputs: data/games/nm26-semifinal/{config.json, timeline.json, g*/<puck track>, g*/passes.json} (puck track: scripts/nm26_tracks.py), data/geometry.json,
 validation/12-hardware-report.json (goal cages, for the maps).
 Outputs: data/games/nm26-semifinal/patterns.json, validation/nm26-control-nygard.png, validation/nm26-control-fjermestad.png.
 
@@ -26,6 +26,7 @@ from shapely.ops import unary_union
 from shapely.prepared import prep
 
 from nm26_common import CFG, DATA, REPO, load, proj, save
+from nm26_tracks import PUCK_TRACK, load_puck
 
 GAMES = [g for g in CFG["games"]]
 TL = load(DATA / "timeline.json")["games"]
@@ -59,9 +60,10 @@ def share(c, n):
 
 
 rows, events, team = {}, {}, {}
+PUCK = {g: load_puck(g) for g in GAMES}
 for g in GAMES:
     team[g] = {"W": CFG["games"][g]["team_W"], "E": CFG["games"][g]["team_E"]}
-    rows[g] = [r + [owner(r[2], r[3])] for r in load(DATA / g / "puck-track.json")["rows"] if live(g, r[1])]
+    rows[g] = [r + [owner(r[2], r[3])] for r in PUCK[g]["rows"] if live(g, r[1])]
     events[g] = [e for e in load(DATA / g / "passes.json")["events"] if live(g, e["t_release_s"])]
 
 per_game = {}
@@ -153,8 +155,8 @@ for p in PLAYERS:
 restarts = {}
 for g in GAMES:
     runs, cur = [], None
-    for r in load(DATA / g / "puck-track.json")["rows"]:
-        if abs(r[2]) < 30 and abs(r[3]) < 30 and r[6] == "disk":
+    for r, slow in zip(PUCK[g]["rows"], PUCK[g]["slow"]):
+        if abs(r[2]) < 30 and abs(r[3]) < 30 and slow:
             if cur and r[1] - cur[1] < 0.4:
                 cur[1] = r[1]
             else:
@@ -168,6 +170,7 @@ for g in GAMES:
 save(DATA / "patterns.json", {
     "description": "Cross-game patterns from the automatic puck tracks of all seven games (scripts/nm26-patterns.py; docs/nm26-game-patterns.md).",
     "status": "proposed",
+    "puck_track": PUCK_TRACK,
     "method": __doc__.split("Method (docs/nm26-game-patterns.md):")[1].strip(),
     "per_game": per_game, "per_player": per_player,
     "puck_resting_on_centre_spot_s": restarts,

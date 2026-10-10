@@ -1,0 +1,913 @@
+{
+ "base": "ee0681d",
+ "passes": {
+  "g1": {
+   "before": {
+    "battle": 77,
+    "carry": 592,
+    "pass": 67,
+    "shot": 13,
+    "turnover": 64
+   },
+   "after": {
+    "battle": 54,
+    "carry": 427,
+    "pass": 53,
+    "shot": 4,
+    "turnover": 49
+   },
+   "uncertain_ends": [
+    193,
+    96
+   ],
+   "before_passes_found_after": "21/67",
+   "after_passes_found_before": "21/53"
+  },
+  "g2": {
+   "before": {
+    "battle": 65,
+    "carry": 336,
+    "pass": 42,
+    "shot": 15,
+    "turnover": 49
+   },
+   "after": {
+    "battle": 53,
+    "carry": 314,
+    "pass": 49,
+    "shot": 11,
+    "turnover": 39
+   },
+   "uncertain_ends": [
+    134,
+    100
+   ],
+   "before_passes_found_after": "13/42",
+   "after_passes_found_before": "13/49"
+  },
+  "g3": {
+   "before": {
+    "battle": 62,
+    "carry": 378,
+    "loose": 1,
+    "loose_received": 2,
+    "pass": 56,
+    "shot": 10,
+    "turnover": 57
+   },
+   "after": {
+    "battle": 48,
+    "carry": 291,
+    "pass": 43,
+    "shot": 8,
+    "turnover": 57
+   },
+   "uncertain_ends": [
+    124,
+    89
+   ],
+   "before_passes_found_after": "19/56",
+   "after_passes_found_before": "19/43"
+  },
+  "g4": {
+   "before": {
+    "battle": 94,
+    "carry": 554,
+    "loose": 1,
+    "pass": 61,
+    "shot": 6,
+    "turnover": 50
+   },
+   "after": {
+    "battle": 48,
+    "carry": 434,
+    "loose_received": 2,
+    "pass": 73,
+    "shot": 6,
+    "turnover": 41
+   },
+   "uncertain_ends": [
+    208,
+    125
+   ],
+   "before_passes_found_after": "25/61",
+   "after_passes_found_before": "25/73"
+  },
+  "g5": {
+   "before": {
+    "battle": 86,
+    "carry": 504,
+    "pass": 71,
+    "shot": 9,
+    "turnover": 59
+   },
+   "after": {
+    "battle": 58,
+    "carry": 477,
+    "loose": 1,
+    "loose_received": 1,
+    "pass": 77,
+    "shot": 7,
+    "turnover": 37
+   },
+   "uncertain_ends": [
+    188,
+    148
+   ],
+   "before_passes_found_after": "24/71",
+   "after_passes_found_before": "24/77"
+  },
+  "g6": {
+   "before": {
+    "battle": 44,
+    "carry": 337,
+    "loose": 3,
+    "loose_received": 2,
+    "pass": 34,
+    "shot": 4,
+    "turnover": 36
+   },
+   "after": {
+    "battle": 28,
+    "carry": 281,
+    "pass": 31,
+    "shot": 5,
+    "turnover": 29
+   },
+   "uncertain_ends": [
+    126,
+    92
+   ],
+   "before_passes_found_after": "10/34",
+   "after_passes_found_before": "10/31"
+  },
+  "g7": {
+   "before": {
+    "battle": 54,
+    "carry": 403,
+    "pass": 48,
+    "shot": 4,
+    "turnover": 39
+   },
+   "after": {
+    "battle": 49,
+    "carry": 283,
+    "loose_received": 1,
+    "pass": 44,
+    "shot": 8,
+    "turnover": 22
+   },
+   "uncertain_ends": [
+    143,
+    78
+   ],
+   "before_passes_found_after": "19/48",
+   "after_passes_found_before": "19/44"
+  },
+  "all": {
+   "before": {
+    "battle": 482,
+    "carry": 3104,
+    "pass": 379,
+    "shot": 61,
+    "turnover": 354,
+    "loose": 5,
+    "loose_received": 4
+   },
+   "after": {
+    "battle": 338,
+    "carry": 2507,
+    "pass": 370,
+    "shot": 49,
+    "turnover": 274,
+    "loose_received": 4,
+    "loose": 1
+   }
+  },
+  "user_goals_with_a_shot_in_the_last_2s": [
+   "3/25",
+   "1/25"
+  ]
+ },
+ "patterns": {
+  "g1": {
+   "seen_fraction": [
+    0.661,
+    0.686
+   ],
+   "puck_on_own_figures": [
+    {
+     "nygard": 0.502,
+     "fjermestad": 0.316,
+     "contested": 0.177,
+     "free": 0.006
+    },
+    {
+     "nygard": 0.499,
+     "fjermestad": 0.342,
+     "contested": 0.159,
+     "free": 0.001
+    }
+   ],
+   "flights_ge_100mm_per_min": [
+    19.2,
+    16.2
+   ],
+   "possession_changes_per_min": [
+    14.9,
+    12.1
+   ],
+   "flight_median_speed_mm_s": [
+    848,
+    1032
+   ],
+   "flight_board_bounce_share": [
+    0.397,
+    0.383
+   ]
+  },
+  "g2": {
+   "seen_fraction": [
+    0.695,
+    0.72
+   ],
+   "puck_on_own_figures": [
+    {
+     "nygard": 0.415,
+     "fjermestad": 0.421,
+     "contested": 0.161,
+     "free": 0.003
+    },
+    {
+     "nygard": 0.44,
+     "fjermestad": 0.409,
+     "contested": 0.15,
+     "free": 0.001
+    }
+   ],
+   "flights_ge_100mm_per_min": [
+    23.8,
+    21.8
+   ],
+   "possession_changes_per_min": [
+    20.2,
+    16.0
+   ],
+   "flight_median_speed_mm_s": [
+    921,
+    1101
+   ],
+   "flight_board_bounce_share": [
+    0.345,
+    0.367
+   ]
+  },
+  "g3": {
+   "seen_fraction": [
+    0.588,
+    0.646
+   ],
+   "puck_on_own_figures": [
+    {
+     "nygard": 0.356,
+     "fjermestad": 0.46,
+     "contested": 0.181,
+     "free": 0.002
+    },
+    {
+     "nygard": 0.373,
+     "fjermestad": 0.469,
+     "contested": 0.157,
+     "free": 0.001
+    }
+   ],
+   "flights_ge_100mm_per_min": [
+    25.2,
+    21.6
+   ],
+   "possession_changes_per_min": [
+    19.6,
+    16.2
+   ],
+   "flight_median_speed_mm_s": [
+    901,
+    1200
+   ],
+   "flight_board_bounce_share": [
+    0.341,
+    0.389
+   ]
+  },
+  "g4": {
+   "seen_fraction": [
+    0.65,
+    0.763
+   ],
+   "puck_on_own_figures": [
+    {
+     "nygard": 0.334,
+     "fjermestad": 0.448,
+     "contested": 0.217,
+     "free": 0.001
+    },
+    {
+     "nygard": 0.459,
+     "fjermestad": 0.377,
+     "contested": 0.163,
+     "free": 0.001
+    }
+   ],
+   "flights_ge_100mm_per_min": [
+    19.1,
+    18.8
+   ],
+   "possession_changes_per_min": [
+    19.6,
+    12.2
+   ],
+   "flight_median_speed_mm_s": [
+    797,
+    1384
+   ],
+   "flight_board_bounce_share": [
+    0.368,
+    0.244
+   ]
+  },
+  "g5": {
+   "seen_fraction": [
+    0.637,
+    0.71
+   ],
+   "puck_on_own_figures": [
+    {
+     "nygard": 0.299,
+     "fjermestad": 0.419,
+     "contested": 0.28,
+     "free": 0.002
+    },
+    {
+     "nygard": 0.273,
+     "fjermestad": 0.47,
+     "contested": 0.257,
+     "free": 0.0
+    }
+   ],
+   "flights_ge_100mm_per_min": [
+    20.0,
+    16.8
+   ],
+   "possession_changes_per_min": [
+    16.9,
+    11.4
+   ],
+   "flight_median_speed_mm_s": [
+    887,
+    1228
+   ],
+   "flight_board_bounce_share": [
+    0.387,
+    0.36
+   ]
+  },
+  "g6": {
+   "seen_fraction": [
+    0.446,
+    0.472
+   ],
+   "puck_on_own_figures": [
+    {
+     "nygard": 0.441,
+     "fjermestad": 0.333,
+     "contested": 0.218,
+     "free": 0.008
+    },
+    {
+     "nygard": 0.464,
+     "fjermestad": 0.31,
+     "contested": 0.21,
+     "free": 0.016
+    }
+   ],
+   "flights_ge_100mm_per_min": [
+    15.0,
+    11.4
+   ],
+   "possession_changes_per_min": [
+    12.8,
+    9.0
+   ],
+   "flight_median_speed_mm_s": [
+    816,
+    1220
+   ],
+   "flight_board_bounce_share": [
+    0.427,
+    0.368
+   ]
+  },
+  "g7": {
+   "seen_fraction": [
+    0.67,
+    0.664
+   ],
+   "puck_on_own_figures": [
+    {
+     "nygard": 0.348,
+     "fjermestad": 0.459,
+     "contested": 0.192,
+     "free": 0.002
+    },
+    {
+     "nygard": 0.372,
+     "fjermestad": 0.468,
+     "contested": 0.16,
+     "free": 0.001
+    }
+   ],
+   "flights_ge_100mm_per_min": [
+    20.7,
+    18.2
+   ],
+   "possession_changes_per_min": [
+    17.0,
+    13.2
+   ],
+   "flight_median_speed_mm_s": [
+    896,
+    1030
+   ],
+   "flight_board_bounce_share": [
+    0.34,
+    0.297
+   ]
+  },
+  "nygard": {
+   "puck_zone": [
+    {
+     "attacking end": 0.421,
+     "own end": 0.339,
+     "neutral": 0.24
+    },
+    {
+     "attacking end": 0.431,
+     "own end": 0.336,
+     "neutral": 0.232
+    }
+   ],
+   "flights_from_own_figures": [
+    {
+     "pass": 142,
+     "turnover": 131,
+     "shot": 23
+    },
+    {
+     "pass": 144,
+     "turnover": 109,
+     "shot": 27
+    }
+   ]
+  },
+  "fjermestad": {
+   "puck_zone": [
+    {
+     "own end": 0.419,
+     "attacking end": 0.341,
+     "neutral": 0.24
+    },
+    {
+     "own end": 0.428,
+     "attacking end": 0.34,
+     "neutral": 0.232
+    }
+   ],
+   "flights_from_own_figures": [
+    {
+     "turnover": 146,
+     "pass": 140,
+     "shot": 30
+    },
+    {
+     "turnover": 115,
+     "pass": 138,
+     "shot": 18
+    }
+   ]
+  }
+ },
+ "figure_analysis": {
+  "touch_share": {
+   "g1": [
+    0.146,
+    0.172
+   ],
+   "g2": [
+    0.168,
+    0.231
+   ],
+   "g3": [
+    0.131,
+    0.154
+   ],
+   "g4": [
+    0.112,
+    0.092
+   ],
+   "g5": [
+    0.14,
+    0.157
+   ],
+   "g6": [
+    0.1,
+    0.134
+   ],
+   "g7": [
+    0.142,
+    0.171
+   ]
+  },
+  "puck_frames": {
+   "g1": [
+    1230,
+    1378
+   ],
+   "g2": [
+    808,
+    805
+   ],
+   "g3": [
+    627,
+    791
+   ],
+   "g4": [
+    819,
+    1108
+   ],
+   "g5": [
+    950,
+    1077
+   ],
+   "g6": [
+    442,
+    439
+   ],
+   "g7": [
+    612,
+    584
+   ]
+  },
+  "selected_tracks_after": {
+   "g1": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 22582,
+    "slot_jump_share": 0.0087,
+    "rotation_jump_share": 0.0008,
+    "interpolated_share": 0.0593,
+    "unknown_share": 0.0093
+   },
+   "g2": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 12960,
+    "slot_jump_share": 0.0106,
+    "rotation_jump_share": 0.0008,
+    "interpolated_share": 0.066,
+    "unknown_share": 0.0055
+   },
+   "g3": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 25920,
+    "slot_jump_share": 0.0096,
+    "rotation_jump_share": 0.0005,
+    "interpolated_share": 0.0612,
+    "unknown_share": 0.003
+   },
+   "g4": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 12942,
+    "slot_jump_share": 0.007,
+    "rotation_jump_share": 0.0006,
+    "interpolated_share": 0.0558,
+    "unknown_share": 0.0089
+   },
+   "g5": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 28080,
+    "slot_jump_share": 0.009,
+    "rotation_jump_share": 0.0001,
+    "interpolated_share": 0.0522,
+    "unknown_share": 0.0055
+   },
+   "g6": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 25560,
+    "slot_jump_share": 0.0093,
+    "rotation_jump_share": 0.0004,
+    "interpolated_share": 0.0618,
+    "unknown_share": 0.0217
+   },
+   "g7": {
+    "file": "figure-tracks-v3.json",
+    "dense_steps": 17280,
+    "slot_jump_share": 0.0091,
+    "rotation_jump_share": 0.0003,
+    "interpolated_share": 0.0656,
+    "unknown_share": 0.0033
+   }
+  },
+  "touches_by_player_role": [
+   {
+    "nygard": {
+     "LW": {
+      "touches": 151,
+      "share": 0.366
+     },
+     "C": {
+      "touches": 136,
+      "share": 0.329
+     },
+     "LD": {
+      "touches": 68,
+      "share": 0.165
+     },
+     "RW": {
+      "touches": 42,
+      "share": 0.102
+     },
+     "RD": {
+      "touches": 16,
+      "share": 0.039
+     }
+    },
+    "fjermestad": {
+     "RD": {
+      "touches": 87,
+      "share": 0.256
+     },
+     "RW": {
+      "touches": 76,
+      "share": 0.224
+     },
+     "LW": {
+      "touches": 65,
+      "share": 0.191
+     },
+     "LD": {
+      "touches": 56,
+      "share": 0.165
+     },
+     "C": {
+      "touches": 56,
+      "share": 0.165
+     }
+    }
+   },
+   {
+    "nygard": {
+     "C": {
+      "touches": 183,
+      "share": 0.351
+     },
+     "LW": {
+      "touches": 142,
+      "share": 0.273
+     },
+     "LD": {
+      "touches": 105,
+      "share": 0.202
+     },
+     "RD": {
+      "touches": 62,
+      "share": 0.119
+     },
+     "RW": {
+      "touches": 29,
+      "share": 0.056
+     }
+    },
+    "fjermestad": {
+     "LD": {
+      "touches": 126,
+      "share": 0.278
+     },
+     "LW": {
+      "touches": 120,
+      "share": 0.264
+     },
+     "RD": {
+      "touches": 77,
+      "share": 0.17
+     },
+     "C": {
+      "touches": 72,
+      "share": 0.159
+     },
+     "RW": {
+      "touches": 59,
+      "share": 0.13
+     }
+    }
+   }
+  ]
+ },
+ "combinations": {
+  "leave_one_out_user_moment": [
+   {
+    "tree": "20/25",
+    "1nn": "21/25",
+    "rules": "23/25",
+    "vote": "23/25"
+   },
+   {
+    "tree": "18/25",
+    "1nn": "23/25",
+    "rules": "23/25",
+    "vote": "23/25"
+   }
+  ],
+  "leave_one_out_estimated_moment": [
+   {
+    "tree": "17/25",
+    "1nn": "20/25",
+    "rules": "20/25",
+    "vote": "20/25"
+   },
+   {
+    "tree": "15/25",
+    "1nn": "18/25",
+    "rules": "18/25",
+    "vote": "18/25"
+   }
+  ],
+  "goal_moment_loo_abs_error_s": [
+   {
+    "median": 0.32,
+    "p90": 4.59,
+    "within_0.5s": 14,
+    "within_1s": 16,
+    "max": 8.45
+   },
+   {
+    "median": 0.78,
+    "p90": 2.98,
+    "within_0.5s": 9,
+    "within_1s": 15,
+    "max": 9.27
+   }
+  ],
+  "goal_moment_by_method": [
+   {
+    "box_lag": {
+     "n": 1,
+     "median_abs_error_s": 4.9
+    },
+    "longest_gap_hold": {
+     "n": 15,
+     "median_abs_error_s": 0.35
+    },
+    "replay": {
+     "n": 9,
+     "median_abs_error_s": 0.17
+    }
+   },
+   {
+    "box_lag": {
+     "n": 2,
+     "median_abs_error_s": 3.8
+    },
+    "longest_gap_hold": {
+     "n": 13,
+     "median_abs_error_s": 0.08
+    },
+    "replay": {
+     "n": 10,
+     "median_abs_error_s": 1.7
+    }
+   }
+  ],
+  "proposed_label_changes": [
+   {
+    "id": "g5-goal3",
+    "before": [
+     "defence",
+     null,
+     "medium"
+    ],
+    "after": [
+     "defence",
+     null,
+     "high"
+    ]
+   },
+   {
+    "id": "g5-goal5",
+    "before": [
+     "centre",
+     null,
+     "high"
+    ],
+    "after": [
+     "shovel",
+     "Edwallskyffel lang",
+     "medium"
+    ]
+   },
+   {
+    "id": "g5-goal7",
+    "before": [
+     "centrifuge",
+     null,
+     "high"
+    ],
+    "after": [
+     "centrifuge",
+     "Short centrifuge",
+     "high"
+    ]
+   },
+   {
+    "id": "g6-goal1",
+    "before": [
+     "defence",
+     null,
+     "high"
+    ],
+    "after": [
+     "centrifuge",
+     "Short centrifuge",
+     "high"
+    ]
+   },
+   {
+    "id": "g6-goal2",
+    "before": [
+     "shovel",
+     "Edwallskyffel lang",
+     "high"
+    ],
+    "after": [
+     "shovel",
+     "Spade",
+     "high"
+    ]
+   },
+   {
+    "id": "g6-goal3",
+    "before": [
+     "centrifuge",
+     "Short centrifuge",
+     "high"
+    ],
+    "after": [
+     "centrifuge",
+     null,
+     "high"
+    ]
+   },
+   {
+    "id": "g6-goal4",
+    "before": [
+     "defence",
+     null,
+     "medium"
+    ],
+    "after": [
+     "centrifuge",
+     null,
+     "high"
+    ]
+   },
+   {
+    "id": "g7-goal3",
+    "before": [
+     "centrifuge",
+     null,
+     "high"
+    ],
+    "after": [
+     "centrifuge",
+     null,
+     "medium"
+    ]
+   }
+  ]
+ },
+ "replays": {
+  "puck_seen": [
+   0.642,
+   0.682
+  ],
+  "puck_disk": [
+   0.39,
+   0.426
+  ],
+  "figures_shown_mean": [
+   11.916,
+   11.983
+  ],
+  "figure_rows_every_frame": [
+   0.885,
+   0.885
+  ],
+  "note": "means over the replay windows; puck_disk = slow (after) or disk (before)"
+ }
+}

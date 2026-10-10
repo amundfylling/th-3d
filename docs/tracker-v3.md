@@ -3,6 +3,8 @@
 Status: PROPOSED (2026-10-10, batch workstream 4). Model output, measured against the user's existing labels and an
 AI visual check of the broadcast; no new user labels.
 
+**Since 2026-10-10 (docs/nm26-new-tracks.md):** the NM26 analysis reads these tracks (`figure-tracks-v3.json`); before/after in docs/nm26-new-tracks.md by default (`scripts/nm26_tracks.py`).
+
 ## Answer first
 
 - **On the user's labels v3 is as good as v2 and makes fewer gross errors.** On the 352 skater labels (feet and

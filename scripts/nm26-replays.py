@@ -10,11 +10,12 @@ winner is never shown by the box and has no time, so it has no replay).
 - The other 15 goals have only the box time, and the user's marks put the box 3.0-13.6 s after the goal (median
   7.9 s). Their window runs from 18 s to 1 s before the box change, so the goal is inside it; the moment is unknown.
 Inputs per goal:
-- figures: <game>/figure-tracks-smooth.json (cleaned model output; PROPOSED). Rows are every frame in the goal windows
-  of scripts/synth/track-figures.py and 5 per second elsewhere; frames between 5-per-second rows (gap <= 0.5 s) are
+- figures: the selected tracks (scripts/nm26_tracks.py: <game>/figure-tracks-v3.json, or $NM26_FIGURE_TRACKS; model
+  output, PROPOSED). Rows are every frame in the goal windows and 5 per second elsewhere; frames between 5-per-second rows (gap <= 0.5 s) are
   interpolated here and drawn hollow, like the smoother's interpolated readings (src 1). Unknown figures are left out.
-- puck: <game>/puck-track.json (automatic puck track; PROPOSED). disk = puck seen as a disk (filled), smudge = motion
-  blur blob (ring), *_fill = gap filled by the tracker (pale). Frames without a row show no puck.
+- puck: the selected track (<game>/puck-track-synth.json, or $NM26_PUCK_TRACK; PROPOSED). Slow detections
+  (scripts/nm26_tracks.py; the old track's 'disk') filled, moving ones as a ring; the old track's *_fill rows (gaps
+  filled by its tracker) pale. Frames without a row show no puck.
 - rink: data/geometry.json (inner board boundary, slot centrelines); goals from validation/12-hardware-report.json
   (preview cage, assumed). Blue and centre lines are nominal (x = +-120, 0 mm), as in figure-tracks-board.py.
 Figure glyph: dot at the tracked pivot, arrow in the facing direction, and a short stick to the mold-frame blade point
@@ -34,6 +35,9 @@ from pathlib import Path
 import av
 import cv2
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import nm26_tracks  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[1]
 D = REPO / "data/games/nm26-semifinal"
@@ -97,7 +101,7 @@ _cache = {}
 
 def tracks(game):
     if game in _cache: return _cache[game]
-    T = json.loads((D / game / "figure-tracks-smooth.json").read_text())
+    T = nm26_tracks.load_figures(game)
     C = T["columns"]; R = T["rows"]; figs = [c[:-2] for c in C if c.endswith("_u")]
     fr = np.array([r[0] for r in R]); dense = np.array([r[C.index("dense")] for r in R])
     F = {}
@@ -108,8 +112,9 @@ def tracks(game):
         src = np.array([2 if r[isrc] is None else r[isrc] for r in R])
         u[src == 2] = np.nan
         F[f] = (u, th, src)
-    P = json.loads((D / game / "puck-track.json").read_text()); pc = P["columns"]
-    puck = {int(r[pc.index("frame")]): (r[pc.index("x_mm")], r[pc.index("y_mm")], r[pc.index("kind")]) for r in P["rows"]
+    P = nm26_tracks.load_puck(game); pc = P["columns"]
+    kind = lambda r, slow: "disk" if slow else ("smudge" if r[pc.index("kind")] in ("smudge", "det") else r[pc.index("kind")])
+    puck = {int(r[pc.index("frame")]): (r[pc.index("x_mm")], r[pc.index("y_mm")], kind(r, s)) for r, s in zip(P["rows"], P["slow"])
             if r[pc.index("x_mm")] is not None}
     _cache[game] = (fr, dense, F, puck, figs)
     return _cache[game]
@@ -172,8 +177,34 @@ def base_rink():
     return im
 
 
+_FONTS = {}
+
+
+def font(scale, th):
+    """Barlow (public/fonts) at about the size of OpenCV's Hershey font at `scale`; SemiBold for thick text. OpenCV's own
+    fonts have no 'å' (Nygård)."""
+    from PIL import ImageFont
+    key = (round(scale * 30), th >= 2)
+    if key not in _FONTS:
+        _FONTS[key] = ImageFont.truetype(str(REPO / "public/fonts" / ("Barlow-SemiBold.ttf" if key[1] else "Barlow-Medium.ttf")), key[0])
+    return _FONTS[key]
+
+
+def text_width(s, scale=0.55, th=1):
+    return int(round(font(scale, th).getlength(s)))
+
+
 def text(im, s, org, scale=0.55, col=INK, th=1):
-    cv2.putText(im, s, org, cv2.FONT_HERSHEY_SIMPLEX, scale, col, th, cv2.LINE_AA)
+    """Draw s with its baseline at org (as cv2.putText); col is BGR."""
+    from PIL import Image, ImageDraw
+    f = font(scale, th); x0, y0, x1, y1 = f.getbbox(s, anchor="ls")
+    x0, y0 = max(0, org[0] + x0 - 1), max(0, org[1] + y0 - 1)
+    x1, y1 = min(im.shape[1], org[0] + x1 + 1), min(im.shape[0], org[1] + y1 + 2)
+    if x1 <= x0 or y1 <= y0:
+        return
+    tile = Image.fromarray(np.ascontiguousarray(im[y0:y1, x0:x1, ::-1]))
+    ImageDraw.Draw(tile).text((org[0] - x0, org[1] - y0), s, font=f, fill=tuple(int(c) for c in col[::-1]), anchor="ls")
+    im[y0:y1, x0:x1] = np.asarray(tile)[:, :, ::-1]
 
 
 def draw_frame(base, gl, k, trail):
@@ -218,7 +249,7 @@ def draw_frame(base, gl, k, trail):
     else:
         clock = f"{t - gl['box_s']:+.2f} s to the score box"
         text(im, "goal moment not marked (box comes 3-14 s after the goal)", (12, 50), 0.52, (90, 90, 90), 1)
-    tw = cv2.getTextSize(clock, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)[0][0]
+    tw = text_width(clock, 0.7, 2)
     text(im, clock, (W - tw - 12, 26), 0.7, (40, 40, 200) if clock == "GOAL" else INK, 2)
     text(im, "PROPOSED: model tracks", (W - 222, 50), 0.5, (110, 110, 110), 1)
     # progress bar
@@ -346,8 +377,8 @@ def main():
             if k in gl: gl[k] = round(gl[k], 2)
     idx = {"description": "NM26 all-goals replays (scripts/nm26-replays.py). PROPOSED: drawn from model tracks, not user-checked.",
            "status": "PROPOSED",
-           "sources": {"figures": "data/games/nm26-semifinal/<game>/figure-tracks-smooth.json",
-                       "puck": "data/games/nm26-semifinal/<game>/puck-track.json",
+           "sources": {"figures": f"data/games/nm26-semifinal/<game>/{nm26_tracks.FIGURE_TRACKS}",
+                       "puck": f"data/games/nm26-semifinal/<game>/{nm26_tracks.PUCK_TRACK}",
                        "goal_moments": "data/games/nm26-semifinal/goal-labels.json (user marks)",
                        "goals": "data/games/nm26-semifinal/timeline.json"},
            "window": {"user_marked": f"{BEFORE} s before to {AFTER} s after the user's goal moment",
