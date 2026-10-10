@@ -14,8 +14,13 @@
  "references": [
   "data/combinations/nthf-catalogue.json"
  ],
- "approved_reading": null,
- "reading": "DESIGNED by Claude as the first move of the move engine; NOT reviewed by the user. The centre stands at the front of its slot with its back to the goal (the Näcka/spjass set-up), the puck resting against the blade on the right (-y) of the slot. A counter-clockwise turn with a short step up the slot pushes the puck from rest (a push, not a strike: CLAUDE.md 'Slide or bounce') into the right corner, while the goalie leans to the left post expecting the Hjerpe.",
+ "approved_reading": {
+  "by": "Amund",
+  "date": "2026-10-10",
+  "text": "Yes, but the trick is that you can do a hjerpe from the same position. So you are dependent on the goalie predicting a hjerpe and opening up the right corner",
+  "applies_to": "the reading (set-up, ccw push into the right corner, goalie opening the right corner); the trace stays proposed"
+ },
+ "reading": "DESIGNED by Claude as the first move of the move engine; the reading was approved by the user on 2026-10-10 (approved_reading): a Hjerpe can be played from the same position, so the feint relies on the goalie predicting the Hjerpe and opening the right corner. The centre stands at the front of its slot with its back to the goal (the Näcka/spjass set-up), the puck resting against the blade on the right (-y) of the slot. A counter-clockwise turn with a short step up the slot pushes the puck from rest (a push, not a strike: CLAUDE.md 'Slide or bounce') into the right corner, while the goalie leans to the left post expecting the Hjerpe.",
  "window_s": [
   0.0,
   0.7
@@ -76,7 +81,7 @@
    "static": {
     "y_mm": 28.0,
     "theta_deg": 0.0,
-    "why": "ASSUMED: leans to the left post, expecting the Hjerpe (y = +28 mm of its slot's +33)"
+    "why": "leans to the left post, predicting the Hjerpe and opening the right corner (the lean: user-approved reading; y = +28 mm of its slot's +33: ASSUMED)"
    }
   }
  },
@@ -110,8 +115,8 @@
   ]
  },
  "limitations": [
-  "No recording: the whole move is DESIGNED from the one-line NTHF text; the reading is Claude's and needs the user's approval.",
-  "Set-up borrowed from trace.nacka.v1 (centre at the front of its slot, back to the goal); the goalie pose is assumed.",
+  "No recording: the whole move is DESIGNED from the one-line NTHF text; the user approved the reading on 2026-10-10.",
+  "Set-up borrowed from trace.nacka.v1 (centre at the front of its slot, back to the goal); how far the goalie leans (y = +28 mm) is assumed.",
   "Contact rules, ice friction and figure geometry as every move-engine trace (scripts/shotlib): restitution 0.5 assumed, friction from the spjass fit, AI-modelled molds at the preview scale."
  ],
  "tuning": "Turn angles, duration and step chosen with scripts/build-move.py --quick scans (2026-10-10): 181 -> 205 deg in 70 ms with a 14 mm step puts the shot 19 mm right of centre without touching the goalie; the release is a push of about 45-65 small touches.",
@@ -126,7 +131,7 @@
   ],
   "setup": {
    "title": "THE SET-UP",
-   "text": "Back to the goal, the puck resting out on the blade to the right of the slot.",
+   "text": "Back to the goal, puck out on the blade. A Hjerpe can come from the same stance, so the goalie covers it and opens the right corner.",
    "highlight": {
     "W-C": "CENTRE",
     "E-G": "GOALIE"

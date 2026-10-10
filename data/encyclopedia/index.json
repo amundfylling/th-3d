@@ -119,7 +119,7 @@
    "nm26_goals": 0,
    "move_file": "moves/hjerpefinte/move.json",
    "move_status": "proposed",
-   "reading_approved": false,
+   "reading_approved": true,
    "trace": "data/traces/hjerpefinte.trace.json",
    "checks": "shots/hjerpefinte/checks.json",
    "robustness": "validation/moves/hjerpefinte-robustness.json",

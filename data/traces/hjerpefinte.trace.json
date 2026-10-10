@@ -10,18 +10,23 @@
   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
   "skater_scale_k": 1.0814,
   "goalie_scale_k": 1.1421889791935147,
-  "git_commit": "8ce1a53001aed242ccdb1dd7b073a432a875d498"
+  "git_commit": "6a061b0d569d46468b74b21d1b7750db3d7800e1"
  },
  "source": {
   "move_file": "moves/hjerpefinte/move.json",
-  "move_file_sha256": "5c67206138bc755fba2b1da3ef99326b09b92caa9e06b8efb9cb912b6ff5358e",
+  "move_file_sha256": "b65a2ef25476bf5104dfd0da0af0af2ff7c7bbc22369627b362578e03fea8853",
   "overrides": [],
   "kind": "designed",
   "text": "Center starts with the puck out on the blade to the right of the slot, and shoots directly into the right corner. Only works against a goalie expecting a Hjerpe",
   "references": [
    "data/combinations/nthf-catalogue.json"
   ],
-  "approved_reading": null
+  "approved_reading": {
+   "by": "Amund",
+   "date": "2026-10-10",
+   "text": "Yes, but the trick is that you can do a hjerpe from the same position. So you are dependent on the goalie predicting a hjerpe and opening up the right corner",
+   "applies_to": "the reading (set-up, ccw push into the right corner, goalie opening the right corner); the trace stays proposed"
+  }
  },
  "engine": {
   "path": "scripts/shotlib",
@@ -419,7 +424,7 @@
      "t": 0.0,
      "arc_mm": 4.95,
      "sigma_mm": null,
-     "source": "designed: ASSUMED: leans to the left post, expecting the Hjerpe (y = +28 mm of its slot's +33)"
+     "source": "designed: leans to the left post, predicting the Hjerpe and opening the right corner (the lean: user-approved reading; y = +28 mm of its slot's +33: ASSUMED)"
     }
    ],
    "theta_keyframes": [
@@ -427,7 +432,7 @@
      "t": 0.0,
      "theta_deg": 0.0,
      "sigma_deg": null,
-     "source": "designed: ASSUMED: leans to the left post, expecting the Hjerpe (y = +28 mm of its slot's +33)"
+     "source": "designed: leans to the left post, predicting the Hjerpe and opening the right corner (the lean: user-approved reading; y = +28 mm of its slot's +33: ASSUMED)"
     }
    ]
   },
@@ -8921,8 +8926,8 @@
   }
  ],
  "limitations": [
-  "No recording: the whole move is DESIGNED from the one-line NTHF text; the reading is Claude's and needs the user's approval.",
-  "Set-up borrowed from trace.nacka.v1 (centre at the front of its slot, back to the goal); the goalie pose is assumed.",
+  "No recording: the whole move is DESIGNED from the one-line NTHF text; the user approved the reading on 2026-10-10.",
+  "Set-up borrowed from trace.nacka.v1 (centre at the front of its slot, back to the goal); how far the goalie leans (y = +28 mm) is assumed.",
   "Contact rules, ice friction and figure geometry as every move-engine trace (scripts/shotlib): restitution 0.5 assumed, friction from the spjass fit, AI-modelled molds at the preview scale."
  ],
  "evaluation_samples": [

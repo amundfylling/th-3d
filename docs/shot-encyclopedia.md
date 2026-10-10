@@ -1,8 +1,9 @@
 # Shot encyclopedia: groundwork for cheap, fast and accurate move videos
 
 Status: PROPOSED (2026-10-10). The user chose the shot encyclopedia as the priority (`docs/vision.md` item 2): "do the
-groundwork now so that it will be cheap, fast and super accurate animations in the future". Nothing here is
-user-reviewed; the one new move (Hjerpefinte) is Claude's reading of a one-line NTHF text.
+groundwork now so that it will be cheap, fast and super accurate animations in the future". The one new
+move (Hjerpefinte) is designed from a one-line NTHF text; the user approved its reading on 2026-10-10, and the trace
+stays proposed.
 
 ## 1. What was built
 
@@ -78,12 +79,13 @@ with a 14 mm step pushes the puck from rest into the right corner (goal line at 
 - Checks: no overlap; one contact, a push of 65 small touches with a peak impact of 33 mm/s; no unexplained motion change.
 - Robust in 11 of 11 variants; the goal-line crossing moves by 0.4 mm at most.
 - Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (631 frames, 21.0 s,
-  1920x1080 30 fps, 7.96 MB; rendered in about 35 min on CPU; rerender with `node scripts/analysis-render.ts
+  1920x1080 30 fps, 8.01 MB; rendered in about 35 min on CPU; rerender with `node scripts/analysis-render.ts
   move:hjerpefinte`). Its report `validation/moves/hjerpefinte-video-report.json` finds every frame equal to the pure
   evaluation of the trace. Frames of the mp4 were checked: rewind, slow-motion approach, contact freeze with the push
   arrow, replay.
-- The goalie leans to the left post (assumed: "only works against a goalie expecting a Hjerpe"). The reading is Claude's
-  and needs the user's approval.
+- Reading approved by the user (2026-10-10, `approved_reading`): "you can do a hjerpe from the same position. So you are
+  dependent on the goalie predicting a hjerpe and opening up the right corner." The goalie leans to the left post;
+  how far (y = +28 mm) is assumed. The video's set-up caption says this.
 
 **Finding: the IKV v2 trace only works with its exact inputs.** The robustness run
 (`validation/moves/invers-kryssar-velodrom-robustness.json`) scores in 1 of 11 variants: the nominal one.
@@ -134,7 +136,7 @@ Lindahl-innspill, Sørenfinte) and the level-3 ones (Direkteskudd, Lillstøvel, 
 
 ## 7. Open
 
-1. Approve or correct the Hjerpefinte reading (the review sheet and the video).
+1. Accept the Hjerpefinte trace (its reading is approved), or correct how far the goalie leans.
 2. Should robustness be a hard gate for saving a move?
 3. Should IKV v2 be redesigned with solved receptions, or kept as it is with its fragility noted?
 4. The "Slide or bounce" limits and the push contact model are still assumptions (CLAUDE.md).

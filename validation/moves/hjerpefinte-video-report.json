@@ -18,11 +18,11 @@
  "trace": {
   "trace_id": "trace.hjerpefinte.v1",
   "status": "proposed",
-  "sha256": "743a8cc33422be8b5c1e86c06cc850d310950a09b90940e03b020c08897d1fa8"
+  "sha256": "5a22e1736385f02d625d110be2d9bfbc46673e6fc0c34b07653f381d98f8263e"
  },
  "analysis_spec": {
   "analysis_id": "analysis.hjerpefinte.v1",
-  "sha256": "69a579910d281f9e619469aeb336d5de9c9faf67d793db989186c0859d5eb6d8",
+  "sha256": "b4f3ef99dcbfa9b8efa3080d29bc6fbfb2c02d857127075821fe8413a92dcd6f",
   "composition_files": [
    "remotion/EncyclopediaAnalysis.tsx",
    "remotion/encyclopedia-registry.ts",
@@ -60,10 +60,10 @@
     "duration": "21.033333"
    }
   },
-  "bytes": 7959970,
-  "megabytes": 7.96,
+  "bytes": 8009809,
+  "megabytes": 8.01,
   "below_25_mb": true,
-  "sha256": "2c8af4103728483874ee87d1c1e9fb4b77754a6015974a1f6800772500af743b"
+  "sha256": "4054e3ad7e9d20299d2c76fe15e811d115fba5be0beccd446fe97af0caf26968"
  },
  "checks": {
   "frames_logged": 631,
@@ -72,5 +72,5 @@
   "camera_frames_logged": 631,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 2762
+ "render_seconds": 2552
 }

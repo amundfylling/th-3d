@@ -224,7 +224,7 @@
    "id": "setup",
    "number": "1",
    "title": "THE SET-UP",
-   "text": "Back to the goal, the puck resting out on the blade to the right of the slot.",
+   "text": "Back to the goal, puck out on the blade. A Hjerpe can come from the same stance, so the goalie covers it and opens the right corner.",
    "from": "setup_set.start",
    "to": "to_shot.start+0.2"
   },
