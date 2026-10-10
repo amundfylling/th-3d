@@ -207,7 +207,7 @@ def features(gl, t):
     else:
         pts = [mirror(end, (r[2], r[3])) for r in gm.puck if t - 1.5 <= r[1] <= t]
         spot = np.mean(pts, 0) if pts else np.array([np.nan, np.nan]); th = t - 0.3; f["spot_from"] = "mean" if pts else "none"
-    f["spot_x"], f["spot_y"] = round(float(spot[0]), 1), round(float(spot[1]), 1)
+    f["spot_x"], f["spot_y"] = (None, None) if np.isnan(spot[0]) else (round(float(spot[0]), 1), round(float(spot[1]), 1))  # JSON null
     best = {end: (None, np.inf), opp: (None, np.inf)}
     for side in (end, opp):
         for r in ROLES:
@@ -255,7 +255,7 @@ def rules(f):
     Team frame: the attacked goal line is at x ~ +250 mm, the near (right-wing) board at y ~ -230, the far (left-wing)
     board at y ~ +230; the centre slot ends about 95 mm before the goal line."""
     x, y, h = f["spot_x"], f["spot_y"], f["holder"] or ""
-    if np.isnan(x): return "unknown"
+    if x is None: return "unknown"
     if x < -60: return "defence"                                   # set up in the own half: a defender's shot
     if y < -110: return "shovel"                                   # right-wing lane: the RW passes across
     if y > 110 or x > 300: return "centrifuge"                     # left-wing lane or behind the goal
@@ -427,7 +427,7 @@ out = {"description": "Combination recognition for the NM26 goals (scripts/nm26-
 by_player = defaultdict(Counter)
 for r in labels_out: by_player[r["scoring_player"]][r["family"]] += 1
 out["families_by_player_all_goals"] = {k: dict(v.most_common()) for k, v in by_player.items()}
-(D / "combo-labels.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
+(D / "combo-labels.json").write_text(json.dumps(out, indent=1, ensure_ascii=False, allow_nan=False) + "\n")
 
 print("goal moment:", json.dumps(moment_report["loo_abs_error_s"]), moment_report["constants"], moment_report["by_method"])
 for k in ("tree", "1nn", "rules", "vote"):
