@@ -23,9 +23,10 @@ Steps:
    in five games while the real puck is elsewhere; found by inspection) are ignored.
    - REPLAY: the broadcast shows a replay of many goals about 5 s after the goal; it is found as the delay at which the
      moving puck's detections repeat (replay_match). The goal is the end of the matched live segment plus a constant.
-   - Otherwise: box time minus the median lag of the labelled goals without a replay, snapped to the end of the last
-     hold in the 3 s around it, plus a constant. The three constants are fitted on the labelled goals; the error is
-     reported leave-one-out.
+   - Otherwise: the end of the hold followed by the longest stretch without another hold (the puck went into the
+     goal and play stopped), among holds after the previous goal's restart and in [box - 14 s, box - 1 s], plus a
+     constant. If there is no hold: box time minus the median lag. The constants are fitted on the labelled goals; the
+     error is reported leave-one-out.
 3. FEATURES at the goal moment (team frame):
    - the SET-UP SPOT: the end of the last hold in [t - 2.0 s, t + 0.1 s] (else the mean puck position in [t - 1.5, t]);
    - the HOLDER: the scoring team's skater whose blade point (mold point (12, 33) mm, scripts/nm26-figure-analysis.py)
@@ -167,25 +168,28 @@ def moment_candidates(gl):
     return {"replay_delay_s": d, "replay_matches": len(m), "replay": rep, "replay_orig_end_s": (m[-1] / FPS if rep else None)}
 
 
+def gap_hold(gl):
+    """The hold followed by the longest time without another valid hold (the puck went into the goal), among holds
+    ending in [max(box - 14 s, previous box + 0.5 s), box - 1 s]. Returns its end time or None."""
+    hs = valid_holds(game(gl["game"]), max(gl["box_s"] - 14, gl["prev_box_s"] + 0.5), gl["box_s"] - 1.0)
+    if not hs: return None
+    gaps = [((hs[i + 1]["t0"] if i + 1 < len(hs) else gl["box_s"]) - h["t1"], h["t1"]) for i, h in enumerate(hs)]
+    return max(gaps)[1]
+
+
 def estimate_moment(gl, c, p):
-    """p: fitted constants (replay_offset, short_lag, hold_offset). Returns (t, method)."""
+    """p: fitted constants (replay_offset, hold_offset, box_lag). Returns (t, method)."""
     if c["replay"]: return c["replay_orig_end_s"] + p["replay_offset"], "replay"
-    t0 = gl["box_s"] - p["short_lag"]; hs = valid_holds(game(gl["game"]), t0 - 2.0, t0 + 1.0)
-    if hs: return hs[-1]["t1"] + p["hold_offset"], "box_lag_snapped_to_hold"
-    return t0, "box_lag"
+    h = gap_hold(gl)
+    if h is not None: return h + p["hold_offset"], "longest_gap_hold"
+    return gl["box_s"] - p["box_lag"], "box_lag"
 
 
 def fit_moment(goals_lab, cand):
     r = [g["label"]["goal_video_s"] - cand[g["id"]]["replay_orig_end_s"] for g in goals_lab if cand[g["id"]]["replay"]]
-    s = [g["box_s"] - g["label"]["goal_video_s"] for g in goals_lab if not cand[g["id"]]["replay"]]
-    p = {"replay_offset": float(np.median(r)) if r else 0.2, "short_lag": float(np.median(s)) if s else 4.0}
-    h = []
-    for g in goals_lab:
-        if cand[g["id"]]["replay"]: continue
-        t0 = g["box_s"] - p["short_lag"]; hs = valid_holds(game(g["game"]), t0 - 2.0, t0 + 1.0)
-        if hs: h.append(g["label"]["goal_video_s"] - hs[-1]["t1"])
-    p["hold_offset"] = float(np.median(h)) if h else 0.2
-    return p
+    h = [g["label"]["goal_video_s"] - gap_hold(g) for g in goals_lab if not cand[g["id"]]["replay"] and gap_hold(g) is not None]
+    return {"replay_offset": float(np.median(r)) if r else 0.2, "hold_offset": float(np.median(h)) if h else 0.2,
+            "box_lag": float(np.median([g["box_s"] - g["label"]["goal_video_s"] for g in goals_lab]))}
 
 
 REPLAY_DELAY, REPLAY_MIN = (4.0, 6.5), 12
@@ -351,7 +355,15 @@ def loo(Xa):
         t_ = tree_pred(tree_fit(X[m], y[m]), Xa[i]); out["tree"].append(t_ if t_ is not None else nn_pred(X[m], y[m], Xa[i]))
         out["1nn"].append(nn_pred(X[m], y[m], Xa[i]))
     out["rules"] = [rules(gl["features"] if Xa is X else gl["features_at_estimate"]) for gl in L]
+    out["vote"] = [vote(a, b, c) for a, b, c in zip(out["tree"], out["1nn"], out["rules"])]
     return out
+
+
+def vote(tree, nn, rule):
+    """Majority of the three; the tree on a three-way split (the 1-NN when the tree cannot decide)."""
+    c = Counter(v for v in (tree, nn, rule) if v not in (None, "unknown")).most_common()
+    if c and c[0][1] >= 2: return c[0][0]
+    return tree if tree is not None else nn
 
 
 def report(pred):
@@ -380,6 +392,7 @@ labels_out = []
 for gl in goals:
     x = vector(gl["features"]); fam_names = {}
     p = {"tree": tree_pred(full_tree, x), "1nn": str(nn_pred(X, y, x)), "rules": rules(gl["features"])}
+    p["vote"] = vote(p["tree"], p["1nn"], p["rules"])
     r = {"id": gl["id"], "game": gl["game"], "scoring_end": gl["end"], "scoring_player": gl["scoring_player"], "box_s": gl["box_s"],
          "goal_moment_s": round(gl["moment_s"], 2), "goal_moment_source": gl["moment_source"], "goal_moment_estimate_s": gl["moment_est_s"],
          "goal_moment_method": gl["moment_method"], "replay": gl["replay"], "features": gl["features"], "predictions": p}
@@ -387,27 +400,73 @@ for gl in goals:
         r.update({"status": "user_label", "family": gl["label"]["family"], "combination": gl["label"]["combination"],
                   "loo": {k: str(res_user[k][L.index(gl)]) for k in res_user}})
     else:
-        fam = p["tree"] if p["tree"] is not None else p["1nn"]; comb = None
+        fam = p["vote"]; comb = None
         if p["tree"] is None: fam_names["note"] = "no set-up spot (puck not seen): 1-NN on the figure features only"
         if fam in ("shovel", "centrifuge"):
             idx = [i for i, g2 in enumerate(L) if g2["label"]["family"] == fam]
-            nb = L[idx[int(np.nanargmin([np.nanmean(((X[i] - x) / (np.nanstd(X, 0) + 1e-9)) ** 2) for i in idx]))]]
-            comb = nb["label"]["combination"]; fam_names = {"nearest_labelled_goal": nb["id"]}
-        r.update({"status": "PROPOSED", "family": fam, "combination": comb, "agreement": f"{sum(v == fam for v in p.values())}/3", **fam_names})
+            sd = np.nanstd(X, 0); sd[sd == 0] = 1
+            nb = L[idx[int(np.nanargmin([np.nanmean(((X[i] - x) / sd) ** 2) for i in idx]))]]
+            comb = nb["label"]["combination"]; fam_names["nearest_labelled_goal"] = nb["id"]
+        shifted = []
+        for dt in (-0.5, -0.25, 0.25, 0.5):  # the estimated moment is uncertain: does the label survive a shift?
+            fx = features(gl, gl["moment_s"] + dt); xx = vector(fx)
+            shifted.append(vote(tree_pred(full_tree, xx), str(nn_pred(X, y, xx)), rules(fx)))
+        fam_names["family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s"] = [str(v) for v in shifted]
+        agree = sum(v == fam for v in (p["tree"], p["1nn"], p["rules"]))
+        r.update({"status": "PROPOSED", "family": fam, "combination": comb, "agreement": f"{agree}/3",
+                  "confidence": "high" if agree == 3 and all(v == fam for v in shifted) else ("medium" if agree >= 2 else "low"), **fam_names})
     labels_out.append(r)
 
 out = {"description": "Combination recognition for the NM26 goals (scripts/nm26-combo-recognition.py): every goal's moment, set-up "
        "features in the scoring team's frame, and its attacking family. status user_label = the user's review; PROPOSED = the "
-       "decision tree's prediction (rules and 1-NN votes alongside). See docs/nm26-combinations.md.",
+       "majority vote of the decision tree, the 1-NN and the playbook rules (each prediction alongside; agreement 3/3 and the same vote with the moment shifted by up to "
+       "0.5 s = high confidence). combination for a PROPOSED goal = the user's name of the nearest labelled goal of the same family "
+       "(null = an unnamed one). See docs/nm26-combinations.md.",
        "puck_track": PUCK, "status": "PROPOSED", "goal_moment": moment_report, "leave_one_out": lo,
        "tree_all_labels": tree_text(full_tree), "feature_names": VNAMES, "goals": labels_out}
+by_player = defaultdict(Counter)
+for r in labels_out: by_player[r["scoring_player"]][r["family"]] += 1
+out["families_by_player_all_goals"] = {k: dict(v.most_common()) for k, v in by_player.items()}
 (D / "combo-labels.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
 
 print("goal moment:", json.dumps(moment_report["loo_abs_error_s"]), moment_report["constants"], moment_report["by_method"])
-for k in ("tree", "1nn", "rules"):
+for k in ("tree", "1nn", "rules", "vote"):
     a, b = lo["at_user_moment"][k], lo["at_estimated_moment"][k]
     print(f"{k:6s} LOO user moment {a['correct']}/{a['n']}  estimated moment {b['correct']}/{b['n']}")
 print("majority baseline", lo["majority_baseline"]); print("subfamilies", {k: f"{v['correct']}/{v['n']}" for k, v in sub.items()})
 print("\n".join(out["tree_all_labels"]))
 for r in labels_out:
     print(r["id"], r["status"], r["family"], r["combination"], r["predictions"], r.get("loo"), {k: r["features"][k] for k in ("spot_x", "spot_y", "holder", "C_depth_mm")})
+
+
+# ---------------------------------------------------------------- picture: set-up spots in the team frame
+from PIL import Image, ImageDraw, ImageFont  # noqa: E402
+COL = {"shovel": "#2a78d6", "centrifuge": "#eb6834", "centre": "#1baf7a", "defence": "#eda100", "wing": "#e87ba4", "rebound": "#008300"}
+W_, H_, S_ = 1800, 880, 1.55; OX, OY = 760, 485
+im = Image.new("RGB", (W_, H_), "#fcfcfb"); dr = ImageDraw.Draw(im)
+try:
+    F = ImageFont.truetype("DejaVuSans.ttf", 15); FB = ImageFont.truetype("DejaVuSans-Bold.ttf", 20); FS = ImageFont.truetype("DejaVuSans.ttf", 12)
+except OSError:
+    F = FB = FS = ImageFont.load_default()
+P_ = lambda x, y: (OX + x * S_, OY - y * S_)
+dr.rounded_rectangle([P_(-470, 240), P_(470, -240)], radius=60, outline="#c3c2b7", width=2)
+dr.line([P_(250, 45), P_(250, -45)], fill="#9a9890", width=5); dr.line([P_(0, 240), P_(0, -240)], fill="#e2e1dc", width=2)
+for pid, Pp in SLOT.items():
+    if pid[0] != "W" or pid.endswith("G"): continue
+    dr.line([P_(*q) for q in Pp], fill="#d6d5cf", width=7); q = Pp[len(Pp) // 2]; dr.text(P_(q[0] + 6, q[1] + 16), pid[2:], fill="#8a887f", font=FS)
+for r in labels_out:
+    x, y = r["features"]["spot_x"], r["features"]["spot_y"]
+    if x is None or np.isnan(x): continue
+    c = COL.get(r["family"], "#666"); cx, cy = P_(x, y); rr = 8
+    if r["status"] == "user_label": dr.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=c, outline="#fcfcfb", width=2)
+    else: dr.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill="#fcfcfb", outline=c, width=3)
+    dr.text((cx + 10, cy - 7), r["id"].replace("-goal", "."), fill="#55534c", font=FS)
+dr.text((24, 18), "NM26 goals: where the puck was set up before the shot (scoring team's frame, attacking right)", fill="#1f1e1b", font=FB)
+dr.text((24, 46), "Filled: the user's label. Hollow: PROPOSED (this script). Labels: game.goal. Slots of the attacking team in grey; goal line dark.",
+        fill="#55534c", font=F)
+ly = 130
+for fam, c in COL.items():
+    n_u = sum(r["family"] == fam and r["status"] == "user_label" for r in labels_out); n_p = sum(r["family"] == fam and r["status"] != "user_label" for r in labels_out)
+    dr.ellipse([W_ - 250, ly, W_ - 234, ly + 16], fill=c); dr.text((W_ - 226, ly - 1), f"{fam}  {n_u} + {n_p}", fill="#1f1e1b", font=F); ly += 26
+dr.text((W_ - 250, ly + 4), "count: user + proposed", fill="#55534c", font=FS)
+im.save(REPO / "validation/nm26-combo-spots.png")

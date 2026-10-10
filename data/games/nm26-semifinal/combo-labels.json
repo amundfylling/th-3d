@@ -1,12 +1,12 @@
 {
- "description": "Combination recognition for the NM26 goals (scripts/nm26-combo-recognition.py): every goal's moment, set-up features in the scoring team's frame, and its attacking family. status user_label = the user's review; PROPOSED = the decision tree's prediction (rules and 1-NN votes alongside). See docs/nm26-combinations.md.",
+ "description": "Combination recognition for the NM26 goals (scripts/nm26-combo-recognition.py): every goal's moment, set-up features in the scoring team's frame, and its attacking family. status user_label = the user's review; PROPOSED = the majority vote of the decision tree, the 1-NN and the playbook rules (each prediction alongside; agreement 3/3 and the same vote with the moment shifted by up to 0.5 s = high confidence). combination for a PROPOSED goal = the user's name of the nearest labelled goal of the same family (null = an unnamed one). See docs/nm26-combinations.md.",
  "puck_track": "puck-track.json",
  "status": "PROPOSED",
  "goal_moment": {
   "constants": {
    "replay_offset": 0.27,
-   "short_lag": 4.8,
-   "hold_offset": 0.2
+   "hold_offset": 0.3,
+   "box_lag": 7.9
   },
   "replay_rule": {
    "delay_s": [
@@ -17,20 +17,20 @@
   },
   "labelled_goals": 25,
   "loo_abs_error_s": {
-   "median": 1.03,
-   "p90": 7.96,
-   "within_0.5s": 7,
-   "within_1s": 11,
-   "max": 8.48
+   "median": 0.32,
+   "p90": 4.59,
+   "within_0.5s": 14,
+   "within_1s": 16,
+   "max": 8.45
   },
   "by_method": {
    "box_lag": {
-    "n": 3,
-    "median_abs_error_s": 1.5
+    "n": 1,
+    "median_abs_error_s": 4.9
    },
-   "box_lag_snapped_to_hold": {
-    "n": 13,
-    "median_abs_error_s": 2.13
+   "longest_gap_hold": {
+    "n": 15,
+    "median_abs_error_s": 0.35
    },
    "replay": {
     "n": 9,
@@ -38,30 +38,30 @@
    }
   },
   "per_goal_abs_error_s": {
-   "g1-goal1": 4.68,
-   "g1-goal2": 2.13,
-   "g1-goal3": 1.5,
-   "g1-goal4": 1.03,
-   "g1-goal5": 1.67,
-   "g1-goal6": 0.0,
-   "g1-goal7": 0.63,
-   "g2-goal1": 7.78,
+   "g1-goal1": 0.05,
+   "g1-goal2": 4.9,
+   "g1-goal3": 4.12,
+   "g1-goal4": 0.35,
+   "g1-goal5": 0.05,
+   "g1-goal6": 2.35,
+   "g1-goal7": 0.08,
+   "g2-goal1": 1.95,
    "g2-goal2": 8.45,
-   "g2-goal3": 0.58,
-   "g2-goal4": 3.03,
-   "g3-goal1": 8.48,
+   "g2-goal3": 0.12,
+   "g2-goal4": 0.08,
+   "g3-goal1": 0.0,
    "g3-goal2": 0.02,
    "g3-goal3": 0.13,
-   "g3-goal4": 5.3,
+   "g3-goal4": 3.32,
    "g3-goal5": 0.17,
-   "g3-goal6": 1.0,
-   "g3-goal7": 3.95,
+   "g3-goal6": 0.32,
+   "g3-goal7": 3.12,
    "g3-goal8": 0.62,
    "g4-goal1": 0.03,
    "g4-goal2": 0.23,
-   "g4-goal3": 1.22,
+   "g4-goal3": 1.32,
    "g4-goal4": 0.02,
-   "g5-goal1": 8.08,
+   "g5-goal1": 8.18,
    "g5-goal2": 0.65
   }
  },
@@ -345,25 +345,23 @@
       "rebound": 0
      }
     }
-   }
-  },
-  "at_estimated_moment": {
-   "tree": {
-    "accuracy": 0.64,
-    "correct": 16,
+   },
+   "vote": {
+    "accuracy": 0.92,
+    "correct": 23,
     "n": 25,
     "per_family": {
      "shovel": {
       "n": 9,
-      "correct": 6,
-      "recall": 0.67,
-      "precision": 0.86
+      "correct": 9,
+      "recall": 1.0,
+      "precision": 1.0
      },
      "centrifuge": {
       "n": 10,
-      "correct": 7,
-      "recall": 0.7,
-      "precision": 0.64
+      "correct": 10,
+      "recall": 1.0,
+      "precision": 0.83
      },
      "centre": {
       "n": 2,
@@ -373,39 +371,39 @@
      },
      "defence": {
       "n": 2,
-      "correct": 1,
-      "recall": 0.5,
-      "precision": 0.33
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
      },
      "wing": {
       "n": 1,
       "correct": 0,
       "recall": 0.0,
-      "precision": 0.0
+      "precision": null
      },
      "rebound": {
       "n": 1,
       "correct": 0,
       "recall": 0.0,
-      "precision": 0.0
+      "precision": null
      }
     },
     "confusion_true_by_pred": {
      "shovel": {
-      "shovel": 6,
-      "centrifuge": 1,
+      "shovel": 9,
+      "centrifuge": 0,
       "centre": 0,
-      "defence": 1,
-      "wing": 1,
+      "defence": 0,
+      "wing": 0,
       "rebound": 0
      },
      "centrifuge": {
-      "shovel": 1,
-      "centrifuge": 7,
+      "shovel": 0,
+      "centrifuge": 10,
       "centre": 0,
-      "defence": 1,
+      "defence": 0,
       "wing": 0,
-      "rebound": 1
+      "rebound": 0
      },
      "centre": {
       "shovel": 0,
@@ -417,9 +415,9 @@
      },
      "defence": {
       "shovel": 0,
-      "centrifuge": 1,
+      "centrifuge": 0,
       "centre": 0,
-      "defence": 1,
+      "defence": 2,
       "wing": 0,
       "rebound": 0
      },
@@ -440,10 +438,12 @@
       "rebound": 0
      }
     }
-   },
-   "1nn": {
-    "accuracy": 0.76,
-    "correct": 19,
+   }
+  },
+  "at_estimated_moment": {
+   "tree": {
+    "accuracy": 0.68,
+    "correct": 17,
     "n": 25,
     "per_family": {
      "shovel": {
@@ -454,21 +454,21 @@
      },
      "centrifuge": {
       "n": 10,
-      "correct": 8,
-      "recall": 0.8,
-      "precision": 0.8
+      "correct": 7,
+      "recall": 0.7,
+      "precision": 0.78
      },
      "centre": {
       "n": 2,
       "correct": 2,
       "recall": 1.0,
-      "precision": 0.67
+      "precision": 0.5
      },
      "defence": {
       "n": 2,
-      "correct": 2,
-      "recall": 1.0,
-      "precision": 0.67
+      "correct": 1,
+      "recall": 0.5,
+      "precision": 0.25
      },
      "wing": {
       "n": 1,
@@ -494,9 +494,102 @@
      },
      "centrifuge": {
       "shovel": 0,
-      "centrifuge": 8,
+      "centrifuge": 7,
+      "centre": 1,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 1,
       "centre": 0,
       "defence": 1,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 1,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 1,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   },
+   "1nn": {
+    "accuracy": 0.8,
+    "correct": 20,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 7,
+      "recall": 0.78,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 9,
+      "recall": 0.9,
+      "precision": 0.75
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.67
+     },
+     "defence": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": 0.0
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 7,
+      "centrifuge": 2,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 9,
+      "centre": 0,
+      "defence": 0,
       "wing": 1,
       "rebound": 0
      },
@@ -535,33 +628,33 @@
     }
    },
    "rules": {
-    "accuracy": 0.72,
-    "correct": 18,
+    "accuracy": 0.8,
+    "correct": 20,
     "n": 25,
     "per_family": {
      "shovel": {
       "n": 9,
-      "correct": 6,
-      "recall": 0.67,
+      "correct": 7,
+      "recall": 0.78,
       "precision": 1.0
      },
      "centrifuge": {
       "n": 10,
-      "correct": 8,
-      "recall": 0.8,
-      "precision": 0.67
+      "correct": 9,
+      "recall": 0.9,
+      "precision": 0.75
      },
      "centre": {
       "n": 2,
       "correct": 2,
       "recall": 1.0,
-      "precision": 0.67
+      "precision": 0.5
      },
      "defence": {
       "n": 2,
       "correct": 2,
       "recall": 1.0,
-      "precision": 0.5
+      "precision": 1.0
      },
      "wing": {
       "n": 1,
@@ -578,17 +671,110 @@
     },
     "confusion_true_by_pred": {
      "shovel": {
-      "shovel": 6,
+      "shovel": 7,
       "centrifuge": 2,
       "centre": 0,
-      "defence": 1,
+      "defence": 0,
       "wing": 0,
       "rebound": 0
      },
      "centrifuge": {
       "shovel": 0,
-      "centrifuge": 8,
+      "centrifuge": 9,
       "centre": 1,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 1,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   },
+   "vote": {
+    "accuracy": 0.8,
+    "correct": 20,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 7,
+      "recall": 0.78,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 9,
+      "recall": 0.9,
+      "precision": 0.75
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.67
+     },
+     "defence": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.67
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 7,
+      "centrifuge": 2,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 9,
+      "centre": 0,
       "defence": 1,
       "wing": 0,
       "rebound": 0
@@ -611,8 +797,8 @@
      },
      "wing": {
       "shovel": 0,
-      "centrifuge": 1,
-      "centre": 0,
+      "centrifuge": 0,
+      "centre": 1,
       "defence": 0,
       "wing": 0,
       "rebound": 0
@@ -751,8 +937,8 @@
    "box_s": 92,
    "goal_moment_s": 83.1,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 87.77,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 83.13,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 3.0,
     "replay_matches": 5,
@@ -784,7 +970,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -792,7 +979,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -803,8 +991,8 @@
    "box_s": 95,
    "goal_moment_s": 91.9,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 90.37,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 87.1,
+   "goal_moment_method": "box_lag",
    "replay": {
     "replay_delay_s": null,
     "replay_matches": 0,
@@ -836,7 +1024,8 @@
    "predictions": {
     "tree": "wing",
     "1nn": "wing",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "wing"
    },
    "status": "user_label",
    "family": "wing",
@@ -844,7 +1033,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -855,8 +1045,8 @@
    "box_s": 181,
    "goal_moment_s": 177.7,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 176.2,
-   "goal_moment_method": "box_lag",
+   "goal_moment_estimate_s": 173.6,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 4.466666666666667,
     "replay_matches": 3,
@@ -887,7 +1077,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -895,7 +1086,8 @@
    "loo": {
     "tree": "centre",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -906,8 +1098,8 @@
    "box_s": 234,
    "goal_moment_s": 230.8,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 230.37,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 230.47,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 5.3,
     "replay_matches": 8,
@@ -939,7 +1131,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -947,7 +1140,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -958,8 +1152,8 @@
    "box_s": 243,
    "goal_moment_s": 240.0,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 238.93,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 239.97,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 3.3333333333333335,
     "replay_matches": 1,
@@ -991,7 +1185,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -999,7 +1194,8 @@
    "loo": {
     "tree": "centre",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -1010,8 +1206,8 @@
    "box_s": 289,
    "goal_moment_s": 284.2,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 284.2,
-   "goal_moment_method": "box_lag",
+   "goal_moment_estimate_s": 281.87,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 4.3,
     "replay_matches": 10,
@@ -1042,7 +1238,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -1050,7 +1247,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -1061,8 +1259,8 @@
    "box_s": 533,
    "goal_moment_s": 528.2,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 528.17,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 528.27,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 3.066666666666667,
     "replay_matches": 12,
@@ -1094,7 +1292,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -1102,7 +1301,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -1113,8 +1313,8 @@
    "box_s": 884,
    "goal_moment_s": 872.4,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 880.17,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 870.47,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 5.066666666666666,
     "replay_matches": 1,
@@ -1145,7 +1345,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -1153,7 +1354,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -1197,7 +1399,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -1205,7 +1408,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -1216,8 +1420,8 @@
    "box_s": 949,
    "goal_moment_s": 944.9,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 944.9,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 945.0,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": null,
     "replay_matches": 0,
@@ -1249,7 +1453,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -1257,7 +1462,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -1268,8 +1474,8 @@
    "box_s": 960,
    "goal_moment_s": 956.9,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 954.47,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 956.97,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 3.2333333333333334,
     "replay_matches": 1,
@@ -1301,7 +1507,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -1309,7 +1516,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -1320,8 +1528,8 @@
    "box_s": 1399,
    "goal_moment_s": 1386.7,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 1395.17,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 1386.7,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 8.466666666666667,
     "replay_matches": 15,
@@ -1353,7 +1561,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -1361,7 +1570,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -1405,7 +1615,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -1413,7 +1624,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -1457,7 +1669,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -1465,7 +1678,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -1476,8 +1690,8 @@
    "box_s": 1512,
    "goal_moment_s": 1501.9,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 1507.2,
-   "goal_moment_method": "box_lag",
+   "goal_moment_estimate_s": 1505.2,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 6.066666666666666,
     "replay_matches": 7,
@@ -1509,7 +1723,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -1517,7 +1732,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -1561,7 +1777,8 @@
    "predictions": {
     "tree": "centre",
     "1nn": "centre",
-    "rules": "centre"
+    "rules": "centre",
+    "vote": "centre"
    },
    "status": "user_label",
    "family": "centre",
@@ -1569,7 +1786,8 @@
    "loo": {
     "tree": "centre",
     "1nn": "centre",
-    "rules": "centre"
+    "rules": "centre",
+    "vote": "centre"
    }
   },
   {
@@ -1580,8 +1798,8 @@
    "box_s": 1546,
    "goal_moment_s": 1541.9,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 1541.5,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 1541.6,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 3.8666666666666667,
     "replay_matches": 3,
@@ -1613,7 +1831,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -1621,7 +1840,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -1632,8 +1852,8 @@
    "box_s": 1571,
    "goal_moment_s": 1561.5,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 1565.43,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 1558.4,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 5.0,
     "replay_matches": 7,
@@ -1664,7 +1884,8 @@
    "predictions": {
     "tree": "wing",
     "1nn": "rebound",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "wing"
    },
    "status": "user_label",
    "family": "rebound",
@@ -1672,7 +1893,8 @@
    "loo": {
     "tree": "wing",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -1716,7 +1938,8 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "user_label",
    "family": "shovel",
@@ -1724,7 +1947,8 @@
    "loo": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    }
   },
   {
@@ -1768,7 +1992,8 @@
    "predictions": {
     "tree": "centre",
     "1nn": "centre",
-    "rules": "centre"
+    "rules": "centre",
+    "vote": "centre"
    },
    "status": "user_label",
    "family": "centre",
@@ -1776,7 +2001,8 @@
    "loo": {
     "tree": "centre",
     "1nn": "centre",
-    "rules": "centre"
+    "rules": "centre",
+    "vote": "centre"
    }
   },
   {
@@ -1820,7 +2046,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -1828,7 +2055,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "wing",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -1839,8 +2067,8 @@
    "box_s": 2060,
    "goal_moment_s": 2054.7,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 2055.9,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 2056.0,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": null,
     "replay_matches": 0,
@@ -1872,7 +2100,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -1880,7 +2109,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "centre",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -1924,7 +2154,8 @@
    "predictions": {
     "tree": "defence",
     "1nn": "defence",
-    "rules": "defence"
+    "rules": "defence",
+    "vote": "defence"
    },
    "status": "user_label",
    "family": "defence",
@@ -1932,7 +2163,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "defence",
-    "rules": "defence"
+    "rules": "defence",
+    "vote": "defence"
    }
   },
   {
@@ -1943,8 +2175,8 @@
    "box_s": 2356,
    "goal_moment_s": 2342.4,
    "goal_moment_source": "user",
-   "goal_moment_estimate_s": 2350.47,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 2350.57,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": null,
     "replay_matches": 0,
@@ -1976,7 +2208,8 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "user_label",
    "family": "centrifuge",
@@ -1984,7 +2217,8 @@
    "loo": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    }
   },
   {
@@ -2028,7 +2262,8 @@
    "predictions": {
     "tree": "defence",
     "1nn": "defence",
-    "rules": "defence"
+    "rules": "defence",
+    "vote": "defence"
    },
    "status": "user_label",
    "family": "defence",
@@ -2036,7 +2271,8 @@
    "loo": {
     "tree": "defence",
     "1nn": "defence",
-    "rules": "defence"
+    "rules": "defence",
+    "vote": "defence"
    }
   },
   {
@@ -2080,13 +2316,20 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "defence",
-    "rules": "defence"
+    "rules": "defence",
+    "vote": "defence"
    },
    "status": "PROPOSED",
-   "family": "shovel",
-   "combination": "Spade",
-   "agreement": "1/3",
-   "nearest_labelled_goal": "g3-goal3"
+   "family": "defence",
+   "combination": null,
+   "agreement": "2/3",
+   "confidence": "medium",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "defence",
+    "defence",
+    "defence",
+    "defence"
+   ]
   },
   {
    "id": "g5-goal4",
@@ -2129,12 +2372,20 @@
    "predictions": {
     "tree": "centre",
     "1nn": "centre",
-    "rules": "centre"
+    "rules": "centre",
+    "vote": "centre"
    },
    "status": "PROPOSED",
    "family": "centre",
    "combination": null,
-   "agreement": "3/3"
+   "agreement": "3/3",
+   "confidence": "high",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centre",
+    "centre",
+    "centre",
+    "centre"
+   ]
   },
   {
    "id": "g5-goal5",
@@ -2177,12 +2428,20 @@
    "predictions": {
     "tree": "centre",
     "1nn": "centre",
-    "rules": "centre"
+    "rules": "centre",
+    "vote": "centre"
    },
    "status": "PROPOSED",
    "family": "centre",
    "combination": null,
-   "agreement": "3/3"
+   "agreement": "3/3",
+   "confidence": "high",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centre",
+    "centre",
+    "centre",
+    "centre"
+   ]
   },
   {
    "id": "g5-goal6",
@@ -2225,13 +2484,21 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "wing",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "PROPOSED",
    "family": "centrifuge",
    "combination": "Short centrifuge",
    "agreement": "2/3",
-   "nearest_labelled_goal": "g4-goal2"
+   "confidence": "medium",
+   "nearest_labelled_goal": "g4-goal2",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
   },
   {
    "id": "g5-goal7",
@@ -2274,13 +2541,21 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "PROPOSED",
    "family": "centrifuge",
    "combination": null,
    "agreement": "3/3",
-   "nearest_labelled_goal": "g1-goal6"
+   "confidence": "high",
+   "nearest_labelled_goal": "g1-goal6",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
   },
   {
    "id": "g6-goal1",
@@ -2288,10 +2563,10 @@
    "scoring_end": "E",
    "scoring_player": "nygard",
    "box_s": 2813,
-   "goal_moment_s": 2809.0,
+   "goal_moment_s": 2809.1,
    "goal_moment_source": "estimated",
-   "goal_moment_estimate_s": 2809.0,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 2809.1,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 3.7,
     "replay_matches": 2,
@@ -2300,7 +2575,7 @@
    },
    "features": {
     "spot_from": "hold",
-    "hold_to_goal_s": 0.2,
+    "hold_to_goal_s": 0.3,
     "spot_x": -111.0,
     "spot_y": -66.7,
     "holder": "own-RD",
@@ -2308,27 +2583,35 @@
     "nearest_opponent": "opp-LD",
     "nearest_opponent_dist_mm": 58.3,
     "LW_depth_mm": 55.8,
-    "LW_theta_deg": 144.6,
+    "LW_theta_deg": 143.1,
     "RW_depth_mm": 8.4,
-    "RW_theta_deg": 206.4,
-    "C_depth_mm": 19.9,
-    "C_theta_deg": 215.6,
-    "LD_depth_mm": 287.1,
-    "LD_theta_deg": 180.1,
-    "RD_depth_mm": 205.4,
-    "RD_theta_deg": 95.7,
-    "C_turn_abs_deg": 361.6,
-    "C_turn_net_deg": -239.2
+    "RW_theta_deg": 203.1,
+    "C_depth_mm": 40.2,
+    "C_theta_deg": 112.0,
+    "LD_depth_mm": 286.6,
+    "LD_theta_deg": 179.0,
+    "RD_depth_mm": 198.6,
+    "RD_theta_deg": 91.6,
+    "C_turn_abs_deg": 347.9,
+    "C_turn_net_deg": -233.7
    },
    "predictions": {
     "tree": "defence",
-    "1nn": "shovel",
-    "rules": "defence"
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
    },
    "status": "PROPOSED",
    "family": "defence",
    "combination": null,
-   "agreement": "2/3"
+   "agreement": "3/3",
+   "confidence": "high",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "defence",
+    "defence",
+    "defence",
+    "defence"
+   ]
   },
   {
    "id": "g6-goal2",
@@ -2371,13 +2654,21 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "PROPOSED",
    "family": "shovel",
    "combination": "Edwallskyffel lang",
    "agreement": "3/3",
-   "nearest_labelled_goal": "g2-goal4"
+   "confidence": "high",
+   "nearest_labelled_goal": "g2-goal4",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "shovel",
+    "shovel",
+    "shovel",
+    "shovel"
+   ]
   },
   {
    "id": "g6-goal3",
@@ -2385,10 +2676,10 @@
    "scoring_end": "W",
    "scoring_player": "fjermestad",
    "box_s": 2916,
-   "goal_moment_s": 2911.2,
+   "goal_moment_s": 2906.97,
    "goal_moment_source": "estimated",
-   "goal_moment_estimate_s": 2911.2,
-   "goal_moment_method": "box_lag",
+   "goal_moment_estimate_s": 2906.97,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 4.5,
     "replay_matches": 5,
@@ -2396,36 +2687,45 @@
     "replay_orig_end_s": null
    },
    "features": {
-    "spot_from": "mean",
-    "spot_x": 341.7,
-    "spot_y": 200.5,
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 342.4,
+    "spot_y": 199.8,
     "holder": "own-LW",
-    "holder_dist_mm": 63.3,
+    "holder_dist_mm": 28.4,
     "nearest_opponent": "opp-RD",
-    "nearest_opponent_dist_mm": 264.8,
-    "LW_depth_mm": 304.2,
-    "LW_theta_deg": 301.3,
-    "RW_depth_mm": 312.6,
-    "RW_theta_deg": 152.2,
-    "C_depth_mm": 97.2,
-    "C_theta_deg": 206.1,
-    "LD_depth_mm": 331.8,
-    "LD_theta_deg": 267.9,
-    "RD_depth_mm": 213.7,
-    "RD_theta_deg": 124.0,
-    "C_turn_abs_deg": 58.2,
-    "C_turn_net_deg": 46.6
+    "nearest_opponent_dist_mm": 264.5,
+    "LW_depth_mm": 303.4,
+    "LW_theta_deg": 324.0,
+    "RW_depth_mm": 293.3,
+    "RW_theta_deg": 170.9,
+    "C_depth_mm": 91.1,
+    "C_theta_deg": 213.1,
+    "LD_depth_mm": 331.1,
+    "LD_theta_deg": 265.0,
+    "RD_depth_mm": 213.4,
+    "RD_theta_deg": 127.9,
+    "C_turn_abs_deg": 139.8,
+    "C_turn_net_deg": -20.6
    },
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "PROPOSED",
    "family": "centrifuge",
    "combination": "Short centrifuge",
    "agreement": "3/3",
-   "nearest_labelled_goal": "g3-goal6"
+   "confidence": "high",
+   "nearest_labelled_goal": "g3-goal6",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
   },
   {
    "id": "g6-goal4",
@@ -2433,10 +2733,10 @@
    "scoring_end": "E",
    "scoring_player": "nygard",
    "box_s": 2955,
-   "goal_moment_s": 2950.2,
+   "goal_moment_s": 2951.6,
    "goal_moment_source": "estimated",
-   "goal_moment_estimate_s": 2950.2,
-   "goal_moment_method": "box_lag",
+   "goal_moment_estimate_s": 2951.6,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 5.133333333333334,
     "replay_matches": 5,
@@ -2444,36 +2744,44 @@
     "replay_orig_end_s": null
    },
    "features": {
-    "spot_from": "none",
-    "spot_x": NaN,
-    "spot_y": NaN,
-    "holder": null,
-    "holder_dist_mm": null,
-    "nearest_opponent": null,
-    "nearest_opponent_dist_mm": null,
-    "LW_depth_mm": 54.6,
-    "LW_theta_deg": 174.6,
-    "RW_depth_mm": 370.2,
-    "RW_theta_deg": 6.0,
-    "C_depth_mm": 128.1,
-    "C_theta_deg": 234.5,
-    "LD_depth_mm": 147.5,
-    "LD_theta_deg": 160.4,
-    "RD_depth_mm": 220.2,
-    "RD_theta_deg": 236.2,
-    "C_turn_abs_deg": 102.0,
-    "C_turn_net_deg": -49.2
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": -177.2,
+    "spot_y": -221.8,
+    "holder": "own-RD",
+    "holder_dist_mm": 170.5,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 142.8,
+    "LW_depth_mm": 1.2,
+    "LW_theta_deg": 165.1,
+    "RW_depth_mm": 371.0,
+    "RW_theta_deg": 29.8,
+    "C_depth_mm": 6.3,
+    "C_theta_deg": 80.5,
+    "LD_depth_mm": 7.1,
+    "LD_theta_deg": 108.7,
+    "RD_depth_mm": 73.7,
+    "RD_theta_deg": 289.5,
+    "C_turn_abs_deg": 267.5,
+    "C_turn_net_deg": -165.9
    },
    "predictions": {
-    "tree": null,
-    "1nn": "centrifuge",
-    "rules": "unknown"
+    "tree": "shovel",
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
    },
    "status": "PROPOSED",
-   "family": "centrifuge",
-   "combination": "Short centrifuge",
-   "agreement": "1/3",
-   "nearest_labelled_goal": "g4-goal2"
+   "family": "defence",
+   "combination": null,
+   "agreement": "2/3",
+   "confidence": "medium",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "defence",
+    "defence",
+    "defence",
+    "defence"
+   ]
   },
   {
    "id": "g6-goal5",
@@ -2481,10 +2789,10 @@
    "scoring_end": "E",
    "scoring_player": "nygard",
    "box_s": 2991,
-   "goal_moment_s": 2986.2,
+   "goal_moment_s": 2978.57,
    "goal_moment_source": "estimated",
-   "goal_moment_estimate_s": 2986.2,
-   "goal_moment_method": "box_lag",
+   "goal_moment_estimate_s": 2978.57,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 3.0,
     "replay_matches": 1,
@@ -2492,36 +2800,44 @@
     "replay_orig_end_s": null
    },
    "features": {
-    "spot_from": "none",
-    "spot_x": NaN,
-    "spot_y": NaN,
-    "holder": null,
-    "holder_dist_mm": null,
-    "nearest_opponent": null,
-    "nearest_opponent_dist_mm": null,
-    "LW_depth_mm": 5.3,
-    "LW_theta_deg": 114.3,
-    "RW_depth_mm": 345.8,
-    "RW_theta_deg": 80.4,
-    "C_depth_mm": 116.2,
-    "C_theta_deg": 223.4,
-    "LD_depth_mm": 422.7,
-    "LD_theta_deg": 132.6,
-    "RD_depth_mm": 220.3,
-    "RD_theta_deg": 183.2,
-    "C_turn_abs_deg": 259.8,
-    "C_turn_net_deg": 110.2
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 102.8,
+    "spot_y": -40.3,
+    "holder": "own-C",
+    "holder_dist_mm": 40.9,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 123.2,
+    "LW_depth_mm": 5.8,
+    "LW_theta_deg": 118.0,
+    "RW_depth_mm": 347.1,
+    "RW_theta_deg": 82.8,
+    "C_depth_mm": 186.2,
+    "C_theta_deg": 53.6,
+    "LD_depth_mm": 426.4,
+    "LD_theta_deg": 182.3,
+    "RD_depth_mm": 221.0,
+    "RD_theta_deg": 188.1,
+    "C_turn_abs_deg": 212.6,
+    "C_turn_net_deg": 212.6
    },
    "predictions": {
-    "tree": null,
+    "tree": "centre",
     "1nn": "centre",
-    "rules": "unknown"
+    "rules": "centre",
+    "vote": "centre"
    },
    "status": "PROPOSED",
    "family": "centre",
    "combination": null,
-   "agreement": "1/3",
-   "note": "no set-up spot (puck not seen): 1-NN on the figure features only"
+   "agreement": "3/3",
+   "confidence": "high",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centre",
+    "centre",
+    "centre",
+    "centre"
+   ]
   },
   {
    "id": "g6-goal6",
@@ -2529,10 +2845,10 @@
    "scoring_end": "E",
    "scoring_player": "nygard",
    "box_s": 3007,
-   "goal_moment_s": 3003.03,
+   "goal_moment_s": 3003.13,
    "goal_moment_source": "estimated",
-   "goal_moment_estimate_s": 3003.03,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 3003.13,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 5.533333333333333,
     "replay_matches": 5,
@@ -2541,35 +2857,44 @@
    },
    "features": {
     "spot_from": "hold",
-    "hold_to_goal_s": 0.2,
+    "hold_to_goal_s": 0.3,
     "spot_x": 256.7,
     "spot_y": 77.8,
     "holder": "own-LW",
     "holder_dist_mm": 84.6,
     "nearest_opponent": "opp-C",
     "nearest_opponent_dist_mm": 181.7,
-    "LW_depth_mm": 167.6,
-    "LW_theta_deg": 190.9,
-    "RW_depth_mm": 346.5,
-    "RW_theta_deg": 59.6,
-    "C_depth_mm": 241.1,
-    "C_theta_deg": 282.1,
-    "LD_depth_mm": 144.8,
-    "LD_theta_deg": 155.7,
-    "RD_depth_mm": 223.8,
-    "RD_theta_deg": 116.5,
-    "C_turn_abs_deg": 41.4,
-    "C_turn_net_deg": -0.8
+    "LW_depth_mm": 170.3,
+    "LW_theta_deg": 189.0,
+    "RW_depth_mm": 346.7,
+    "RW_theta_deg": 57.9,
+    "C_depth_mm": 202.3,
+    "C_theta_deg": 281.5,
+    "LD_depth_mm": 135.9,
+    "LD_theta_deg": 154.1,
+    "RD_depth_mm": 223.2,
+    "RD_theta_deg": 115.3,
+    "C_turn_abs_deg": 67.4,
+    "C_turn_net_deg": -27.8
    },
    "predictions": {
-    "tree": "wing",
+    "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centre"
+    "rules": "centre",
+    "vote": "centrifuge"
    },
    "status": "PROPOSED",
-   "family": "wing",
+   "family": "centrifuge",
    "combination": null,
-   "agreement": "1/3"
+   "agreement": "2/3",
+   "confidence": "medium",
+   "nearest_labelled_goal": "g5-goal1",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "wing",
+    "centrifuge",
+    "centrifuge"
+   ]
   },
   {
    "id": "g7-goal1",
@@ -2612,13 +2937,21 @@
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "PROPOSED",
    "family": "shovel",
    "combination": "Edwallskyffel lang",
    "agreement": "3/3",
-   "nearest_labelled_goal": "g2-goal2"
+   "confidence": "high",
+   "nearest_labelled_goal": "g2-goal2",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "shovel",
+    "shovel",
+    "shovel",
+    "shovel"
+   ]
   },
   {
    "id": "g7-goal2",
@@ -2626,10 +2959,10 @@
    "scoring_end": "E",
    "scoring_player": "fjermestad",
    "box_s": 3401,
-   "goal_moment_s": 3396.87,
+   "goal_moment_s": 3396.97,
    "goal_moment_source": "estimated",
-   "goal_moment_estimate_s": 3396.87,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 3396.97,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 3.4,
     "replay_matches": 10,
@@ -2638,7 +2971,7 @@
    },
    "features": {
     "spot_from": "hold",
-    "hold_to_goal_s": 0.2,
+    "hold_to_goal_s": 0.3,
     "spot_x": 50.1,
     "spot_y": -198.3,
     "holder": "own-RW",
@@ -2646,28 +2979,36 @@
     "nearest_opponent": "opp-LW",
     "nearest_opponent_dist_mm": 109.1,
     "LW_depth_mm": 361.0,
-    "LW_theta_deg": 235.4,
-    "RW_depth_mm": 74.9,
-    "RW_theta_deg": 226.5,
-    "C_depth_mm": 230.2,
-    "C_theta_deg": 271.3,
-    "LD_depth_mm": 219.4,
-    "LD_theta_deg": 87.3,
-    "RD_depth_mm": 213.5,
-    "RD_theta_deg": 93.7,
-    "C_turn_abs_deg": 168.9,
-    "C_turn_net_deg": -12.9
+    "LW_theta_deg": 235.9,
+    "RW_depth_mm": 85.2,
+    "RW_theta_deg": 241.8,
+    "C_depth_mm": 229.3,
+    "C_theta_deg": 258.4,
+    "LD_depth_mm": 241.1,
+    "LD_theta_deg": 58.5,
+    "RD_depth_mm": 213.3,
+    "RD_theta_deg": 93.1,
+    "C_turn_abs_deg": 161.9,
+    "C_turn_net_deg": -16.5
    },
    "predictions": {
     "tree": "shovel",
     "1nn": "shovel",
-    "rules": "shovel"
+    "rules": "shovel",
+    "vote": "shovel"
    },
    "status": "PROPOSED",
    "family": "shovel",
    "combination": "Edwallskyffel lang",
    "agreement": "3/3",
-   "nearest_labelled_goal": "g3-goal4"
+   "confidence": "high",
+   "nearest_labelled_goal": "g3-goal4",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "shovel",
+    "shovel",
+    "shovel",
+    "shovel"
+   ]
   },
   {
    "id": "g7-goal3",
@@ -2710,13 +3051,21 @@
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "PROPOSED",
    "family": "centrifuge",
    "combination": null,
    "agreement": "3/3",
-   "nearest_labelled_goal": "g1-goal3"
+   "confidence": "high",
+   "nearest_labelled_goal": "g1-goal3",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
   },
   {
    "id": "g7-goal4",
@@ -2724,10 +3073,10 @@
    "scoring_end": "E",
    "scoring_player": "fjermestad",
    "box_s": 3516,
-   "goal_moment_s": 3511.33,
+   "goal_moment_s": 3505.53,
    "goal_moment_source": "estimated",
-   "goal_moment_estimate_s": 3511.33,
-   "goal_moment_method": "box_lag_snapped_to_hold",
+   "goal_moment_estimate_s": 3505.53,
+   "goal_moment_method": "longest_gap_hold",
    "replay": {
     "replay_delay_s": 5.766666666666667,
     "replay_matches": 5,
@@ -2736,36 +3085,59 @@
    },
    "features": {
     "spot_from": "hold",
-    "hold_to_goal_s": 0.2,
-    "spot_x": 302.8,
-    "spot_y": 162.1,
+    "hold_to_goal_s": 0.3,
+    "spot_x": 304.7,
+    "spot_y": 164.0,
     "holder": "own-LW",
-    "holder_dist_mm": 74.3,
+    "holder_dist_mm": 53.8,
     "nearest_opponent": "opp-RW",
-    "nearest_opponent_dist_mm": 215.7,
-    "LW_depth_mm": 213.8,
-    "LW_theta_deg": 232.9,
-    "RW_depth_mm": 429.6,
-    "RW_theta_deg": 249.8,
-    "C_depth_mm": 100.2,
-    "C_theta_deg": 224.6,
-    "LD_depth_mm": 423.8,
-    "LD_theta_deg": 116.0,
-    "RD_depth_mm": 206.0,
-    "RD_theta_deg": 112.1,
-    "C_turn_abs_deg": 196.8,
-    "C_turn_net_deg": -88.6
+    "nearest_opponent_dist_mm": 217.1,
+    "LW_depth_mm": 262.3,
+    "LW_theta_deg": 36.4,
+    "RW_depth_mm": 430.1,
+    "RW_theta_deg": 250.5,
+    "C_depth_mm": 110.4,
+    "C_theta_deg": 222.2,
+    "LD_depth_mm": 423.2,
+    "LD_theta_deg": 116.4,
+    "RD_depth_mm": 205.8,
+    "RD_theta_deg": 108.7,
+    "C_turn_abs_deg": 278.2,
+    "C_turn_net_deg": -103.4
    },
    "predictions": {
     "tree": "centrifuge",
     "1nn": "centrifuge",
-    "rules": "centrifuge"
+    "rules": "centrifuge",
+    "vote": "centrifuge"
    },
    "status": "PROPOSED",
    "family": "centrifuge",
-   "combination": "Short centrifuge",
+   "combination": null,
    "agreement": "3/3",
-   "nearest_labelled_goal": "g3-goal6"
+   "confidence": "high",
+   "nearest_labelled_goal": "g3-goal2",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
   }
- ]
+ ],
+ "families_by_player_all_goals": {
+  "nygard": {
+   "shovel": 7,
+   "centre": 5,
+   "centrifuge": 3,
+   "defence": 3,
+   "wing": 1,
+   "rebound": 1
+  },
+  "fjermestad": {
+   "centrifuge": 13,
+   "shovel": 5,
+   "defence": 2
+  }
+ }
 }
