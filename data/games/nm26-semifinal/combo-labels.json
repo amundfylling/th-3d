@@ -1,0 +1,3143 @@
+{
+ "description": "Combination recognition for the NM26 goals (scripts/nm26-combo-recognition.py): every goal's moment, set-up features in the scoring team's frame, and its attacking family. status user_label = the user's review; PROPOSED = the majority vote of the decision tree, the 1-NN and the playbook rules (each prediction alongside; agreement 3/3 and the same vote with the moment shifted by up to 0.5 s = high confidence). combination for a PROPOSED goal = the user's name of the nearest labelled goal of the same family (null = an unnamed one). See docs/nm26-combinations.md.",
+ "puck_track": "puck-track.json",
+ "status": "PROPOSED",
+ "goal_moment": {
+  "constants": {
+   "replay_offset": 0.27,
+   "hold_offset": 0.3,
+   "box_lag": 7.9
+  },
+  "replay_rule": {
+   "delay_s": [
+    4.0,
+    6.5
+   ],
+   "min_matched_frames": 12
+  },
+  "labelled_goals": 25,
+  "loo_abs_error_s": {
+   "median": 0.32,
+   "p90": 4.59,
+   "within_0.5s": 14,
+   "within_1s": 16,
+   "max": 8.45
+  },
+  "by_method": {
+   "box_lag": {
+    "n": 1,
+    "median_abs_error_s": 4.9
+   },
+   "longest_gap_hold": {
+    "n": 15,
+    "median_abs_error_s": 0.35
+   },
+   "replay": {
+    "n": 9,
+    "median_abs_error_s": 0.17
+   }
+  },
+  "per_goal_abs_error_s": {
+   "g1-goal1": 0.05,
+   "g1-goal2": 4.9,
+   "g1-goal3": 4.12,
+   "g1-goal4": 0.35,
+   "g1-goal5": 0.05,
+   "g1-goal6": 2.35,
+   "g1-goal7": 0.08,
+   "g2-goal1": 1.95,
+   "g2-goal2": 8.45,
+   "g2-goal3": 0.12,
+   "g2-goal4": 0.08,
+   "g3-goal1": 0.0,
+   "g3-goal2": 0.02,
+   "g3-goal3": 0.13,
+   "g3-goal4": 3.32,
+   "g3-goal5": 0.17,
+   "g3-goal6": 0.32,
+   "g3-goal7": 3.12,
+   "g3-goal8": 0.62,
+   "g4-goal1": 0.03,
+   "g4-goal2": 0.23,
+   "g4-goal3": 1.32,
+   "g4-goal4": 0.02,
+   "g5-goal1": 8.18,
+   "g5-goal2": 0.65
+  }
+ },
+ "leave_one_out": {
+  "at_user_moment": {
+   "tree": {
+    "accuracy": 0.8,
+    "correct": 20,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 9,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 8,
+      "recall": 0.8,
+      "precision": 0.8
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.5
+     },
+     "defence": {
+      "n": 2,
+      "correct": 1,
+      "recall": 0.5,
+      "precision": 1.0
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": 0.0
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 9,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 8,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 1,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 0,
+      "wing": 1,
+      "rebound": 0
+     }
+    }
+   },
+   "1nn": {
+    "accuracy": 0.84,
+    "correct": 21,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 9,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 8,
+      "recall": 0.8,
+      "precision": 0.8
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.67
+     },
+     "defence": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": 0.0
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 9,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 8,
+      "centre": 1,
+      "defence": 0,
+      "wing": 1,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   },
+   "rules": {
+    "accuracy": 0.92,
+    "correct": 23,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 9,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 10,
+      "recall": 1.0,
+      "precision": 0.83
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "defence": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 9,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 10,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   },
+   "vote": {
+    "accuracy": 0.92,
+    "correct": 23,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 9,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 10,
+      "recall": 1.0,
+      "precision": 0.83
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "defence": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 9,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 10,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   }
+  },
+  "at_estimated_moment": {
+   "tree": {
+    "accuracy": 0.68,
+    "correct": 17,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 7,
+      "recall": 0.78,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 7,
+      "recall": 0.7,
+      "precision": 0.78
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.5
+     },
+     "defence": {
+      "n": 2,
+      "correct": 1,
+      "recall": 0.5,
+      "precision": 0.25
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": 0.0
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 7,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 1,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 7,
+      "centre": 1,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 1,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 1,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 1,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   },
+   "1nn": {
+    "accuracy": 0.8,
+    "correct": 20,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 7,
+      "recall": 0.78,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 9,
+      "recall": 0.9,
+      "precision": 0.75
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.67
+     },
+     "defence": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": 0.0
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 7,
+      "centrifuge": 2,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 9,
+      "centre": 0,
+      "defence": 0,
+      "wing": 1,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 1,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   },
+   "rules": {
+    "accuracy": 0.8,
+    "correct": 20,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 7,
+      "recall": 0.78,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 9,
+      "recall": 0.9,
+      "precision": 0.75
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.5
+     },
+     "defence": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 1.0
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 7,
+      "centrifuge": 2,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 9,
+      "centre": 1,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 1,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   },
+   "vote": {
+    "accuracy": 0.8,
+    "correct": 20,
+    "n": 25,
+    "per_family": {
+     "shovel": {
+      "n": 9,
+      "correct": 7,
+      "recall": 0.78,
+      "precision": 1.0
+     },
+     "centrifuge": {
+      "n": 10,
+      "correct": 9,
+      "recall": 0.9,
+      "precision": 0.75
+     },
+     "centre": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.67
+     },
+     "defence": {
+      "n": 2,
+      "correct": 2,
+      "recall": 1.0,
+      "precision": 0.67
+     },
+     "wing": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     },
+     "rebound": {
+      "n": 1,
+      "correct": 0,
+      "recall": 0.0,
+      "precision": null
+     }
+    },
+    "confusion_true_by_pred": {
+     "shovel": {
+      "shovel": 7,
+      "centrifuge": 2,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centrifuge": {
+      "shovel": 0,
+      "centrifuge": 9,
+      "centre": 0,
+      "defence": 1,
+      "wing": 0,
+      "rebound": 0
+     },
+     "centre": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 2,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "defence": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 0,
+      "defence": 2,
+      "wing": 0,
+      "rebound": 0
+     },
+     "wing": {
+      "shovel": 0,
+      "centrifuge": 0,
+      "centre": 1,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     },
+     "rebound": {
+      "shovel": 0,
+      "centrifuge": 1,
+      "centre": 0,
+      "defence": 0,
+      "wing": 0,
+      "rebound": 0
+     }
+    }
+   }
+  },
+  "majority_baseline": 0.4,
+  "subfamily_1nn": {
+   "shovel": {
+    "goals": [
+     "g1-goal1",
+     "g2-goal2",
+     "g2-goal3",
+     "g2-goal4",
+     "g3-goal1",
+     "g3-goal3",
+     "g3-goal4",
+     "g3-goal8"
+    ],
+    "true": [
+     "Edwallskyffel lang",
+     "Edwallskyffel lang",
+     "Edwallskyffel lang",
+     "Edwallskyffel lang",
+     "Spade",
+     "Spade",
+     "Edwallskyffel lang",
+     "Spade"
+    ],
+    "pred": [
+     "Edwallskyffel lang",
+     "Edwallskyffel lang",
+     "Edwallskyffel lang",
+     "Edwallskyffel lang",
+     "Edwallskyffel lang",
+     "Spade",
+     "Edwallskyffel lang",
+     "Spade"
+    ],
+    "correct": 7,
+    "n": 8
+   },
+   "centrifuge": {
+    "goals": [
+     "g1-goal3",
+     "g1-goal4",
+     "g1-goal5",
+     "g1-goal6",
+     "g2-goal1",
+     "g3-goal2",
+     "g3-goal6",
+     "g4-goal2",
+     "g4-goal3",
+     "g5-goal1"
+    ],
+    "true": [
+     "ordinary",
+     "ordinary",
+     "ordinary",
+     "ordinary",
+     "Short centrifuge",
+     "ordinary",
+     "Short centrifuge",
+     "Short centrifuge",
+     "ordinary",
+     "ordinary"
+    ],
+    "pred": [
+     "ordinary",
+     "ordinary",
+     "ordinary",
+     "ordinary",
+     "Short centrifuge",
+     "ordinary",
+     "Short centrifuge",
+     "Short centrifuge",
+     "ordinary",
+     "ordinary"
+    ],
+    "correct": 10,
+    "n": 10
+   }
+  }
+ },
+ "tree_all_labels": [
+  "spot_y <= -121.05",
+  "  -> shovel",
+  "spot_y > -121.05",
+  "  spot_x <= 214.75",
+  "    spot_x <= 3.10",
+  "      -> defence",
+  "    spot_x > 3.10",
+  "      -> centre",
+  "  spot_x > 214.75",
+  "    C_depth_mm <= 240.80",
+  "      -> centrifuge",
+  "    C_depth_mm > 240.80",
+  "      -> wing"
+ ],
+ "feature_names": [
+  "spot_x",
+  "spot_y",
+  "C_depth_mm",
+  "RW_depth_mm",
+  "LW_depth_mm",
+  "LD_depth_mm",
+  "RD_depth_mm",
+  "C_turn_abs_deg",
+  "C_theta_cos",
+  "C_theta_sin",
+  "RW_theta_cos",
+  "RW_theta_sin",
+  "LW_theta_cos",
+  "LW_theta_sin",
+  "holder=own-LW",
+  "holder=own-RW",
+  "holder=own-C",
+  "holder=own-LD",
+  "holder=own-RD"
+ ],
+ "goals": [
+  {
+   "id": "g1-goal1",
+   "game": "g1",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 92,
+   "goal_moment_s": 83.1,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 83.13,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 3.0,
+    "replay_matches": 5,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.27,
+    "spot_x": -0.0,
+    "spot_y": -168.8,
+    "holder": "own-RW",
+    "holder_dist_mm": 76.6,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 208.0,
+    "LW_depth_mm": 328.1,
+    "LW_theta_deg": 285.9,
+    "RW_depth_mm": 17.6,
+    "RW_theta_deg": 209.7,
+    "C_depth_mm": 9.1,
+    "C_theta_deg": 316.1,
+    "LD_depth_mm": 341.7,
+    "LD_theta_deg": 289.4,
+    "RD_depth_mm": 221.3,
+    "RD_theta_deg": 213.6,
+    "C_turn_abs_deg": 41.6,
+    "C_turn_net_deg": -13.8
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": "Edwallskyffel lang",
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g1-goal2",
+   "game": "g1",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 95,
+   "goal_moment_s": 91.9,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 87.1,
+   "goal_moment_method": "box_lag",
+   "replay": {
+    "replay_delay_s": null,
+    "replay_matches": 0,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.1,
+    "spot_x": 260.7,
+    "spot_y": 209.3,
+    "holder": "own-LW",
+    "holder_dist_mm": 200.3,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 109.3,
+    "LW_depth_mm": 8.4,
+    "LW_theta_deg": 170.4,
+    "RW_depth_mm": 89.2,
+    "RW_theta_deg": 6.8,
+    "C_depth_mm": 240.9,
+    "C_theta_deg": 276.3,
+    "LD_depth_mm": 363.1,
+    "LD_theta_deg": 189.9,
+    "RD_depth_mm": 223.2,
+    "RD_theta_deg": 241.7,
+    "C_turn_abs_deg": 146.1,
+    "C_turn_net_deg": -105.1
+   },
+   "predictions": {
+    "tree": "wing",
+    "1nn": "wing",
+    "rules": "centrifuge",
+    "vote": "wing"
+   },
+   "status": "user_label",
+   "family": "wing",
+   "combination": null,
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g1-goal3",
+   "game": "g1",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 181,
+   "goal_moment_s": 177.7,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 173.6,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 4.466666666666667,
+    "replay_matches": 3,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "mean",
+    "spot_x": 361.4,
+    "spot_y": 82.0,
+    "holder": "own-LW",
+    "holder_dist_mm": 154.9,
+    "nearest_opponent": "opp-LD",
+    "nearest_opponent_dist_mm": 208.7,
+    "LW_depth_mm": 302.0,
+    "LW_theta_deg": 3.0,
+    "RW_depth_mm": 316.4,
+    "RW_theta_deg": 52.3,
+    "C_depth_mm": 180.9,
+    "C_theta_deg": 211.2,
+    "LD_depth_mm": 301.1,
+    "LD_theta_deg": 183.8,
+    "RD_depth_mm": 225.2,
+    "RD_theta_deg": 60.0,
+    "C_turn_abs_deg": 116.1,
+    "C_turn_net_deg": -28.7
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": null,
+   "loo": {
+    "tree": "centre",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g1-goal4",
+   "game": "g1",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 234,
+   "goal_moment_s": 230.8,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 230.47,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 5.3,
+    "replay_matches": 8,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.63,
+    "spot_x": 301.0,
+    "spot_y": 161.9,
+    "holder": "own-LW",
+    "holder_dist_mm": 57.5,
+    "nearest_opponent": "opp-RW",
+    "nearest_opponent_dist_mm": 214.0,
+    "LW_depth_mm": 229.9,
+    "LW_theta_deg": 25.6,
+    "RW_depth_mm": 423.9,
+    "RW_theta_deg": 98.9,
+    "C_depth_mm": 216.7,
+    "C_theta_deg": 273.9,
+    "LD_depth_mm": 346.3,
+    "LD_theta_deg": 223.8,
+    "RD_depth_mm": 228.8,
+    "RD_theta_deg": 329.5,
+    "C_turn_abs_deg": 330.3,
+    "C_turn_net_deg": -250.7
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": null,
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g1-goal5",
+   "game": "g1",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 243,
+   "goal_moment_s": 240.0,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 239.97,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 3.3333333333333335,
+    "replay_matches": 1,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.33,
+    "spot_x": 259.3,
+    "spot_y": 209.4,
+    "holder": "own-LW",
+    "holder_dist_mm": 81.5,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 105.5,
+    "LW_depth_mm": 207.7,
+    "LW_theta_deg": 46.5,
+    "RW_depth_mm": 5.8,
+    "RW_theta_deg": 95.8,
+    "C_depth_mm": 240.7,
+    "C_theta_deg": 268.7,
+    "LD_depth_mm": 423.0,
+    "LD_theta_deg": 211.5,
+    "RD_depth_mm": 223.3,
+    "RD_theta_deg": 209.0,
+    "C_turn_abs_deg": 97.0,
+    "C_turn_net_deg": -65.0
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": null,
+   "loo": {
+    "tree": "centre",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g1-goal6",
+   "game": "g1",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 289,
+   "goal_moment_s": 284.2,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 281.87,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 4.3,
+    "replay_matches": 10,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "mean",
+    "spot_x": 313.9,
+    "spot_y": 111.4,
+    "holder": "own-LW",
+    "holder_dist_mm": 86.0,
+    "nearest_opponent": "opp-RW",
+    "nearest_opponent_dist_mm": 229.8,
+    "LW_depth_mm": 261.3,
+    "LW_theta_deg": 249.8,
+    "RW_depth_mm": 425.9,
+    "RW_theta_deg": 11.2,
+    "C_depth_mm": 233.3,
+    "C_theta_deg": 249.1,
+    "LD_depth_mm": 313.9,
+    "LD_theta_deg": 202.1,
+    "RD_depth_mm": 226.3,
+    "RD_theta_deg": 50.3,
+    "C_turn_abs_deg": 188.0,
+    "C_turn_net_deg": -61.4
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": null,
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g1-goal7",
+   "game": "g1",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 533,
+   "goal_moment_s": 528.2,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 528.27,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 3.066666666666667,
+    "replay_matches": 12,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.23,
+    "spot_x": 24.4,
+    "spot_y": -169.0,
+    "holder": "own-RW",
+    "holder_dist_mm": 42.8,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 147.0,
+    "LW_depth_mm": 333.5,
+    "LW_theta_deg": 193.4,
+    "RW_depth_mm": 79.4,
+    "RW_theta_deg": 280.3,
+    "C_depth_mm": 233.7,
+    "C_theta_deg": 222.0,
+    "LD_depth_mm": 419.9,
+    "LD_theta_deg": 175.2,
+    "RD_depth_mm": 189.0,
+    "RD_theta_deg": 128.1,
+    "C_turn_abs_deg": 295.7,
+    "C_turn_net_deg": 50.3
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": null,
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g2-goal1",
+   "game": "g2",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 884,
+   "goal_moment_s": 872.4,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 870.47,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 5.066666666666666,
+    "replay_matches": 1,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "mean",
+    "spot_x": 314.3,
+    "spot_y": 118.8,
+    "holder": "own-LW",
+    "holder_dist_mm": 102.2,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 242.8,
+    "LW_depth_mm": 146.1,
+    "LW_theta_deg": 179.7,
+    "RW_depth_mm": 13.0,
+    "RW_theta_deg": 164.2,
+    "C_depth_mm": 50.6,
+    "C_theta_deg": 293.2,
+    "LD_depth_mm": 334.9,
+    "LD_theta_deg": 222.5,
+    "RD_depth_mm": 221.9,
+    "RD_theta_deg": 92.6,
+    "C_turn_abs_deg": 283.5,
+    "C_turn_net_deg": -103.5
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": "Short centrifuge",
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g2-goal2",
+   "game": "g2",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 930,
+   "goal_moment_s": 924.1,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 915.67,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.233333333333333,
+    "replay_matches": 16,
+    "replay": true,
+    "replay_orig_end_s": 915.4
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 17.2,
+    "spot_y": -169.1,
+    "holder": "own-RW",
+    "holder_dist_mm": 54.6,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 154.6,
+    "LW_depth_mm": 407.0,
+    "LW_theta_deg": 210.3,
+    "RW_depth_mm": 64.7,
+    "RW_theta_deg": 208.9,
+    "C_depth_mm": 7.3,
+    "C_theta_deg": 329.1,
+    "LD_depth_mm": 416.0,
+    "LD_theta_deg": 274.4,
+    "RD_depth_mm": 222.8,
+    "RD_theta_deg": 265.7,
+    "C_turn_abs_deg": 133.1,
+    "C_turn_net_deg": -19.7
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": "Edwallskyffel lang",
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g2-goal3",
+   "game": "g2",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 949,
+   "goal_moment_s": 944.9,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 945.0,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": null,
+    "replay_matches": 0,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.2,
+    "spot_x": 1.6,
+    "spot_y": -169.0,
+    "holder": "own-RW",
+    "holder_dist_mm": 52.0,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 247.8,
+    "LW_depth_mm": 48.6,
+    "LW_theta_deg": 237.8,
+    "RW_depth_mm": 48.6,
+    "RW_theta_deg": 221.7,
+    "C_depth_mm": 7.4,
+    "C_theta_deg": 301.3,
+    "LD_depth_mm": 268.8,
+    "LD_theta_deg": 133.9,
+    "RD_depth_mm": 221.4,
+    "RD_theta_deg": 262.5,
+    "C_turn_abs_deg": 58.0,
+    "C_turn_net_deg": 7.2
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": "Edwallskyffel lang",
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g2-goal4",
+   "game": "g2",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 960,
+   "goal_moment_s": 956.9,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 956.97,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 3.2333333333333334,
+    "replay_matches": 1,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.23,
+    "spot_x": 8.8,
+    "spot_y": -167.8,
+    "holder": "own-RW",
+    "holder_dist_mm": 48.6,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 211.5,
+    "LW_depth_mm": 359.4,
+    "LW_theta_deg": 207.6,
+    "RW_depth_mm": 58.4,
+    "RW_theta_deg": 220.6,
+    "C_depth_mm": 24.8,
+    "C_theta_deg": 329.7,
+    "LD_depth_mm": 424.5,
+    "LD_theta_deg": 162.7,
+    "RD_depth_mm": 222.9,
+    "RD_theta_deg": 243.4,
+    "C_turn_abs_deg": 143.0,
+    "C_turn_net_deg": -14.6
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": "Edwallskyffel lang",
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g3-goal1",
+   "game": "g3",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 1399,
+   "goal_moment_s": 1386.7,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1386.7,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 8.466666666666667,
+    "replay_matches": 15,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 13.0,
+    "spot_y": -170.8,
+    "holder": "own-RW",
+    "holder_dist_mm": 51.7,
+    "nearest_opponent": "opp-LD",
+    "nearest_opponent_dist_mm": 87.4,
+    "LW_depth_mm": 1.0,
+    "LW_theta_deg": 174.8,
+    "RW_depth_mm": 39.1,
+    "RW_theta_deg": 213.6,
+    "C_depth_mm": 6.0,
+    "C_theta_deg": 300.0,
+    "LD_depth_mm": 409.6,
+    "LD_theta_deg": 239.0,
+    "RD_depth_mm": 160.1,
+    "RD_theta_deg": 261.4,
+    "C_turn_abs_deg": 234.2,
+    "C_turn_net_deg": -97.4
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": "Spade",
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g3-goal2",
+   "game": "g3",
+   "scoring_end": "W",
+   "scoring_player": "fjermestad",
+   "box_s": 1409,
+   "goal_moment_s": 1401.1,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1401.1,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 4.966666666666667,
+    "replay_matches": 29,
+    "replay": true,
+    "replay_orig_end_s": 1400.8333333333333
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.27,
+    "spot_x": 288.6,
+    "spot_y": 175.9,
+    "holder": "own-LW",
+    "holder_dist_mm": 41.7,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 125.6,
+    "LW_depth_mm": 245.1,
+    "LW_theta_deg": 68.2,
+    "RW_depth_mm": 449.4,
+    "RW_theta_deg": 280.3,
+    "C_depth_mm": 216.7,
+    "C_theta_deg": 305.6,
+    "LD_depth_mm": 339.9,
+    "LD_theta_deg": 217.7,
+    "RD_depth_mm": 217.4,
+    "RD_theta_deg": 180.8,
+    "C_turn_abs_deg": 287.2,
+    "C_turn_net_deg": -189.2
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": null,
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g3-goal3",
+   "game": "g3",
+   "scoring_end": "W",
+   "scoring_player": "fjermestad",
+   "box_s": 1429,
+   "goal_moment_s": 1418.9,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1419.03,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.566666666666666,
+    "replay_matches": 19,
+    "replay": true,
+    "replay_orig_end_s": 1418.7666666666667
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.13,
+    "spot_x": 20.2,
+    "spot_y": -161.2,
+    "holder": "own-RW",
+    "holder_dist_mm": 33.0,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 76.1,
+    "LW_depth_mm": 403.5,
+    "LW_theta_deg": 250.3,
+    "RW_depth_mm": 75.6,
+    "RW_theta_deg": 239.6,
+    "C_depth_mm": 7.2,
+    "C_theta_deg": 172.2,
+    "LD_depth_mm": 353.9,
+    "LD_theta_deg": 232.1,
+    "RD_depth_mm": 223.1,
+    "RD_theta_deg": 146.8,
+    "C_turn_abs_deg": 200.4,
+    "C_turn_net_deg": 44.8
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": "Spade",
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g3-goal4",
+   "game": "g3",
+   "scoring_end": "W",
+   "scoring_player": "fjermestad",
+   "box_s": 1512,
+   "goal_moment_s": 1501.9,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1505.2,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 6.066666666666666,
+    "replay_matches": 7,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.33,
+    "spot_x": 20.7,
+    "spot_y": -168.1,
+    "holder": "own-RW",
+    "holder_dist_mm": 34.9,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 76.7,
+    "LW_depth_mm": 297.1,
+    "LW_theta_deg": 287.4,
+    "RW_depth_mm": 56.0,
+    "RW_theta_deg": 251.6,
+    "C_depth_mm": 232.9,
+    "C_theta_deg": 305.5,
+    "LD_depth_mm": 294.4,
+    "LD_theta_deg": 128.2,
+    "RD_depth_mm": null,
+    "RD_theta_deg": null,
+    "C_turn_abs_deg": 152.3,
+    "C_turn_net_deg": 45.7
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": "Edwallskyffel lang",
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g3-goal5",
+   "game": "g3",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 1534,
+   "goal_moment_s": 1525.9,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1526.07,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.066666666666666,
+    "replay_matches": 16,
+    "replay": true,
+    "replay_orig_end_s": 1525.8
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.2,
+    "spot_x": 164.0,
+    "spot_y": -25.6,
+    "holder": "own-C",
+    "holder_dist_mm": 43.5,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 174.7,
+    "LW_depth_mm": 11.0,
+    "LW_theta_deg": 233.7,
+    "RW_depth_mm": 8.0,
+    "RW_theta_deg": 227.1,
+    "C_depth_mm": 192.2,
+    "C_theta_deg": 170.0,
+    "LD_depth_mm": 427.5,
+    "LD_theta_deg": 247.2,
+    "RD_depth_mm": 221.1,
+    "RD_theta_deg": 48.5,
+    "C_turn_abs_deg": 298.7,
+    "C_turn_net_deg": -54.7
+   },
+   "predictions": {
+    "tree": "centre",
+    "1nn": "centre",
+    "rules": "centre",
+    "vote": "centre"
+   },
+   "status": "user_label",
+   "family": "centre",
+   "combination": "Spjass",
+   "loo": {
+    "tree": "centre",
+    "1nn": "centre",
+    "rules": "centre",
+    "vote": "centre"
+   }
+  },
+  {
+   "id": "g3-goal6",
+   "game": "g3",
+   "scoring_end": "W",
+   "scoring_player": "fjermestad",
+   "box_s": 1546,
+   "goal_moment_s": 1541.9,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1541.6,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 3.8666666666666667,
+    "replay_matches": 3,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.6,
+    "spot_x": 396.9,
+    "spot_y": 169.6,
+    "holder": "own-LW",
+    "holder_dist_mm": 40.3,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 165.0,
+    "LW_depth_mm": 346.9,
+    "LW_theta_deg": 306.6,
+    "RW_depth_mm": 448.3,
+    "RW_theta_deg": 278.7,
+    "C_depth_mm": 62.5,
+    "C_theta_deg": 245.8,
+    "LD_depth_mm": 338.1,
+    "LD_theta_deg": 247.0,
+    "RD_depth_mm": 207.9,
+    "RD_theta_deg": 212.5,
+    "C_turn_abs_deg": 71.8,
+    "C_turn_net_deg": 5.2
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": "Short centrifuge",
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g3-goal7",
+   "game": "g3",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 1571,
+   "goal_moment_s": 1561.5,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1558.4,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 5.0,
+    "replay_matches": 7,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "mean",
+    "spot_x": 324.2,
+    "spot_y": 88.8,
+    "holder": "own-LW",
+    "holder_dist_mm": 116.8,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 186.2,
+    "LW_depth_mm": 181.1,
+    "LW_theta_deg": 341.9,
+    "RW_depth_mm": 11.5,
+    "RW_theta_deg": 239.6,
+    "C_depth_mm": 245.3,
+    "C_theta_deg": 217.1,
+    "LD_depth_mm": 360.6,
+    "LD_theta_deg": 194.7,
+    "RD_depth_mm": 226.6,
+    "RD_theta_deg": 214.8,
+    "C_turn_abs_deg": 183.1,
+    "C_turn_net_deg": -22.9
+   },
+   "predictions": {
+    "tree": "wing",
+    "1nn": "rebound",
+    "rules": "centrifuge",
+    "vote": "wing"
+   },
+   "status": "user_label",
+   "family": "rebound",
+   "combination": null,
+   "loo": {
+    "tree": "wing",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g3-goal8",
+   "game": "g3",
+   "scoring_end": "W",
+   "scoring_player": "fjermestad",
+   "box_s": 1638,
+   "goal_moment_s": 1630.2,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1629.6,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 4.766666666666667,
+    "replay_matches": 21,
+    "replay": true,
+    "replay_orig_end_s": 1629.3333333333333
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.2,
+    "spot_x": 30.9,
+    "spot_y": -166.9,
+    "holder": "own-RW",
+    "holder_dist_mm": 56.3,
+    "nearest_opponent": "opp-LD",
+    "nearest_opponent_dist_mm": 122.4,
+    "LW_depth_mm": 377.1,
+    "LW_theta_deg": 256.5,
+    "RW_depth_mm": 86.0,
+    "RW_theta_deg": 222.8,
+    "C_depth_mm": 7.0,
+    "C_theta_deg": 181.1,
+    "LD_depth_mm": 342.7,
+    "LD_theta_deg": 210.2,
+    "RD_depth_mm": 226.4,
+    "RD_theta_deg": 118.0,
+    "C_turn_abs_deg": 185.8,
+    "C_turn_net_deg": 70.6
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "user_label",
+   "family": "shovel",
+   "combination": "Spade",
+   "loo": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   }
+  },
+  {
+   "id": "g4-goal1",
+   "game": "g4",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 1867,
+   "goal_moment_s": 1856.1,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 1856.13,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.866666666666666,
+    "replay_matches": 29,
+    "replay": true,
+    "replay_orig_end_s": 1855.8666666666666
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.23,
+    "spot_x": 170.2,
+    "spot_y": -19.8,
+    "holder": "own-C",
+    "holder_dist_mm": 32.3,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 146.8,
+    "LW_depth_mm": null,
+    "LW_theta_deg": null,
+    "RW_depth_mm": 404.5,
+    "RW_theta_deg": 40.0,
+    "C_depth_mm": 194.7,
+    "C_theta_deg": 183.2,
+    "LD_depth_mm": 426.8,
+    "LD_theta_deg": 274.7,
+    "RD_depth_mm": 216.5,
+    "RD_theta_deg": 142.3,
+    "C_turn_abs_deg": 389.9,
+    "C_turn_net_deg": 61.5
+   },
+   "predictions": {
+    "tree": "centre",
+    "1nn": "centre",
+    "rules": "centre",
+    "vote": "centre"
+   },
+   "status": "user_label",
+   "family": "centre",
+   "combination": "Spjass",
+   "loo": {
+    "tree": "centre",
+    "1nn": "centre",
+    "rules": "centre",
+    "vote": "centre"
+   }
+  },
+  {
+   "id": "g4-goal2",
+   "game": "g4",
+   "scoring_end": "W",
+   "scoring_player": "fjermestad",
+   "box_s": 2055,
+   "goal_moment_s": 2045.0,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 2045.23,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.033333333333333,
+    "replay_matches": 28,
+    "replay": true,
+    "replay_orig_end_s": 2044.9666666666667
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.5,
+    "spot_x": 350.5,
+    "spot_y": 187.9,
+    "holder": "own-LW",
+    "holder_dist_mm": 205.6,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 159.8,
+    "LW_depth_mm": 90.0,
+    "LW_theta_deg": 177.1,
+    "RW_depth_mm": 202.6,
+    "RW_theta_deg": 287.2,
+    "C_depth_mm": 67.6,
+    "C_theta_deg": 255.6,
+    "LD_depth_mm": 344.7,
+    "LD_theta_deg": 269.9,
+    "RD_depth_mm": 220.7,
+    "RD_theta_deg": 116.9,
+    "C_turn_abs_deg": 64.2,
+    "C_turn_net_deg": -11.4
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": "Short centrifuge",
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "wing",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g4-goal3",
+   "game": "g4",
+   "scoring_end": "W",
+   "scoring_player": "fjermestad",
+   "box_s": 2060,
+   "goal_moment_s": 2054.7,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 2056.0,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": null,
+    "replay_matches": 0,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.43,
+    "spot_x": 276.1,
+    "spot_y": 209.6,
+    "holder": "own-C",
+    "holder_dist_mm": 250.6,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 134.9,
+    "LW_depth_mm": null,
+    "LW_theta_deg": null,
+    "RW_depth_mm": 246.2,
+    "RW_theta_deg": 199.4,
+    "C_depth_mm": 213.9,
+    "C_theta_deg": 261.1,
+    "LD_depth_mm": 209.4,
+    "LD_theta_deg": 201.4,
+    "RD_depth_mm": 224.2,
+    "RD_theta_deg": 193.4,
+    "C_turn_abs_deg": 364.6,
+    "C_turn_net_deg": 124.6
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": null,
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "centre",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g4-goal4",
+   "game": "g4",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 2080,
+   "goal_moment_s": 2070.5,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 2070.5,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.533333333333333,
+    "replay_matches": 20,
+    "replay": true,
+    "replay_orig_end_s": 2070.233333333333
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.2,
+    "spot_x": -157.8,
+    "spot_y": -60.3,
+    "holder": "own-RD",
+    "holder_dist_mm": 64.2,
+    "nearest_opponent": "opp-LD",
+    "nearest_opponent_dist_mm": 122.5,
+    "LW_depth_mm": 411.8,
+    "LW_theta_deg": 106.3,
+    "RW_depth_mm": 9.2,
+    "RW_theta_deg": 273.3,
+    "C_depth_mm": 196.2,
+    "C_theta_deg": 154.7,
+    "LD_depth_mm": 157.4,
+    "LD_theta_deg": 157.1,
+    "RD_depth_mm": 134.3,
+    "RD_theta_deg": 297.7,
+    "C_turn_abs_deg": 128.8,
+    "C_turn_net_deg": -41.0
+   },
+   "predictions": {
+    "tree": "defence",
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
+   },
+   "status": "user_label",
+   "family": "defence",
+   "combination": null,
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
+   }
+  },
+  {
+   "id": "g5-goal1",
+   "game": "g5",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 2356,
+   "goal_moment_s": 2342.4,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 2350.57,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": null,
+    "replay_matches": 0,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.63,
+    "spot_x": 307.1,
+    "spot_y": 164.2,
+    "holder": "own-LW",
+    "holder_dist_mm": 56.5,
+    "nearest_opponent": "opp-RW",
+    "nearest_opponent_dist_mm": 208.1,
+    "LW_depth_mm": 232.5,
+    "LW_theta_deg": 14.4,
+    "RW_depth_mm": 114.4,
+    "RW_theta_deg": 90.8,
+    "C_depth_mm": 205.3,
+    "C_theta_deg": 256.0,
+    "LD_depth_mm": 148.9,
+    "LD_theta_deg": 183.7,
+    "RD_depth_mm": 222.7,
+    "RD_theta_deg": 141.4,
+    "C_turn_abs_deg": 87.9,
+    "C_turn_net_deg": -31.9
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "user_label",
+   "family": "centrifuge",
+   "combination": null,
+   "loo": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   }
+  },
+  {
+   "id": "g5-goal2",
+   "game": "g5",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 2396,
+   "goal_moment_s": 2385.7,
+   "goal_moment_source": "user",
+   "goal_moment_estimate_s": 2385.07,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 4.7,
+    "replay_matches": 20,
+    "replay": true,
+    "replay_orig_end_s": 2384.8
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.33,
+    "spot_x": -231.0,
+    "spot_y": -80.9,
+    "holder": "own-RD",
+    "holder_dist_mm": 30.6,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 150.3,
+    "LW_depth_mm": 426.8,
+    "LW_theta_deg": 177.8,
+    "RW_depth_mm": 431.8,
+    "RW_theta_deg": 107.9,
+    "C_depth_mm": 6.6,
+    "C_theta_deg": 227.5,
+    "LD_depth_mm": 383.1,
+    "LD_theta_deg": 176.9,
+    "RD_depth_mm": 48.9,
+    "RD_theta_deg": 46.3,
+    "C_turn_abs_deg": 124.1,
+    "C_turn_net_deg": 97.9
+   },
+   "predictions": {
+    "tree": "defence",
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
+   },
+   "status": "user_label",
+   "family": "defence",
+   "combination": "Ceuleman",
+   "loo": {
+    "tree": "defence",
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
+   }
+  },
+  {
+   "id": "g5-goal3",
+   "game": "g5",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 2527,
+   "goal_moment_s": 2521.03,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2521.03,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.766666666666667,
+    "replay_matches": 28,
+    "replay": true,
+    "replay_orig_end_s": 2520.766666666667
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.26,
+    "spot_x": -236.8,
+    "spot_y": -136.3,
+    "holder": "own-RD",
+    "holder_dist_mm": 24.9,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 157.5,
+    "LW_depth_mm": 364.0,
+    "LW_theta_deg": 235.3,
+    "RW_depth_mm": 430.7,
+    "RW_theta_deg": 90.2,
+    "C_depth_mm": 2.2,
+    "C_theta_deg": 138.4,
+    "LD_depth_mm": 193.4,
+    "LD_theta_deg": 176.2,
+    "RD_depth_mm": 127.3,
+    "RD_theta_deg": 123.5,
+    "C_turn_abs_deg": 110.3,
+    "C_turn_net_deg": 67.1
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
+   },
+   "status": "PROPOSED",
+   "family": "defence",
+   "combination": null,
+   "agreement": "2/3",
+   "confidence": "medium",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "defence",
+    "defence",
+    "defence",
+    "defence"
+   ]
+  },
+  {
+   "id": "g5-goal4",
+   "game": "g5",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 2561,
+   "goal_moment_s": 2551.27,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2551.27,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.4,
+    "replay_matches": 23,
+    "replay": true,
+    "replay_orig_end_s": 2551.0
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.27,
+    "spot_x": 165.5,
+    "spot_y": 3.4,
+    "holder": "own-C",
+    "holder_dist_mm": 63.0,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 87.1,
+    "LW_depth_mm": 351.3,
+    "LW_theta_deg": 325.2,
+    "RW_depth_mm": 7.5,
+    "RW_theta_deg": 86.0,
+    "C_depth_mm": 193.4,
+    "C_theta_deg": 185.7,
+    "LD_depth_mm": 419.0,
+    "LD_theta_deg": 24.9,
+    "RD_depth_mm": 222.7,
+    "RD_theta_deg": 193.0,
+    "C_turn_abs_deg": 403.7,
+    "C_turn_net_deg": 183.7
+   },
+   "predictions": {
+    "tree": "centre",
+    "1nn": "centre",
+    "rules": "centre",
+    "vote": "centre"
+   },
+   "status": "PROPOSED",
+   "family": "centre",
+   "combination": null,
+   "agreement": "3/3",
+   "confidence": "high",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centre",
+    "centre",
+    "centre",
+    "centre"
+   ]
+  },
+  {
+   "id": "g5-goal5",
+   "game": "g5",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 2575,
+   "goal_moment_s": 2566.43,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2566.43,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.6,
+    "replay_matches": 40,
+    "replay": true,
+    "replay_orig_end_s": 2566.1666666666665
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.26,
+    "spot_x": 164.3,
+    "spot_y": 6.8,
+    "holder": "own-C",
+    "holder_dist_mm": 57.9,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 84.6,
+    "LW_depth_mm": 377.2,
+    "LW_theta_deg": 300.1,
+    "RW_depth_mm": 359.3,
+    "RW_theta_deg": 306.7,
+    "C_depth_mm": 199.1,
+    "C_theta_deg": 181.9,
+    "LD_depth_mm": 295.3,
+    "LD_theta_deg": 176.6,
+    "RD_depth_mm": 214.9,
+    "RD_theta_deg": 259.5,
+    "C_turn_abs_deg": 369.5,
+    "C_turn_net_deg": 178.9
+   },
+   "predictions": {
+    "tree": "centre",
+    "1nn": "centre",
+    "rules": "centre",
+    "vote": "centre"
+   },
+   "status": "PROPOSED",
+   "family": "centre",
+   "combination": null,
+   "agreement": "3/3",
+   "confidence": "high",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centre",
+    "centre",
+    "centre",
+    "centre"
+   ]
+  },
+  {
+   "id": "g5-goal6",
+   "game": "g5",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 2608,
+   "goal_moment_s": 2600.07,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2600.07,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 4.466666666666667,
+    "replay_matches": 18,
+    "replay": true,
+    "replay_orig_end_s": 2599.8
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.4,
+    "spot_x": 253.0,
+    "spot_y": 208.9,
+    "holder": "own-LW",
+    "holder_dist_mm": 121.5,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 111.1,
+    "LW_depth_mm": 49.6,
+    "LW_theta_deg": 194.0,
+    "RW_depth_mm": 362.2,
+    "RW_theta_deg": 292.5,
+    "C_depth_mm": 240.8,
+    "C_theta_deg": 267.7,
+    "LD_depth_mm": 423.8,
+    "LD_theta_deg": 301.0,
+    "RD_depth_mm": 224.4,
+    "RD_theta_deg": 65.4,
+    "C_turn_abs_deg": 192.5,
+    "C_turn_net_deg": -91.1
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "wing",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "PROPOSED",
+   "family": "centrifuge",
+   "combination": "Short centrifuge",
+   "agreement": "2/3",
+   "confidence": "medium",
+   "nearest_labelled_goal": "g4-goal2",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
+  },
+  {
+   "id": "g5-goal7",
+   "game": "g5",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 2680,
+   "goal_moment_s": 2671.17,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2671.17,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 4.0,
+    "replay_matches": 24,
+    "replay": true,
+    "replay_orig_end_s": 2670.9
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": -0.03,
+    "spot_x": 215.4,
+    "spot_y": 169.7,
+    "holder": "own-LW",
+    "holder_dist_mm": 229.9,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 178.3,
+    "LW_depth_mm": 398.8,
+    "LW_theta_deg": 226.7,
+    "RW_depth_mm": 431.1,
+    "RW_theta_deg": 62.2,
+    "C_depth_mm": 7.8,
+    "C_theta_deg": 266.0,
+    "LD_depth_mm": 284.8,
+    "LD_theta_deg": 178.4,
+    "RD_depth_mm": 224.2,
+    "RD_theta_deg": 167.0,
+    "C_turn_abs_deg": 21.3,
+    "C_turn_net_deg": 10.7
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "PROPOSED",
+   "family": "centrifuge",
+   "combination": null,
+   "agreement": "3/3",
+   "confidence": "high",
+   "nearest_labelled_goal": "g1-goal6",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
+  },
+  {
+   "id": "g6-goal1",
+   "game": "g6",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 2813,
+   "goal_moment_s": 2809.1,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2809.1,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 3.7,
+    "replay_matches": 2,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": -111.0,
+    "spot_y": -66.7,
+    "holder": "own-RD",
+    "holder_dist_mm": 23.9,
+    "nearest_opponent": "opp-LD",
+    "nearest_opponent_dist_mm": 58.3,
+    "LW_depth_mm": 55.8,
+    "LW_theta_deg": 143.1,
+    "RW_depth_mm": 8.4,
+    "RW_theta_deg": 203.1,
+    "C_depth_mm": 40.2,
+    "C_theta_deg": 112.0,
+    "LD_depth_mm": 286.6,
+    "LD_theta_deg": 179.0,
+    "RD_depth_mm": 198.6,
+    "RD_theta_deg": 91.6,
+    "C_turn_abs_deg": 347.9,
+    "C_turn_net_deg": -233.7
+   },
+   "predictions": {
+    "tree": "defence",
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
+   },
+   "status": "PROPOSED",
+   "family": "defence",
+   "combination": null,
+   "agreement": "3/3",
+   "confidence": "high",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "defence",
+    "defence",
+    "defence",
+    "defence"
+   ]
+  },
+  {
+   "id": "g6-goal2",
+   "game": "g6",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 2905,
+   "goal_moment_s": 2895.97,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2895.97,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 4.833333333333333,
+    "replay_matches": 12,
+    "replay": true,
+    "replay_orig_end_s": 2895.7
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.0,
+    "spot_x": 5.6,
+    "spot_y": -195.5,
+    "holder": "own-RW",
+    "holder_dist_mm": 31.7,
+    "nearest_opponent": "opp-LD",
+    "nearest_opponent_dist_mm": 163.5,
+    "LW_depth_mm": 243.3,
+    "LW_theta_deg": 217.7,
+    "RW_depth_mm": 34.3,
+    "RW_theta_deg": 203.5,
+    "C_depth_mm": 4.1,
+    "C_theta_deg": 291.1,
+    "LD_depth_mm": 338.0,
+    "LD_theta_deg": 171.6,
+    "RD_depth_mm": 227.7,
+    "RD_theta_deg": 191.6,
+    "C_turn_abs_deg": 151.8,
+    "C_turn_net_deg": 129.2
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "PROPOSED",
+   "family": "shovel",
+   "combination": "Edwallskyffel lang",
+   "agreement": "3/3",
+   "confidence": "high",
+   "nearest_labelled_goal": "g2-goal4",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "shovel",
+    "shovel",
+    "shovel",
+    "shovel"
+   ]
+  },
+  {
+   "id": "g6-goal3",
+   "game": "g6",
+   "scoring_end": "W",
+   "scoring_player": "fjermestad",
+   "box_s": 2916,
+   "goal_moment_s": 2906.97,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2906.97,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 4.5,
+    "replay_matches": 5,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 342.4,
+    "spot_y": 199.8,
+    "holder": "own-LW",
+    "holder_dist_mm": 28.4,
+    "nearest_opponent": "opp-RD",
+    "nearest_opponent_dist_mm": 264.5,
+    "LW_depth_mm": 303.4,
+    "LW_theta_deg": 324.0,
+    "RW_depth_mm": 293.3,
+    "RW_theta_deg": 170.9,
+    "C_depth_mm": 91.1,
+    "C_theta_deg": 213.1,
+    "LD_depth_mm": 331.1,
+    "LD_theta_deg": 265.0,
+    "RD_depth_mm": 213.4,
+    "RD_theta_deg": 127.9,
+    "C_turn_abs_deg": 139.8,
+    "C_turn_net_deg": -20.6
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "PROPOSED",
+   "family": "centrifuge",
+   "combination": "Short centrifuge",
+   "agreement": "3/3",
+   "confidence": "high",
+   "nearest_labelled_goal": "g3-goal6",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
+  },
+  {
+   "id": "g6-goal4",
+   "game": "g6",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 2955,
+   "goal_moment_s": 2951.6,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2951.6,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 5.133333333333334,
+    "replay_matches": 5,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": -177.2,
+    "spot_y": -221.8,
+    "holder": "own-RD",
+    "holder_dist_mm": 170.5,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 142.8,
+    "LW_depth_mm": 1.2,
+    "LW_theta_deg": 165.1,
+    "RW_depth_mm": 371.0,
+    "RW_theta_deg": 29.8,
+    "C_depth_mm": 6.3,
+    "C_theta_deg": 80.5,
+    "LD_depth_mm": 7.1,
+    "LD_theta_deg": 108.7,
+    "RD_depth_mm": 73.7,
+    "RD_theta_deg": 289.5,
+    "C_turn_abs_deg": 267.5,
+    "C_turn_net_deg": -165.9
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "defence",
+    "rules": "defence",
+    "vote": "defence"
+   },
+   "status": "PROPOSED",
+   "family": "defence",
+   "combination": null,
+   "agreement": "2/3",
+   "confidence": "medium",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "defence",
+    "defence",
+    "defence",
+    "defence"
+   ]
+  },
+  {
+   "id": "g6-goal5",
+   "game": "g6",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 2991,
+   "goal_moment_s": 2978.57,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 2978.57,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 3.0,
+    "replay_matches": 1,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 102.8,
+    "spot_y": -40.3,
+    "holder": "own-C",
+    "holder_dist_mm": 40.9,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 123.2,
+    "LW_depth_mm": 5.8,
+    "LW_theta_deg": 118.0,
+    "RW_depth_mm": 347.1,
+    "RW_theta_deg": 82.8,
+    "C_depth_mm": 186.2,
+    "C_theta_deg": 53.6,
+    "LD_depth_mm": 426.4,
+    "LD_theta_deg": 182.3,
+    "RD_depth_mm": 221.0,
+    "RD_theta_deg": 188.1,
+    "C_turn_abs_deg": 212.6,
+    "C_turn_net_deg": 212.6
+   },
+   "predictions": {
+    "tree": "centre",
+    "1nn": "centre",
+    "rules": "centre",
+    "vote": "centre"
+   },
+   "status": "PROPOSED",
+   "family": "centre",
+   "combination": null,
+   "agreement": "3/3",
+   "confidence": "high",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centre",
+    "centre",
+    "centre",
+    "centre"
+   ]
+  },
+  {
+   "id": "g6-goal6",
+   "game": "g6",
+   "scoring_end": "E",
+   "scoring_player": "nygard",
+   "box_s": 3007,
+   "goal_moment_s": 3003.13,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 3003.13,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 5.533333333333333,
+    "replay_matches": 5,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 256.7,
+    "spot_y": 77.8,
+    "holder": "own-LW",
+    "holder_dist_mm": 84.6,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 181.7,
+    "LW_depth_mm": 170.3,
+    "LW_theta_deg": 189.0,
+    "RW_depth_mm": 346.7,
+    "RW_theta_deg": 57.9,
+    "C_depth_mm": 202.3,
+    "C_theta_deg": 281.5,
+    "LD_depth_mm": 135.9,
+    "LD_theta_deg": 154.1,
+    "RD_depth_mm": 223.2,
+    "RD_theta_deg": 115.3,
+    "C_turn_abs_deg": 67.4,
+    "C_turn_net_deg": -27.8
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centre",
+    "vote": "centrifuge"
+   },
+   "status": "PROPOSED",
+   "family": "centrifuge",
+   "combination": null,
+   "agreement": "2/3",
+   "confidence": "medium",
+   "nearest_labelled_goal": "g5-goal1",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "wing",
+    "centrifuge",
+    "centrifuge"
+   ]
+  },
+  {
+   "id": "g7-goal1",
+   "game": "g7",
+   "scoring_end": "W",
+   "scoring_player": "nygard",
+   "box_s": 3383,
+   "goal_moment_s": 3372.23,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 3372.23,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 5.333333333333333,
+    "replay_matches": 14,
+    "replay": true,
+    "replay_orig_end_s": 3371.9666666666667
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.16,
+    "spot_x": -0.1,
+    "spot_y": -170.2,
+    "holder": "own-RW",
+    "holder_dist_mm": 54.5,
+    "nearest_opponent": "opp-C",
+    "nearest_opponent_dist_mm": 245.9,
+    "LW_depth_mm": 437.4,
+    "LW_theta_deg": 147.9,
+    "RW_depth_mm": 45.7,
+    "RW_theta_deg": 213.5,
+    "C_depth_mm": 8.2,
+    "C_theta_deg": 321.4,
+    "LD_depth_mm": 336.6,
+    "LD_theta_deg": 269.1,
+    "RD_depth_mm": 227.8,
+    "RD_theta_deg": 205.4,
+    "C_turn_abs_deg": 147.9,
+    "C_turn_net_deg": 115.1
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "PROPOSED",
+   "family": "shovel",
+   "combination": "Edwallskyffel lang",
+   "agreement": "3/3",
+   "confidence": "high",
+   "nearest_labelled_goal": "g2-goal2",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "shovel",
+    "shovel",
+    "shovel",
+    "shovel"
+   ]
+  },
+  {
+   "id": "g7-goal2",
+   "game": "g7",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 3401,
+   "goal_moment_s": 3396.97,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 3396.97,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 3.4,
+    "replay_matches": 10,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 50.1,
+    "spot_y": -198.3,
+    "holder": "own-RW",
+    "holder_dist_mm": 10.8,
+    "nearest_opponent": "opp-LW",
+    "nearest_opponent_dist_mm": 109.1,
+    "LW_depth_mm": 361.0,
+    "LW_theta_deg": 235.9,
+    "RW_depth_mm": 85.2,
+    "RW_theta_deg": 241.8,
+    "C_depth_mm": 229.3,
+    "C_theta_deg": 258.4,
+    "LD_depth_mm": 241.1,
+    "LD_theta_deg": 58.5,
+    "RD_depth_mm": 213.3,
+    "RD_theta_deg": 93.1,
+    "C_turn_abs_deg": 161.9,
+    "C_turn_net_deg": -16.5
+   },
+   "predictions": {
+    "tree": "shovel",
+    "1nn": "shovel",
+    "rules": "shovel",
+    "vote": "shovel"
+   },
+   "status": "PROPOSED",
+   "family": "shovel",
+   "combination": "Edwallskyffel lang",
+   "agreement": "3/3",
+   "confidence": "high",
+   "nearest_labelled_goal": "g3-goal4",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "shovel",
+    "shovel",
+    "shovel",
+    "shovel"
+   ]
+  },
+  {
+   "id": "g7-goal3",
+   "game": "g7",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 3482,
+   "goal_moment_s": 3472.47,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 3472.47,
+   "goal_moment_method": "replay",
+   "replay": {
+    "replay_delay_s": 4.933333333333334,
+    "replay_matches": 22,
+    "replay": true,
+    "replay_orig_end_s": 3472.2
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.27,
+    "spot_x": 274.0,
+    "spot_y": 158.7,
+    "holder": "own-LW",
+    "holder_dist_mm": 51.2,
+    "nearest_opponent": "opp-RW",
+    "nearest_opponent_dist_mm": 231.1,
+    "LW_depth_mm": 203.7,
+    "LW_theta_deg": 92.7,
+    "RW_depth_mm": 431.1,
+    "RW_theta_deg": 33.8,
+    "C_depth_mm": 235.0,
+    "C_theta_deg": 225.9,
+    "LD_depth_mm": 336.5,
+    "LD_theta_deg": 201.6,
+    "RD_depth_mm": 225.9,
+    "RD_theta_deg": 101.9,
+    "C_turn_abs_deg": 117.2,
+    "C_turn_net_deg": -32.6
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "PROPOSED",
+   "family": "centrifuge",
+   "combination": null,
+   "agreement": "3/3",
+   "confidence": "high",
+   "nearest_labelled_goal": "g1-goal3",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
+  },
+  {
+   "id": "g7-goal4",
+   "game": "g7",
+   "scoring_end": "E",
+   "scoring_player": "fjermestad",
+   "box_s": 3516,
+   "goal_moment_s": 3505.53,
+   "goal_moment_source": "estimated",
+   "goal_moment_estimate_s": 3505.53,
+   "goal_moment_method": "longest_gap_hold",
+   "replay": {
+    "replay_delay_s": 5.766666666666667,
+    "replay_matches": 5,
+    "replay": false,
+    "replay_orig_end_s": null
+   },
+   "features": {
+    "spot_from": "hold",
+    "hold_to_goal_s": 0.3,
+    "spot_x": 304.7,
+    "spot_y": 164.0,
+    "holder": "own-LW",
+    "holder_dist_mm": 53.8,
+    "nearest_opponent": "opp-RW",
+    "nearest_opponent_dist_mm": 217.1,
+    "LW_depth_mm": 262.3,
+    "LW_theta_deg": 36.4,
+    "RW_depth_mm": 430.1,
+    "RW_theta_deg": 250.5,
+    "C_depth_mm": 110.4,
+    "C_theta_deg": 222.2,
+    "LD_depth_mm": 423.2,
+    "LD_theta_deg": 116.4,
+    "RD_depth_mm": 205.8,
+    "RD_theta_deg": 108.7,
+    "C_turn_abs_deg": 278.2,
+    "C_turn_net_deg": -103.4
+   },
+   "predictions": {
+    "tree": "centrifuge",
+    "1nn": "centrifuge",
+    "rules": "centrifuge",
+    "vote": "centrifuge"
+   },
+   "status": "PROPOSED",
+   "family": "centrifuge",
+   "combination": null,
+   "agreement": "3/3",
+   "confidence": "high",
+   "nearest_labelled_goal": "g3-goal2",
+   "family_if_moment_shifted_-0.5_-0.25_+0.25_+0.5_s": [
+    "centrifuge",
+    "centrifuge",
+    "centrifuge",
+    "centrifuge"
+   ]
+  }
+ ],
+ "families_by_player_all_goals": {
+  "nygard": {
+   "shovel": 7,
+   "centre": 5,
+   "centrifuge": 3,
+   "defence": 3,
+   "wing": 1,
+   "rebound": 1
+  },
+  "fjermestad": {
+   "centrifuge": 13,
+   "shovel": 5,
+   "defence": 2
+  }
+ }
+}
