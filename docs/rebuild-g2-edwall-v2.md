@@ -99,7 +99,11 @@ script stay untouched. Specs: `data/presentations/edwall-<goal>.analysis.json` (
 full speed, rewind, the drag and pass in slow motion with a freeze, the shovel with a freeze, a half-speed replay.
 Render and check: `node scripts/edwall-render.ts <goal>` (per-frame state equals the pure trace evaluation; camera equals
 the camera track; file below 25 MB; report `validation/analysis-edwall-<goal>-report.json`).
-RENDER_NOTES
+Rendered (2026-10-10): goal 2 528 frames (17.6 s, 8.7 MB), goal 3 559 frames (18.6 s, 8.6 MB), goal 4 568 frames
+(18.9 s, 9.0 MB), 1920 x 1080, 30 fps; every frame's logged state equals the pure evaluation, camera within 0.005 of the
+track, each about 75 min on this CPU. Review sheets: `validation/analysis-edwall-<goal>-review.jpg`
+(`scripts/edwall-video-sheet.py`). Seen in review: the passer's TURN arrow is partly under the chapter card, and in goal
+4 the centre shoots with its back to the goal (item 2 above).
 
 ## Check against the puck detector (added after the renders; traces and videos unchanged)
 
