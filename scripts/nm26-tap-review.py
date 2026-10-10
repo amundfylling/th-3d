@@ -18,7 +18,7 @@ Figure items: a skater whose old cleaned track (figure-tracks-smooth.json) and v
 pivot more than 30 mm apart; half in the 30 fps goal windows, half at the 5 fps rate. The user taps where the named
 figure stands (between its skates); the pivot is under the left skate, so a tap is within about 10 mm of it.
 eval: reads an export of the page's db (a list of {item, answer, x_stab, y_stab}) and scores both tracks per item: a
-puck position is right within 15 mm of the tap (12 mm plane), a figure within 25 mm (ice plane); "none" answers make a
+puck position is right within 15 mm of the tap (moved up 8.8 px from the visible centre to the top face, 12 mm plane), a figure within 25 mm (ice plane); "none" answers make a
 track that placed something in the picture wrong. Writes validation/tap-review/results.json.
 """
 import base64
@@ -46,6 +46,9 @@ SKATERS = ["W-LW", "E-LW", "W-RW", "E-RW", "W-C", "E-C", "W-LD", "E-LD", "W-RD",
 GAMES = [f"g{k}" for k in range(1, 8)]
 BLOB_DV = 8.8  # stab px: old blob centre lies this far below the top-face centre (docs/synthetic-puck.md 2C)
 PUCK_Z, PUCK_OK_MM, FIG_OK_MM = 12.0, 15.0, 25.0
+# the page asks for "the centre of the puck": a tap marks the visible puck, whose centre lies 8.8 px below the top-face
+# centre that both tracks are scored in (docs/synthetic-puck.md 2C, puck-blob-offset.py); eval moves puck taps up by it
+TAP_TO_TOP_PX = 8.8
 ROLE = {"LW": "left wing", "RW": "right wing", "C": "centre", "LD": "left defence", "RD": "right defence"}
 KIT = {"W": "white/blue", "E": "yellow"}
 
@@ -209,7 +212,8 @@ def evaluate(taps_path):
         lim = PUCK_OK_MM if it["kind"] == "puck" else FIG_OK_MM
         r = {"item": it["id"], "kind": it["kind"], "case": it["case"], "game": it["game"], "frame": it["frame"], "answer": tp["answer"]}
         if tp["answer"] == "tap":
-            w = from_stab([tp["x_stab"], tp["y_stab"]], z)[0]
+            up = TAP_TO_TOP_PX if it["kind"] == "puck" else 0.0
+            w = from_stab([tp["x_stab"], tp["y_stab"] - up], z)[0]
             for k in ("old", "new"):
                 p = it[f"{k}_stab"]
                 if p is None:

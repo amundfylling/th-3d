@@ -3,8 +3,8 @@
 Status: PROPOSED. Step 1 of the consolidation summary: the NM26 analysis now reads the synthetic puck detector's track
 (`<game>/puck-track-synth.json`, docs/synthetic-puck.md) and tracker v3's figure tracks (`<game>/figure-tracks-v3.json`,
 docs/tracker-v3.md) instead of `puck-track.json` and `figure-tracks-smooth.json`. Passes, patterns, the figure analysis,
-combinations, the 40 replays and the Edwall rebuild were re-run. Every number below is model output; none is checked by the
-user yet. The check is the tap page (section 6).
+combinations, the 40 replays and the Edwall rebuild were re-run. Every number below is model output. The user checked
+both tracks on 96 frames where they disagree (section 6): the new tracks win clearly on figures and on puck position.
 
 All before/after numbers: `validation/nm26-track-switch.json` (`python3 scripts/nm26-track-switch-compare.py`; before =
 the committed outputs at ee0681d, after = this branch).
@@ -140,9 +140,44 @@ track is right within 15 mm of the tap (measured on the 12 mm plane), a figure t
 this picture" makes a track that reports the puck wrong. Claude exports the page's answers (collection `taps`) when the
 user says they are done.
 
-**What could not be verified without taps:** which track is right where they disagree (two thirds of the passes); whether
-the faster flights are real; the replay-rule regression for the goal moment; the label changes; the Edwall goal-3 rest
-spot (the detector and the hand readings agree, but both come from the same broadcast pixels).
+**Results (Amund's taps, 2026-10-10: 96 answered, 71 taps, 22 "not in this picture", 3 "can't tell").** Answers:
+`validation/tap-review/taps.json` (export of the page's db); scores: `validation/tap-review/results.json`.
+
+Scoring convention: the page asked for "the centre of the puck", so a tap marks the visible puck, whose centre lies 8.8 px
+below the top-face centre both tracks are scored in (docs/synthetic-puck.md 2C). Eval moves puck taps up by that geometric
+constant. Without it, the new track's errors sat at a steady 15-25 mm (median offset 12.8 px down, figure taps showed no
+such offset), and even the 5 control frames where the tracks agree scored 4/5 old against 2/5 new; with it, both score 4/5.
+
+| | old track | new track |
+|---|---|---|
+| figures (30 frames, right within 25 mm) | 1 | **26** |
+| figure error, median | 94 mm | **7 mm** |
+| puck, all 63 frames (right within 15 mm, or rightly absent) | 18 | **32** |
+| puck, both tracks see it (20) | 3 | **9** |
+| puck, last 2 s before a goal (10) | 1 | **7** |
+| puck, only the old track sees it (14) | 4 | **7** (7 times the user saw no puck) |
+| puck, only the new track sees it (14) | **6** (6 times no puck) | 5 |
+| puck, controls where both agree (5) | 4 | 4 |
+| puck error where the track and a tap exist, median | 34 mm (30) | **10 mm** (34) |
+| puck error within 25 mm | 14 of 30 | **30 of 34** |
+| missed a puck the user could see | 12 | 8 |
+| placed a puck where the user saw none | 14 of 21 | 13 of 21 |
+
+What it says:
+- **Figures:** v3 is right and the old cleaned v2 track is wrong almost everywhere they disagree (26 against 1). The
+  switch to v3 is confirmed. The four v3 misses are 40-53 mm off (three) or a figure the user could not see.
+- **Puck position:** where the new track has a puck it is close (median 10 mm, 30 of 34 within 25 mm); the old track's
+  disagreeing positions are mostly far off. In the last 2 s before a goal the new track is right 7 times out of 10, the
+  old once.
+- **Puck presence is the weak point of both.** In these disagreement frames both report a puck the user could not see in
+  about two thirds of the "not in this picture" answers (some may be a puck hidden under a figure that the tracker
+  carried through). The new track's own false alarms (6 of its 14 new-only frames) are what to fix next: a higher score
+  threshold or a hidden-puck flag.
+- The 15 mm puck threshold is strict for a phone tap; at 25 mm the ranking is the same.
+- These are frames chosen where the tracks disagree, so the shares are not the tracks' overall accuracy.
+
+**Still not verified:** whether the faster flights and the fewer, longer passes are right pass by pass (taps check
+positions, not events); the replay-rule regression for the goal moment; the label changes; the Edwall goal-3 rest spot.
 
 ## 7. Replays (`validation/replays/`)
 

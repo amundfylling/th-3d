@@ -233,6 +233,9 @@ def steps(games):
     S.append(Step("tap-review-page", "pages", py("scripts/nm26-tap-review.py", "page"),
                   [VIDEO] + [f"{DATA}/{g}/{f}" for g in GAMES for f in ("puck-track.json", "puck-track-synth.json", "figure-tracks-smooth.json", "figure-tracks-v3.json")],
                   ["av", "cv2"], ["validation/tap-review/items.json", "validation/tap-review/index.html"], "published with a db for the user's taps"))
+    S.append(Step("tap-review-eval", "analysis", py("scripts/nm26-tap-review.py", "eval", "validation/tap-review/taps.json"),
+                  ["validation/tap-review/items.json", "validation/tap-review/taps.json", "data/games/nm26-semifinal/camera-ref.json"], [],
+                  ["validation/tap-review/results.json"], "the user's taps (taps.json: export of the page's db) scored against both tracks"))
     return S
 
 

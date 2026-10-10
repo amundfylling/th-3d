@@ -402,8 +402,11 @@
   vote at the user's moment 23/25 unchanged, at the estimated moment 20 → 18 (goal-moment median error 0.32 → 0.78 s,
   replay rule tuned on the old track); eight PROPOSED label changes. Edwall: goal 3 rebuilt as v2 (rest on the readings,
   blade shovel; carry-force check still fails); goals 2 and 4 found no scoring v2 fit and stay v1. Thresholds not
-  retuned. **Waiting on the user:** ~100 taps on https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp (96 frames where the
-  tracks disagree); then `scripts/nm26-tap-review.py eval` scores both tracks. Edwall videos not re-rendered.
+  retuned. **User taps done (2026-10-10,** 96 frames where the tracks disagree,
+  `validation/tap-review/results.json`): figures v3 26/30 right vs old 1/30 (median 7 vs 94 mm); puck new 32/63 vs old
+  18/63, median 10 vs 34 mm where a position exists, last 2 s before goals 7/10 vs 1/10. Both tracks still report a puck
+  the user could not see in about 2/3 of the "none" frames (next: the detector's false alarms). Taps mark the visible
+  puck centre, scored after moving them up the documented 8.8 px. Edwall videos not re-rendered.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
