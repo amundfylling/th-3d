@@ -130,3 +130,25 @@ to the physical stops. The most important:
 2. **Behind-goal and corner sections** of W-LW and E-LW, and the corner curves of E-RW and W-RW. The relation between rod displacement and position along a curve is not linear arc length, and the left-wing link 7A may change it.
 3. **Figure rotation along every path:** twist-to-rotation transfer, rotation limits and backlash. Rotation is not assumed to follow the slot tangent.
 4. **Where the figures stand relative to the slot:** in the overhead, several figures stand beside their slot (for example Sweden no. 92 about 80 px to the left of E-LW). The fixture axis may therefore be offset from the slot centreline (`fixture_axis_path` stays unknown).
+
+## Track fix: sticks lying on the E-RW and W-RW slots (2026-10-01)
+
+User review of the Remotion overhead marked two irregularities: a bump in E-RW over the top of the W-zone
+face-off circle and a dip in W-RW over the bottom of the E-zone face-off circle. In the official overhead a
+skater's metal stick lies along the slot at both places (dark wire with a bright highlight, crossing the slot
+at a shallow angle); the tracer had followed it. The bare sheet (no figures) shows both stretches straight
+within its own resolution (deviation <= 0.46 mm after mapping), so the layout itself is straight there.
+
+Fix (at the source, not in the output):
+- `data/slot-seeds.json`: `occluded_boxes_overhead` per path - operator-marked overhead pixel boxes where an
+  object lies on the slot (E-RW px 1545-1830, W-RW px 3640-4045, with reasons).
+- `src/model/slot-trace.ts`: sections whose guide point falls inside a box are never measured; they are
+  bridged by the existing Hermite gap interpolation from the accepted sections on both sides, and do not count
+  toward the 400 px gap limit (a long stick would otherwise end the visible trace early). They are listed as
+  `inferred_segments` with the reason.
+
+Result (`validation/track-fix-report.json`, `validation/track-fix-compare.png`): deviation from a straight line
+over x -300..-100 mm (E-RW) / 100..300 mm (W-RW): E-RW max 2.03 -> 0.14 mm, W-RW max 0.60 -> 0.12 mm. Slot
+width and curved sections unchanged; all other paths moved <= 0.03 mm (bare->overhead homography refit,
+curve RMS 2.49 -> 2.41 px). W-RW's last visible cross-section under the end figure moved 14 px, changing
+one point at the join to the predicted hidden end by 0.64 mm (the curve is otherwise unchanged within 0.08 mm).

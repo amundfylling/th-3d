@@ -1,0 +1,582 @@
+{
+ "schema": "shot-analysis/1",
+ "analysis_id": "analysis.invers-kryssar-velodrom.v2",
+ "trace_id": "trace.invers-kryssar-velodrom.v2",
+ "note": "Sports-analysis presentation of the designed Invers Kryssar med Velodrom trace v2 (data/traces/invers-kryssar-velodrom.trace.json; NTHF description, reading approved by the user as a sketch; the left wing's pass is a soft catch and a forward push, after the user's feedback on v1). Shot timing, camera and graphics are separate tracks; the motion comes only from the trace.",
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "segments": [
+  {
+   "id": "intro",
+   "kind": "hold",
+   "at": 0.1,
+   "frames": 40
+  },
+  {
+   "id": "full",
+   "kind": "play",
+   "from": 0.1,
+   "to": 2.25,
+   "rate": 1
+  },
+  {
+   "id": "goal_hold",
+   "kind": "hold",
+   "at": 2.25,
+   "frames": 20
+  },
+  {
+   "id": "rewind",
+   "kind": "rewind",
+   "from": 2.25,
+   "to": 0.12,
+   "rate": 2.5
+  },
+  {
+   "id": "pass_set",
+   "kind": "hold",
+   "at": 0.12,
+   "frames": 20
+  },
+  {
+   "id": "pass_in",
+   "kind": "play",
+   "from": 0.12,
+   "to": {
+    "event": "pass.release"
+   },
+   "rate": 0.1
+  },
+  {
+   "id": "pass_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "pass.release"
+   },
+   "frames": 90
+  },
+  {
+   "id": "to_lw",
+   "kind": "hold",
+   "at": {
+    "event": "pass.release"
+   },
+   "frames": 30
+  },
+  {
+   "id": "flight",
+   "kind": "play",
+   "from": {
+    "event": "pass.release"
+   },
+   "to": {
+    "event": "contact.lw_catch"
+   },
+   "rate": 0.5
+  },
+  {
+   "id": "catch_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "contact.lw_catch"
+   },
+   "frames": 66
+  },
+  {
+   "id": "to_push",
+   "kind": "play",
+   "from": {
+    "event": "contact.lw_catch"
+   },
+   "to": {
+    "event": "contact.lw_push"
+   },
+   "rate": 0.5
+  },
+  {
+   "id": "push_in",
+   "kind": "play",
+   "from": {
+    "event": "contact.lw_push"
+   },
+   "to": {
+    "event": "lw_push.corner"
+   },
+   "rate": 0.25
+  },
+  {
+   "id": "push_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "lw_push.corner"
+   },
+   "frames": 75
+  },
+  {
+   "id": "push_out",
+   "kind": "play",
+   "from": {
+    "event": "lw_push.corner"
+   },
+   "to": {
+    "event": "velodrome.start"
+   },
+   "rate": 0.25
+  },
+  {
+   "id": "to_velo",
+   "kind": "hold",
+   "at": {
+    "event": "velodrome.start"
+   },
+   "frames": 30
+  },
+  {
+   "id": "velodrome",
+   "kind": "play",
+   "from": {
+    "event": "velodrome.start"
+   },
+   "to": 1.7,
+   "rate": 0.6
+  },
+  {
+   "id": "to_shot",
+   "kind": "hold",
+   "at": 1.7,
+   "frames": 28
+  },
+  {
+   "id": "slide_in",
+   "kind": "play",
+   "from": 1.7,
+   "to": {
+    "event": "contact.shot"
+   },
+   "rate": 0.4
+  },
+  {
+   "id": "strike_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "contact.shot"
+   },
+   "frames": 80
+  },
+  {
+   "id": "shot_out",
+   "kind": "play",
+   "from": {
+    "event": "contact.shot"
+   },
+   "to": 2.2,
+   "rate": 0.4
+  },
+  {
+   "id": "goal_freeze",
+   "kind": "hold",
+   "at": 2.2,
+   "frames": 25
+  },
+  {
+   "id": "to_replay",
+   "kind": "hold",
+   "at": 2.2,
+   "frames": 28
+  },
+  {
+   "id": "replay",
+   "kind": "play",
+   "from": 0.1,
+   "to": 2.25,
+   "rate": 0.9
+  },
+  {
+   "id": "outro",
+   "kind": "hold",
+   "at": 2.25,
+   "frames": 40
+  }
+ ],
+ "unlabelled_holds": [
+  "intro",
+  "outro",
+  "to_replay"
+ ],
+ "replay_segments": [
+  "replay"
+ ],
+ "views": {
+  "intro_high": {
+   "positionMm": [
+    -420,
+    -820,
+    820
+   ],
+   "targetMm": [
+    170,
+    0,
+    0
+   ],
+   "fovDeg": 30
+  },
+  "broadcast": {
+   "positionMm": [
+    -200,
+    -300,
+    800
+   ],
+   "targetMm": [
+    170,
+    0,
+    0
+   ],
+   "fovDeg": 31
+  },
+  "pass": {
+   "positionMm": [
+    -220,
+    -300,
+    330
+   ],
+   "targetMm": [
+    110,
+    -50,
+    5
+   ],
+   "fovDeg": 34
+  },
+  "lw": {
+   "positionMm": [
+    520,
+    -20,
+    400
+   ],
+   "targetMm": [
+    290,
+    150,
+    0
+   ],
+   "fovDeg": 36
+  },
+  "velodrome": {
+   "positionMm": [
+    40,
+    -20,
+    640
+   ],
+   "targetMm": [
+    300,
+    0,
+    0
+   ],
+   "fovDeg": 40
+  },
+  "shot": {
+   "positionMm": [
+    30,
+    60,
+    470
+   ],
+   "targetMm": [
+    130,
+    -100,
+    0
+   ],
+   "fovDeg": 40
+  },
+  "replay": {
+   "positionMm": [
+    -80,
+    -180,
+    620
+   ],
+   "targetMm": [
+    190,
+    0,
+    0
+   ],
+   "fovDeg": 38
+  }
+ },
+ "camera": [
+  {
+   "at": "intro.start",
+   "view": "intro_high"
+  },
+  {
+   "at": "intro.start+0.15",
+   "view": "intro_high"
+  },
+  {
+   "at": "intro.end-0.1",
+   "view": "broadcast"
+  },
+  {
+   "at": "goal_hold.end",
+   "view": "broadcast"
+  },
+  {
+   "at": "pass_set.end",
+   "view": "pass",
+   "lift": 60
+  },
+  {
+   "at": "to_lw.start",
+   "view": "pass"
+  },
+  {
+   "at": "to_lw.end",
+   "view": "lw",
+   "lift": 80
+  },
+  {
+   "at": "to_velo.start",
+   "view": "lw"
+  },
+  {
+   "at": "to_velo.end",
+   "view": "velodrome",
+   "lift": 60
+  },
+  {
+   "at": "to_shot.start",
+   "view": "velodrome"
+  },
+  {
+   "at": "to_shot.end",
+   "view": "shot",
+   "lift": 60
+  },
+  {
+   "at": "to_replay.start",
+   "view": "shot"
+  },
+  {
+   "at": "to_replay.end",
+   "view": "replay",
+   "lift": 80
+  }
+ ],
+ "chapters": [
+  {
+   "id": "pass",
+   "number": "1",
+   "title": "THE CROSS PASS",
+   "text": "The right wing pushes the puck across the ice to the left wing.",
+   "from": "pass_set.start",
+   "to": "to_lw.start+0.2"
+  },
+  {
+   "id": "velo",
+   "number": "2",
+   "title": "THE VELODROME",
+   "text": "Facing forward, the left wing skates the puck into the corner. The boards carry it round behind the goal.",
+   "from": "to_lw.end-0.2",
+   "to": "to_shot.start+0.2"
+  },
+  {
+   "id": "shot",
+   "number": "3",
+   "title": "THE FIRST-TIME SHOT",
+   "text": "The right wing gives way as it arrives and turns it into the goal.",
+   "from": "to_shot.end-0.2",
+   "to": "goal_freeze.end"
+  }
+ ],
+ "graphics": [
+  {
+   "id": "title",
+   "type": "title_card",
+   "from": "intro.start+0.3",
+   "to": "intro.end"
+  },
+  {
+   "id": "goal_full",
+   "type": "goal_banner",
+   "from": "goal_hold.start",
+   "to": "goal_hold.end"
+  },
+  {
+   "id": "rw",
+   "type": "highlight",
+   "target": "W-RW",
+   "label": "RIGHT WING",
+   "accent": "amber",
+   "from": "pass_set.start",
+   "to": "to_lw.start+0.3"
+  },
+  {
+   "id": "pass_dir",
+   "type": "puck_arrow",
+   "event": "pass.release",
+   "start_mm": 18,
+   "length_mm": 200,
+   "label": "CROSS PASS",
+   "label_at_mm": 120,
+   "accent": "amber",
+   "from": "pass_freeze.start+0.3",
+   "to": "to_lw.start+0.3"
+  },
+  {
+   "id": "lw",
+   "type": "highlight",
+   "target": "W-LW",
+   "label": "LEFT WING",
+   "accent": "cyan",
+   "label_offset_px": [
+    150,
+    -60
+   ],
+   "from": "to_lw.end-0.3",
+   "to": "to_push.start+0.3"
+  },
+  {
+   "id": "catch_turn",
+   "type": "rotation_arrow",
+   "target": "W-LW",
+   "event": "contact.lw_catch",
+   "direction": "ccw",
+   "radius_mm": 50,
+   "start_deg": -95,
+   "sweep_deg": 85,
+   "label": "TURNS TO FACE FORWARD",
+   "accent": "cyan",
+   "label_offset_px": [
+    -150,
+    40
+   ],
+   "from": "catch_freeze.start+0.2",
+   "to": "to_push.start+0.2"
+  },
+  {
+   "id": "catch_contact",
+   "type": "contact_marker",
+   "target": "W-LW",
+   "event": "contact.lw_catch",
+   "label": "SOFT CATCH",
+   "accent": "amber",
+   "label_offset_px": [
+    160,
+    110
+   ],
+   "from": "catch_freeze.start+0.15",
+   "to": "to_push.start+0.2"
+  },
+  {
+   "id": "trail_lw",
+   "type": "puck_trail",
+   "event": "contact.lw_catch",
+   "back_s": 0.0,
+   "from": "to_push.start",
+   "to": "to_velo.start+0.3"
+  },
+  {
+   "id": "push_slot",
+   "type": "slot_arrow",
+   "target": "W-LW",
+   "event": "contact.lw_push",
+   "ahead_mm": 25,
+   "length_mm": 140,
+   "accent": "cyan",
+   "from": "push_in.start",
+   "to": "push_freeze.end"
+  },
+  {
+   "id": "push_contact",
+   "type": "contact_marker",
+   "target": "W-LW",
+   "event": "lw_push.corner",
+   "label": "PUSH · FRONT OF THE BLADE",
+   "accent": "amber",
+   "label_offset_px": [
+    160,
+    110
+   ],
+   "from": "push_freeze.start+0.15",
+   "to": "push_out.end"
+  },
+  {
+   "id": "trail_velo",
+   "type": "puck_trail",
+   "event": "velodrome.start",
+   "back_s": 0.0,
+   "from": "velodrome.start",
+   "to": "to_shot.start+0.3"
+  },
+  {
+   "id": "rw2",
+   "type": "highlight",
+   "target": "W-RW",
+   "label": "RIGHT WING",
+   "accent": "amber",
+   "from": "to_shot.end-0.3",
+   "to": "strike_freeze.start+0.3",
+   "label_offset_px": [
+    -170,
+    80
+   ]
+  },
+  {
+   "id": "shot_turn",
+   "type": "rotation_arrow",
+   "target": "W-RW",
+   "event": "contact.shot",
+   "direction": "ccw",
+   "radius_mm": 55,
+   "start_deg": 140,
+   "sweep_deg": 80,
+   "label": "TURN",
+   "accent": "cyan",
+   "from": "strike_freeze.start+0.2",
+   "to": "strike_freeze.end",
+   "label_offset_px": [
+    -190,
+    -90
+   ]
+  },
+  {
+   "id": "shot_contact",
+   "type": "contact_marker",
+   "target": "W-RW",
+   "event": "contact.shot",
+   "label": "SHOT · BACK OF THE BLADE",
+   "accent": "amber",
+   "label_offset_px": [
+    -230,
+    190
+   ],
+   "from": "strike_freeze.start+0.15",
+   "to": "shot_out.start+0.3"
+  },
+  {
+   "id": "trail_shot",
+   "type": "puck_trail",
+   "event": "contact.shot",
+   "back_s": 0.0,
+   "from": "shot_out.start",
+   "to": "goal_freeze.end"
+  },
+  {
+   "id": "goal_slow",
+   "type": "goal_banner",
+   "from": "goal_freeze.start",
+   "to": "goal_freeze.end"
+  },
+  {
+   "id": "trail_replay",
+   "type": "puck_trail",
+   "event": "pass.release",
+   "back_s": 0.0,
+   "from": "replay.start",
+   "to": "replay.end"
+  },
+  {
+   "id": "end",
+   "type": "end_card",
+   "from": "replay.end-0.3",
+   "to": "outro.end"
+  }
+ ]
+}

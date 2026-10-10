@@ -1,5 +1,7 @@
-// Iteration 16: static poses for all 12 figures from the pure pose functions. Each figure is placed where
-// it stands in the official overhead (debug pivot rule of iterations 10/15), theta 0 (home heading).
+// Static poses for all 12 figures from the pure pose functions (iteration 16; figure molds 2026-09-30).
+// Each figure stands where it stands in the official overhead: where the mold fit on the overhead exists
+// (validation/players/overhead-fit.json: socket on the slot centreline, heading fitted) its pivot and
+// heading are used; otherwise the iteration-16 rule (midpoint of the hidden slot stretch), theta 0.
 import { readFileSync, writeFileSync } from "node:fs";
 import type { GeometryFile } from "../src/model/geometry.ts";
 import { loadFigurePaths } from "../src/model/paths.ts";
@@ -8,16 +10,32 @@ import { goaliePose, linearDeterminant, skaterPose, type Pose } from "../src/mod
 type EndCheck = { pid: string; end: string; observed: [number, number]; predicted: [number, number]; occluder: string | null };
 const g = JSON.parse(readFileSync("data/geometry.json", "utf8")) as GeometryFile;
 const slots = JSON.parse(readFileSync("validation/slots-report.json", "utf8")) as { end_checks: EndCheck[] };
-const rep10 = JSON.parse(readFileSync("validation/10-contacts-report.json", "utf8")) as { pivot_px: [number, number] };
-const rep15 = JSON.parse(readFileSync("validation/15-goalie-contacts-report.json", "utf8")) as { pivot_px: [number, number] };
+const fit = JSON.parse(readFileSync("validation/players/overhead-fit.json", "utf8")) as { figures: Record<string, { pivot_mm: [number, number]; heading_deg: number }> };
 const map = g.image_to_world.find((m) => m.id === "map.overhead.preview")!.matrix;
 const toW = ([u, v]: [number, number]): [number, number] => [map[0] * u + map[1] * v + map[2], map[3] * u + map[4] * v + map[5]];
+const det = map[0] * map[4] - map[1] * map[3];
+const toPx = ([x, y]: [number, number]): [number, number] => {
+  const dx = x - map[2], dy = y - map[5];
+  return [(map[4] * dx - map[1] * dy) / det, (-map[3] * dx + map[0] * dy) / det];
+};
+/**
+ * Heading adjustments (deg) where the fitted pose collides with our solid preview goal. E-LW: in the overhead
+ * its blade tucks under the W goal cage (it looks shortened there); the preview goal is a solid mesh, so the
+ * smallest rotation that clears it (checked in Blender, 2 deg steps) is applied and reported.
+ */
+const CLEARANCE_DEG: Record<string, number> = { "E-LW": -4 };
+/** Team kit of the reference variant (decision D4): W = Finland, E = Sweden. */
+const KIT = { W: "FIN", E: "SWE" } as const;
 const round = (v: number, d = 3): number => Math.round(v * 10 ** d) / 10 ** d;
 
 /** Where the figure stands in the reference overhead (image px) and why. */
-function referencePoint(pid: string): { px: [number, number]; rule: string } {
-  if (pid === "W-RD") return { px: rep10.pivot_px, rule: "iteration-10 debug pivot (covered slot stretch midpoint)" };
-  if (pid === "W-G") return { px: rep15.pivot_px, rule: "iteration-15 debug pivot (covered slot stretch midpoint)" };
+function referencePoint(pid: string): { px: [number, number]; rule: string; headingDeg?: number } {
+  const f = fit.figures[pid];
+  if (f) {
+    const adj = CLEARANCE_DEG[pid] ?? 0;
+    const rule = "figure-mold fit on the official overhead (socket on the slot centreline, heading fitted)" + (adj ? `; heading ${adj} deg to clear the solid preview goal (blade under the cage in the photo)` : "");
+    return { px: toPx(f.pivot_mm), rule, headingDeg: f.heading_deg + adj };
+  }
   const e = slots.end_checks.find((x) => x.pid === `path.${pid}` && x.occluder);
   if (e) return { px: [(e.observed[0] + e.predicted[0]) / 2, (e.observed[1] + e.predicted[1]) / 2], rule: `midpoint of the ${e.end} stretch hidden by the ${e.occluder} (same rule)` };
   if (pid === "E-LW") return { px: [697.2, 2610], rule: "figure no. 92 stands beside the visible start end; point 20 px along the slot from it" };
@@ -36,17 +54,20 @@ const out = paths.map((fp) => {
     const d = Math.hypot(q[0] - w[0], q[1] - w[1]);
     if (d < best.d) best = { u, d };
   }
-  const state = { u_preview: round(best.u, 5), thetaDeg: 0 };
+  const home = fp.team === "W" ? 0 : 180;
+  const theta = ref.headingDeg === undefined ? 0 : ((((ref.headingDeg - home) % 360) + 540) % 360) - 180;
+  const state = { u_preview: round(best.u, 5), thetaDeg: round(theta, 2) };
   const r = pl.position === "G" ? goaliePose(fp.sampler, fp.team, state) : skaterPose(fp.sampler, fp.team, state);
   if (!r.ok) throw new Error(`${fp.playerId}: ${r.reason}`);
   const p: Pose = r;
-  const asset = pl.id === "W-RD" ? "assets/figures/skater_W-RD.blend#Skater.W-RD" : pl.id === "W-G" ? "assets/figures/goalie_W-G.blend#Goalie.W-G" : null;
+  const kind = pl.position === "G" ? "goalie" : "skater";
+  const kit = KIT[pl.team_id];
   return {
     player_id: pl.id, team: pl.team_id, position: pl.position, path_id: fp.sampler.id, asset_id: pl.asset_id,
-    asset: asset ?? (pl.position === "G" ? "PLACEHOLDER goalie (missing variant)" : "PLACEHOLDER skater (missing variant)"),
+    asset: `assets/figures/${kind}_${kit}.blend#${kind === "goalie" ? "Goalie" : "Skater"}.${kit}`, kit,
     state, reference_px: ref.px.map((v) => round(v, 1)), reference_rule: ref.rule, reference_to_path_mm: round(best.d, 2),
     pivot_mm: p.pivot.map((v) => round(v)), heading_deg: p.headingDeg, det: round(linearDeterminant(p.matrix), 9), matrix: p.matrix.map((v) => round(v, 9)), assumptions: p.assumptions,
   };
 });
-writeFileSync("validation/16-assembly-poses.json", JSON.stringify({ note: "Static debug pose: each figure where it stands in the official overhead, theta 0. Not a measured or control-derived pose.", figures: out }, null, 2) + "\n");
+writeFileSync("validation/16-assembly-poses.json", JSON.stringify({ note: "Static pose: each figure where it stands in the official overhead (mold fit where available, else the hidden-stretch rule at theta 0). Not a measured or control-derived pose.", figures: out }, null, 2) + "\n");
 console.log(out.map((o) => `${o.player_id} u=${o.state.u_preview} d=${o.reference_to_path_mm}mm ${o.asset}`).join("\n"));

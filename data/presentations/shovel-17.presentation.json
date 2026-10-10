@@ -1,0 +1,27 @@
+{
+ "schema": "shot-presentation/1",
+ "presentation_id": "presentation.shovel-17.v1",
+ "trace_id": "trace.shovel-17.v2",
+ "note": "Iteration 24. Presentation only: which source time of the accepted trace each frame shows, plus captions and one marker. Physical motion, contacts and speeds come from data/traces/shovel-17.trace.json unchanged. Replay speed and pauses are presentation choices.",
+ "fps": 30,
+ "camera": "oblique",
+ "segments": [
+  {"id": "intro", "kind": "hold", "at": {"window_frame": 0}, "frames": 30},
+  {"id": "normal", "kind": "play", "from": {"window_frame": 0}, "to": {"window_frame": 50}, "rate": 1},
+  {"id": "normal_end", "kind": "hold", "at": {"window_frame": 50}, "frames": 15},
+  {"id": "replay_in", "kind": "play", "from": {"window_frame": 33}, "to": {"event": "contact.W-C_reception"}, "rate": 0.25},
+  {"id": "contact_pause", "kind": "hold", "at": {"event": "contact.W-C_reception"}, "frames": 60},
+  {"id": "replay_out", "kind": "play", "from": {"event": "contact.W-C_reception"}, "to": {"window_frame": 45}, "rate": 0.25},
+  {"id": "replay_end", "kind": "hold", "at": {"window_frame": 45}, "frames": 20}
+ ],
+ "captions": [
+  {"id": "title", "role": "title", "text": "#17 Shovel", "segments": ["intro", "normal", "normal_end", "replay_in", "contact_pause", "replay_out", "replay_end"]},
+  {"id": "speed_normal", "role": "speed", "text": "Normal speed", "segments": ["intro", "normal", "normal_end"]},
+  {"id": "speed_replay", "role": "speed", "text": "Replay - 1/4 speed", "segments": ["replay_in", "replay_out", "replay_end"]},
+  {"id": "speed_pause", "role": "speed", "text": "Paused at the key contact", "segments": ["contact_pause"]},
+  {"id": "contact", "role": "contact", "text": "Key contact: the pass from the right wing lands on the back of the centre. He carries it up his slot and it slides off into the far corner.", "segments": ["contact_pause"]}
+ ],
+ "markers": [
+  {"id": "puck_ring", "target": "puck", "segments": ["replay_in", "contact_pause", "replay_out"]}
+ ]
+}

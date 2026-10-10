@@ -38,3 +38,13 @@ in a fresh session (`npm ci`; `pip install pymupdf pillow numpy` if PDF/image wo
 - remotion 4.0.531 with React 19.2.0, three 0.186.1 and @react-three/fiber 9.4.0 (exact pins).
 - Browser for renders: `/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell` with `--gl=swangle`. The full Chromium binary does not support Remotion's headless mode.
 - The remotion.dev docs host is blocked by the network policy; the API was read from the installed packages.
+
+## Player-figure pipeline (figure molds, 2026-09-30)
+
+- Same venv as Blender (`/root/venvs/blender`), additionally: pillow-heif 1.8.0 (HEIC decoding),
+  imageio-ffmpeg 0.6.0 (bundled ffmpeg 7.0.2 for the HLG video frames), scipy 1.14.1 (fits). Installed with
+  `numpy==1.26.4` pinned so bpy keeps working:
+  `/root/venvs/blender/bin/pip install pillow-heif==1.8.0 imageio-ffmpeg "scipy>=1.13,<1.15" numpy==1.26.4`.
+- Order: `players:frames` -> `players:preview` -> `players:fit` -> (optional `fit-figure-shape.py`) ->
+  `players:overhead` -> `blender:figures` -> `players:define` -> `assembly:poses` -> `blender:assembly` ->
+  `blender:materials` -> `blender:appearance` -> `remotion:stills` -> `review:20`. See docs/players.md.

@@ -36,6 +36,8 @@ export interface Section {
   width?: number;
   contrast?: number;
   reject?: string;
+  /** Inside an operator-marked occlusion box (never measured; always bridged). */
+  excluded?: boolean;
 }
 
 export interface SlotEnd {
@@ -261,7 +263,15 @@ function findEnd(signal: Signal, from: Vec2, dir: Vec2, width: number, maxDist: 
  * are not searched beyond the seed and get no sub-pixel end: the observed end is the last accepted
  * cross-section, so dark parts of the covering object are never mistaken for slot.
  */
-export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams, hidden: { start?: boolean; end?: boolean } = {}): SlotTrace {
+export function traceSlot(
+  signal: Signal,
+  seed: Vec2[],
+  p: SlotTraceParams,
+  hidden: { start?: boolean; end?: boolean } = {},
+  /** Operator-marked boxes [u0, v0, u1, v1] where an object lies ON the slot (e.g. a stick); sections whose guide
+   * point falls inside are rejected and bridged by the gap interpolation, never measured. */
+  exclude: { box: [number, number, number, number]; reason: string }[] = [],
+): SlotTrace {
   const extStart = hidden.start ? 0 : p.extend;
   const extEnd = hidden.end ? 0 : p.extend;
   // Extend the seed along its end tangents so the real ends can be found beyond it.
@@ -276,6 +286,8 @@ export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams, hidd
     const pp = passParams;
     sections = guideLine.map((g, i) => {
       const t = tans[i]!;
+      const ex = exclude.find(({ box: [u0, v0, u1, v1] }) => g[0] >= u0 && g[0] <= u1 && g[1] >= v0 && g[1] <= v1);
+      if (ex) return { guide: g, normal: [-t[1], t[0]] as Vec2, tangent: t, ok: false, reject: ex.reason, excluded: true };
       return measure(signal, g, [-t[1], t[0]], t, pp);
     });
     // The first pass follows the coarse seed chords, so the lateral test starts once the guide follows the slot.
@@ -287,12 +299,13 @@ export function traceSlot(signal: Signal, seed: Vec2[], p: SlotTraceParams, hidd
     const maxGap = Math.round(400 / p.step);
     let a = okIdx.reduce((best, i) => (Math.abs(i - mid) < Math.abs(best - mid) ? i : best), okIdx[0]!);
     let b = a;
-    // Walk outward from the middle, bridging gaps up to maxGap sections.
+    // Walk outward from the middle, bridging gaps up to maxGap sections (operator-marked sections don't count).
+    const gapLen = (i: number, j: number): number => sections.slice(i, j).filter((x) => !x.excluded).length;
     let k = okIdx.indexOf(a);
-    while (k > 0 && okIdx[k]! - okIdx[k - 1]! <= maxGap) k--;
+    while (k > 0 && gapLen(okIdx[k - 1]!, okIdx[k]!) <= maxGap) k--;
     a = okIdx[k]!;
     k = okIdx.indexOf(b);
-    while (k < okIdx.length - 1 && okIdx[k + 1]! - okIdx[k]! <= maxGap) k++;
+    while (k < okIdx.length - 1 && gapLen(okIdx[k]!, okIdx[k + 1]!) <= maxGap) k++;
     b = okIdx[k]!;
     span = [a, b];
     // New guide: detected centres in the span, gaps linearly interpolated, then smoothed.

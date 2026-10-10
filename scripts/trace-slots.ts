@@ -16,6 +16,8 @@ interface Seed {
   occluded: { start?: string; end?: string; middle?: string };
   occluded_bare?: { start?: string; end?: string };
   exclude_from_homography?: string;
+  /** Overhead pixel boxes where an object lies on the slot (operator-marked); sections there are interpolated. */
+  occluded_boxes_overhead?: { box: [number, number, number, number]; reason: string }[];
   overhead: Vec2[];
   bare: Vec2[];
 }
@@ -61,7 +63,7 @@ for (const [pid, seed] of Object.entries(seeds.paths)) {
   for (const k of ["overhead", "bare"] as ImageKey[]) {
     const r = rasters[k];
     const hidden = k === "overhead" ? { start: !!seed.occluded.start, end: !!seed.occluded.end } : { start: !!seed.occluded_bare?.start, end: !!seed.occluded_bare?.end };
-    const t = traceSlot((u, v) => bilinear(r, u, v, SIGNAL[k]), seed[k], PARAMS[k], hidden);
+    const t = traceSlot((u, v) => bilinear(r, u, v, SIGNAL[k]), seed[k], PARAMS[k], hidden, k === "overhead" ? seed.occluded_boxes_overhead ?? [] : []);
     traces[pid][k] = t;
     const raw = t.sections.slice(t.span[0], t.span[1] + 1).filter((s) => s.ok).map((s) => s.centre!);
     const d = raw.map((p) => closestOnPolyline(t.centreline, p).dist);
@@ -175,7 +177,7 @@ for (const [pid, seed] of Object.entries(seeds.paths)) {
       const atEnd = s.from === 0 || s.to === t.detected.length - 1;
       s.reason = atEnd
         ? "End point is the last accepted cross-section (end hidden, or sub-pixel end not found)."
-        : `Slot hidden or disturbed (${k === "overhead" ? [seed.occluded.middle, seed.occluded.start, seed.occluded.end].filter(Boolean).join("; ") || "figure, stick or print" : "printed features or low contrast"}); centre interpolated linearly between accepted cross-sections.`;
+        : `Slot hidden or disturbed (${k === "overhead" ? [seed.occluded.middle, seed.occluded.start, seed.occluded.end, ...(seed.occluded_boxes_overhead ?? []).map((b) => b.reason)].filter(Boolean).join("; ") || "figure, stick or print" : "printed features or low contrast"}); centre interpolated linearly between accepted cross-sections.`;
     }
     const e = fitErr[pid]![k];
     g.image_traces.push({

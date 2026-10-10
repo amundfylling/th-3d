@@ -1,0 +1,144 @@
+{
+  "note": "Pinhole overhead camera above the ice (relief model); socket constrained to the slot centreline; preview scale ASSUMED (0.1796 mm/px).",
+  "scale_k_mm_per_mold_unit": 1.0814,
+  "camera_mm": {
+    "cx": 30.4,
+    "cy": -43.1,
+    "height": 1075.7
+  },
+  "k_profile_mean_iou": {
+    "0.9732": 0.6963,
+    "1.0003": 0.7244,
+    "1.0273": 0.7485,
+    "1.0543": 0.7652,
+    "1.0814": 0.7734,
+    "1.1084": 0.7656,
+    "1.1354": 0.7542,
+    "1.1625": 0.7338,
+    "1.1895": 0.7064
+  },
+  "figures": {
+    "E-LD": {
+      "iou": 0.7987,
+      "pivot_mm": [
+        -36.42,
+        -76.41
+      ],
+      "s_mm": 8.22,
+      "heading_deg": 181.95,
+      "observation": "colour segmentation (Sweden)"
+    },
+    "E-RD": {
+      "iou": 0.7677,
+      "pivot_mm": [
+        74.81,
+        88.64
+      ],
+      "s_mm": 9.82,
+      "heading_deg": 203.95,
+      "observation": "colour segmentation (Sweden)"
+    },
+    "E-C": {
+      "iou": 0.7976,
+      "pivot_mm": [
+        -187.92,
+        4.47
+      ],
+      "s_mm": 6.11,
+      "heading_deg": 10.84,
+      "observation": "colour segmentation (Sweden)"
+    },
+    "E-LW": {
+      "iou": 0.7297,
+      "pivot_mm": [
+        -381.44,
+        22.35
+      ],
+      "s_mm": 13.69,
+      "heading_deg": 256.13,
+      "observation": "colour segmentation (Sweden)"
+    },
+    "W-RD": {
+      "iou": 0.7211,
+      "pivot_mm": [
+        -77.7,
+        -88.25
+      ],
+      "s_mm": 227.18,
+      "heading_deg": 357.33,
+      "observation": "traced silhouette (Finland), check only"
+    },
+    "W-G": {
+      "iou": 0.7387,
+      "pivot_mm": [
+        -254.61,
+        -33.38
+      ],
+      "s_mm": 103.12,
+      "heading_deg": 15.77,
+      "observation": "traced silhouette (Finland goalie), posed at the MEASURED goalie scale; goalie-only best scale reported as a check of the preview scale"
+    }
+  },
+  "goalie_only_best_scale_k": 1.1895,
+  "goalie_only_best_iou": 0.7478,
+  "goalie_scale_used_k": 1.1422,
+  "goalie_scale_used_status": "measured",
+  "goalie_measured_over_overhead_best": 0.9602,
+  "stick_check": {
+    "local_mm": {
+      "E-RD": {
+        "heel": [
+          1.94,
+          20.77
+        ],
+        "toe": [
+          2.0,
+          40.96
+        ],
+        "blade_length_mm": 20.19
+      },
+      "W-RD": {
+        "heel": [
+          -0.35,
+          21.9
+        ],
+        "toe": [
+          -0.82,
+          42.19
+        ],
+        "blade_length_mm": 20.3
+      },
+      "E-C": {
+        "heel": [
+          -7.16,
+          23.01
+        ],
+        "toe": [
+          -8.0,
+          40.89
+        ],
+        "blade_length_mm": 17.9
+      },
+      "E-LW": {
+        "heel": [
+          0.34,
+          18.29
+        ],
+        "toe": [
+          1.86,
+          31.45
+        ],
+        "blade_length_mm": 13.25
+      },
+      "E-LD": {
+        "heel": [
+          3.35,
+          22.05
+        ]
+      }
+    },
+    "mean_heel_lateral_mm": 21.93,
+    "mean_blade_length_mm": 19.46,
+    "note": "Figure frame from the fitted pivot (socket on the slot centreline) and heading; heading error rotates the heel along x."
+  }
+}

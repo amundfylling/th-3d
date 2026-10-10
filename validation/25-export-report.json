@@ -1,0 +1,77 @@
+{
+ "shot": "#17 Shovel",
+ "composition": "shot25-shovel-17-final",
+ "route": "Remotion/Three, rendered directly (renderer decision: docs/review.md - Cycles benchmark not run, not switched)",
+ "versions": {
+  "node": "v22.22.2",
+  "remotion": "4.0.531",
+  "@remotion/three": "4.0.531",
+  "@remotion/renderer": "4.0.531",
+  "three": "0.186.1",
+  "@react-three/fiber": "9.4.0",
+  "react": "19.2.0",
+  "browser": "chrome-headless-shell Chromium 141.0.7390.37",
+  "gl": "swangle (SwiftShader, CPU)"
+ },
+ "model": {
+  "geometry_version": "0.6.0",
+  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f",
+  "asset_sha256": {
+   "figure_molds_sha256": "c189758e98559f61ad8a46315394eebd2fb137ab4eb662ac827d2e318de61c68",
+   "skater_glb_sha256": "c3be1369dc4bc21c9fd00030a1e32bf7ce99a07dddd180206c7423ddf28627e1",
+   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929"
+  }
+ },
+ "trace": {
+  "trace_id": "trace.shovel-17.v2",
+  "status": "accepted",
+  "sha256": "89eb5b16212c467b588116c3c628656e7ad635a687685118fd16a0e9d97f70d2",
+  "approved_exceptions": [
+   "shot.W-C_right_skate_brush"
+  ]
+ },
+ "presentation": {
+  "presentation_id": "presentation.shovel-17.v1",
+  "sha256": "44501851974cfeb72b102cb1a058918f2de1323dd2c93ccdd96b1b2f949e98f6",
+  "presentation_fps": 30,
+  "output_fps": 60,
+  "camera": "oblique"
+ },
+ "output_settings_status": "presentation choice proposed by the iteration-25 prompt (no settings were agreed): 1920 x 1080, 60 fps, H.264 CRF 18, yuv420p; not additional geometry precision",
+ "draft": {
+  "path": "out/25/draft-480x270-60fps.mp4",
+  "width": 480,
+  "height": 270,
+  "fps": 60,
+  "frames": 446,
+  "duration_s": 7.433333333333334,
+  "codec": "h264",
+  "crf": 23,
+  "pixel_format": "yuv420p",
+  "concurrency": 3,
+  "frames_logged": 446,
+  "frames_differing_from_pure": [],
+  "max_readback_diff": 2.84e-14,
+  "render_seconds": 2973,
+  "bytes": 124313,
+  "sha256": "04db611c5f40f842e79d2b660b88cef2cb345b3f4e949d58bfc8f87865286a60"
+ },
+ "final": {
+  "path": "validation/25-shovel-17-final.mp4",
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "frames": 446,
+  "duration_s": 7.433333333333334,
+  "codec": "h264",
+  "crf": 18,
+  "pixel_format": "yuv420p",
+  "concurrency": 2,
+  "frames_logged": 446,
+  "frames_differing_from_pure": [],
+  "max_readback_diff": 2.84e-14,
+  "render_seconds": 2946,
+  "bytes": 966576,
+  "sha256": "9883f90edf9524e457b1e33e955e2b519a5f8bdebbe2564f0838a4899b4c9da9"
+ }
+}

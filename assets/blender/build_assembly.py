@@ -1,8 +1,10 @@
-"""Iteration 16: complete static assembly from validation/16-assembly-poses.json (pure pose functions).
+"""Static assembly of all 12 figures from validation/16-assembly-poses.json (pure pose functions).
 
     /root/venvs/blender/bin/python assets/blender/build_assembly.py
-Reuses skater_W-RD only for W-RD and goalie_W-G only for W-G (no evidence that other positions share
-these molds); every other figure is a clearly marked PLACEHOLDER proxy (missing variant).
+Every skater uses the shared skater mold and both goalies the goalie mold (user statement: all skaters are
+identical; teams differ only in kit colour and the country name). Team W wears the Finland kit, team E the
+Sweden kit (reference variant, D4). Figures of one kit share one mesh; each player gets its own back print
+(country name + number, data/figure-molds.json 'prints') as a child decal mesh.
 Outputs: assets/scene/full_static.blend|.glb, validation/16-overhead-labelled.png, validation/16-oblique.png,
 validation/16-assembly-report.json.
 """
@@ -13,6 +15,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import stiga_blender as sb  # noqa: E402
+import build_figures as bf  # noqa: E402
+import figure_molds as fm  # noqa: E402
 from mathutils import Matrix, Vector  # noqa: E402
 from mathutils.bvhtree import BVHTree  # noqa: E402
 
@@ -21,41 +25,35 @@ import bpy  # noqa: E402
 g = sb.load_geometry()
 VAL = sb.REPO / "validation"
 poses = json.loads((VAL / "16-assembly-poses.json").read_text())["figures"]
+molds = fm.load_molds()
 bpy.ops.wm.open_mainfile(filepath=str(sb.REPO / "assets" / "scene" / "static_hardware.blend"))
-TEAM_TINT = {"W": (0.72, 0.8, 0.95), "E": (0.95, 0.88, 0.55)}
 
 
-def append(path_obj):
+def load_kit(path_obj):
     path, name = path_obj.split("#")
     with bpy.data.libraries.load(str(sb.REPO / path), link=False) as (src, dst):
         dst.objects = [name]
     ob = dst.objects[0]
-    bpy.context.scene.collection.objects.link(ob)
-    return ob
+    me = ob.data  # the mesh (materials included); objects are created per player
+    bpy.data.objects.remove(ob)
+    return me
 
 
-def placeholder(pid, kind, team):
-    """Deliberately generic stand-in: capsule body, ball head, heading nose; NOT a STIGA mold."""
-    h = 57.0 if kind == "skater" else sb.preview(g, "goalie_height")
-    r = 7.0 if kind == "skater" else 10.0
-    # Trunk starts at z = r so its rounded bottom cap rests on the ice (z >= 0), plus a small margin
-    # for metaball blending.
-    body = sb.metaball_mesh(f"Placeholder.{pid}", {"head": ((0.0, 0.0, h - 6.0), (5.5, 5.5, 5.5)), "nose": ((6.0, 0.0, h - 6.0), (3.0, 2.0, 2.0))},
-                            {"trunk": ((0.0, 0.0, r + 0.3), (0.0, 0.0, h - 14.0), r)})
-    mat = sb.clay(f"placeholder_{team}", TEAM_TINT[team], 0.7)
-    body.data.materials.append(mat)
-    return body
-
-
+meshes = {}
 figs = []
 for p in poses:
     kind = "goalie" if p["position"] == "G" else "skater"
-    ob = append(p["asset"]) if p["asset"].startswith("assets/") else placeholder(p["player_id"], kind, p["team"])
-    ob.name = f"Figure.{p['player_id']}"
+    if p["asset"] not in meshes:
+        meshes[p["asset"]] = load_kit(p["asset"])
+    ob = bpy.data.objects.new(f"Figure.{p['player_id']}", meshes[p["asset"]])
+    bpy.context.scene.collection.objects.link(ob)
     M = p["matrix"]
     ob.matrix_world = Matrix(((M[0], M[1], M[2], sb.m(M[3])), (M[4], M[5], M[6], sb.m(M[7])), (M[8], M[9], M[10], sb.m(M[11])), (0, 0, 0, 1)))
     ob["player_id"] = p["player_id"]
-    ob["asset_status"] = "modelled proxy" if p["asset"].startswith("assets/") else "PLACEHOLDER (missing variant)"
+    ob["asset_status"] = f"figure mold ({kind}), kit {p['kit']}"
+    pr = molds["prints"][p["player_id"]]
+    dec, _n = bf.decal(ob, kind, p["kit"], pr["number"] or "", f"Print.{p['player_id']}")
+    dec["player_id"] = p["player_id"]
     figs.append((p, ob))
 bpy.context.view_layer.update()
 
@@ -108,15 +106,16 @@ for p, ob in figs:
     d.ellipse((u - 4, v - 4, u + 4, v + 4), outline=(255, 0, 0), width=2)
     hx, hy = math.cos(math.radians(p["heading_deg"])), math.sin(math.radians(p["heading_deg"]))
     d.line((u, v, u + 30 * hx, v - 30 * hy), fill=(255, 0, 0), width=3)
-    label = f"{p['player_id']}{'' if p['asset'].startswith('assets/') else ' (placeholder)'}"
+    label = p["player_id"]
     d.text((u + 8, v + 8), label, fill=(0, 0, 0), stroke_width=2, stroke_fill=(255, 255, 255))
-d.text((10, 10), "16 - static assembly (AI review). Red: fixture axis + heading. Placeholders = missing mold variants.", fill=(0, 0, 0), stroke_width=2, stroke_fill=(255, 255, 255))
+d.text((10, 10), "16 - static assembly (AI review). Red: fixture axis (mount socket) + heading. All figures: shared skater / goalie molds.", fill=(0, 0, 0), stroke_width=2, stroke_fill=(255, 255, 255))
 im.save(VAL / "16-overhead-labelled.png")
 
 report = {
     "figures": {"skaters": sum(1 for p, _ in figs if p["position"] != "G"), "goalies": sum(1 for p, _ in figs if p["position"] == "G")},
-    "modelled": [p["player_id"] for p, _ in figs if p["asset"].startswith("assets/")],
-    "placeholders": [p["player_id"] for p, _ in figs if not p["asset"].startswith("assets/")],
+    "modelled": [p["player_id"] for p, _ in figs],
+    "placeholders": [],
+    "assets": sorted({p["asset"] for p, _ in figs}),
     "mounting_axes_vertical": axis_ok,
     "determinants": dets,
     "figure_zmin_mm": {k: round(v, 3) for k, v in zmins.items()},

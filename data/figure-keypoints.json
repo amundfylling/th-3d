@@ -1,0 +1,274 @@
+{
+  "description": "Operator-read keypoints of the user's Sweden skater no. 21 (IMG_2574 turntable frames), in crop pixels of references/derived/players/<view>.jpg, read on gridded enlargements. Reading uncertainty about 10-20 px (blur, blob centres). Used by scripts/triangulate-figure-keypoints.py. Point definitions: socket = centre of the flared base ellipse (table contact, origin); heel = outer corner of the stick bend where shaft meets blade; blade_toe = free end of the blade; stick_top = upper end of the shaft above the right glove; chin = lowest point of the face; nape = back-centre of the blue collar where the neck skin meets it; number = centre of the '21' on the back; right_boot = centre of the right (pushing) skate boot.",
+  "skater": {
+    "gauge_view": "skater-video-t07.25",
+    "init_cameras": {
+      "skater-video-t04.50": {
+        "azimuth_deg": -80,
+        "pan_deg": 3.6,
+        "tilt_deg": -12.0
+      }
+    },
+    "points": {
+      "socket": {
+        "fixed_mm": [
+          0,
+          0,
+          0
+        ]
+      },
+      "heel": {
+        "guess_mm": [
+          10.4,
+          24.0,
+          1.0
+        ]
+      },
+      "blade_toe": {
+        "guess_mm": [
+          10.0,
+          35.0,
+          1.5
+        ]
+      },
+      "stick_top": {
+        "guess_mm": [
+          14.2,
+          -6.4,
+          34.6
+        ]
+      },
+      "chin": {
+        "guess_mm": [
+          16.9,
+          -0.8,
+          39.2
+        ]
+      },
+      "nape": {
+        "guess_mm": [
+          7.0,
+          -0.8,
+          40.0
+        ]
+      },
+      "number": {
+        "guess_mm": [
+          -2.0,
+          -0.8,
+          34.0
+        ]
+      },
+      "right_boot": {
+        "guess_mm": [
+          -9.4,
+          -14.4,
+          4.4
+        ]
+      }
+    },
+    "views": {
+      "skater-video-t00.00": {
+        "socket": [
+          670,
+          1280
+        ],
+        "heel": [
+          1085,
+          1245
+        ],
+        "stick_top": [
+          588,
+          808
+        ],
+        "chin": [
+          690,
+          662
+        ],
+        "right_boot": [
+          455,
+          1130
+        ]
+      },
+      "skater-video-t03.00": {
+        "socket": [
+          755,
+          1360
+        ],
+        "heel": [
+          985,
+          1130
+        ],
+        "blade_toe": [
+          1200,
+          978
+        ],
+        "stick_top": [
+          775,
+          905
+        ],
+        "chin": [
+          960,
+          698
+        ],
+        "right_boot": [
+          420,
+          1340
+        ]
+      },
+      "skater-video-t04.50": {
+        "socket": [
+          590,
+          1455
+        ],
+        "chin": [
+          790,
+          695
+        ],
+        "nape": [
+          600,
+          615
+        ],
+        "right_boot": [
+          365,
+          1445
+        ]
+      },
+      "skater-video-t06.00": {
+        "nape": [
+          455,
+          690
+        ],
+        "number": [
+          330,
+          900
+        ],
+        "heel": [
+          215,
+          1375
+        ]
+      },
+      "skater-video-t07.25": {
+        "nape": [
+          480,
+          660
+        ],
+        "number": [
+          460,
+          920
+        ],
+        "socket": [
+          470,
+          1590
+        ],
+        "right_boot": [
+          690,
+          1500
+        ],
+        "heel": [
+          150,
+          1505
+        ]
+      },
+      "skater-video-t08.50": {
+        "nape": [
+          470,
+          620
+        ],
+        "number": [
+          580,
+          850
+        ],
+        "socket": [
+          535,
+          1500
+        ],
+        "right_boot": [
+          795,
+          1335
+        ],
+        "chin": [
+          320,
+          705
+        ]
+      },
+      "skater-video-t10.75": {
+        "chin": [
+          575,
+          735
+        ],
+        "stick_top": [
+          515,
+          820
+        ],
+        "heel": [
+          1060,
+          1305
+        ],
+        "socket": [
+          715,
+          1330
+        ],
+        "right_boot": [
+          520,
+          1160
+        ]
+      }
+    }
+  },
+  "overhead_sticks": {
+    "description": "Operator-read stick points of skaters in the official overhead (px, 2x gridded crops): heel = where the round shaft meets the flat blade (thinner, brighter strip seen from above), toe = blade end. Both lie on the ice, so no relief correction applies. E-LW's blade runs toward the goal cage and looks shorter (likely partly hidden); it is excluded from the means.",
+    "points_px": {
+      "E-RD": {
+        "heel": [
+          3277,
+          2415
+        ],
+        "toe": [
+          3322,
+          2518
+        ]
+      },
+      "W-RD": {
+        "heel": [
+          2392,
+          3165
+        ],
+        "toe": [
+          2395,
+          3052
+        ]
+      },
+      "E-C": {
+        "heel": [
+          1713,
+          2650
+        ],
+        "toe": [
+          1690,
+          2553
+        ]
+      },
+      "E-LW": {
+        "heel": [
+          797,
+          2692
+        ],
+        "toe": [
+          866,
+          2718
+        ]
+      },
+      "E-LD": {
+        "heel": [
+          2603,
+          3345
+        ]
+      }
+    },
+    "exclude_from_means": [
+      "E-LW"
+    ],
+    "uncertainty_px": 4
+  }
+}

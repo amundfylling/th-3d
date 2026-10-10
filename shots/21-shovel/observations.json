@@ -1,0 +1,1237 @@
+{
+ "schema": "shot-observation/1",
+ "shot_id": "shot.21.shovel",
+ "iteration": 21,
+ "status": "observed (AI), not reviewed by the user; no motion fitted",
+ "geometry_version": "0.6.0",
+ "source": {
+  "path": "references/shots/shovel-17-screen-recording.mov",
+  "sha256": "65eca3cd30a39eb7a90f559936fbb0ffffdad64f5a22165eca4734928e557886",
+  "bytes": 20051809,
+  "supplied_by": "user (chat upload, 2026-10-04)",
+  "description": "iOS screen recording (ReplayKit) of a third-party video titled '#17 SHOVEL, difficulty 4/10' with a 'Brent Plast Bordhockey' watermark. The user states it shows one combination, first at full speed and then as a replay of the same shot.",
+  "recorded_table": "A STIGA table with Play Off-style line and slot layout but different sponsor artwork (Loopia, Pirelli, Cramo, Hogia, Lindab, Pantamera, Corvara, Weber, Bygmax) than the reference variant 71-1145-01; not the user's own table. Teams: Sweden-style yellow vs Finland-style white figures (Finland skater no. 64 on W-RW here; the reference pack prints 64 on W-C).",
+  "container": {
+   "ffmpeg_header": [
+    "creation_time   : 2026-10-04T16:30:45.000000Z",
+    "com.apple.quicktime.author: ReplayKitRecording",
+    "Duration: 00:00:07.06, start: 0.000000, bitrate: 22732 kb/s",
+    "Stream #0:0[0x1](und): Video: hevc (Main) (hvc1 / 0x31637668), yuvj420p(pc, bt709, progressive), 1180x2556, 20816 kb/s, 57.65 fps, 60 tbr, 600 tbn (default)",
+    "creation_time   : 2026-10-04T16:30:45.000000Z",
+    "encoder         : 'hvc1'",
+    "displaymatrix: rotation of 90.00 degrees",
+    "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 2 kb/s (default)",
+    "creation_time   : 2026-10-04T16:30:45.000000Z"
+   ]
+  },
+  "decoder_container_fps": 57.65
+ },
+ "timing": {
+  "recording_frames": 424,
+  "recording_duration_s": 7.04,
+  "recording_interval_ms": {
+   "median": 16.667,
+   "min": 15.0,
+   "max": 16.667
+  },
+  "cut_frames": [
+   27,
+   186
+  ],
+  "segments": [
+   {
+    "first_frame": 0,
+    "last_frame": 26,
+    "t_start_s": 0.0,
+    "t_end_s": 0.4333,
+    "unique_content_frames": 11,
+    "content_interval_median_ms": 41.67,
+    "content_interval_mean_ms": 41.67,
+    "content_rate_fps": 24.0,
+    "recording_frames_per_content_frame": {
+     "2": 5,
+     "3": 5
+    },
+    "role": "title card over the first shot frame (no motion)"
+   },
+   {
+    "first_frame": 27,
+    "last_frame": 185,
+    "t_start_s": 0.45,
+    "t_end_s": 3.0783,
+    "unique_content_frames": 59,
+    "content_interval_median_ms": 33.33,
+    "content_interval_mean_ms": 40.17,
+    "content_rate_fps": 24.893,
+    "recording_frames_per_content_frame": {
+     "2": 34,
+     "3": 24
+    },
+    "role": "segment 1: full-speed shot (calibrated camera, behind the W attack, looking at goal.E)"
+   },
+   {
+    "first_frame": 186,
+    "last_frame": 423,
+    "t_start_s": 3.095,
+    "t_end_s": 7.04,
+    "unique_content_frames": 98,
+    "content_interval_median_ms": 33.33,
+    "content_interval_mean_ms": 40.5,
+    "content_rate_fps": 24.692,
+    "recording_frames_per_content_frame": {
+     "2": 57,
+     "3": 39,
+     "5": 1
+    },
+    "role": "segment 2: slow-motion replay from behind goal.E (not calibrated)"
+   }
+  ],
+  "notes": [
+   "The container rate (~57.6-60 fps) is the screen recording, not the source camera. Content changes every 2 or 3 recording frames: the playback content of segment 1 runs at 24.89 fps (40.2 ms per content frame).",
+   "Segment 1 is treated as real time on the user's statement ('full speed'); the source camera's own capture rate and exposure are unknown. Heavy motion blur shows a long exposure relative to the motion.",
+   "Shot time = recording time of the first recording frame showing a content frame minus the first frame of segment 1; a content frame can appear up to one recording interval (~17 ms) after it was presented.",
+   "Segment 2 is slow motion: the reception -> goal-entry interval spans about 10 replay content frames versus about 2 in segment 1 (slow-down roughly 3-10x; not determined). Its time base is NOT mapped to segment 1."
+  ]
+ },
+ "shot_window": {
+  "smallest_useful_segment_s": [
+   1.2483,
+   1.73
+  ],
+  "full_combination_s": [
+   0.05,
+   1.73
+  ],
+  "active_figures": [
+   "W-RW (puck carrier, passer)",
+   "W-C (receiver, shooter)"
+  ],
+  "static_figures_observed": [
+   "E-G",
+   "E-LD",
+   "E-RD"
+  ],
+  "note": "Other figures are out of frame or not checked; the replay shows no other figure moving during the shot."
+ },
+ "camera_seg1": {
+  "model": "planar homography world (ice plane z = 0, mm) -> recording frame px",
+  "status": "traced",
+  "H_world_mm_to_frame_px": [
+   [
+    4.169098402,
+    -5.075014132,
+    752.481583325
+   ],
+   [
+    -1.078280382,
+    -0.287870372,
+    772.036891993
+   ],
+   [
+    0.001832405,
+    0.000534596,
+    1.0
+   ]
+  ],
+  "fit": {
+   "rms_px": 6.11,
+   "leave_one_out_rms_px": 13.48,
+   "max_leave_one_out_px": 24.4
+  },
+  "correspondences": [
+   {
+    "id": "lm.board.goal_line.E.bottom",
+    "landmark_id": "lm.board.goal_line.E.bottom",
+    "frame_px": [
+     2245.0,
+     374.0
+    ],
+    "uncertainty_px": 6,
+    "how": "end of the thin red E goal line at the -y board base (saturation mask, line fit)",
+    "world_mm": [
+     288.08,
+     -234.95
+    ],
+    "world_source": "lm.board.goal_line.E.bottom (overhead px via map.overhead.preview)",
+    "residual_px": 3.6,
+    "leave_one_out_px": 6.9,
+    "local_px_per_mm": 2.875
+   },
+   {
+    "id": "lm.board.blue_line.E.bottom",
+    "landmark_id": "lm.board.blue_line.E.bottom",
+    "frame_px": [
+     2230.0,
+     698.3
+    ],
+    "uncertainty_px": 6,
+    "how": "end of the E blue line at the -y board base",
+    "world_mm": [
+     96.13,
+     -234.58
+    ],
+    "world_source": "lm.board.blue_line.E.bottom (overhead px via map.overhead.preview)",
+    "residual_px": 2.1,
+    "leave_one_out_px": 3.0,
+    "local_px_per_mm": 4.123
+   },
+   {
+    "id": "lm.board.centre_line.bottom",
+    "landmark_id": "lm.board.centre_line.bottom",
+    "frame_px": [
+     2216.0,
+     955.4
+    ],
+    "uncertainty_px": 6,
+    "how": "end of the centre red line at the -y board base",
+    "world_mm": [
+     0.06,
+     -234.39
+    ],
+    "world_source": "lm.board.centre_line.bottom (overhead px via map.overhead.preview)",
+    "residual_px": 5.9,
+    "leave_one_out_px": 13.4,
+    "local_px_per_mm": 5.231
+   },
+   {
+    "id": "faceoff_spot.E.neg_y",
+    "overhead_px": [
+     3208.1,
+     3573.2
+    ],
+    "frame_px": [
+     1663.6,
+     709.9
+    ],
+    "uncertainty_px": 3,
+    "how": "red blob centroid in both images",
+    "world_mm": [
+     69.79,
+     -139.18
+    ],
+    "world_source": "red dot centroid in stiga_se_fi_overhead via map.overhead.preview",
+    "residual_px": 10.8,
+    "leave_one_out_px": 12.7,
+    "local_px_per_mm": 4.088
+   },
+   {
+    "id": "faceoff_spot.W.neg_y",
+    "overhead_px": [
+     2421.2,
+     3569.4
+    ],
+    "frame_px": [
+     1465.9,
+     1120.9
+    ],
+    "uncertainty_px": 3,
+    "how": "red blob centroid in both images",
+    "world_mm": [
+     -71.54,
+     -138.97
+    ],
+    "world_source": "red dot centroid in stiga_se_fi_overhead via map.overhead.preview",
+    "residual_px": 7.0,
+    "leave_one_out_px": 13.6,
+    "local_px_per_mm": 5.908
+   },
+   {
+    "id": "faceoff_spot.E.pos_y",
+    "overhead_px": [
+     3202.2,
+     2016.1
+    ],
+    "frame_px": [
+     273.1,
+     544.3
+    ],
+    "uncertainty_px": 4,
+    "how": "red blob centroid in both images (partly cut by the frame edge)",
+    "world_mm": [
+     67.79,
+     140.46
+    ],
+    "world_source": "red dot centroid in stiga_se_fi_overhead via map.overhead.preview",
+    "residual_px": 6.5,
+    "leave_one_out_px": 24.4,
+    "local_px_per_mm": 3.951
+   },
+   {
+    "id": "lm.slot.E-RD.overhead.end",
+    "landmark_id": "lm.slot.E-RD.overhead.end",
+    "frame_px": [
+     956.0,
+     262.0
+    ],
+    "uncertainty_px": 6,
+    "how": "centre of the rounded slot end",
+    "world_mm": [
+     303.89,
+     93.95
+    ],
+    "world_source": "lm.slot.E-RD.overhead.end (overhead px via map.overhead.preview)",
+    "residual_px": 4.5,
+    "leave_one_out_px": 11.0,
+    "local_px_per_mm": 2.636
+   },
+   {
+    "id": "lm.slot.E-LD.overhead.end",
+    "landmark_id": "lm.slot.E-LD.overhead.end",
+    "frame_px": [
+     1737.0,
+     233.0
+    ],
+    "uncertainty_px": 6,
+    "how": "centre of the rounded slot end",
+    "world_mm": [
+     386.14,
+     -100.36
+    ],
+    "world_source": "lm.slot.E-LD.overhead.end (overhead px via map.overhead.preview)",
+    "residual_px": 0.9,
+    "leave_one_out_px": 1.5,
+    "local_px_per_mm": 2.363
+   },
+   {
+    "id": "lm.slot.W-C.overhead.start",
+    "landmark_id": "lm.slot.W-C.overhead.start",
+    "frame_px": [
+     777.0,
+     961.0
+    ],
+    "uncertainty_px": 8,
+    "how": "centre of the rounded slot end (near end, partly under the W-C stick)",
+    "world_mm": [
+     -57.16,
+     -34.22
+    ],
+    "world_source": "lm.slot.W-C.overhead.start (overhead px via map.overhead.preview)",
+    "residual_px": 7.4,
+    "leave_one_out_px": 18.4,
+    "local_px_per_mm": 5.413
+   }
+  ],
+  "radial_distortion": "not modelled (pinhole + planar homography); residuals are consistent with the reading uncertainty plus table/edition differences",
+  "limitations": "Nine ice-plane points, all from the -y half and the E end except one +y faceoff dot (leave-one-out 24 px); the +y side and the W end are weakly constrained. Local scale 2.4-5.9 px/mm, so a 13 px leave-one-out error is about 2-5 mm on the ice. World positions additionally assume the recorded table shares the traced Play Off 21 layout (a different STIGA edition)."
+ },
+ "id_mapping": {
+  "method": "slot topology: projected canonical slot centrelines (data/geometry.json fixture_paths) overlay the visible slots in frame 167 (validation/21-camera-calibration.png)",
+  "figures": {
+   "W-C": "white figure on the centre slot at the +y neutral-zone circle; the shooter",
+   "W-RW": "white no. 64 on the curved -y winger slot; the passer",
+   "E-G": "yellow goalie in goal.E",
+   "E-LD": "yellow figure on the straight slot ending behind goal.E on the -y side (static)",
+   "E-RD": "yellow no. 2 on the +y defender slot ending behind goal.E (static; reference pack E-RD is also no. 2)"
+  },
+  "team_side": "white attacks the yellow goalie's goal = W attacking goal.E (+x); image left = +y"
+ },
+ "figures": {
+  "W-C": {
+   "fixture_path_id": "path.W-C",
+   "observations": [
+    {
+     "recording_frame": 30,
+     "content_first_recording_frame": 30,
+     "recording_time_s": 0.5,
+     "shot_time_s": 0.05,
+     "content_frame_index": 1,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1020,
+      567
+     ],
+     "reading_uncertainty_px": 20,
+     "state": "sharp",
+     "arc_mm": 159.3,
+     "world_mm": [
+      100.9,
+      -14.6
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 10.9,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 47,
+     "content_first_recording_frame": 47,
+     "recording_time_s": 0.7833,
+     "shot_time_s": 0.3333,
+     "content_frame_index": 8,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      790,
+      958
+     ],
+     "reading_uncertainty_px": 25,
+     "state": "motion blur",
+     "arc_mm": 1.2,
+     "world_mm": [
+      -56.0,
+      -34.1
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 7.6,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 68,
+     "content_first_recording_frame": 68,
+     "recording_time_s": 1.1317,
+     "shot_time_s": 0.6817,
+     "content_frame_index": 17,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1030,
+      558
+     ],
+     "reading_uncertainty_px": 15,
+     "state": "sharp",
+     "arc_mm": 164.2,
+     "world_mm": [
+      105.8,
+      -14.1
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 8.2,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 78,
+     "content_first_recording_frame": 78,
+     "recording_time_s": 1.2983,
+     "shot_time_s": 0.8483,
+     "content_frame_index": 21,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      990,
+      683
+     ],
+     "reading_uncertainty_px": 60,
+     "state": "motion blur, moving down the slot",
+     "arc_mm": 102.2,
+     "world_mm": [
+      44.3,
+      -21.7
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 26.9,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 95,
+     "content_first_recording_frame": 95,
+     "recording_time_s": 1.5817,
+     "shot_time_s": 1.1317,
+     "content_frame_index": 28,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      800,
+      965
+     ],
+     "reading_uncertainty_px": 20,
+     "state": "sharp",
+     "arc_mm": 0.0,
+     "world_mm": [
+      -57.2,
+      -34.2
+     ],
+     "clamped_to_slot_end": true,
+     "arc_uncertainty_mm": null,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 104,
+     "content_first_recording_frame": 104,
+     "recording_time_s": 1.7317,
+     "shot_time_s": 1.2817,
+     "content_frame_index": 32,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      800,
+      965
+     ],
+     "reading_uncertainty_px": 20,
+     "state": "slight blur",
+     "arc_mm": 0.0,
+     "world_mm": [
+      -57.2,
+      -34.2
+     ],
+     "clamped_to_slot_end": true,
+     "arc_uncertainty_mm": null,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 107,
+     "content_first_recording_frame": 107,
+     "recording_time_s": 1.7817,
+     "shot_time_s": 1.3317,
+     "content_frame_index": 33,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      810,
+      960
+     ],
+     "reading_uncertainty_px": 20,
+     "state": "sharp",
+     "arc_mm": 0.6,
+     "world_mm": [
+      -56.6,
+      -34.2
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 6.1,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 109,
+     "content_first_recording_frame": 109,
+     "recording_time_s": 1.815,
+     "shot_time_s": 1.365,
+     "content_frame_index": 34,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      800,
+      960
+     ],
+     "reading_uncertainty_px": 25,
+     "state": "motion blur (starting to move)",
+     "arc_mm": 0.6,
+     "world_mm": [
+      -56.6,
+      -34.2
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 7.6,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 111,
+     "content_first_recording_frame": 111,
+     "recording_time_s": 1.8483,
+     "shot_time_s": 1.3983,
+     "content_frame_index": 35,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      930,
+      667
+     ],
+     "reading_uncertainty_px": 120,
+     "state": "heavy motion blur: smear spans v 383-800, moving up the slot",
+     "arc_mm": 109.5,
+     "world_mm": [
+      51.5,
+      -20.8
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 54.9,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 114,
+     "content_first_recording_frame": 114,
+     "recording_time_s": 1.8983,
+     "shot_time_s": 1.4483,
+     "content_frame_index": 36,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1080,
+      450
+     ],
+     "reading_uncertainty_px": 40,
+     "state": "motion blur, at the crease",
+     "arc_mm": 229.8,
+     "world_mm": [
+      170.9,
+      -6.2
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 27.0,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 116,
+     "content_first_recording_frame": 116,
+     "recording_time_s": 1.9317,
+     "shot_time_s": 1.4817,
+     "content_frame_index": 37,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1110,
+      423
+     ],
+     "reading_uncertainty_px": 20,
+     "state": "sharp, at the top end of its slot beside the goalie",
+     "arc_mm": 248.4,
+     "world_mm": [
+      189.4,
+      -3.9
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 14.1,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 119,
+     "content_first_recording_frame": 119,
+     "recording_time_s": 1.98,
+     "shot_time_s": 1.53,
+     "content_frame_index": 38,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1095,
+      490
+     ],
+     "reading_uncertainty_px": 60,
+     "state": "motion blur, moving back",
+     "arc_mm": 204.0,
+     "world_mm": [
+      145.3,
+      -9.3
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 37.3,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 121,
+     "content_first_recording_frame": 121,
+     "recording_time_s": 2.0133,
+     "shot_time_s": 1.5633,
+     "content_frame_index": 39,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1030,
+      557
+     ],
+     "reading_uncertainty_px": 50,
+     "state": "motion blur, moving back",
+     "arc_mm": 164.8,
+     "world_mm": [
+      106.4,
+      -14.0
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 27.5,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 126,
+     "content_first_recording_frame": 126,
+     "recording_time_s": 2.0967,
+     "shot_time_s": 1.6467,
+     "content_frame_index": 41,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      910,
+      757
+     ],
+     "reading_uncertainty_px": 60,
+     "state": "motion blur, moving back",
+     "arc_mm": 71.0,
+     "world_mm": [
+      13.3,
+      -25.5
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 24.0,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 131,
+     "content_first_recording_frame": 131,
+     "recording_time_s": 2.18,
+     "shot_time_s": 1.73,
+     "content_frame_index": 43,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      820,
+      923
+     ],
+     "reading_uncertainty_px": 30,
+     "state": "slight blur",
+     "arc_mm": 12.0,
+     "world_mm": [
+      -45.2,
+      -32.8
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 9.5,
+     "slot_length_mm": 250.3
+    },
+    {
+     "recording_frame": 167,
+     "content_first_recording_frame": 167,
+     "recording_time_s": 2.78,
+     "shot_time_s": 2.33,
+     "content_frame_index": 58,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      830,
+      957
+     ],
+     "reading_uncertainty_px": 15,
+     "state": "sharp, at rest",
+     "arc_mm": 1.5,
+     "world_mm": [
+      -55.7,
+      -34.0
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 4.6,
+     "slot_length_mm": 250.3
+    }
+   ]
+  },
+  "W-RW": {
+   "fixture_path_id": "path.W-RW",
+   "observations": [
+    {
+     "recording_frame": 30,
+     "content_first_recording_frame": 30,
+     "recording_time_s": 0.5,
+     "shot_time_s": 0.05,
+     "content_frame_index": 1,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      2035,
+      400
+     ],
+     "reading_uncertainty_px": 15,
+     "state": "sharp, puck at the blade",
+     "arc_mm": 327.8,
+     "world_mm": [
+      256.4,
+      -184.0
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 11.3,
+     "slot_length_mm": 453.5
+    },
+    {
+     "recording_frame": 44,
+     "content_first_recording_frame": 44,
+     "recording_time_s": 0.7333,
+     "shot_time_s": 0.2833,
+     "content_frame_index": 7,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1830,
+      1060
+     ],
+     "reading_uncertainty_px": 60,
+     "state": "motion blur, moving toward the camera (centre ice)",
+     "arc_mm": 29.4,
+     "world_mm": [
+      -41.9,
+      -189.0
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 16.2,
+     "slot_length_mm": 453.5
+    },
+    {
+     "recording_frame": 68,
+     "content_first_recording_frame": 68,
+     "recording_time_s": 1.1317,
+     "shot_time_s": 0.6817,
+     "content_frame_index": 17,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      2025,
+      440
+     ],
+     "reading_uncertainty_px": 15,
+     "state": "sharp, puck at the blade",
+     "arc_mm": 298.7,
+     "world_mm": [
+      227.3,
+      -184.0
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 10.4,
+     "slot_length_mm": 453.5
+    },
+    {
+     "recording_frame": 85,
+     "content_first_recording_frame": 85,
+     "recording_time_s": 1.415,
+     "shot_time_s": 0.965,
+     "content_frame_index": 24,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1810,
+      1100
+     ],
+     "reading_uncertainty_px": 30,
+     "state": "motion blur",
+     "arc_mm": 18.9,
+     "world_mm": [
+      -52.4,
+      -189.4
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 7.7,
+     "slot_length_mm": 453.5
+    },
+    {
+     "recording_frame": 104,
+     "content_first_recording_frame": 104,
+     "recording_time_s": 1.7317,
+     "shot_time_s": 1.2817,
+     "content_frame_index": 32,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1810,
+      1100
+     ],
+     "reading_uncertainty_px": 40,
+     "state": "heavy blur: rotating (pass)",
+     "arc_mm": 18.9,
+     "world_mm": [
+      -52.4,
+      -189.4
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 10.3,
+     "slot_length_mm": 453.5
+    },
+    {
+     "recording_frame": 107,
+     "content_first_recording_frame": 107,
+     "recording_time_s": 1.7817,
+     "shot_time_s": 1.3317,
+     "content_frame_index": 33,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1830,
+      1120
+     ],
+     "reading_uncertainty_px": 25,
+     "state": "motion blur, after release",
+     "arc_mm": 13.9,
+     "world_mm": [
+      -57.4,
+      -189.6
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 6.3,
+     "slot_length_mm": 453.5
+    },
+    {
+     "recording_frame": 131,
+     "content_first_recording_frame": 131,
+     "recording_time_s": 2.18,
+     "shot_time_s": 1.73,
+     "content_frame_index": 43,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1840,
+      1130
+     ],
+     "reading_uncertainty_px": 15,
+     "state": "sharp, back to the camera",
+     "arc_mm": 11.4,
+     "world_mm": [
+      -59.9,
+      -189.7
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 3.7,
+     "slot_length_mm": 453.5
+    },
+    {
+     "recording_frame": 167,
+     "content_first_recording_frame": 167,
+     "recording_time_s": 2.78,
+     "shot_time_s": 2.33,
+     "content_frame_index": 58,
+     "time_uncertainty_s": 0.017,
+     "skate_px": [
+      1840,
+      1130
+     ],
+     "reading_uncertainty_px": 15,
+     "state": "sharp, at rest",
+     "arc_mm": 11.4,
+     "world_mm": [
+      -59.9,
+      -189.7
+     ],
+     "clamped_to_slot_end": false,
+     "arc_uncertainty_mm": 3.7,
+     "slot_length_mm": 453.5
+    }
+   ]
+  }
+ },
+ "puck": {
+  "diameter_mm_catalog_nominal": 25.4,
+  "observations": [
+   {
+    "recording_frame": 30,
+    "content_first_recording_frame": 30,
+    "recording_time_s": 0.5,
+    "shot_time_s": 0.05,
+    "content_frame_index": 1,
+    "time_uncertainty_s": 0.017,
+    "state": "sharp, at the W-RW blade",
+    "image_px": [
+     2090,
+     425
+    ],
+    "reading_uncertainty_px": 8,
+    "world_mm_blob_centre": [
+     243.1,
+     -202.7
+    ],
+    "reading_uncertainty_mm": 2.6,
+    "apparent_diameter_mm": 26.5
+   },
+   {
+    "recording_frame": 37,
+    "content_first_recording_frame": 37,
+    "recording_time_s": 0.6167,
+    "shot_time_s": 0.1667,
+    "content_frame_index": 4,
+    "time_uncertainty_s": 0.017,
+    "state": "motion smear, moving toward the camera",
+    "image_px": [
+     2070,
+     550
+    ],
+    "reading_uncertainty_px": 25,
+    "world_mm_blob_centre": [
+     163.1,
+     -203.2
+    ],
+    "reading_uncertainty_mm": 7.1
+   },
+   {
+    "recording_frame": 44,
+    "content_first_recording_frame": 44,
+    "recording_time_s": 0.7333,
+    "shot_time_s": 0.2833,
+    "content_frame_index": 7,
+    "time_uncertainty_s": 0.017,
+    "state": "smear, partly behind W-RW",
+    "image_px": [
+     2040,
+     1000
+    ],
+    "reading_uncertainty_px": 40,
+    "world_mm_blob_centre": [
+     -18.9,
+     -210.1
+    ],
+    "reading_uncertainty_mm": 7.4
+   },
+   {
+    "recording_frame": 51,
+    "content_first_recording_frame": 51,
+    "recording_time_s": 0.85,
+    "shot_time_s": 0.4,
+    "content_frame_index": 10,
+    "time_uncertainty_s": 0.017,
+    "state": "smear, partly behind W-RW",
+    "image_px": [
+     1995,
+     1000
+    ],
+    "reading_uncertainty_px": 35,
+    "world_mm_blob_centre": [
+     -20.7,
+     -204.0
+    ],
+    "reading_uncertainty_mm": 6.5
+   },
+   {
+    "recording_frame": 61,
+    "content_first_recording_frame": 61,
+    "recording_time_s": 1.015,
+    "shot_time_s": 0.565,
+    "content_frame_index": 14,
+    "time_uncertainty_s": 0.017,
+    "state": "smear, moving away from the camera",
+    "image_px": [
+     2087,
+     573
+    ],
+    "reading_uncertainty_px": 20,
+    "world_mm_blob_centre": [
+     151.4,
+     -207.1
+    ],
+    "reading_uncertainty_mm": 5.6
+   },
+   {
+    "recording_frame": 68,
+    "content_first_recording_frame": 68,
+    "recording_time_s": 1.1317,
+    "shot_time_s": 0.6817,
+    "content_frame_index": 17,
+    "time_uncertainty_s": 0.017,
+    "state": "sharp, at the W-RW blade",
+    "image_px": [
+     2100,
+     465
+    ],
+    "reading_uncertainty_px": 8,
+    "world_mm_blob_centre": [
+     216.4,
+     -206.2
+    ],
+    "reading_uncertainty_mm": 2.5,
+    "apparent_diameter_mm": 25.9
+   },
+   {
+    "recording_frame": 78,
+    "content_first_recording_frame": 78,
+    "recording_time_s": 1.2983,
+    "shot_time_s": 0.8483,
+    "content_frame_index": 21,
+    "time_uncertainty_s": 0.017,
+    "state": "smear, moving toward the camera",
+    "image_px": [
+     2075,
+     602
+    ],
+    "reading_uncertainty_px": 25,
+    "world_mm_blob_centre": [
+     135.5,
+     -205.8
+    ],
+    "reading_uncertainty_mm": 6.8
+   },
+   {
+    "recording_frame": 85,
+    "content_first_recording_frame": 85,
+    "recording_time_s": 1.415,
+    "shot_time_s": 0.965,
+    "content_frame_index": 24,
+    "time_uncertainty_s": 0.017,
+    "state": "partly behind W-RW legs",
+    "image_px": [
+     1970,
+     1022
+    ],
+    "reading_uncertainty_px": 30,
+    "world_mm_blob_centre": [
+     -27.8,
+     -201.2
+    ],
+    "reading_uncertainty_mm": 5.5
+   },
+   {
+    "recording_frame": 95,
+    "content_first_recording_frame": 95,
+    "recording_time_s": 1.5817,
+    "shot_time_s": 1.1317,
+    "content_frame_index": 28,
+    "time_uncertainty_s": 0.017,
+    "state": "mostly behind W-RW",
+    "image_px": [
+     1930,
+     1050
+    ],
+    "reading_uncertainty_px": 40,
+    "world_mm_blob_centre": [
+     -37.0,
+     -196.6
+    ],
+    "reading_uncertainty_mm": 7.2
+   },
+   {
+    "recording_frame": 102,
+    "content_first_recording_frame": 102,
+    "recording_time_s": 1.6983,
+    "shot_time_s": 1.2483,
+    "content_frame_index": 31,
+    "time_uncertainty_s": 0.017,
+    "state": "partly behind W-RW",
+    "image_px": [
+     1910,
+     997
+    ],
+    "reading_uncertainty_px": 35,
+    "world_mm_blob_centre": [
+     -23.1,
+     -192.4
+    ],
+    "reading_uncertainty_mm": 6.6
+   },
+   {
+    "recording_frame": 104,
+    "content_first_recording_frame": 104,
+    "recording_time_s": 1.7317,
+    "shot_time_s": 1.2817,
+    "content_frame_index": 32,
+    "time_uncertainty_s": 0.017,
+    "state": "not visible: hidden by the blurred, rotating W-RW",
+    "image_px": null,
+    "visible": false
+   },
+   {
+    "recording_frame": 107,
+    "content_first_recording_frame": 107,
+    "recording_time_s": 1.7817,
+    "shot_time_s": 1.3317,
+    "content_frame_index": 33,
+    "time_uncertainty_s": 0.017,
+    "state": "motion streak about 236 px long, moving toward W-C (pass in flight)",
+    "image_px": [
+     1462,
+     937
+    ],
+    "reading_uncertainty_px": 30,
+    "world_mm_blob_centre": [
+     -23.2,
+     -127.0
+    ],
+    "reading_uncertainty_mm": 5.9
+   },
+   {
+    "recording_frame": 109,
+    "content_first_recording_frame": 109,
+    "recording_time_s": 1.815,
+    "shot_time_s": 1.365,
+    "content_frame_index": 34,
+    "time_uncertainty_s": 0.017,
+    "state": "smear arriving at the W-C blade (contact interval)",
+    "image_px": [
+     1130,
+     845
+    ],
+    "reading_uncertainty_px": 40,
+    "world_mm_blob_centre": [
+     -8.2,
+     -69.5
+    ],
+    "reading_uncertainty_mm": 8.3
+   },
+   {
+    "recording_frame": 111,
+    "content_first_recording_frame": 111,
+    "recording_time_s": 1.8483,
+    "shot_time_s": 1.3983,
+    "content_frame_index": 35,
+    "time_uncertainty_s": 0.017,
+    "state": "not visible: carried behind the blurred W-C",
+    "image_px": null,
+    "visible": false
+   },
+   {
+    "recording_frame": 114,
+    "content_first_recording_frame": 114,
+    "recording_time_s": 1.8983,
+    "shot_time_s": 1.4483,
+    "content_frame_index": 36,
+    "time_uncertainty_s": 0.017,
+    "state": "not visible: W-C at the crease; puck behind figure or goalie",
+    "image_px": null,
+    "visible": false
+   },
+   {
+    "recording_frame": 116,
+    "content_first_recording_frame": 116,
+    "recording_time_s": 1.9317,
+    "shot_time_s": 1.4817,
+    "content_frame_index": 37,
+    "time_uncertainty_s": 0.017,
+    "state": "not visible from this camera (goal interior hidden by goalie and frame)",
+    "image_px": null,
+    "visible": false
+   },
+   {
+    "recording_frame": 167,
+    "content_first_recording_frame": 167,
+    "recording_time_s": 2.78,
+    "shot_time_s": 2.33,
+    "content_frame_index": 58,
+    "time_uncertainty_s": 0.017,
+    "state": "not on the visible ice: inside goal.E (confirmed by the replay)",
+    "image_px": null,
+    "visible": false
+   }
+  ],
+  "scale_check": "sharp puck frames 30 and 68: horizontal blob chord maps to 26.5-27.1 mm on the ice plane vs the approx. 25.4 mm catalog diameter (within ~7%); the faceoff circle E.neg_y chord maps to ~105 mm vs ~97-100 mm in the reference overhead. Consistent scale, not a measurement."
+ },
+ "events": [
+  {
+   "id": "prep.drag_1",
+   "description": "W-RW drags the puck along its slot from the -y end-zone corner toward centre ice and back (W-C mirrors with a feint along its own slot)",
+   "interval_s": [
+    0.05,
+    0.6817
+   ],
+   "evidence": "puck marks 30-68; W-C marks 30, 47, 68"
+  },
+  {
+   "id": "prep.drag_2",
+   "description": "second drag of the puck toward centre ice by W-RW; W-C moves down to the near end of its slot",
+   "interval_s": [
+    0.6817,
+    1.2483
+   ],
+   "evidence": "puck marks 68-102; W-C marks 68, 78, 95"
+  },
+  {
+   "id": "pass.release",
+   "description": "W-RW releases a cross-ice pass from its blade (rotating), puck leaves toward W-C",
+   "interval_s": [
+    1.2483,
+    1.3317
+   ],
+   "exact_time": null,
+   "evidence": "puck partly visible at the W-RW blade in 102, hidden in 104, in flight (236 px streak) in 107"
+  },
+  {
+   "id": "contact.W-C_reception",
+   "description": "puck reaches the W-C blade; W-C starts to travel up its slot (shovel). Exact first contact not observed (motion smear)",
+   "interval_s": [
+    1.3317,
+    1.3983
+   ],
+   "exact_time": null,
+   "evidence": "smear at the W-C blade in 109; replay frames 256-263"
+  },
+  {
+   "id": "carry",
+   "description": "W-C carries the puck on its blade up the slot toward the goal mouth; puck occluded by the blurred figure",
+   "interval_s": [
+    1.365,
+    1.4817
+   ],
+   "exact_time": null,
+   "evidence": "W-C marks 109-116; replay frames 265-280 show the puck at the blade"
+  },
+  {
+   "id": "goal_entry",
+   "description": "puck enters goal.E past the goalie's right (+y; camera-right in the replay) side (corrected in iteration 22). Not visible in segment 1; time bounded by W-C reaching its slot end",
+   "interval_s": [
+    1.3983,
+    1.53
+   ],
+   "exact_time": null,
+   "evidence": "replay frames 280-289 (puck smear into the net, then puck inside); segment 1 frame 116 W-C at slot end"
+  },
+  {
+   "id": "return",
+   "description": "W-C returns down its slot to the near end",
+   "interval_s": [
+    1.4817,
+    1.73
+   ],
+   "evidence": "W-C marks 116-131"
+  }
+ ],
+ "limitations": [
+  "Recorded on a different table edition and figure pack than the user's; world positions assume the canonical Play Off 21 layout.",
+  "No exact blade-puck contact time or point is claimed: release, reception and goal entry are intervals of one or more 40 ms content frames.",
+  "Figure rotation is not measured (motion blur, unknown blade offset); only slot positions are observed.",
+  "Fixture points use the skate row snapped to the projected slot centreline; the real fixture axis offset is unknown.",
+  "Puck world points are blob centres, biased by up to half a puck thickness of parallax.",
+  "Goal entry is only seen in the uncalibrated slow-motion replay."
+ ],
+ "not_done": "no motion fitting, no puck simulation, no animation (iteration 22 onward)"
+}

@@ -15,14 +15,25 @@ test("12 figures: 10 skaters + 2 goalies, each on its own path with its own asse
     assert.equal(p.asset_id, `fig.${p.player_id}`);
     assert.ok(p.reference_to_path_mm < 1, `${p.player_id} reference point ${p.reference_to_path_mm} mm from its path`);
     assert.ok(Math.abs(p.det - 1) < 1e-9, "proper rotation");
-    assert.equal(p.heading_deg, p.team === "W" ? 0 : 180);
+    const home = p.team === "W" ? 0 : 180;
+    const d = (((p.heading_deg - home - p.state.thetaDeg) % 360) + 540) % 360 - 180;
+    assert.ok(Math.abs(d) < 1e-6, `${p.player_id}: heading = home + theta`);
   }
 });
 
-test("mold reuse only where evidenced; everything else is a marked placeholder", () => {
-  assert.deepEqual([...rep.modelled].sort(), ["W-G", "W-RD"]);
-  assert.equal(rep.placeholders.length, 10);
-  for (const p of poses.filter((x) => !["W-G", "W-RD"].includes(x.player_id))) assert.match(p.asset, /PLACEHOLDER/);
+test("every figure uses the shared mold of its kind in its team's kit; no placeholders remain", () => {
+  assert.equal(rep.modelled.length, 12);
+  assert.deepEqual(rep.placeholders, []);
+  for (const p of poses) {
+    const kind = p.position === "G" ? "goalie" : "skater";
+    const kit = p.team === "W" ? "FIN" : "SWE";
+    assert.equal(p.asset, `assets/figures/${kind}_${kit}.blend#${kind === "goalie" ? "Goalie" : "Skater"}.${kit}`);
+  }
+  const fitted = poses.filter((p) => /mold fit on the official overhead/.test(p.reference_rule)).map((p) => p.player_id).sort();
+  assert.deepEqual(fitted, ["E-C", "E-LD", "E-LW", "E-RD", "W-G", "W-RD"]);
+  const gltf = readGlbJson("assets/scene/full_static.glb");
+  const prints = gltf.nodes.filter((n: any) => /^Print\./.test(n.name));
+  assert.equal(prints.length, 12, "one back print per figure");
 });
 
 test("assembly checks: no intersections, nothing below the ice, vertical axes, metres in GLB", () => {

@@ -1,0 +1,140 @@
+{
+ "intro": {
+  "frames": 45,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 0.8,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "full": {
+  "frames": 21,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 0.8,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "goal_hold": {
+  "frames": 20,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "rewind": {
+  "frames": 15,
+  "frames_puck_mostly_hidden": 3,
+  "min_visible_fraction": 0.0,
+  "first_poor_frames": [
+   98,
+   99,
+   100
+  ],
+  "occluders": [
+   "W-C"
+  ]
+ },
+ "setup_set": {
+  "frames": 20,
+  "frames_puck_mostly_hidden": 2,
+  "min_visible_fraction": 0.2,
+  "first_poor_frames": [
+   101,
+   102
+  ],
+  "occluders": [
+   "W-C"
+  ]
+ },
+ "setup_freeze": {
+  "frames": 108,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "to_flick": {
+  "frames": 33,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "turn_in": {
+  "frames": 27,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "flick_freeze": {
+  "frames": 90,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "to_shot": {
+  "frames": 33,
+  "frames_puck_mostly_hidden": 5,
+  "min_visible_fraction": 0.4,
+  "first_poor_frames": [
+   394,
+   395,
+   396,
+   397,
+   398
+  ],
+  "occluders": [
+   "W-C"
+  ]
+ },
+ "spin_in": {
+  "frames": 47,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "strike_freeze": {
+  "frames": 90,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "shot_out": {
+  "frames": 25,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "goal_freeze": {
+  "frames": 30,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "to_replay": {
+  "frames": 38,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "replay": {
+  "frames": 50,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ },
+ "outro": {
+  "frames": 50,
+  "frames_puck_mostly_hidden": 0,
+  "min_visible_fraction": 1.0,
+  "first_poor_frames": [],
+  "occluders": []
+ }
+}

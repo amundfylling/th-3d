@@ -51,3 +51,32 @@ Differences from Cycles:
 - WebGL runs on the CPU (SwiftShader), with no GPU.
 
 There is no animated shot, no physics loop and no camera animation.
+
+## Shot playback (iteration 23)
+
+- `remotion/ShotPlayback.tsx`, compositions `shot23-shovel-17` (the accepted trace at real speed, 30 fps,
+  1920 × 1080) and `shot23-at-time` (one frame at any source time, `--props='{"startS": t}'`, for diagnostics).
+- Time: `t = startS + useCurrentFrame() / fps` (`sourceTimeForFrame`, `src/model/shot-pose.ts`). Each frame sets
+  every trace-driven node (W-C, W-RW, E-G, E-RD, E-LD, puck) to an absolute pose from the pure evaluator. There is
+  no `useFrame()`, no clock and no state carried between frames. The other seven figures keep the static assembly pose.
+- Rotation: the pose matrix comes from the continuous heading (`rigid(heading)`), never from a quaternion blend
+  between frames, so a turn through 0/360 deg cannot take the short way back.
+- Version gate: `remotion/asset-manifest.json` (written by `scripts/shot23-manifest.ts` in `npm run remotion:assets`)
+  holds the geometry version and the SHA-256 of the files named by the trace's `asset_refs`, and of the scene GLB.
+  The composition throws if the trace differs from it or is not `accepted`. The browser also hashes the GLB it
+  actually loads, and cancels the render on a mismatch.
+- Each frame logs `[shot23-state]` (pure state plus a read-back of the drawn nodes). `scripts/shot23-render.ts` uses
+  the Node API (`renderStill`/`renderMedia` with `onBrowserLog`), because the CLI does not print page `console.log`.
+- Caveat (studio only): `useLoader` caches the GLB per page, so in an interactive studio session the shot's posed
+  nodes would also show in a static composition opened afterwards in the same tab. Renders load each composition
+  separately and are not affected (the static-checks still was re-rendered after iteration 23: all PASS).
+
+## Presentation (iteration 24)
+
+- Composition `shot24-shovel-17` (`remotion/ShotPresentation.tsx`). Frame → source time comes from the explicit
+  timeline in `data/presentations/shovel-17.presentation.json` (`src/model/presentation.ts`). Source time → state
+  comes from the same pure evaluator (`shotTimeEvaluator`). The scene is shared with iteration 23
+  (`remotion/ShotScene.tsx`).
+- Overlays (title, speed label, contact explanation, puck ring) are an HTML/SVG layer above the canvas. The puck
+  ring is projected with the scene camera. `overlays: false` renders the mechanics only.
+- Camera: the oblique benchmark camera (`CAMERAS.oblique`).

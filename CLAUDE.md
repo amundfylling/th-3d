@@ -5,14 +5,48 @@ STIGA Play Off 21 table hockey game (family 71-1145-XX). The model must be built
 around the actual hardware, not a generic hockey table.
 
 Work proceeds in numbered iterations from `Claude_Code_Stiga_Iteration_Prompts.md`.
-There are no animated shots before iteration 23.
+There were no animated shots before iteration 23.
 
 ## Active batch
 
 The autonomous batch 06-20 (`docs/autonomous-run.md`) is COMPLETE. Rule 1 ("stop after each
-iteration") applies again. Iteration 21 needs the user's review feedback and a real shot recording.
+iteration") applies again. Iterations 21-25 are done (docs/shot21.md - docs/shot25.md). The iteration-22 trace is
+ACCEPTED by the user (2026-10-04) with an assumed far-corner shot direction; iteration 23 plays it in Remotion
+(fixed overhead camera). Revised 2026-10-05 (trace v2): W-RW drags the puck with its foot, and the contact-physics
+rule below applies. Iteration 24 is done (docs/shot24.md): normal pass, 1/4-speed replay with a pause at the
+key contact, oblique benchmark camera. Iteration 25 is done (docs/shot25.md): the first video is exported
+(validation/25-shovel-17-final.mp4, 1920x1080 60 fps; rerender with `npm run video:shovel-17`). No further
+numbered iteration is defined. A sports-analysis video of the same trace (composition `analysis-shovel-17`,
+validation/analysis-shovel-17.mp4, `npm run video:analysis-shovel-17`) is documented in docs/analysis-shovel-17.md.
+The spjass centre move (user's TikTok, references/shots/spjass-tiktok.mp4) is reconstructed as a PROPOSED trace
+(data/traces/spjass.trace.json) and animated (composition `analysis-spjass`, validation/analysis-spjass.mp4); see docs/spjass.md.
+Näcka (NTHF page and illustration, references/combinations/; no recording) is a PROPOSED, DESIGNED trace
+(data/traces/nacka.trace.json) with video validation/analysis-nacka.mp4; see docs/nacka.md.
+Invers Kryssar med Velodrom (NTHF text only; the user approved the sketch validation/ikv-sketch.png) is a PROPOSED,
+DESIGNED trace (data/traces/invers-kryssar-velodrom.trace.json, v2: the left wing catches softly and pushes the puck
+into the corner, after the user rejected v1's flick) with video validation/analysis-ikv.mp4; see
+docs/invers-kryssar-velodrom.md.
+A concept video of the three ways to defend when the opponent's left wing has the puck (passive/box, active, mix; user's
+TikTok references/shots/defence-vs-left-wing-tiktok.mp4) uses the PROPOSED, DESIGNED trace data/traces/defence-left-wing.trace.json
+(video validation/analysis-defence-lw.mp4); its shots and passes are lanes drawn as graphics; see docs/defence-left-wing.md.
+All analysis videos share remotion/AnalysisVideo.tsx.
+Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
+references/games/; handheld phone) are digested in docs/game-mechanics.md, with the user's answers. A first PROPOSED
+tracking pipeline (stabilisation, calibration, puck track, possession per skater by exclusive reach areas;
+`npm run game:track`) is documented in docs/game-tracking.md.
+NM 2026 semi-final (Nygård vs Fjermestad, seven games, broadcast video in a GitHub release, indexed): game 1 pass
+mapping (PROPOSED) with a user review page; see docs/nm26-game1-investigation.md and docs/nm26-passes.md.
+All seven NM26 games are tracked (PROPOSED). Game structure, goals and common patterns are in docs/nm26-game-patterns.md.
+A synthetic-data pilot (goalie pose from Blender renders in the NM26 broadcast camera, `scripts/synth/`) is documented in
+docs/synthetic-goalie-pilot.md (PROPOSED).
+The figures stay with the table ends (white/blue left, yellow right): kit colour is an END, not a player (the players
+switch ends 2-2-1-1-1).
 
 ## Key files
+
+- `docs/table-hockey-playbook.md` - how table hockey is played beyond the rules: figures and slots, matchups, build-up,
+  the attacking families (shovel, centrifuge, velodrome, centre tricks), defence (Box/Flipper), the NTHF catalogue
+  (`data/combinations/nthf-catalogue.json`), vocabulary. Read it before any task about play, shots or tactics.
 
 - `docs/state.md` - handoff: last/next iteration, verification status, decisions, missing inputs.
 - `docs/reference.md` - reference brief: PDF identity, page pointers, published dimensions, conflicts, gaps.
@@ -45,6 +79,56 @@ iteration") applies again. Iteration 21 needs the user's review feedback and a r
     inspect, unresolved assumptions and the next step. Update `docs/state.md`. Commit that
     iteration's changes on the current working branch when git permits; do not merge or
     force-push.
+
+## Contact physics (user rule, 2026-10-05)
+
+- The puck is a rigid disk. It may TOUCH figures (skates, stick, body), boards and goal, but NEVER overlap or pass
+  through them: not at any time in a trace, in any phase, including preparation moves (drags, stick handling),
+  occluded intervals and the time between samples. Every saved trace is checked with the finite puck against every
+  figure's geometry, the boards and the goal posts every 0.25 ms or finer, with an overlap tolerance of at most
+  0.1 mm and no phase exemptions. A trace that fails is not saved as proposed or accepted, and Remotion does not
+  play it.
+- Every change in the puck's motion has a named physical cause: a contact with a specific part (foot/skate, blade,
+  back of the figure, boards, goal). No unexplained course changes, no jumps, no puck moving through geometry.
+- Follow the real technique: the drag-back is done with the foot (skate) and a slight turn of the figure, not with
+  the stick through the puck. When the evidence is unclear, choose a contact that is physically possible (touching,
+  pushing in the direction of motion), never an overlap. Rigid figures also obey rule 5: rotate the figure, don't
+  bend it.
+- Exceptions only with the user's explicit approval, recorded as data (`shots/*/inputs.json`
+  `approved_overlap_exceptions`: what, why, maximum depth, approver, removal condition) and reported in the checks.
+  Never add one silently, and never widen one without asking.
+
+## Slide or bounce (user rule, 2026-10-06)
+
+The puck is a light, thin disk. It stays flat and SLIDES only when every contact changes its velocity gently. A hard
+hit makes it tip, jump or rebound, and traces do not model that. So a trace must not rely on a contact that would
+make the puck bounce.
+- **Slides:**
+  - **A push.** The blade or skate meets the puck at a low relative speed and then moves WITH it, building the speed
+    up over a sustained contact. The figure faces the push direction and travels along its slot and/or turns slowly.
+    This is how a pass along the boards is played: the wing skates forward with the puck on the front of the blade,
+    into the curve of the corner, and the puck runs on along the boards (example:
+    `references/shots/lw-board-pass-example.mov`, a different combination; the puck leaves the corner at about
+    1 m/s).
+  - **A soft reception.** The blade gives way (turns or moves with the incoming puck), so the puck is slowed, not
+    stopped dead or sent back.
+  - **Along the boards.** The puck meets the board at a glancing angle (it enters a curve nearly tangentially) and
+    then follows it.
+  - **A first-time play of a moving puck.** The blade first moves with the puck (it gives way: the figure slides
+    along its slot or turns away), then accelerates it in the new direction.
+- **Bounces (not allowed in a trace):**
+  - A flick or strike: a fast-sweeping blade hits the puck at a large relative speed, worst of all a puck that is
+    coming toward the blade (a first-time reversal or a sharp redirect).
+  - A puck driven steeply into the boards, a post or a figure at speed. It rebounds; it does not stick and slide.
+- **Checks** (every new or changed trace, reported in its checks file as `slide_check`):
+  - every figure contact: relative normal impact speed at most 500 mm/s;
+  - every board, post or cage contact: normal impact speed at most 300 mm/s;
+  - the goal net catching the puck is exempt.
+  - These limits are ASSUMED. They come from the user's judgement that the left-wing flick in the first IKV trace (v1),
+    with a 2.9 m/s impact, bounces, and from the example clip. Change them only with the user.
+  - Traces made before this rule (Shovel, spjass, Näcka) have not been rechecked against it.
+  - In the frictionless restitution-0.5 contact model, a push shows up as a run of many small touches. That is
+    expected; each touch must be within the limit.
 
 ## Evidence discipline
 

@@ -14,7 +14,7 @@
     234.92
   ],
   "rectification": "inverse of the ASSUMED preview similarity (map.overhead.preview), bicubic; lens bow up to about 10 px and keystone not corrected (docs/board-trace.md)",
-  "masked_fraction_of_ice": 0.2614,
+  "masked_fraction_of_ice": 0.2621,
   "masked_regions": [
     "cutout.E",
     "cutout.W",
@@ -86,7 +86,7 @@
         34,
         17
       ],
-      "redrawn_texels": 21270,
+      "redrawn_texels": 21312,
       "absent_samples": 142
     },
     "blue_line.E": {
@@ -112,12 +112,12 @@
   },
   "centre_disc": {
     "centre_tex_px": [
-      2347.4,
+      2347.3,
       1304.3
     ],
     "radius_px": 340.1,
     "radius_mm": 61.08,
-    "restored_texels": 3120581
+    "restored_texels": 3128655
   },
   "known_gaps": [
     "Byggmax crease logos (both goals) partly reconstructed under goals/goalies",

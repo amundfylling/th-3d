@@ -1,0 +1,48 @@
+{
+ "description": "Interpretation sketch for 'Invers Kryssar med Velodrom' (NTHF, right wing, 7/10). No illustration or video exists; this is the AI's reading of the one-line description, laid out on the canonical rink, to be confirmed by the user before any trace or animation is made.",
+ "status": "sketch - awaiting user confirmation",
+ "source_text": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who shoots directly into the goal",
+ "related": {
+  "invers-kryssar": "Pass from right wing to left wing, who shoots into the left corner (no illustration)"
+ },
+ "reading": [
+  "Kryssar = cross pass between the wingers; Invers = it goes from the right wing to the left wing (the base 'Invers Kryssar').",
+  "Velodrom = instead of shooting, the left wing sends the puck along the boards so that it rides the curved boards all the way round behind the goal, like a cyclist on a velodrome, and comes out along the right wing's board.",
+  "The right wing meanwhile moves up his slot and turns, and shoots the arriving puck first time ('directly') into the goal."
+ ],
+ "poses": {
+  "rw_start": {
+   "arc_mm": 140.0,
+   "theta_deg": 58.0,
+   "note": "W-RW low on its slot, turned toward the left wing, puck in front of the blade"
+  },
+  "lw_receive": {
+   "arc_mm": 215.0,
+   "theta_deg": -30.0,
+   "note": "W-LW at the +y board before the corner curve, blade angled toward the corner"
+  },
+  "rw_receive": {
+   "arc_mm": 215.0,
+   "theta_deg": 220.0,
+   "note": "W-RW moved 75 mm up its slot and turned round (back of the blade toward the goal, blade at the board)"
+  },
+  "wc_static": {
+   "arc_mm": 60.0,
+   "theta_deg": 0.0,
+   "note": "W-C (not part of the move) stands further back down its slot, out of the cross-pass lane"
+  }
+ },
+ "velodrome_launch": {
+  "velocity_mm_s": [
+   1600.0,
+   500.0
+  ],
+  "note": "from the left wing's blade, along the +y board into the corner (speed chosen so the puck still arrives at about 0.7 m/s)"
+ },
+ "shot_target_mm": [
+  286.8,
+  8.0
+ ],
+ "ice_friction_mm_s2": 926.1,
+ "ice_friction_source": "spjass slide fit (shots/spjass/checks.json)"
+}

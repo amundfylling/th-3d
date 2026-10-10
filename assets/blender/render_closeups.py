@@ -1,0 +1,237 @@
+"""Matched-camera close-up comparisons of the figure assets against the user's photos/videos.
+
+    /root/venvs/blender/bin/python assets/blender/render_closeups.py [skater|goalie ...]
+For every fitted view (validation/players/<kind>-fit.json), every former held-out view (<kind>-heldout-fit.json,
+inspected while modelling since round 3, so now a fitting reference) and every regression
+reference (<kind>-independent-fit.json: frames that were fresh independent checks in earlier rounds; inspected
+since, so from round 10 on they are regression references, not independent evidence) the Sweden asset is rendered with Cycles from
+the fitted camera at the photo crop's framing. Feature windows (head, arms/torso, back print, mask, pads,
+gloves) are projected from the mold frame into both images and cut identically.
+Outputs: validation/players/closeups-<kind>.png (rows = views; full photo | full render | feature pairs),
+out/figures/closeups/*.png (per-view renders).
+"""
+import json
+import math
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import stiga_blender as sb  # noqa: E402
+import build_figures as bf  # noqa: E402
+from bpy_extras.object_utils import world_to_camera_view  # noqa: E402
+from mathutils import Vector  # noqa: E402
+from PIL import Image, ImageDraw, ImageFont  # noqa: E402
+
+import bpy  # noqa: E402
+
+REPO = sb.REPO
+VAL = REPO / "validation" / "players"
+OUT = REPO / "out" / "figures" / "closeups"
+MAN = json.loads((REPO / "references" / "derived" / "players" / "manifest.json").read_text())["items"]
+# Feature windows: centre (mold units) and radius (mold units); 'face' = direction the feature faces (None = any).
+FEATURES = {
+    "skater": {"head": ((7.5, -2.4, 41.5), 7.5, None), "arms/torso": ((2.0, -5.0, 29.0), 15.0, None),
+               "upper cuff": ((5.5, -9.0, 29.0), 9.5, None), "face": ((12.3, -1.7, 38.6), 4.6, None),
+               "back print": ((-6.4, -4.0, 32.0), 10.0, (-1, 0, 0.4)), "gloves": ((6.6, 0.0, 22.0), 9.0, (1, 0, 0))},
+    "goalie": {"mask": ((1.5, 5.0, 41.5), 7.5, None), "pads": ((3.0, 5.0, 11.5), 13.0, (1, 0, 0)),
+               "catcher": ((4.5, 17.5, 20.0), 7.5, (0.6, 0.8, 0)), "back print": ((-6.4, 5.0, 28.0), 10.0, (-1, 0, 0.2)),
+               "blocker": ((7.0, -3.5, 17.0), 9.5, (0.93, -0.36, 0.0))},
+}
+TILE = 300
+ONLY = None  # optional set of view ids (CLI: --views a,b)
+NEUTRAL = False  # --neutral: one grey clay material, no prints (shape only); same cameras and lights
+ASSETS = REPO / "assets" / "figures"  # --assets=DIR: render other .blend files (e.g. the previous round's)
+TAG = ""  # --tag=x: output name suffix
+LEGACY = False  # --legacy: the round-4 lighting and finish (grey world, 25 cm key; materials as saved) for before sheets
+NFEAT = 6
+FONT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 18)
+
+
+def scene_for(kind):
+    """Indoor-like light, neutral; per view the render is then matched to the photo's illuminant (table tint)
+    and exposure (median figure luminance) - see match_photo(). Round 5: a bundled studio HDRI world (gives the
+    glossy plastic and the metal stick something to reflect) plus a small overhead key, as in a room with
+    ceiling lights - the previous 25 cm area light 25 cm above the figure painted broad white highlights."""
+    bpy.ops.wm.open_mainfile(filepath=str(ASSETS / f"{kind}_SWE.blend"))
+    for o in [o for o in bpy.data.objects if o.type in ("LIGHT", "CAMERA")]:
+        bpy.data.objects.remove(o)
+    if LEGACY:
+        sb.set_world(0.18)
+        key = bpy.data.lights.new("Key", "AREA")
+        key.energy, key.size = 4.0, 0.25
+        ko = bpy.data.objects.new("Key", key)
+        ko.location = (0.02, 0.0, 0.25)
+        bpy.context.scene.collection.objects.link(ko)
+        return
+    sb.studio_world(0.55, "interior")
+    key = bpy.data.lights.new("Key", "AREA")
+    key.energy, key.size = 2.5, 0.06
+    ko = bpy.data.objects.new("Key", key)
+    ko.location = (0.06, -0.04, 0.3)
+    ko.rotation_euler = (0.2, 0.15, 0.0)
+    bpy.context.scene.collection.objects.link(ko)
+    bpy.context.scene.render.film_transparent = True
+    F = json.loads((REPO / "data" / "figure-molds.json").read_text())["finish"]
+    for m in bpy.data.materials:  # the data's surface finish (same values build_figures.py writes)
+        if not m.use_nodes or "Principled BSDF" not in m.node_tree.nodes:
+            continue
+        b = m.node_tree.nodes["Principled BSDF"]
+        if m.name.startswith(("fig_blue", "fig_kit_")):
+            b.inputs["Roughness"].default_value = F["plastic_roughness"]
+            b.inputs["Coat Weight"].default_value = F["coat_weight"]
+            b.inputs["Coat Roughness"].default_value = F["coat_roughness"]
+        elif m.name.startswith("fig_stick_metal"):
+            b.inputs["Roughness"].default_value = F["metal_roughness"]
+        elif m.name.startswith("fig_skin"):
+            b.inputs["Roughness"].default_value = F["skin_roughness"]
+    if NEUTRAL:
+        clay = sb.clay("neutral_clay", (0.42, 0.42, 0.42), 0.5)
+        for o in list(bpy.data.objects):
+            if o.type == "MESH":
+                if o.parent is not None:  # back-print decal
+                    o.hide_render = True
+                    continue
+                for i in range(len(o.data.materials)):
+                    o.data.materials[i] = clay
+
+
+EXPO, EXPO_OUT_PATH = {}, []  # --exposure-out=F / --exposure-in=F: freeze per-view tint and gain
+
+
+def match_photo(ren_rgba, photo, key=None):
+    """Exposure + illuminant match of a neutral render to a photo (cameras auto-expose; the room light is warm):
+    tint = table colour outside the figure (assumed near-neutral dark wood), gain = median luminance ratio of
+    the figure pixels. Shape and relative colours are untouched."""
+    import numpy as np
+    import cv2
+    sys.path.insert(0, str(REPO / "scripts"))
+    import figure_views as fv
+    P = np.asarray(photo).astype(float)
+    m = fv.figure_mask(np.asarray(photo))
+    far = ~cv2.dilate(m.astype(np.uint8), np.ones((31, 31), np.uint8)).astype(bool)
+    tab = np.median(P[far], 0) if far.any() else np.array([1.0, 1.0, 1.0])
+    tint = tab / tab.mean()
+    R = np.asarray(ren_rgba).astype(float)
+    a = R[..., 3:4] / 255
+    rgb = R[..., :3] * tint
+    fig = a[..., 0] > 0.5
+    gain = np.median(P[m].mean(1)) / max(np.median(rgb[fig].mean(1)), 1) if fig.any() and m.any() else 1.0
+    if key is not None and key in EXPO:  # identical exposure handling for a before/after pair
+        tint, gain = np.array(EXPO[key]["tint"]), EXPO[key]["gain"]
+        rgb = R[..., :3] * tint
+    elif key is not None:
+        EXPO[key] = {"tint": [float(t) for t in tint], "gain": float(gain)}
+    rgb = np.clip(rgb * gain, 0, 255)
+    bg = np.array([38, 36, 34], float)
+    out = rgb * a + bg * (1 - a)
+    return Image.fromarray(out.astype(np.uint8))
+
+
+def _render_transparent(cam, path, res, samples):
+    """sb.render with a transparent film (the HDRI world lights and reflects but is not the backdrop)."""
+    scn = bpy.context.scene
+    scn.render.engine = "CYCLES"
+    scn.cycles.device = "CPU"
+    scn.cycles.samples = samples
+    scn.cycles.use_denoising = True
+    scn.cycles.seed = 1
+    scn.render.resolution_x, scn.render.resolution_y = res
+    scn.render.resolution_percentage = 100
+    scn.render.image_settings.file_format = "PNG"
+    scn.render.image_settings.color_mode = "RGBA"
+    scn.render.film_transparent = True
+    scn.view_settings.view_transform = "Standard"
+    scn.camera = cam
+    scn.render.filepath = str(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    bpy.ops.render.render(write_still=True)
+
+
+def render_view(kind, vid, fit_json):
+    cam, (cw, ch) = bf.cam_from_fit(vid, kind, fit_json)
+    s = 900 / max(cw, ch)
+    res = (round(cw * s), round(ch * s))
+    p = OUT / f"{kind}_{vid}.png"
+    scn = bpy.context.scene
+    _render_transparent(cam, p, res, 64)
+    photo = Image.open(REPO / MAN[vid]["file"]).convert("RGB").resize(res, Image.LANCZOS)
+    ren = match_photo(Image.open(p).convert("RGBA"), photo, key=f"{kind}/{vid}")
+    feats = []
+    for name, (c, r, facing) in FEATURES[kind].items():
+        cw_ = Vector(c) * bf.KS[kind] / 1000
+        if facing is not None:
+            to_cam = (cam.matrix_world.translation - cw_).normalized()
+            if to_cam.dot(Vector(facing).normalized()) < 0.15:
+                continue
+        q = world_to_camera_view(scn, cam, cw_)
+        right = cam.matrix_world.to_3x3() @ Vector((1, 0, 0))
+        q2 = world_to_camera_view(scn, cam, cw_ + right * (r * bf.KS[kind] / 1000))
+        u, v = q.x * res[0], (1 - q.y) * res[1]
+        rad = max(20, abs(q2.x - q.x) * res[0])
+        box = (int(u - rad), int(v - rad), int(u + rad), int(v + rad))
+        inside = max(0, min(box[2], res[0]) - max(box[0], 0)) * max(0, min(box[3], res[1]) - max(box[1], 0)) / max(1, (box[2] - box[0]) * (box[3] - box[1]))
+        if q.z <= 0 or inside < 0.5:
+            continue
+        feats.append((name, photo.crop(box).resize((TILE, TILE), Image.LANCZOS), ren.crop(box).resize((TILE, TILE), Image.LANCZOS)))
+    return photo, ren, feats
+
+
+def main():
+    OUT.mkdir(parents=True, exist_ok=True)
+    global ONLY
+    global NEUTRAL, ASSETS, TAG, LEGACY
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    for a in sys.argv[1:]:
+        if a.startswith("--views="):
+            ONLY = set(a.split("=", 1)[1].split(","))
+        elif a == "--neutral":
+            NEUTRAL = True
+        elif a.startswith("--assets="):
+            ASSETS = Path(a.split("=", 1)[1])
+        elif a.startswith("--exposure-in="):
+            EXPO.update(json.loads(Path(a.split("=", 1)[1]).read_text()))
+        elif a.startswith("--exposure-out="):
+            EXPO_OUT_PATH.append(Path(a.split("=", 1)[1]))
+        elif a == "--legacy":
+            LEGACY = True
+        elif a.startswith("--tag="):
+            TAG = a.split("=", 1)[1]
+    for kind in (args or ["skater", "goalie"]):
+        scene_for(kind)
+        rows, index = [], []
+        for tag, fjson in (("fitted", VAL / f"{kind}-fit.json"), ("inspected", VAL / f"{kind}-heldout-fit.json"),
+                           ("regression ref", VAL / f"{kind}-independent-fit.json")):
+            if not fjson.exists():
+                continue
+            fit = json.loads(fjson.read_text())["views"]
+            for vid, fv in fit.items():
+                if ONLY and vid not in ONLY:
+                    continue
+                photo, ren, feats = render_view(kind, vid, fjson)
+                rows.append((f"{vid}  [{tag}]  IoU {fv['iou']:.3f}", photo, ren, feats))
+                index.append({"view": vid, "tag": tag, "features": [f[0] for f in feats[:NFEAT]]})
+        W = 2 * TILE + NFEAT * 2 * TILE
+        sheet = Image.new("RGB", (W, len(rows) * (TILE + 34)), "white")
+        d = ImageDraw.Draw(sheet)
+        for i, (label, photo, ren, feats) in enumerate(rows):
+            y = i * (TILE + 34)
+            d.text((6, y + 6), label + "   (each pair: photo | model, same camera and crop; render exposure/tint matched to the photo)", fill=(170, 0, 0) if "regression ref" in label else (0, 0, 0), font=FONT)
+            for j, im in enumerate((photo, ren)):
+                t = im.copy()
+                t.thumbnail((TILE, TILE))
+                sheet.paste(t, (j * TILE, y + 32))
+            for k, (name, a, b) in enumerate(feats[:NFEAT]):
+                x = 2 * TILE + k * 2 * TILE
+                sheet.paste(a, (x, y + 32))
+                sheet.paste(b, (x + TILE, y + 32))
+                d.text((x + 6, y + 36), name, fill=(255, 255, 255), font=FONT, stroke_width=2, stroke_fill=(0, 0, 0))
+        suffix = ("-neutral" if NEUTRAL else "") + ("-legacy" if LEGACY else "") + (f"-{TAG}" if TAG else "")
+        dst = VAL / f"closeups-{kind}{suffix}.png" if not ONLY else OUT / f"closeups-{kind}{suffix}-partial.png"
+        sheet.save(dst)
+        for f in EXPO_OUT_PATH:
+            f.write_text(json.dumps(EXPO, indent=1) + "\n")
+        dst.with_suffix(".json").write_text(json.dumps({"tile": TILE, "row": TILE + 34, "rows": index}, indent=1) + "\n")
+        print("wrote", dst, sheet.size)
+
+
+main()

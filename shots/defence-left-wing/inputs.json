@@ -1,0 +1,132 @@
+{
+ "description": "Design choices for trace.defence-left-wing.v1 (scripts/defence-trace.py): the three ways to defend when the opponent's left wing has the puck, from the user's TikTok (references/shots/defence-vs-left-wing-tiktok.mp4). A concept illustration, not a recorded shot: the defending goalie (E-G) and right defender (E-RD) move between the set-ups; the attacking left wing (W-LW) holds the puck still at the boards near the goal line; the attacking centre (W-C) waits in the slot for the centrifuge pass.",
+ "status": "proposed",
+ "source": {
+  "video": "references/shots/defence-vs-left-wing-tiktok.mp4",
+  "transcript": "burned-in captions read frame by frame (docs/defence-left-wing.md)",
+  "centrifuge": "references/combinations/bordshockeyskolan-lektion-3-centrifugen.html"
+ },
+ "window_s": [
+  0.0,
+  6.0
+ ],
+ "attacker": {
+  "W-LW": {
+   "arc_mm": 60.0,
+   "theta_deg": 0.0,
+   "puck_local_mm": [
+    16.2,
+    31.0
+   ],
+   "note": "at the +y boards level with the face-off circle, puck on the front of the blade. Further out than in the TikTok's corner: from near the goal line a flat straight shot cannot pass the near post of our preview goal (window under 8 deg, post clearance below the puck radius + post radius), so there would be no straight-shot lane to close; from here the window between the posts is 11 deg"
+  },
+  "W-C": {
+   "arc_mm": 200.0,
+   "theta_deg": 0.0,
+   "note": "waits in the slot for the centrifuge pass"
+  }
+ },
+ "setups": {
+  "neutral": {
+   "E-RD_arc_mm": 125.0,
+   "E-G_y_mm": 0.0
+  },
+  "passive": {
+   "E-RD_arc_mm": 164.0,
+   "E-G_y_mm": 0.0,
+   "note": "the box: the defender stands in front of the goal on the straight-shot line (slot position where that line crosses the defender's slot); the goalie stays in the middle"
+  },
+  "active": {
+   "E-RD_arc_mm": 89.0,
+   "E-G_y_mm": -10.0,
+   "note": "the goalie covers as much of its left side (toward the middle and the far post) as it can while every straight shot from the left wing is still stopped (user, 2026-10-06, three corrections: back to the corner; not all the way out; 'rotate it even further and move it more to the left ... cover as much space as possible on the left side while still covering direct shots'). Chosen from a scan of position x turn (docs/defence-left-wing.md): y = -10 mm, turned 45 deg beyond facing directly away from the puck (heading about 340 deg); 1 mm further left or 5 deg more turn opens straight shots. The defender goes out to where the centrifuge pass crosses its slot",
+   "E-G_back_to_puck": true,
+   "E-G_turn_extra_deg": 45.0
+  }
+ },
+ "defender_faces_puck": true,
+ "schedule": [
+  [
+   0.0,
+   "neutral"
+  ],
+  [
+   0.6,
+   "neutral"
+  ],
+  [
+   1.0,
+   "passive"
+  ],
+  [
+   2.0,
+   "passive"
+  ],
+  [
+   2.4,
+   "active"
+  ],
+  [
+   3.4,
+   "active"
+  ],
+  [
+   3.7,
+   "passive"
+  ],
+  [
+   4.2,
+   "passive"
+  ],
+  [
+   4.5,
+   "active"
+  ],
+  [
+   5.0,
+   "active"
+  ],
+  [
+   5.3,
+   "passive"
+  ],
+  [
+   6.0,
+   "passive"
+  ]
+ ],
+ "lanes": {
+  "straight_shot": {
+   "from": "puck",
+   "to": [
+    300.0,
+    -12.8
+   ],
+   "note": "the left wing's straight shot through the middle of the window between the posts"
+  },
+  "centrifuge_pass": {
+   "from": "puck",
+   "to": "W-C blade",
+   "note": "the left wing's pass to the centre (centrifuge)"
+  },
+  "centre_shot": {
+   "from": "W-C blade",
+   "to": [
+    300.0,
+    -26.0
+   ],
+   "note": "the centre's first-time shot into the far corner"
+  }
+ },
+ "limitations": [
+  "A concept illustration: positions follow the idea of each defence, not the exact placement in the TikTok (the user: 'It does not have to be precisely the same placement as the video').",
+  "The shots and passes are drawn as lanes (graphics) that end where the puck would first touch a defending figure; the puck itself stays on the left wing's blade, so no blocked shot is simulated (a blocked hard shot would rebound, which the traces do not model).",
+  "Goalie rotation when active: turned to face directly away from the puck (about 120 deg counter-clockwise), from the user's description; the exact angle is not measured.",
+  "Figure moves are designed (smootherstep, 0.3-0.4 s); the defender turns to face the puck.",
+  "Preview figure, puck and goal sizes; the other figures stand in their assembly poses."
+ ],
+ "user_feedback_v1": "2026-10-06: 'The goalie does not have the back outwards and cover the corner in active and mixed. When it stands with face facing forward it does not cover the direct shot at all'",
+ "user_feedback_v2": "2026-10-06: 'the goalie should not stand all the way out to the right, because it can leave a bit of space to still catch most direct shots and cover more of the middle. It should however leave little space for the direct shots'",
+ "user_feedback_v3": "2026-10-06: 'Do not proceed with rendering the full video before getting this right. The goalie can be rotated slightly more and moved slighly more to the goalies left'",
+ "user_feedback_v4": "2026-10-06: 'Rotate it even further and move it more to the left. It should cover as much space as possible on the left side while still covering direct shots'"
+}

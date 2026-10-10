@@ -1,0 +1,82 @@
+{
+ "analysis": "Näcka - sports-analysis video",
+ "composition": "analysis-nacka",
+ "versions": {
+  "node": "v22.22.2",
+  "remotion": "4.0.531",
+  "@remotion/three": "4.0.531",
+  "three": "0.186.1",
+  "@react-three/fiber": "9.4.0",
+  "react": "19.2.0",
+  "browser": "chrome-headless-shell Chromium 141.0.7390.37",
+  "gl": "swangle (SwiftShader, CPU)"
+ },
+ "model": {
+  "geometry_version": "0.6.0",
+  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+ },
+ "trace": {
+  "trace_id": "trace.nacka.v1",
+  "status": "proposed",
+  "sha256": "b2a16b779336cf8688b57593126627a11bdac083d6543f19a54e9eec7e532e49"
+ },
+ "analysis_spec": {
+  "analysis_id": "analysis.nacka.v1",
+  "sha256": "c3aef9cee284506d6fb77c388e9d72171e9c4b290ab2ee6fa03d2e3b428791a2",
+  "composition_files": [
+   "remotion/NackaAnalysis.tsx",
+   "remotion/AnalysisVideo.tsx"
+  ],
+  "composition_sha256": "14193df8d8c56203bef7277d9c9173f61c97cc5d972e45eaca0ce0b84a4bb8cb"
+ },
+ "output": {
+  "path": "validation/analysis-nacka.mp4",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 744,
+  "duration_s": 24.8,
+  "codec": "h264",
+  "crf": 20,
+  "pixel_format": "yuv420p",
+  "ffprobe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuvj420p",
+     "r_frame_rate": "30/1",
+     "nb_frames": "744",
+     "side_data_list": [
+      {}
+     ]
+    }
+   ],
+   "format": {
+    "duration": "24.800000"
+   }
+  },
+  "bytes": 9815348,
+  "megabytes": 9.82,
+  "below_25_mb": true,
+  "sha256": "1f20f8afc58756f0afd2e519e42ac23c0c7f2bf9add7cfe2b64a1e043579afb6"
+ },
+ "checks": {
+  "frames_logged": 744,
+  "frames_differing_from_pure": [],
+  "max_readback_diff": 2.84e-14,
+  "camera_frames_logged": 744,
+  "camera_max_diff_vs_track": 0.005
+ },
+ "render_seconds": 3549,
+ "composition_refactor": {
+  "date": "2026-10-06",
+  "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
+  "previous_composition_sha256": "41a7a793b9ac4762201090b59dc9da8c5854a4fa624194fbea25ad4146e17dc1",
+  "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
+  "video_rerendered": false
+ }
+}

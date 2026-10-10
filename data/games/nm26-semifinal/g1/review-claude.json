@@ -1,0 +1,1924 @@
+{
+ "description": "Claude's visual review of the 136 game-1 candidates on the review page (pass, turnover, shot, loose; at least 100 mm). One verdict per candidate with a confidence 0-100 that the verdict is right; low confidence means the user should check it.",
+ "status": "proposed",
+ "reviewed_on": "2026-10-08",
+ "method": [
+  "Per candidate, one image row: puck-centred crops 0.3 s before the release, at the release (with the passer's slot drawn) and at the reception (with the receiver's slot drawn), 0.4 s after the reception, and a darkest-pixel composite of every registered frame of the flight with the measured line.",
+  "Judged: is the puck really moving along the line (streak in the composite, puck visible at both ends); which kit (white/blue = Nygård W, yellow = Fjermestad E) is at each end; hands in the rink (stoppages); splits and out-and-back tracking jumps.",
+  "Reach lists (every slot within 75 mm of each end) were used to name a figure when the kit at the puck disagrees with the automatic nearest slot. Figures stand tall and the camera looks down at an angle, so a figure in front can cover the puck without touching it; this limits who-judgements."
+ ],
+ "verdicts": {
+  "ok": "the candidate is right as listed",
+  "fix": "right movement, wrong kind or figures (see fix)",
+  "wrong": "not a play to record (tracking error, stoppage, mid-flight piece, carry)",
+  "unsure": "Claude can't tell; the user should look"
+ },
+ "summary": {
+  "fix": 15,
+  "ok": 74,
+  "unsure": 23,
+  "wrong": 24
+ },
+ "confidence_bands": {
+  "below_40": 33,
+  "40_to_59": 86,
+  "60_plus": 17
+ },
+ "events": [
+  {
+   "id": "g1-644",
+   "n": 0,
+   "t_video_s": 21.467,
+   "auto": {
+    "kind": "shot",
+    "from": "E-C",
+    "to": "W-LD"
+   },
+   "verdict": "fix",
+   "confidence": 40,
+   "why": "At the opening faceoff (before/at the start tone). The puck bounces off the far board to W-LD near the W goal; not a shot on the mouth.",
+   "fix": {
+    "kind": "turnover",
+    "from": "E-C",
+    "to": "W-LD"
+   },
+   "user_mark_2026_10_08": {
+    "verdict": "wrong",
+    "at": "2026-10-08T03:50:30.813Z"
+   }
+  },
+  {
+   "id": "g1-744",
+   "n": 1,
+   "t_video_s": 24.8,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 75,
+   "why": "W-LW (white) is at the puck in the corner when it stops; an E figure arrives just after.",
+   "user_mark_2026_10_08": {
+    "verdict": "ok",
+    "at": "2026-10-08T03:47:18.489Z"
+   }
+  },
+  {
+   "id": "g1-900",
+   "n": 2,
+   "t_video_s": 30.0,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-C"
+   },
+   "verdict": "ok",
+   "confidence": 55,
+   "why": "Real move from W-LW at the far board; a yellow figure is at the puck when it stops, but the E-C identity is unsure.",
+   "user_mark_2026_10_08": {
+    "verdict": "ok",
+    "at": "2026-10-08T03:48:27.897Z"
+   }
+  },
+  {
+   "id": "g1-1219",
+   "n": 3,
+   "t_video_s": 40.633,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RD",
+    "to": "W-LD"
+   },
+   "verdict": "fix",
+   "confidence": 35,
+   "why": "Real dump along the far board into W's corner. A yellow figure is closest to where it stops (E-RW slot 46 mm, W-LD 39 mm); no W figure is at the puck.",
+   "fix": {
+    "kind": "pass",
+    "from": "E-RD",
+    "to": "E-RW"
+   },
+   "user_mark_2026_10_08": {
+    "verdict": "ok",
+    "at": "2026-10-08T03:48:39.744Z"
+   }
+  },
+  {
+   "id": "g1-1409",
+   "n": 4,
+   "t_video_s": 46.967,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 65,
+   "why": "Real pass along the far board into E's corner; a blurred white figure (W-LW) meets it.",
+   "user_mark_2026_10_08": {
+    "verdict": "ok",
+    "at": "2026-10-08T03:48:54.887Z"
+   }
+  },
+  {
+   "id": "g1-1552",
+   "n": 5,
+   "t_video_s": 51.733,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "W-LW releases it at the board (no E slot within reach there; the yellow figure only overlaps in perspective). The end is contested: E-LD 48 mm, W-C 49 mm, E-G 51 mm.",
+   "user_mark_2026_10_08": {
+    "verdict": "ok",
+    "at": "2026-10-08T03:49:09.283Z"
+   }
+  },
+  {
+   "id": "g1-1596",
+   "n": 6,
+   "t_video_s": 53.2,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-RD"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "Real move in front of the E goal; the puck stops with no figure clearly at it; an E figure arrives later."
+  },
+  {
+   "id": "g1-1630",
+   "n": 7,
+   "t_video_s": 54.333,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RD",
+    "to": "W-C"
+   },
+   "verdict": "fix",
+   "confidence": 35,
+   "why": "Few detections (5). The puck stops on the dark centre logo; a yellow figure, not W-C, is there afterwards.",
+   "fix": {
+    "kind": "pass",
+    "from": "E-RD",
+    "to": "E-C"
+   }
+  },
+  {
+   "id": "g1-1638",
+   "n": 8,
+   "t_video_s": 54.6,
+   "auto": {
+    "kind": "pass",
+    "from": "W-C",
+    "to": "W-RD"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "Continues #7 from the centre logo (the release is hidden on the dark logo). The puck ends at the W goal post; it could be E's shot deflected at the centre rather than a W pass."
+  },
+  {
+   "id": "g1-1704",
+   "n": 9,
+   "t_video_s": 56.8,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-RD"
+   },
+   "verdict": "wrong",
+   "confidence": 65,
+   "why": "Tracking error: 866 mm in 0.23 s with only 6 detections. The puck goes from the W goal corner to W-RD (the start of #10), a short move."
+  },
+  {
+   "id": "g1-1711",
+   "n": 10,
+   "t_video_s": 57.033,
+   "auto": {
+    "kind": "pass",
+    "from": "W-RD",
+    "to": "W-LD"
+   },
+   "verdict": "ok",
+   "confidence": 65,
+   "why": "W-RD (white) plays it behind the W goal to the far corner; a white figure is at the puck when it stops."
+  },
+  {
+   "id": "g1-1902",
+   "n": 11,
+   "t_video_s": 63.4,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RW",
+    "to": "W-LW"
+   },
+   "verdict": "fix",
+   "confidence": 40,
+   "why": "The release is next to a white figure in W's far corner (not E-RW); the usual W pass along the far board into E's corner.",
+   "fix": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-LW"
+   }
+  },
+  {
+   "id": "g1-2070",
+   "n": 12,
+   "t_video_s": 69.0,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RD",
+    "to": "W-LD"
+   },
+   "verdict": "ok",
+   "confidence": 60,
+   "why": "E-RD (yellow) clears along the far board to W's corner; a white figure is at the puck when it stops."
+  },
+  {
+   "id": "g1-2159",
+   "n": 13,
+   "t_video_s": 71.967,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 60,
+   "why": "W pass along the far board into E's corner; a white figure reaches it after it stops."
+  },
+  {
+   "id": "g1-2313",
+   "n": 14,
+   "t_video_s": 77.1,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LW",
+    "to": "W-RW"
+   },
+   "verdict": "fix",
+   "confidence": 30,
+   "why": "The puck crosses to the near board and continues (#15) to E-LD. A yellow stick is also at the puck before the release, so the passer is unsure.",
+   "fix": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-LD"
+   }
+  },
+  {
+   "id": "g1-2324",
+   "n": 15,
+   "t_video_s": 77.467,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-LD"
+   },
+   "verdict": "wrong",
+   "confidence": 50,
+   "why": "Not a separate event: the release is the near-board bounce of #14 (no figure there). Its end (E-LD, yellow) belongs to #14."
+  },
+  {
+   "id": "g1-2373",
+   "n": 16,
+   "t_video_s": 79.1,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LW",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 60,
+   "why": "W-LW plays it from E's corner across to the near board; a white figure (W-RW) is at the puck when it stops."
+  },
+  {
+   "id": "g1-2449",
+   "n": 17,
+   "t_video_s": 81.633,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-LW"
+   },
+   "verdict": "fix",
+   "confidence": 45,
+   "why": "The puck comes out from the E crease to a white figure at the near board (W-RW, 45 mm). E-LW (26 mm) is nearer the line but the figure at the puck is white.",
+   "fix": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-RW"
+   }
+  },
+  {
+   "id": "g1-2485",
+   "n": 18,
+   "t_video_s": 82.833,
+   "auto": {
+    "kind": "shot",
+    "from": "W-RW",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "W-RW plays it across into the corner beside the E goal, where W-LW (white) takes it. Shot (went wide) or cross-ice pass is a toss-up. Your fix kept the same values as the automatic one.",
+   "user_mark_2026_10_08": {
+    "verdict": "fix",
+    "kind": "shot",
+    "from": "W-RW",
+    "to": "W-LW",
+    "at": "2026-10-08T03:50:12.590Z"
+   }
+  },
+  {
+   "id": "g1-2504",
+   "n": 19,
+   "t_video_s": 83.467,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-RW"
+   },
+   "verdict": "unsure",
+   "confidence": 35,
+   "why": "Real move from E's corner to the far board near the W end. Only E-RW's slot reaches the end point, but a white figure covers the puck in the image."
+  },
+  {
+   "id": "g1-2538",
+   "n": 20,
+   "t_video_s": 84.6,
+   "auto": {
+    "kind": "pass",
+    "from": "E-C",
+    "to": "E-LD"
+   },
+   "verdict": "wrong",
+   "confidence": 35,
+   "why": "Only 114 mm with 4 detections in a scrum at the centre; more of a battle than a pass."
+  },
+  {
+   "id": "g1-2545",
+   "n": 21,
+   "t_video_s": 84.833,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-G"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "E-LD (yellow '2') plays it back toward its own crease; the end is shared by E-G (26 mm) and E-LD (27 mm)."
+  },
+  {
+   "id": "g1-2596",
+   "n": 22,
+   "t_video_s": 86.533,
+   "auto": {
+    "kind": "pass",
+    "from": "W-C",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "Real move to the corner beside the E goal, and a white figure (W-LW) takes it there. The release in the middle is blurred."
+  },
+  {
+   "id": "g1-2815",
+   "n": 23,
+   "t_video_s": 93.833,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-LD"
+   },
+   "verdict": "wrong",
+   "confidence": 35,
+   "why": "The first piece of #24: no puck is visible at its end. The release beside the E goal is reachable only by W-LW (9 mm), although a yellow figure stands in front."
+  },
+  {
+   "id": "g1-2825",
+   "n": 24,
+   "t_video_s": 94.167,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-LD"
+   },
+   "verdict": "fix",
+   "confidence": 35,
+   "why": "With #23 this is one long move from beside the E goal to W-LD (white, at the puck when it stops). Its own release is mid-flight. The passer is unsure (W-LW by reach, but a yellow figure is near).",
+   "fix": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "W-LD"
+   }
+  },
+  {
+   "id": "g1-2839",
+   "n": 25,
+   "t_video_s": 94.633,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LD",
+    "to": "E-C"
+   },
+   "verdict": "fix",
+   "confidence": 40,
+   "why": "W-LD (white) plays it, but it stops free on a slot with no figure at it (E-C slot 22 mm, but no yellow figure in the image).",
+   "fix": {
+    "kind": "loose",
+    "from": "W-LD",
+    "to": null
+   }
+  },
+  {
+   "id": "g1-3088",
+   "n": 26,
+   "t_video_s": 102.933,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 70,
+   "why": "The usual W pass along the far board into E's corner; a white figure is at the puck."
+  },
+  {
+   "id": "g1-3252",
+   "n": 27,
+   "t_video_s": 108.4,
+   "auto": {
+    "kind": "shot",
+    "from": "W-LW",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "W-LW plays it in front of the E crease into the corner beside the goal; a shot that went wide is plausible. A yellow figure meets it there, so 'to' is unsure.",
+   "user_mark_2026_10_08": {
+    "verdict": "fix",
+    "kind": "shot",
+    "from": "W-LW",
+    "to": "W-LW",
+    "at": "2026-10-08T03:50:14.403Z"
+   }
+  },
+  {
+   "id": "g1-3431",
+   "n": 28,
+   "t_video_s": 114.367,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "Real fast move (931 mm in 0.23 s) into W's near corner, where a puck rests afterwards. The track's start is off: the resting puck is about 50 mm from the line start."
+  },
+  {
+   "id": "g1-3544",
+   "n": 29,
+   "t_video_s": 118.133,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Few detections (4). W-RD clears from beside the W goal; the end is contested (E-LW 20, W-RD 51, W-RW 52); a yellow figure arrives."
+  },
+  {
+   "id": "g1-3551",
+   "n": 30,
+   "t_video_s": 118.367,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LW",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Short (113 mm) in a scrum; the puck ends under a yellow figure (E-LD)."
+  },
+  {
+   "id": "g1-3579",
+   "n": 31,
+   "t_video_s": 119.3,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-LW"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "Short (124 mm) in a scrum. The end is contested by E-LW (13 mm) and W-RW (19 mm), and white figures are there afterwards."
+  },
+  {
+   "id": "g1-3732",
+   "n": 32,
+   "t_video_s": 124.4,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-C"
+   },
+   "verdict": "ok",
+   "confidence": 55,
+   "why": "E-LW (yellow) plays it out of W's near corner; white figures are at the puck at the centre (W-C 11 mm)."
+  },
+  {
+   "id": "g1-3808",
+   "n": 33,
+   "t_video_s": 126.933,
+   "auto": {
+    "kind": "pass",
+    "from": "W-RD",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "W-RD releases it, but it stops free; the end is contested (W-RW 39, E-LD 44)."
+  },
+  {
+   "id": "g1-3892",
+   "n": 34,
+   "t_video_s": 129.733,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "The puck is hidden behind the W net at the release; it reaches W-RW (white, at the puck) at the near board."
+  },
+  {
+   "id": "g1-4028",
+   "n": 35,
+   "t_video_s": 134.267,
+   "auto": {
+    "kind": "shot",
+    "from": "W-RW",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Same pattern as #18: W-RW plays it across past the far post into the far corner (W-LW slot 33 mm; no figure at the puck yet). Shot or cross-ice pass is a toss-up. Your fix kept the same values as the automatic one.",
+   "user_mark_2026_10_08": {
+    "verdict": "fix",
+    "kind": "shot",
+    "from": "W-RW",
+    "to": "W-LW",
+    "at": "2026-10-08T03:50:15.961Z"
+   }
+  },
+  {
+   "id": "g1-4156",
+   "n": 36,
+   "t_video_s": 138.533,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 55,
+   "why": "Real move from E's near corner to the near board, where a white figure (W-RW) takes it."
+  },
+  {
+   "id": "g1-4248",
+   "n": 37,
+   "t_video_s": 141.6,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-RW"
+   },
+   "verdict": "wrong",
+   "confidence": 60,
+   "why": "Tracking error: 426 mm in 2 frames with 3 detections (6 m/s), to the Lidl logo and back (#38)."
+  },
+  {
+   "id": "g1-4250",
+   "n": 38,
+   "t_video_s": 141.667,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RW",
+    "to": "E-LD"
+   },
+   "verdict": "wrong",
+   "confidence": 50,
+   "why": "Second half of the #37 error. The real move is probably W-RW straight to the E crease side (E-LD), which would be a turnover."
+  },
+  {
+   "id": "g1-4293",
+   "n": 39,
+   "t_video_s": 143.1,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-C"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "The puck isn't visible at either end (blurred figures). The start is E-LD's slot (10 mm) and a yellow figure is at the end, so W-C as receiver is doubtful."
+  },
+  {
+   "id": "g1-4378",
+   "n": 40,
+   "t_video_s": 145.933,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "Real move from the near side into E's near corner; a blurred white figure is at the puck there (W-LW 23 mm)."
+  },
+  {
+   "id": "g1-4398",
+   "n": 41,
+   "t_video_s": 146.6,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LW",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 55,
+   "why": "W-LW plays it out of E's near corner to the near board, where a white figure (W-RW) takes it."
+  },
+  {
+   "id": "g1-4543",
+   "n": 42,
+   "t_video_s": 151.433,
+   "auto": {
+    "kind": "pass",
+    "from": "W-RW",
+    "to": "W-C"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Short (147 mm). W-RW plays it onto the centre logo, where a white figure is; afterwards the puck can't be seen there."
+  },
+  {
+   "id": "g1-4630",
+   "n": 43,
+   "t_video_s": 154.333,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-LW"
+   },
+   "verdict": "wrong",
+   "confidence": 50,
+   "why": "Probably a tracking error: 565 mm in 0.17 s with 3 detections, no puck visible at either end, and it comes straight back (#44)."
+  },
+  {
+   "id": "g1-4635",
+   "n": 44,
+   "t_video_s": 154.5,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LW",
+    "to": "E-LD"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "Out-and-back with #43. A yellow figure is at both ends, but the puck is hard to see; it may be part of a tracking error."
+  },
+  {
+   "id": "g1-4701",
+   "n": 45,
+   "t_video_s": 156.7,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 35,
+   "why": "Short (206 mm, 4 detections). W-RW's push ends near the gyproc logo. Contested end (E-LD 38, W-RW 45); no figure at it."
+  },
+  {
+   "id": "g1-4828",
+   "n": 46,
+   "t_video_s": 160.933,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-C",
+    "to": "E-LW"
+   },
+   "verdict": "fix",
+   "confidence": 40,
+   "why": "A yellow figure plays it from the centre scrum (E-LD 33, W-C 31, contested) to W's near corner, where E-LW (yellow) is.",
+   "fix": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-LW"
+   }
+  },
+  {
+   "id": "g1-4875",
+   "n": 47,
+   "t_video_s": 162.5,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-RD"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "E-LW plays it out of W's near corner, and it ends free by a slot. A white figure (W-RD) arrives afterwards."
+  },
+  {
+   "id": "g1-5006",
+   "n": 48,
+   "t_video_s": 166.867,
+   "auto": {
+    "kind": "pass",
+    "from": "W-RW",
+    "to": "W-C"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "W-RW plays it from the near board toward the E crease. At the end the puck isn't visible and a yellow figure is there, so W-C as receiver is doubtful."
+  },
+  {
+   "id": "g1-5054",
+   "n": 49,
+   "t_video_s": 168.467,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "The release isn't visible (empty ice where the line starts); the puck does reach W-RW (white) at the near board."
+  },
+  {
+   "id": "g1-5075",
+   "n": 50,
+   "t_video_s": 169.167,
+   "auto": {
+    "kind": "pass",
+    "from": "E-C",
+    "to": "E-LD"
+   },
+   "verdict": "wrong",
+   "confidence": 40,
+   "why": "Only 3 detections and 117 mm in a centre scrum, with no puck visible at either end."
+  },
+  {
+   "id": "g1-5079",
+   "n": 51,
+   "t_video_s": 169.3,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-RW"
+   },
+   "verdict": "wrong",
+   "confidence": 45,
+   "why": "Tracking jump: 277 mm in 2 frames with 3 detections, and no puck visible at the end."
+  },
+  {
+   "id": "g1-5081",
+   "n": 52,
+   "t_video_s": 169.367,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RW",
+    "to": "E-G"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "The puck really ends at the E net post. The release on the far board is doubtful (it follows the #51 jump), so this could be W's shot rather than E-RW to E-G."
+  },
+  {
+   "id": "g1-5152",
+   "n": 53,
+   "t_video_s": 171.733,
+   "auto": {
+    "kind": "shot",
+    "from": "E-LD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "E (yellow '2') shoots from the centre to the W net, and the puck stops at the net side. A shot by E-LD, as you marked; the 'to' (E-LW) is the figure beside the net.",
+   "user_mark_2026_10_08": {
+    "verdict": "fix",
+    "kind": "shot",
+    "from": "E-LD",
+    "to": "E-LW",
+    "at": "2026-10-08T03:50:17.135Z"
+   }
+  },
+  {
+   "id": "g1-5177",
+   "n": 54,
+   "t_video_s": 172.567,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-RD"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "The release in W's near corner isn't visible; the puck ends at a white figure (W-RD) by the isover logo."
+  },
+  {
+   "id": "g1-5254",
+   "n": 55,
+   "t_video_s": 175.133,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-RD"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "E-LW (yellow) plays it out of W's near corner toward a white figure (W-RD). The end is contested (W-RD 26, E-LW 45) and the puck is hidden there."
+  },
+  {
+   "id": "g1-5324",
+   "n": 56,
+   "t_video_s": 177.467,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LW",
+    "to": "E-C"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "E-LW plays it from the near board in W's zone; at the end only a blurred white figure is there and the puck can't be seen (E-C 41, W-LD 55, W-G 60)."
+  },
+  {
+   "id": "g1-5429",
+   "n": 57,
+   "t_video_s": 180.967,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-C"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "A yellow figure plays it from the E crease side to the centre logo, where a white figure (W-C) takes it."
+  },
+  {
+   "id": "g1-5923",
+   "n": 58,
+   "t_video_s": 197.433,
+   "auto": {
+    "kind": "shot",
+    "from": "E-LD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "E (yellow '2') shoots from the centre toward the W goal, and the puck stops in the corner beside the net. A shot or a dump-in."
+  },
+  {
+   "id": "g1-5988",
+   "n": 59,
+   "t_video_s": 199.6,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-RD"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "E-LW plays it out of W's near corner to a white figure (W-RD)."
+  },
+  {
+   "id": "g1-5996",
+   "n": 60,
+   "t_video_s": 199.867,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 35,
+   "why": "Straight back from W-RD into the corner (out-and-back with #59), to a yellow figure; contested end (E-LW 40, W-RD 43)."
+  },
+  {
+   "id": "g1-6296",
+   "n": 61,
+   "t_video_s": 209.867,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RD",
+    "to": "E-LD"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "It starts in a scrum and the puck isn't visible at the end near the gyproc logo (E-LD 19 mm)."
+  },
+  {
+   "id": "g1-6371",
+   "n": 62,
+   "t_video_s": 212.367,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-C"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "Short (133 mm). A yellow figure plays it onto the centre logo, where yellow figures are (E-C)."
+  },
+  {
+   "id": "g1-6389",
+   "n": 63,
+   "t_video_s": 212.967,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "W-LD plays it to a white figure at the far board; contested end (W-LW 48, E-RW 50)."
+  },
+  {
+   "id": "g1-6573",
+   "n": 64,
+   "t_video_s": 219.1,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-RD"
+   },
+   "verdict": "ok",
+   "confidence": 60,
+   "why": "W-LW (white) plays it from the far board into E's zone, where yellow figures (E-RD) take it."
+  },
+  {
+   "id": "g1-6608",
+   "n": 65,
+   "t_video_s": 220.267,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RD",
+    "to": "E-LD"
+   },
+   "verdict": "wrong",
+   "confidence": 50,
+   "why": "The 'reception' is mid-flight (the puck is still blurred and moving); it continues as #66."
+  },
+  {
+   "id": "g1-6614",
+   "n": 66,
+   "t_video_s": 220.467,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-LW"
+   },
+   "verdict": "fix",
+   "confidence": 35,
+   "why": "With #65, one move from E-RD across to the near board, where white figure '14' (W-RW, 48 mm) takes it; E-LW is nearer the end point but not at the puck.",
+   "fix": {
+    "kind": "turnover",
+    "from": "E-RD",
+    "to": "W-RW"
+   }
+  },
+  {
+   "id": "g1-6633",
+   "n": 67,
+   "t_video_s": 221.1,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LW",
+    "to": "E-RD"
+   },
+   "verdict": "fix",
+   "confidence": 30,
+   "why": "White '14' (W-RW) seems to have the puck at the release (E-LW's slot is also there, 12 mm). It ends at the E net with a yellow figure, so it may be a W shot that was blocked.",
+   "fix": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-RD"
+   }
+  },
+  {
+   "id": "g1-6646",
+   "n": 68,
+   "t_video_s": 221.533,
+   "auto": {
+    "kind": "shot",
+    "from": "E-RD",
+    "to": "E-LW"
+   },
+   "verdict": "wrong",
+   "confidence": 50,
+   "why": "Probably a tracking error: out and back across the whole rink in 0.5 s with #69 (755 + 729 mm, 5-6 detections)."
+  },
+  {
+   "id": "g1-6655",
+   "n": 69,
+   "t_video_s": 221.833,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-LW"
+   },
+   "verdict": "wrong",
+   "confidence": 50,
+   "why": "Second half of the #68 out-and-back; the puck isn't visible at either end."
+  },
+  {
+   "id": "g1-6788",
+   "n": 70,
+   "t_video_s": 226.267,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RD",
+    "to": "E-LW"
+   },
+   "verdict": "fix",
+   "confidence": 40,
+   "why": "The puck goes from the E zone to the near board, where white figure '14' (W-RW, 29 mm) has it; E-LW's slot is nearer (3 mm), but the figure at the puck is white.",
+   "fix": {
+    "kind": "turnover",
+    "from": "E-RD",
+    "to": "W-RW"
+   }
+  },
+  {
+   "id": "g1-6859",
+   "n": 71,
+   "t_video_s": 228.633,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RD",
+    "to": "E-LW"
+   },
+   "verdict": "unsure",
+   "confidence": 35,
+   "why": "Short (156 mm) in W's near corner. Yellow figures are at both ends, so it may be E-LW's own carry rather than W-RD losing it."
+  },
+  {
+   "id": "g1-6924",
+   "n": 72,
+   "t_video_s": 230.8,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LD",
+    "to": "E-C"
+   },
+   "verdict": "wrong",
+   "confidence": 40,
+   "why": "Yellow '32' covers the puck at the release (contested: W-LD 47, E-C 48), and a yellow figure is at the end too. More likely E-C's own carry than a turnover."
+  },
+  {
+   "id": "g1-7013",
+   "n": 73,
+   "t_video_s": 233.767,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "E-LD plays it to the near side beside the E net, where the puck stops at the glass (W-LW slot 1 mm). No figure is visible at it."
+  },
+  {
+   "id": "g1-7197",
+   "n": 74,
+   "t_video_s": 239.9,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "Slow, well-tracked move (24 detections) by W-LW from the far board into E's near corner (E-LD 12 mm). The puck is hidden by the glass at the end."
+  },
+  {
+   "id": "g1-7299",
+   "n": 75,
+   "t_video_s": 243.3,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RW",
+    "to": "W-C"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Short (154 mm). A yellow figure plays it to the centre logo; contested end (W-C 26, E-C 30)."
+  },
+  {
+   "id": "g1-7360",
+   "n": 76,
+   "t_video_s": 245.333,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RW",
+    "to": "W-LW"
+   },
+   "verdict": "wrong",
+   "confidence": 50,
+   "why": "A hand reaches into E's corner at the reception: a stoppage (puck out of play or being retrieved), not a pass to W-LW."
+  },
+  {
+   "id": "g1-7404",
+   "n": 77,
+   "t_video_s": 246.8,
+   "auto": {
+    "kind": "pass",
+    "from": "E-C",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "Restart after the stoppage? A yellow figure plays it from the centre to W's near corner, where a yellow figure (E-LW) has it."
+  },
+  {
+   "id": "g1-7556",
+   "n": 78,
+   "t_video_s": 251.867,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-LD"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "E-LW plays it out of W's near corner. The puck isn't visible at the end (W-LD slot 1 mm) and a yellow '32' is there afterwards."
+  },
+  {
+   "id": "g1-7584",
+   "n": 79,
+   "t_video_s": 252.8,
+   "auto": {
+    "kind": "pass",
+    "from": "E-C",
+    "to": "E-RW"
+   },
+   "verdict": "fix",
+   "confidence": 40,
+   "why": "Only 5 detections. It ends at white '26' (W-LD, seen at the W far corner in #10). The start is reachable only by E-C (9 mm), but white figures surround it, so the passer is unsure.",
+   "fix": {
+    "kind": "turnover",
+    "from": "E-C",
+    "to": "W-LD"
+   }
+  },
+  {
+   "id": "g1-7804",
+   "n": 80,
+   "t_video_s": 260.133,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-G"
+   },
+   "verdict": "wrong",
+   "confidence": 55,
+   "why": "Tracking jump: 126 mm in 1 frame with 2 detections, and no puck at the start."
+  },
+  {
+   "id": "g1-7805",
+   "n": 81,
+   "t_video_s": 260.167,
+   "auto": {
+    "kind": "pass",
+    "from": "W-G",
+    "to": "W-RD"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Short (100 mm): the puck comes out from beside the W goalie and stops free near W-RD's slot."
+  },
+  {
+   "id": "g1-7960",
+   "n": 82,
+   "t_video_s": 265.333,
+   "auto": {
+    "kind": "pass",
+    "from": "W-RD",
+    "to": "W-C"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "Well tracked (18 detections): W-RD plays it from the W crease along the near side to a white figure at the centre. Contested end (W-C 44, E-C 51)."
+  },
+  {
+   "id": "g1-8194",
+   "n": 83,
+   "t_video_s": 273.133,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RD",
+    "to": "E-LD"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "It starts in a centre scrum (contested: E-RD 14, W-LD 19) and ends free; the team of the passer is unclear."
+  },
+  {
+   "id": "g1-8260",
+   "n": 84,
+   "t_video_s": 275.333,
+   "auto": {
+    "kind": "shot",
+    "from": "E-LD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "E (yellow '2') shoots from the centre toward the W goal, ending beside the net with a yellow figure (E-LW); same pattern as #58."
+  },
+  {
+   "id": "g1-8465",
+   "n": 85,
+   "t_video_s": 282.167,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-RD"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "The puck comes out of W's near corner to W-RD (white); the puck is hidden at the end."
+  },
+  {
+   "id": "g1-8485",
+   "n": 86,
+   "t_video_s": 282.833,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "Straight back into W's near corner to a yellow figure (E-LW); few detections (5)."
+  },
+  {
+   "id": "g1-8516",
+   "n": 87,
+   "t_video_s": 283.867,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LW",
+    "to": "W-LD"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "E-LW plays it out of W's near corner. The puck isn't visible at the end (W-LD slot 1 mm), but a white figure is close."
+  },
+  {
+   "id": "g1-8524",
+   "n": 88,
+   "t_video_s": 284.133,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LD",
+    "to": "E-LW"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "Only 3 detections: 396 mm in 0.17 s back into W's near corner (out-and-back with #87). The puck isn't visible at either end."
+  },
+  {
+   "id": "g1-8533",
+   "n": 89,
+   "t_video_s": 284.433,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LW",
+    "to": "E-RW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "E-LW plays it from W's near corner around behind the W goal to the far corner (E-RW 27 mm), where both a yellow and white '26' are; the puck is hidden there."
+  },
+  {
+   "id": "g1-8572",
+   "n": 90,
+   "t_video_s": 285.733,
+   "auto": {
+    "kind": "shot",
+    "from": "E-C",
+    "to": "E-RW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "A yellow figure plays it past the W goal mouth into the far corner, where a yellow figure (E-RW) has it. Shot (went wide) or pass to the corner is a toss-up."
+  },
+  {
+   "id": "g1-8602",
+   "n": 91,
+   "t_video_s": 286.733,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RW",
+    "to": "W-LD"
+   },
+   "verdict": "fix",
+   "confidence": 45,
+   "why": "E-RW (yellow) plays it out of W's far corner to the centre logo, where a yellow figure, not a white one, is at the puck (W-LD 25, E-C 35).",
+   "fix": {
+    "kind": "pass",
+    "from": "E-RW",
+    "to": "E-C"
+   }
+  },
+  {
+   "id": "g1-8629",
+   "n": 92,
+   "t_video_s": 287.633,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LW",
+    "to": "W-C"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "Few detections (3; 258 mm in 2 frames). From W-LW at the far board to the front of the E crease, where yellow figures are; it might be a shot or a pass into the slot."
+  },
+  {
+   "id": "g1-8799",
+   "n": 93,
+   "t_video_s": 293.3,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "From in front of the E crease, off the far board, to the near board, where a white figure (W-RW) has the puck."
+  },
+  {
+   "id": "g1-8832",
+   "n": 94,
+   "t_video_s": 294.4,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-G",
+    "to": "W-RW"
+   },
+   "verdict": "wrong",
+   "confidence": 45,
+   "why": "A hand seems to reach into E's near corner at the end: a stoppage (perhaps after a W goal between 293.8 and 294.4 s), not play."
+  },
+  {
+   "id": "g1-8907",
+   "n": 95,
+   "t_video_s": 296.9,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-LW"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "Few detections (5). White '14' (W-RW) plays it, but the puck isn't visible at the end; the end is contested by four figures."
+  },
+  {
+   "id": "g1-8924",
+   "n": 96,
+   "t_video_s": 297.467,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 55,
+   "why": "W-RW (white) plays it from the near board to the E crease side, where yellow '2' (E-LD) is."
+  },
+  {
+   "id": "g1-8956",
+   "n": 97,
+   "t_video_s": 298.533,
+   "auto": {
+    "kind": "pass",
+    "from": "E-G",
+    "to": "E-LW"
+   },
+   "verdict": "fix",
+   "confidence": 45,
+   "why": "Yellow '2' (E-LD, 28 mm) plays it out from the E crease. A white figure (W-RW, 38 mm) has it at the near board; E-LW's slot (18 mm) is nearer, but the figure at the puck is white.",
+   "fix": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-RW"
+   }
+  },
+  {
+   "id": "g1-8985",
+   "n": 98,
+   "t_video_s": 299.5,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-C"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "W-RW plays it from the near board to the centre, and it stops by a yellow figure (E-C 26 mm)."
+  },
+  {
+   "id": "g1-9218",
+   "n": 99,
+   "t_video_s": 307.267,
+   "auto": {
+    "kind": "pass",
+    "from": "E-C",
+    "to": "E-RW"
+   },
+   "verdict": "unsure",
+   "confidence": 35,
+   "why": "Few detections (4). Yellow '32' (E-C) plays it into W's far corner, where white '26' covers the puck. Only E-RW's slot reaches the end (27 mm), so the receiver's team is unclear."
+  },
+  {
+   "id": "g1-9502",
+   "n": 100,
+   "t_video_s": 316.733,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "The usual W pass along the far board into E's corner (W-LW 18 mm); the puck stops there. The release is hidden by a blurred figure."
+  },
+  {
+   "id": "g1-10084",
+   "n": 101,
+   "t_video_s": 336.133,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 55,
+   "why": "Well tracked (15 detections): W-RW plays it from the near board to the E crease side, where yellow '2' (E-LD) is."
+  },
+  {
+   "id": "g1-10107",
+   "n": 102,
+   "t_video_s": 336.9,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 55,
+   "why": "From the E crease (yellow '2' at the puck) into E's near corner, where a white figure (W-LW) has it."
+  },
+  {
+   "id": "g1-10311",
+   "n": 103,
+   "t_video_s": 343.7,
+   "auto": {
+    "kind": "shot",
+    "from": "E-LD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "E (yellow '2') shoots from the centre toward the W goal, and it ends beside the net with a yellow figure; same pattern as #58 and #84."
+  },
+  {
+   "id": "g1-10523",
+   "n": 104,
+   "t_video_s": 350.767,
+   "auto": {
+    "kind": "pass",
+    "from": "W-RD",
+    "to": "W-LW"
+   },
+   "verdict": "unsure",
+   "confidence": 35,
+   "why": "Few detections (4; 514 mm in 4 frames). The puck leaves the W crease beside the W goalie for E's far side; there is no puck or figure visible at the end. #105 then starts in E's zone, so the move is real, but 'to' is unknown."
+  },
+  {
+   "id": "g1-10535",
+   "n": 105,
+   "t_video_s": 351.167,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RD",
+    "to": "W-C"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "A yellow figure plays it from the E crease; it stops free and a white figure (W-C) arrives."
+  },
+  {
+   "id": "g1-10611",
+   "n": 106,
+   "t_video_s": 353.7,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-C",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Few detections (4). A white figure plays it to the E crease side, where a yellow figure (E-LD) is."
+  },
+  {
+   "id": "g1-11005",
+   "n": 107,
+   "t_video_s": 366.833,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LW",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 60,
+   "why": "W-LW (white) plays it from the far board behind the E goal around to the near board, where a white figure (W-RW) is."
+  },
+  {
+   "id": "g1-11068",
+   "n": 108,
+   "t_video_s": 368.933,
+   "auto": {
+    "kind": "pass",
+    "from": "W-RW",
+    "to": "W-RD"
+   },
+   "verdict": "wrong",
+   "confidence": 40,
+   "why": "No puck is visible at the start or at the end (the release is blurred). Probably a tracking error before #109."
+  },
+  {
+   "id": "g1-11076",
+   "n": 109,
+   "t_video_s": 369.2,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RD",
+    "to": "E-LD"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "No puck is visible at the release. It ends at the E crease with a yellow figure; possibly a stoppage (something hand-coloured is in the composite)."
+  },
+  {
+   "id": "g1-11155",
+   "n": 110,
+   "t_video_s": 371.833,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-RD"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "W-RW (white) plays it up and across into E's zone beside the E net, where blurred yellow and white figures are (E-RD 37, W-LW 59)."
+  },
+  {
+   "id": "g1-11327",
+   "n": 111,
+   "t_video_s": 377.567,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-RD"
+   },
+   "verdict": "unsure",
+   "confidence": 35,
+   "why": "Few detections (5). W-LW plays it from the far board into E's zone (E-RD slot 7 mm), but a white figure is there afterwards."
+  },
+  {
+   "id": "g1-12165",
+   "n": 112,
+   "t_video_s": 405.5,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-C",
+    "to": "E-RD"
+   },
+   "verdict": "wrong",
+   "confidence": 70,
+   "why": "A hand is on the puck at the release: the puck is being placed or retrieved during a stoppage."
+  },
+  {
+   "id": "g1-12886",
+   "n": 113,
+   "t_video_s": 429.533,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-C",
+    "to": "E-RD"
+   },
+   "verdict": "wrong",
+   "confidence": 45,
+   "why": "A hand is next to the puck on the centre logo at the release (the puck being placed for the restart), so the start is not a figure's play."
+  },
+  {
+   "id": "g1-12895",
+   "n": 114,
+   "t_video_s": 429.833,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "From E's zone, around E's goal, to the far board, where a white figure (W-LW) has the puck. The release is hidden."
+  },
+  {
+   "id": "g1-13404",
+   "n": 115,
+   "t_video_s": 446.8,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LW",
+    "to": "E-RW"
+   },
+   "verdict": "unsure",
+   "confidence": 35,
+   "why": "Few detections (4; 425 mm in 4 frames). A yellow figure plays it from W's near side into W's far corner (E-RW 33 mm); the puck is hidden at the end."
+  },
+  {
+   "id": "g1-13434",
+   "n": 116,
+   "t_video_s": 447.8,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RW",
+    "to": "E-C"
+   },
+   "verdict": "ok",
+   "confidence": 50,
+   "why": "A yellow figure plays it from the far board onto the centre logo, where the puck stops by a yellow figure (E-C 13 mm)."
+  },
+  {
+   "id": "g1-14063",
+   "n": 117,
+   "t_video_s": 468.767,
+   "auto": {
+    "kind": "pass",
+    "from": "W-C",
+    "to": "W-LD"
+   },
+   "verdict": "unsure",
+   "confidence": 30,
+   "why": "The puck starts at rest on the centre logo after a 20-second gap (a restart after a stoppage?). Short (126 mm), 4 detections, and the puck is hidden at the end."
+  },
+  {
+   "id": "g1-14066",
+   "n": 118,
+   "t_video_s": 468.867,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LD",
+    "to": "E-RW"
+   },
+   "verdict": "unsure",
+   "confidence": 35,
+   "why": "The release is hidden by a blurred yellow figure. The puck stops at the far board near the Lidl logo; only E-RW's slot reaches it (33 mm), but a white figure is there afterwards."
+  },
+  {
+   "id": "g1-14499",
+   "n": 119,
+   "t_video_s": 483.3,
+   "auto": {
+    "kind": "shot",
+    "from": "W-LW",
+    "to": "W-RW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "W-LW (white) plays it from the far board past the front of the E goal to the near corner (W-RW 24 mm), with no figure at the puck yet. A shot that went wide is possible."
+  },
+  {
+   "id": "g1-14511",
+   "n": 120,
+   "t_video_s": 483.7,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-RW",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Short (151 mm) in E's near corner behind the glass; a yellow figure has it at the end (contested: E-LD 47, W-LW 56)."
+  },
+  {
+   "id": "g1-14542",
+   "n": 121,
+   "t_video_s": 484.733,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LD",
+    "to": "E-G"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "Out of E's near corner to the E crease beside the yellow goalie (E-G 11 mm)."
+  },
+  {
+   "id": "g1-14557",
+   "n": 122,
+   "t_video_s": 485.233,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-G",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "Few detections (5). From the E crease to the corner beside the E net, where a white figure (W-LW) has the puck."
+  },
+  {
+   "id": "g1-14686",
+   "n": 123,
+   "t_video_s": 489.533,
+   "auto": {
+    "kind": "turnover",
+    "from": "W-LW",
+    "to": "E-LD"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "From W-LW at E's far corner around behind the E net to yellow '2' (E-LD) on the near side. The puck is hidden at the release."
+  },
+  {
+   "id": "g1-14906",
+   "n": 124,
+   "t_video_s": 496.867,
+   "auto": {
+    "kind": "shot",
+    "from": "E-LD",
+    "to": "E-LW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "E (yellow '2') shoots from the centre toward the W goal, and it ends beside the net with a yellow figure; same pattern as #58, #84 and #103."
+  },
+  {
+   "id": "g1-15002",
+   "n": 125,
+   "t_video_s": 500.067,
+   "auto": {
+    "kind": "pass",
+    "from": "E-LW",
+    "to": "E-C"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "E-LW plays it out of W's near corner toward the Lidl logo, where a yellow figure is (E-C 42, W-LD 51); the puck is hidden at the end."
+  },
+  {
+   "id": "g1-15084",
+   "n": 126,
+   "t_video_s": 502.8,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-C"
+   },
+   "verdict": "wrong",
+   "confidence": 60,
+   "why": "A hand is in the rink at the release and at the reception (touching a figure): a stoppage."
+  },
+  {
+   "id": "g1-15095",
+   "n": 127,
+   "t_video_s": 503.167,
+   "auto": {
+    "kind": "pass",
+    "from": "W-C",
+    "to": "W-LD"
+   },
+   "verdict": "wrong",
+   "confidence": 60,
+   "why": "A hand is on a white figure at the release: still the same stoppage as #126."
+  },
+  {
+   "id": "g1-15159",
+   "n": 128,
+   "t_video_s": 505.3,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 65,
+   "why": "Well tracked (17 detections): the usual W pass along the far board into E's corner, where a white figure (W-LW) has it."
+  },
+  {
+   "id": "g1-15214",
+   "n": 129,
+   "t_video_s": 507.133,
+   "auto": {
+    "kind": "shot",
+    "from": "W-LW",
+    "to": "W-LW"
+   },
+   "verdict": "wrong",
+   "confidence": 50,
+   "why": "Not a shot: 176 mm in E's far corner with two board contacts, ending at the same figure (W-LW). It is W-LW working the puck in the corner (a carry), or at most a wrap-around try."
+  },
+  {
+   "id": "g1-15618",
+   "n": 130,
+   "t_video_s": 520.6,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RD",
+    "to": "E-RW"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "A yellow figure plays it from the E zone to the far board (E-RW 22 mm). The puck stops free and a white figure arrives."
+  },
+  {
+   "id": "g1-15772",
+   "n": 131,
+   "t_video_s": 525.733,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RW",
+    "to": "W-LD"
+   },
+   "verdict": "unsure",
+   "confidence": 35,
+   "why": "Few detections (4; 254 mm in 3 frames). From the far board onto the Lidl logo; contested end (W-LD 35, E-RW 48)."
+  },
+  {
+   "id": "g1-15844",
+   "n": 132,
+   "t_video_s": 528.133,
+   "auto": {
+    "kind": "pass",
+    "from": "E-RW",
+    "to": "E-C"
+   },
+   "verdict": "ok",
+   "confidence": 45,
+   "why": "Yellow '21' (E-RW) plays it from the far board toward the centre, where a yellow figure is (E-C 22 mm)."
+  },
+  {
+   "id": "g1-15871",
+   "n": 133,
+   "t_video_s": 529.033,
+   "auto": {
+    "kind": "turnover",
+    "from": "E-RW",
+    "to": "W-LW"
+   },
+   "verdict": "ok",
+   "confidence": 40,
+   "why": "From the far board into E's far corner, where a white figure (W-LW) is. The release is contested (E-RW 31, W-LW 50) and blurred."
+  },
+  {
+   "id": "g1-16246",
+   "n": 134,
+   "t_video_s": 541.533,
+   "auto": {
+    "kind": "pass",
+    "from": "W-LD",
+    "to": "W-RD"
+   },
+   "verdict": "wrong",
+   "confidence": 70,
+   "why": "After Fjermestad's overtime winner (about 535 s); a hand is in the rink. Not play."
+  },
+  {
+   "id": "g1-16250",
+   "n": 135,
+   "t_video_s": 541.667,
+   "auto": {
+    "kind": "pass",
+    "from": "W-RD",
+    "to": "W-RW"
+   },
+   "verdict": "wrong",
+   "confidence": 70,
+   "why": "After the overtime winner; a hand is in the rink. Not play."
+  }
+ ]
+}

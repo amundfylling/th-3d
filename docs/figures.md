@@ -1,4 +1,8 @@
-# Figures (iterations 13-15)
+# Figures (iterations 13-16)
+
+> **Superseded 2026-09-30** by the rigid figure molds fitted to the user's photos and videos: see
+> docs/players.md. The proxies, their build scripts and debug contacts described below were removed;
+> this page is kept as the iteration record.
 
 All figure geometry is **provisional**. AI review only; no personal user approval.
 

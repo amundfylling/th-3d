@@ -1,0 +1,414 @@
+{
+ "schema": "shot-analysis/1",
+ "analysis_id": "analysis.shovel-17.v1",
+ "trace_id": "trace.shovel-17.v2",
+ "note": "Sports-analysis presentation of the accepted '#17 Shovel' trace. Shot timing (segments), camera choreography (views, camera keys) and graphics are separate tracks of presentation data; the physical motion comes only from data/traces/shovel-17.trace.json. Holds freeze the whole physical scene; the camera may move during a hold and stands still while the viewer reads.",
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "segments": [
+  {
+   "id": "intro",
+   "kind": "hold",
+   "at": {
+    "window_frame": 0
+   },
+   "frames": 51
+  },
+  {
+   "id": "full",
+   "kind": "play",
+   "from": {
+    "window_frame": 0
+   },
+   "to": {
+    "window_frame": 50
+   },
+   "rate": 1
+  },
+  {
+   "id": "goal_hold",
+   "kind": "hold",
+   "at": {
+    "window_frame": 50
+   },
+   "frames": 21
+  },
+  {
+   "id": "rewind",
+   "kind": "rewind",
+   "from": {
+    "window_frame": 50
+   },
+   "to": 1.55,
+   "rate": 1.2
+  },
+  {
+   "id": "pass_set",
+   "kind": "hold",
+   "at": 1.55,
+   "frames": 18
+  },
+  {
+   "id": "pass_in",
+   "kind": "play",
+   "from": 1.55,
+   "to": {
+    "event": "pass.release"
+   },
+   "rate": 0.2
+  },
+  {
+   "id": "pass_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "pass.release"
+   },
+   "frames": 81
+  },
+  {
+   "id": "to_reception",
+   "kind": "hold",
+   "at": {
+    "event": "pass.release"
+   },
+   "frames": 36
+  },
+  {
+   "id": "reception_in",
+   "kind": "play",
+   "from": {
+    "event": "pass.release"
+   },
+   "to": {
+    "event": "contact.W-C_reception"
+   },
+   "rate": 0.1
+  },
+  {
+   "id": "reception_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "contact.W-C_reception"
+   },
+   "frames": 93
+  },
+  {
+   "id": "to_shovel",
+   "kind": "hold",
+   "at": {
+    "event": "contact.W-C_reception"
+   },
+   "frames": 33
+  },
+  {
+   "id": "shovel_read",
+   "kind": "hold",
+   "at": {
+    "event": "contact.W-C_reception"
+   },
+   "frames": 30
+  },
+  {
+   "id": "carry",
+   "kind": "play",
+   "from": {
+    "event": "contact.W-C_reception"
+   },
+   "to": {
+    "event": "shot.separation"
+   },
+   "rate": 0.05
+  },
+  {
+   "id": "release_freeze",
+   "kind": "hold",
+   "at": {
+    "event": "shot.separation"
+   },
+   "frames": 33
+  },
+  {
+   "id": "shot_out",
+   "kind": "play",
+   "from": {
+    "event": "shot.separation"
+   },
+   "to": 1.96,
+   "rate": 0.12
+  },
+  {
+   "id": "goal_freeze",
+   "kind": "hold",
+   "at": 1.96,
+   "frames": 30
+  },
+  {
+   "id": "to_replay",
+   "kind": "hold",
+   "at": 1.96,
+   "frames": 48
+  },
+  {
+   "id": "replay",
+   "kind": "play",
+   "from": 1.0,
+   "to": 2.05,
+   "rate": 0.5
+  },
+  {
+   "id": "outro",
+   "kind": "hold",
+   "at": 2.05,
+   "frames": 54
+  }
+ ],
+ "unlabelled_holds": [
+  "intro",
+  "outro",
+  "to_replay"
+ ],
+ "replay_segments": [
+  "replay"
+ ],
+ "views": {
+  "intro_high": {
+   "positionMm": [
+    -560,
+    -1150,
+    980
+   ],
+   "targetMm": [
+    60,
+    -30,
+    0
+   ],
+   "fovDeg": 30
+  },
+  "broadcast": {
+   "positionMm": [
+    -330,
+    -760,
+    460
+   ],
+   "targetMm": [
+    100,
+    -105,
+    0
+   ],
+   "fovDeg": 30
+  },
+  "pass": {
+   "positionMm": [
+    -300,
+    -410,
+    200
+   ],
+   "targetMm": [
+    -25,
+    -135,
+    5
+   ],
+   "fovDeg": 30
+  },
+  "reception": {
+   "positionMm": [
+    165,
+    55,
+    130
+   ],
+   "targetMm": [
+    -8,
+    -30,
+    12
+   ],
+   "fovDeg": 30
+  },
+  "shovel": {
+   "positionMm": [
+    200,
+    249,
+    380
+   ],
+   "targetMm": [
+    150,
+    5,
+    5
+   ],
+   "fovDeg": 34
+  },
+  "replay": {
+   "positionMm": [
+    -250,
+    -560,
+    300
+   ],
+   "targetMm": [
+    120,
+    -115,
+    0
+   ],
+   "fovDeg": 32
+  }
+ },
+ "camera": [
+  {
+   "at": "intro.start",
+   "view": "intro_high"
+  },
+  {
+   "at": "intro.start+0.15",
+   "view": "intro_high"
+  },
+  {
+   "at": "intro.end-0.1",
+   "view": "broadcast"
+  },
+  {
+   "at": "goal_hold.end",
+   "view": "broadcast"
+  },
+  {
+   "at": "pass_set.end",
+   "view": "pass",
+   "lift": 80
+  },
+  {
+   "at": "to_reception.start",
+   "view": "pass"
+  },
+  {
+   "at": "to_reception.end",
+   "view": "reception",
+   "lift": 140
+  },
+  {
+   "at": "to_shovel.start",
+   "view": "reception"
+  },
+  {
+   "at": "to_shovel.end",
+   "view": "shovel",
+   "lift": 40
+  },
+  {
+   "at": "to_replay.start",
+   "view": "shovel"
+  },
+  {
+   "at": "to_replay.end",
+   "view": "replay",
+   "lift": 60
+  }
+ ],
+ "chapters": [
+  {
+   "id": "pass",
+   "number": "1",
+   "title": "THE PASS",
+   "text": "The right winger turns and releases a backhand pass across the ice.",
+   "from": "pass_set.start",
+   "to": "to_reception.start+0.2"
+  },
+  {
+   "id": "reception",
+   "number": "2",
+   "title": "THE RECEPTION",
+   "text": "The centre receives the puck at his skates, back turned to the pass.",
+   "from": "to_reception.end-0.2",
+   "to": "to_shovel.start+0.2"
+  },
+  {
+   "id": "shovel",
+   "number": "3",
+   "title": "THE SHOVEL",
+   "text": "He drives up his slot, puck on his back, and it slides into the far corner.",
+   "from": "to_shovel.end-0.2",
+   "to": "goal_freeze.end"
+  }
+ ],
+ "graphics": [
+  {
+   "id": "title",
+   "type": "title_card",
+   "from": "intro.start+0.3",
+   "to": "intro.end"
+  },
+  {
+   "id": "goal_full",
+   "type": "goal_banner",
+   "from": "goal_hold.start",
+   "to": "goal_hold.end"
+  },
+  {
+   "id": "winger",
+   "type": "highlight",
+   "target": "W-RW",
+   "label": "RIGHT WINGER",
+   "accent": "amber",
+   "from": "pass_set.start",
+   "to": "to_reception.start+0.3"
+  },
+  {
+   "id": "pass_dir",
+   "type": "pass_arrow",
+   "accent": "amber",
+   "from": "pass_freeze.start+0.3",
+   "to": "reception_in.start+0.2"
+  },
+  {
+   "id": "centre",
+   "type": "highlight",
+   "target": "W-C",
+   "label": "CENTRE",
+   "accent": "cyan",
+   "from": "to_reception.end-0.3",
+   "to": "release_freeze.end"
+  },
+  {
+   "id": "contact",
+   "type": "contact_marker",
+   "accent": "amber",
+   "from": "reception_freeze.start+0.15",
+   "to": "to_shovel.start+0.3"
+  },
+  {
+   "id": "slot_move",
+   "type": "slot_arrow",
+   "target": "W-C",
+   "accent": "cyan",
+   "from": "shovel_read.start",
+   "to": "release_freeze.end"
+  },
+  {
+   "id": "trail_pass",
+   "type": "puck_trail",
+   "from": "pass_in.start",
+   "to": "to_reception.start"
+  },
+  {
+   "id": "trail_shot",
+   "type": "puck_trail",
+   "from": "carry.start",
+   "to": "goal_freeze.end"
+  },
+  {
+   "id": "goal_slow",
+   "type": "goal_banner",
+   "from": "goal_freeze.start",
+   "to": "goal_freeze.end"
+  },
+  {
+   "id": "trail_replay",
+   "type": "puck_trail",
+   "from": "replay.start",
+   "to": "replay.end"
+  },
+  {
+   "id": "end",
+   "type": "end_card",
+   "from": "replay.end-0.3",
+   "to": "outro.end"
+  }
+ ]
+}

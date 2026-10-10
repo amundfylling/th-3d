@@ -1,0 +1,255 @@
+{
+ "tile": 300,
+ "row": 334,
+ "rows": [
+  {
+   "view": "skater-video-t00.00",
+   "tag": "fitted",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t03.00",
+   "tag": "fitted",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t04.50",
+   "tag": "fitted",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face"
+   ]
+  },
+  {
+   "view": "skater-video-t06.00",
+   "tag": "fitted",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t07.25",
+   "tag": "fitted",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t08.50",
+   "tag": "fitted",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t10.75",
+   "tag": "fitted",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t13.25",
+   "tag": "fitted",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t01.50",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t14.50",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t22.60",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t02.25",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t05.25",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t09.25",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t10.25",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t00.75",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t03.75",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face"
+   ]
+  },
+  {
+   "view": "skater-video-t06.75",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t08.00",
+   "tag": "inspected",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t01.10",
+   "tag": "regression ref",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "gloves"
+   ]
+  },
+  {
+   "view": "skater-video-t04.10",
+   "tag": "regression ref",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face"
+   ]
+  },
+  {
+   "view": "skater-video-t06.40",
+   "tag": "regression ref",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face",
+    "back print"
+   ]
+  },
+  {
+   "view": "skater-video-t08.80",
+   "tag": "regression ref",
+   "features": [
+    "head",
+    "arms/torso",
+    "upper cuff",
+    "face"
+   ]
+  }
+ ]
+}

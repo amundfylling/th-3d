@@ -71,10 +71,17 @@
       "iteration": "07",
       "identity": "Upper winger slot from the W corner (curving at the top-left) along the top to the E blue line region. A yellow Sweden (team E) figure stands at its curved left end; the upper side (+y) is E's right.",
       "occluded": {
-        "start": "Sweden figure"
+        "start": "Sweden figure",
+        "middle": "stick lying along the slot at px 1545-1830 (face-off circle top)"
       },
       "overhead": [[760, 1840], [820, 1808], [880, 1785], [950, 1768], [1030, 1755], [1200, 1750], [3200, 1727]],
-      "bare": [[215, 398], [250, 370], [300, 345], [350, 332], [400, 327], [500, 326], [1436, 287]]
+      "bare": [[215, 398], [250, 370], [300, 345], [350, 332], [400, 327], [500, 326], [1436, 287]],
+      "occluded_boxes_overhead": [
+        {
+          "box": [1545, 1715, 1830, 1790],
+          "reason": "a figure's stick lies along the slot over the face-off circle top (dark wire + highlight pulled the centre up to 2.6 mm sideways; user-marked 2026-10-01)"
+        }
+      ]
     },
     "path.W-LW": {
       "iteration": "07",
@@ -98,10 +105,17 @@
       "iteration": "07",
       "identity": "Lower winger slot from the centre region along the bottom, curving up into the bottom-right corner. A Finland (team W) figure stands at its curved right end; the lower side (-y) is W's right.",
       "occluded": {
-        "end": "Finland figure"
+        "end": "Finland figure",
+        "middle": "stick and the face-off circle arc along the slot at px 3640-4045 (face-off circle bottom)"
       },
       "overhead": [[2440, 3858], [3500, 3835], [4500, 3808], [4620, 3795], [4720, 3770], [4780, 3745]],
-      "bare": [[1065, 1340], [1600, 1339], [2100, 1339], [2200, 1336], [2250, 1323], [2300, 1296], [2332, 1270]]
+      "bare": [[1065, 1340], [1600, 1339], [2100, 1339], [2200, 1336], [2250, 1323], [2300, 1296], [2332, 1270]],
+      "occluded_boxes_overhead": [
+        {
+          "box": [3640, 3795, 4045, 3870],
+          "reason": "stick lying along the slot where the face-off circle arc meets its lower edge (pulled the centre up to 0.7 mm sideways; user-marked 2026-10-01)"
+        }
+      ]
     },
     "path.W-G": {
       "iteration": "08",

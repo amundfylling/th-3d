@@ -1,0 +1,253 @@
+{
+ "description": "Hand-read image marks for the spjass TikTok (references/shots/spjass-tiktok.mp4). Pixel coordinates in the decoded frame (576 x 1024 px, u right, v down). Only take 1 (frames 66-145, fixed top-down camera, goal.E at the top) is calibrated. Every mark was read on a gridded, enlarged crop of the named frame; uncertainty_px is the reading uncertainty (blur, perspective of the slot ends), not a model error. Status of every mark: traced.",
+ "status": "traced",
+ "read_by": "AI (2026-10-06), not reviewed by the user",
+ "orientation_check": "The ice sponsor text (BYGGMAX, gyproc) appears rotated 180 deg, not mirrored, and the intro close-up's board ads (GP Batteries, TAKTIK) read normally: take 1 is an unmirrored top-down view; image up = +x (toward goal.E), image left = +y.",
+ "camera_correspondences": {
+  "frame": 100,
+  "note": "Ice-plane points: where slots cross the painted blue and goal lines (line centre x slot centreline), and slot ends (centre of the rounded end). World positions from data/geometry.json fixture paths and the board landmarks via map.overhead.preview. The recorded table is another STIGA edition (Byggmax/gyproc artwork); identical line/slot layout is an assumption checked only by the fit residuals.",
+  "points": [
+   {
+    "id": "blue_line_E_x_E-RD",
+    "frame_px": [
+     55,
+     855
+    ],
+    "world": {
+     "slot": "E-RD",
+     "line_x_landmarks": [
+      "lm.board.blue_line.E.top",
+      "lm.board.blue_line.E.bottom"
+     ]
+    },
+    "uncertainty_px": 4
+   },
+   {
+    "id": "blue_line_E_x_W-C",
+    "frame_px": [
+     324,
+     853
+    ],
+    "world": {
+     "slot": "W-C",
+     "line_x_landmarks": [
+      "lm.board.blue_line.E.top",
+      "lm.board.blue_line.E.bottom"
+     ]
+    },
+    "uncertainty_px": 4
+   },
+   {
+    "id": "blue_line_E_x_E-LD",
+    "frame_px": [
+     525,
+     847
+    ],
+    "world": {
+     "slot": "E-LD",
+     "line_x_landmarks": [
+      "lm.board.blue_line.E.top",
+      "lm.board.blue_line.E.bottom"
+     ]
+    },
+    "uncertainty_px": 4
+   },
+   {
+    "id": "goal_line_E_x_E-RD",
+    "frame_px": [
+     41.5,
+     366.5
+    ],
+    "world": {
+     "slot": "E-RD",
+     "line_x_landmarks": [
+      "lm.board.goal_line.E.top",
+      "lm.board.goal_line.E.bottom"
+     ]
+    },
+    "uncertainty_px": 4
+   },
+   {
+    "id": "goal_line_E_x_E-LD",
+    "frame_px": [
+     512.5,
+     362.5
+    ],
+    "world": {
+     "slot": "E-LD",
+     "line_x_landmarks": [
+      "lm.board.goal_line.E.top",
+      "lm.board.goal_line.E.bottom"
+     ]
+    },
+    "uncertainty_px": 4
+   },
+   {
+    "id": "W-C_slot_end",
+    "frame_px": [
+     291,
+     608.5
+    ],
+    "world": {
+     "slot_end": "W-C"
+    },
+    "uncertainty_px": 5
+   },
+   {
+    "id": "E-RD_slot_end",
+    "frame_px": [
+     40.6,
+     329
+    ],
+    "world": {
+     "slot_end": "E-RD"
+    },
+    "uncertainty_px": 5
+   },
+   {
+    "id": "E-LD_slot_end",
+    "frame_px": [
+     513,
+     122
+    ],
+    "world": {
+     "slot_end": "E-LD"
+    },
+    "uncertainty_px": 5
+   }
+  ]
+ },
+ "blade_toe_marks": {
+  "note": "End of the W-C stick (blade toe, on the ice) per frame, read on 3x crops. Frames 123, 129-132 are motion-blurred and not read. The model blade lies along the figure's local +y (toe at local [2.38, 43.47] mm), so the toe position fixes the pose once the pivot is constrained to the W-C slot.",
+  "uncertainty_px": 4,
+  "frames": {
+   "100": [
+    407,
+    713
+   ],
+   "121": [
+    410,
+    711
+   ],
+   "122": [
+    409,
+    705
+   ],
+   "124": [
+    348,
+    615
+   ],
+   "125": [
+    322,
+    607
+   ],
+   "126": [
+    296,
+    603
+   ],
+   "127": [
+    271,
+    608
+   ],
+   "128": [
+    263,
+    610
+   ],
+   "133": [
+    242,
+    552
+   ],
+   "134": [
+    263,
+    543
+   ],
+   "136": [
+    327,
+    540
+   ],
+   "140": [
+    305,
+    542
+   ]
+  },
+  "visual_heading_deg": {
+   "100": 186,
+   "122": 191,
+   "124": 235,
+   "125": 263,
+   "126": 273,
+   "127": 292,
+   "128": 294,
+   "133": 306,
+   "134": 295,
+   "140": 267
+  },
+  "visual_heading_note": "rough heading read from the stick direction (biased: the shaft rises toward the hands); used only to choose between the two slot solutions of a toe mark"
+ },
+ "take_1_frames": {
+  "rest": [
+   66,
+   121
+  ],
+  "turn_and_sweep": [
+   122,
+   128
+  ],
+  "spin_and_shot": [
+   129,
+   132
+  ],
+  "goal": 133,
+  "follow_through": [
+   134,
+   145
+  ]
+ },
+ "qualitative_evidence": [
+  {
+   "frames": [
+    26,
+    45
+   ],
+   "view": "intro close-up from behind the centre (not calibrated)",
+   "reading": "W-C faces the camera with the puck hidden behind it (goal side); it turns, the puck appears at its +y side (33-36), then the puck leaves forward and enters the +y side of the net (37-38) while W-C faces the goal with the number 26 on its back."
+  },
+  {
+   "frames": [
+    700,
+    880
+   ],
+   "view": "slow manual demonstration, same camera as take 1",
+   "reading": "the puck at W-C's +y side; the presenter turns the figure clockwise (stick up 796, right 808-826, down 844-856, down-left 862-880) until the blade lies behind the puck (its -x side): the clockwise spin that brings the blade behind the puck before the shot."
+  },
+  {
+   "frames": [
+    894,
+    948
+   ],
+   "view": "full-speed repetition from a wider top-down camera (not calibrated)",
+   "reading": "same sequence: puck behind the back, turn, puck to the +y side, spin, puck into the +y side of the net (933-936)."
+  },
+  {
+   "frames": [
+    236,
+    580
+   ],
+   "view": "presenter explaining with a hand (same camera as take 1)",
+   "reading": "points at the puck on the slot line behind the centre and at the stick; turns the figure through several positions. The spoken explanation (audio) was not transcribed: speech recognition is not available in this environment."
+  }
+ ],
+ "goalie_blade_mark": {
+  "frame": 100,
+  "heel_px": [
+   272,
+   468
+  ],
+  "toe_px": [
+   333,
+   482
+  ],
+  "uncertainty_px": 4,
+  "note": "E-G stick blade (tan, on the ice) read on a 4x crop of frame 100; the goalie stays still in take 1 (frames 66-140). Pose from the blade (heading from heel->toe, pivot = heel - R heel_local) as in iteration 22."
+ }
+}

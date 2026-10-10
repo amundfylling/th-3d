@@ -1,0 +1,122 @@
+{
+  "note": "Mold units ~ mm (gauge: camera distance fixed at the silhouette-fit value). Operator-read keypoints; see data/figure-keypoints.json.",
+  "camera": {
+    "elevation_deg": 18.36,
+    "roll_deg": -6.65,
+    "focal_px": 3000.8
+  },
+  "frame_rotation_deg": -45.32,
+  "points_mm": {
+    "socket": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "heel": [
+      5.1,
+      18.22,
+      2.02
+    ],
+    "blade_toe": [
+      12.52,
+      33.24,
+      8.43
+    ],
+    "stick_top": [
+      7.49,
+      -5.0,
+      28.03
+    ],
+    "chin": [
+      14.43,
+      0.0,
+      35.5
+    ],
+    "nape": [
+      5.14,
+      -2.82,
+      40.75
+    ],
+    "number": [
+      -3.93,
+      -2.64,
+      32.16
+    ],
+    "right_boot": [
+      -7.76,
+      -11.08,
+      7.24
+    ]
+  },
+  "views": {
+    "skater-video-t00.00": {
+      "azimuth_deg": -11.21,
+      "residual_px": {
+        "socket": 40.7,
+        "heel": 33.2,
+        "stick_top": 15.0,
+        "chin": 10.5,
+        "right_boot": 2.8
+      }
+    },
+    "skater-video-t03.00": {
+      "azimuth_deg": -62.97,
+      "residual_px": {
+        "socket": 26.8,
+        "heel": 61.8,
+        "blade_toe": 0.0,
+        "stick_top": 36.3,
+        "chin": 27.6,
+        "right_boot": 51.2
+      }
+    },
+    "skater-video-t04.50": {
+      "azimuth_deg": -86.74,
+      "residual_px": {
+        "socket": 10.8,
+        "chin": 22.9,
+        "nape": 6.4,
+        "right_boot": 2.0
+      }
+    },
+    "skater-video-t06.00": {
+      "azimuth_deg": -135.25,
+      "residual_px": {
+        "nape": 23.4,
+        "number": 12.0,
+        "heel": 3.2
+      }
+    },
+    "skater-video-t07.25": {
+      "azimuth_deg": 193.44,
+      "residual_px": {
+        "nape": 14.7,
+        "number": 1.9,
+        "socket": 11.9,
+        "right_boot": 9.7,
+        "heel": 40.2
+      }
+    },
+    "skater-video-t08.50": {
+      "azimuth_deg": 153.77,
+      "residual_px": {
+        "nape": 8.2,
+        "number": 12.1,
+        "socket": 4.6,
+        "right_boot": 16.6,
+        "chin": 6.2
+      }
+    },
+    "skater-video-t10.75": {
+      "azimuth_deg": 11.19,
+      "residual_px": {
+        "chin": 5.7,
+        "stick_top": 31.9,
+        "heel": 11.3,
+        "socket": 10.2,
+        "right_boot": 22.5
+      }
+    }
+  },
+  "rms_px": 23.45
+}

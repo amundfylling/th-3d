@@ -6,7 +6,8 @@
     "pdf_embedded = extracted from the reference PDF without resampling; pdf_embedded JPEGs are byte-identical to the PDF's DCT streams.",
     "downloaded_original = fetched from the public URL. None succeeded in this environment; see status.",
     "byte_identity_with_remote is 'unverified' for every asset because no remote original could be fetched.",
-    "Original PDF is preserved unchanged at the repository root."
+    "Original PDF is preserved unchanged at the repository root.",
+    "user_upload = file uploaded by the user to references/players_images (main branch); decoded/cropped stills in references/derived/players (manifest.json, scripts/extract-player-frames.py)."
   ],
   "reference_pdf": {
     "path": "Stiga_Play_Off_21_References.pdf",
@@ -376,6 +377,457 @@
         "Rasterised page, 1273 x 1800 px.",
         "Complete manual not obtained (network blocked)."
       ]
+    },
+    {
+      "id": "user_goalie_photo_2564",
+      "title": "User photo IMG_2564 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2564 2.HEIC",
+      "sha256": "55620953d2b31fb16187816a8fab77d491f8fdabc1b73be829a394033bc91674",
+      "bytes": 2175908,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-front: front, camera slightly above",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2565",
+      "title": "User photo IMG_2565 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2565 2.HEIC",
+      "sha256": "d2f84ab58bb75a31d358808a96dad60ded2c771ff08f9bb24c395b73b04cb4d6",
+      "bytes": 2117219,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-front-oblique: front, turned slightly to the goalie's right",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2566",
+      "title": "User photo IMG_2566 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2566 2.HEIC",
+      "sha256": "e4c3f7df372b2143d50ce1bcdebb563a53f1330a2618c697db40d06665f99931",
+      "bytes": 2579493,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-back: back, from above",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2567",
+      "title": "User photo IMG_2567 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2567 2.HEIC",
+      "sha256": "2c3c8d7910a5a9648177ab632c153bd0d85e894333874102017eb4628e5acb79",
+      "bytes": 2857118,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-top: near top-down, back up",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2568",
+      "title": "User photo IMG_2568 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2568 2.HEIC",
+      "sha256": "f364ea21a4e155d4c408197605184e13504b60c91e19520a5e4458d5b5a56156",
+      "bytes": 2078610,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-underside: lying face down, feet toward camera: mount socket under the right skate",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2569",
+      "title": "User photo IMG_2569 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2569 2.HEIC",
+      "sha256": "5e86fcfbd966ff5b949280acb5d5a26fd05ccde726d52ae48556cbc4edf197a4",
+      "bytes": 2704187,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-lying-side: lying on its side",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2570",
+      "title": "User photo IMG_2570 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2570 2.HEIC",
+      "sha256": "d1b3ef65b2afb2a7ab08a370ed2d775dc507597f34ee22e3ba28b654784a3d97",
+      "bytes": 2536203,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-lying-back: lying face down, from above: back print",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2571",
+      "title": "User photo IMG_2571 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2571 2.HEIC",
+      "sha256": "da493a0d0976de5096faf39cb612b0e51a4cb023934e75b0c52190539d40fd90",
+      "bytes": 2463638,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-lying-back-2: lying face down, oblique: back print",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_photo_2572",
+      "title": "User photo IMG_2572 2.HEIC - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2572 2.HEIC",
+      "sha256": "ed3b2aa0c8d3f6707e15fab9ca5e8acbf1df397a71d7b6d387036784d9c956f3",
+      "bytes": 2443213,
+      "format": "heic",
+      "native_width_px": 4284,
+      "native_height_px": 5712,
+      "mode": "RGB",
+      "camera": "iPhone 15 back dual wide camera 5.96 mm f/1.6 (26 mm equivalent), EXIF 2026-09-30",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-photo-side: standing, goalie's right side",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink."
+      ]
+    },
+    {
+      "id": "user_goalie_video_2573",
+      "title": "User video IMG_2573_under25MB(1).mp4 - Sweden goalie no. 30 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2573_under25MB(1).mp4",
+      "sha256": "d0a4ffb3f96cea2232425d92a1d471909c8c3f3b52807a0d145f77b444ada2c2",
+      "bytes": 23501204,
+      "format": "mp4 (HEVC Main 10, HLG BT.2020, 30 fps)",
+      "native_width_px": 2160,
+      "native_height_px": 3840,
+      "mode": "yuv420p10le",
+      "camera": "iPhone 15 back camera (video; focal length not recorded)",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "goalie-video-t00.50: front from above (turntable); goalie-video-t05.00: side from above (turntable); goalie-video-t07.75: back from above (turntable); goalie-video-t12.25: front, low camera; goalie-video-t16.75: near top-down",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink.",
+        "Frames 0-11 s: phone nearly still, figure turned on the table by a finger (turntable); later frames hand-held."
+      ]
+    },
+    {
+      "id": "user_skater_video_2574",
+      "title": "User video IMG_2574_under25MB(1).mp4 - Sweden skater no. 21 (loose figure on a table)",
+      "provenance": "user_upload",
+      "local_path": "references/players_images/IMG_2574_under25MB(1).mp4",
+      "sha256": "0c6d300f80d695e37a7e88c2eb9fede69b55b215c39dabd035268fa1ac3e390b",
+      "bytes": 23979511,
+      "format": "mp4 (HEVC Main 10, HLG BT.2020, 30 fps)",
+      "native_width_px": 2160,
+      "native_height_px": 3840,
+      "mode": "yuv420p10le",
+      "camera": "iPhone 15 back camera (video; focal length not recorded)",
+      "uploaded": "main branch, commits 9d5a0eb..cea698f (2026-09-30), readme: references/players_images/readme.md",
+      "view": "skater-video-t00.00: front-left from above (turntable); skater-video-t01.50: turntable; skater-video-t03.00: turntable; skater-video-t04.50: turntable, profile; skater-video-t06.00: turntable, back-left; skater-video-t07.25: turntable, back; skater-video-t08.50: turntable, back-right; skater-video-t09.75: turntable, right; skater-video-t10.75: turntable, front-right; skater-video-t11.75: held, underside of the left skate: mount socket; skater-video-t13.25: front, camera high; skater-video-t14.50: front, camera high; skater-video-t22.60: held, front: socket under the left skate, stick",
+      "limitations": [
+        "No scale object next to the figure (the tape measure lies far behind it): proportions only.",
+        "Perspective close-ups (camera 10-20 cm away); figure removed from the rink.",
+        "Frames 0-11 s: phone nearly still, figure turned on the table by a finger (turntable); later frames hand-held."
+      ]
+    },
+    {
+      "id": "user_goalie_measurement_sketch",
+      "title": "User measurement sketch of the STIGA Play Off 21 goalie (2026-10-01): endpoints of height 5,4 cm, blade length 2,6 cm, blade height 0,55 cm",
+      "provenance": "user_upload",
+      "local_path": "references/user_measurements/goalie-measurements-2026-10-01.png",
+      "sha256": "7094c58eac44b7cfe79b361b496e88f30eaa157a17d8bc7d27caf0e6ff2f5e07",
+      "bytes": 51711,
+      "format": "png",
+      "native_width_px": 277,
+      "native_height_px": 224,
+      "mode": "RGBA",
+      "uploaded": "chat attachment, 2026-10-01",
+      "view": "Front view of the goalie (official product picture style) with red measurement brackets: height from the mask top to the bottom of the figure; blade length along the lower edge from the heel bend to the toe; blade vertical height at the toe.",
+      "limitations": [
+        "Annotation of measurement endpoints only; values are the user's ruler readings in the chat message (54 mm, 26 mm, 5.5 mm), stated without uncertainty."
+      ]
+    },
+    {
+      "id": "user_shot_recording_shovel_17",
+      "title": "Screen recording of a third-party table hockey video '#17 SHOVEL' (full speed, then replay of the same shot)",
+      "provenance": "user_upload",
+      "local_path": "references/shots/shovel-17-screen-recording.mov",
+      "sha256": "65eca3cd30a39eb7a90f559936fbb0ffffdad64f5a22165eca4734928e557886",
+      "bytes": 20051809,
+      "format": "mov (HEVC, iOS ReplayKit screen recording)",
+      "native_width_px": 2556,
+      "native_height_px": 1180,
+      "uploaded": "chat attachment, 2026-10-04",
+      "view": "Segment 1: oblique view from behind the W attack toward goal.E at full speed; segment 2: slow-motion replay from behind goal.E.",
+      "limitations": [
+        "Screen recording of someone else's video (watermark 'Brent Plast Bordhockey'): recompressed, content ~25 fps inside a ~60 fps container.",
+        "Different STIGA table edition and figure pack than the user's (sponsor artwork, numbers).",
+        "Heavy motion blur at the contacts; the source camera's capture rate is unknown."
+      ]
+    },
+    {
+      "id": "user_shot_video_spjass_tiktok",
+      "title": "TikTok video (@tablehockeyglobal) showing how to do the centre move 'spjass': overhead demonstrations, slow manual demonstration, presenter explanation",
+      "provenance": "user_upload",
+      "local_path": "references/shots/spjass-tiktok.mp4",
+      "sha256": "bf0da0e1292e47fbad0ceb06334b2991d5d1347048965faf00780203715aebcc",
+      "bytes": 2463643,
+      "format": "mp4 (H.264 576 x 1024, 30 fps, 1069 frames, 35.6 s; AAC audio)",
+      "native_width_px": 576,
+      "native_height_px": 1024,
+      "uploaded": "chat attachment, 2026-10-06",
+      "view": "Portrait TikTok. Frames 0-62: low close-up from behind W-C; 66-145 (take 1): fixed top-down camera over goal.E (unmirrored: ice text rotated 180 deg), calibrated in shots/spjass/observations.json; 146-235: presenter; 236-580: hand explanation; 700-880: slow manual demonstration; 894-948: wider top-down repetition; 949-1068: TikTok end card.",
+      "notes": "Another STIGA table edition (Byggmax/gyproc artwork), white Finland centre no. 26 against a yellow Sweden goalie. The spoken explanation was not transcribed (no speech recognition available)."
+    },
+    {
+      "id": "puck_no_nacka_page",
+      "title": "Norwegian Table Hockey Association (NTHF), combination 'Näcka' (centre, difficulty 4/10): page as fetched",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/puck-no-nacka.html",
+      "sha256": "dcd0634a6b923386c94d1619b3b47964a05a99edde8d3aeef7a35cd8f257e8aa",
+      "bytes": 17610,
+      "format": "html",
+      "url": "https://www.puck.no/en/combinations/nacka/",
+      "text": "Center starts with the puck in the heel groove, passes with the heel a few centimeters out to the right, and shoots with the blade into the right corner"
+    },
+    {
+      "id": "puck_no_nacka_illustration",
+      "title": "NTHF movement illustration for 'Näcka' (top view, goal at the top; puck positions 1 and 2, green arrows)",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/trick-nacka.png",
+      "sha256": "b41e3ba0a327975450024e1a8576bfc81f83dbd0ea41700ebf92fbbcad89b945",
+      "bytes": 33196,
+      "format": "png 600 x 438 (palette)",
+      "url": "https://www.puck.no/media/images/trick-nacka-2e6af9fd.png",
+      "native_width_px": 600,
+      "native_height_px": 438
+    },
+    {
+      "id": "puck_no_spjass_page",
+      "title": "NTHF combination 'Spjass' (centre, difficulty 5/10): page as fetched (cross-check of the TikTok reconstruction)",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/puck-no-spjass.html",
+      "sha256": "be9bf7e8610ebad05017e312d3a5aeaa0f5800c5a337786b14cb346aec1558d8",
+      "bytes": 17711,
+      "format": "html",
+      "url": "https://www.puck.no/en/combinations/spjass/",
+      "text": "Center starts with the puck in the heel groove, passes with the blade a few centimeters out to the left, spins all the way around and shoots with the blade into the left corner"
+    },
+    {
+      "id": "puck_no_spjass_illustration",
+      "title": "NTHF movement illustration for 'Spjass'",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/trick-spjass.png",
+      "sha256": "868b465985fbbae6d2a036d86083084192a7a5b80704ccca6c2ccac19c5f0f2e",
+      "bytes": 33981,
+      "format": "png 600 x 438 (palette)",
+      "url": "https://www.puck.no/media/images/trick-spjass-6dadefbc.png",
+      "native_width_px": 600,
+      "native_height_px": 438
+    },
+    {
+      "id": "puck_no_invers_kryssar_med_velodrom_page",
+      "title": "NTHF combination 'Invers Kryssar med Velodrom' (right wing, 7/10): page as fetched; no illustration or video",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/puck-no-invers-kryssar-med-velodrom.html",
+      "sha256": "ef5334d5860892e20271f76056f38577f39ff4b6932d5dd22ab0b4d2e4971f83",
+      "bytes": 17555,
+      "format": "html",
+      "url": "https://www.puck.no/en/combinations/invers-kryssar-med-velodrom/",
+      "text": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who shoots directly into the goal"
+    },
+    {
+      "id": "puck_no_invers_kryssar_page",
+      "title": "NTHF combination 'Invers Kryssar' (right wing, 7/10): the base move; no illustration",
+      "provenance": "web (user link, fetched 2026-10-06)",
+      "local_path": "references/combinations/puck-no-invers-kryssar.html",
+      "sha256": "5b2a16e8b6ca4c696b8ebdaee5dc3a488eeda3e8cceb885a35165df3edc5596e",
+      "bytes": 17087,
+      "format": "html",
+      "url": "https://www.puck.no/en/combinations/invers-kryssar/",
+      "text": "Pass from right wing to left wing, who shoots into the left corner"
+    },
+    {
+      "id": "user_shot_video_lw_board_pass_example",
+      "title": "Screen recording (user upload): a left wing pushes the puck along its curved slot into the corner and sends it along the boards behind the goal to the right wing. PHYSICS EXAMPLE ONLY - a different combination",
+      "provenance": "user_upload",
+      "local_path": "references/shots/lw-board-pass-example.mov",
+      "sha256": "ab5dd38a4f41e6dd1245c93cec7665959ed5151e3c45e48345faa60f7c7dbb12",
+      "bytes": 6968468,
+      "format": "mov (HEVC 1180 x 1182, 60.4 fps nominal, 190 frames; the content repeats every 2-3 frames: a screen recording of a lower-rate video)",
+      "native_width_px": 1180,
+      "native_height_px": 1182,
+      "uploaded": "chat attachment ScreenRecording_10-06-2026_13-47-44_1.mov, 2026-10-06",
+      "view": "Frames 0-34: presenter; 35-42: crossfade; 42-118: fixed top-down camera over one end (goal at the right, end board at the right edge, unmirrored board ads). Yellow left wing in the top-right corner carries the puck along its curved slot (frames 42-59); the puck runs down the end board behind the goal (60-72), round the bottom corner and left along the bottom board (75-118) to the yellow right wing, who passes it on (120-160).",
+      "notes": "The user's words: use it for the physics of the board pass (push, not flick), it is a different combination. Puck speeds read by Claude from dark-blob tracking with an UNCALIBRATED scale (about 2.4 px/mm from the board-to-board width): about 1.0 m/s along the end board just after the corner, 0.7 -> 0.5 m/s along the bottom board. Not a measurement of our table; used as a plausibility reference for docs/invers-kryssar-velodrom.md and the CLAUDE.md slide-or-bounce rule."
+    },
+    {
+      "id": "user_video_defence_vs_left_wing_tiktok",
+      "title": "TikTok video (@tablehockeyglobal): 'Somebody is attacking from their left wing. Here are three defenses you can use' - passive (box), active, mix",
+      "provenance": "user_upload",
+      "local_path": "references/shots/defence-vs-left-wing-tiktok.mp4",
+      "sha256": "05b49eab1de3b0e537fca7e6d27cd4cbcf7e7bea6f4c8eeceb60524ceb68ef81",
+      "bytes": 7969682,
+      "format": "mp4 (576 x 1024, 30 fps, 1713 frames, 57.1 s)",
+      "native_width_px": 576,
+      "native_height_px": 1024,
+      "uploaded": "chat attachment, 2026-10-06",
+      "view": "Portrait, top-down over one end; yellow team defends the goal at the bottom, white/blue left wing (#64) in the bottom-right corner with the puck. Frames 0-120: overview and intro; 120-510: passive (defender #82 to the near post, goalie #30 in the middle); 520-1000: active (goalie to the near post, defender out cutting passes); 1005-1610: mix (switching), then the presenter shows short-corner and far-corner shots; 1610-1713: outro.",
+      "notes": "Narration read from the burned-in captions (docs/defence-left-wing.md); no speech recognition."
+    },
+    {
+      "id": "bordshockeyskolan_lektion_3_centrifugen",
+      "title": "Bordshockeyskolan, lesson 3: Centrifugen (the centrifuge) - the left wing passes to the centre, who shoots first time",
+      "provenance": "web (found by Claude for the user's term 'centrifuge', fetched 2026-10-06)",
+      "local_path": "references/combinations/bordshockeyskolan-lektion-3-centrifugen.html",
+      "sha256": "d3b011ecb5c989b54fabe7a4d98bd2f5036dbb7900d9c056b7e9e0c1f232eb9f",
+      "bytes": 151387,
+      "format": "html",
+      "url": "https://bordshockeyskolan.wordpress.com/bordshockeyskolan/lektion-1-10/lektion-3-centrifugen/",
+      "text": "Centrifug: the left wing (puck on the backhand side) passes to the centre, who scores; the centre waits up at the centre circle with its back to the goal and the stick aimed at the goal."
+    },
+    {
+      "id": "user_game_video_fylling_vs_moe_trondheim_open_2022_final",
+      "title": "Fylling vs Moe, Trondheim Open 2022, final: one complete match filmed with a handheld phone",
+      "provenance": "user_upload",
+      "local_path": "references/games/fylling-vs-moe-trondheim-open-2022-final.mov",
+      "sha256": "ba3c7acdd85fa027473c53c2dffb0ccdbb51b76923bc343a39a30baca30e8d09",
+      "bytes": 29429077,
+      "format": "mov (H.264 640 x 360, 25 fps, 7756 frames, 310.25 s; AAC stereo 44.1 kHz)",
+      "native_width_px": 640,
+      "native_height_px": 360,
+      "uploaded": "chat attachment, 2026-10-07",
+      "view": "Handheld, low and oblique from the near long side of the table; the whole rink in view (about 380 px wide, puck about 10 px). The camera moves during 0-5 s, then holds roughly still.",
+      "notes": "Table: STIGA Play Off 21 (Peter Forsberg edition printed on the near side), yellow vs white/blue figures. Match timeline from the audio timer: start signal at about 7.5 s, final signal from about 307.5 s (docs/game-mechanics.md). Chosen by the user as the hardest camera angle for game analysis."
+    },
+    {
+      "id": "ithf_game_rules_2023",
+      "title": "ITHF Game Rules (valid from 21 August 2023), approved by the ITHF Executive Committee",
+      "provenance": "web (URL given by the user, fetched 2026-10-07)",
+      "local_path": "references/rules/ithf-game-rules.pdf",
+      "sha256": "de5f0e74078a5f85af11a61e6b7286e5a30e50c6de84872f87dcb8ce70f56678",
+      "bytes": 468913,
+      "format": "pdf (6 pages)",
+      "url": "https://ithf.info/stiga/ithf/docs/GameRules.pdf",
+      "text": "Official game rules: equipment (Stiga games, goal cups removed, Play-off figures), 5-minute matches with an audio timer, face-offs, scoring, goal crease, possession (passive play, 5 seconds), interference, interruption, the defender-goalie-defender pass. Digest in docs/game-mechanics.md. Changes of the 2023 vote are printed in red (only rule 6.1)."
+    },
+    {
+      "id": "user_game_video_nygard_vs_fjermestad_nm26_semifinal",
+      "title": "Daniel Nygård vs Andreas Fjermestad, NM 2026 semi-final: all seven games, broadcast stream with score overlay",
+      "provenance": "user_upload (GitHub release of this repository, 2026-10-07)",
+      "local_path": null,
+      "url": "https://github.com/amundfylling/th-3d/releases/download/daniel_andreas_NM26.mp4/daniel_andreas_NM26.mp4.webm",
+      "release_tag": "daniel_andreas_NM26.mp4",
+      "sha256": "7de5bc6b5ac1127942404fcfb81c43234d70e7682e041d8a5a9c56819a0d1707",
+      "bytes": 656495087,
+      "format": "webm (AV1 1920 x 1080, 30 fps, 3553.0 s; Opus stereo 48 kHz). OpenCV in the container cannot decode AV1; PyAV (libdav1d) decodes about 290 fps.",
+      "native_width_px": 1920,
+      "native_height_px": 1080,
+      "view": "Fixed broadcast camera from the near long side, steep oblique; rink about 1500 px wide (about 0.6 mm/px along the rink, 1.5 mm/px across). Score overlay top-left (names, game score, series score); player camera inset top-right (does not cover the rink). The table shifts up to about 20 px during play.",
+      "notes": "Not committed to git (656 MB); download from the release URL. Series results from Nygård's side (user): 3:4 OT, 3:1, 3:5, 3:2 OT, 3:4 OT, 5:1, 1:3. Nygård plays white/blue, Fjermestad yellow (overlay panel colours). Ends switch in the pattern 2-2-1-1-1 (user). Same table layout as the repo model (user). Game 1 investigation: docs/nm26-game1-investigation.md."
+    },
+    {
+      "id": "puck_no_combination_catalogue_en",
+      "local_path": "references/combinations/puck-no-combination-catalogue-en.html",
+      "url": "https://www.puck.no/en/lær-bordhockey-kombinasjoner/",
+      "title": "NTHF 'Learn table hockey - combinations': the full catalogue (121 combinations for the centre and right wing, difficulty 0-10, terminology)",
+      "text": "121 combinations: 55 centre, 66 right wing; parsed in data/combinations/nthf-catalogue.json",
+      "format": "html",
+      "bytes": 187610,
+      "sha256": "6bf476ba5d67fb9d6fb8d5f2e20313390dcf77f5b6613187b6ba2bddbe76cddc",
+      "provenance": "web (found by Claude, fetched 2026-10-08)"
+    },
+    {
+      "id": "puck_no_timers_en",
+      "local_path": "references/rules/puck-no-timers-en.html",
+      "url": "https://www.puck.no/en/timere/",
+      "title": "NTHF timers page: match length and signals",
+      "text": "A match lasts 5 minutes. 30 seconds of music are played before the start signal and 30 seconds of music before the end signal. At Norwegian tournaments there are also signals at 1/3 and 2/3.",
+      "format": "html",
+      "bytes": 24514,
+      "sha256": "d2ffb26c409f0b71b80eb7edff0dc074cd772eb1444941a8b873f21dd2571913",
+      "provenance": "web (found by Claude, fetched 2026-10-08)"
+    },
+    {
+      "id": "bordshockeyskolan_pages_2026_10_08",
+      "local_path": "references/coaching/bordshockeyskolan-pages-2026-10-08.json",
+      "url": "https://public-api.wordpress.com/wp/v2/sites/bordshockeyskolan.wordpress.com/pages?per_page=100",
+      "title": "Bordshockeyskolan (Swedish table hockey school): all 87 pages as JSON from the WordPress API, including lessons 1-46 (English 1-22, Swedish 23-46), game care and rules",
+      "text": "Lessons on passing, the shovel, centrifuge, velodrome, Maltsev, the Insult, the hook, bulldozer, castlings, centre tricks, defence (Box, Flipper), build-up from each defender, keeping the puck, tournament play",
+      "format": "json",
+      "bytes": 324962,
+      "sha256": "29755bcb3ed811b57e52f6b983b3f27455eddd65ebce48e85d84f6760ec9eb4d",
+      "provenance": "web (found by Claude, fetched 2026-10-08)"
+    },
+    {
+      "id": "puck_no_combination_catalogue_no",
+      "local_path": "references/combinations/puck-no-combination-catalogue-no.html",
+      "url": "https://www.puck.no/lær-bordhockey-kombinasjoner/",
+      "title": "NTHF 'Lær bordhockey - kombinasjoner': the same catalogue in Norwegian (the original terms)",
+      "text": "Original Norwegian (partly Nynorsk) wording: hælgropa, tågropa, kølle, vant, spor, keeper, back, ving, innspill, skyffel, kontring",
+      "format": "html",
+      "bytes": 183519,
+      "sha256": "5df20d97499b93058a787f4155489c3f437e92963e32571eae09e9dbc60afe2d",
+      "provenance": "web (found by Claude, fetched 2026-10-08)"
     }
   ],
   "not_obtained": [

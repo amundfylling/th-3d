@@ -1,0 +1,109 @@
+{
+ "description": "Design choices for trace.nacka.v1 (scripts/nacka-trace.py). There is no video of Näcka: the evidence is the NTHF description and movement illustration (references/combinations/puck-no-nacka.html, trick-nacka.png). The set-up and the physical rates are borrowed from the measured spjass (same set-up per NTHF: 'Center starts with the puck in the heel groove'). Every value is either taken from those sources (cited) or an assumption named as such.",
+ "status": "proposed",
+ "window_s": [
+  3.5,
+  4.8
+ ],
+ "source_text": "Center starts with the puck in the heel groove, passes with the heel a few centimeters out to the right, and shoots with the blade into the right corner",
+ "illustration_readings": {
+  "scale_mm_per_px": 0.836,
+  "scale_from": "goal mouth 104 px = preview mouth 86.94 mm",
+  "puck_1_px": [
+   303,
+   337
+  ],
+  "puck_2_px": [
+   352,
+   318
+  ],
+  "shot_end_px": [
+   342,
+   212
+  ],
+  "goal_line_y_px": 217,
+  "goal_centre_x_px": 295,
+  "pass_mm": [
+   15.9,
+   -41.0
+  ],
+  "pass_length_mm": 44.0,
+  "pass_direction_deg": -68.8,
+  "shot_direction_deg": 5.5,
+  "note": "schematic drawing (not to scale, perspective-free): used for the pass length and direction and the target corner only"
+ },
+ "borrowed_from_spjass": {
+  "rest": "W-C rest pose and resting puck of trace.spjass.v1 (heading 180.2 deg, puck touching the heel)",
+  "ice_friction_mm_s2": "shots/spjass/checks.json slide_fit.deceleration_mm_s2",
+  "onset_s": 4.05
+ },
+ "goalie": {
+  "y_mm": 20.0,
+  "theta_deg": 0.0,
+  "note": "ASSUMED: E-G on its slot 9.5 mm toward its own right (+y) from the assembly pose, covering the left post (where the spjass goes from the same set-up); with the assembly pose its stick closes the right corner for any straight shot."
+ },
+ "heel_pass": {
+  "theta_keyframes": [
+   [
+    4.05,
+    180.2
+   ],
+   [
+    4.08,
+    166.5
+   ],
+   [
+    4.105,
+    149.0
+   ],
+   [
+    4.125,
+    143.0
+   ]
+  ],
+  "note": "ASSUMED timing: clockwise turn of about 37 deg in 75 ms; the back of the right skate (heel) pushes the puck out to the right. Length chosen for a pass of about 4 cm (NTHF: 'a few centimeters'); its direction follows from the model skate (about -44 deg; the illustration shows about -69 deg)."
+ },
+ "shot": {
+  "theta_keyframes": [
+   [
+    4.24,
+    143.0
+   ],
+   [
+    4.31,
+    148.0
+   ],
+   [
+    4.33,
+    170.0
+   ],
+   [
+    4.35,
+    200.0
+   ],
+   [
+    4.5,
+    210.0
+   ]
+  ],
+  "arc_keyframes": [
+   [
+    4.2,
+    0.0
+   ],
+   [
+    4.3,
+    39.0
+   ],
+   [
+    4.33,
+    43.0
+   ],
+   [
+    4.45,
+    43.5
+   ]
+  ],
+  "note": "ASSUMED: W-C steps 43 mm up its slot and turns back counter-clockwise; the blade comes square behind the puck and drives it into the right corner (chosen from a scan of the lunge length and the heading at contact: cleanest goal, blade and net the only contacts)."
+ }
+}

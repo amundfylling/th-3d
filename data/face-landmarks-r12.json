@@ -1,0 +1,296 @@
+{
+ "description": "Round 12 skater face landmarks, hand-read on the video frames (references/derived/players, 2000-px work image of each crop) and triangulated with the frozen fitted cameras after removing each view's helmet-registration shift (the head sits up to ~3 units off in the whole-figure camera fits). Coordinates: mold units in the frame of the frozen model helmet.",
+ "status": "traced",
+ "uncertainty_units": "about 0.6-1.5 (triangulation residuals; motion blur 6-10 px; left- and right-side frames disagree on height by up to ~2 units after translation-only correction, so z values are the both-sides average)",
+ "helmet_shift_px": {
+  "skater-video-t13.25": [
+   17,
+   25
+  ],
+  "skater-video-t14.50": [
+   62,
+   46
+  ],
+  "skater-video-t00.00": [
+   -1,
+   -7
+  ],
+  "skater-video-t01.10": [
+   -17,
+   14
+  ],
+  "skater-video-t10.75": [
+   -26,
+   12
+  ],
+  "skater-video-t03.75": [
+   24,
+   5
+  ],
+  "skater-video-t04.50": [
+   14,
+   9
+  ],
+  "skater-video-t08.50": [
+   -14,
+   -15
+  ],
+  "skater-video-t08.80": [
+   -50,
+   -1
+  ],
+  "skater-video-t09.25": [
+   -69,
+   -27
+  ]
+ },
+ "marks_px": {
+  "A_nose_top": {
+   "skater-video-t04.50": [
+    1018,
+    618
+   ],
+   "skater-video-t03.75": [
+    1057,
+    628
+   ],
+   "skater-video-t09.25": [
+    400,
+    612
+   ],
+   "skater-video-t08.80": [
+    395,
+    612
+   ],
+   "skater-video-t08.50": [
+    370,
+    617
+   ]
+  },
+  "B_nose_bot": {
+   "skater-video-t04.50": [
+    1016,
+    646
+   ],
+   "skater-video-t03.75": [
+    1058,
+    657
+   ],
+   "skater-video-t09.25": [
+    403,
+    645
+   ],
+   "skater-video-t08.80": [
+    398,
+    645
+   ],
+   "skater-video-t08.50": [
+    373,
+    641
+   ]
+  },
+  "C_mouth": {
+   "skater-video-t04.50": [
+    998,
+    655
+   ],
+   "skater-video-t03.75": [
+    1040,
+    668
+   ],
+   "skater-video-t09.25": [
+    424,
+    660
+   ],
+   "skater-video-t08.80": [
+    412,
+    655
+   ],
+   "skater-video-t08.50": [
+    390,
+    652
+   ]
+  },
+  "D_chin_bot": {
+   "skater-video-t04.50": [
+    975,
+    690
+   ],
+   "skater-video-t03.75": [
+    1010,
+    705
+   ],
+   "skater-video-t09.25": [
+    460,
+    698
+   ],
+   "skater-video-t08.80": [
+    440,
+    692
+   ],
+   "skater-video-t08.50": [
+    428,
+    688
+   ]
+  },
+  "E_jaw_back_R": {
+   "skater-video-t04.50": [
+    910,
+    705
+   ],
+   "skater-video-t03.75": [
+    950,
+    718
+   ]
+  },
+  "nose_front": {
+   "skater-video-t13.25": [
+    458,
+    575
+   ],
+   "skater-video-t00.00": [
+    772,
+    735
+   ],
+   "skater-video-t01.10": [
+    776,
+    755
+   ]
+  },
+  "chin_front": {
+   "skater-video-t00.00": [
+    775,
+    790
+   ],
+   "skater-video-t01.10": [
+    780,
+    800
+   ],
+   "skater-video-t10.75": [
+    690,
+    830
+   ]
+  },
+  "chin_all": {
+   "skater-video-t00.00": [
+    775,
+    790
+   ],
+   "skater-video-t01.10": [
+    780,
+    800
+   ],
+   "skater-video-t10.75": [
+    690,
+    830
+   ],
+   "skater-video-t04.50": [
+    975,
+    690
+   ],
+   "skater-video-t03.75": [
+    1010,
+    705
+   ],
+   "skater-video-t09.25": [
+    460,
+    698
+   ],
+   "skater-video-t08.80": [
+    440,
+    692
+   ],
+   "skater-video-t08.50": [
+    428,
+    688
+   ]
+  },
+  "nose_all": {
+   "skater-video-t13.25": [
+    458,
+    575
+   ],
+   "skater-video-t00.00": [
+    772,
+    735
+   ],
+   "skater-video-t01.10": [
+    776,
+    755
+   ],
+   "skater-video-t04.50": [
+    1017,
+    632
+   ],
+   "skater-video-t03.75": [
+    1057,
+    642
+   ],
+   "skater-video-t09.25": [
+    401,
+    628
+   ],
+   "skater-video-t08.80": [
+    396,
+    628
+   ],
+   "skater-video-t08.50": [
+    371,
+    629
+   ]
+  }
+ },
+ "triangulated": {
+  "A_nose_top": [
+   13.55,
+   -2.27,
+   39.95
+  ],
+  "B_nose_bot": [
+   13.51,
+   -2.25,
+   38.61
+  ],
+  "C_mouth": [
+   12.76,
+   -2.21,
+   38.13
+  ],
+  "D_chin_bot": [
+   11.51,
+   -2.47,
+   36.43
+  ],
+  "E_jaw_back_R": [
+   9.46,
+   -1.5,
+   35.4
+  ],
+  "nose_front": [
+   14.61,
+   1.72,
+   39.21
+  ],
+  "chin_front": [
+   9.96,
+   0.04,
+   35.38
+  ],
+  "chin_all": [
+   11.22,
+   -0.14,
+   36.51
+  ],
+  "nose_all": [
+   13.22,
+   0.54,
+   39.46
+  ]
+ },
+ "used": {
+  "profile_x_z": "A_nose_top, B_nose_bot, C_mouth, D_chin_bot (left + right side frames together; x and z only)",
+  "centreline_y": "nose and chin rays of 13.25 / 0.00 / 1.10 / 10.75 intersected at the profile x: nose y ~1.1-1.7, chin y ~0.0-1.1",
+  "result": "face turned ~28 deg toward the figure's left about the neck axis (7.0, -1.7); nose tip ~ (13.4, 1.4, 38.6-39.9) under the helmet front edge; chin bottom ~ (11.4, 0.6, 36.4)"
+ },
+ "not_used": "E_jaw_back (right frames only; may be the neck), nose_all / chin_all (mixed silhouette points from different sides)"
+}

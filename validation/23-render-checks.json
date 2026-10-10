@@ -1,0 +1,519 @@
+{
+ "trace_id": "trace.shovel-17.v2",
+ "trace_status": "accepted",
+ "geometry_version": "0.6.0",
+ "renderer": "Remotion 4.0.531, chrome-headless-shell, --gl=swangle (SwiftShader, CPU)",
+ "diagnostic_stills": [
+  {
+   "event": "prep.drag_back_1",
+   "t_event": 0.65,
+   "t_rendered": 0.65,
+   "png": "out/23/diag-prep.drag_back_1.png",
+   "sha256": "171852a95f18ee92697a62675a01e5be7f5ad3c2051f1ea4dc2b287185ac932f",
+   "state": {
+    "frame": 0,
+    "t": 0.65,
+    "figures": {
+     "W-C": [
+      39.456,
+      -197.56,
+      -18.0024,
+      -29.384,
+      -197.56
+     ],
+     "W-RW": [
+      170.3501,
+      -185.7447,
+      98.9341,
+      -184.0656,
+      -185.7447
+     ],
+     "E-G": [
+      45.8,
+      33.33,
+      250.6609,
+      -12.8253,
+      213.33
+     ],
+     "E-RD": [
+      2.8,
+      0,
+      67.7989,
+      88.3879,
+      180
+     ],
+     "E-LD": [
+      93.4,
+      0,
+      43.507,
+      -100.4428,
+      180
+     ]
+    },
+    "puck": [
+     106.688,
+     -201.222
+    ],
+    "phase": "prep_foot_drag",
+    "readback_max_diff": 2.84e-14
+   },
+   "max_diff_vs_pure": 0,
+   "checks": [
+    "[shot23-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks",
+    "[shot23-check] PASS scene GLB sha256 a520190b14e8..."
+   ]
+  },
+  {
+   "event": "prep.drag_back_2",
+   "t_event": 1.35,
+   "t_rendered": 1.35,
+   "png": "out/23/diag-prep.drag_back_2.png",
+   "sha256": "87c3efd71185327294818f3050194127047224c3a681748e102ead993b7174fc",
+   "state": {
+    "frame": 0,
+    "t": 1.35,
+    "figures": {
+     "W-C": [
+      80.5619,
+      -197.56,
+      22.7909,
+      -24.3249,
+      -197.56
+     ],
+     "W-RW": [
+      116.3,
+      -187.5734,
+      44.9113,
+      -185.3404,
+      -187.5734
+     ],
+     "E-G": [
+      45.8,
+      33.33,
+      250.6609,
+      -12.8253,
+      213.33
+     ],
+     "E-RD": [
+      2.8,
+      0,
+      67.7989,
+      88.3879,
+      180
+     ],
+     "E-LD": [
+      93.4,
+      0,
+      43.507,
+      -100.4428,
+      180
+     ]
+    },
+    "puck": [
+     54.984,
+     -201.244
+    ],
+    "phase": "prep_foot_drag",
+    "readback_max_diff": 2.84e-14
+   },
+   "max_diff_vs_pure": 0,
+   "checks": [
+    "[shot23-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks",
+    "[shot23-check] PASS scene GLB sha256 a520190b14e8..."
+   ]
+  },
+  {
+   "event": "pass.release",
+   "t_event": 1.772,
+   "t_rendered": 1.772,
+   "png": "out/23/diag-pass.release.png",
+   "sha256": "c993de58b34463244e6070734d49cd9cf02a36289890717b20d0b5c4b18bbec8",
+   "state": {
+    "frame": 0,
+    "t": 1.772,
+    "figures": {
+     "W-C": [
+      0.541,
+      -197.3424,
+      -56.623,
+      -34.1542,
+      -197.3424
+     ],
+     "W-RW": [
+      14.2479,
+      -22.4018,
+      -57.0517,
+      -189.5904,
+      -22.4018
+     ],
+     "E-G": [
+      45.8,
+      33.33,
+      250.6609,
+      -12.8253,
+      213.33
+     ],
+     "E-RD": [
+      2.8,
+      0,
+      67.7989,
+      88.3879,
+      180
+     ],
+     "E-LD": [
+      93.4,
+      0,
+      43.507,
+      -100.4428,
+      180
+     ]
+    },
+    "puck": [
+     -27.152,
+     -143.483
+    ],
+    "phase": "pass_free",
+    "readback_max_diff": 2.84e-14
+   },
+   "max_diff_vs_pure": 0,
+   "checks": [
+    "[shot23-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks",
+    "[shot23-check] PASS scene GLB sha256 a520190b14e8..."
+   ]
+  },
+  {
+   "event": "contact.W-C_reception",
+   "t_event": 1.8343,
+   "t_rendered": 1.8343,
+   "png": "out/23/diag-contact.W-C_reception.png",
+   "sha256": "e2a6a3ccafb7f0ee293a34990e00fd8760fb489673c238e4a0387d9f2937fdec",
+   "state": {
+    "frame": 0,
+    "t": 1.8343,
+    "figures": {
+     "W-C": [
+      41.3288,
+      -195.478,
+      -16.1444,
+      -29.1493,
+      -195.478
+     ],
+     "W-RW": [
+      13.1741,
+      8.63,
+      -58.1246,
+      -189.6315,
+      8.63
+     ],
+     "E-G": [
+      45.8,
+      33.33,
+      250.6609,
+      -12.8253,
+      213.33
+     ],
+     "E-RD": [
+      2.8,
+      0,
+      67.7989,
+      88.3879,
+      180
+     ],
+     "E-LD": [
+      93.4,
+      0,
+      43.507,
+      -100.4428,
+      180
+     ]
+    },
+    "puck": [
+     1.18,
+     -36.4656
+    ],
+    "phase": "carried_by_W-C",
+    "readback_max_diff": 2.84e-14
+   },
+   "max_diff_vs_pure": 0,
+   "checks": [
+    "[shot23-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks",
+    "[shot23-check] PASS scene GLB sha256 a520190b14e8..."
+   ]
+  },
+  {
+   "event": "shot.separation",
+   "t_event": 1.8548,
+   "t_rendered": 1.8548,
+   "png": "out/23/diag-shot.separation.png",
+   "sha256": "3c6c4828886e0f2aa42e48a5eb8d94b4900fe118b7d2f8a1e800d5f7ad8e183a",
+   "state": {
+    "frame": 0,
+    "t": 1.8548,
+    "figures": {
+     "W-C": [
+      124.9425,
+      -194.7718,
+      66.8355,
+      -18.8761,
+      -194.7718
+     ],
+     "W-RW": [
+      12.9323,
+      8.63,
+      -58.3663,
+      -189.6408,
+      8.63
+     ],
+     "E-G": [
+      45.8,
+      33.33,
+      250.6609,
+      -12.8253,
+      213.33
+     ],
+     "E-RD": [
+      2.8,
+      0,
+      67.7989,
+      88.3879,
+      180
+     ],
+     "E-LD": [
+      93.4,
+      0,
+      43.507,
+      -100.4428,
+      180
+     ]
+    },
+    "puck": [
+     84.2084,
+     -25.948
+    ],
+    "phase": "shot_free",
+    "readback_max_diff": 2.84e-14
+   },
+   "max_diff_vs_pure": 0,
+   "checks": [
+    "[shot23-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks",
+    "[shot23-check] PASS scene GLB sha256 a520190b14e8..."
+   ]
+  },
+  {
+   "event": "goal_entry",
+   "t_event": 1.9015,
+   "t_rendered": 1.9015,
+   "png": "out/23/diag-goal_entry.png",
+   "sha256": "f11b34cd9d82e6eecea6a8457315fa72b2b5a88ae6d70ae14dd964493b0ed2e6",
+   "state": {
+    "frame": 0,
+    "t": 1.9015,
+    "figures": {
+     "W-C": [
+      248.4,
+      -193.1631,
+      189.3844,
+      -3.9355,
+      -193.1631
+     ],
+     "W-RW": [
+      12.4609,
+      8.63,
+      -58.8373,
+      -189.6588,
+      8.63
+     ],
+     "E-G": [
+      45.8,
+      33.33,
+      250.6609,
+      -12.8253,
+      213.33
+     ],
+     "E-RD": [
+      2.8,
+      0,
+      67.7989,
+      88.3879,
+      180
+     ],
+     "E-LD": [
+      93.4,
+      0,
+      43.507,
+      -100.4428,
+      180
+     ]
+    },
+    "puck": [
+     287.171,
+     14.239
+    ],
+    "phase": "shot_free",
+    "readback_max_diff": 2.84e-14
+   },
+   "max_diff_vs_pure": 0,
+   "checks": [
+    "[shot23-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks",
+    "[shot23-check] PASS scene GLB sha256 a520190b14e8..."
+   ]
+  }
+ ],
+ "order_independence": {
+  "frames": [
+   0,
+   20,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   45,
+   50
+  ],
+  "order_A": [
+   41,
+   43,
+   45,
+   39,
+   38,
+   37,
+   50,
+   42,
+   36,
+   40,
+   0,
+   20
+  ],
+  "order_B": [
+   41,
+   40,
+   0,
+   37,
+   50,
+   20,
+   36,
+   45,
+   43,
+   42,
+   39,
+   38
+  ],
+  "rows": [
+   {
+    "frame": 0,
+    "t": 0.5,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 20,
+    "t": 1.1667,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 36,
+    "t": 1.7,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 37,
+    "t": 1.7333,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 38,
+    "t": 1.7667,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 39,
+    "t": 1.8,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 40,
+    "t": 1.8333,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 41,
+    "t": 1.8667,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 42,
+    "t": 1.9,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 43,
+    "t": 1.9333,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 45,
+    "t": 2,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   },
+   {
+    "frame": 50,
+    "t": 2.1667,
+    "state_identical": true,
+    "png_identical": true,
+    "max_diff_vs_pure": 0,
+    "readback_max_diff": 2.84e-14
+   }
+  ],
+  "pass": true
+ },
+ "proof_clip": {
+  "path": "validation/23-proof-clip.mp4",
+  "frames": 51,
+  "fps": 30,
+  "size_px": [
+   960,
+   540
+  ],
+  "frames_logged": 51,
+  "max_diff_vs_pure": 0,
+  "frames_differing_from_stills": [],
+  "render_seconds": 258,
+  "sha256": "28a4349cf54a8c9e9471e6bfb45dddb272b371c89dde68f8e0f9294a1889c266"
+ }
+}

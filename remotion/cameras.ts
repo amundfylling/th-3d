@@ -21,3 +21,7 @@ export const CAMERAS: Record<"overhead" | "side" | "oblique", InspectionCamera> 
 };
 
 export const toThree = (p: Vec3): [number, number, number] => worldMmToGltfM(p);
+
+// Iteration 23: fixed overhead camera framing the shot area (both W figures, the reception, goal E). Orthographic,
+// looking straight down; world +y up on screen. Presentation choice, not geometry.
+export const SHOT_CAMERA: InspectionCamera = { kind: "orthographic", positionMm: [135, -85, 1000], targetMm: [135, -85, 0], fovDegOrWidthMm: 560 };

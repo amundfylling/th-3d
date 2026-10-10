@@ -1,0 +1,79 @@
+{
+  "description": "Visual review of the tracking (Claude, 2026-10-07), made from validation/game-puck-spotcheck.jpg and validation/game-possession-review.jpg (scripts/game-review.py, fixed seeds). Judged by eye at the sheets' resolution (the puck is about 10-20 px); 'plausible' means the circle sits on a dark disk-shaped object where a puck can be, but the sheet does not show enough to be sure.",
+  "puck_spotcheck": {
+    "frames": 40,
+    "tracked": 16,
+    "tracked_correct": 10,
+    "tracked_plausible_not_verifiable": 6,
+    "tracked_clearly_wrong": 0,
+    "not_seen": 24,
+    "not_seen_but_puck_visible": 2,
+    "not_seen_puck_visible_frames": [
+      "212.12 s (puck at the far board by the right goal; tracked 0.36 s later)",
+      "12.60 s (probably: a dark dot left of the centre circle)"
+    ],
+    "note": "Most 'not seen' frames show no clear puck at this resolution: hidden under or behind figures, motion-blurred, or during the camera move at 21 s."
+  },
+  "possession_review": {
+    "settings": "max gap 7 s, minimum episode 0.5 s (user, 2026-10-07); the 24 episodes are a new random draw (seed 5) from the recounted episodes",
+    "episodes": 24,
+    "puck_seen_at_episode_middle": 22,
+    "consistent": 8,
+    "plausible": 7,
+    "not_verifiable_at_sheet_resolution": 5,
+    "probably_wrong": 2,
+    "probably_wrong_detail": "Episodes 4 (E-LW, match 31.7-32.7 s) and 15 (E-LW, 180.3-180.9 s): the circle sits on the dark edge of the near board, in the strip of ice the housing hides; most likely a false detection there.",
+    "not_seen": 2,
+    "previous_review": "With the previous settings (max gap 10 s, minimum episode 0.2 s) another random draw gave 17 consistent of 18 checkable, 1 wrong (the opening face-off) and 6 not seen."
+  },
+  "false_detection_hotspots_checked": [
+    {
+      "world_mm": [
+        -240,
+        135
+      ],
+      "what": "dark rim of the green ice logo next to the left goal",
+      "after_fix": "88 -> 34 tracked frames (candidate-density feature and batch-2 labels)"
+    },
+    {
+      "world_mm": [
+        -255,
+        60
+      ],
+      "what": "the left (yellow) goalie's navy trousers",
+      "after_fix": "no longer among the busiest places"
+    },
+    {
+      "world_mm": [
+        -45,
+        120
+      ],
+      "what": "real puck resting near the far blue line (127, 208, 287 s)",
+      "after_fix": "kept"
+    },
+    {
+      "world_mm": [
+        -180,
+        -15
+      ],
+      "what": "real puck resting on a slot near the left circle (260-262 s)",
+      "after_fix": "kept"
+    },
+    {
+      "world_mm": [
+        330,
+        195
+      ],
+      "what": "real puck in the far corner by the right goal (several times)",
+      "after_fix": "kept"
+    }
+  ],
+  "passes_review": {
+    "sheet": "16 random hand-overs, each shown at release and receipt with the arrow drawn on the stabilised frame (scratch sheet, not committed)",
+    "result": "The arrows follow the slots and the puck positions where the puck is visible, but at 360p the release and the reception can rarely be confirmed frame by frame; the passes are not individually verified.",
+    "flagged": [
+      "Match 232.6 s, W-C -> W-RD: a hand is over the right goal in the release frame (video 239.3-240.4 s hand episode); probably a stoppage, possibly a goal, not a pass.",
+      "Two hand-overs of 46-59 mm at area borders looked like scrambles; this led to the 80 mm 'battle' rule (6 such events)."
+    ]
+  }
+}

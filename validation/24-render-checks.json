@@ -1,0 +1,208 @@
+{
+ "presentation_id": "presentation.shovel-17.v1",
+ "trace_id": "trace.shovel-17.v2",
+ "camera": "oblique",
+ "fps": 30,
+ "frames": 223,
+ "timeline": [
+  {
+   "id": "intro",
+   "kind": "hold",
+   "frames": [
+    0,
+    30
+   ],
+   "rate": 0,
+   "source_s": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "id": "normal",
+   "kind": "play",
+   "frames": [
+    30,
+    80
+   ],
+   "rate": 1,
+   "source_s": [
+    0.5,
+    2.166666666666667
+   ]
+  },
+  {
+   "id": "normal_end",
+   "kind": "hold",
+   "frames": [
+    80,
+    95
+   ],
+   "rate": 0,
+   "source_s": [
+    2.166666666666667,
+    2.166666666666667
+   ]
+  },
+  {
+   "id": "replay_in",
+   "kind": "play",
+   "frames": [
+    95,
+    123.116
+   ],
+   "rate": 0.25,
+   "source_s": [
+    1.6,
+    1.8343
+   ]
+  },
+  {
+   "id": "contact_pause",
+   "kind": "hold",
+   "frames": [
+    123.116,
+    183.116
+   ],
+   "rate": 0,
+   "source_s": [
+    1.8343,
+    1.8343
+   ]
+  },
+  {
+   "id": "replay_out",
+   "kind": "play",
+   "frames": [
+    183.116,
+    203
+   ],
+   "rate": 0.25,
+   "source_s": [
+    1.8343,
+    2
+   ]
+  },
+  {
+   "id": "replay_end",
+   "kind": "hold",
+   "frames": [
+    203,
+    223
+   ],
+   "rate": 0,
+   "source_s": [
+    2,
+    2
+   ]
+  }
+ ],
+ "renderer": "Remotion 4.0.531, chrome-headless-shell, --gl=swangle (SwiftShader, CPU); no motion blur or depth of field",
+ "normal_vs_replay": {
+  "rows": [
+   {
+    "source_frame": 34,
+    "normal_frame": 64,
+    "replay_frame": 99,
+    "t": 1.6333,
+    "source_time_bit_identical": true,
+    "state_identical": true,
+    "png_identical": true,
+    "equals_pure": true
+   },
+   {
+    "source_frame": 36,
+    "normal_frame": 66,
+    "replay_frame": 107,
+    "t": 1.7,
+    "source_time_bit_identical": true,
+    "state_identical": true,
+    "png_identical": true,
+    "equals_pure": true
+   },
+   {
+    "source_frame": 38,
+    "normal_frame": 68,
+    "replay_frame": 115,
+    "t": 1.7667,
+    "source_time_bit_identical": true,
+    "state_identical": true,
+    "png_identical": true,
+    "equals_pure": true
+   },
+   {
+    "source_frame": 40,
+    "normal_frame": 70,
+    "replay_frame": 123,
+    "t": 1.8333,
+    "source_time_bit_identical": true,
+    "state_identical": true,
+    "png_identical": true,
+    "equals_pure": true
+   }
+  ],
+  "pass": true
+ },
+ "contact_pause": {
+  "frames": [
+   124,
+   153,
+   183
+  ],
+  "t_contact": 1.8343,
+  "t_logged": [
+   1.8343,
+   1.8343,
+   1.8343
+  ],
+  "state_identical": true,
+  "png_identical": true,
+  "pass": true
+ },
+ "review_stills": [
+  {
+   "frame": 70,
+   "segment": "normal",
+   "t": 1.8333,
+   "png": "out/24/f070-overlay.png"
+  },
+  {
+   "frame": 123,
+   "segment": "replay_in",
+   "t": 1.8333,
+   "png": "out/24/f123-overlay.png"
+  },
+  {
+   "frame": 153,
+   "segment": "contact_pause",
+   "t": 1.8343,
+   "png": "out/24/f153-overlay.png"
+  },
+  {
+   "frame": 20,
+   "segment": "intro",
+   "t": 0.5,
+   "png": "out/24/f020-overlay.png"
+  },
+  {
+   "frame": 190,
+   "segment": "replay_out",
+   "t": 1.8917,
+   "png": "out/24/f190-overlay.png"
+  }
+ ],
+ "draft_clip": {
+  "path": "validation/24-draft.mp4",
+  "frames": 223,
+  "fps": 30,
+  "size_px": [
+   960,
+   540
+  ],
+  "frames_logged": 223,
+  "frames_differing_from_pure": [],
+  "max_readback_diff": 2.84e-14,
+  "render_seconds": 1530,
+  "sha256": "1440b715491dba75eb9625ab3e255825aad212063cd7a187a477f68ec8e60e6b"
+ }
+}

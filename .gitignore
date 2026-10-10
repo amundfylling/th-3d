@@ -9,3 +9,5 @@ out/
 public/*.glb
 # Blender auto-backups
 *.blend1
+# Python bytecode
+__pycache__/

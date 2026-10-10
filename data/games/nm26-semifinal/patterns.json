@@ -1,0 +1,791 @@
+{
+ "description": "Cross-game patterns from the automatic puck tracks of all seven games (scripts/nm26-patterns.py; docs/nm26-game-patterns.md).",
+ "status": "proposed",
+ "method": "- Live play per game: LIVE windows below (start signal to the end of play), minus the 10 s before every score-overlay\n  change (the overlay changes at the restart drop, so this removes the goal, the retrieval and the drop).\n- A puck position is ON a figure when it lies in that figure's reach area and in no other (docs/game-mechanics.md, A10);\n  otherwise contested (two or more) or free (none). Reach: passes.json parameters (skater 56.3 mm, goalie 48.7 mm).\n- Player view: positions are point-reflected (x, y) -> (-x, -y) when the player is at the right end, so every player\n  attacks to the right and his left side is +y. Roles: own/opp + LD, RD, C, LW, RW, G.\n- Holds: runs of the puck on one figure of at least 0.3 s (gaps under 1 s joined; repeated runs within 3 s merged).\n- All values are PROPOSED: from automatic tracks that are not user-confirmed (error sources: docs/nm26-passes.md).",
+ "per_game": {
+  "g1": {
+   "left_end_player": "nygard",
+   "live_min": 7.09,
+   "seen_fraction": 0.661,
+   "puck_in_attacking_end": {
+    "nygard": 0.516,
+    "fjermestad": 0.3
+   },
+   "puck_on_own_figures": {
+    "nygard": 0.502,
+    "fjermestad": 0.316,
+    "contested": 0.177,
+    "free": 0.006
+   },
+   "flights_ge_100mm_per_min": 19.2,
+   "possession_changes_per_min": 14.9,
+   "flight_median_speed_mm_s": 848,
+   "flight_board_bounce_share": 0.397
+  },
+  "g2": {
+   "left_end_player": "nygard",
+   "live_min": 5.0,
+   "seen_fraction": 0.695,
+   "puck_in_attacking_end": {
+    "nygard": 0.397,
+    "fjermestad": 0.359
+   },
+   "puck_on_own_figures": {
+    "nygard": 0.415,
+    "fjermestad": 0.421,
+    "contested": 0.161,
+    "free": 0.003
+   },
+   "flights_ge_100mm_per_min": 23.8,
+   "possession_changes_per_min": 20.2,
+   "flight_median_speed_mm_s": 921,
+   "flight_board_bounce_share": 0.345
+  },
+  "g3": {
+   "left_end_player": "fjermestad",
+   "live_min": 5.0,
+   "seen_fraction": 0.588,
+   "puck_in_attacking_end": {
+    "nygard": 0.374,
+    "fjermestad": 0.392
+   },
+   "puck_on_own_figures": {
+    "nygard": 0.356,
+    "fjermestad": 0.46,
+    "contested": 0.181,
+    "free": 0.002
+   },
+   "flights_ge_100mm_per_min": 25.2,
+   "possession_changes_per_min": 19.6,
+   "flight_median_speed_mm_s": 901,
+   "flight_board_bounce_share": 0.341
+  },
+  "g4": {
+   "left_end_player": "fjermestad",
+   "live_min": 6.97,
+   "seen_fraction": 0.65,
+   "puck_in_attacking_end": {
+    "nygard": 0.37,
+    "fjermestad": 0.388
+   },
+   "puck_on_own_figures": {
+    "nygard": 0.334,
+    "fjermestad": 0.448,
+    "contested": 0.217,
+    "free": 0.001
+   },
+   "flights_ge_100mm_per_min": 19.1,
+   "possession_changes_per_min": 19.6,
+   "flight_median_speed_mm_s": 797,
+   "flight_board_bounce_share": 0.368
+  },
+  "g5": {
+   "left_end_player": "nygard",
+   "live_min": 5.96,
+   "seen_fraction": 0.637,
+   "puck_in_attacking_end": {
+    "nygard": 0.374,
+    "fjermestad": 0.31
+   },
+   "puck_on_own_figures": {
+    "nygard": 0.299,
+    "fjermestad": 0.419,
+    "contested": 0.28,
+    "free": 0.002
+   },
+   "flights_ge_100mm_per_min": 20.0,
+   "possession_changes_per_min": 16.9,
+   "flight_median_speed_mm_s": 887,
+   "flight_board_bounce_share": 0.387
+  },
+  "g6": {
+   "left_end_player": "fjermestad",
+   "live_min": 5.0,
+   "seen_fraction": 0.446,
+   "puck_in_attacking_end": {
+    "nygard": 0.489,
+    "fjermestad": 0.309
+   },
+   "puck_on_own_figures": {
+    "nygard": 0.441,
+    "fjermestad": 0.333,
+    "contested": 0.218,
+    "free": 0.008
+   },
+   "flights_ge_100mm_per_min": 15.0,
+   "possession_changes_per_min": 12.8,
+   "flight_median_speed_mm_s": 816,
+   "flight_board_bounce_share": 0.427
+  },
+  "g7": {
+   "left_end_player": "nygard",
+   "live_min": 4.99,
+   "seen_fraction": 0.67,
+   "puck_in_attacking_end": {
+    "nygard": 0.426,
+    "fjermestad": 0.321
+   },
+   "puck_on_own_figures": {
+    "nygard": 0.348,
+    "fjermestad": 0.459,
+    "contested": 0.192,
+    "free": 0.002
+   },
+   "flights_ge_100mm_per_min": 20.7,
+   "possession_changes_per_min": 17.0,
+   "flight_median_speed_mm_s": 896,
+   "flight_board_bounce_share": 0.34
+  }
+ },
+ "per_player": {
+  "nygard": {
+   "seen_frames": 45003,
+   "puck_zone": {
+    "attacking end": 0.421,
+    "own end": 0.339,
+    "neutral": 0.24
+   },
+   "puck_side_of_player": {
+    "left": 0.474,
+    "right": 0.329,
+    "middle": 0.196
+   },
+   "puck_on": {
+    "contested": 0.204,
+    "own LW": 0.19,
+    "opp LW": 0.12,
+    "opp RW": 0.12,
+    "own RW": 0.068,
+    "opp RD": 0.065,
+    "opp LD": 0.06,
+    "own LD": 0.051,
+    "opp C": 0.041,
+    "own C": 0.04,
+    "own RD": 0.036,
+    "free": 0.003,
+    "opp G": 0.001,
+    "own G": 0.001
+   },
+   "holds_by_own_role": {
+    "own LW": {
+     "n": 104,
+     "total_s": 358,
+     "median_s": 3.3,
+     "p90_s": 6.4
+    },
+    "own RW": {
+     "n": 65,
+     "total_s": 134,
+     "median_s": 1.1,
+     "p90_s": 4.7
+    },
+    "own LD": {
+     "n": 55,
+     "total_s": 93,
+     "median_s": 1.2,
+     "p90_s": 3.1
+    },
+    "own C": {
+     "n": 25,
+     "total_s": 67,
+     "median_s": 2.3,
+     "p90_s": 5.1
+    },
+    "own RD": {
+     "n": 30,
+     "total_s": 61,
+     "median_s": 1.8,
+     "p90_s": 3.6
+    },
+    "own G": {
+     "n": 3,
+     "total_s": 1,
+     "median_s": 0.4,
+     "p90_s": 0.4
+    }
+   },
+   "next_after_own_hold": [
+    [
+     "own LW",
+     "opp RD",
+     31
+    ],
+    [
+     "own LD",
+     "own LW",
+     29
+    ],
+    [
+     "own RW",
+     "opp LD",
+     21
+    ],
+    [
+     "own RW",
+     "own LW",
+     19
+    ],
+    [
+     "own LD",
+     "opp RW",
+     15
+    ],
+    [
+     "own LW",
+     "own RW",
+     15
+    ],
+    [
+     "own LW",
+     "opp RW",
+     13
+    ],
+    [
+     "own LW",
+     "own C",
+     10
+    ],
+    [
+     "own RD",
+     "opp LW",
+     8
+    ],
+    [
+     "own LW",
+     "opp LD",
+     8
+    ],
+    [
+     "own RW",
+     "opp LW",
+     7
+    ],
+    [
+     "own RD",
+     "opp LD",
+     6
+    ],
+    [
+     "own RW",
+     "own C",
+     6
+    ],
+    [
+     "own LW",
+     "opp C",
+     6
+    ],
+    [
+     "own C",
+     "opp LD",
+     5
+    ]
+   ],
+   "three_step_chains": [
+    [
+     "own LD",
+     "own LW",
+     "opp RD",
+     11
+    ],
+    [
+     "own RW",
+     "own LW",
+     "opp RD",
+     6
+    ],
+    [
+     "own LW",
+     "own RW",
+     "opp LD",
+     4
+    ],
+    [
+     "own LW",
+     "own RW",
+     "own LW",
+     4
+    ],
+    [
+     "own LD",
+     "own LW",
+     "own RW",
+     4
+    ],
+    [
+     "own LD",
+     "own LW",
+     "own C",
+     3
+    ],
+    [
+     "own LW",
+     "own C",
+     "opp RD",
+     3
+    ],
+    [
+     "own LD",
+     "own LW",
+     "opp LD",
+     3
+    ]
+   ],
+   "flights_from_own_figures": {
+    "pass": 142,
+    "turnover": 131,
+    "shot": 23
+   },
+   "passes_by_roles": [
+    {
+     "from": "LD",
+     "to": "LW",
+     "n": 30,
+     "median_len_mm": 492,
+     "board_bounce_share": 0.57,
+     "median_speed_mm_s": 862
+    },
+    {
+     "from": "LW",
+     "to": "RW",
+     "n": 12,
+     "median_len_mm": 434,
+     "board_bounce_share": 0.5,
+     "median_speed_mm_s": 1181
+    },
+    {
+     "from": "RW",
+     "to": "LW",
+     "n": 12,
+     "median_len_mm": 514,
+     "board_bounce_share": 0.92,
+     "median_speed_mm_s": 1312
+    },
+    {
+     "from": "RD",
+     "to": "RW",
+     "n": 9,
+     "median_len_mm": 238,
+     "board_bounce_share": 0.33,
+     "median_speed_mm_s": 736
+    },
+    {
+     "from": "C",
+     "to": "RW",
+     "n": 8,
+     "median_len_mm": 180,
+     "board_bounce_share": 0.0,
+     "median_speed_mm_s": 655
+    },
+    {
+     "from": "RW",
+     "to": "C",
+     "n": 7,
+     "median_len_mm": 154,
+     "board_bounce_share": 0.14,
+     "median_speed_mm_s": 691
+    },
+    {
+     "from": "C",
+     "to": "LW",
+     "n": 7,
+     "median_len_mm": 275,
+     "board_bounce_share": 0.43,
+     "median_speed_mm_s": 1048
+    },
+    {
+     "from": "LW",
+     "to": "C",
+     "n": 7,
+     "median_len_mm": 218,
+     "board_bounce_share": 0.29,
+     "median_speed_mm_s": 728
+    },
+    {
+     "from": "LW",
+     "to": "LD",
+     "n": 7,
+     "median_len_mm": 220,
+     "board_bounce_share": 0.43,
+     "median_speed_mm_s": 1007
+    },
+    {
+     "from": "RD",
+     "to": "LD",
+     "n": 6,
+     "median_len_mm": 203,
+     "board_bounce_share": 0.33,
+     "median_speed_mm_s": 648
+    }
+   ]
+  },
+  "fjermestad": {
+   "seen_frames": 45003,
+   "puck_zone": {
+    "own end": 0.419,
+    "attacking end": 0.341,
+    "neutral": 0.24
+   },
+   "puck_side_of_player": {
+    "right": 0.474,
+    "left": 0.329,
+    "middle": 0.196
+   },
+   "puck_on": {
+    "contested": 0.204,
+    "opp LW": 0.19,
+    "own LW": 0.12,
+    "own RW": 0.12,
+    "opp RW": 0.068,
+    "own RD": 0.065,
+    "own LD": 0.06,
+    "opp LD": 0.051,
+    "own C": 0.041,
+    "opp C": 0.04,
+    "opp RD": 0.036,
+    "free": 0.003,
+    "own G": 0.001,
+    "opp G": 0.001
+   },
+   "holds_by_own_role": {
+    "own LW": {
+     "n": 81,
+     "total_s": 233,
+     "median_s": 2.0,
+     "p90_s": 6.4
+    },
+    "own RW": {
+     "n": 71,
+     "total_s": 212,
+     "median_s": 2.1,
+     "p90_s": 6.9
+    },
+    "own LD": {
+     "n": 67,
+     "total_s": 127,
+     "median_s": 1.4,
+     "p90_s": 3.6
+    },
+    "own RD": {
+     "n": 52,
+     "total_s": 111,
+     "median_s": 1.1,
+     "p90_s": 5.4
+    },
+    "own C": {
+     "n": 19,
+     "total_s": 70,
+     "median_s": 1.3,
+     "p90_s": 9.1
+    },
+    "own G": {
+     "n": 2,
+     "total_s": 1,
+     "median_s": 0.6,
+     "p90_s": 0.7
+    }
+   },
+   "next_after_own_hold": [
+    [
+     "own LD",
+     "own LW",
+     28
+    ],
+    [
+     "own LD",
+     "opp RW",
+     20
+    ],
+    [
+     "own RW",
+     "opp LD",
+     17
+    ],
+    [
+     "own LW",
+     "opp RD",
+     17
+    ],
+    [
+     "own RW",
+     "own LW",
+     17
+    ],
+    [
+     "own RD",
+     "opp LW",
+     17
+    ],
+    [
+     "own LW",
+     "opp LD",
+     14
+    ],
+    [
+     "own RW",
+     "opp LW",
+     12
+    ],
+    [
+     "own RD",
+     "own RW",
+     12
+    ],
+    [
+     "own LW",
+     "own RW",
+     9
+    ],
+    [
+     "own LW",
+     "opp RW",
+     7
+    ],
+    [
+     "own C",
+     "own RW",
+     6
+    ],
+    [
+     "own RW",
+     "own LD",
+     6
+    ],
+    [
+     "own LW",
+     "opp LW",
+     5
+    ],
+    [
+     "own LD",
+     "own RW",
+     5
+    ]
+   ],
+   "three_step_chains": [
+    [
+     "own LD",
+     "own LW",
+     "opp RD",
+     8
+    ],
+    [
+     "own RW",
+     "own LW",
+     "opp RD",
+     4
+    ],
+    [
+     "own LW",
+     "own LD",
+     "own LW",
+     4
+    ],
+    [
+     "own LD",
+     "own LW",
+     "own RW",
+     4
+    ],
+    [
+     "own RD",
+     "own RW",
+     "own LW",
+     4
+    ],
+    [
+     "own RW",
+     "own LD",
+     "opp RW",
+     4
+    ],
+    [
+     "own LD",
+     "own LW",
+     "opp LD",
+     3
+    ],
+    [
+     "own RW",
+     "own LW",
+     "opp LD",
+     3
+    ]
+   ],
+   "flights_from_own_figures": {
+    "turnover": 146,
+    "pass": 140,
+    "shot": 30
+   },
+   "passes_by_roles": [
+    {
+     "from": "LD",
+     "to": "LW",
+     "n": 21,
+     "median_len_mm": 490,
+     "board_bounce_share": 0.57,
+     "median_speed_mm_s": 780
+    },
+    {
+     "from": "RW",
+     "to": "C",
+     "n": 16,
+     "median_len_mm": 145,
+     "board_bounce_share": 0.19,
+     "median_speed_mm_s": 929
+    },
+    {
+     "from": "RD",
+     "to": "RW",
+     "n": 13,
+     "median_len_mm": 224,
+     "board_bounce_share": 0.46,
+     "median_speed_mm_s": 774
+    },
+    {
+     "from": "RW",
+     "to": "LW",
+     "n": 13,
+     "median_len_mm": 429,
+     "board_bounce_share": 0.46,
+     "median_speed_mm_s": 886
+    },
+    {
+     "from": "C",
+     "to": "RW",
+     "n": 12,
+     "median_len_mm": 231,
+     "board_bounce_share": 0.33,
+     "median_speed_mm_s": 1171
+    },
+    {
+     "from": "LW",
+     "to": "C",
+     "n": 10,
+     "median_len_mm": 221,
+     "board_bounce_share": 0.0,
+     "median_speed_mm_s": 1088
+    },
+    {
+     "from": "LW",
+     "to": "RW",
+     "n": 7,
+     "median_len_mm": 356,
+     "board_bounce_share": 0.43,
+     "median_speed_mm_s": 1124
+    },
+    {
+     "from": "LW",
+     "to": "LD",
+     "n": 6,
+     "median_len_mm": 501,
+     "board_bounce_share": 0.5,
+     "median_speed_mm_s": 884
+    },
+    {
+     "from": "RD",
+     "to": "LD",
+     "n": 6,
+     "median_len_mm": 193,
+     "board_bounce_share": 0.0,
+     "median_speed_mm_s": 780
+    },
+    {
+     "from": "LD",
+     "to": "RW",
+     "n": 4,
+     "median_len_mm": 362,
+     "board_bounce_share": 0.0,
+     "median_speed_mm_s": 5576
+    }
+   ]
+  }
+ },
+ "puck_resting_on_centre_spot_s": {
+  "g1": [
+   [
+    20.0,
+    1.5
+   ],
+   [
+    407.2,
+    1.6
+   ],
+   [
+    447.9,
+    20.9
+   ]
+  ],
+  "g2": [
+   [
+    770.0,
+    1.7
+   ]
+  ],
+  "g3": [],
+  "g4": [
+   [
+    1769.0,
+    2.3
+   ],
+   [
+    2083.7,
+    1.2
+   ],
+   [
+    2085.8,
+    0.9
+   ],
+   [
+    2092.5,
+    2.9
+   ],
+   [
+    2100.8,
+    1.0
+   ],
+   [
+    2107.7,
+    0.8
+   ]
+  ],
+  "g5": [
+   [
+    2320.0,
+    1.8
+   ],
+   [
+    2630.3,
+    3.2
+   ],
+   [
+    2633.9,
+    20.8
+   ],
+   [
+    2752.9,
+    5.8
+   ],
+   [
+    2759.5,
+    4.4
+   ]
+  ],
+  "g6": [
+   [
+    2777.0,
+    2.2
+   ],
+   [
+    3093.4,
+    0.4
+   ]
+  ],
+  "g7": [
+   [
+    3251.0,
+    2.3
+   ]
+  ]
+ }
+}

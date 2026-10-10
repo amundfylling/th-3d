@@ -16,6 +16,16 @@ const lum = (u: number, v: number): number => {
   const i = (Math.round(v) * img.width + Math.round(u)) * 4;
   return (img.data[i]! + img.data[i + 1]! + img.data[i + 2]!) / 3;
 };
+/**
+ * Slot pixel: dark AND unsaturated (the slot is neutral dark grey). Figure-mold update 2026-09-30: with
+ * luminance alone, the shaded blue/yellow plastic of the full-size goalie standing over the short E-G slot
+ * was counted as slot (E-G mean offset 3.4 px); saturated pixels are figure, not slot. Thresholds unchanged.
+ */
+const slotPx = (u: number, v: number): boolean => {
+  const i = (Math.round(v) * img.width + Math.round(u)) * 4;
+  const r = img.data[i]!, gg = img.data[i + 1]!, b = img.data[i + 2]!;
+  return (r + gg + b) / 3 < 90 && Math.max(r, gg, b) - Math.min(r, gg, b) < 35;
+};
 const round = (v: number, d = 3): number => Math.round(v * 10 ** d) / 10 ** d;
 
 // 1. Slot centrelines: sample every centreline point; find the dark slot's centre across the local normal.
@@ -31,9 +41,9 @@ for (const f of g.fixture_paths) {
     const tx = u1 - u0, ty = v1 - v0, tl = Math.hypot(tx, ty);
     const nx = -ty / tl, ny = tx / tl;
     n++;
-    if (lum(u, v) < 90) onDark++;
+    if (slotPx(u, v)) onDark++;
     const dark: number[] = [];
-    for (let k = -12; k <= 12; k += 0.5) if (lum(u + k * nx, v + k * ny) < 90) dark.push(k);
+    for (let k = -12; k <= 12; k += 0.5) if (slotPx(u + k * nx, v + k * ny)) dark.push(k);
     if (dark.length >= 4 && dark[dark.length - 1]! - dark[0]! < 20) offs.push((dark[0]! + dark[dark.length - 1]!) / 2);
   }
   slotStats[f.player_id] = { n, onDark: round(onDark / n), meanOffsetPx: round(offs.reduce((s, x) => s + Math.abs(x), 0) / offs.length), maxOffsetPx: round(Math.max(...offs.map(Math.abs))) };

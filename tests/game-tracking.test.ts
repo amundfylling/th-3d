@@ -1,0 +1,158 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+
+const read = (p: string): string => readFileSync(p, "utf8");
+const json = (p: string) => JSON.parse(read(p));
+const sha = (p: string): string => createHash("sha256").update(readFileSync(p)).digest("hex");
+const D = "data/games/fylling-vs-moe-2022";
+
+test("game tracking: the recording and the rules are indexed and unchanged", () => {
+  const idx = json("references/index.json");
+  for (const p of ["references/games/fylling-vs-moe-trondheim-open-2022-final.mov", "references/rules/ithf-game-rules.pdf"]) {
+    const s = idx.sources.find((x: { local_path: string }) => x.local_path === p);
+    assert.ok(s, p);
+    assert.equal(sha(p), s.sha256, p);
+  }
+});
+
+test("game tracking: stabilisation covers every frame; calibration fits the slots and lines", () => {
+  const st = json(`${D}/stabilisation.json`);
+  assert.equal(st.frames, 7756);
+  assert.equal(st.H_video_to_ref.length, 7756);
+  const c = json(`${D}/calibration.json`);
+  assert.equal(c.status, "assumed");
+  assert.ok(c.residuals.line_rms_crop_px < 1, "blue lines");
+  assert.ok(c.residuals.slot_points_median_distance_crop_px < 1.5, "slot centrelines on the image slots");
+});
+
+test("game tracking: the puck track stays inside the rink and moves continuously", () => {
+  const t = json(`${D}/puck-track.json`);
+  const rows: number[][] = t.rows;
+  assert.ok(rows.length > 1000);
+  let prev: number[] | undefined;
+  for (const r of rows) {
+    assert.ok(Math.abs(r[2]!) < 440 && Math.abs(r[3]!) < 240, `frame ${r[0]}`);
+    if (prev && r[0]! - prev[0]! === 1) assert.ok(Math.hypot(r[2]! - prev[2]!, r[3]! - prev[3]!) <= t.tracker.d_max_mm_per_frame + 1e-6, `jump at ${r[0]}`);
+    prev = r;
+  }
+  assert.ok(t.match_frames_seen_fraction > 0.3);
+});
+
+test("game tracking: possession accounts for every match second, goalies not counted", () => {
+  const p = json(`${D}/possession.json`);
+  const per = p.per_skater as Record<string, { team: string; time_s: number; times: number }>;
+  assert.equal(Object.keys(per).length, 10);
+  assert.ok(Object.keys(per).every((k) => !k.endsWith("-G")));
+  const on = Object.values(per).reduce((a, v) => a + v.time_s, 0);
+  const nobody = Object.values(p.nobody_s as Record<string, number>).reduce((a, v) => a + v, 0);
+  assert.ok(Math.abs(on + nobody - p.match_s) < 0.1, `${on} + ${nobody} vs ${p.match_s}`);
+  assert.equal(p.match_s, 300);
+  for (const t of ["W", "E"]) {
+    const s = Object.values(per).filter((v) => v.team === t);
+    assert.ok(Math.abs(s.reduce((a, v) => a + v.time_s, 0) - p.per_team[t].time_s) < 0.05);
+    assert.equal(s.reduce((a, v) => a + v.times, 0), p.per_team[t].times);
+  }
+  // episodes are contiguous and cover the match
+  let end = 0;
+  for (const [, a, b] of p.episodes as [string, number, number][]) {
+    assert.ok(Math.abs(a - end) < 1e-6 && b > a);
+    end = b;
+  }
+  assert.ok(Math.abs(end - p.match_s) < 1e-6);
+});
+
+test("game tracking: passes follow the possession episodes; lines run between detected puck positions", () => {
+  const p = json(`${D}/possession.json`);
+  const ps = json(`${D}/passes.json`);
+  const tr = json(`${D}/puck-track.json`);
+  const at = new Map<number, number[]>((tr.rows as number[][]).map((r) => [Math.round((r[0]! / 25 - 7.5) * 100), r]));
+  const sk = (p.episodes as [string, number, number][]).filter((e) => e[0] !== "nobody");
+  let measured = 0;
+  for (const e of ps.events) {
+    const i = sk.findIndex((x) => x[0] === e.from && Math.abs(x[2] - e.t_poss_end) < 0.011);
+    assert.ok(i >= 0 && sk[i + 1]![0] === e.to && Math.abs(sk[i + 1]![1] - e.t_poss_start) < 0.011, `${e.from}->${e.to} ${e.t_poss_end}`);
+    assert.ok(e.transit_s <= ps.parameters.max_transit_s + 1e-9);
+    if (!e.measured) continue;
+    measured++;
+    // both ends of the line are puck detections at the release and reception times
+    for (const [t, q] of [[e.t_release, e.start_mm], [e.t_reception, e.end_mm]] as [number, number[]][]) {
+      const r = at.get(Math.round(t * 100));
+      assert.ok(r && Math.abs(r[2]! - q[0]!) < 0.11 && Math.abs(r[3]! - q[1]!) < 0.11, `${e.from}->${e.to} end at ${t}`);
+    }
+    assert.ok(e.t_release < e.t_reception && e.fit_residual_mm <= ps.parameters.tol_mm);
+    assert.equal(e.line_mm.length, e.bounces + 2);
+  }
+  assert.equal(measured, ps.quality.measured_lines + ps.events.filter((e: { kind: string; measured: boolean }) => e.kind === "battle" && e.measured).length);
+  for (const t of ["W", "E"]) assert.equal(ps.summary[t].passes, ps.events.filter((e: { kind: string; team: string }) => e.kind === "pass" && e.team === t).length);
+});
+
+test("nm26 game 1: calibration fits the slots; passes rest on the puck track", () => {
+  const N = "data/games/nm26-semifinal";
+  const c = json(`${N}/g1/calibration.json`);
+  assert.ok(c.residuals.median_px < 1.5, "slot centrelines on the image slots");
+  const tr = json(`${N}/g1/puck-track.json`);
+  const rows = new Map<number, number[]>((tr.rows as (number | string)[][]).map((r) => [r[0] as number, r as number[]]));
+  const ps = json(`${N}/g1/passes.json`);
+  for (const e of ps.events) {
+    for (const [f, q] of [[e.frame_release, e.line_mm[0]], [e.frame_reception, e.line_mm[e.line_mm.length - 1]]] as [number, number[]][]) {
+      const r = rows.get(f);
+      assert.ok(r && Math.abs(r[2]! - q[0]!) < 0.11 && Math.abs(r[3]! - q[1]!) < 0.11, `end of ${e.kind} at frame ${f}`);
+    }
+    if (e.kind === "pass") assert.equal(e.from[0], e.to[0]);
+    if (e.kind === "turnover" || e.kind === "battle") assert.notEqual(e.from[0], e.to[0]);
+  }
+});
+
+test("nm26 game 1: Claude's review covers every review-page candidate once, with a confidence", () => {
+  const N = "data/games/nm26-semifinal/g1";
+  const ps = json(`${N}/passes.json`);
+  const want = (ps.events as { kind: string; length_mm: number; frame_release: number }[])
+    .filter((e) => ["pass", "turnover", "shot", "loose", "loose_received"].includes(e.kind) && e.length_mm >= 100)
+    .map((e) => `g1-${e.frame_release}`);
+  const rc = json(`${N}/review-claude.json`);
+  assert.deepEqual(rc.events.map((r: { id: string }) => r.id), want);
+  for (const r of rc.events) {
+    assert.ok(["ok", "fix", "wrong", "unsure"].includes(r.verdict), r.id);
+    assert.ok(Number.isInteger(r.confidence) && r.confidence >= 0 && r.confidence <= 100, r.id);
+    assert.equal(r.verdict === "fix", !!r.fix, r.id);
+  }
+});
+
+test("nm26: the timeline reproduces every result; every game has a track on the shared calibration", () => {
+  const N = "data/games/nm26-semifinal";
+  const tl = json(`${N}/timeline.json`).games;
+  const cfg = json(`${N}/config.json`);
+  const g1cal = json(`${N}/g1/calibration.json`).H_world_mm_to_stab_px;
+  for (const g of ["g1", "g2", "g3", "g4", "g5", "g6", "g7"]) {
+    // goals read by end reproduce the user's result (Nygård first)
+    assert.equal(tl[g].result_overlay_read_by_end, tl[g].result_user_nygard_first, g);
+    assert.equal(cfg.games[g].result_nygard_fjermestad, tl[g].result_user_nygard_first, g);
+    assert.equal(cfg.games[g].team_W, tl[g].left_end_player, g);
+    assert.deepEqual(json(`${N}/${g}/calibration.json`).H_world_mm_to_stab_px, g1cal, g);
+    const tr = json(`${N}/${g}/puck-track.json`);
+    assert.ok(tr.rows.length > 3000, g);
+  }
+  // ends switch 2-2-1-1-1
+  assert.deepEqual(["g1", "g2", "g3", "g4", "g5", "g6", "g7"].map((g) => tl[g].left_end_player[0]), ["n", "n", "f", "f", "n", "f", "n"]);
+  const p = json(`${N}/patterns.json`);
+  for (const pl of ["nygard", "fjermestad"]) {
+    const z = p.per_player[pl].puck_zone;
+    assert.ok(Math.abs(z["own end"] + z["neutral"] + z["attacking end"] - 1) < 0.01, pl);
+  }
+});
+
+test("playbook sources: the NTHF catalogue is parsed completely and its pages are indexed unchanged", () => {
+  const cat = json("data/combinations/nthf-catalogue.json");
+  assert.equal(cat.combinations.length, 121);
+  assert.equal(cat.combinations.filter((c: { player: string }) => c.player === "Centre").length, 55);
+  assert.equal(cat.combinations.filter((c: { player: string }) => c.player === "Right wing").length, 66);
+  for (const c of cat.combinations) assert.ok(c.level >= 0 && c.level <= 10 && c.name && c.description, c.name);
+  const idx = json("references/index.json");
+  for (const id of ["puck_no_combination_catalogue_en", "puck_no_combination_catalogue_no", "puck_no_timers_en", "bordshockeyskolan_pages_2026_10_08"]) {
+    const s = idx.sources.find((x: { id: string }) => x.id === id);
+    assert.ok(s, id);
+    assert.equal(sha(s.local_path), s.sha256, id);
+  }
+});

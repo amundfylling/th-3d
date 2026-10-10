@@ -2,11 +2,12 @@
 // used, so every frame renders the same fixed pose. The GLB is local (public/) and loaded with useLoader,
 // which suspends; ThreeCanvas holds the render (delayRender) until the Suspense boundary resolves, and the
 // scene holds it again until the post-import checks have run.
-import { useLoader } from "@react-three/fiber";
+import { useLoader, useThree } from "@react-three/fiber";
 import { ThreeCanvas } from "@remotion/three";
 import { useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, staticFile, useDelayRender, useVideoConfig } from "remotion";
 import * as THREE from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { CAMERAS, toThree } from "./cameras.ts";
 import { runImportChecks, type ImportCheck } from "./checks.ts";
@@ -36,6 +37,24 @@ function makeCamera(name: InspectionProps["camera"], width: number, height: numb
 
 const Scene: React.FC<{ onChecks: (c: ImportCheck[]) => void }> = ({ onChecks }) => {
   const gltf = useLoader(GLTFLoader, staticFile("full_static_appearance.glb"));
+  // Image-based environment (procedural room, no external file) on the FIGURE materials only (fig_*): gives the
+  // metal sticks and the glossy plastic something to reflect - without it metallic surfaces render nearly
+  // black. The rink keeps the iteration-19 lighting (the slot/ice reprojection check reads its pixels).
+  // Built synchronously, so the first rendered frame already has it (stills do not depend on frame order).
+  const { gl } = useThree();
+  useMemo(() => {
+    const pm = new THREE.PMREMGenerator(gl);
+    const env = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+    pm.dispose();
+    gltf.scene.traverse((o) => {
+      const m = (o as THREE.Mesh).material as THREE.MeshStandardMaterial | undefined;
+      if (m && "envMap" in m && m.name.startsWith("fig_")) {
+        m.envMap = env;
+        m.envMapIntensity = m.metalness > 0.5 ? 1.0 : 0.12;
+        m.needsUpdate = true;
+      }
+    });
+  }, [gl, gltf]);
   const { delayRender, continueRender } = useDelayRender();
   const [handle] = useState(() => delayRender("post-import checks"));
   useEffect(() => {

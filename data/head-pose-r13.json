@@ -1,0 +1,189 @@
+{
+ "description": "Round 13 evidence for the rigid skater head pose (helmet + face as one piece). Cameras were refitted on the BODY only (head masked out of model and photo) so the head estimate does not feed back into the cameras; then the unturned round-12 helmet was rotated (yaw, pitch, roll about the neck point (6.5, -1.7, 37.0), mold units) and, per view, shifted freely in the image to best overlap the photographed blue helmet (the free shift absorbs the ~1-unit camera error at the head). Score: mean helmet IoU over 22 frames (work image 700 px).",
+ "status": "traced",
+ "best_grid": {
+  "yaw_deg": 20,
+  "pitch_deg": 10,
+  "roll_deg": 20,
+  "mean_iou": 0.7874,
+  "unturned_mean_iou": 0.7556
+ },
+ "profiles_max_mean_iou": {
+  "yaw": {
+   "-10": 0.7513,
+   "-5": 0.7603,
+   "0": 0.7703,
+   "5": 0.7789,
+   "10": 0.7837,
+   "15": 0.7847,
+   "20": 0.7874,
+   "25": 0.7851,
+   "30": 0.783,
+   "35": 0.7779,
+   "40": 0.7697
+  },
+  "pitch": {
+   "-10": 0.7674,
+   "-5": 0.7739,
+   "0": 0.7792,
+   "5": 0.7834,
+   "10": 0.7874,
+   "15": 0.7848,
+   "20": 0.7799,
+   "25": 0.7734,
+   "30": 0.7662
+  },
+  "roll": {
+   "-10": 0.777,
+   "-5": 0.7794,
+   "0": 0.7816,
+   "5": 0.7834,
+   "10": 0.7848,
+   "15": 0.7864,
+   "20": 0.7874
+  }
+ },
+ "chosen": {
+  "yaw_deg": 20,
+  "pitch_deg": 5,
+  "roll_deg": 0,
+  "uncertainty_deg": {
+   "yaw": 7,
+   "pitch": 7,
+   "roll": 10
+  },
+  "notes": "Yaw is well supported (front, elevated and right-side frames). Pitch: the helmet outline prefers ~10 deg front-down, but that hides the photographed face under the helmet front edge in the elevated front views; 5 deg chosen with a wider front opening. Roll: the grid is flat within 0.01. Positive roll (15-25 deg, from side-frame edge heights) made the face lean the wrong way in the near-frontal frames 13.25/14.50 s, whose own preference was -5 deg. Helmet-registered face centroids in the front views fell between 0 and 15 deg; 0 chosen. The left-side frames (8.50-9.25 s) individually prefer yaw -10 and pitch 25-30: unresolved, likely camera error."
+ },
+ "rejected": {
+  "joint_fit_without_per_view_shift": "yaw 4-8 deg; its helmet mask near the head also contains the collar (IoU ~0.55), so it was not used",
+  "face_turned_under_straight_helmet": "rounds 9-12 (face 28-38 deg, helmet 0 deg): the face hung off the helmet's front corner"
+ },
+ "body_cameras_change_deg": {
+  "00.00": [
+   0.0,
+   0.0,
+   -0.52
+  ],
+  "00.75": [
+   -0.84,
+   -0.03,
+   -1.28
+  ],
+  "01.10": [
+   -0.09,
+   0.76,
+   -2.65
+  ],
+  "01.50": [
+   -0.83,
+   1.26,
+   -1.74
+  ],
+  "02.25": [
+   -0.11,
+   -0.93,
+   0.0
+  ],
+  "03.00": [
+   -0.0,
+   1.49,
+   0.0
+  ],
+  "03.75": [
+   0.02,
+   -0.37,
+   -0.27
+  ],
+  "04.10": [
+   -0.02,
+   -2.27,
+   -0.48
+  ],
+  "04.50": [
+   0.17,
+   -1.76,
+   -0.88
+  ],
+  "05.25": [
+   0.0,
+   -0.52,
+   0.01
+  ],
+  "06.00": [
+   -0.02,
+   -0.4,
+   -0.73
+  ],
+  "06.40": [
+   -0.4,
+   1.07,
+   -0.88
+  ],
+  "06.75": [
+   -0.09,
+   0.55,
+   -2.19
+  ],
+  "07.25": [
+   -0.35,
+   0.17,
+   0.0
+  ],
+  "08.00": [
+   -0.66,
+   -1.77,
+   -0.08
+  ],
+  "08.50": [
+   -0.0,
+   -0.66,
+   -0.01
+  ],
+  "08.80": [
+   -0.01,
+   -0.03,
+   -0.0
+  ],
+  "09.25": [
+   0.0,
+   -0.0,
+   0.0
+  ],
+  "10.25": [
+   0.03,
+   -3.29,
+   -2.44
+  ],
+  "10.75": [
+   -1.09,
+   -0.0,
+   -1.28
+  ],
+  "13.25": [
+   -0.57,
+   -0.09,
+   -0.0
+  ],
+  "14.50": [
+   -2.39,
+   -0.02,
+   -3.22
+  ],
+  "22.60": [
+   1.96,
+   -2.18,
+   -2.37
+  ]
+ },
+ "face_in_head": {
+  "method": "helmet-registered face centroids (photo minus model) in 11 frames, least-squares single 3D offset",
+  "applied_offset_body_frame": [
+   -0.96,
+   0.02,
+   0.48
+  ],
+  "width_scale": 0.92,
+  "residual_note": "after the offset, right-side frames (3.75-4.50 s) still see the face ~1.5 units lower and left-side frames (8.50-9.25 s) ~1.4 units higher than the model; the front views do not support the lateral shift that would explain both, so it is left as a camera/evidence contradiction",
+  "note_r13_final": "after setting roll 0, a further +0.4 (toward the figure's left) from the front-view centroids; the remaining forward/back component was not applied (side profiles show the face already slightly behind the helmet front)"
+ }
+}
