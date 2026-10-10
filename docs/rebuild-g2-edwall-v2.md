@@ -35,11 +35,16 @@ cage, 0.1 mm tolerance, no exceptions; `slide_check`; `unexplained_velocity_chan
    really a redirect, which the slide rule warns bounces. Goals 3 and 4 shovel the puck with the centre's skate/body
    (280 and 384 mm/s), not the blade; in goal 4 the centre has turned so far (heading 234 degrees at the contact) that it
    plays the puck with the back of the figure. That is what the fit found, not what an Edwall shovel looks like.
-3. **No newer puck track.** There was no `claude/puck-detector-*` branch on the remote when this was built (checked with
-   `git fetch` twice), so the traces use my hand readings (`shots/edwall/puck-readings.json`).
+3. **The puck's rest position is probably wrong by about 44 mm.** I snapped the resting puck to the near board
+   (y = -222), assuming the board's top edge hid the ice next to it and biased the readings. The puck detector that
+   arrived later (see "Check against the puck detector") reads the same rest position as my hand readings (y about -178,
+   3-4 mm apart), and the camera geometry does not support the bias: with the camera about 27 degrees above the ice, a
+   puck against the board would be almost completely hidden behind a board of the assumed 25 mm height, not seen 44 mm further out. So the
+   puck most likely rests about 44 mm off the board, at the right wing's stick, and every trace starts its drag from
+   the wrong place. A refit with the rest at the readings is the first next step.
 4. **Pass fit residuals.** Flight readings are matched within 4-10 mm in goals 3 and 4 but 26-35 mm in goal 2 (the trace's pass
    leaves at 54 degrees, the readings at about 66). The first streak frame of goal 4 is off by 73 mm. Rest readings sit about 41-54 mm off because the rest is snapped to the
-   board (see "Puck readings").
+   board (item 3).
 5. **Goal frames.** Goal 2 crosses the line 1 frame before the user's goal frame, goal 3 4 frames after (28351 vs 28347;
    the broadcast shows the puck still in flight at 28346, so that label looks 2-3 frames early), goal 4 3 frames after.
 6. **Other ten figures** follow the cleaned model tracks unverified frame by frame (`g2/figure-tracks-smooth.json`).
@@ -52,10 +57,10 @@ reference frame and writes the E half at 2x (`out/edwall/<goal>/`, not committed
 
 **Puck readings** (`shots/edwall/puck-readings.json`, by hand, crop pixels of the registered E half): rest (puck still
 against the near board), streak (motion-blurred, centre of the streak), flight (sharp), hidden. Back-projected to the plane
-z = 6 mm (half the assumed puck thickness) with the calibrated camera (`camera-ref.json`). The near board's top edge
-(about 25 mm high) hides the ice right at the board, so a puck resting against the board reads about 40 mm too far from
-it (y about -180 instead of -222). The rest position is therefore snapped to just inside the canonical board line, and
-the rest readings are reported but not fitted. Free flight reads about 1.1-1.2 m/s at about 66 degrees; the streak frames
+z = 6 mm (half the assumed puck thickness) with the calibrated camera (`camera-ref.json`). I assumed the near board's top edge hides the ice right at the board, so that a puck resting
+against the board would read about 40 mm too far from it (y about -180 instead of -222), and snapped the rest position to
+just inside the canonical board line; the rest readings are reported but not fitted. This assumption is probably wrong
+(item 3 above). Free flight reads about 1.1-1.2 m/s at about 66 degrees; the streak frames
 read faster and are weighted 0.15.
 
 **Figures.** All twelve figures are in each trace. W-RW (passer) and W-C (shooter) are designed: smootherstep moves along
@@ -96,6 +101,23 @@ Render and check: `node scripts/edwall-render.ts <goal>` (per-frame state equals
 the camera track; file below 25 MB; report `validation/analysis-edwall-<goal>-report.json`).
 RENDER_NOTES
 
+## Check against the puck detector (added after the renders; traces and videos unchanged)
+
+The synthetic puck detector's track (`data/games/nm26-semifinal/g2/puck-track-synth.json` on branch
+`claude/puck-detector-st067s`, PROPOSED; x/y = puck centre) arrived after the traces were built. Compared with
+`python3 scripts/edwall-puck-compare.py <track file>`:
+
+- **Hand readings and detector agree closely**: median 4.2, 4.2 and 3.3 mm (goals 2, 3, 4) over the 7-9 frames both have,
+  including the blurred streak frames (worst 14.5 mm, goal 2 frame 27715, where the detector score is 0.43).
+- **Rest position**: the detector also puts the resting puck at y about -178 for the whole second before the play, not
+  at the board (-222). The traces are 44-48 mm off there. See "What failed", item 3.
+- **The pass**: the traces are 2-10 mm from the detector in the sharp flight frames of goals 3 and 4, and 25-30 mm in
+  goal 2; the streak frames differ by up to 75 mm (goal 4 frame 28701, where the trace's pass leaves earlier).
+- **The shot**: the detector loses the puck where my readings do (goal 2 after 27719, goal 4 after 28705; its later
+  goal-4 detections at x about -221 are elsewhere on the rink). In goal 3 it has one more detection, at frame 28347
+  (225.8, -20.5, score 0.74), 30 mm ahead of the trace along the pass line at the moment the trace's centre makes contact.
+  That suggests the goal-3 pass is faster at the end than the trace.
+
 ## Check against tracker v3 (added after the renders; traces and videos unchanged)
 
 Tracker v3 (`data/games/nm26-semifinal/g2/figure-tracks-v3.json` on branch `claude/tracker-v3-j1by4n`, PROPOSED) was
@@ -132,6 +154,8 @@ npm run remotion:assets && node scripts/edwall-render.ts <goal>
 
 ## Next
 
+- Refit all three with the puck resting where both readings put it (y about -178), the detector track as the puck
+  observations, and v3's in-lunge figure readings as constraints; then rerender.
 - Model the stick's heel groove at puck height and replace the kinematic carry by a push in that pocket.
 - A puck detector track (or a second camera) for the last 5 frames, where the shot is hidden.
 - The user's review of the goal-3 label and of the passer's lunge in goal 2.
