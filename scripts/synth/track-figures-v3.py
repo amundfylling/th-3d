@@ -268,5 +268,6 @@ if CMD == "decode":
     else:
         write_tracks(DATA / game / "figure-tracks-v3.json", "Figure tracks v3 (scripts/synth/track-figures-v3.py; docs/tracker-v3.md): "
                      "u = slot position 0-1, theta_deg relative to the team's home heading, src 0 = reading kept, 1 = interpolated, "
-                     "2 = unknown. PROPOSED.", fr, dense, per)
+                     f"2 = unknown. Covers {len(fr)} of the v2 raw track's {len(RAW['rows'])} frames (all {int(dense.sum())} goal-window "
+                     f"frames first; the 5 fps rest when complete). PROPOSED.", fr, dense, per)
     print(game, "decoded", len(fr))
