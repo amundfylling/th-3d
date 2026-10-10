@@ -66,10 +66,35 @@ same setup (right wing 211°, centre 316°).
   Nygård's centre is on the puck about twice as often as Fjermestad's, while Fjermestad's right defence is more
   involved.
 
+## Cleaned tracks (2026-10-10)
+
+`scripts/synth/smooth-tracks.py` → `data/games/nm26-semifinal/<game>/figure-tracks-smooth.json` (columns per figure:
+u, theta_deg, src: 0 = model reading kept, 1 = interpolated, 2 = unknown). A reading is rejected when its pivot is over
+15 mm from the slot, or when its slot position is over 25 mm (rotation over 45°) from the median of the valid readings
+within ±0.3 s; gaps up to 1 s are interpolated, then a 3-frame average on the 30 fps windows. Limits assumed.
+
+| Game | Rejected | Unknown after filling | Jumps at 30 fps: raw → cleaned |
+| --- | --- | --- | --- |
+| 1 | 6.1% | 0.5% | 6.8% → 0.8% |
+| 2 | 6.5% | 0.5% | 6.4% → 1.0% |
+| 3 | 7.5% | 0.9% | 6.7% → 0.7% |
+| 4 | 6.6% | 1.6% | 8.3% → 0.4% |
+| 5 | 6.2% | 0.4% | 6.4% → 0.7% |
+| 6 | 9.6% | 1.6% | 8.0% → 1.1% |
+| 7 | 6.5% | 0.6% | 6.7% → 0.8% |
+
+- The defenders are rejected most (up to 26% for W-LD in game 6): their slots cross busy areas where two same-kit
+  figures stand close.
+- Raw against cleaned on the first hat-trick goal: `validation/board-g2-goal2.png` and `-smooth.png`
+  (`scripts/synth/figure-tracks-board.py`; interpolated figures hollow). The right wing's jump to the far corner and the
+  centre's swaps are gone; the move reads as one sequence.
+- The centre-position finding holds on the cleaned tracks (same groups, within a few mm); only the single rebound
+  goal moves (231 → 5 mm), as expected in a scramble.
+
 ## Next
 
-1. Smooth the tracks (remove jumps; a figure cannot move 30 mm in 1/30 s) and drop near-board wing positions the
-   localiser cannot support.
+1. Done: smoothing (above). Still open: near-board wings the localiser cannot support are interpolated or unknown,
+   not checked against the video.
 2. The puck during passes and shots: frame-by-frame puck positions in the last 0.6 s of the hat-trick goals (user taps,
    or a puck detector trained on synthetic renders like the figures).
 3. The hat-trick trace (contact and slide checks) and its video.

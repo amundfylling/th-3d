@@ -338,6 +338,7 @@
   game (5 fps; 30 fps around goals; 23,756 frames). Pivot median 3-4 mm from the slots; ~6% slot and ~4% rotation jumps
   at 30 fps (needs smoothing). Findings: the scoring centre's position separates the combinations (Spade at the back
   of the slot, centrifuge at the front, short centrifuge in between); the Edwall hat-trick has one repeatable setup.
+  Cleaned tracks (`figure-tracks-smooth.json`, `scripts/synth/smooth-tracks.py`): jumps at 30 fps from ~7% to ~0.8%.
 - **First real goal to rebuild (2026-10-09, user's choice):** Nygård's three "Edwallskyffel lang" goals in game 2
   (`docs/rebuild-g2-edwall.md`). Evidence packs (frames, puck track, goalie poses) are built; skater poses and a
   frame-by-frame puck read come next. Goal review page (user labels, 25 of 40 so far):
