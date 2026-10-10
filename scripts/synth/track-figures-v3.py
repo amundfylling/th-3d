@@ -21,7 +21,7 @@ Steps:
 - plates: registers the 280 label frames (skater-facing-crops.json, 40 per game) to the reference frame and writes the
   rink plates (out/synth/skaters/plate_<game>.png), as skater-frames.py + skater-plates.py (which need frames.json).
 - obs: per frame, the candidates and the model readings -> out/synth/v3/obs-<game>[-labels].json. Frames: the v2 raw
-  track's frames (all of them: 10 fps plus every frame around each goal), or with --labels every 3rd frame within +-0.6 s
+  track's frames (all of them: 5 fps plus every frame around each goal), or with --labels every 6th frame (5 fps, the rate of most of each v2 track) within +-0.8 s
   of each skater label frame (the evaluation windows).
 - decode: v3 tracks. Full game -> data/games/nm26-semifinal/<game>/figure-tracks-v3.json (same columns as
   figure-tracks-smooth.json: u, theta_deg, src per figure; plus <fig>_conf); --labels -> out/synth/v3/labels-{v2,v3}-<game>.json
@@ -180,7 +180,7 @@ if CMD == "obs":
     loc = Localiser(cv2.imread(str(REPO / f"out/synth/skaters/plate_{game}.png")), arg("--loc", "v3"))
 
     if LAB:
-        fl = sorted({f + 3 * k for f in label_frames()[game] for k in range(-6, 7)}); dense_set = set()
+        fl = sorted({f + 6 * k for f in label_frames()[game] for k in range(-4, 5)}); dense_set = set()  # 5 fps, as most of each game
     else:
         RAW = json.loads((DATA / game / "figure-tracks.json").read_text()); fl = [r[0] for r in RAW["rows"]]
         dense_set = {r[0] for r in RAW["rows"] if r[1]}

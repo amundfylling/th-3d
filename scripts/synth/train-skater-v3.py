@@ -36,6 +36,7 @@ CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text(
 K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
 HOME = {"W": 0.0, "E": 180.0}
 WIN = (25, 175, 30, 180)  # crop px window in which a pivot counts as present (x0, x1, y0, y1)
+PRES_W = float(sys.argv[sys.argv.index("--presence-weight") + 1]) if "--presence-weight" in sys.argv else 5.0  # weight 1 left presence stuck at 'present' for 4 epochs
 
 
 def project(p):
@@ -110,7 +111,7 @@ class RealDS(ts.RealDS):
 
 def loss_fn(p, y):
     pres = y[:, 5]; m = pres > 0.5
-    lp = nn.functional.binary_cross_entropy_with_logits(p[:, 4], pres)
+    lp = PRES_W * nn.functional.binary_cross_entropy_with_logits(p[:, 4], pres)
     if m.any():
         lp = lp + 10 * (p[m, :2] - y[m, :2]).abs().sum(1).mean() + ((p[m, 2:4] - y[m, 2:4]) ** 2).sum(1).mean()
     return lp
@@ -129,11 +130,13 @@ if __name__ == "__main__":
     VAL = [l for l in L if (l["seed"] // 10) % 10 == 9]; TR = [l for l in L if (l["seed"] // 10) % 10 != 9]
     ETR, EVA = entries(TR, rnd), entries(VAL, random.Random(1))
     real = ts.real_labelled(); rtr = [r for r in real if r[3] in REAL_TRAIN]; rte = [r for r in real if r[3] not in REAL_TRAIN]
-    net = model(); opt = torch.optim.AdamW(net.parameters(), 1e-3, weight_decay=1e-4)
+    net = model()
+    if "--init" in A: net.load_state_dict(torch.load(REPO / arg("--init", "")))  # continue from a checkpoint (new learning-rate cycle)
+    opt = torch.optim.AdamW(net.parameters(), 1e-3, weight_decay=1e-4)
     tds = torch.utils.data.ConcatDataset([DS(ETR, True), RealDS(rtr, True, repeat=max(1, len(ETR) // (6 * max(1, len(rtr)))))])
     tl = torch.utils.data.DataLoader(tds, batch_size=32, shuffle=True, num_workers=3, persistent_workers=True)
     vl = torch.utils.data.DataLoader(DS(EVA, False), batch_size=64, num_workers=3)
-    sched = torch.optim.lr_scheduler.OneCycleLR(opt, 1e-3, total_steps=EPOCHS * len(tl))
+    sched = torch.optim.lr_scheduler.OneCycleLR(opt, float(arg("--lr", 1e-3)), total_steps=EPOCHS * len(tl))
     print(f"renders train {len(TR)} -> {len(ETR)} entries ({sum(e[4] == 0 for e in ETR)} absent), val {len(EVA)}; real train {len(rtr)}, test {len(rte)}", flush=True)
     hist = []
     for ep in range(EPOCHS):

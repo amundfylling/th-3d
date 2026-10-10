@@ -68,7 +68,7 @@ def score(pattern):
             sk.append(e)
         for l in GL:
             c = GC[l["id"]]
-            if l["game"] != g or c["frame"] not in rows: continue
+            if l["game"] != g or c["frame"] not in rows or f"{l['end']}-G_theta_deg" not in ci: continue
             r = rows[c["frame"]]; pid = f"{l['end']}-G"; th = r[ci[f"{pid}_theta_deg"]]
             src = r[ci[f"{pid}_src"]] if f"{pid}_src" in ci else 0
             e = {"id": l["id"], "game": g, "pid": pid, "unknown": th is None or src == 2}
@@ -113,6 +113,27 @@ def temporal(pattern):
             "goalie_rotation_jumps": round(jg / max(ng, 1), 4), "unknown": round(unk / max(tot, 1), 4)}
 
 
+def presence_on_labels():
+    """Skater model v3's presence on real frames: at each skater label frame, every candidate the localiser kept, split
+    into right spots (the model's slot position within 30 mm of the user's feet tap) and wrong ones; and the first
+    candidate at the "can't see it" labels."""
+    right, wrong, uns = [], [], []
+    for g in GAMES:
+        p = REPO / f"out/synth/v3/obs-{g}-labels.json"
+        if not p.exists(): continue
+        O = {r[0]: r for r in json.loads(p.read_text())["rows"]}
+        for l in SK:
+            if l["game"] != g or l["frame"] not in O: continue
+            cs = O[l["frame"]][2].get(l["pid"], [])
+            if l["verdict"] != "facing":
+                if cs: uns.append(cs[0][5])
+                continue
+            for c in cs: (right if abs(c[2] - l["u"]) * SLOT_LEN[l["pid"]] <= 30 else wrong).append(c[5])
+    f = lambda v: {"n": len(v), "presence_over_0.5": round(float(np.mean(np.array(v) > 0.5)), 3) if v else None,
+                   "presence_median": round(float(np.median(v)), 3) if v else None}
+    return {"right_spot": f(right), "wrong_spot": f(wrong), "unsure_first_candidate": f(uns)}
+
+
 def report(name, pattern, ids=None):
     sk, gk = score(pattern)
     if ids is not None: sk = [r for r in sk if r["id"] in ids["sk"]]; gk = [r for r in gk if r["id"] in ids["gk"]]
@@ -128,6 +149,17 @@ if __name__ == "__main__":
     if "--lite" in A and "--no-build" not in A:
         (REPO / "out/synth/v3").mkdir(parents=True, exist_ok=True)
         for g in GAMES: (REPO / f"out/synth/v3/lite-{g}.json").write_text(json.dumps(lite(g), separators=(",", ":")))
+    if "--windows" in A:
+        # the label windows (track-figures-v3.py obs/decode --labels): v2's rule (first colour peak) raw and after
+        # smooth-tracks.py's clean-up, and v3, all on the same frames and the same model readings
+        import importlib.util, shutil
+        spec = importlib.util.spec_from_file_location("sm", REPO / "scripts/synth/smooth-tracks.py"); sm = importlib.util.module_from_spec(spec); spec.loader.exec_module(sm)
+        W = REPO / "out/synth/v3/v2clean"; sm.D = W
+        for g in GAMES:
+            src = REPO / f"out/synth/v3/labels-v2raw-{g}.json"
+            if src.exists(): (W / g).mkdir(parents=True, exist_ok=True); shutil.copy(src, W / g / "figure-tracks.json"); sm.smooth_game(g)
+        specs = [["v2 rule, raw (windows)", str(REPO / "out/synth/v3/labels-v2raw-{game}.json")], ["v2 rule + clean-up (windows)", str(W / "{game}/figure-tracks-smooth.json")],
+                 ["v3 (windows)", str(REPO / "out/synth/v3/labels-v3-{game}.json")]] + specs
     if "--lite" in A:
         specs = [["raw (committed)", str(D / "{game}/figure-tracks.json")], ["cleaned (committed)", str(D / "{game}/figure-tracks-smooth.json")],
                  ["v3-lite", str(REPO / "out/synth/v3/lite-{game}.json")]] + specs
@@ -138,9 +170,11 @@ if __name__ == "__main__":
         ids = {"sk": {r["id"] for r in R[n]["rows"]["skaters"]}, "gk": {r["id"] for r in R[n]["rows"]["goalies"]}}
         common = ids if common is None else {k: common[k] & ids[k] for k in ids}
     C = {n: report(n, p, common) for n, p in specs}
+    PR = presence_on_labels() if "--windows" in A else None
+    if PR: print("presence on the label frames", PR)
     outp.parent.mkdir(parents=True, exist_ok=True)
     json.dump({"per_file": {n: {k: v for k, v in r.items() if k != "rows"} for n, r in R.items()},
-               "common_labels": {n: {k: v for k, v in r.items() if k != "rows"} for n, r in C.items()},
+               "common_labels": {n: {k: v for k, v in r.items() if k != "rows"} for n, r in C.items()}, "presence_on_labels": PR,
                "rows": {n: r["rows"] for n, r in R.items()}}, open(outp, "w"), indent=1)
     for n, r in C.items():
         print(f"== {n} (common labels)", r["temporal"])
