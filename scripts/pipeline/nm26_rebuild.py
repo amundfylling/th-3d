@@ -99,14 +99,29 @@ def steps(games):
                   ["validation/nm26-goals-review.html"]))
 
     # ---- stage models: from zero, hours of CPU; out/synth is not committed. Listed for completeness, never default. ----
-    S.append(Step("goalie-renders", "models", py("scripts/synth/render-goalie-crops.py", "out/synth/train", "0", "6000"), [], ["bpy"],
-                  ["out/synth/train/labels.jsonl"], "Blender Cycles; see docs/synthetic-goalie-pilot.md for the exact runs"))
+    # Goal-box plates (out/synth/plates/plate_{W,E}_raw.png) have no committed script: a gap (docs/pipeline.md, section 3).
+    GPLATES = ["out/synth/plates/plate_W_raw.png", "out/synth/plates/plate_E_raw.png"]
+    S.append(Step("goalie-renders", "models", py("scripts/synth/render-goalie-crops.py", "out/synth/train", "0", "5000"), [], ["bpy"],
+                  ["out/synth/train/labels.jsonl"], "Blender Cycles, about 1 s per render"))
+    S.append(Step("goalie-renders-w-nm26", "models", py("scripts/synth/render-goalie-crops.py", "out/synth/train_w2", "10000", "2500", "W", "nm26"),
+                  [], ["bpy"], ["out/synth/train_w2/labels.jsonl"], "the NM26 white-goalie kit"))
+    for g in GAMES:
+        S.append(Step(f"skater-frames-{g}", "models", py("scripts/synth/skater-frames.py", g), [VIDEO, CACHE.format(g=g)], ["av", "cv2"],
+                      ["out/synth/skaters/frames"], "40 registered live-play frames per game"))
+    S.append(Step("skater-plates", "models", py("scripts/synth/skater-plates.py"), ["out/synth/skaters/frames"], ["cv2"],
+                  ["out/synth/skaters/plate_all.png"]))
     S.append(Step("skater-renders", "models", py("scripts/synth/render-skater-crops.py", "out/synth/skaters/train", "0", "6000", "nm26"), [],
                   ["bpy"], ["out/synth/skaters/train/labels.jsonl"], "Blender Cycles"))
-    S.append(Step("train-goalie", "models", py("scripts/synth/train-goalie-pose.py"), ["out/synth/train/labels.jsonl"], ["torch", "torchvision"],
-                  ["out/synth/goalie-pose.pt"], "model C needs the options in docs/synthetic-goalie-pilot.md"))
-    S.append(Step("train-skater", "models", py("scripts/synth/train-skater-pose.py"), ["out/synth/skaters/train/labels.jsonl"],
-                  ["torch", "torchvision"], ["out/synth/skater-pose.pt"], "model v2b needs the options in docs/synthetic-goalie-pilot.md"))
+    S.append(Step("train-goalie-v2a", "models", py("scripts/synth/train-goalie-pose.py", "--renders", "train,train_w2", "--drop-ref-w", "--out", "goalie-pose-v2a"),
+                  ["out/synth/train/labels.jsonl", "out/synth/train_w2/labels.jsonl"] + GPLATES, ["torch", "torchvision"],
+                  ["out/synth/goalie-pose-v2a.pt"], "options reconstructed from docs/synthetic-goalie-pilot.md; epochs not recorded"))
+    S.append(Step("train-goalie-v2c", "models", py("scripts/synth/train-goalie-pose.py", "--renders", "train,train_w2", "--drop-ref-w",
+                  "--real-train", "g1,g2,g4,g6", "--real-u-from", "out/synth/goalie-pose-v2a.pt", "--out", "goalie-pose-v2c"),
+                  ["out/synth/goalie-pose-v2a.pt"] + GPLATES, ["torch", "torchvision"], ["out/synth/goalie-pose-v2c.pt"],
+                  "model C; options reconstructed, not verified"))
+    S.append(Step("train-skater-v2b", "models", py("scripts/synth/train-skater-pose.py", "10", "--renders", "train", "--real-train", "g1,g2,g4,g6",
+                  "--out", "skater-pose-v2b"), ["out/synth/skaters/train/labels.jsonl", "out/synth/skaters/plate_all.png"],
+                  ["torch", "torchvision"], ["out/synth/skater-pose-v2b.pt"], "model v2b; options reconstructed, not verified"))
     for g in games:
         S.append(Step(f"track-figures-{g}", "models", py("scripts/synth/track-figures.py", g, "--fps", "5"),
                       [VIDEO, CACHE.format(g=g), "out/synth/skater-pose-v2b.pt", "out/synth/goalie-pose-v2c.pt"],
@@ -155,7 +170,9 @@ def has_modules(mods):
     return _mod_cache[key]
 
 
-def why_not(s):
+def why_not(s, failed_outputs=frozenset()):
+    stale = [p for p in s.needs if p in failed_outputs]
+    if stale: return "an earlier step failed to rebuild " + ", ".join(stale[:3]) + (" ..." if len(stale) > 3 else "")
     miss = [p for p in s.needs if not (REPO / p).exists()]
     if miss: return "missing input " + ", ".join(miss[:3]) + (" ..." if len(miss) > 3 else "")
     mods = has_modules(s.modules)
@@ -216,8 +233,9 @@ def main(argv):
             print(f"{s.stage:9s} {s.id:28s} {'ready' if not r else 'SKIP: ' + r}" + (f"  ({s.note})" if s.note else ""))
         return 0
     report = {"interpreter": PY, "stages": stages, "steps": []}; failed = 0
+    failed_outputs = set()  # outputs of failed steps: an old copy on disk must not feed later steps
     for s in todo:
-        r = None if s.cmd == ["@fetch"] else why_not(s)
+        r = None if s.cmd == ["@fetch"] else why_not(s, failed_outputs)
         entry = {"id": s.id, "stage": s.stage, "outputs": s.outputs}
         if r:
             print(f"SKIP {s.id}: {r}"); entry.update(result="skipped", reason=r); report["steps"].append(entry); continue
@@ -228,7 +246,7 @@ def main(argv):
         print(f"     {entry['result']} in {entry['seconds']} s", flush=True)
         report["steps"].append(entry)
         if rc:
-            failed += 1
+            failed += 1; failed_outputs |= set(s.outputs)
             if "--keep-going" not in flags: break
     if "--check" in flags:
         print("\nCommitted outputs after the rebuild:")

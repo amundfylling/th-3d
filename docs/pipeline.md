@@ -51,7 +51,8 @@ outputs; a step whose input or module is missing is skipped with the reason, nev
 | `npm run rebuild:nm26:figures` | figures | Cleaned figure tracks, figure analysis and tactics boards from the committed tracks (seconds; no video). |
 | `npm run rebuild:nm26:from-zero` | fetch ... pages | Everything except the models, in one go (about 1.5 h). |
 
-Run one game with `--games g2`; `--keep-going` continues past a failed step. The step interpreter is `$NM26_PY`, else the
+Run one game with `--games g2`; `--keep-going` continues past a failed step, and any later step that reads a failed
+step's output is skipped (an old copy on disk is not used). The step interpreter is `$NM26_PY`, else the
 Blender venv, else the runner's own Python.
 
 ### Stages and steps
@@ -102,7 +103,8 @@ renders per model, plus training) and needs PyTorch. The order (docs/synthetic-g
    and `synth/train-skater-pose.py 10 --renders <dirs> --real-train g1,g2,g4,g6 --out skater-pose-v2b`.
 4. Tracking: `synth/track-figures.py <g> --fps 5` (about 25 min per game).
 
-**Gap:** the exact command lines of the committed models (render directories, seed ranges, epochs of model C and A)
+**Gaps:** the goal-box plates (`out/synth/plates/plate_{W,E}_raw.png`) have no committed script, so the goalie
+training steps stay skipped until one is written; and the exact command lines of the committed models (render directories, seed ranges, epochs of model C and A)
 were not recorded; the lines above are reconstructed from the doc and are not verified. Retrained models will not
 reproduce the committed tracks bit for bit (random augmentation, thread scheduling). To make the tracks reproducible,
 publish the two `.pt` files as a release asset next to the video, with their sha256 in `config.json`.
