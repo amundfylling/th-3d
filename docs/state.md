@@ -334,6 +334,10 @@
   blue), the user's 352 real skater labels, model v2b (`out/synth/skater-pose-v2b.pt`, predicts the pivot pixel and
   the rotation). On held-out games 3, 5, 7: rotation 7° median, no front/back errors, slot position 1.3 mm from the
   user's feet taps. Sheet `validation/skater-pose-v2b-real.jpg`. Next: run it over the Edwall hat-trick frames.
+- **Figure tracks, all seven NM26 games (2026-10-10, `docs/nm26-figure-tracks.md`, PROPOSED):** both models over every
+  game (5 fps; 30 fps around goals; 23,756 frames). Pivot median 3-4 mm from the slots; ~6% slot and ~4% rotation jumps
+  at 30 fps (needs smoothing). Findings: the scoring centre's position separates the combinations (Spade at the back
+  of the slot, centrifuge at the front, short centrifuge in between); the Edwall hat-trick has one repeatable setup.
 - **First real goal to rebuild (2026-10-09, user's choice):** Nygård's three "Edwallskyffel lang" goals in game 2
   (`docs/rebuild-g2-edwall.md`). Evidence packs (frames, puck track, goalie poses) are built; skater poses and a
   frame-by-frame puck read come next. Goal review page (user labels, 25 of 40 so far):
