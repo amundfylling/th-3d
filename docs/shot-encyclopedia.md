@@ -44,7 +44,7 @@ Changed shared files (small): `remotion/Root.tsx` (registers the `move-*` compos
 ```jsonc
 {
  "schema": "move-spec/1", "id": "hjerpefinte", "name": "...", "nthf": {"name": "Hjerpefinte", "player": "Centre", "level": 2},
- "trace_id": "trace.hjerpefinte.v1", "status": "proposed", "kind": "designed",
+ "trace_id": "trace.hjerpefinte.v2", "status": "proposed", "kind": "designed",
  "source_text": "...", "approved_reading": null, "window_s": [0.0, 0.7],
  "physics": {"restitution_figure": 0.5},                    // optional; defaults in scripts/shotlib/build.py
  "puck": {"start": {"against": "W-C", "local_mm": [-10.0, 26.8]}, "start_phase": "on_the_blade"},
@@ -73,19 +73,24 @@ point, crosses a line or a contact starts or ends) are implemented but experimen
 (`validation/moves/invers-kryssar-velodrom-equivalence.json`). The saved IKV trace stays the one its own script writes;
 the port is only compared with it.
 
-**New move: Hjerpefinte** (centre, level 2; `moves/hjerpefinte/`). The centre stands at the front of its slot with its
-back to the goal, the puck resting on the blade to the right of the slot. A 70 ms counter-clockwise turn (181 → 205°)
-with a 14 mm step pushes the puck from rest into the right corner (goal line at y = −18.7 mm, 575 mm/s).
-- Checks: no overlap; one contact, a push of 65 small touches with a peak impact of 33 mm/s; no unexplained motion change.
-- Robust in 11 of 11 variants; the goal-line crossing moves by 0.4 mm at most.
-- Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (631 frames, 21.0 s,
-  1920x1080 30 fps, 8.01 MB; rendered in about 35 min on CPU; rerender with `node scripts/analysis-render.ts
-  move:hjerpefinte`). Its report `validation/moves/hjerpefinte-video-report.json` finds every frame equal to the pure
-  evaluation of the trace. Frames of the mp4 were checked: rewind, slow-motion approach, contact freeze with the push
-  arrow, replay.
-- Reading approved by the user (2026-10-10, `approved_reading`): "you can do a hjerpe from the same position. So you are
-  dependent on the goalie predicting a hjerpe and opening up the right corner." The goalie leans to the left post;
-  how far (y = +28 mm) is assumed. The video's set-up caption says this.
+**New move: Hjerpefinte** (centre, level 2; `moves/hjerpefinte/`, trace v2 after the user's corrections of 2026-10-11).
+The centre stands with its back to the goal, the puck resting on the blade to the right of the slot, one puck diameter
+inside the attacking blue line (puck centre at x = 120 mm; the blue line at x = 94-96 mm from the preview overhead map).
+The goalie covers the direct shot (y = −11 mm). The centre feints the start of a Hjerpe: a 13° clockwise turn that takes
+the blade off the puck, then back to it. The goalie reacts 0.15 s after the feint starts and slides to the left post
+(0.3-0.5 s). While it is still moving, a 100 ms counter-clockwise turn (181 → 210°) with a 30 mm step pushes the puck from
+rest into the opened right corner (goal line at y = −19.4 mm, 854 mm/s off the blade).
+- Checks: no overlap; one contact, a push of 128 small touches with a peak impact of 22 mm/s; no unexplained motion change.
+- Robust in 11 of 11 variants; the goal-line crossing moves by 0.3 mm at most.
+- With the goalie standing still the same shot is saved (the puck meets E-G at 0.556 s): the goal depends on the feint.
+- Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (VIDEO_FACTS; rerender with
+  `node scripts/analysis-render.ts move:hjerpefinte`). Its report `validation/moves/hjerpefinte-video-report.json`
+  compares every frame with the pure evaluation of the trace.
+- The video has a feint beat: `story.beats` may now name a move event without a contact (`{"id": "feint", "event":
+  "goalie.reacts"}`), and a beat's `highlight` figures are kept in its camera view (`scripts/shotlib/presentation.py`).
+- User input: reading approved 2026-10-10 (`approved_reading`); corrected 2026-10-11 (`user_feedback`: the goalie covers
+  the direct shot and reacts to the feint; start one puck in front of the blue line). Assumed: the feint's shape, the
+  goalie's start, reaction time (0.15 s) and slide (0.2 s).
 
 **Finding: the IKV v2 trace only works with its exact inputs.** The robustness run
 (`validation/moves/invers-kryssar-velodrom-robustness.json`) scores in 1 of 11 variants: the nominal one.
@@ -136,7 +141,7 @@ Lindahl-innspill, Sørenfinte) and the level-3 ones (Direkteskudd, Lillstøvel, 
 
 ## 7. Open
 
-1. Accept the Hjerpefinte trace (its reading is approved), or correct how far the goalie leans.
+1. Accept the Hjerpefinte v2 trace, or correct the feint or the goalie's timing.
 2. Should robustness be a hard gate for saving a move?
 3. Should IKV v2 be redesigned with solved receptions, or kept as it is with its fragility noted?
 4. The "Slide or bounce" limits and the push contact model are still assumptions (CLAUDE.md).

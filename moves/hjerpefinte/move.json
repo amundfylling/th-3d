@@ -7,7 +7,7 @@
   "player": "Centre",
   "level": 2
  },
- "trace_id": "trace.hjerpefinte.v1",
+ "trace_id": "trace.hjerpefinte.v2",
  "status": "proposed",
  "kind": "designed",
  "source_text": "Center starts with the puck out on the blade to the right of the slot, and shoots directly into the right corner. Only works against a goalie expecting a Hjerpe",
@@ -20,10 +20,10 @@
   "text": "Yes, but the trick is that you can do a hjerpe from the same position. So you are dependent on the goalie predicting a hjerpe and opening up the right corner",
   "applies_to": "the reading (set-up, ccw push into the right corner, goalie opening the right corner); the trace stays proposed"
  },
- "reading": "DESIGNED by Claude as the first move of the move engine; the reading was approved by the user on 2026-10-10 (approved_reading): a Hjerpe can be played from the same position, so the feint relies on the goalie predicting the Hjerpe and opening the right corner. The centre stands at the front of its slot with its back to the goal (the Näcka/spjass set-up), the puck resting against the blade on the right (-y) of the slot. A counter-clockwise turn with a short step up the slot pushes the puck from rest (a push, not a strike: CLAUDE.md 'Slide or bounce') into the right corner, while the goalie leans to the left post expecting the Hjerpe.",
+ "reading": "DESIGNED by Claude; the reading was approved by the user on 2026-10-10 (approved_reading) and corrected on 2026-10-11 (user_feedback): a Hjerpe can be played from the same position, so the feint relies on the goalie predicting the Hjerpe. v2: the centre stands with its back to the goal about one puck diameter inside the attacking blue line, the puck resting against the blade on the right (-y) of the slot. The goalie first covers the direct shot (right of centre). The centre feints the start of a Hjerpe (a short clockwise turn that takes the blade off the puck, then back to the puck); the goalie reacts and slides to the left post, and while it is still moving the centre pushes the puck from rest (a push, not a strike: CLAUDE.md 'Slide or bounce') with a counter-clockwise turn and a step up the slot into the right corner it has opened. With the goalie standing still the same shot is saved (checked: the puck meets E-G at 0.556 s).",
  "window_s": [
   0.0,
-  0.7
+  1.0
  ],
  "puck": {
   "start": {
@@ -32,7 +32,7 @@
     -10.0,
     26.8
    ],
-   "why": "at rest against the blade, on the goal side, where the Näcka shot meets it (trace.nacka.v1 contact.shot local point [2.58, 26.82])"
+   "why": "at rest against the blade on the right of the slot (trace.nacka.v1 contact point, as v1); with the centre at arc 168 mm the puck's centre is at x = 120 mm, about one puck diameter (25.4 mm) inside the E blue line (x = 94-96 mm: landmarks lm.board.blue_line.E.* through the preview overhead map, ASSUMED scale), as the user asked"
   },
   "start_phase": "on_the_blade"
  },
@@ -43,24 +43,24 @@
     "keys": [
      [
       0.0,
-      232.0,
-      "front of the slot, as the Näcka shot (248.9 mm at contact) minus the step"
+      168.0,
+      "one puck diameter inside the blue line (user, 2026-10-11)"
      ],
      [
-      0.1,
-      232.0,
-      "waits"
+      0.4,
+      168.0,
+      "waits through the feint"
      ]
     ],
     "moves": [
      [
-      0.1,
-      0.2,
-      232.0,
+      0.4,
+      0.5,
+      168.0,
       0.0,
-      246.0,
+      198.0,
       0.0,
-      "short step up the slot with the shot"
+      "30 mm step up the slot with the shot (a longer shot than v1 needs a faster push)"
      ]
     ]
    },
@@ -68,28 +68,77 @@
     "start": 181.0,
     "turns": [
      [
-      0.1,
-      0.07,
+      0.15,
+      0.08,
       181.0,
-      205.0,
+      168.0,
+      "feint: a short clockwise turn, as the start of a Hjerpe (the blade comes off the puck; the puck stays at rest)"
+     ],
+     [
+      0.28,
+      0.1,
+      168.0,
+      181.0,
+      "back to the puck, ending at rest against it (no strike)"
+     ],
+     [
+      0.4,
+      0.1,
+      181.0,
+      210.0,
       "counter-clockwise turn: the blade pushes the puck from rest toward the right corner"
      ]
     ]
    }
   },
   "E-G": {
-   "static": {
-    "y_mm": 28.0,
-    "theta_deg": 0.0,
-    "why": "leans to the left post, predicting the Hjerpe and opening the right corner (the lean: user-approved reading; y = +28 mm of its slot's +33: ASSUMED)"
+   "status": "moving: goalie (designed)",
+   "arc": {
+    "keys": [
+     [
+      0.0,
+      44.0,
+      "covers the direct shot: y = -11 mm, right of centre (user, 2026-10-11; position ASSUMED)"
+     ],
+     [
+      0.3,
+      44.0,
+      "waits"
+     ]
+    ],
+    "moves": [
+     [
+      0.3,
+      0.5,
+      44.0,
+      0.0,
+      5.0,
+      0.0,
+      "reacts to the feint 0.15 s after it starts (reaction time ASSUMED) and slides to the left post (y = +28 mm), opening the right corner as the shot comes"
+     ]
+    ]
+   },
+   "theta": {
+    "start": 0.0,
+    "turns": []
    }
   }
  },
  "events": [
   {
+   "id": "feint.onset",
+   "t": 0.15,
+   "why": "the centre starts the feint (clockwise turn)"
+  },
+  {
+   "id": "goalie.reacts",
+   "t": 0.3,
+   "why": "the goalie starts sliding to the left post"
+  },
+  {
    "id": "turn.onset",
-   "t": 0.1,
-   "why": "the centre starts the counter-clockwise turn"
+   "t": 0.4,
+   "why": "the centre starts the counter-clockwise shot turn while the goalie is still moving"
   }
  ],
  "contacts": [
@@ -115,42 +164,74 @@
   ]
  },
  "limitations": [
-  "No recording: the whole move is DESIGNED from the one-line NTHF text; the user approved the reading on 2026-10-10.",
-  "Set-up borrowed from trace.nacka.v1 (centre at the front of its slot, back to the goal); how far the goalie leans (y = +28 mm) is assumed.",
+  "No recording: the whole move is DESIGNED from the one-line NTHF text and the user's description (2026-10-10, 2026-10-11).",
+  "The feint's shape (a 13 deg clockwise turn), the goalie's start (y = -11 mm), its reaction time (0.15 s) and its slide (0.2 s) are assumed.",
+  "The blue-line position comes from the preview overhead map (assumed scale).",
   "Contact rules, ice friction and figure geometry as every move-engine trace (scripts/shotlib): restitution 0.5 assumed, friction from the spjass fit, AI-modelled molds at the preview scale."
  ],
- "tuning": "Turn angles, duration and step chosen with scripts/build-move.py --quick scans (2026-10-10): 181 -> 205 deg in 70 ms with a 14 mm step puts the shot 19 mm right of centre without touching the goalie; the release is a push of about 45-65 small touches.",
+ "tuning": "v2 (2026-10-11), scans with a scratch driver over the feint depth, the return time, the shot turn (205-235 deg, 40-100 ms) and step (14-50 mm): from x = 120 mm the puck needs about 850 mm/s; 181 -> 210 deg in 100 ms with a 30 mm step gives it as a push of about 130 touches (peak 22 mm/s). Faster or larger turns strike the puck or send it into the goalie or the boards.",
  "story": {
   "title": "HJERPEFINTE",
   "subtitle": "Table hockey · centre feint · designed from the NTHF description",
   "bug": "HJERPEFINTE",
   "end_steps": [
-   "PUCK OUT ON THE BLADE",
-   "GOALIE EXPECTS THE HJERPE",
+   "GOALIE COVERS THE DIRECT SHOT",
+   "FEINT A HJERPE, GOALIE SLIDES LEFT",
    "PUSH SHOT, RIGHT CORNER"
   ],
   "setup": {
    "title": "THE SET-UP",
-   "text": "Back to the goal, puck out on the blade. A Hjerpe can come from the same stance, so the goalie covers it and opens the right corner.",
+   "text": "Back to the goal, one puck inside the blue line. The goalie covers the direct shot, but a Hjerpe can come from the same stance.",
    "highlight": {
     "W-C": "CENTRE",
     "E-G": "GOALIE"
    },
-   "puck_label": "PUCK ON THE BLADE"
+   "puck_label": "PUCK ON THE BLADE",
+   "frame_highlighted": true
   },
   "beats": [
    {
+    "id": "feint",
+    "event": "goalie.reacts",
+    "title": "THE FEINT",
+    "text": "He starts a Hjerpe: a short clockwise turn, then back to the puck. The goalie reads it and starts sliding to the left post.",
+    "turn": {
+     "figure": "W-C",
+     "event": "feint.onset",
+     "direction": "cw",
+     "label": "FEINT"
+    },
+    "highlight": {
+     "E-G": "GOALIE SLIDES LEFT"
+    }
+   },
+   {
     "contact": "shot",
     "title": "THE SHOT",
-    "text": "He turns counter-clockwise and pushes the puck straight into the right corner.",
+    "text": "While the goalie is still sliding, he turns counter-clockwise and pushes the puck into the open right corner.",
     "label": "SHOT · BLADE PUSH",
     "turn": {
      "figure": "W-C",
      "event": "turn.onset",
      "direction": "ccw",
      "label": "TURN"
-    }
+    },
+    "highlight": {
+     "E-G": "STILL MOVING"
+    },
+    "label_offset_px": [
+     190,
+     30
+    ]
    }
   ]
- }
+ },
+ "user_feedback": [
+  {
+   "by": "Amund",
+   "date": "2026-10-11",
+   "text": "The goalie should cover the direct shot and react on the feint so it opens it up as it shoots. Also start it further back. Maybe one puck distance in front of the blue line",
+   "applied_in": "trace.hjerpefinte.v2"
+  }
+ ]
 }
