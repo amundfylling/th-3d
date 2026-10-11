@@ -6,7 +6,8 @@ NM26 reference camera, composited on real NM26 pictures.
 
 **Since 2026-10-11 (section 8):** a second version, `puck-track-synth-v2.json` (tracker 2 on the same v1 detector), sits
 beside it. It removes the dark ice marks the tracker sat on (false alarms on the user's "not in this picture" taps 13 to 4
-of 21). It does not find more shots: the broadcast does not show most shots. The analysis still reads v1.
+of 21). It does not find more shots: the broadcast does not show most shots. The NM26 analysis reads v2 since
+2026-10-11 (the user approved the switch; section 8.5).
 
 **Since 2026-10-10 (docs/nm26-new-tracks.md):** the NM26 analysis reads this detector's track (`puck-track-synth.json`); the before/after effect on passes,
 patterns, combinations, replays and the Edwall refit is in docs/nm26-new-tracks.md by default (`scripts/nm26_tracks.py`).
@@ -353,12 +354,26 @@ against the 63 tap frames: 0 right answers lost.
 
 ### 8.5 Use and open points
 
-- The analysis is **not switched**: `scripts/nm26_tracks.py` still reads `puck-track-synth.json`. v2 wins on false
-  alarms and ties on shots and accuracy, and the brief said to switch only if it wins. Switching is one line there; after
-  a switch, re-run passes, patterns, combinations, the figure analysis, the comparison and the replays
-  (docs/nm26-new-tracks.md).
-- Passes and shots on v2: `<game>/passes-synth-v2.json` (`nm26-passes.py <game> --track puck-track-synth-v2.json --out
-  passes-synth-v2.json`).
+- **Switched (2026-10-11, the user's "Yes"):** `scripts/nm26_tracks.py` reads `puck-track-synth-v2.json`. v2 ties on
+  shots and accuracy and wins on false alarms; it only removes positions. `NM26_PUCK_TRACK=puck-track-synth.json` brings
+  v1 back. Re-run on v2: passes (`<game>/passes.json`), patterns, figure analysis, combinations, the old/new comparison,
+  the g2 goal 2 boards and the goal replays. Before/after (base = commit 16cad11, the analysis on v1):
+  `validation/nm26-puck-v2-switch.json` (`scripts/nm26-track-switch-compare.py --base 16cad11 --out ...`); summary below.
+  The Edwall rebuild (stage edwall, not default) still reads v1 and was not refit.
+- Passes and shots on v1, kept for the comparison: `<game>/passes-synth-v1.json` (`nm26-passes.py <game> --track
+  puck-track-synth.json --out passes-synth-v1.json`).
+  | measure (all 7 games) | analysis on v1 | on v2 |
+  | --- | --- | --- |
+  | passes / shots / turnovers | 370 / 49 / 274 | 357 / 48 / 238 |
+  | carries / battles | 2,507 / 338 | 2,472 / 335 |
+  | puck frames used for figure touches | 6,182 | 5,225 |
+  | combinations, leave-one-out at the user's goal moment (vote) | 23/25 | 23/25 |
+  | combinations, leave-one-out at the estimated moment (vote) | 18/25 | 20/25 |
+  | estimated goal moment, median error | 0.78 s | 0.17 s |
+  | replays: puck shown / shown as a disk | 68.2% / 42.6% | 62.2% / 36.9% |
+
+  Six proposed combination labels change (g5 goals 3, 5, 6, 7; g6 goal 2; g7 goal 3), all PROPOSED and unchecked. The
+  share of puck frames on a figure goes up in every game (g3 0.15 to 0.22), as expected when ice-mark positions go.
 - **The shot itself needs another source of evidence**:
   - the goal moment (the user's marks, or the overlay) plus the shooter's figure track: which figure had the puck and
     where it turned. This is the "fit between the release and the goal moment" of section 4, as in the Edwall rebuild;

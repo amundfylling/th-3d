@@ -3,7 +3,7 @@
  "results": [
   {
    "track": "puck-track-synth.json",
-   "passes": "passes.json",
+   "passes": "passes-synth-v1.json",
    "user_goals_with_a_shot_in_the_last_2s": "1/25",
    "goals_with_a_shot": [
     "g5-goal2"
@@ -319,7 +319,7 @@
   },
   {
    "track": "puck-track-synth-v2.json",
-   "passes": "passes-synth-v2.json",
+   "passes": "passes.json",
    "user_goals_with_a_shot_in_the_last_2s": "1/25",
    "goals_with_a_shot": [
     "g5-goal2"

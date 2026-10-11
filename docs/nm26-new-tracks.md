@@ -1,5 +1,8 @@
 # NM26 on the new tracks (2026-10-10)
 
+**Since 2026-10-11:** the puck input is tracker 2 (`<game>/puck-track-synth-v2.json`, docs/synthetic-puck.md section 8.5);
+the numbers below are the 2026-10-10 switch and are not updated.
+
 Status: PROPOSED. Step 1 of the consolidation summary: the NM26 analysis now reads the synthetic puck detector's track
 (`<game>/puck-track-synth.json`, docs/synthetic-puck.md) and tracker v3's figure tracks (`<game>/figure-tracks-v3.json`,
 docs/tracker-v3.md) instead of `puck-track.json` and `figure-tracks-smooth.json`. Passes, patterns, the figure analysis,

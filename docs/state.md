@@ -408,8 +408,9 @@
   the user could not see in about 2/3 of the "none" frames (next: the detector's false alarms). Taps mark the visible
   puck centre, scored after moving them up the documented 8.8 px. Edwall videos not re-rendered.
 - **Puck at the shot (2026-10-11, thread "Puck at the shot", `docs/synthetic-puck.md` section 8, PROPOSED):** a second
-  puck track `<game>/puck-track-synth-v2.json` (tracker 2 on the v1 detector) and its `<game>/passes-synth-v2.json`, beside
-  v1; the analysis is NOT switched (v2 ties on shots). Tracker 2 removes still low-score runs (dark ice marks: the ISOVER
+  puck track `<game>/puck-track-synth-v2.json` (tracker 2 on the v1 detector) beside v1; the NM26 analysis reads it since 2026-10-11
+  (user's "Yes"; passes.json and everything downstream re-run, v1 passes in `passes-synth-v1.json`, before/after in
+  `validation/nm26-puck-v2-switch.json`; Edwall still on v1). Tracker 2 removes still low-score runs (dark ice marks: the ISOVER
   "o" at the W near board, the centre spot) and re-tracks: false alarms on the user's "not in this picture" taps 13 → 4
   of 21, tap frames right 32 → 41 of 63, median error 10 mm unchanged, coverage 76 → 70% of live play (28-row review: 2
   removed rows were the puck). Shots before the 25 user goals stay 1/25: the broadcast does not show most shots (the puck

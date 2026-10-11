@@ -3,7 +3,7 @@
  "status": "PROPOSED",
  "sources": {
   "figures": "data/games/nm26-semifinal/<game>/figure-tracks-v3.json",
-  "puck": "data/games/nm26-semifinal/<game>/puck-track-synth.json",
+  "puck": "data/games/nm26-semifinal/<game>/puck-track-synth-v2.json",
   "goal_moments": "data/games/nm26-semifinal/goal-labels.json (user marks)",
   "goals": "data/games/nm26-semifinal/timeline.json"
  },
@@ -45,8 +45,8 @@
     "puck_disk": 0.381,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1902
+   "clip_registration_inliers": 1858,
+   "clip_registered": true
   },
   {
    "id": "g1-goal2",
@@ -75,8 +75,8 @@
     "puck_disk": 0.248,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1951
+   "clip_registration_inliers": 1834,
+   "clip_registered": true
   },
   {
    "id": "g1-goal3",
@@ -105,8 +105,8 @@
     "puck_disk": 0.322,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 2037
+   "clip_registration_inliers": 1808,
+   "clip_registered": true
   },
   {
    "id": "g1-goal4",
@@ -135,8 +135,8 @@
     "puck_disk": 0.633,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1866
+   "clip_registration_inliers": 1766,
+   "clip_registered": true
   },
   {
    "id": "g1-goal5",
@@ -165,8 +165,8 @@
     "puck_disk": 0.319,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 2075
+   "clip_registration_inliers": 2045,
+   "clip_registered": true
   },
   {
    "id": "g1-goal6",
@@ -195,8 +195,8 @@
     "puck_disk": 0.381,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 2086
+   "clip_registration_inliers": 2079,
+   "clip_registered": true
   },
   {
    "id": "g1-goal7",
@@ -225,8 +225,8 @@
     "puck_disk": 0.611,
     "figures_shown_mean": 11.91
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1892
+   "clip_registration_inliers": 1758,
+   "clip_registered": true
   },
   {
    "id": "g2-goal1",
@@ -255,8 +255,8 @@
     "puck_disk": 0.463,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1880
+   "clip_registration_inliers": 1619,
+   "clip_registered": true
   },
   {
    "id": "g2-goal2",
@@ -285,8 +285,8 @@
     "puck_disk": 0.241,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1853
+   "clip_registration_inliers": 1756,
+   "clip_registered": true
   },
   {
    "id": "g2-goal3",
@@ -311,12 +311,12 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.178,
-    "puck_disk": 0.096,
+    "puck_seen": 0.133,
+    "puck_disk": 0.089,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1825
+   "clip_registration_inliers": 1654,
+   "clip_registered": true
   },
   {
    "id": "g2-goal4",
@@ -341,12 +341,12 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.985,
-    "puck_disk": 0.581,
+    "puck_seen": 0.756,
+    "puck_disk": 0.407,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1748
+   "clip_registration_inliers": 1579,
+   "clip_registered": true
   },
   {
    "id": "g3-goal1",
@@ -375,8 +375,8 @@
     "puck_disk": 0.544,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 475
+   "clip_registration_inliers": 471,
+   "clip_registered": true
   },
   {
    "id": "g3-goal2",
@@ -405,8 +405,8 @@
     "puck_disk": 0.563,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 448
+   "clip_registration_inliers": 434,
+   "clip_registered": true
   },
   {
    "id": "g3-goal3",
@@ -435,8 +435,8 @@
     "puck_disk": 0.426,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 446
+   "clip_registration_inliers": 430,
+   "clip_registered": true
   },
   {
    "id": "g3-goal4",
@@ -461,12 +461,12 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.867,
-    "puck_disk": 0.722,
+    "puck_seen": 0.633,
+    "puck_disk": 0.496,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 475
+   "clip_registration_inliers": 470,
+   "clip_registered": true
   },
   {
    "id": "g3-goal5",
@@ -491,12 +491,12 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.948,
-    "puck_disk": 0.744,
+    "puck_seen": 0.844,
+    "puck_disk": 0.644,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 445
+   "clip_registration_inliers": 428,
+   "clip_registered": true
   },
   {
    "id": "g3-goal6",
@@ -521,12 +521,12 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.989,
-    "puck_disk": 0.704,
+    "puck_seen": 0.852,
+    "puck_disk": 0.541,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 450
+   "clip_registration_inliers": 420,
+   "clip_registered": true
   },
   {
    "id": "g3-goal7",
@@ -555,8 +555,8 @@
     "puck_disk": 0.256,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 434
+   "clip_registration_inliers": 430,
+   "clip_registered": true
   },
   {
    "id": "g3-goal8",
@@ -581,12 +581,12 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.937,
-    "puck_disk": 0.748,
+    "puck_seen": 0.556,
+    "puck_disk": 0.422,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 404
+   "clip_registration_inliers": 404,
+   "clip_registered": true
   },
   {
    "id": "g4-goal1",
@@ -615,8 +615,8 @@
     "puck_disk": 0.37,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 434
+   "clip_registration_inliers": 428,
+   "clip_registered": true
   },
   {
    "id": "g4-goal2",
@@ -645,8 +645,8 @@
     "puck_disk": 0.585,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 436
+   "clip_registration_inliers": 428,
+   "clip_registered": true
   },
   {
    "id": "g4-goal3",
@@ -675,8 +675,8 @@
     "puck_disk": 0.278,
     "figures_shown_mean": 11.94
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 457
+   "clip_registration_inliers": 425,
+   "clip_registered": true
   },
   {
    "id": "g4-goal4",
@@ -701,12 +701,12 @@
    "coverage": {
     "frames": 270,
     "figure_rows_every_frame": 1.0,
-    "puck_seen": 0.948,
-    "puck_disk": 0.6,
+    "puck_seen": 0.774,
+    "puck_disk": 0.441,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 489
+   "clip_registration_inliers": 439,
+   "clip_registered": true
   },
   {
    "id": "g4-goal5",
@@ -746,8 +746,8 @@
     "puck_disk": 0.3,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1072
+   "clip_registration_inliers": 1069,
+   "clip_registered": true
   },
   {
    "id": "g5-goal2",
@@ -776,8 +776,8 @@
     "puck_disk": 0.337,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1023
+   "clip_registration_inliers": 1019,
+   "clip_registered": true
   },
   {
    "id": "g5-goal3",
@@ -801,8 +801,8 @@
     "puck_disk": 0.443,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1054
+   "clip_registration_inliers": 1054,
+   "clip_registered": true
   },
   {
    "id": "g5-goal4",
@@ -826,8 +826,8 @@
     "puck_disk": 0.333,
     "figures_shown_mean": 11.94
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1050
+   "clip_registration_inliers": 1050,
+   "clip_registered": true
   },
   {
    "id": "g5-goal5",
@@ -847,12 +847,12 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.884,
-    "puck_seen": 0.651,
-    "puck_disk": 0.482,
+    "puck_seen": 0.563,
+    "puck_disk": 0.404,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 795
+   "clip_registration_inliers": 785,
+   "clip_registered": true
   },
   {
    "id": "g5-goal6",
@@ -872,12 +872,12 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.91,
-    "puck_disk": 0.58,
+    "puck_seen": 0.751,
+    "puck_disk": 0.422,
     "figures_shown_mean": 11.92
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1067
+   "clip_registration_inliers": 1068,
+   "clip_registered": true
   },
   {
    "id": "g5-goal7",
@@ -897,12 +897,12 @@
    "coverage": {
     "frames": 510,
     "figure_rows_every_frame": 0.647,
-    "puck_seen": 0.998,
-    "puck_disk": 0.904,
+    "puck_seen": 0.167,
+    "puck_disk": 0.047,
     "figures_shown_mean": 11.85
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1056
+   "clip_registration_inliers": 1058,
+   "clip_registered": true
   },
   {
    "id": "g6-goal1",
@@ -926,8 +926,8 @@
     "puck_disk": 0.273,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 497
+   "clip_registration_inliers": 479,
+   "clip_registered": true
   },
   {
    "id": "g6-goal2",
@@ -951,8 +951,8 @@
     "puck_disk": 0.343,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 490
+   "clip_registration_inliers": 457,
+   "clip_registered": true
   },
   {
    "id": "g6-goal3",
@@ -976,8 +976,8 @@
     "puck_disk": 0.261,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 493
+   "clip_registration_inliers": 487,
+   "clip_registered": true
   },
   {
    "id": "g6-goal4",
@@ -1001,8 +1001,8 @@
     "puck_disk": 0.31,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 445
+   "clip_registration_inliers": 429,
+   "clip_registered": true
   },
   {
    "id": "g6-goal5",
@@ -1026,8 +1026,8 @@
     "puck_disk": 0.235,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 423
+   "clip_registration_inliers": 396,
+   "clip_registered": true
   },
   {
    "id": "g6-goal6",
@@ -1051,8 +1051,8 @@
     "puck_disk": 0.157,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 400
+   "clip_registration_inliers": 367,
+   "clip_registered": true
   },
   {
    "id": "g7-goal1",
@@ -1076,8 +1076,8 @@
     "puck_disk": 0.214,
     "figures_shown_mean": 11.81
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1106
+   "clip_registration_inliers": 1108,
+   "clip_registered": true
   },
   {
    "id": "g7-goal2",
@@ -1101,8 +1101,8 @@
     "puck_disk": 0.384,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1044
+   "clip_registration_inliers": 1044,
+   "clip_registered": true
   },
   {
    "id": "g7-goal3",
@@ -1126,8 +1126,8 @@
     "puck_disk": 0.488,
     "figures_shown_mean": 11.93
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1104
+   "clip_registration_inliers": 1104,
+   "clip_registered": true
   },
   {
    "id": "g7-goal4",
@@ -1151,8 +1151,8 @@
     "puck_disk": 0.165,
     "figures_shown_mean": 12.0
    },
-   "clip_registered": true,
-   "clip_registration_inliers": 1115
+   "clip_registration_inliers": 1113,
+   "clip_registered": true
   }
  ]
 }

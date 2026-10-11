@@ -1,6 +1,6 @@
 {
  "description": "Flights of the puck classified as passes, shots, turnovers, carries and loose pucks (scripts/nm26-passes.py). Video seconds. PROPOSED: definitions assumed, to be confirmed by the user.",
- "puck_track": "puck-track-synth-v2.json",
+ "puck_track": "puck-track-synth.json",
  "definition": "/root/venvs/blender/bin/python scripts/nm26-passes.py g1\n\nInputs: data/games/nm26-semifinal/<game>/<puck track> (scripts/nm26_tracks.py: puck-track-synth.json, or $NM26_PUCK_TRACK), config.json (which player is team W), data/geometry.json,\nvalidation/players/figures-report.json + out/figures/skater.npz (skater reach).\nOutput: data/games/nm26-semifinal/<game>/passes.json.\n\n1. FLIGHT: a run of consecutive detections (gaps of at most MAX_GAP frames) where the puck moves at MIN_SPEED or\n   faster (measured over two steps against jitter; a detection implying more than MAX_SPEED into and out of it is a\n   wrong candidate and dropped). Its path is cut into straight segments, each grown while all its points stay within\n   SIMPLIFY_MM of one line. Runs separated by at most MERGE_ROWS slow steps are joined when the direction continues\n   (within MERGE_DEG) or the break is at the boards.\n   - A corner within NEAR_BOARD_MM of the boards is a board bounce and stays inside the flight.\n   - A corner away from the boards that turns the path by more than MIN_TURN_DEG is a touch by a figure: the flight is\n     split there, so a deflection or a one-touch\n     pass becomes two flights.\n2. RELEASE: the last slow detection just before the flight (the puck on the passer's blade), if within MAX_GAP frames\n   and on the line behind the flight (within LINE_TOL_MM); else the flight's first point. RECEPTION: the first slow\n   detection just after the flight on the line ahead, else the flight's last point.\n3. WHO: the skater whose reach (slot + figure + puck) contains the point.\n   - If several reach it, the one whose slot is nearest. A contested point (another skater's slot within\n     CONTEST_MM of the nearest) is flagged \"uncertain\".\n   - Goalies count here (they pass and stop shots), unlike in the possession count.\n4. KIND:\n   - shot: by the attacking team, at least BATTLE_MM long, with a segment moving toward the opponent's goal, ending within SHOT_REACH_MM of its goal line (or beyond), whose extension\n     crosses the line between the posts (blocked or not);\n   - pass: release and reception by two different skaters of the same team;\n   - battle: the receiver is an opponent and the flight is shorter than BATTLE_MM (a fight for the puck at the border of\n     two areas);\n   - turnover: the receiver is an opponent and the flight is longer;\n   - carry: same skater, or a short flight;\n   - loose: no skater can reach the reception point.",
  "parameters": {
   "min_turn_deg": 30.0,
@@ -23,26 +23,25 @@
   "E": "fjermestad"
  },
  "summary": {
-  "battle": 53,
-  "carry": 424,
-  "loose_received": 1,
-  "pass": 50,
+  "battle": 54,
+  "carry": 427,
+  "pass": 53,
   "shot": 4,
-  "turnover": 48
+  "turnover": 49
  },
  "by_player": {
   "nygard": {
-   "passes": 27,
+   "passes": 28,
    "shots": 2,
    "turnovers_lost": 24
   },
   "fjermestad": {
-   "passes": 23,
+   "passes": 25,
    "shots": 2,
-   "turnovers_lost": 24
+   "turnovers_lost": 25
   }
  },
- "uncertain_ends": 92,
+ "uncertain_ends": 96,
  "events": [
   {
    "kind": "shot",
@@ -3805,40 +3804,6 @@
    "player_from": "fjermestad",
    "player_to": "fjermestad",
    "goal_of": null,
-   "t_release_s": 112.967,
-   "t_reception_s": 113.033,
-   "frame_release": 3389,
-   "frame_reception": 3391,
-   "line_mm": [
-    [
-     136.6,
-     86.0
-    ],
-    [
-     136.5,
-     85.3
-    ]
-   ],
-   "bounces": 0,
-   "length_mm": 0.7,
-   "detections": 3,
-   "speed_mm_s": [
-    342,
-    342,
-    342
-   ],
-   "release_at_rest": false,
-   "reception_at_rest": true
-  },
-  {
-   "kind": "carry",
-   "from": "E-RD",
-   "to": "E-RD",
-   "from_uncertain": false,
-   "to_uncertain": false,
-   "player_from": "fjermestad",
-   "player_to": "fjermestad",
-   "goal_of": null,
    "t_release_s": 113.767,
    "t_reception_s": 113.867,
    "frame_release": 3413,
@@ -7579,19 +7544,23 @@
    "reception_at_rest": false
   },
   {
-   "kind": "loose_received",
-   "from": null,
+   "kind": "pass",
+   "from": "E-LW",
    "to": "E-RD",
    "from_uncertain": false,
    "to_uncertain": true,
-   "player_from": null,
+   "player_from": "fjermestad",
    "player_to": "fjermestad",
    "goal_of": null,
-   "t_release_s": 185.1,
+   "t_release_s": 185.0,
    "t_reception_s": 185.567,
-   "frame_release": 5553,
+   "frame_release": 5550,
    "frame_reception": 5567,
    "line_mm": [
+    [
+     -230.3,
+     -190.5
+    ],
     [
      177.3,
      272.2
@@ -7609,15 +7578,15 @@
      119.8
     ]
    ],
-   "bounces": 2,
-   "length_mm": 242.9,
-   "detections": 15,
+   "bounces": 3,
+   "length_mm": 859.5,
+   "detections": 17,
    "speed_mm_s": [
     80,
-    637,
-    1084
+    638,
+    6230
    ],
-   "release_at_rest": false,
+   "release_at_rest": true,
    "reception_at_rest": true
   },
   {
@@ -11504,6 +11473,40 @@
     1328
    ],
    "release_at_rest": false,
+   "reception_at_rest": true
+  },
+  {
+   "kind": "carry",
+   "from": "E-LW",
+   "to": "E-LW",
+   "from_uncertain": false,
+   "to_uncertain": false,
+   "player_from": "fjermestad",
+   "player_to": "fjermestad",
+   "goal_of": null,
+   "t_release_s": 261.067,
+   "t_reception_s": 261.2,
+   "frame_release": 7832,
+   "frame_reception": 7836,
+   "line_mm": [
+    [
+     -227.6,
+     -170.1
+    ],
+    [
+     -304.5,
+     -163.5
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 77.2,
+   "detections": 5,
+   "speed_mm_s": [
+    1241,
+    1271,
+    1302
+   ],
+   "release_at_rest": true,
    "reception_at_rest": true
   },
   {
@@ -17197,6 +17200,74 @@
    "reception_at_rest": true
   },
   {
+   "kind": "carry",
+   "from": "W-C",
+   "to": "E-LD",
+   "from_uncertain": true,
+   "to_uncertain": false,
+   "player_from": "nygard",
+   "player_to": "fjermestad",
+   "goal_of": null,
+   "t_release_s": 406.933,
+   "t_reception_s": 407.067,
+   "frame_release": 12208,
+   "frame_reception": 12212,
+   "line_mm": [
+    [
+     -15.1,
+     -50.6
+    ],
+    [
+     9.3,
+     -75.5
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 34.9,
+   "detections": 5,
+   "speed_mm_s": [
+    525,
+    539,
+    553
+   ],
+   "release_at_rest": true,
+   "reception_at_rest": true
+  },
+  {
+   "kind": "pass",
+   "from": "E-LD",
+   "to": "E-C",
+   "from_uncertain": false,
+   "to_uncertain": true,
+   "player_from": "fjermestad",
+   "player_to": "fjermestad",
+   "goal_of": null,
+   "t_release_s": 407.167,
+   "t_reception_s": 407.3,
+   "frame_release": 12215,
+   "frame_reception": 12219,
+   "line_mm": [
+    [
+     19.1,
+     -74.7
+    ],
+    [
+     -9.5,
+     4.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 84.3,
+   "detections": 5,
+   "speed_mm_s": [
+    1006,
+    1016,
+    1025
+   ],
+   "release_at_rest": true,
+   "reception_at_rest": true
+  },
+  {
    "kind": "battle",
    "from": "E-C",
    "to": "W-C",
@@ -17299,6 +17370,142 @@
    "reception_at_rest": true
   },
   {
+   "kind": "turnover",
+   "from": "E-C",
+   "to": "W-LW",
+   "from_uncertain": true,
+   "to_uncertain": false,
+   "player_from": "fjermestad",
+   "player_to": "nygard",
+   "goal_of": null,
+   "t_release_s": 408.133,
+   "t_reception_s": 408.267,
+   "frame_release": 12244,
+   "frame_reception": 12248,
+   "line_mm": [
+    [
+     -13.4,
+     3.0
+    ],
+    [
+     131.0,
+     151.6
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 207.2,
+   "detections": 5,
+   "speed_mm_s": [
+    3084,
+    3087,
+    3090
+   ],
+   "release_at_rest": true,
+   "reception_at_rest": true
+  },
+  {
+   "kind": "pass",
+   "from": "W-LW",
+   "to": "W-LD",
+   "from_uncertain": false,
+   "to_uncertain": false,
+   "player_from": "nygard",
+   "player_to": "nygard",
+   "goal_of": null,
+   "t_release_s": 408.633,
+   "t_reception_s": 408.7,
+   "frame_release": 12259,
+   "frame_reception": 12261,
+   "line_mm": [
+    [
+     131.0,
+     151.2
+    ],
+    [
+     24.0,
+     75.5
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 131.1,
+   "detections": 3,
+   "speed_mm_s": [
+    1966,
+    1966,
+    1966
+   ],
+   "release_at_rest": true,
+   "reception_at_rest": false
+  },
+  {
+   "kind": "battle",
+   "from": "W-LD",
+   "to": "E-C",
+   "from_uncertain": false,
+   "to_uncertain": true,
+   "player_from": "nygard",
+   "player_to": "fjermestad",
+   "goal_of": null,
+   "t_release_s": 408.7,
+   "t_reception_s": 408.8,
+   "frame_release": 12261,
+   "frame_reception": 12264,
+   "line_mm": [
+    [
+     24.0,
+     75.5
+    ],
+    [
+     -8.9,
+     4.2
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 78.5,
+   "detections": 4,
+   "speed_mm_s": [
+    1170,
+    2110,
+    3050
+   ],
+   "release_at_rest": false,
+   "reception_at_rest": true
+  },
+  {
+   "kind": "carry",
+   "from": "E-C",
+   "to": "W-C",
+   "from_uncertain": true,
+   "to_uncertain": false,
+   "player_from": "fjermestad",
+   "player_to": "nygard",
+   "goal_of": null,
+   "t_release_s": 429.167,
+   "t_reception_s": 429.3,
+   "frame_release": 12875,
+   "frame_reception": 12879,
+   "line_mm": [
+    [
+     -7.2,
+     3.9
+    ],
+    [
+     45.0,
+     -17.5
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 56.4,
+   "detections": 5,
+   "speed_mm_s": [
+    796,
+    812,
+    828
+   ],
+   "release_at_rest": true,
+   "reception_at_rest": true
+  },
+  {
    "kind": "carry",
    "from": "W-C",
    "to": "W-C",
@@ -17362,40 +17569,6 @@
     1033,
     1069,
     1105
-   ],
-   "release_at_rest": false,
-   "reception_at_rest": true
-  },
-  {
-   "kind": "carry",
-   "from": "E-C",
-   "to": "W-C",
-   "from_uncertain": true,
-   "to_uncertain": false,
-   "player_from": "fjermestad",
-   "player_to": "nygard",
-   "goal_of": null,
-   "t_release_s": 446.7,
-   "t_reception_s": 446.767,
-   "frame_release": 13401,
-   "frame_reception": 13403,
-   "line_mm": [
-    [
-     -8.6,
-     4.0
-    ],
-    [
-     -8.3,
-     -12.5
-    ]
-   ],
-   "bounces": 0,
-   "length_mm": 16.5,
-   "detections": 3,
-   "speed_mm_s": [
-    495,
-    495,
-    495
    ],
    "release_at_rest": false,
    "reception_at_rest": true
@@ -19736,6 +19909,74 @@
     362,
     406,
     450
+   ],
+   "release_at_rest": true,
+   "reception_at_rest": true
+  },
+  {
+   "kind": "carry",
+   "from": "E-RD",
+   "to": "E-RD",
+   "from_uncertain": false,
+   "to_uncertain": false,
+   "player_from": "fjermestad",
+   "player_to": "fjermestad",
+   "goal_of": null,
+   "t_release_s": 517.667,
+   "t_reception_s": 517.767,
+   "frame_release": 15530,
+   "frame_reception": 15533,
+   "line_mm": [
+    [
+     206.6,
+     71.8
+    ],
+    [
+     207.1,
+     92.0
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 20.2,
+   "detections": 4,
+   "speed_mm_s": [
+    303,
+    303,
+    303
+   ],
+   "release_at_rest": true,
+   "reception_at_rest": true
+  },
+  {
+   "kind": "carry",
+   "from": "E-RD",
+   "to": "E-RD",
+   "from_uncertain": false,
+   "to_uncertain": false,
+   "player_from": "fjermestad",
+   "player_to": "fjermestad",
+   "goal_of": null,
+   "t_release_s": 518.267,
+   "t_reception_s": 518.4,
+   "frame_release": 15548,
+   "frame_reception": 15552,
+   "line_mm": [
+    [
+     206.0,
+     92.1
+    ],
+    [
+     206.6,
+     71.8
+    ]
+   ],
+   "bounces": 0,
+   "length_mm": 20.3,
+   "detections": 5,
+   "speed_mm_s": [
+    302,
+    303,
+    305
    ],
    "release_at_rest": true,
    "reception_at_rest": true

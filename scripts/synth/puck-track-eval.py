@@ -2,8 +2,8 @@
 
     python3 scripts/synth/puck-track-eval.py [<track file> <passes file>] ... [--json out.json]
 
-Default: the v1 track (puck-track-synth.json + passes.json) and the v2 track (puck-track-synth-v2.json +
-passes-synth-v2.json). Per track:
+Default: the v1 track (puck-track-synth.json + passes-synth-v1.json) and the v2 track (puck-track-synth-v2.json +
+passes.json; the analysis input since 2026-10-11). Per track:
 - shots: user-marked goals (goal-labels.json, 25 with a goal moment) with a shot event released in the last 2 s before
   the goal moment (or up to 0.2 s after), the rule of scripts/nm26-track-switch-compare.py; and shot events in all;
 - taps (validation/tap-review: Amund's answers, 2026-10-10), puck items only, scored as scripts/nm26-tap-review.py eval
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     out = None
     if "--json" in a:
         k = a.index("--json"); out = a[k + 1]; a = a[:k] + a[k + 2:]
-    pairs = list(zip(a[::2], a[1::2])) or [("puck-track-synth.json", "passes.json"), ("puck-track-synth-v2.json", "passes-synth-v2.json")]
+    pairs = list(zip(a[::2], a[1::2])) or [("puck-track-synth.json", "passes-synth-v1.json"), ("puck-track-synth-v2.json", "passes.json")]
     res = [score(t, p) for t, p in pairs if all((D / g / t).exists() and (D / g / p).exists() for g in GAMES)]
     for r in res:
         print(r["track"], r["user_goals_with_a_shot_in_the_last_2s"], "shots", r["shot_events"],

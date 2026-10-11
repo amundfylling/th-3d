@@ -77,9 +77,9 @@ def steps(games):
         S.append(Step(f"passes-{g}", "puck", py("scripts/nm26-passes.py", g),
                       [f"{DATA}/{g}/{PUCK}", "out/figures/skater.npz", "out/figures/goalie.npz"], ["av", "cv2", "shapely"],
                       [f"{DATA}/{g}/passes.json"], f"reads {PUCK} (scripts/nm26_tracks.py)"))
-        S.append(Step(f"passes-synth-v2-{g}", "puck", py("scripts/nm26-passes.py", g, "--track", "puck-track-synth-v2.json", "--out", "passes-synth-v2.json"),
-                      [f"{DATA}/{g}/puck-track-synth-v2.json", "out/figures/skater.npz", "out/figures/goalie.npz"], ["av", "cv2", "shapely"],
-                      [f"{DATA}/{g}/passes-synth-v2.json"], "passes and shots on tracker 2 (docs/synthetic-puck.md section 8)"))
+        S.append(Step(f"passes-synth-v1-{g}", "puck", py("scripts/nm26-passes.py", g, "--track", "puck-track-synth.json", "--out", "passes-synth-v1.json"),
+                      [f"{DATA}/{g}/puck-track-synth.json", "out/figures/skater.npz", "out/figures/goalie.npz"], ["av", "cv2", "shapely"],
+                      [f"{DATA}/{g}/passes-synth-v1.json"], "passes on the 2026-10-10 track, kept for the comparison (docs/synthetic-puck.md section 8)"))
     S.append(Step("patterns", "puck", py("scripts/nm26-patterns.py"), [f"{DATA}/{g}/{f}" for g in GAMES for f in ("passes.json", PUCK)], ["av", "cv2", "shapely"],
                   [f"{DATA}/patterns.json", "validation/nm26-control-nygard.png", "validation/nm26-control-fjermestad.png"]))
     S.append(Step("smooth-tracks", "figures", py("scripts/synth/smooth-tracks.py", *games), [f"{DATA}/{g}/figure-tracks.json" for g in games],
@@ -227,7 +227,7 @@ def steps(games):
                   [f"{DATA}/puck-synth-compare.json"],
                   "uses out/synth/puck/blob-offset.json when present, else its recorded mean (0.15, -8.81) px"))
     S.append(Step("puck-track-eval", "analysis", py("scripts/synth/puck-track-eval.py", "--json", "validation/puck-track-v2-eval.json"),
-                  [f"{DATA}/{g}/{f}" for g in GAMES for f in ("puck-track-synth.json", "passes.json", "puck-track-synth-v2.json", "passes-synth-v2.json")]
+                  [f"{DATA}/{g}/{f}" for g in GAMES for f in ("puck-track-synth.json", "passes-synth-v1.json", "puck-track-synth-v2.json", "passes.json")]
                   + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json", "validation/tap-review/items.json", "validation/tap-review/taps.json"],
                   ["numpy"], ["validation/puck-track-v2-eval.json"], "the shot workstream's measures (docs/synthetic-puck.md section 8)"))
 
