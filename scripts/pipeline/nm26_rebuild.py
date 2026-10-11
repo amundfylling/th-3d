@@ -77,6 +77,9 @@ def steps(games):
         S.append(Step(f"passes-{g}", "puck", py("scripts/nm26-passes.py", g),
                       [f"{DATA}/{g}/{PUCK}", "out/figures/skater.npz", "out/figures/goalie.npz"], ["av", "cv2", "shapely"],
                       [f"{DATA}/{g}/passes.json"], f"reads {PUCK} (scripts/nm26_tracks.py)"))
+        S.append(Step(f"passes-synth-v2-{g}", "puck", py("scripts/nm26-passes.py", g, "--track", "puck-track-synth-v2.json", "--out", "passes-synth-v2.json"),
+                      [f"{DATA}/{g}/puck-track-synth-v2.json", "out/figures/skater.npz", "out/figures/goalie.npz"], ["av", "cv2", "shapely"],
+                      [f"{DATA}/{g}/passes-synth-v2.json"], "passes and shots on tracker 2 (docs/synthetic-puck.md section 8)"))
     S.append(Step("patterns", "puck", py("scripts/nm26-patterns.py"), [f"{DATA}/{g}/{f}" for g in GAMES for f in ("passes.json", PUCK)], ["av", "cv2", "shapely"],
                   [f"{DATA}/patterns.json", "validation/nm26-control-nygard.png", "validation/nm26-control-fjermestad.png"]))
     S.append(Step("smooth-tracks", "figures", py("scripts/synth/smooth-tracks.py", *games), [f"{DATA}/{g}/figure-tracks.json" for g in games],
@@ -162,6 +165,23 @@ def steps(games):
                       [VIDEO, f"out/nm26/{g}/H.npz", "out/synth/puck-det-v1.pt", f"{DATA}/{g}/background.png"], ["av", "cv2", "torch"],
                       [f"{DATA}/{g}/puck-track-synth.json", f"out/nm26/{g}/puck-cands-puck-det-v1.json"],
                       "about 8-10 min per game; with the candidates cached, track-puck.py <game> --track-only re-runs the tracker in seconds"))
+    for g in games:
+        S.append(Step(f"track-puck-synth-v2-{g}", "models", py("scripts/synth/track-puck.py", g, "--track-only", "--tracker", "2", "--out", "puck-track-synth-v2.json"),
+                      [f"out/nm26/{g}/puck-cands-puck-det-v1.json"], ["numpy"], [f"{DATA}/{g}/puck-track-synth-v2.json"],
+                      "tracker 2 on the v1 candidates (seconds): ice-mark runs removed (docs/synthetic-puck.md section 8)"))
+    # Detector v2 (section 8): shot renders and a fine-tune of v1. Not adopted (it ties v1 on the real games); kept to reproduce.
+    S.append(Step("puck-renders-shots", "models", py("scripts/synth/render-puck-crops.py", "out/synth/puck/renders", "2000", "800", "--shots"),
+                  ["assets/scene/full_static.blend"], ["bpy"], ["out/synth/puck/renders/labels.jsonl"],
+                  "run as 4 parallel chunks with RENDER_THREADS=1 (about 35 min); 723 of 799 samples have uncropped frames"))
+    S.append(Step("train-puck-v2", "models", py("scripts/synth/train-puck-detector.py", "--epochs", "5", "--steps", "1000", "--name", "puck-det-v2",
+                  "--init", "puck-det-v1", "--lr", "1e-3"), ["out/synth/puck-det-v1.pt", "out/synth/puck/renders/labels.jsonl"], ["torch", "cv2"],
+                  ["out/synth/puck-det-v2.pt"], "about 22 min per epoch on CPU; not bit-reproducible"))
+    S.append(Step("eval-puck-v2", "models", py("scripts/synth/eval-puck-detector.py", "--model", "puck-det-v2", "--n", "500"), ["out/synth/puck-det-v2.pt"],
+                  ["torch", "cv2"], ["out/synth/puck-det-v2-eval.json"], "held-out games 3 and 7, with the 6-10 m/s bin"))
+    for g in games:
+        S.append(Step(f"detect-puck-v2-{g}", "models", py("scripts/synth/track-puck.py", g, "--model", "puck-det-v2", "--detect-only"),
+                      [VIDEO, f"out/nm26/{g}/H.npz", "out/synth/puck-det-v2.pt", f"{DATA}/{g}/background.png"], ["av", "cv2", "torch"],
+                      [f"out/nm26/{g}/puck-cands-puck-det-v2.json"], "11-19 min per game; candidates for comparison only"))
 
     # Figure tracker v3 (docs/tracker-v3.md): stage models (video, Blender, PyTorch, timm's ResNet-18 start weights at
     # /root/.cache/torch/hub/checkpoints/alt/resnet18_a1.pth). The base renders are the v2 recipe (render-skater-hard.py
@@ -206,6 +226,10 @@ def steps(games):
                   + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json", "validation/12-hardware-report.json"], ["numpy"],
                   [f"{DATA}/puck-synth-compare.json"],
                   "uses out/synth/puck/blob-offset.json when present, else its recorded mean (0.15, -8.81) px"))
+    S.append(Step("puck-track-eval", "analysis", py("scripts/synth/puck-track-eval.py", "--json", "validation/puck-track-v2-eval.json"),
+                  [f"{DATA}/{g}/{f}" for g in GAMES for f in ("puck-track-synth.json", "passes.json", "puck-track-synth-v2.json", "passes-synth-v2.json")]
+                  + [f"{DATA}/goal-labels.json", f"{DATA}/timeline.json", "validation/tap-review/items.json", "validation/tap-review/taps.json"],
+                  ["numpy"], ["validation/puck-track-v2-eval.json"], "the shot workstream's measures (docs/synthetic-puck.md section 8)"))
 
     # All-goals replays (validation/replays/README.md): stage pages (the broadcast clips need the video).
     S.append(Step("goal-replays", "pages", py("scripts/nm26-replays.py"),

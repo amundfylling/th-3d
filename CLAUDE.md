@@ -45,7 +45,9 @@ switch ends 2-2-1-1-1).
 Parallel batch 2026-10-10 (eight workstreams, all PROPOSED) is consolidated on branch
 `claude/consolidation-batch-2026-10-10` (not merged to main); summary and docs in docs/state.md. New tracks sit beside the
 old ones: `<game>/puck-track-synth.json` (x/y = puck centre, ~13 mm nearer the camera than `puck-track.json`) and
-`<game>/figure-tracks-v3.json`; nothing downstream is switched yet. Every committed file under
+`<game>/figure-tracks-v3.json`; nothing downstream is switched yet. A second puck track `<game>/puck-track-synth-v2.json` (tracker 2: ice-mark
+false alarms removed; shots not improved because the broadcast does not show them) sits beside it, not switched; see
+docs/synthetic-puck.md section 8. Every committed file under
 `data/games/nm26-semifinal/` needs a step or a SOURCES entry in `scripts/pipeline/nm26_rebuild.py` (`npm test` checks it;
 docs/pipeline.md).
 
