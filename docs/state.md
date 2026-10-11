@@ -411,11 +411,12 @@
   `docs/shot-encyclopedia.md` section 4b):** the move engine gains meets (a figure's keys are solved from where the
   puck really goes) and controls (`aimed_push`: a figure steers a push tick by tick), a margin sweep (`--margins`) and a
   fix for false contact kicks (`scripts/shotlib/puck.py`). New move file `moves/invers-kryssar-velodrom-v3/`.
-  IKV v3 scores in 7 of 11 robustness variants (v2: 1), and in 43 of 50 margin steps; the failures are in the left
-  wing's catch and corner pass (timed, not yet steered). Hjerpefinte stays 11/11 and holds every margin step (puck ±3 mm,
-  scale ±5%, friction ±50%, restitution ±0.3).
+  IKV v3 scores in 10 of 11 robustness variants (v2: 1) after a pass tune (`tunes`: the right wing passes harder on
+  slow ice); only friction +25% fails. The wider margin sweep scores in 35 of 50 steps (43 before the tune) and keeps
+  the slide limits in 33: the far-corner exit and the shot direction (posts) are still fragile. Hjerpefinte stays 11/11
+  and holds every margin step (puck ±3 mm, scale ±5%, friction ±50%, restitution ±0.3).
   The IKV equivalence report is kept as a record of the engine at commit 9e6c412; its test no longer checks the engine
-  hashes. Next: steer the left wing's catch and corner push along the boards.
+  hashes. Next: a shot aimed at the middle of the goal and a corner push that ends before the curve.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.

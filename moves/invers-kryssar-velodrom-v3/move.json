@@ -317,14 +317,11 @@
       "goal_net"
     ],
     "robustness": {
-      "variants_passed": "7/11",
+      "variants_passed": "10/11",
       "failing": [
-        "puck start +0.2 mm x",
-        "ice friction +25%",
-        "ice friction -25%",
-        "restitution 0.7"
+        "ice friction +25%"
       ],
-      "why": "the right wing's shot now meets the puck where it is and steers it (controls), so its variants hold; the left wing's catch and corner pass are still timed but not steered: with more friction the puck stops before the board (no lw_push meet), with less friction the caught puck hits the board at 412 mm/s, and with +0.2 mm x or restitution 0.7 the puck leaves the far corner a few mm off the end board and meets the next curve at 363-471 mm/s (limit 300)"
+      "why": "the right wing's pass is tuned so it reaches the left wing at the same speed on any ice (tunes), the catch and corner push are met where the puck is (meets) and the shot steers the puck at the goal (controls). With 25% more ice friction the left wing's designed corner push leaves the puck 6 mm off the end board (sideways 57 mm/s), so it meets the far corner curve at 501 mm/s (limit 300) and the shot comes too late and too flat"
     }
   },
   "limitations": [
@@ -417,6 +414,18 @@
       "why": "first-time backhand push: the right wing takes the puck on the back of the blade and steers it into the right side of the goal",
       "release_tol_rel": 0.015,
       "release_tol_mm_s": 10
+    }
+  ],
+  "tunes": [
+    {
+      "set": "figures.W-RW.theta.turns.0.1",
+      "range": [
+        0.07,
+        0.09
+      ],
+      "meet": "lw_catch",
+      "puck_speed_mm_s": 543.0,
+      "why": "the right wing passes harder on slow ice and softer on fast ice (a quicker or slower turn), so the pass reaches the left wing at the same speed (543 mm/s, the nominal pass)"
     }
   ]
 }

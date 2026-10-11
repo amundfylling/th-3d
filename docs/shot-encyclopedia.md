@@ -135,6 +135,10 @@ both run while the trace is built, and the saved trace is still plain keyframes 
 - **Engine fix** (`scripts/shotlib/puck.py`): when the puck already touched a figure exactly (zero distance to the
   contact ring), the contact normal fell back to "pivot to puck", which can point far from the real surface normal
   and gave false kicks. It now uses the nearest point of the figure outline. Hjerpefinte rebuilds identically.
+- **Tunes** (`scripts/shotlib/build.py` `solve_tunes`, move file `tunes`). A player adapts a motion to the conditions:
+  a tune sets one move-file value within a range so that the puck reaches a meet at a set speed (regula falsi, about 5
+  builds of the move up to that meet). IKV uses it for the pass: the right wing's turn takes 0.0794 s on the nominal
+  ice, quicker on slow ice and slower on fast ice, so the pass always reaches the left wing at 543 mm/s.
 - **Margins** (`scripts/build-move.py <id> --margins`, `validation/moves/<id>-margins.json`): each uncertain input is
   changed in steps (puck start x and y 0.01-3 mm, footprint scale 0.25-5%, ice friction 5-50%, restitution ±0.05-0.3)
   both ways. The report gives the largest change for which that step and all smaller ones hold, and how many steps
@@ -144,33 +148,32 @@ both run while the trace is built, and the saved trace is still plain keyframes 
 move with its catch, corner push and shot as meets, and the right wing's first-time backhand as an aimed push at the
 far side of the goal (it meets the puck at arc 90 mm, 9 mm nearer the boards than v2's shot).
 - Checks on the saved trace: no overlap, slide check passed, no unexplained motion change; it scores in goal E.
-- Robust in **7 of 11** variants (v2: 1 of 11): the ±0.001 mm geometry, 2% larger and smaller figures, +0.2 mm puck y
-  and restitution 0.3 now all score. Still failing: puck +0.2 mm x and restitution 0.7 (the puck reaches the shot
-  but hits the post), ice friction +25% (no corner push) and −25% (scores, but a board impact of 412 mm/s).
-  The move file records this (`expect.robustness`) and the test checks it both ways.
-- Margin sweep (`validation/moves/invers-kryssar-velodrom-v3-margins.json`), steps that score / steps that also keep
-  the slide limits: puck start x 11/12 and 10/12 (−3 to +3 mm), puck start y 11/12 and 8/12, figure scale 8/10 and
-  8/10 (±0.25-5%), ice friction 6/8 and 2/8 (±5-50%), restitution 7/8 and 6/8 (±0.05-0.3). It scores with the puck
-  anywhere from 1 mm left to 3 mm right of its start and up to ±3 mm along y, and with figures 1% smaller to 2% larger,
-  but the steps are not monotone: single changes of 0.03 mm can still miss or break a board limit. The contiguous
-  margins ("all smaller steps hold") stay tiny for that reason (0.01 mm for the puck's y).
+- Robust in **10 of 11** variants (v2: 1 of 11; v3 before the pass tune: 7 of 11). Still failing: ice friction +25%:
+  the left wing's designed corner push leaves the puck 6 mm off the end board (sideways 57 mm/s), so it meets the far
+  corner curve at 501 mm/s (limit 300) and the shot comes too late and too flat. The move file records this
+  (`expect.robustness`) and the test checks it both ways.
+- **The margin sweep says this is not yet robust beyond the 11 variants**
+  (`validation/moves/invers-kryssar-velodrom-v3-margins.json`; steps that score / that also keep the slide limits):
+  puck start x 8/12 and 7/12, puck start y 11/12 and 11/12, figure scale 7/10 and 6/10, ice friction 3/8 and 3/8,
+  restitution 6/8 and 6/8; in all 35/50 and 33/50 (before the pass tune 43/50 and 34/50). The tune fixes the catch at
+  ±25% friction, but small friction changes (+5%, +10%) now miss, and ±50% is outside what the pass can adapt to.
+  Most misses are the shot hitting a post (300-770 mm/s) or the puck meeting the far corner curve at 300-450 mm/s; a
+  0.01 mm change of the puck's start can still decide between goal and post.
 
 **Hjerpefinte** under the new engine: unchanged trace (only the recorded git commit differs).
 Robust in 11 of 11 variants; in the margin sweep every step holds (puck ±3 mm both ways, figure scale ±5%, ice
 friction ±50%, restitution ±0.3).
 
-**What still breaks IKV, and the next step.** The right wing's shot now absorbs most of the error: it scores whenever
-the puck reaches it with a plausible line. What is left is the left wing, which is timed (meets) but not steered:
-- with more ice friction the caught puck stops before it reaches the board, so the corner push never meets it;
-- with less friction, or a slightly different catch, the puck hits the board after the catch at 300-415 mm/s, above
-  the assumed 300 mm/s board limit;
-- after the corner push the puck can leave the corner with a small sideways speed (−10 mm/s nominal, −48 mm/s with the
-  puck 0.2 mm further right), drifts a few mm off the end board and meets the next corner curve at 360-650 mm/s
-  instead of sliding into it.
-Steering the left wing's catch and corner push with the same `aimed_push` (tried: a chase push straight after the
-catch) is the obvious next step; the first attempt sent the puck into the corner board at 543-693 mm/s because the
-target line must follow the board, not cut the corner. A target that is a path along the boards, not a point, is
-needed.
+**What still breaks IKV, and the next step.**
+- The far-corner exit: after the left wing's push the puck can leave the corner a few mm off the end board with a
+  sideways speed of 10-60 mm/s and meets the next curve at 300-650 mm/s instead of sliding into it.
+- The shot direction: the right wing's steered push ends within about ±2° of its aim, and the goal is only about 5°
+  wide from there, so a post is often hit.
+- Tried and dropped (2026-10-11): steering the left wing's catch towards the board (the blade cannot get between the
+  puck and the board, and the controller struck the puck at up to 2.3 m/s) and steering its corner push along the
+  boards (the push overshot to 1.3-1.65 m/s and the chain broke in 7 of 11 variants).
+- Next: a shot that aims at the middle of the goal with a tighter release, and a corner push that ends before the
+  corner curve so the board alone turns the puck.
 
 ## 5. What makes future moves cheap, fast and accurate
 

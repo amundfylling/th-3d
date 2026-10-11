@@ -159,7 +159,7 @@ def seed_meets(spec):
         motion.MEET[name] = {"t": g["t"], "arc_mm": g["arc_mm"], "puck_along_slot_mm_s": g.get("puck_along_slot_mm_s", 0.0)}
 
 
-def solve_meets(spec, t0, t1, physics):
+def solve_meets(spec, t0, t1, physics, seed=True):
     """Solved meets (move file `meets`, scripts/shotlib/motion.py): for each meet in order, run the puck with the
     receiving figure taken out from the meet's search start (Ghost), then find the first time t in the search window at
     which the figure's pivot can sit on its slot with the meet's local point exactly at the puck centre:
@@ -167,7 +167,8 @@ def solve_meets(spec, t0, t1, physics):
     The heading at the meet comes from the figure's own design (turns given relative to the meet keep it fixed); it is
     re-read after each solve until it settles. Returns the solved meets and their residuals (all mm, s, deg)."""
     meets = spec.get("meets", {})
-    seed_meets(spec)
+    if seed:
+        seed_meets(spec)
     report = {}
     for name, m in meets.items():
         pid, L = m["figure"], np.array(m["local_mm"], float)
@@ -241,6 +242,65 @@ class MeetError(Exception):
     pass
 
 
+def _set_path(spec, key, val):
+    node, parts = spec, key.split(".")
+    for p_ in parts[:-1]:
+        node = node[int(p_)] if isinstance(node, list) else node[p_]
+    if isinstance(node, list):
+        node[int(parts[-1])] = val
+    else:
+        node[parts[-1]] = val
+
+
+def solve_tunes(spec, t0, t1, physics):
+    """Tuned inputs (move file `tunes`): a player adapts a motion to the conditions, e.g. passes harder on slow ice.
+    Each tune sets one move-file value (`set`, a dotted path) within `range` so that the puck reaches meet `meet` at
+    `puck_speed_mm_s` (secant steps on a bracket; the value is changed in `spec` in place). Returns the report."""
+    rep = []
+    for tu in spec.get("tunes", []):
+        names = list(spec["meets"])
+        sub = {**spec, "meets": {k: spec["meets"][k] for k in names[:names.index(tu["meet"]) + 1]}}
+
+        def speed(x):
+            _set_path(spec, tu["set"], x)
+            seed_meets(spec)  # every meet guessed (later keys may refer to them), the ones up to this meet solved
+            r = solve_meets(sub, t0, t1, physics, seed=False)[tu["meet"]]
+            return float(np.hypot(*r["puck_velocity_mm_s"])) - tu["puck_speed_mm_s"]
+
+        def speed_in(x, toward):
+            # a range end may lose the meet altogether (a pass too soft or too hard to reach the figure): step it
+            # towards the other end until the meet exists
+            for _ in range(8):
+                try:
+                    return x, speed(x)
+                except MeetError:
+                    x = x + 0.25 * (toward - x)
+            raise MeetError(f"tune '{tu['set']}': meet '{tu['meet']}' not found near {x}")
+
+        a, b = tu["range"]
+        a, fa = speed_in(a, b)
+        b, fb = speed_in(b, a)
+        if fa * fb > 0:
+            raise MeetError(f"tune '{tu['set']}': no value in {tu['range']} brings the puck to meet '{tu['meet']}' at {tu['puck_speed_mm_s']} mm/s "
+                            f"({fa + tu['puck_speed_mm_s']:.1f} .. {fb + tu['puck_speed_mm_s']:.1f})")
+        for it in range(20):  # regula falsi (Illinois): keeps the bracket
+            x = b - fb * (b - a) / (fb - fa)
+            fx = speed(x)
+            if abs(fx) < tu.get("tol_mm_s", 1.0):
+                break
+            if fx * fb < 0:
+                a, fa = b, fb
+            else:
+                fa *= 0.5
+            b, fb = x, fx
+        x = round(x, 6)
+        _set_path(spec, tu["set"], x)
+        rep.append({"set": tu["set"], "value": x, "meet": tu["meet"], "puck_speed_mm_s": round(fx + tu["puck_speed_mm_s"], 2),
+                    "target_mm_s": tu["puck_speed_mm_s"], "evaluations": it + 3, "why": tu.get("why", "")})
+    seed_meets(spec)
+    return rep
+
+
 def simulate(spec, max_rounds=8, tol_s=0.001):
     """Figures -> puck. With triggers: start from each trigger's guess, run the puck, read the trigger times off the run,
     rebuild the figures and run again until no trigger moves by more than one step (a trigger only shifts motion that
@@ -248,6 +308,7 @@ def simulate(spec, max_rounds=8, tol_s=0.001):
     t0, t1 = spec["window_s"]
     physics = {**DEFAULT_PHYSICS, **spec.get("physics", {})}
     seed_meets(spec)
+    tunes = solve_tunes(spec, t0, t1, physics) if spec.get("tunes") else []
     meets = solve_meets(spec, t0, t1, physics) if spec.get("meets") else {}
     trigs = spec.get("triggers", {})
     motion.TRIG.clear()
@@ -280,7 +341,7 @@ def simulate(spec, max_rounds=8, tol_s=0.001):
             break
         motion.TRIG.update(new)
     # the trace is the last run (its figures used `used`); `read` is what that run's puck would ask for
-    physics = {**physics, **({"meets": meets} if meets else {}), "triggers": history[-1] if history else None, "trigger_rounds": len(history),
+    physics = {**physics, **({"meets": meets} if meets else {}), **({"tunes": tunes} if tunes else {}), "triggers": history[-1] if history else None, "trigger_rounds": len(history),
                "trigger_residual_s": max([abs(history[-1]["read"][k] - history[-1]["used"][k]) for k in trigs] + [0.0]) if history else 0.0}
     return t0, t1, physics, figs, order, p0, res
 
@@ -481,10 +542,10 @@ def build(move_id, sets=(), scratch=False):
         "events": events,
         "limitations": spec.get("limitations", []),
     }
-    if physics.get("meets") or physics.get("controls"):
+    if physics.get("meets") or physics.get("controls") or physics.get("tunes"):
         # how the figures were timed against the puck (motion.py meets, control.py controls); the keys above already
         # carry the result, this records where it came from
-        trace["timing"] = {"meets": physics.get("meets", {}),
+        trace["timing"] = {"meets": physics.get("meets", {}), "tunes": physics.get("tunes", []),
                            "controls": [{k: v for k, v in c.items() if k != "ticks"} for c in physics.get("controls", [])]}
     samp = []
     for tq in np.round(np.arange(t0, t1 + 1e-9, 0.02), 4):
