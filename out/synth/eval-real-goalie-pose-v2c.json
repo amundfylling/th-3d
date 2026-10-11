@@ -1,0 +1,1231 @@
+{
+ "summary": {
+  "crops": 120,
+  "pred_f1_median": 0.44,
+  "search_f1_median": 0.499,
+  "pred_f1_ge_90pct_of_search": 0.492,
+  "du_mm_median": 5.2,
+  "axis_diff_deg_median": 25.6,
+  "axis_diff_le_20deg": 0.392,
+  "temporal": {
+   "W": {
+    "frames": 300,
+    "du_mm_median": 0.32,
+    "du_mm_p95": 3.03,
+    "dtheta_deg_median": 1.07,
+    "dtheta_deg_p95": 9.03,
+    "flips_over_90deg": 0
+   },
+   "E": {
+    "frames": 300,
+    "du_mm_median": 0.28,
+    "du_mm_p95": 1.33,
+    "dtheta_deg_median": 0.84,
+    "dtheta_deg_p95": 3.91,
+    "flips_over_90deg": 0
+   }
+  }
+ },
+ "crops": [
+  {
+   "id": "g1-W-2220",
+   "end": "W",
+   "pred_u": 0.099,
+   "pred_theta": 239.5,
+   "pred_f1": 0.624,
+   "search_f1": 0.658,
+   "du_mm": 4.1,
+   "axis_diff_deg": 17.0
+  },
+  {
+   "id": "g1-W-2970",
+   "end": "W",
+   "pred_u": 0.547,
+   "pred_theta": 43.2,
+   "pred_f1": 0.227,
+   "search_f1": 0.314,
+   "du_mm": 24.7,
+   "axis_diff_deg": 43.2
+  },
+  {
+   "id": "g1-W-3630",
+   "end": "W",
+   "pred_u": 0.856,
+   "pred_theta": 122.3,
+   "pred_f1": 0.412,
+   "search_f1": 0.524,
+   "du_mm": 12.0,
+   "axis_diff_deg": 42.7
+  },
+  {
+   "id": "g1-W-5370",
+   "end": "W",
+   "pred_u": 0.611,
+   "pred_theta": 233.6,
+   "pred_f1": 0.44,
+   "search_f1": 0.493,
+   "du_mm": 1.2,
+   "axis_diff_deg": 23.6
+  },
+  {
+   "id": "g1-W-10695",
+   "end": "W",
+   "pred_u": 0.819,
+   "pred_theta": 343.2,
+   "pred_f1": 0.318,
+   "search_f1": 0.355,
+   "du_mm": 13.0,
+   "axis_diff_deg": 4.3
+  },
+  {
+   "id": "g1-W-12870",
+   "end": "W",
+   "pred_u": 0.708,
+   "pred_theta": 330.9,
+   "pred_f1": 0.262,
+   "search_f1": 0.267,
+   "du_mm": 1.4,
+   "axis_diff_deg": 1.6
+  },
+  {
+   "id": "g1-E-1890",
+   "end": "E",
+   "pred_u": 0.845,
+   "pred_theta": 250.0,
+   "pred_f1": 0.599,
+   "search_f1": 0.715,
+   "du_mm": 6.6,
+   "axis_diff_deg": 42.5
+  },
+  {
+   "id": "g1-E-2520",
+   "end": "E",
+   "pred_u": 0.575,
+   "pred_theta": 64.9,
+   "pred_f1": 0.455,
+   "search_f1": 0.461,
+   "du_mm": 2.1,
+   "axis_diff_deg": 4.9
+  },
+  {
+   "id": "g1-E-3390",
+   "end": "E",
+   "pred_u": 0.817,
+   "pred_theta": 130.9,
+   "pred_f1": 0.482,
+   "search_f1": 0.519,
+   "du_mm": 8.9,
+   "axis_diff_deg": 51.6
+  },
+  {
+   "id": "g1-E-7335",
+   "end": "E",
+   "pred_u": 0.585,
+   "pred_theta": 12.8,
+   "pred_f1": 0.513,
+   "search_f1": 0.521,
+   "du_mm": 3.3,
+   "axis_diff_deg": 5.3
+  },
+  {
+   "id": "g1-E-11970",
+   "end": "E",
+   "pred_u": 0.304,
+   "pred_theta": 10.8,
+   "pred_f1": 0.417,
+   "search_f1": 0.459,
+   "du_mm": 21.0,
+   "axis_diff_deg": 18.3
+  },
+  {
+   "id": "g1-E-14070",
+   "end": "E",
+   "pred_u": 0.294,
+   "pred_theta": 8.4,
+   "pred_f1": 0.44,
+   "search_f1": 0.477,
+   "du_mm": 0.5,
+   "axis_diff_deg": 6.6
+  },
+  {
+   "id": "g2-W-24150",
+   "end": "W",
+   "pred_u": 0.814,
+   "pred_theta": 42.0,
+   "pred_f1": 0.269,
+   "search_f1": 0.363,
+   "du_mm": 5.1,
+   "axis_diff_deg": 42.0
+  },
+  {
+   "id": "g2-W-24315",
+   "end": "W",
+   "pred_u": 0.806,
+   "pred_theta": 46.5,
+   "pred_f1": 0.273,
+   "search_f1": 0.374,
+   "du_mm": 5.7,
+   "axis_diff_deg": 46.5
+  },
+  {
+   "id": "g2-W-24630",
+   "end": "W",
+   "pred_u": 0.059,
+   "pred_theta": 230.8,
+   "pred_f1": 0.631,
+   "search_f1": 0.658,
+   "du_mm": 3.4,
+   "axis_diff_deg": 33.3
+  },
+  {
+   "id": "g2-W-25140",
+   "end": "W",
+   "pred_u": 0.627,
+   "pred_theta": 2.7,
+   "pred_f1": 0.204,
+   "search_f1": 0.244,
+   "du_mm": 4.0,
+   "axis_diff_deg": 25.2
+  },
+  {
+   "id": "g2-W-26940",
+   "end": "W",
+   "pred_u": 0.317,
+   "pred_theta": 130.7,
+   "pred_f1": 0.272,
+   "search_f1": 0.528,
+   "du_mm": 26.3,
+   "axis_diff_deg": 88.2
+  },
+  {
+   "id": "g2-W-29670",
+   "end": "W",
+   "pred_u": 0.42,
+   "pred_theta": 59.7,
+   "pred_f1": 0.253,
+   "search_f1": 0.329,
+   "du_mm": 24.5,
+   "axis_diff_deg": 89.7
+  },
+  {
+   "id": "g2-W-29760",
+   "end": "W",
+   "pred_u": 0.436,
+   "pred_theta": 60.8,
+   "pred_f1": 0.26,
+   "search_f1": 0.335,
+   "du_mm": 25.9,
+   "axis_diff_deg": 89.2
+  },
+  {
+   "id": "g2-W-31710",
+   "end": "W",
+   "pred_u": 0.799,
+   "pred_theta": 54.7,
+   "pred_f1": 0.204,
+   "search_f1": 0.282,
+   "du_mm": 39.4,
+   "axis_diff_deg": 2.8
+  },
+  {
+   "id": "g2-W-31935",
+   "end": "W",
+   "pred_u": 0.058,
+   "pred_theta": 182.7,
+   "pred_f1": 0.502,
+   "search_f1": 0.544,
+   "du_mm": 4.8,
+   "axis_diff_deg": 29.8
+  },
+  {
+   "id": "g2-E-23955",
+   "end": "E",
+   "pred_u": 0.37,
+   "pred_theta": 38.5,
+   "pred_f1": 0.369,
+   "search_f1": 0.469,
+   "du_mm": 3.7,
+   "axis_diff_deg": 38.5
+  },
+  {
+   "id": "g2-E-24000",
+   "end": "E",
+   "pred_u": 0.716,
+   "pred_theta": 317.0,
+   "pred_f1": 0.558,
+   "search_f1": 0.619,
+   "du_mm": 6.9,
+   "axis_diff_deg": 23.0
+  },
+  {
+   "id": "g2-E-24195",
+   "end": "E",
+   "pred_u": 0.309,
+   "pred_theta": 196.6,
+   "pred_f1": 0.361,
+   "search_f1": 0.499,
+   "du_mm": 25.6,
+   "axis_diff_deg": 59.1
+  },
+  {
+   "id": "g2-E-26640",
+   "end": "E",
+   "pred_u": 0.302,
+   "pred_theta": 6.4,
+   "pred_f1": 0.46,
+   "search_f1": 0.497,
+   "du_mm": 0.2,
+   "axis_diff_deg": 8.6
+  },
+  {
+   "id": "g2-E-26670",
+   "end": "E",
+   "pred_u": 0.312,
+   "pred_theta": 7.6,
+   "pred_f1": 0.466,
+   "search_f1": 0.5,
+   "du_mm": 1.0,
+   "axis_diff_deg": 7.4
+  },
+  {
+   "id": "g2-E-29340",
+   "end": "E",
+   "pred_u": 0.31,
+   "pred_theta": 37.9,
+   "pred_f1": 0.363,
+   "search_f1": 0.493,
+   "du_mm": 2.9,
+   "axis_diff_deg": 40.4
+  },
+  {
+   "id": "g2-E-32100",
+   "end": "E",
+   "pred_u": 0.667,
+   "pred_theta": 181.7,
+   "pred_f1": 0.53,
+   "search_f1": 0.568,
+   "du_mm": 2.7,
+   "axis_diff_deg": 11.7
+  },
+  {
+   "id": "g2-E-32190",
+   "end": "E",
+   "pred_u": 0.669,
+   "pred_theta": 183.3,
+   "pred_f1": 0.53,
+   "search_f1": 0.566,
+   "du_mm": 5.7,
+   "axis_diff_deg": 4.2
+  },
+  {
+   "id": "g2-E-32235",
+   "end": "E",
+   "pred_u": 0.662,
+   "pred_theta": 182.5,
+   "pred_f1": 0.53,
+   "search_f1": 0.57,
+   "du_mm": 5.2,
+   "axis_diff_deg": 5.0
+  },
+  {
+   "id": "g3-W-42570",
+   "end": "W",
+   "pred_u": 0.776,
+   "pred_theta": 72.6,
+   "pred_f1": 0.294,
+   "search_f1": 0.37,
+   "du_mm": 0.1,
+   "axis_diff_deg": 82.6
+  },
+  {
+   "id": "g3-W-42810",
+   "end": "W",
+   "pred_u": 0.778,
+   "pred_theta": 60.0,
+   "pred_f1": 0.291,
+   "search_f1": 0.369,
+   "du_mm": 10.2,
+   "axis_diff_deg": 62.5
+  },
+  {
+   "id": "g3-W-42975",
+   "end": "W",
+   "pred_u": 0.754,
+   "pred_theta": 122.5,
+   "pred_f1": 0.32,
+   "search_f1": 0.373,
+   "du_mm": 3.8,
+   "axis_diff_deg": 47.5
+  },
+  {
+   "id": "g3-W-45210",
+   "end": "W",
+   "pred_u": 0.969,
+   "pred_theta": 245.4,
+   "pred_f1": 0.517,
+   "search_f1": 0.537,
+   "du_mm": 2.6,
+   "axis_diff_deg": 2.9
+  },
+  {
+   "id": "g3-W-45495",
+   "end": "W",
+   "pred_u": 0.779,
+   "pred_theta": 110.9,
+   "pred_f1": 0.404,
+   "search_f1": 0.508,
+   "du_mm": 10.1,
+   "axis_diff_deg": 26.6
+  },
+  {
+   "id": "g3-W-47205",
+   "end": "W",
+   "pred_u": 0.853,
+   "pred_theta": 306.0,
+   "pred_f1": 0.304,
+   "search_f1": 0.355,
+   "du_mm": 1.9,
+   "axis_diff_deg": 41.0
+  },
+  {
+   "id": "g3-W-49065",
+   "end": "W",
+   "pred_u": 0.469,
+   "pred_theta": 83.2,
+   "pred_f1": 0.364,
+   "search_f1": 0.417,
+   "du_mm": 1.6,
+   "axis_diff_deg": 51.8
+  },
+  {
+   "id": "g3-W-49320",
+   "end": "W",
+   "pred_u": 0.525,
+   "pred_theta": 188.3,
+   "pred_f1": 0.422,
+   "search_f1": 0.426,
+   "du_mm": 4.2,
+   "axis_diff_deg": 16.7
+  },
+  {
+   "id": "g3-W-49530",
+   "end": "W",
+   "pred_u": 0.579,
+   "pred_theta": 245.0,
+   "pred_f1": 0.51,
+   "search_f1": 0.541,
+   "du_mm": 0.3,
+   "axis_diff_deg": 12.5
+  },
+  {
+   "id": "g3-E-42255",
+   "end": "E",
+   "pred_u": 0.103,
+   "pred_theta": 193.0,
+   "pred_f1": 0.529,
+   "search_f1": 0.548,
+   "du_mm": 6.0,
+   "axis_diff_deg": 5.5
+  },
+  {
+   "id": "g3-E-42345",
+   "end": "E",
+   "pred_u": 0.94,
+   "pred_theta": 78.0,
+   "pred_f1": 0.586,
+   "search_f1": 0.604,
+   "du_mm": 5.0,
+   "axis_diff_deg": 25.5
+  },
+  {
+   "id": "g3-E-43545",
+   "end": "E",
+   "pred_u": 0.832,
+   "pred_theta": 215.5,
+   "pred_f1": 0.56,
+   "search_f1": 0.653,
+   "du_mm": 9.8,
+   "axis_diff_deg": 25.5
+  },
+  {
+   "id": "g3-E-43650",
+   "end": "E",
+   "pred_u": 0.838,
+   "pred_theta": 147.9,
+   "pred_f1": 0.596,
+   "search_f1": 0.652,
+   "du_mm": 7.2,
+   "axis_diff_deg": 32.1
+  },
+  {
+   "id": "g3-E-46485",
+   "end": "E",
+   "pred_u": 0.201,
+   "pred_theta": 144.5,
+   "pred_f1": 0.333,
+   "search_f1": 0.424,
+   "du_mm": 16.6,
+   "axis_diff_deg": 57.0
+  },
+  {
+   "id": "g3-E-49170",
+   "end": "E",
+   "pred_u": 0.828,
+   "pred_theta": 164.0,
+   "pred_f1": 0.613,
+   "search_f1": 0.66,
+   "du_mm": 8.1,
+   "axis_diff_deg": 13.5
+  },
+  {
+   "id": "g3-E-49365",
+   "end": "E",
+   "pred_u": 0.088,
+   "pred_theta": 131.6,
+   "pred_f1": 0.475,
+   "search_f1": 0.513,
+   "du_mm": 3.2,
+   "axis_diff_deg": 23.4
+  },
+  {
+   "id": "g3-E-49530",
+   "end": "E",
+   "pred_u": 0.379,
+   "pred_theta": 161.8,
+   "pred_f1": 0.385,
+   "search_f1": 0.431,
+   "du_mm": 27.3,
+   "axis_diff_deg": 19.3
+  },
+  {
+   "id": "g3-E-49695",
+   "end": "E",
+   "pred_u": 0.35,
+   "pred_theta": 153.5,
+   "pred_f1": 0.388,
+   "search_f1": 0.449,
+   "du_mm": 24.8,
+   "axis_diff_deg": 11.0
+  },
+  {
+   "id": "g4-W-54135",
+   "end": "W",
+   "pred_u": 0.574,
+   "pred_theta": 264.5,
+   "pred_f1": 0.57,
+   "search_f1": 0.587,
+   "du_mm": 12.5,
+   "axis_diff_deg": 40.5
+  },
+  {
+   "id": "g4-W-54180",
+   "end": "W",
+   "pred_u": 0.58,
+   "pred_theta": 265.4,
+   "pred_f1": 0.567,
+   "search_f1": 0.583,
+   "du_mm": 12.1,
+   "axis_diff_deg": 39.6
+  },
+  {
+   "id": "g4-W-56370",
+   "end": "W",
+   "pred_u": 0.362,
+   "pred_theta": 59.2,
+   "pred_f1": 0.376,
+   "search_f1": 0.46,
+   "du_mm": 19.7,
+   "axis_diff_deg": 86.7
+  },
+  {
+   "id": "g4-W-60840",
+   "end": "W",
+   "pred_u": 0.368,
+   "pred_theta": 209.8,
+   "pred_f1": 0.392,
+   "search_f1": 0.434,
+   "du_mm": 3.6,
+   "axis_diff_deg": 2.3
+  },
+  {
+   "id": "g4-W-61380",
+   "end": "W",
+   "pred_u": 0.835,
+   "pred_theta": 301.5,
+   "pred_f1": 0.311,
+   "search_f1": 0.348,
+   "du_mm": 1.3,
+   "axis_diff_deg": 31.5
+  },
+  {
+   "id": "g4-W-61875",
+   "end": "W",
+   "pred_u": 0.822,
+   "pred_theta": 303.5,
+   "pred_f1": 0.303,
+   "search_f1": 0.339,
+   "du_mm": 0.2,
+   "axis_diff_deg": 38.5
+  },
+  {
+   "id": "g4-W-62715",
+   "end": "W",
+   "pred_u": 0.065,
+   "pred_theta": 192.2,
+   "pred_f1": 0.542,
+   "search_f1": 0.578,
+   "du_mm": 1.2,
+   "axis_diff_deg": 17.8
+  },
+  {
+   "id": "g4-W-63660",
+   "end": "W",
+   "pred_u": 0.753,
+   "pred_theta": 91.5,
+   "pred_f1": 0.288,
+   "search_f1": 0.368,
+   "du_mm": 39.7,
+   "axis_diff_deg": 9.0
+  },
+  {
+   "id": "g4-W-64155",
+   "end": "W",
+   "pred_u": 0.546,
+   "pred_theta": 135.1,
+   "pred_f1": 0.276,
+   "search_f1": 0.327,
+   "du_mm": 12.8,
+   "axis_diff_deg": 42.4
+  },
+  {
+   "id": "g4-E-57030",
+   "end": "E",
+   "pred_u": 0.812,
+   "pred_theta": 226.1,
+   "pred_f1": 0.544,
+   "search_f1": 0.67,
+   "du_mm": 7.3,
+   "axis_diff_deg": 61.1
+  },
+  {
+   "id": "g4-E-57810",
+   "end": "E",
+   "pred_u": 0.745,
+   "pred_theta": 136.5,
+   "pred_f1": 0.544,
+   "search_f1": 0.609,
+   "du_mm": 8.7,
+   "axis_diff_deg": 41.0
+  },
+  {
+   "id": "g4-E-58035",
+   "end": "E",
+   "pred_u": 0.807,
+   "pred_theta": 134.7,
+   "pred_f1": 0.494,
+   "search_f1": 0.529,
+   "du_mm": 9.8,
+   "axis_diff_deg": 47.8
+  },
+  {
+   "id": "g4-E-58770",
+   "end": "E",
+   "pred_u": 0.42,
+   "pred_theta": 18.0,
+   "pred_f1": 0.311,
+   "search_f1": 0.35,
+   "du_mm": 14.9,
+   "axis_diff_deg": 5.5
+  },
+  {
+   "id": "g4-E-59775",
+   "end": "E",
+   "pred_u": 0.849,
+   "pred_theta": 127.0,
+   "pred_f1": 0.565,
+   "search_f1": 0.647,
+   "du_mm": 6.3,
+   "axis_diff_deg": 55.5
+  },
+  {
+   "id": "g4-E-60180",
+   "end": "E",
+   "pred_u": 0.829,
+   "pred_theta": 166.4,
+   "pred_f1": 0.624,
+   "search_f1": 0.657,
+   "du_mm": 8.0,
+   "axis_diff_deg": 11.1
+  },
+  {
+   "id": "g4-E-60360",
+   "end": "E",
+   "pred_u": 0.106,
+   "pred_theta": 40.7,
+   "pred_f1": 0.464,
+   "search_f1": 0.568,
+   "du_mm": 8.8,
+   "axis_diff_deg": 48.2
+  },
+  {
+   "id": "g4-E-62205",
+   "end": "E",
+   "pred_u": 0.189,
+   "pred_theta": 118.5,
+   "pred_f1": 0.428,
+   "search_f1": 0.496,
+   "du_mm": 13.5,
+   "axis_diff_deg": 24.0
+  },
+  {
+   "id": "g4-E-65145",
+   "end": "E",
+   "pred_u": 0.589,
+   "pred_theta": 58.4,
+   "pred_f1": 0.45,
+   "search_f1": 0.491,
+   "du_mm": 3.0,
+   "axis_diff_deg": 13.4
+  },
+  {
+   "id": "g5-W-70995",
+   "end": "W",
+   "pred_u": 0.035,
+   "pred_theta": 144.8,
+   "pred_f1": 0.48,
+   "search_f1": 0.534,
+   "du_mm": 2.9,
+   "axis_diff_deg": 67.7
+  },
+  {
+   "id": "g5-W-72510",
+   "end": "W",
+   "pred_u": 0.676,
+   "pred_theta": 63.4,
+   "pred_f1": 0.312,
+   "search_f1": 0.4,
+   "du_mm": 4.2,
+   "axis_diff_deg": 88.4
+  },
+  {
+   "id": "g5-W-73485",
+   "end": "W",
+   "pred_u": 0.854,
+   "pred_theta": 114.4,
+   "pred_f1": 0.345,
+   "search_f1": 0.426,
+   "du_mm": 12.1,
+   "axis_diff_deg": 55.6
+  },
+  {
+   "id": "g5-W-74355",
+   "end": "W",
+   "pred_u": 0.399,
+   "pred_theta": 49.5,
+   "pred_f1": 0.295,
+   "search_f1": 0.43,
+   "du_mm": 33.2,
+   "axis_diff_deg": 64.5
+  },
+  {
+   "id": "g5-W-77805",
+   "end": "W",
+   "pred_u": 0.054,
+   "pred_theta": 121.0,
+   "pred_f1": 0.526,
+   "search_f1": 0.613,
+   "du_mm": 2.4,
+   "axis_diff_deg": 41.5
+  },
+  {
+   "id": "g5-W-78570",
+   "end": "W",
+   "pred_u": 0.086,
+   "pred_theta": 199.7,
+   "pred_f1": 0.469,
+   "search_f1": 0.526,
+   "du_mm": 7.2,
+   "axis_diff_deg": 20.3
+  },
+  {
+   "id": "g5-W-80475",
+   "end": "W",
+   "pred_u": 0.087,
+   "pred_theta": 207.4,
+   "pred_f1": 0.589,
+   "search_f1": 0.615,
+   "du_mm": 3.1,
+   "axis_diff_deg": 2.6
+  },
+  {
+   "id": "g5-W-81720",
+   "end": "W",
+   "pred_u": 0.079,
+   "pred_theta": 200.6,
+   "pred_f1": 0.54,
+   "search_f1": 0.562,
+   "du_mm": 4.5,
+   "axis_diff_deg": 4.4
+  },
+  {
+   "id": "g5-W-81945",
+   "end": "W",
+   "pred_u": 0.138,
+   "pred_theta": 181.0,
+   "pred_f1": 0.417,
+   "search_f1": 0.462,
+   "du_mm": 1.0,
+   "axis_diff_deg": 74.0
+  },
+  {
+   "id": "g5-E-70860",
+   "end": "E",
+   "pred_u": 0.317,
+   "pred_theta": 39.1,
+   "pred_f1": 0.364,
+   "search_f1": 0.453,
+   "du_mm": 3.4,
+   "axis_diff_deg": 41.6
+  },
+  {
+   "id": "g5-E-71550",
+   "end": "E",
+   "pred_u": 0.096,
+   "pred_theta": 146.8,
+   "pred_f1": 0.389,
+   "search_f1": 0.403,
+   "du_mm": 7.9,
+   "axis_diff_deg": 11.8
+  },
+  {
+   "id": "g5-E-74160",
+   "end": "E",
+   "pred_u": 0.482,
+   "pred_theta": 154.1,
+   "pred_f1": 0.254,
+   "search_f1": 0.484,
+   "du_mm": 39.9,
+   "axis_diff_deg": 41.6
+  },
+  {
+   "id": "g5-E-75015",
+   "end": "E",
+   "pred_u": 0.855,
+   "pred_theta": 65.6,
+   "pred_f1": 0.559,
+   "search_f1": 0.587,
+   "du_mm": 2.5,
+   "axis_diff_deg": 13.1
+  },
+  {
+   "id": "g5-E-76635",
+   "end": "E",
+   "pred_u": 0.47,
+   "pred_theta": 7.6,
+   "pred_f1": 0.422,
+   "search_f1": 0.45,
+   "du_mm": 8.7,
+   "axis_diff_deg": 4.9
+  },
+  {
+   "id": "g5-E-77340",
+   "end": "E",
+   "pred_u": 0.245,
+   "pred_theta": 7.0,
+   "pred_f1": 0.399,
+   "search_f1": 0.445,
+   "du_mm": 3.7,
+   "axis_diff_deg": 5.5
+  },
+  {
+   "id": "g5-E-77610",
+   "end": "E",
+   "pred_u": 0.195,
+   "pred_theta": 306.8,
+   "pred_f1": 0.543,
+   "search_f1": 0.575,
+   "du_mm": 8.7,
+   "axis_diff_deg": 25.7
+  },
+  {
+   "id": "g5-E-79095",
+   "end": "E",
+   "pred_u": 0.463,
+   "pred_theta": 68.2,
+   "pred_f1": 0.468,
+   "search_f1": 0.474,
+   "du_mm": 1.0,
+   "axis_diff_deg": 6.8
+  },
+  {
+   "id": "g5-E-80940",
+   "end": "E",
+   "pred_u": 0.447,
+   "pred_theta": 91.2,
+   "pred_f1": 0.529,
+   "search_f1": 0.534,
+   "du_mm": 0.2,
+   "axis_diff_deg": 11.3
+  },
+  {
+   "id": "g6-W-84060",
+   "end": "W",
+   "pred_u": 0.665,
+   "pred_theta": 132.9,
+   "pred_f1": 0.331,
+   "search_f1": 0.428,
+   "du_mm": 9.2,
+   "axis_diff_deg": 47.1
+  },
+  {
+   "id": "g6-W-84645",
+   "end": "W",
+   "pred_u": 0.071,
+   "pred_theta": 91.1,
+   "pred_f1": 0.556,
+   "search_f1": 0.634,
+   "du_mm": 5.9,
+   "axis_diff_deg": 48.9
+  },
+  {
+   "id": "g6-W-85785",
+   "end": "W",
+   "pred_u": 0.737,
+   "pred_theta": 121.0,
+   "pred_f1": 0.381,
+   "search_f1": 0.477,
+   "du_mm": 3.1,
+   "axis_diff_deg": 46.5
+  },
+  {
+   "id": "g6-W-85980",
+   "end": "W",
+   "pred_u": 0.766,
+   "pred_theta": 118.2,
+   "pred_f1": 0.416,
+   "search_f1": 0.497,
+   "du_mm": 2.8,
+   "axis_diff_deg": 46.8
+  },
+  {
+   "id": "g6-W-88710",
+   "end": "W",
+   "pred_u": 0.883,
+   "pred_theta": 259.4,
+   "pred_f1": 0.511,
+   "search_f1": 0.522,
+   "du_mm": 0.7,
+   "axis_diff_deg": 16.9
+  },
+  {
+   "id": "g6-W-89880",
+   "end": "W",
+   "pred_u": 0.7,
+   "pred_theta": 128.0,
+   "pred_f1": 0.325,
+   "search_f1": 0.407,
+   "du_mm": 4.2,
+   "axis_diff_deg": 44.5
+  },
+  {
+   "id": "g6-W-89925",
+   "end": "W",
+   "pred_u": 0.586,
+   "pred_theta": 178.1,
+   "pred_f1": 0.402,
+   "search_f1": 0.413,
+   "du_mm": 5.4,
+   "axis_diff_deg": 1.9
+  },
+  {
+   "id": "g6-W-90960",
+   "end": "W",
+   "pred_u": 0.729,
+   "pred_theta": 114.7,
+   "pred_f1": 0.412,
+   "search_f1": 0.509,
+   "du_mm": 3.8,
+   "axis_diff_deg": 35.3
+  },
+  {
+   "id": "g6-W-92025",
+   "end": "W",
+   "pred_u": 0.726,
+   "pred_theta": 115.2,
+   "pred_f1": 0.424,
+   "search_f1": 0.518,
+   "du_mm": 4.0,
+   "axis_diff_deg": 34.8
+  },
+  {
+   "id": "g6-E-84510",
+   "end": "E",
+   "pred_u": 0.836,
+   "pred_theta": 154.0,
+   "pred_f1": 0.578,
+   "search_f1": 0.638,
+   "du_mm": 7.3,
+   "axis_diff_deg": 28.5
+  },
+  {
+   "id": "g6-E-88275",
+   "end": "E",
+   "pred_u": 0.836,
+   "pred_theta": 222.5,
+   "pred_f1": 0.558,
+   "search_f1": 0.653,
+   "du_mm": 9.4,
+   "axis_diff_deg": 32.5
+  },
+  {
+   "id": "g6-E-88680",
+   "end": "E",
+   "pred_u": 0.167,
+   "pred_theta": 120.5,
+   "pred_f1": 0.306,
+   "search_f1": 0.356,
+   "du_mm": 13.8,
+   "axis_diff_deg": 22.0
+  },
+  {
+   "id": "g6-E-88830",
+   "end": "E",
+   "pred_u": 0.082,
+   "pred_theta": 4.0,
+   "pred_f1": 0.476,
+   "search_f1": 0.538,
+   "du_mm": 2.6,
+   "axis_diff_deg": 13.5
+  },
+  {
+   "id": "g6-E-90465",
+   "end": "E",
+   "pred_u": 0.234,
+   "pred_theta": 49.1,
+   "pred_f1": 0.501,
+   "search_f1": 0.533,
+   "du_mm": 4.9,
+   "axis_diff_deg": 4.1
+  },
+  {
+   "id": "g6-E-91080",
+   "end": "E",
+   "pred_u": 0.236,
+   "pred_theta": 48.0,
+   "pred_f1": 0.513,
+   "search_f1": 0.541,
+   "du_mm": 5.0,
+   "axis_diff_deg": 3.0
+  },
+  {
+   "id": "g6-E-92250",
+   "end": "E",
+   "pred_u": 0.232,
+   "pred_theta": 49.7,
+   "pred_f1": 0.508,
+   "search_f1": 0.543,
+   "du_mm": 4.7,
+   "axis_diff_deg": 4.7
+  },
+  {
+   "id": "g6-E-92355",
+   "end": "E",
+   "pred_u": 0.254,
+   "pred_theta": 318.7,
+   "pred_f1": 0.479,
+   "search_f1": 0.531,
+   "du_mm": 1.7,
+   "axis_diff_deg": 66.3
+  },
+  {
+   "id": "g6-E-92580",
+   "end": "E",
+   "pred_u": 0.248,
+   "pred_theta": 319.3,
+   "pred_f1": 0.476,
+   "search_f1": 0.497,
+   "du_mm": 6.4,
+   "axis_diff_deg": 20.7
+  },
+  {
+   "id": "g7-W-98610",
+   "end": "W",
+   "pred_u": 0.036,
+   "pred_theta": 163.5,
+   "pred_f1": 0.489,
+   "search_f1": 0.541,
+   "du_mm": 3.0,
+   "axis_diff_deg": 44.0
+  },
+  {
+   "id": "g7-W-98670",
+   "end": "W",
+   "pred_u": 0.037,
+   "pred_theta": 169.1,
+   "pred_f1": 0.509,
+   "search_f1": 0.549,
+   "du_mm": 3.1,
+   "axis_diff_deg": 38.4
+  },
+  {
+   "id": "g7-W-99105",
+   "end": "W",
+   "pred_u": 0.025,
+   "pred_theta": 144.9,
+   "pred_f1": 0.502,
+   "search_f1": 0.55,
+   "du_mm": 0.0,
+   "axis_diff_deg": 27.6
+  },
+  {
+   "id": "g7-W-101820",
+   "end": "W",
+   "pred_u": 0.742,
+   "pred_theta": 346.5,
+   "pred_f1": 0.26,
+   "search_f1": 0.268,
+   "du_mm": 0.6,
+   "axis_diff_deg": 6.5
+  },
+  {
+   "id": "g7-W-102045",
+   "end": "W",
+   "pred_u": 0.746,
+   "pred_theta": 354.0,
+   "pred_f1": 0.195,
+   "search_f1": 0.214,
+   "du_mm": 2.4,
+   "axis_diff_deg": 19.0
+  },
+  {
+   "id": "g7-W-102435",
+   "end": "W",
+   "pred_u": 0.876,
+   "pred_theta": 134.9,
+   "pred_f1": 0.427,
+   "search_f1": 0.573,
+   "du_mm": 10.3,
+   "axis_diff_deg": 42.6
+  },
+  {
+   "id": "g7-W-103605",
+   "end": "W",
+   "pred_u": 0.845,
+   "pred_theta": 332.5,
+   "pred_f1": 0.267,
+   "search_f1": 0.322,
+   "du_mm": 12.9,
+   "axis_diff_deg": 2.5
+  },
+  {
+   "id": "g7-W-104520",
+   "end": "W",
+   "pred_u": 0.036,
+   "pred_theta": 169.0,
+   "pred_f1": 0.493,
+   "search_f1": 0.535,
+   "du_mm": 3.0,
+   "axis_diff_deg": 43.5
+  },
+  {
+   "id": "g7-W-104955",
+   "end": "W",
+   "pred_u": 0.348,
+   "pred_theta": 58.2,
+   "pred_f1": 0.408,
+   "search_f1": 0.493,
+   "du_mm": 18.5,
+   "axis_diff_deg": 85.7
+  },
+  {
+   "id": "g7-E-98025",
+   "end": "E",
+   "pred_u": 0.501,
+   "pred_theta": 45.1,
+   "pred_f1": 0.422,
+   "search_f1": 0.472,
+   "du_mm": 6.2,
+   "axis_diff_deg": 25.1
+  },
+  {
+   "id": "g7-E-98580",
+   "end": "E",
+   "pred_u": 0.172,
+   "pred_theta": 71.3,
+   "pred_f1": 0.481,
+   "search_f1": 0.5,
+   "du_mm": 5.9,
+   "axis_diff_deg": 1.2
+  },
+  {
+   "id": "g7-E-99465",
+   "end": "E",
+   "pred_u": 0.569,
+   "pred_theta": 91.4,
+   "pred_f1": 0.506,
+   "search_f1": 0.521,
+   "du_mm": 4.7,
+   "axis_diff_deg": 21.1
+  },
+  {
+   "id": "g7-E-100260",
+   "end": "E",
+   "pred_u": 0.674,
+   "pred_theta": 81.8,
+   "pred_f1": 0.506,
+   "search_f1": 0.515,
+   "du_mm": 4.1,
+   "axis_diff_deg": 4.3
+  },
+  {
+   "id": "g7-E-101025",
+   "end": "E",
+   "pred_u": 0.714,
+   "pred_theta": 165.2,
+   "pred_f1": 0.59,
+   "search_f1": 0.619,
+   "du_mm": 11.2,
+   "axis_diff_deg": 12.3
+  },
+  {
+   "id": "g7-E-103005",
+   "end": "E",
+   "pred_u": 0.292,
+   "pred_theta": 146.3,
+   "pred_f1": 0.413,
+   "search_f1": 0.447,
+   "du_mm": 20.0,
+   "axis_diff_deg": 3.8
+  },
+  {
+   "id": "g7-E-103125",
+   "end": "E",
+   "pred_u": 0.233,
+   "pred_theta": 161.9,
+   "pred_f1": 0.297,
+   "search_f1": 0.343,
+   "du_mm": 19.3,
+   "axis_diff_deg": 26.9
+  },
+  {
+   "id": "g7-E-104760",
+   "end": "E",
+   "pred_u": 0.708,
+   "pred_theta": 193.4,
+   "pred_f1": 0.351,
+   "search_f1": 0.381,
+   "du_mm": 5.6,
+   "axis_diff_deg": 20.9
+  },
+  {
+   "id": "g7-E-105255",
+   "end": "E",
+   "pred_u": 0.687,
+   "pred_theta": 221.6,
+   "pred_f1": 0.538,
+   "search_f1": 0.604,
+   "du_mm": 3.1,
+   "axis_diff_deg": 29.1
+  }
+ ]
+}

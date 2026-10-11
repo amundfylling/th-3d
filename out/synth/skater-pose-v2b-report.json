@@ -1,0 +1,241 @@
+{
+ "args": [
+  "10",
+  "--real-train",
+  "g1,g2,g4,g6",
+  "--out",
+  "skater-pose-v2b"
+ ],
+ "train": 5400,
+ "val": 600,
+ "real_train_games": [
+  "g1",
+  "g2",
+  "g4",
+  "g6"
+ ],
+ "real_train": 200,
+ "real_test": 152,
+ "history": [
+  {
+   "epoch": 1,
+   "train_loss": 6.9064,
+   "val_theta_median_deg": 32.4,
+   "val_theta_p90_deg": 110.16,
+   "val_pivot_px_median": 48.09,
+   "s": 230,
+   "real_median_deg": 37.5,
+   "real_flipped": 0.191,
+   "real_by_skater": {
+    "E-C": 47.6,
+    "E-LD": 37.5,
+    "E-LW": 33.3,
+    "E-RD": 33.0,
+    "E-RW": 28.4,
+    "W-C": 38.0,
+    "W-LD": 50.6,
+    "W-LW": 64.3,
+    "W-RD": 37.9,
+    "W-RW": 45.6
+   }
+  },
+  {
+   "epoch": 2,
+   "train_loss": 1.9376,
+   "val_theta_median_deg": 9.63,
+   "val_theta_p90_deg": 26.69,
+   "val_pivot_px_median": 9.06,
+   "s": 203,
+   "real_median_deg": 14.1,
+   "real_flipped": 0.02,
+   "real_by_skater": {
+    "E-C": 9.1,
+    "E-LD": 6.3,
+    "E-LW": 19.3,
+    "E-RD": 12.4,
+    "E-RW": 6.5,
+    "W-C": 15.9,
+    "W-LD": 19.5,
+    "W-LW": 17.5,
+    "W-RD": 33.1,
+    "W-RW": 13.8
+   }
+  },
+  {
+   "epoch": 3,
+   "train_loss": 1.127,
+   "val_theta_median_deg": 14.79,
+   "val_theta_p90_deg": 120.23,
+   "val_pivot_px_median": 19.2,
+   "s": 212,
+   "real_median_deg": 15.7,
+   "real_flipped": 0.132,
+   "real_by_skater": {
+    "E-C": 16.3,
+    "E-LD": 40.6,
+    "E-LW": 9.1,
+    "E-RD": 94.0,
+    "E-RW": 51.4,
+    "W-C": 5.6,
+    "W-LD": 9.8,
+    "W-LW": 11.7,
+    "W-RD": 22.9,
+    "W-RW": 11.0
+   }
+  },
+  {
+   "epoch": 4,
+   "train_loss": 0.8764,
+   "val_theta_median_deg": 5.75,
+   "val_theta_p90_deg": 15.31,
+   "val_pivot_px_median": 6.55,
+   "s": 208,
+   "real_median_deg": 9.0,
+   "real_flipped": 0.0,
+   "real_by_skater": {
+    "E-C": 7.5,
+    "E-LD": 10.8,
+    "E-LW": 10.3,
+    "E-RD": 10.1,
+    "E-RW": 10.4,
+    "W-C": 5.2,
+    "W-LD": 5.8,
+    "W-LW": 9.2,
+    "W-RD": 12.9,
+    "W-RW": 7.2
+   }
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.719,
+   "val_theta_median_deg": 5.48,
+   "val_theta_p90_deg": 13.99,
+   "val_pivot_px_median": 3.3,
+   "s": 208,
+   "real_median_deg": 7.9,
+   "real_flipped": 0.0,
+   "real_by_skater": {
+    "E-C": 5.3,
+    "E-LD": 8.6,
+    "E-LW": 10.7,
+    "E-RD": 7.8,
+    "E-RW": 8.2,
+    "W-C": 5.2,
+    "W-LD": 6.5,
+    "W-LW": 7.9,
+    "W-RD": 11.1,
+    "W-RW": 6.4
+   }
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.585,
+   "val_theta_median_deg": 4.73,
+   "val_theta_p90_deg": 12.94,
+   "val_pivot_px_median": 5.89,
+   "s": 205,
+   "real_median_deg": 8.9,
+   "real_flipped": 0.0,
+   "real_by_skater": {
+    "E-C": 7.8,
+    "E-LD": 9.4,
+    "E-LW": 9.2,
+    "E-RD": 10.5,
+    "E-RW": 8.0,
+    "W-C": 3.2,
+    "W-LD": 4.6,
+    "W-LW": 7.3,
+    "W-RD": 10.5,
+    "W-RW": 9.5
+   }
+  },
+  {
+   "epoch": 7,
+   "train_loss": 0.4922,
+   "val_theta_median_deg": 5.93,
+   "val_theta_p90_deg": 13.75,
+   "val_pivot_px_median": 2.33,
+   "s": 204,
+   "real_median_deg": 9.2,
+   "real_flipped": 0.0,
+   "real_by_skater": {
+    "E-C": 9.2,
+    "E-LD": 9.3,
+    "E-LW": 13.4,
+    "E-RD": 11.8,
+    "E-RW": 8.2,
+    "W-C": 6.6,
+    "W-LD": 5.5,
+    "W-LW": 8.5,
+    "W-RD": 12.5,
+    "W-RW": 6.9
+   }
+  },
+  {
+   "epoch": 8,
+   "train_loss": 0.355,
+   "val_theta_median_deg": 4.09,
+   "val_theta_p90_deg": 10.37,
+   "val_pivot_px_median": 1.71,
+   "s": 202,
+   "real_median_deg": 7.2,
+   "real_flipped": 0.0,
+   "real_by_skater": {
+    "E-C": 3.3,
+    "E-LD": 9.4,
+    "E-LW": 9.0,
+    "E-RD": 4.2,
+    "E-RW": 7.3,
+    "W-C": 7.8,
+    "W-LD": 8.0,
+    "W-LW": 6.3,
+    "W-RD": 6.8,
+    "W-RW": 7.9
+   }
+  },
+  {
+   "epoch": 9,
+   "train_loss": 0.2957,
+   "val_theta_median_deg": 3.41,
+   "val_theta_p90_deg": 9.38,
+   "val_pivot_px_median": 2.88,
+   "s": 202,
+   "real_median_deg": 6.9,
+   "real_flipped": 0.0,
+   "real_by_skater": {
+    "E-C": 6.0,
+    "E-LD": 9.7,
+    "E-LW": 8.3,
+    "E-RD": 4.6,
+    "E-RW": 7.5,
+    "W-C": 4.5,
+    "W-LD": 6.7,
+    "W-LW": 7.4,
+    "W-RD": 11.3,
+    "W-RW": 6.2
+   }
+  },
+  {
+   "epoch": 10,
+   "train_loss": 0.2279,
+   "val_theta_median_deg": 3.55,
+   "val_theta_p90_deg": 9.41,
+   "val_pivot_px_median": 1.59,
+   "s": 205,
+   "real_median_deg": 6.9,
+   "real_flipped": 0.0,
+   "real_by_skater": {
+    "E-C": 5.3,
+    "E-LD": 9.5,
+    "E-LW": 8.5,
+    "E-RD": 5.6,
+    "E-RW": 7.7,
+    "W-C": 5.4,
+    "W-LD": 6.4,
+    "W-LW": 6.5,
+    "W-RD": 10.9,
+    "W-RW": 6.6
+   }
+  }
+ ]
+}
