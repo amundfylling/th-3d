@@ -7,6 +7,7 @@ Crops of the real triplets of the validation games (g3, g7; never trained on) wi
   resting disks and smudges (motion blur);
 - synthetic: the real puck erased where possible, one held-out render (seed % 10 == 9) pasted, split by speed and by
   the visible fraction after real figures hide it.
+With shot renders in the render set (render-puck-crops.py --shots), the 6000-10000 mm/s bin holds them.
 A detection = a heatmap peak >= 0.3 within 12 stab px of the label. Writes out/synth/<model>-eval.json.
 """
 import importlib.util, json, math, random, sys
@@ -58,7 +59,7 @@ def summ(h):
 out = {"model": MODEL, "val_games": tp.VAL_GAMES, "real_disk": summ(res["real_disk"]), "real_smudge": summ(res["real_smudge"]),
        "false_peaks_per_real_crop": round(float(np.mean(fps)), 3), "synthetic": {}}
 S = res["syn"]
-for lo, hi in ((0, 300), (300, 1500), (1500, 3000), (3000, 6001)):
+for lo, hi in ((0, 300), (300, 1500), (1500, 3000), (3000, 6001), (6001, 10001)):
     out["synthetic"][f"speed_{lo}-{hi}_mm_s_visible>=50%"] = summ([s["hit"] for s in S if lo <= s["speed"] < hi and s["visible"] >= 0.5])
 out["synthetic"]["visible_25-50%"] = summ([s["hit"] for s in S if 0.25 <= s["visible"] < 0.5])
 out["synthetic"]["visible_50-90%"] = summ([s["hit"] for s in S if 0.5 <= s["visible"] < 0.9])

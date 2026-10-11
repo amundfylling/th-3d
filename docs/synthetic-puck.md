@@ -4,6 +4,10 @@ Status: PROPOSED (2026-10-10, batch workstream 1, at the user's request). Model 
 user-checked. Same approach as the goalie and skater models (`docs/synthetic-goalie-pilot.md`): Blender renders in the
 NM26 reference camera, composited on real NM26 pictures.
 
+**Since 2026-10-11 (section 8):** a second version, `puck-track-synth-v2.json` (tracker 2 on the same v1 detector), sits
+beside it. It removes the dark ice marks the tracker sat on (false alarms on the user's "not in this picture" taps 13 to 4
+of 21). It does not find more shots: the broadcast does not show most shots. The analysis still reads v1.
+
 **Since 2026-10-10 (docs/nm26-new-tracks.md):** the NM26 analysis reads this detector's track (`puck-track-synth.json`); the before/after effect on passes,
 patterns, combinations, replays and the Edwall refit is in docs/nm26-new-tracks.md by default (`scripts/nm26_tracks.py`).
 
@@ -244,3 +248,140 @@ for g in g1 g2 g3 g4 g5 g6 g7; do /root/venvs/blender/bin/python scripts/synth/t
 
 The model (`out/synth/puck-det-v1.pt`, 1.1 MB) is not committed, like the other models. The candidates
 (`out/nm26/<game>/puck-cands-puck-det-v1.json`) let `track-puck.py <game> --track-only` re-run the tracker in seconds.
+
+## 8. Tracker 2 and the puck at the shot (2026-10-11)
+
+Status: PROPOSED (thread "Puck at the shot", approved by the user as priority 1 on 2026-10-10). Model output; the only
+user-checked values are Amund's 96 tap answers (docs/nm26-new-tracks.md section 6), of which 63 are puck frames.
+
+**The ask.** The v1 track finds a shot event in the last 2 s before only 1 of the user's 25 marked goals. It also puts a
+puck in 13 of the 21 frames the user marked "not in this picture". Make it follow the shot and cut those false alarms,
+without making puck accuracy worse.
+
+### 8.1 Results
+
+All numbers: `validation/puck-track-v2-eval.json` (`python3 scripts/synth/puck-track-eval.py --json ...`). The tap
+scoring is that of `scripts/nm26-tap-review.py eval` (tap moved up 8.8 px; right within 15 mm; "none" makes any reported
+puck wrong).
+
+| | v1 (`puck-track-synth.json`) | **v2 (`puck-track-synth-v2.json`)** |
+| --- | --- | --- |
+| User goals with a shot event in the last 2 s (25) | 1 (g5-goal2) | 1 (g5-goal2) |
+| Shot events, all games | 49 | 48 |
+| Tap frames right (63 puck items) | 32 | **41** |
+| False alarm on "not in this picture" (21) | 13 | **4** |
+| Missed a puck the user tapped | 8 | 8 |
+| Error where track and tap exist (median; within 25 mm) | 10.0 mm; 30 of 34 | 10.0 mm; 30 of 34 |
+| Live play with a position | 76.4% | 70.2% |
+| Last 2 s before the 25 goals with a position | 84.3% | 81.4% |
+| Passes / turnovers / battles / carries (all games) | 370 / 274 / 338 / 2507 | 357 / 238 / 335 / 2472 |
+
+- **False alarms: fixed for the main cause.** 8 of the 13 false alarms were one spot in game 4: the dark "o" of the ISOVER
+  logo on the ice at the near board (W end), where the v1 tracker sat for minutes at score 0.33-0.40. v2 removes those 8
+  and one more near the same corner in game 3 (t040). The same mark and
+  the centre spot hold the track in every game (the largest still runs of the whole track, at median scores 0.3-0.55;
+  a resting puck scores 0.7-0.99).
+- **Accuracy: not worse.** Every tapped puck the v1 track had right, v2 has right; nothing new is missed.
+- **Coverage drops by 6 points** (76% to 70% of live play). These are the removed rows. A review of 28 random removed rows
+  (4 per game, `validation/synthetic-puck-v2-removed.jpg`) finds 2 real, visible pucks (g6 85388 beside a blurred figure,
+  g7 99242 at rest at score 0.50). The other 26 are the ISOVER mark (14), the centre-spot mark (3), a hand over the
+  board (3), a figure's skate (3) and a pen on the table outside the rink (3). So about 7% of the removed rows were the
+  puck (one reviewer, one pass, 28 rows).
+- **Shots: not improved.** The one goal with a shot is the same in both, and its shot is released 1.9 s before the goal.
+  It is probably not the scoring shot.
+
+### 8.2 Why the shots are missing: the broadcast does not show them
+
+`validation/synthetic-puck-v2-goal-frames.jpg` shows six goals from the last sighting to 7 frames later. In g1-goal1,
+-goal4 and -goal5, g3-goal2 and g4-goal2/-goal3, the puck is sharp on the shooter's blade. In the next frame it is gone:
+- hidden under the shooter's motion blur in the frame of the shot;
+- then behind the goalie, or already in the goal.
+
+At most a faint grey smear is visible, in one frame (g3-goal2 -1, g1-goal4 -2), and it cannot be told from the figure
+blur around it. At 3-10 m/s a shot crosses the 100-300 mm to the goal line in 1-3 frames (30 fps). So the "last 2-5
+frames" that section 3 says are lost are mostly not in the picture at all.
+
+### 8.3 What was tried for the shot
+
+1. **Detector v2: a fine-tune on shot streaks.**
+   - Inputs: 800 renders at 3-10 m/s with a shutter open 40-100% (`render-puck-crops.py --shots`). 60% of them start
+     in front of a goal and fly at its mouth. 723 of the 799 samples are used; crops clipped at the picture edge are
+     skipped.
+   - Training: v1 plus 5 × 1,000 steps at learning rate 1e-3 (`train-puck-detector.py --init puck-det-v1 --lr 1e-3`).
+   - Held-out games 3 and 7 (`eval-puck-detector.py`, same 500 samples for both):
+
+   | | v1 | v2 |
+   | --- | --- | --- |
+   | Synthetic 6-10 m/s | 43% | **56%** |
+   | Synthetic 3-6 m/s | 76% | 75% |
+   | Real resting disk | 86% | 84% |
+   | Real smudge | 44% | 40% |
+   | False peaks per real crop | 0.23 | 0.23 |
+
+   - On the real games, v2 with tracker 2 finds 2 of 25 goals with a shot, against 1. The new one (g1-goal2) is the left
+     wing's wraparound behind the goal 1.8 s before the goal, not the shot. The rest is close: 41 right taps, 5 of 21
+     false alarms, 9.2 mm median error, 68.9% coverage.
+   - The detector cannot see a puck that is not in the picture. **v2 is not adopted.** Weights and candidates:
+     `/mnt/project-files/puck-det-v2-workdir/`.
+2. **A background-difference filter** (`--bg-min`): drop a peak whose blob does not differ from the empty rink. Made
+   for the ice marks. With the v2 candidates, thresholds 10-20 did not beat the still-run rule alone, so it is off
+   (`--bg-min 0`).
+3. **Shot completion** (`--shot-completion`, off). Where the track stops, take a weak peak (score >= 0.05) in the next
+   4 frames that the puck reaches at 1.5-10.5 m/s on a line into a goal mouth. Continue along that line, and keep the
+   result only if the track then stays empty for 20 frames.
+   - On the v1 candidates it finds a shot before 8 of the 25 goals, with 31 completed shots in all.
+   - 14 of those 31 come within 15 s before a goal on the score overlay (`timeline.json`). By chance alone, about 25%
+     would.
+   - The review (`puck-shot-sheet.py ... --goals` and `--sample`) finds every added position on the goalie, a figure, a
+     board edge or empty ice. None is on the puck. They are guesses that happen to lie near a real shot, not sightings.
+   - The user was asked whether to add them as marked guesses. Until then they stay out of the track.
+4. **Disappearance as evidence:** the puck vanishing near a goal for 0.3-5 s is no better. Of 28 such events (last
+   score >= 0.5, unseen >= 20 frames), 14 come before an overlay goal.
+
+### 8.4 Tracker 2 (`track-puck.py <game> --track-only --tracker 2`)
+
+1. Same Viterbi as tracker 1, on the same v1 candidates.
+2. **Still low-score runs** are found in the track:
+   - 15 or more rows, gaps of at most 3 frames, all within 5 stab px of the first, median score under 0.55;
+   - per game 2-41 runs, 33-1,873 rows (`tracker.log` in each file; most in g1, g3, g4, g5).
+3. Their candidates are removed and the Viterbi runs again, so the real puck can take over where it is seen.
+4. Still runs that remain after the second pass are dropped without re-tracking (0-1,020 rows per game).
+5. Rows keep kind "det". No shot rows (shot completion is off).
+
+The three thresholds are ASSUMED. They were set by eye on the ice marks (a resting puck scores 0.7-0.99) and checked
+against the 63 tap frames: 0 right answers lost.
+
+### 8.5 Use and open points
+
+- The analysis is **not switched**: `scripts/nm26_tracks.py` still reads `puck-track-synth.json`. v2 wins on false
+  alarms and ties on shots and accuracy, and the brief said to switch only if it wins. Switching is one line there; after
+  a switch, re-run passes, patterns, combinations, the figure analysis, the comparison and the replays
+  (docs/nm26-new-tracks.md).
+- Passes and shots on v2: `<game>/passes-synth-v2.json` (`nm26-passes.py <game> --track puck-track-synth-v2.json --out
+  passes-synth-v2.json`).
+- **The shot itself needs another source of evidence**:
+  - the goal moment (the user's marks, or the overlay) plus the shooter's figure track: which figure had the puck and
+    where it turned. This is the "fit between the release and the goal moment" of section 4, as in the Edwall rebuild;
+  - or a recording with a faster camera.
+- Remaining false alarms (4 of 21): g2 26167 (t022, a blurred figure at the near board), g3 43115 (t034, the ISOVER mark again, but
+  the track moves on and off it, so it is not one still run), g3 44138 (t035, a dark smear at the E corner board, score
+  0.97) and g4 64798 (t067, beside a figure at the W near corner).
+- Not re-checked: the tap frames are disagreement frames, so their shares are not the overall accuracy.
+
+### 8.6 Reproduce
+
+```sh
+tar xf /mnt/project-files/puck-det-v1-workdir/small.tar      # v1 model, H.npz, v1 candidates (or rebuild: section 7)
+for g in g1 g2 g3 g4 g5 g6 g7; do
+  /root/venvs/blender/bin/python scripts/synth/track-puck.py $g --track-only --tracker 2 --out puck-track-synth-v2.json
+  /root/venvs/blender/bin/python scripts/nm26-passes.py $g --track puck-track-synth-v2.json --out passes-synth-v2.json
+done
+python3 scripts/synth/puck-track-eval.py --json validation/puck-track-v2-eval.json
+/root/venvs/blender/bin/python scripts/synth/puck-shot-sheet.py puck-track-synth-v2.json validation/synthetic-puck-v2-removed.jpg --removed 4 --seed 5
+/root/venvs/blender/bin/python scripts/synth/puck-shot-sheet.py puck-track-synth-v2.json validation/synthetic-puck-v2-goal-frames.jpg --goal-frames g1-goal1,g1-goal4,g1-goal5,g3-goal2,g4-goal2,g4-goal3
+# detector v2 (not adopted): render-puck-crops.py out/synth/puck/renders 2000 800 --shots (4 chunks, RENDER_THREADS=1),
+# train-puck-detector.py --epochs 5 --steps 1000 --name puck-det-v2 --init puck-det-v1 --lr 1e-3,
+# eval-puck-detector.py --model puck-det-v2 --n 500, track-puck.py <g> --model puck-det-v2 --detect-only
+```
+
+Tracker 2 on the v1 candidates takes seconds per game; the passes take about 10 s per game.

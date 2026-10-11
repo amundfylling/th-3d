@@ -183,6 +183,7 @@ compares after.
 | Combination recognition | analysis | `combo-recognition` | **verified 2026-10-10: byte-identical** (`combo-labels.json`, `validation/nm26-combo-spots.png`) |
 | All-goals replays | pages | `goal-replays` (`npm run nm26:replays` runs the script alone) | registered; not run here (needs the video) |
 | Edwall rebuild | edwall (not default) | `edwall-trace-<goal>`, `edwall-presentation-<goal>` | presentation steps **verified: byte-identical**; trace steps not run (need the figure meshes, bpy). Videos: `node scripts/edwall-render.ts <goal>`, outside the runner. |
+| Puck at the shot (2026-10-11) | models, puck, analysis | `track-puck-synth-v2-<g>` (tracker 2 on the v1 candidates, seconds), `passes-synth-v2-<g>`, `puck-track-eval`; detector v2 (not adopted): `puck-renders-shots`, `train-puck-v2`, `eval-puck-v2`, `detect-puck-v2-<g>` | run 2026-10-11 (docs/synthetic-puck.md section 8). v1 working files: `/mnt/project-files/puck-det-v1-workdir/`, v2: `puck-det-v2-workdir/` |
 | Own-video pipeline | — | not an NM26 step | section 1, row 9 |
 
 Review sheets without recorded command lines (not registered): `validation/synthetic-puck-*.jpg`
