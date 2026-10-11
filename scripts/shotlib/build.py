@@ -18,7 +18,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from shapely.geometry import Point
 
-from . import motion, puck
+from . import control, motion, puck
 from . import world as W
 
 REPO = W.REPO
@@ -121,12 +121,134 @@ def eval_trigger(name, tr, spec, figs, T, P, imp):
     return None
 
 
+class Ghost:
+    """A figure that stops being an obstacle from time t_from on (the puck's path as if that figure were not there):
+    the meet solver uses it to see where the puck goes before the receiver touches it."""
+
+    def __init__(self, f, t_from, ctl=None):
+        self.f, self.t_from, self.ctl = f, t_from, ctl
+        self.pid, self.kind, self.team = f.pid, f.kind, f.team
+
+    def pose(self, t):
+        t_from = self.t_from if self.ctl is None else (self.ctl.done if self.ctl.done else 1e9)
+        return (self.f.pose(t) if t < t_from else (np.array([1e6, 1e6]), 0.0))
+
+
+def _slot_offset(slot, w):
+    """Arc of the nearest centreline point to w and the signed lateral offset of w from the centreline (mm, + = left of
+    the direction of increasing arc)."""
+    d = slot.P[1:] - slot.P[:-1]
+    L2 = (d * d).sum(1)
+    u = np.clip(((w - slot.P[:-1]) * d).sum(1) / L2, 0.0, 1.0)
+    q = slot.P[:-1] + u[:, None] * d
+    i = int(np.argmin(((q - w) ** 2).sum(1)))
+    arc = float(slot.s[i] + u[i] * np.sqrt(L2[i]))
+    side = d[i, 0] * (w[1] - q[i, 1]) - d[i, 1] * (w[0] - q[i, 0])
+    return arc, float(math.copysign(np.linalg.norm(w - q[i]), side))
+
+
+def seed_meets(spec):
+    """Meet values before solving (the move file's guesses), so a figure can be built before the meets are solved."""
+    motion.MEET.clear()
+    motion.CTRL_END.clear()
+    for c in spec.get("controls", []):
+        if "end_guess" in c:
+            motion.CTRL_END[c["figure"]] = dict(c["end_guess"])
+    for name, m in spec.get("meets", {}).items():
+        g = m["guess"]
+        motion.MEET[name] = {"t": g["t"], "arc_mm": g["arc_mm"], "puck_along_slot_mm_s": g.get("puck_along_slot_mm_s", 0.0)}
+
+
+def solve_meets(spec, t0, t1, physics):
+    """Solved meets (move file `meets`, scripts/shotlib/motion.py): for each meet in order, run the puck with the
+    receiving figure taken out from the meet's search start (Ghost), then find the first time t in the search window at
+    which the figure's pivot can sit on its slot with the meet's local point exactly at the puck centre:
+        pivot(t) = puck(t) - R(heading at the meet) . local_mm   lies on the slot centreline.
+    The heading at the meet comes from the figure's own design (turns given relative to the meet keep it fixed); it is
+    re-read after each solve until it settles. Returns the solved meets and their residuals (all mm, s, deg)."""
+    meets = spec.get("meets", {})
+    seed_meets(spec)
+    report = {}
+    for name, m in meets.items():
+        pid, L = m["figure"], np.array(m["local_mm"], float)
+        for it in range(6):
+            figs = figures_of(spec, t0, t1)
+            f = figs[pid]
+            heading = f.pose(motion.MEET[name]["t"])[1]
+            ta, tb = motion.tv(m["search_s"][0]), motion.tv(m["search_s"][1])
+            p0 = puck.start_position(spec["puck"]["start"], [figs[p] for p in spec["figures"] if p in figs] + list(figs.values()), t0)
+            ctrls = control.make(spec, figs)
+            ctl = next((c for c in ctrls if c.f.pid == pid), None)
+            from_end = isinstance(m["search_s"][0], dict) and "control_end" in m["search_s"][0]
+            order = [Ghost(x, None if from_end else ta, ctl if from_end else None) if x.pid == pid else x for x in figs.values()]
+            T, P, V, touching, *_ = puck.run(t0, min(t1, tb + 0.01), p0, order, physics, spec["puck"].get("start", {}).get("velocity_mm_s", (0.0, 0.0)), ctrls)
+            if from_end:  # the search starts where the figure's controller handed it back
+                if not ctl or not ctl.done:
+                    raise MeetError(f"meet '{name}': {pid}'s controller never finished before {tb:.4f} s")
+                ta = ctl.done + m["search_s"][0].get("offset", 0.0)
+            if m.get("after_touch"):  # the meet comes after the puck has touched this obstacle (e.g. "boards") - a touch
+                # after the search start, or after the figure's controller took over when the search starts at its end
+                t_ref = ctl.t_s if from_end else ta
+                tt = next((float(T[k]) for k in range(len(T)) if T[k] >= t_ref and any(h.startswith(m["after_touch"]) for h in touching[k])), tb)
+                ta = max(ta, tt)
+            lo, hi = m.get("arc_range_mm", [0.0, f.slot.length])
+            off = W.rot(heading) @ L
+            ax = 0 if m.get("axis", "x") == "x" else 1
+            if "arc_mm" in m:  # at a fixed slot position: the time the puck reaches the meet point's local coordinate
+                piv = f.slot.at(m["arc_mm"])
+                cond = lambda q: (W.rot(heading).T @ (q - piv))[ax] - L[ax]
+            else:  # anywhere on the slot: the time the pivot that puts the point on the puck lies on the centreline
+                cond = lambda q: _slot_offset(f.slot, q - off)[1]
+            prev, hit = None, None
+            for k in range(len(T)):
+                if T[k] < ta or T[k] > tb:
+                    continue
+                d = cond(P[k])
+                a = m["arc_mm"] if "arc_mm" in m else _slot_offset(f.slot, P[k] - off)[0]
+                if prev is not None and prev * d <= 0 and lo < a < hi and 0.0 < a < f.slot.length:
+                    w = prev / (prev - d)
+                    tk = T[k - 1] + w * (T[k] - T[k - 1])
+                    pk = P[k - 1] + w * (P[k] - P[k - 1])
+                    vk = V[k - 1] + w * (V[k] - V[k - 1])
+                    hit = (tk, pk, vk)
+                    break
+                prev = d
+            if hit is None:
+                raise MeetError(f"meet '{name}': the puck never reaches {pid}'s point {list(L)} between {ta:.4f} and {tb:.4f} s")
+            tk, pk, vk = hit
+            if "arc_mm" in m:
+                arc, lat = float(m["arc_mm"]), 0.0
+            else:
+                arc, lat = _slot_offset(f.slot, pk - off)
+            tan = math.radians(f.slot.tangent_deg(arc))
+            along = float(vk @ np.array([math.cos(tan), math.sin(tan)]))
+            new = {"t": round(float(tk), 5), "arc_mm": round(arc, 4), "puck_along_slot_mm_s": round(along, 2)}
+            motion.MEET[name] = new
+            # the puck before the search start does not depend on this meet, so the solve is consistent once the
+            # heading the figure has at the solved meet is the one it was solved with
+            h_now = figures_of(spec, t0, t1)[pid].pose(new["t"])[1]
+            if abs(h_now - heading) < 1e-3:
+                break
+        piv_m = f.slot.at(new["arc_mm"])
+        report[name] = {**new, "figure": pid, "mode": "fixed arc" if "arc_mm" in m else "point", "local_mm": [float(x) for x in L],
+                        "puck_local_mm": [round(float(x), 3) for x in W.rot(h_now).T @ (pk - piv_m)], "heading_deg": round(h_now, 4), "puck_mm": [round(float(x), 4) for x in pk],
+                        "puck_velocity_mm_s": [round(float(x), 2) for x in vk], "lateral_residual_mm": round(abs(lat), 5), "iterations": it + 1,
+                        "guess": m["guess"], "why": m.get("why", "")}
+    return report
+
+
+class MeetError(Exception):
+    pass
+
+
 def simulate(spec, max_rounds=8, tol_s=0.001):
     """Figures -> puck. With triggers: start from each trigger's guess, run the puck, read the trigger times off the run,
     rebuild the figures and run again until no trigger moves by more than one step (a trigger only shifts motion that
     starts at it, so later triggers settle after earlier ones)."""
     t0, t1 = spec["window_s"]
     physics = {**DEFAULT_PHYSICS, **spec.get("physics", {})}
+    seed_meets(spec)
+    meets = solve_meets(spec, t0, t1, physics) if spec.get("meets") else {}
     trigs = spec.get("triggers", {})
     motion.TRIG.clear()
     motion.TRIG.update({k: v["guess_s"] for k, v in trigs.items()})
@@ -135,7 +257,17 @@ def simulate(spec, max_rounds=8, tol_s=0.001):
         figs = figures_of(spec, t0, t1)
         order = [figs[p] for p in spec["figures"] if p in figs] + [f for p, f in figs.items() if p not in spec["figures"]]
         p0 = puck.start_position(spec["puck"]["start"], order, t0)
-        res = puck.run(t0, t1, p0, order, physics, spec["puck"].get("start", {}).get("velocity_mm_s", (0.0, 0.0)))
+        ctrls = control.make(spec, figs)
+        res = puck.run(t0, t1, p0, order, physics, spec["puck"].get("start", {}).get("velocity_mm_s", (0.0, 0.0)), ctrls)
+        if ctrls:  # the saved keyframes alone must reproduce the run (playback never runs the controller)
+            for c in ctrls:
+                figs[c.f.pid] = W.Figure(c.f.pid, c.f.arcs, c.f.thetas, c.f.status)
+            order = [figs[p] for p in spec["figures"] if p in figs] + [f for p, f in figs.items() if p not in spec["figures"]]
+            replay = puck.run(t0, t1, p0, order, physics, spec["puck"].get("start", {}).get("velocity_mm_s", (0.0, 0.0)))
+            if not (np.array_equal(replay[1], res[1]) and replay[6] == res[6]):
+                raise MeetError(f"controlled figures: replaying the saved keyframes moves the puck by up to {float(np.abs(replay[1] - res[1]).max()):.6f} mm")
+            physics = {**physics, "controls": [{"figure": c.f.pid, "type": c.spec["type"], "start_s": c.t_s, "released_s": c.released,
+                                                 "aim_mm": [round(float(x), 3) for x in c.aim], "speed_mm_s": c.speed, "ticks": c.log} for c in ctrls]}
         if not trigs:
             break
         T, P, V, touching, imp, walls, entered = res
@@ -148,7 +280,7 @@ def simulate(spec, max_rounds=8, tol_s=0.001):
             break
         motion.TRIG.update(new)
     # the trace is the last run (its figures used `used`); `read` is what that run's puck would ask for
-    physics = {**physics, "triggers": history[-1] if history else None, "trigger_rounds": len(history),
+    physics = {**physics, **({"meets": meets} if meets else {}), "triggers": history[-1] if history else None, "trigger_rounds": len(history),
                "trigger_residual_s": max([abs(history[-1]["read"][k] - history[-1]["used"][k]) for k in trigs] + [0.0]) if history else 0.0}
     return t0, t1, physics, figs, order, p0, res
 
@@ -349,6 +481,11 @@ def build(move_id, sets=(), scratch=False):
         "events": events,
         "limitations": spec.get("limitations", []),
     }
+    if physics.get("meets") or physics.get("controls"):
+        # how the figures were timed against the puck (motion.py meets, control.py controls); the keys above already
+        # carry the result, this records where it came from
+        trace["timing"] = {"meets": physics.get("meets", {}),
+                           "controls": [{k: v for k, v in c.items() if k != "ticks"} for c in physics.get("controls", [])]}
     samp = []
     for tq in np.round(np.arange(t0, t1 + 1e-9, 0.02), 4):
         s_ = {"t": float(tq)}
@@ -364,6 +501,7 @@ def build(move_id, sets=(), scratch=False):
               "slide_check": slide_check, "unexplained_velocity_changes": unexplained[:20], "unexplained_count": len(unexplained),
               "contact_sequence": seq, "contact_sequence_merged": seq_dedup, "contact_episodes": [{"obstacle": e["obstacle"], "t": [round(e["t0"], 5), round(e["t1"], 5)]} for e in eps],
               "expectations": expectations, "problems": problems, "impulses": imp, "walls": walls,
+              **({"controls": physics["controls"]} if physics.get("controls") else {}),
               "goal_line": {"goal": entered, "crossing_y_mm": round(float(P[goal_i, 1]), 2) if goal_i is not None else None,
                             "inside_mouth_window_y_mm": W.GOALS[entered].mouth_window() if entered else None}}
     out_dir = REPO / "out/moves" / move_id
