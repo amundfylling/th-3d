@@ -1,0 +1,422 @@
+{
+  "schema": "move-spec/1",
+  "id": "invers-kryssar-velodrom-v3",
+  "name": "Invers Kryssar med Velodrom (right wing, NTHF), solved meets",
+  "nthf": {
+    "name": "Invers Kryssar med Velodrom",
+    "player": "Right wing",
+    "level": 7
+  },
+  "trace_id": "trace.invers-kryssar-velodrom.v3",
+  "status": "proposed",
+  "kind": "designed",
+  "source_text": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who shoots directly into the goal",
+  "references": [
+    "references/combinations/puck-no-invers-kryssar-med-velodrom.html"
+  ],
+  "approved_reading": "validation/ikv-sketch.png (user: 'The picture is correct', 2026-10-06)",
+  "window_s": [
+    0.0,
+    2.35
+  ],
+  "physics": {
+    "restitution_figure": 0.5
+  },
+  "slide_rule": {
+    "figure_impact_max_mm_s": 500.0,
+    "wall_impact_max_mm_s": 300.0
+  },
+  "puck": {
+    "start": {
+      "against": "W-RW",
+      "local_mm": [
+        13.5,
+        33.1
+      ],
+      "why": "at rest just touching the front face of the right wing's blade (mid blade)"
+    },
+    "start_phase": "rest_at_blade"
+  },
+  "figures": {
+    "W-RW": {
+      "status": "moving: passer and shooter (designed)",
+      "arc": {
+        "keys": [
+          [
+            0.0,
+            140.0,
+            "start position"
+          ],
+          [
+            1.0,
+            140.0,
+            "start position"
+          ],
+          [
+            {
+              "meet": "rw_shot",
+              "offset": -0.325
+            },
+            140.0,
+            "starts down the slot"
+          ]
+        ],
+        "moves": [
+          [
+            {
+              "meet": "rw_shot",
+              "offset": -0.325
+            },
+            {
+              "meet": "rw_shot",
+              "offset": 0.0
+            },
+            140.0,
+            0.0,
+            {
+              "meet": "rw_shot",
+              "offset": 0.0
+            },
+            {
+              "meet": "rw_shot",
+              "puck_along_slot": true,
+              "offset": 207.0
+            },
+            "down the slot ahead of the arriving puck, timed to where it really is"
+          ]
+        ]
+      },
+      "theta": {
+        "turns": [
+          [
+            0.15,
+            0.08,
+            72.0,
+            20.0,
+            "pass: clockwise turn pushes the puck from rest"
+          ],
+          [
+            1.0,
+            0.4,
+            20.0,
+            204.0,
+            "turns round for the shot"
+          ]
+        ]
+      },
+      "note": "Pass: the puck rests against the front of the blade; a clockwise turn 72 -> 20 deg pushes it across the ice (sustained contact, no strike). Then the right wing turns round (counter-clockwise to 204 deg) and, as the puck comes along the -y board, slides down his slot ahead of it at 450 mm/s, so it catches him up softly on the back of the blade; a counter-clockwise turn 204 -> 275 deg pushes it into the goal (first-time: it is never stopped)."
+    },
+    "W-LW": {
+      "status": "moving: soft reception, then a forward push along its slot into the corner (designed)",
+      "arc": {
+        "keys": [
+          [
+            0.0,
+            76.0,
+            "waits for the pass"
+          ],
+          [
+            {
+              "meet": "lw_catch",
+              "offset": -0.224
+            },
+            {
+              "meet": "lw_catch",
+              "offset": -30.36
+            },
+            "waits for the pass (where the pass will arrive)"
+          ],
+          [
+            {
+              "meet": "lw_catch",
+              "offset": -0.124
+            },
+            {
+              "meet": "lw_catch",
+              "offset": -21.36
+            },
+            "moves up with the pass"
+          ],
+          [
+            {
+              "meet": "lw_catch",
+              "offset": -0.004
+            },
+            {
+              "meet": "lw_catch",
+              "offset": -0.36
+            },
+            "moves up with the pass"
+          ],
+          [
+            {
+              "meet": "lw_catch",
+              "offset": 0.076
+            },
+            {
+              "meet": "lw_catch",
+              "offset": 4.64
+            },
+            "after the reception"
+          ]
+        ],
+        "moves": [
+          [
+            {
+              "meet": "lw_catch",
+              "offset": 0.076
+            },
+            {
+              "meet": "lw_push",
+              "offset": 0.0
+            },
+            {
+              "meet": "lw_catch",
+              "offset": 4.64
+            },
+            0.0,
+            {
+              "meet": "lw_push",
+              "offset": 0.0
+            },
+            {
+              "meet": "lw_push",
+              "puck_along_slot": true,
+              "offset": 28.0
+            },
+            "skates after the puck, meets it just faster than it slides"
+          ],
+          [
+            {
+              "meet": "lw_push",
+              "offset": 0.0
+            },
+            {
+              "meet": "lw_push",
+              "offset": 0.34
+            },
+            {
+              "meet": "lw_push",
+              "offset": 0.0
+            },
+            {
+              "meet": "lw_push",
+              "puck_along_slot": true,
+              "offset": 28.0
+            },
+            414.71,
+            1050.0,
+            "pushes it up the slot and through the curve"
+          ],
+          [
+            {
+              "meet": "lw_push",
+              "offset": 0.34
+            },
+            {
+              "meet": "lw_push",
+              "offset": 0.44
+            },
+            414.71,
+            1050.0,
+            467.21,
+            0.0,
+            "slows down behind the goal: the puck runs on"
+          ]
+        ]
+      },
+      "theta": {
+        "turns": [
+          [
+            {
+              "meet": "lw_catch",
+              "offset": -0.174
+            },
+            0.2,
+            -90.0,
+            0.0,
+            "turns to face forward as the pass arrives: the blade gives way"
+          ],
+          [
+            {
+              "meet": "lw_catch",
+              "offset": 0.096
+            },
+            0.15,
+            0.0,
+            3.29,
+            "squares the blade to the board"
+          ]
+        ]
+      },
+      "follow_tangent_from_s": {
+        "meet": "lw_catch",
+        "offset": 0.026
+      },
+      "note": "Reception: the left wing faces the pass (theta -90: front of the blade toward the right wing) and turns counter-clockwise to face forward (0) as the puck arrives, so the blade gives way; the puck runs on to the board at a glancing angle. Push: facing forward, he skates up his slot behind the puck and through the curve of the corner; from 0.68 s he turns the figure with the slot (the blade stays square to the curved board; 3.29 deg = the slot direction at the start of the follow, so the blade ends square to the end board). He slows down behind the goal and the puck runs on along the end board (the velodrome)."
+    },
+    "W-C": {
+      "static": {
+        "arc_mm": 60.0,
+        "theta_deg": 0.0,
+        "why": "W-C is not part of the move; stands back on its slot, out of the cross-pass lane (as in the sketch)"
+      }
+    },
+    "E-G": {
+      "static": {
+        "y_mm": 20.0,
+        "theta_deg": 0.0,
+        "why": "ASSUMED: E-G has followed the cross pass to the left wing and still covers the left post (+y), 9.5 mm from the assembly pose (as in Näcka); with the assembly pose the gap for the shot is 2 deg."
+      }
+    }
+  },
+  "contacts": [
+    {
+      "id": "pass",
+      "figure": "W-RW",
+      "group": 0,
+      "part": "front, forehand push",
+      "phase": "pass_push",
+      "after": "cross_pass"
+    },
+    {
+      "id": "lw_catch",
+      "figure": "W-LW",
+      "group": 0,
+      "part": "soft reception while turning to face forward",
+      "phase": "lw_reception",
+      "after": "to_the_boards"
+    },
+    {
+      "id": "lw_push",
+      "figure": "W-LW",
+      "group": -1,
+      "part": "front, forward push into the corner",
+      "phase": "lw_push",
+      "after": "velodrome",
+      "min_touches": 50
+    },
+    {
+      "id": "shot",
+      "figure": "W-RW",
+      "group": -1,
+      "part": "back, first-time backhand push",
+      "phase": "shot_push",
+      "after": "shot_free"
+    }
+  ],
+  "expect": {
+    "goal": "E",
+    "contact_sequence": [
+      "W-RW:stick/blade",
+      "W-LW:stick/blade",
+      "boards",
+      "W-LW:stick/blade",
+      "boards",
+      "W-RW:stick/blade",
+      "goal_net"
+    ],
+    "robustness": {
+      "variants_passed": "7/11",
+      "failing": [
+        "puck start +0.2 mm x",
+        "ice friction +25%",
+        "ice friction -25%",
+        "restitution 0.7"
+      ],
+      "why": "the right wing's shot now meets the puck where it is and steers it (controls), so its variants hold; the left wing's catch and corner pass are still timed but not steered: with more friction the puck stops before the board (no lw_push meet), with less friction the caught puck hits the board at 412 mm/s, and with +0.2 mm x or restitution 0.7 the puck leaves the far corner a few mm off the end board and meets the next curve at 363-471 mm/s (limit 300)"
+    }
+  },
+  "limitations": [
+    "No recording of this combination exists: all figure motions are DESIGNED to follow the reading the user approved (sketch); the puck follows from them through contacts, ice friction and the boards.",
+    "Left-wing pass (v2): soft reception, then a forward push into the corner, from the user's physics example (references/shots/lw-board-pass-example.mov, a different combination). The example's speeds were read with an uncalibrated scale (about 1 m/s along the end board); the trace releases at about 1.3 m/s because the preview ice friction (spjass fit, 926 mm/s^2) is higher than the example suggests.",
+    "Slide-or-bounce limits (500 mm/s figure impacts, 300 mm/s board/post impacts) are assumed by Claude from the user's rule; the frictionless e = 0.5 contact makes the push a series of small touches (each below 100 mm/s after the first).",
+    "CATCH POINT MOVED: in the sketch the right wing receives about 18 cm from the goal line. Along the board the puck is 37 mm from his slot, so only the board-side face of his blade can reach it and the shot can leave at most about 35-40 deg from the board; he receives it about 26 cm from the goal line.",
+    "Goalie pose assumed: E-G covers the left post (y = +20 mm, drawn there by the cross pass to the left wing).",
+    "Collision rule ASSUMED: blade/skate-puck restitution 0.5, frictionless; boards, posts and cage inelastic. Ice friction from the spjass slide fit.",
+    "Blade, skate and stick geometry are the AI-modelled mold at the assumed preview scale; puck thickness and goal size are preview values; the cage is modelled as its footprint (side and back nets)."
+  ],
+  "meets": {
+    "lw_catch": {
+      "figure": "W-LW",
+      "local_mm": [
+        19.43,
+        -12.72
+      ],
+      "search_s": [
+        0.3,
+        1.0
+      ],
+      "guess": {
+        "t": 0.654,
+        "arc_mm": 106.36,
+        "puck_along_slot_mm_s": 267.9
+      },
+      "why": "the left wing receives the pass low on the shaft, as v2 (puck centre where v2's first touch had it)"
+    },
+    "lw_push": {
+      "figure": "W-LW",
+      "local_mm": [
+        17.12,
+        31.25
+      ],
+      "search_s": [
+        {
+          "meet": "lw_catch",
+          "offset": 0.1
+        },
+        1.5
+      ],
+      "guess": {
+        "t": 0.9,
+        "arc_mm": 191.5,
+        "puck_along_slot_mm_s": 235.0
+      },
+      "why": "the left wing, chasing the puck up its slot, reaches it at 191.5 mm of the slot (as v2 at 0.9 s): the meet is when the puck is 17 mm ahead of the blade's pivot line; where it sits along the blade follows from the board",
+      "after_touch": "boards",
+      "arc_mm": 191.5,
+      "axis": "x"
+    },
+    "rw_shot": {
+      "figure": "W-RW",
+      "local_mm": [
+        -11.5,
+        42.94
+      ],
+      "search_s": [
+        {
+          "meet": "lw_push",
+          "offset": 0.4
+        },
+        2.3
+      ],
+      "guess": {
+        "t": 1.825,
+        "arc_mm": 99.0,
+        "puck_along_slot_mm_s": -657.1
+      },
+      "why": "the right wing, sliding down its slot ahead of the puck, is at 99 mm of the slot when the puck coming along the board is 11.5 mm behind the blade (as v2 at 1.825 s); where it meets the blade follows from the board",
+      "arc_mm": 90.0,
+      "axis": "x"
+    }
+  },
+  "controls": [
+    {
+      "figure": "W-RW",
+      "type": "aimed_push",
+      "start": {
+        "meet": "rw_shot",
+        "offset": 0.0
+      },
+      "face": "back",
+      "aim": {
+        "goal": "E",
+        "y_mm": 4.0
+      },
+      "speed_mm_s": 1100.0,
+      "why": "first-time backhand push: the right wing takes the puck on the back of the blade and steers it into the right side of the goal",
+      "release_tol_rel": 0.015,
+      "release_tol_mm_s": 10
+    }
+  ]
+}

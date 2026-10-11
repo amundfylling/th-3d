@@ -1,0 +1,1236 @@
+{
+ "move": "hjerpefinte",
+ "trace_id": "trace.hjerpefinte.v1",
+ "rule": "holds_up_to: largest change of one input (all smaller steps included) that keeps the outcome and the slide limits; null = the smallest step already misses. steps_holding / steps_scoring count every step (scoring = goal and contact sequence, ignoring the slide limits). Step sizes ASSUMED",
+ "margins": [
+  {
+   "input": "puck start x",
+   "unit": "mm",
+   "steps_tried": [
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0
+   ],
+   "up": {
+    "holds_up_to": 3.0,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "down": {
+    "holds_up_to": 3.0,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "steps_holding": "12/12",
+   "steps_scoring": "12/12",
+   "steps": [
+    {
+     "change": -3.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.52,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.7
+    },
+    {
+     "change": -1.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.65,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -0.3,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.69,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -0.1,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.7,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -0.03,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -0.01,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.01,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.03,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.1,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.3,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.73,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 55.7
+    },
+    {
+     "change": 1.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.38,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 169.2
+    },
+    {
+     "change": 3.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -15.27,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 336.6
+    }
+   ]
+  },
+  {
+   "input": "puck start y",
+   "unit": "mm",
+   "steps_tried": [
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0
+   ],
+   "up": {
+    "holds_up_to": 3.0,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "down": {
+    "holds_up_to": 3.0,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "steps_holding": "12/12",
+   "steps_scoring": "12/12",
+   "steps": [
+    {
+     "change": -3.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -21.87,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 34.8
+    },
+    {
+     "change": -1.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -19.81,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 33.5
+    },
+    {
+     "change": -0.3,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -19.06,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 33.0
+    },
+    {
+     "change": -0.1,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.84,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.9
+    },
+    {
+     "change": -0.03,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.74,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -0.01,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.01,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.7,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.03,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.67,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.1,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.6,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.3,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.36,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.6
+    },
+    {
+     "change": 1.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -17.77,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.2
+    },
+    {
+     "change": 3.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -24.54,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 30.5
+    }
+   ]
+  },
+  {
+   "input": "figure footprint scale",
+   "unit": "%",
+   "steps_tried": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    5.0
+   ],
+   "up": {
+    "holds_up_to": 5.0,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "down": {
+    "holds_up_to": 5.0,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "steps_holding": "10/10",
+   "steps_scoring": "10/10",
+   "steps": [
+    {
+     "change": -5.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.72,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -2.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -1.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -0.5,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.7,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": -0.25,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.7,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.25,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 0.5,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 1.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 2.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 5.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.7,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    }
+   ]
+  },
+  {
+   "input": "ice friction",
+   "unit": "%",
+   "steps_tried": [
+    5.0,
+    10.0,
+    25.0,
+    50.0
+   ],
+   "up": {
+    "holds_up_to": 50.0,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "down": {
+    "holds_up_to": 50.0,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "steps_holding": "8/8",
+   "steps_scoring": "8/8",
+   "steps": [
+    {
+     "change": -50.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.87,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.3
+    },
+    {
+     "change": -25.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.84,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.6
+    },
+    {
+     "change": -10.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.77,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.7
+    },
+    {
+     "change": -5.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.75,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.8
+    },
+    {
+     "change": 5.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.65,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.9
+    },
+    {
+     "change": 10.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.63,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 32.9
+    },
+    {
+     "change": 25.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.73,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 33.1
+    },
+    {
+     "change": 50.0,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.65,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 33.3
+    }
+   ]
+  },
+  {
+   "input": "figure restitution",
+   "unit": "(absolute, nominal 0.5)",
+   "steps_tried": [
+    0.05,
+    0.1,
+    0.2,
+    0.3
+   ],
+   "up": {
+    "holds_up_to": 0.3,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "down": {
+    "holds_up_to": 0.3,
+    "first_miss": null,
+    "first_miss_why": null
+   },
+   "steps_holding": "8/8",
+   "steps_scoring": "8/8",
+   "steps": [
+    {
+     "change": -0.3,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.82,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 28.1
+    },
+    {
+     "change": -0.2,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.83,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 35.7
+    },
+    {
+     "change": -0.1,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.72,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 34.0
+    },
+    {
+     "change": -0.05,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.71,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 33.7
+    },
+    {
+     "change": 0.05,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.72,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 30.3
+    },
+    {
+     "change": 0.1,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.68,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 29.8
+    },
+    {
+     "change": 0.2,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.61,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 29.5
+    },
+    {
+     "change": 0.3,
+     "scores": true,
+     "slide_ok": true,
+     "goal_y_mm": -18.77,
+     "peak_wall_impact_mm_s": 0.0,
+     "peak_figure_impact_mm_s": 28.2
+    }
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "variant": "puck start x +0.01 mm",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x +0.03 mm",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x +0.1 mm",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x +0.3 mm",
+   "goal": "E",
+   "goal_y_mm": -18.73,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 55.7,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x +1 mm",
+   "goal": "E",
+   "goal_y_mm": -18.38,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 169.2,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x +3 mm",
+   "goal": "E",
+   "goal_y_mm": -15.27,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 336.6,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x -0.01 mm",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x -0.03 mm",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x -0.1 mm",
+   "goal": "E",
+   "goal_y_mm": -18.7,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x -0.3 mm",
+   "goal": "E",
+   "goal_y_mm": -18.69,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x -1 mm",
+   "goal": "E",
+   "goal_y_mm": -18.65,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start x -3 mm",
+   "goal": "E",
+   "goal_y_mm": -18.52,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.7,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y +0.01 mm",
+   "goal": "E",
+   "goal_y_mm": -18.7,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y +0.03 mm",
+   "goal": "E",
+   "goal_y_mm": -18.67,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y +0.1 mm",
+   "goal": "E",
+   "goal_y_mm": -18.6,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y +0.3 mm",
+   "goal": "E",
+   "goal_y_mm": -18.36,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.6,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y +1 mm",
+   "goal": "E",
+   "goal_y_mm": -17.77,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.2,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y +3 mm",
+   "goal": "E",
+   "goal_y_mm": -24.54,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 30.5,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y -0.01 mm",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y -0.03 mm",
+   "goal": "E",
+   "goal_y_mm": -18.74,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y -0.1 mm",
+   "goal": "E",
+   "goal_y_mm": -18.84,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.9,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y -0.3 mm",
+   "goal": "E",
+   "goal_y_mm": -19.06,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 33.0,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y -1 mm",
+   "goal": "E",
+   "goal_y_mm": -19.81,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 33.5,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start y -3 mm",
+   "goal": "E",
+   "goal_y_mm": -21.87,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 34.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale +0.25 %",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale +0.5 %",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale +1 %",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale +2 %",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale +5 %",
+   "goal": "E",
+   "goal_y_mm": -18.7,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale -0.25 %",
+   "goal": "E",
+   "goal_y_mm": -18.7,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale -0.5 %",
+   "goal": "E",
+   "goal_y_mm": -18.7,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale -1 %",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale -2 %",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint scale -5 %",
+   "goal": "E",
+   "goal_y_mm": -18.72,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction +5 %",
+   "goal": "E",
+   "goal_y_mm": -18.65,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.9,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction +10 %",
+   "goal": "E",
+   "goal_y_mm": -18.63,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.9,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction +25 %",
+   "goal": "E",
+   "goal_y_mm": -18.73,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 33.1,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction +50 %",
+   "goal": "E",
+   "goal_y_mm": -18.65,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 33.3,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction -5 %",
+   "goal": "E",
+   "goal_y_mm": -18.75,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction -10 %",
+   "goal": "E",
+   "goal_y_mm": -18.77,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.7,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction -25 %",
+   "goal": "E",
+   "goal_y_mm": -18.84,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.6,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction -50 %",
+   "goal": "E",
+   "goal_y_mm": -18.87,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 32.3,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure restitution +0.05 (absolute, nominal 0.5)",
+   "goal": "E",
+   "goal_y_mm": -18.72,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 30.3,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure restitution +0.1 (absolute, nominal 0.5)",
+   "goal": "E",
+   "goal_y_mm": -18.68,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 29.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure restitution +0.2 (absolute, nominal 0.5)",
+   "goal": "E",
+   "goal_y_mm": -18.61,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 29.5,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure restitution +0.3 (absolute, nominal 0.5)",
+   "goal": "E",
+   "goal_y_mm": -18.77,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 28.2,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure restitution -0.05 (absolute, nominal 0.5)",
+   "goal": "E",
+   "goal_y_mm": -18.71,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 33.7,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure restitution -0.1 (absolute, nominal 0.5)",
+   "goal": "E",
+   "goal_y_mm": -18.72,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 34.0,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure restitution -0.2 (absolute, nominal 0.5)",
+   "goal": "E",
+   "goal_y_mm": -18.83,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 35.7,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure restitution -0.3 (absolute, nominal 0.5)",
+   "goal": "E",
+   "goal_y_mm": -18.82,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 28.1,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  }
+ ],
+ "move_file_sha256": "b65a2ef25476bf5104dfd0da0af0af2ff7c7bbc22369627b362578e03fea8853",
+ "canonical": true
+}

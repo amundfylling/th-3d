@@ -1,0 +1,217 @@
+{
+ "move": "invers-kryssar-velodrom-v3",
+ "trace_id": "trace.invers-kryssar-velodrom.v3",
+ "rule": "the move must keep its outcome (goal, contact sequence) and the slide limits under every variant; variant sizes ASSUMED",
+ "variants_passed": "7/11",
+ "robust": false,
+ "goal_y_spread_mm": [
+  -15.91,
+  2.54
+ ],
+ "rows": [
+  {
+   "variant": "nominal",
+   "goal": "E",
+   "goal_y_mm": -11.35,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 311.5,
+   "peak_wall_impact_mm_s": 255.8,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "geometry +0.001 mm (numerical conditioning)",
+   "goal": "E",
+   "goal_y_mm": -4.03,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 448.3,
+   "peak_wall_impact_mm_s": 255.8,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "geometry -0.001 mm (numerical conditioning)",
+   "goal": "E",
+   "goal_y_mm": -15.42,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 245.3,
+   "peak_wall_impact_mm_s": 255.7,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint 2% larger (mold scale)",
+   "goal": "E",
+   "goal_y_mm": -15.91,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 186.3,
+   "peak_wall_impact_mm_s": 271.7,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint 2% smaller (mold scale)",
+   "goal": "E",
+   "goal_y_mm": 0.68,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 404.6,
+   "peak_wall_impact_mm_s": 272.4,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start +0.2 mm x",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_post"
+   ],
+   "peak_figure_impact_mm_s": 337.1,
+   "peak_wall_impact_mm_s": 691.5,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "puck start +0.2 mm y",
+   "goal": "E",
+   "goal_y_mm": -14.72,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 429.0,
+   "peak_wall_impact_mm_s": 269.2,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction +25%",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [],
+   "error": "meet 'lw_push': the puck never reaches W-LW's point [np.float64(17.12), np.float64(31.25)] between 1.5000 and 1.5000 s",
+   "peak_figure_impact_mm_s": null,
+   "peak_wall_impact_mm_s": null,
+   "slide_ok": false,
+   "outcome_ok": false
+  },
+  {
+   "variant": "ice friction -25%",
+   "goal": "E",
+   "goal_y_mm": 2.54,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 177.0,
+   "peak_wall_impact_mm_s": 412.4,
+   "slide_ok": false,
+   "outcome_ok": true
+  },
+  {
+   "variant": "restitution 0.3",
+   "goal": "E",
+   "goal_y_mm": 1.58,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 165.1,
+   "peak_wall_impact_mm_s": 268.1,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "restitution 0.7",
+   "goal": null,
+   "goal_y_mm": null,
+   "sequence_as_expected": false,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-LW:stick/blade",
+    "boards",
+    "W-LW:stick/blade",
+    "boards",
+    "W-RW:stick/blade",
+    "goal_post"
+   ],
+   "peak_figure_impact_mm_s": 166.4,
+   "peak_wall_impact_mm_s": 646.8,
+   "slide_ok": false,
+   "outcome_ok": false
+  }
+ ],
+ "move_file_sha256": "b78f009ae3b1a5e19b118b5354d44f41dbdeb5d465b2f48e77613fec9691cad5",
+ "canonical": true
+}

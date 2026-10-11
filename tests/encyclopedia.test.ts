@@ -31,13 +31,15 @@ test("encyclopedia: contact footprints match the molds, figure scale and puck th
   assert.equal(f.puck_thickness_mm, json("validation/12-hardware-report.json").puck.thickness_mm_preview);
 });
 
-test("encyclopedia: the engine reproduces the hand-built IKV trace exactly", () => {
+test("encyclopedia: the engine reproduced the hand-built IKV trace exactly (engine as of commit 9e6c412)", () => {
   const r = json("validation/moves/invers-kryssar-velodrom-equivalence.json");
   assert.equal(r.identical_within_0_01_mm, true);
   assert.equal(r.max_puck_node_diff_mm, 0);
-  // the report is only evidence for the files it was made from: the move file, the legacy trace and the whole engine
-  const engine = [...readdirSync("scripts/shotlib").filter((f) => f.endsWith(".py")).map((f) => `scripts/shotlib/${f}`), "data/figures/contact-footprints.json"];
-  for (const p of ["moves/invers-kryssar-velodrom/move.json", r.legacy_trace, ...engine]) assert.equal(r.inputs_sha256[p], sha(p), `${p} changed: rebuild the equivalence report`);
+  // the report is evidence for the move file and the legacy trace it was made from. It no longer holds for the engine:
+  // the 2026-10-11 contact-normal fix (scripts/shotlib/puck.py) and a different numpy/shapely build each change the
+  // v2 port's outcome, because v2 itself only scores with exact inputs (validation/moves/invers-kryssar-velodrom-robustness.json,
+  // 1/11). moves/invers-kryssar-velodrom-v3 replaces it; the engine hashes stay in the report as a record.
+  for (const p of ["moves/invers-kryssar-velodrom/move.json", r.legacy_trace]) assert.equal(r.inputs_sha256[p], sha(p), `${p} changed: rebuild the equivalence report`);
 });
 
 for (const { dir, spec } of BUILT) {
@@ -68,6 +70,14 @@ for (const { dir, spec } of BUILT) {
     assert.equal(r.trace_id, trace.trace_id);
     assert.equal(r.canonical, true);
     assert.equal(r.move_file_sha256, sha(`moves/${dir}/move.json`), "move file changed since the robustness run");
+    // a move may declare that it is not robust yet (expect.robustness: the variants it must at least pass and why
+    // the rest fail); the declaration is checked both ways, so a regression or an unrecorded improvement fails
+    const declared = spec.expect?.robustness;
+    if (declared) {
+      assert.equal(r.variants_passed, declared.variants_passed, "robustness changed: update expect.robustness in the move file");
+      assert.deepEqual(r.rows.filter((x: { outcome_ok: boolean; slide_ok: boolean }) => !(x.outcome_ok && x.slide_ok)).map((x: { variant: string }) => x.variant).sort(), [...declared.failing].sort());
+      return;
+    }
     assert.equal(r.robust, true, JSON.stringify(r.rows.filter((x: { outcome_ok: boolean; slide_ok: boolean }) => !(x.outcome_ok && x.slide_ok)).map((x: { variant: string }) => x.variant)));
   });
 

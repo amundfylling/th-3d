@@ -13,7 +13,8 @@ stays proposed.
 | Move files | `moves/<id>/move.json` | A move is data: figure keyframes and moves, the puck's start, named contacts, expectations, the video story. |
 | Build command | `scripts/build-move.py` | Builds in about 7 s on any Python with numpy, shapely and pillow; saves only if every check passes. |
 | Contact footprints | `data/figures/contact-footprints.json` (`scripts/shotlib/export_footprints.py`) | The figure geometry the puck can touch, exported once from the molds. No Blender or mesh files needed to build a move; one place to update when the figures are measured. Records the hashes of the mold data, the mesh-building code, the scale and puck files and the generated meshes; the engine and tests refuse a stale file. |
-| Robustness check | `scripts/shotlib/robustness.py`, `--robustness` | Reruns the move with each uncertain input changed and reports whether the goal and contact sequence hold. |
+| Robustness check | `scripts/shotlib/robustness.py`, `--robustness`, `--margins` | Reruns the move with each uncertain input changed and reports whether the goal and contact sequence hold; `--margins` finds how far each input can change. |
+| Meets and controls | `scripts/shotlib/build.py` (`solve_meets`), `scripts/shotlib/control.py` | A figure meets the puck where it really is (solved from a run without it) and can steer a push tick by tick (section 4b). |
 | Generated video | `scripts/shotlib/presentation.py`, `--video-spec`; `remotion/EncyclopediaAnalysis.tsx`, `remotion/encyclopedia-registry.ts` | The analysis video (same template as the five hand-made ones) from a short `story` block: timeline, slow-motion rates, camera views, chapters and graphics are derived from the trace. Composition `move-<id>`. |
 | Index | `data/encyclopedia/index.json` (`scripts/encyclopedia-index.py`) | All 121 NTHF combinations with their stage (not started, move file, trace, video), a family (keyword heuristic), NM26 goal count and a suggested build order. |
 | Tests | `tests/encyclopedia.test.ts` | Every built move is tested automatically: checks, robustness, TypeScript playback equals the engine, video spec, registry. |
@@ -62,6 +63,17 @@ Changed shared files (small): `remotion/Root.tsx` (registers the `move-*` compos
 }
 ```
 
+Timing against the puck (2026-10-11, section 4b): a key time may be `{"meet": "<id>", "offset": s}`, a key arc
+`{"meet": "<id>"}` and a move's end speed `{"meet": "<id>", "puck_along_slot": true, "offset": mm/s}`; turns take the same
+times and `{"control_end": "<figure>"}` headings. The meets and controls are declared beside the figures:
+
+```jsonc
+ "meets": {"rw_shot": {"figure": "W-RW", "local_mm": [-11.5, 42.94], "arc_mm": 90.0, "axis": "x",   // where on the blade
+                       "search_s": [{"meet": "lw_push", "offset": 0.4}, 2.3], "guess": {"t": 1.85, "arc_mm": 90.0}}},
+ "controls": [{"figure": "W-RW", "type": "aimed_push", "start": {"meet": "rw_shot"}, "face": "back",
+               "aim": {"goal": "E", "y_mm": 4.0}, "speed_mm_s": 1100}]
+```
+
 Angles are degrees relative to the team's home heading, arcs mm along the slot, times s. Every keyframe carries its
 `why`, which the trace keeps as the keyframe source. `triggers` (start a figure's motion when the puck comes near a
 point, crosses a line or a contact starts or ends) are implemented but experimental; see section 5.
@@ -71,7 +83,10 @@ point, crosses a line or a contact starts or ends) are implemented but experimen
 **The engine reproduces the hand-built IKV trace exactly** (`moves/invers-kryssar-velodrom/move.json` is the port of
 `shots/invers-kryssar-velodrom/inputs.json`): 4,701 puck nodes, every figure keyframe, difference 0.0 mm
 (`validation/moves/invers-kryssar-velodrom-equivalence.json`). The saved IKV trace stays the one its own script writes;
-the port is only compared with it.
+the port is only compared with it. That comparison was made with the engine as of commit 9e6c412. Since 2026-10-11
+it no longer reproduces: the contact-normal fix (section 4b) changes the v2 port's outcome, and even before the fix a
+different numpy/shapely build in a fresh container moved the port's puck by 90 mm, because v2 only scores with exact
+inputs. The test now checks the report against the move file and the legacy trace only.
 
 **New move: Hjerpefinte** (centre, level 2; `moves/hjerpefinte/`). The centre stands at the front of its slot with its
 back to the goal, the puck resting on the blade to the right of the slot. A 70 ms counter-clockwise turn (181 → 205°)
@@ -100,6 +115,63 @@ with a 14 mm step pushes the puck from rest into the right corner (goal line at 
 - Single-contact moves from rest (Hjerpefinte) are robust. The shovels and Edwall moves sit in between: a carry and a
   pass to a waiting centre.
 
+## 4b. Moves that meet the puck where it really is (2026-10-11, PROPOSED)
+
+The engine no longer only plays figures on a fixed clock. Two tools let a figure react to where the puck actually is;
+both run while the trace is built, and the saved trace is still plain keyframes that Remotion plays (rule 7).
+
+- **Meets** (`scripts/shotlib/build.py` `solve_meets`, `motion.py`). A meet names a point on a figure's blade and asks
+  when the puck reaches it. The engine runs the puck without that figure (a "ghost" run), finds where the puck crosses
+  the figure's slot position (or a fixed slot position, `arc_mm`), and sets the figure's keys from that time, arc and
+  the puck's speed along the slot. It repeats until the solved meet stops moving (at most 6 rounds). Every later key
+  can be relative to a meet, so the chain re-times itself when the puck is early or late.
+- **Controls** (`scripts/shotlib/control.py`, type `aimed_push`). From its start time the figure is steered tick by
+  tick (0.5 ms): it reads the puck's position and velocity, and moves and turns so the blade pushes the puck towards
+  the aim at the target speed, closing in at most 5-60 mm/s (a push, not a strike). It lets go when the puck is within
+  5% of the target velocity, when what is left could only be removed by pushing across or against the aim, or when no
+  reachable blade pose would help; then it slows down along the slot and hands the figure back to the move file's
+  keys. Keys are committed two ticks ahead and replayed with a plain figure afterwards; the build fails
+  (`MeetError`) if the replay differs from the steered run.
+- **Engine fix** (`scripts/shotlib/puck.py`): when the puck already touched a figure exactly (zero distance to the
+  contact ring), the contact normal fell back to "pivot to puck", which can point far from the real surface normal
+  and gave false kicks. It now uses the nearest point of the figure outline. Hjerpefinte rebuilds identically.
+- **Margins** (`scripts/build-move.py <id> --margins`, `validation/moves/<id>-margins.json`): each uncertain input is
+  changed in steps (puck start x and y 0.01-3 mm, footprint scale 0.25-5%, ice friction 5-50%, restitution ±0.05-0.3)
+  both ways. The report gives the largest change for which that step and all smaller ones hold, and how many steps
+  hold and how many score at all. The step sizes are ASSUMED.
+
+**IKV v3** (`moves/invers-kryssar-velodrom-v3/`, trace `data/traces/invers-kryssar-velodrom-v3.trace.json`): the v2
+move with its catch, corner push and shot as meets, and the right wing's first-time backhand as an aimed push at the
+far side of the goal (it meets the puck at arc 90 mm, 9 mm nearer the boards than v2's shot).
+- Checks on the saved trace: no overlap, slide check passed, no unexplained motion change; it scores in goal E.
+- Robust in **7 of 11** variants (v2: 1 of 11): the ±0.001 mm geometry, 2% larger and smaller figures, +0.2 mm puck y
+  and restitution 0.3 now all score. Still failing: puck +0.2 mm x and restitution 0.7 (the puck reaches the shot
+  but hits the post), ice friction +25% (no corner push) and −25% (scores, but a board impact of 412 mm/s).
+  The move file records this (`expect.robustness`) and the test checks it both ways.
+- Margin sweep (`validation/moves/invers-kryssar-velodrom-v3-margins.json`), steps that score / steps that also keep
+  the slide limits: puck start x 11/12 and 10/12 (−3 to +3 mm), puck start y 11/12 and 8/12, figure scale 8/10 and
+  8/10 (±0.25-5%), ice friction 6/8 and 2/8 (±5-50%), restitution 7/8 and 6/8 (±0.05-0.3). It scores with the puck
+  anywhere from 1 mm left to 3 mm right of its start and up to ±3 mm along y, and with figures 1% smaller to 2% larger,
+  but the steps are not monotone: single changes of 0.03 mm can still miss or break a board limit. The contiguous
+  margins ("all smaller steps hold") stay tiny for that reason (0.01 mm for the puck's y).
+
+**Hjerpefinte** under the new engine: unchanged trace (only the recorded git commit differs).
+Robust in 11 of 11 variants; in the margin sweep every step holds (puck ±3 mm both ways, figure scale ±5%, ice
+friction ±50%, restitution ±0.3).
+
+**What still breaks IKV, and the next step.** The right wing's shot now absorbs most of the error: it scores whenever
+the puck reaches it with a plausible line. What is left is the left wing, which is timed (meets) but not steered:
+- with more ice friction the caught puck stops before it reaches the board, so the corner push never meets it;
+- with less friction, or a slightly different catch, the puck hits the board after the catch at 300-415 mm/s, above
+  the assumed 300 mm/s board limit;
+- after the corner push the puck can leave the corner with a small sideways speed (−10 mm/s nominal, −48 mm/s with the
+  puck 0.2 mm further right), drifts a few mm off the end board and meets the next corner curve at 360-650 mm/s
+  instead of sliding into it.
+Steering the left wing's catch and corner push with the same `aimed_push` (tried: a chase push straight after the
+catch) is the obvious next step; the first attempt sent the puck into the corner board at 543-693 mm/s because the
+target line must follow the board, not cut the corner. A target that is a path along the boards, not a point, is
+needed.
+
 ## 5. What makes future moves cheap, fast and accurate
 
 **Cheap and fast (done):** a move is a data file; building, checking and the review sheet take seconds; the video spec
@@ -109,7 +181,7 @@ contacts by hand, and the render (about 4 s per 1080p frame on this CPU; an anal
 **Accurate: three steps, in order of value.**
 1. **Robustness as a gate (done as a report; make it a requirement).** A move whose outcome depends on 0.001 mm is not
    an explanation of how the move works. Proposal: a move is saved only if it is robust, unless the user accepts it.
-2. **Solved receptions instead of clocked ones (next).** For any contact with a moving puck (catch, first-time shot,
+2. **Solved receptions instead of clocked ones (started 2026-10-11, section 4b: meets and aimed pushes).** For any contact with a moving puck (catch, first-time shot,
    push after a board run), solve the receiving figure's slot position and heading so its blade meets the puck where
    the move file says (a point on the blade, a give-way speed), as iteration 22 did for the Shovel's foot drag. The
    chain then cannot drift: each contact starts from where the puck really is. This replaces hand-tuned timings, which
@@ -138,6 +210,7 @@ Lindahl-innspill, Sørenfinte) and the level-3 ones (Direkteskudd, Lillstøvel, 
 
 1. Accept the Hjerpefinte trace (its reading is approved), or correct how far the goalie leans.
 2. Should robustness be a hard gate for saving a move?
-3. Should IKV v2 be redesigned with solved receptions, or kept as it is with its fragility noted?
+3. IKV v3 (solved receptions, steered shot) is proposed beside v2. Should the next step steer the left wing too
+   (section 4b), and should v3 replace v2 in the video once it holds?
 4. The "Slide or bounce" limits and the push contact model are still assumptions (CLAUDE.md).
 5. The rotation-arrow graphic in the generated video uses default angles; per-move tuning may be needed for some moves.
