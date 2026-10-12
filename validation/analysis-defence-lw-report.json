@@ -25,9 +25,12 @@
   "sha256": "a9c6f526feed72319b87fb5843fe340045440107118eab04a6f448cde093fffa",
   "composition_files": [
    "remotion/DefenceAnalysis.tsx",
-   "remotion/AnalysisVideo.tsx"
+   "remotion/AnalysisVideo.tsx",
+   "remotion/SceneLayer.tsx",
+   "remotion/ShotScene.tsx",
+   "remotion/theme.ts"
   ],
-  "composition_sha256": "5a6fa2eccd3a2178eb6537ad917caf18082863aca61e271946d3f67a3afebeee"
+  "composition_sha256": "8d62626799dbbeab8acd3bee7c884747d0bda6f1dccbb5d7df35ce454872354e"
  },
  "output": {
   "path": "validation/analysis-defence-lw.mp4",
@@ -71,5 +74,16 @@
   "camera_frames_logged": 1061,
   "camera_max_diff_vs_track": 0.0049
  },
- "render_seconds": 4364
+ "render_seconds": 4364,
+ "composition_refactor": {
+  "date": "2026-10-12",
+  "change": "shared renderer split for the video workflow (docs/video-workflow.md): remotion/SceneLayer.tsx (scene layer, camera rig) out of AnalysisVideo.tsx, ShotScene.tsx clones the cached GLTF scene per mount and resets the figures every frame (no pose leak between compositions), remotion/theme.ts (overlay theme, default classic), optional frameMap/sceneSrc props (scene cache)",
+  "previous_composition_files": [
+   "remotion/DefenceAnalysis.tsx",
+   "remotion/AnalysisVideo.tsx"
+  ],
+  "previous_composition_sha256": "5a6fa2eccd3a2178eb6537ad917caf18082863aca61e271946d3f67a3afebeee",
+  "verification": "frames 42, 265, 477, 636, 848, 1029 rendered at scale 0.5 with the code before this change (commit 0b4caa2) and after it: PNG bytes identical for all six",
+  "video_rerendered": false
+ }
 }

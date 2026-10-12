@@ -326,8 +326,8 @@ function writeExportReport(L: Loaded, file: string, comp: { width: number; heigh
     },
     checks: {
       // frames whose scene was drawn by WebGL in this render and logged its state (cached frames are counted in scene_cache)
-      frames_logged: comp.durationInFrames - (mapping ? mapping.checked : 0), frames_differing_from_pure: live.differing, max_readback_diff: live.readback,
-      camera_frames_logged: comp.durationInFrames - (mapping ? mapping.checked : 0), camera_max_diff_vs_track: live.camWorst,
+      frames_logged: comp.durationInFrames - (mapping ? mapping.checked : 0), frames_differing_from_pure: live.differing, max_readback_diff: mapping && mapping.checked === comp.durationInFrames ? null : live.readback,
+      camera_frames_logged: comp.durationInFrames - (mapping ? mapping.checked : 0), camera_max_diff_vs_track: mapping && mapping.checked === comp.durationInFrames ? null : live.camWorst,
       scene_cache: mapping ? { ...mapping, stats: row.cache } : null,
     },
     render: { mode: USE_CACHE ? "cached" : "direct", concurrency: CONCURRENCY, scale: 1, browser: env.browserExecutable, gl_flag: env.gl, webgl_renderers: row.renderers, probe_renderer: probe },
@@ -407,6 +407,7 @@ async function cachedSources(L: Loaded, frames: number[], scale: number) {
 function verifyMapping(L: Loaded, sink: ReturnType<typeof logSink>, frames: number[], src: Awaited<ReturnType<typeof cachedSources>>) {
   const errors: string[] = [];
   const entries = new Set<string>();
+  let readback = 0, camWorst = 0;
   for (const f of frames) {
     const shown = sink.cached.get(f);
     if (shown === undefined) { errors.push(`frame ${f}: no cached-scene log`); continue; }
@@ -417,9 +418,12 @@ function verifyMapping(L: Loaded, sink: ReturnType<typeof logSink>, frames: numb
     const { af, s } = pure(L, f);
     if (JSON.stringify(e.state) !== JSON.stringify(sceneState(s, af.camera))) errors.push(`frame ${f}: entry state differs from the frame's pure state`);
     entries.add(k);
+    readback = Math.max(readback, e.verification.readback_max_diff);
+    camWorst = Math.max(camWorst, e.verification.camera_max_diff_mm);
   }
   if (sink.states.size) errors.push(`${sink.states.size} frames drew WebGL during a cached composite`);
-  return { checked: frames.length, entries_used: entries.size, errors };
+  // the worst differences recorded when the reused entries were rendered (their own scene renders, not new readbacks)
+  return { checked: frames.length, entries_used: entries.size, errors, entries_max_readback_diff: readback, entries_camera_max_diff_mm: camWorst };
 }
 
 // ---------------------------------------------------------------- scene isolation probe

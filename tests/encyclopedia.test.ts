@@ -109,7 +109,11 @@ for (const { dir, spec } of BUILT) {
       // every frame verified: drawn live and logged, or composited over a verified scene-cache image of its own state
       const sc = r.checks.scene_cache;
       assert.equal(r.checks.frames_logged + (sc ? sc.checked : 0), A.durationInFrames);
-      if (sc) assert.deepEqual(sc.errors, []);
+      if (sc) {
+        assert.deepEqual(sc.errors, []);
+        // the reused images' own scene renders matched the pure evaluation and the camera track
+        assert.ok(sc.entries_max_readback_diff <= 1e-9 && sc.entries_camera_max_diff_mm <= 0.02);
+      }
     });
   }
 }
