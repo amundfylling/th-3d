@@ -412,8 +412,8 @@
   skater and fits the turntable frames much better than the parametric mold (mean IoU 0.932 / 0.922 / 0.904 vs
   0.819 / 0.807 / 0.805, fitting / former held-out / regression views). New assets `assets/figures/skater_stl_{SWE,FIN}.glb`
   beside the parametric ones (body = STL, colours voted from the turntable frames, traced wire stick and blade kept in
-  mm). The overhead fit with this shape makes the skater **57.4 mm** tall (parametric 51.1 mm; STL file 56.85 mm; catalog
-  approx. 57 mm): needs a ruler measurement. Contacts, footprints, traces and videos NOT switched (footprint IoU 0.61,
+  mm). Size: the STL file's own **56.85 mm** (user decision 2026-10-12; overhead fit with this shape 57.4 mm, parametric
+  51.1 mm, catalog approx. 57 mm). Contacts, footprints, traces and videos NOT switched (footprint IoU 0.61,
   up to 3.6 mm apart: switching means re-running every trace's checks). `npm run players:stl`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.

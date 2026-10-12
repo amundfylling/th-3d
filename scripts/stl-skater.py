@@ -173,14 +173,16 @@ def align():
 
 
 def finish():
-    """Scale from the overhead fit of the STL body (validation/players/stl/overhead-fit.json), the wire stick with the traced
-    blade kept in mm (data/geometry.json contact blade) and a runner under the STL's right boot; rewrites the fitting mesh."""
+    """Scale = the STL file's own size (user decision 2026-10-12), the wire stick with the traced blade kept in mm
+    (data/geometry.json contact blade) and a runner under the STL's right boot; rewrites the fitting mesh. The overhead fit
+    of the STL body (validation/players/stl/overhead-fit.json) is kept as a check."""
     spec = load_spec()
     molds = json.loads(MOLDS_JSON.read_text())
     g = json.loads((REPO / "data" / "geometry.json").read_text())
     ov = json.loads((VAL / "overhead-fit.json").read_text())
     k_old = json.loads((REPO / "validation" / "players" / "overhead-fit.json").read_text())["scale_k_mm_per_mold_unit"]
-    k = ov["scale_k_mm_per_mold_unit"]
+    k_ov = ov["scale_k_mm_per_mold_unit"]
+    k = round(1.0 / spec["alignment"]["scale_mold_units_per_file_mm"], 5)  # file mm = asset mm
     a = next(x for x in g["figure_assets"] if x["kind"] == "skater")
     blade_mm = next(c for c in a["contact_shapes"] if c["kind"] == "blade")["geometry"]["points_mm"]
     heel, toe = np.array(blade_mm[0][:2]), np.array(blade_mm[1][:2])
@@ -209,12 +211,13 @@ def finish():
                       "underside (vertices within 0.6 units of its lowest point, principal axis). The STL boot floats above the ice by about "
                       "the runner height."}
     spec["scale"] = {"k_mm_per_mold_unit": k, "status": "traced",
-                     "source": "validation/players/stl/overhead-fit.json: scripts/fit-figure-overhead.py with the STL body (4 Sweden skaters, "
-                               "official overhead at the ASSUMED preview scale)",
+                     "source": "user decision 2026-10-12 ('Use the measurement from thingiverse, 57 mm'): the STL file's own size, file mm = asset mm",
                      "body_height_mm": round(float(P[:, 2].max() * k), 2), "file_scale": round(spec["alignment"]["scale_mold_units_per_file_mm"] * k, 4),
-                     "note": f"The same overhead fit gives {k_old} with the parametric mold (skater 51.1 mm). With the STL shape it gives {k}: the body "
-                             f"is {P[:, 2].max() * k:.1f} mm tall, the STL file's own size x {spec['alignment']['scale_mold_units_per_file_mm'] * k:.3f}; "
-                             "the catalog says approx. 57 mm. No ruler measurement of a skater yet."}
+                     "uncertainty_mm": None,
+                     "checks": {"overhead_fit_k": k_ov, "overhead_fit_body_height_mm": round(float(P[:, 2].max() * k_ov), 2),
+                                "parametric_overhead_k": k_old, "catalog_height": "approx. 57 mm (datum unspecified)"},
+                     "note": "Not a ruler measurement of the user's skater. The overhead fit with the STL shape (ASSUMED preview scale) gives "
+                             f"{P[:, 2].max() * k_ov:.1f} mm, within 1% of the file; the parametric mold gave 51.1 mm."}
     spec["stick"], spec["runner"] = stick, runner
     SPEC_JSON.write_text(json.dumps(spec, indent=1) + "\n")
     write_npz(spec, stick)

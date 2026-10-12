@@ -1,7 +1,7 @@
 {
   "status": "PROPOSED (beside the parametric skater; contacts, footprints and traces unchanged)",
-  "scale_k_mm_per_mold_unit": 1.2027,
-  "scale_source": "validation/players/stl/overhead-fit.json: scripts/fit-figure-overhead.py with the STL body (4 Sweden skaters, official overhead at the ASSUMED preview scale)",
+  "scale_k_mm_per_mold_unit": 1.19154,
+  "scale_source": "user decision 2026-10-12 ('Use the measurement from thingiverse, 57 mm'): the STL file's own size, file mm = asset mm",
   "mesh_source": {
     "reference_id": "thingiverse_6898521_stiga_hockey_player",
     "file": "references/models/thingiverse-6898521/STIGA HOCKEY PLAYER - 6898521.zip",
@@ -13,17 +13,17 @@
   },
   "assets": {
     "skater_stl_SWE": {
-      "height_mm": 57.38,
+      "height_mm": 56.85,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
-        -15.6,
-        18.9
+        -15.5,
+        18.7
       ],
       "footprint_y_mm": [
-        -20.2,
+        -20.0,
         43.5
       ],
-      "socket_bottom_diameter_mm": 13.61,
+      "socket_bottom_diameter_mm": 13.48,
       "blade_heel_mm": [
         3.24,
         22.71
@@ -40,17 +40,17 @@
       "number_on_asset_decal": "21"
     },
     "skater_stl_FIN": {
-      "height_mm": 57.38,
+      "height_mm": 56.85,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
-        -15.6,
-        18.9
+        -15.5,
+        18.7
       ],
       "footprint_y_mm": [
-        -20.2,
+        -20.0,
         43.5
       ],
-      "socket_bottom_diameter_mm": 13.61,
+      "socket_bottom_diameter_mm": 13.48,
       "blade_heel_mm": [
         3.24,
         22.71

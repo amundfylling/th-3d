@@ -28,13 +28,12 @@ back) and fits every turntable view better; the gain is largest on the side view
 before. Main artifacts: `validation/players/stl/figures-vs-photos.png` (camera-matched Cycles renders beside the photos),
 `validation/players/stl/figures-views.png` (rows: parametric Sweden, STL Sweden, STL Finland).
 
-## Size (open question for the user)
+## Size (user decision 2026-10-12)
 
-The overhead fit, rerun with the STL shape, gives k = 1.2027 mm per mold unit: the skater is **57.4 mm** tall (ice to
-helmet top), against 51.1 mm for the parametric mold with the same procedure. Three things agree on about 57 mm: this fit,
-the STL file's own size (56.85 mm; the asset is the file x 1.009) and the catalog ("approx. 57 mm"). The overhead itself is
-at the ASSUMED preview scale, and the measured goalie is 54 mm. A ruler measurement of one skater settles it (height ice
-to helmet top, base diameter, blade heel distance from the socket axis).
+The user chose the STL file's own size: **56.85 mm** tall (ice to helmet top), file mm = asset mm (k = 1.19154 mm per
+mold unit). It is not a ruler measurement of the user's skater. Checks: the overhead fit rerun with the STL shape gives
+57.4 mm (k 1.2027, ASSUMED preview scale; the same fit gave 51.1 mm with the parametric mold), the catalog says approx.
+57 mm; the measured goalie is 54 mm.
 
 ## Method (`npm run players:stl`)
 
@@ -45,7 +44,7 @@ to helmet top, base diameter, blade heel distance from the socket axis).
 2. `scripts/fit-figure-views.py skater --mesh out/figures/skater-stl.npz --out validation/players/stl` (fitting,
    `--heldout`, `--independent`), and `scripts/fit-figure-overhead.py --mesh-dir <dir with the STL npz as skater.npz>
    --out validation/players/stl` (new `--out` option; default unchanged).
-3. `scripts/stl-skater.py finish`: scale k from that overhead fit; the wire stick keeps the traced blade in **mm**
+3. `scripts/stl-skater.py finish`: scale = the STL file's size (the overhead fit is kept as a check); the wire stick keeps the traced blade in **mm**
    (heel (3.24, 22.71), toe (2.38, 43.47), height 3.24 mm, the same as the contact blade in data/geometry.json; the overhead
    rerun reads heel 22.5 mm lateral, blade 19.5 mm), the shaft top stays in the upper glove; a metal runner under the
    STL's right boot (the boot floats about one runner height above the ice).
@@ -68,6 +67,6 @@ to helmet top, base diameter, blade heel distance from the socket axis).
 ## Switching to it (not done)
 
 The footprint below the puck top changes (IoU 0.61 with the parametric one, up to 3.6 mm apart; the STL body is larger
-at the new scale). Switching the assets therefore means: regenerate `data/figures/contact-footprints.json` and the
+at its size). Switching the assets therefore means: regenerate `data/figures/contact-footprints.json` and the
 skater contact shapes, then re-run every saved trace's contact and slide checks (Shovel's W-RW foot drag is solved
-against the foot outline and will move). Do that after the user has measured a skater and approved the look.
+against the foot outline and will move). Not started: it waits on the user's go-ahead (the look and the re-run of the shots).
