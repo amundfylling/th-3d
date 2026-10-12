@@ -1,21 +1,21 @@
 {
  "trace_id": "trace.nacka.v1",
  "sampling_s": 0.00025,
- "max_puck_step_mm": 0.183,
+ "max_puck_step_mm": 0.177,
  "penetration_tolerance_mm": 0.1,
  "contact_rule": "CLAUDE.md 'Contact physics': the puck may touch figures, boards and goal but never overlap them (every 0.25 ms, whole trace, all 12 figures, no phase exemptions)",
  "min_clearance_by_obstacle_and_phase": [
   {
    "obstacle": "E-G",
    "phase": "shot_blade",
-   "min_clearance_mm": 23.46,
+   "min_clearance_mm": 24.581,
    "t_at_min": 4.3505
   },
   {
    "obstacle": "E-G",
    "phase": "shot_free",
-   "min_clearance_mm": 0.252,
-   "t_at_min": 4.398
+   "min_clearance_mm": 0.155,
+   "t_at_min": 4.40175
   },
   {
    "obstacle": "W-C",
@@ -33,43 +33,43 @@
    "obstacle": "W-C",
    "phase": "shot_blade",
    "min_clearance_mm": 0.048,
-   "t_at_min": 4.3345
+   "t_at_min": 4.336
   },
   {
    "obstacle": "W-C",
    "phase": "shot_free",
-   "min_clearance_mm": 0.55,
+   "min_clearance_mm": 0.537,
    "t_at_min": 4.35075
   },
   {
    "obstacle": "W-C",
    "phase": "slide",
    "min_clearance_mm": 0.05,
-   "t_at_min": 4.08325
+   "t_at_min": 4.335
   },
   {
    "obstacle": "W-LW",
    "phase": "in_goal",
-   "min_clearance_mm": 28.172,
-   "t_at_min": 4.53225
+   "min_clearance_mm": 28.179,
+   "t_at_min": 4.54275
   },
   {
    "obstacle": "W-LW",
    "phase": "shot_free",
-   "min_clearance_mm": 28.172,
-   "t_at_min": 4.532
+   "min_clearance_mm": 28.179,
+   "t_at_min": 4.5425
   },
   {
    "obstacle": "goal_post_neg_y",
    "phase": "in_goal",
-   "min_clearance_mm": 26.902,
-   "t_at_min": 4.8
+   "min_clearance_mm": 26.915,
+   "t_at_min": 4.54275
   },
   {
    "obstacle": "goal_post_neg_y",
    "phase": "shot_free",
-   "min_clearance_mm": 0.563,
-   "t_at_min": 4.46725
+   "min_clearance_mm": 0.628,
+   "t_at_min": 4.47425
   }
  ],
  "unexpected_penetrations": [],
@@ -122,45 +122,50 @@
   },
   {
    "obstacle": "W-C:stick/blade",
-   "t0": 4.333,
-   "t1": 4.3355
+   "t0": 4.33475,
+   "t1": 4.33525
   },
   {
    "obstacle": "W-C:stick/blade",
-   "t0": 4.3375,
-   "t1": 4.3385
+   "t0": 4.33625,
+   "t1": 4.337
   },
   {
    "obstacle": "W-C:stick/blade",
-   "t0": 4.33975,
-   "t1": 4.34
+   "t0": 4.33875,
+   "t1": 4.339
   },
   {
    "obstacle": "W-C:stick/blade",
-   "t0": 4.3425,
-   "t1": 4.3425
+   "t0": 4.3415,
+   "t1": 4.34175
   },
   {
    "obstacle": "W-C:stick/blade",
-   "t0": 4.3435,
-   "t1": 4.34375
+   "t0": 4.3455,
+   "t1": 4.3455
   },
   {
    "obstacle": "W-C:stick/blade",
    "t0": 4.34675,
+   "t1": 4.34675
+  },
+  {
+   "obstacle": "W-C:stick/blade",
+   "t0": 4.34825,
    "t1": 4.35
   },
   {
    "obstacle": "goal_net",
-   "t0": 4.532,
-   "t1": 4.532
+   "t0": 4.5425,
+   "t1": 4.5425
   }
  ],
  "unexplained_velocity_changes": [],
  "unexplained_count": 0,
  "goal_line": {
   "x_mm": 286.79,
-  "crossing_y_mm": -28.18,
+  "crossing_y_mm": -28.11,
   "inside_mouth_window_y_mm": [
    -28.7,
    29.8
@@ -172,10 +177,10 @@
    -21.5
   ],
   "pass_length_mm": 33.2,
-  "pass_direction_deg": -40.29,
+  "pass_direction_deg": -40.32,
   "illustration_pass_length_mm": 44.0,
   "illustration_pass_direction_deg": -68.8,
-  "shot_direction_deg": -0.95,
+  "shot_direction_deg": -0.99,
   "illustration_shot_direction_deg": 5.5
  }
 }

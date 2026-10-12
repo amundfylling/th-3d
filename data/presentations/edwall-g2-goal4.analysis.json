@@ -10,39 +10,39 @@
   {
    "id": "intro",
    "kind": "hold",
-   "at": 0.267,
+   "at": 0.295,
    "frames": 45
   },
   {
    "id": "full",
    "kind": "play",
-   "from": 0.267,
-   "to": 1.345,
+   "from": 0.295,
+   "to": 1.35,
    "rate": 1
   },
   {
    "id": "goal_hold",
    "kind": "hold",
-   "at": 1.345,
+   "at": 1.35,
    "frames": 25
   },
   {
    "id": "rewind",
    "kind": "rewind",
-   "from": 1.345,
-   "to": 0.5969,
+   "from": 1.35,
+   "to": 0.6248,
    "rate": 1.5
   },
   {
    "id": "pass_set",
    "kind": "hold",
-   "at": 0.5969,
+   "at": 0.6248,
    "frames": 20
   },
   {
    "id": "pass_in",
    "kind": "play",
-   "from": 0.5969,
+   "from": 0.6248,
    "to": {
     "event": "pass.release"
    },
@@ -105,14 +105,14 @@
   {
    "id": "replay",
    "kind": "play",
-   "from": 0.267,
-   "to": 1.345,
+   "from": 0.295,
+   "to": 1.35,
    "rate": 0.5
   },
   {
    "id": "outro",
    "kind": "hold",
-   "at": 1.345,
+   "at": 1.35,
    "frames": 45
   }
  ],
