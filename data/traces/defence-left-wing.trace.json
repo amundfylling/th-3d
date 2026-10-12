@@ -5,12 +5,12 @@
  "shot": "Defending against the left wing: passive (the box), active, mix (concept illustration)",
  "geometry_version": "0.6.0",
  "asset_refs": {
-  "figure_molds_sha256": "c189758e98559f61ad8a46315394eebd2fb137ab4eb662ac827d2e318de61c68",
-  "skater_glb_sha256": "c3be1369dc4bc21c9fd00030a1e32bf7ce99a07dddd180206c7423ddf28627e1",
+  "figure_molds_sha256": "9ee1f7bf4c0ae689d9a9102b987b581e0b8d4b641ac4ce4cb8d6a2fef3b8d4e3",
+  "skater_glb_sha256": "ae8f98b51123c8680b4d3ff1eeeb5e9eea5f195234a4320ed68408f2a8b49e30",
   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
-  "skater_scale_k": 1.0814,
+  "skater_scale_k": 1.19154,
   "goalie_scale_k": 1.1421889791935147,
-  "git_commit": "9c91184e4a3693c6debf9c0e00d5501a8dd903d9"
+  "git_commit": "e7349d482af7ed33eb5126a3343eab06ad1b8142"
  },
  "source": {
   "video": "references/shots/defence-vs-left-wing-tiktok.mp4",
