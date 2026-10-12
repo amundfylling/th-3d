@@ -54,6 +54,8 @@ export interface Theme {
   orgShort: string | null;
   orgName: string | null;
   fonts: { family: string; file: string; weight: string; stretch?: string }[];
+  /** minimal text (user, 2026-10-12): no kicker (e.g. "SHOT ENCYCLOPEDIA") anywhere, nothing under the name on the title card */
+  minimal: boolean;
 }
 
 const NAVY = "#0e2a57";
@@ -84,6 +86,7 @@ export const THEMES: Record<Theme["id"], Theme> = {
     logo: "brand/nbhf-logo.png",
     orgShort: "NBHF",
     orgName: "Norges Bordhockeyforbund",
+    minimal: true,
     fonts: [
       { family: "Bricolage Grotesque", file: "BricolageGrotesque-Variable-latin.woff2", weight: "200 800", stretch: "75% 100%" },
       { family: "Geist", file: "Geist-Variable-latin.woff2", weight: "100 900" },
@@ -113,6 +116,7 @@ export const THEMES: Record<Theme["id"], Theme> = {
     logo: null,
     orgShort: null,
     orgName: null,
+    minimal: false,
     fonts: [
       { family: "Barlow Condensed", file: "BarlowCondensed-ExtraBold.ttf", weight: "800" },
       { family: "Barlow Condensed", file: "BarlowCondensed-SemiBold.ttf", weight: "600" },
