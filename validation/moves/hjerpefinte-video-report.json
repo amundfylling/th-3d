@@ -13,12 +13,12 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
  },
  "trace": {
   "trace_id": "trace.hjerpefinte.v1",
   "status": "proposed",
-  "sha256": "5a22e1736385f02d625d110be2d9bfbc46673e6fc0c34b07653f381d98f8263e"
+  "sha256": "b3078cfccce95d899e7ca706dae7b2e51c5b6da6c71d8365031dfbe4ddd3e6cc"
  },
  "analysis_spec": {
   "analysis_id": "analysis.hjerpefinte.v1",
@@ -28,7 +28,7 @@
    "remotion/encyclopedia-registry.ts",
    "remotion/AnalysisVideo.tsx"
   ],
-  "composition_sha256": "548d57a9da759caeeeb405aa55cc5f8e9fd901d18bfccbf715e2811557bcf50d"
+  "composition_sha256": "8a73877b0ca4c0c8309b4433b61d8056f284a3d4c04c5207a3d54eb1ff8f72b3"
  },
  "output": {
   "path": "validation/moves/hjerpefinte.mp4",
@@ -60,10 +60,10 @@
     "duration": "21.033333"
    }
   },
-  "bytes": 8009809,
-  "megabytes": 8.01,
+  "bytes": 7596408,
+  "megabytes": 7.6,
   "below_25_mb": true,
-  "sha256": "4054e3ad7e9d20299d2c76fe15e811d115fba5be0beccd446fe97af0caf26968"
+  "sha256": "11c51c1047638f5c25e6848f662634b7a37c7354562dc812f3a709e50bff99c7"
  },
  "checks": {
   "frames_logged": 631,
@@ -72,5 +72,5 @@
   "camera_frames_logged": 631,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 2552
+ "render_seconds": 2524
 }
