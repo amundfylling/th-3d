@@ -16,5 +16,5 @@ export interface EncyclopediaEntry {
 }
 
 export const ENCYCLOPEDIA: EncyclopediaEntry[] = [
-  { id: "hjerpefinte", spec: m_hjerpefinte_spec as unknown as AnalysisSpec, trace: m_hjerpefinte_trace as unknown as AnalysisTrace, checks: m_hjerpefinte_checks, text: {"kicker": "SHOT ENCYCLOPEDIA", "title": "HJERPEFINTE", "subtitle": "Table hockey · centre feint · designed from the NTHF description", "bug": "HJERPEFINTE", "endTitle": "HJERPEFINTE", "endSteps": ["PUCK OUT ON THE BLADE", "GOALIE EXPECTS THE HJERPE", "PUSH SHOT, RIGHT CORNER"]}, theme: "classic" },
+  { id: "hjerpefinte", spec: m_hjerpefinte_spec as unknown as AnalysisSpec, trace: m_hjerpefinte_trace as unknown as AnalysisTrace, checks: m_hjerpefinte_checks, text: {"kicker": "SHOT ENCYCLOPEDIA", "title": "HJERPEFINTE", "subtitle": "Table hockey · centre feint · the goalie must expect a Hjerpe", "bug": "HJERPEFINTE", "endTitle": "HJERPEFINTE", "endSteps": ["HJERPE STANCE, PUCK ON THE BLADE", "GOALIE BITES, SLIDES LEFT", "STRAIGHT PUSH, RIGHT CORNER"]}, theme: "classic" },
 ];

@@ -76,19 +76,19 @@ point, crosses a line or a contact starts or ends) are implemented but experimen
 (`validation/moves/invers-kryssar-velodrom-equivalence.json`). The saved IKV trace stays the one its own script writes;
 the port is only compared with it.
 
-**New move: Hjerpefinte** (centre, level 2; `moves/hjerpefinte/`). The centre stands at the front of its slot with its
-back to the goal, the puck resting on the blade to the right of the slot. A 70 ms counter-clockwise turn (181 → 205°)
-with a 14 mm step pushes the puck from rest into the right corner (goal line at y = −18.7 mm, 575 mm/s).
-- Checks: no overlap; one contact, a push of 65 small touches with a peak impact of 33 mm/s; no unexplained motion change.
-- Robust in 11 of 11 variants; the goal-line crossing moves by 0.4 mm at most.
-- Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (631 frames, 21.0 s,
-  1920x1080 30 fps, 8.01 MB; rendered in about 35 min on CPU; rerender with `node scripts/analysis-render.ts
-  move:hjerpefinte`). Its report `validation/moves/hjerpefinte-video-report.json` finds every frame equal to the pure
-  evaluation of the trace. Frames of the mp4 were checked: rewind, slow-motion approach, contact freeze with the push
-  arrow, replay.
-- Reading approved by the user (2026-10-10, `approved_reading`): "you can do a hjerpe from the same position. So you are
-  dependent on the goalie predicting a hjerpe and opening up the right corner." The goalie leans to the left post;
-  how far (y = +28 mm) is assumed. The video's set-up caption says this.
+**New move: Hjerpefinte** (centre, level 2; `moves/hjerpefinte/`, trace v2 2026-10-12). The centre stands in its slot
+about one puck diameter in front of the E blue line (the user's revision), back to the goal, the puck resting on the
+blade to the right of the slot: the Hjerpe stance. The goalie covers the right side (y = −12 mm). Reading a Hjerpe, it
+slides to the left post (y = +28 mm) from 0.22 s; at 0.25 s a 60 ms counter-clockwise turn (181 → 205°) with a 20 mm step
+pushes the puck from rest straight into the right corner it is leaving (goal line at y = −17.6 mm, 692 mm/s).
+- Checks: no overlap; one contact, a push of 39 small touches with a peak impact of 44 mm/s; no unexplained motion change.
+- Robust in 11 of 11 variants.
+- Video `validation/moves/hjerpefinte.mp4` (`npm run video:final -- move:hjerpefinte --cache`): set-up (goalie covers
+  right), the feint (goalie bites), the shot, goal with the right corner open, replay.
+- Reading approved by the user (2026-10-10, `approved_reading`) and revised by the user (2026-10-12, `user_revision`):
+  the goalie must cover the side first and open it only as the centre shoots; start further back. The blue line
+  position (preview scale), the goalie's covering position and its slide timing are ASSUMED.
+- v1 (2026-10-10: front of the slot, goalie already at the left post throughout) is replaced.
 
 **Finding: the IKV v2 trace only works with its exact inputs.** The robustness run
 (`validation/moves/invers-kryssar-velodrom-robustness.json`) scores in 1 of 11 variants: the nominal one.

@@ -421,6 +421,11 @@
   and not re-rendered. `validation/moves/hjerpefinte.mp4` re-exported through the cache. Open: the IKV engine-equivalence
   report does not reproduce in this container (rebuilt on main too: 90 mm puck difference with identical inputs), and
   its test fails here because `build.py` gained the motion fingerprint; Edwall reports are stale (not tested).
+- **Hjerpefinte v2 (user revision 2026-10-12, same branch, PROPOSED):** the centre starts about one puck diameter in
+  front of the E blue line; the goalie covers the right side and slides to the left post just before the shot (it bites
+  on the Hjerpe threat), so the right corner opens only as the centre shoots. Turn 60 ms and a 20 mm step keep the longer
+  shot at 692 mm/s. All contact, slide and expectation checks pass; robust 11/11. The video gains a "feint" freeze. Blue
+  line position, goalie cover position and slide timing ASSUMED (`moves/hjerpefinte/move.json` limitations).
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
