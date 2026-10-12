@@ -10,11 +10,12 @@
   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
   "skater_scale_k": 1.0814,
   "goalie_scale_k": 1.1421889791935147,
-  "git_commit": "6a061b0d569d46468b74b21d1b7750db3d7800e1"
+  "git_commit": "d3a505b743c7ade0c38fc564a4ec7d21645faa54"
  },
  "source": {
   "move_file": "moves/hjerpefinte/move.json",
-  "move_file_sha256": "b65a2ef25476bf5104dfd0da0af0af2ff7c7bbc22369627b362578e03fea8853",
+  "move_file_sha256": "9b247e6c73567fdccada6766f1ae7e8b9f68f13b509de696a2dcfa05ed7c74cf",
+  "move_motion_sha256": "01d01f5b47099f0deebebf66d6a76e6160e17cd0343569e1a13acfa72a4eb6cc",
   "overrides": [],
   "kind": "designed",
   "text": "Center starts with the puck out on the blade to the right of the slot, and shoots directly into the right corner. Only works against a goalie expecting a Hjerpe",
@@ -31,7 +32,15 @@
  "engine": {
   "path": "scripts/shotlib",
   "contact_footprints": "data/figures/contact-footprints.json",
-  "contact_footprints_sha256": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563"
+  "contact_footprints_sha256": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563",
+  "code_sha256": "5011054a59c5b4ccf5622631db1677ad8370ed1d4fdab8052b28f8d185280163",
+  "inputs_sha256": {
+   "data/geometry.json": "54d2283dd7f6c7b47e9843e90b65d5e20695e6ab18f80ae2f0becb81a2112bdf",
+   "validation/12-hardware-report.json": "9922135cf1f8eef92db99d858ed75cf240642e6f9be60fc708c9dff77138602c",
+   "validation/16-assembly-poses.json": "e554dab779c7771692c63b6815beaef2868681e774cbdb3c69d382638d5a3908",
+   "data/figures/contact-footprints.json": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563",
+   "shots/spjass/checks.json": "26dea11026b80faa1d8b9ce248db2a751893ecadb71c2aa1f49066ddecf65e75"
+  }
  },
  "time_base": {
   "t": "designed time (s); no recording",

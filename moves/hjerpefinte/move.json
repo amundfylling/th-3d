@@ -119,38 +119,5 @@
   "Set-up borrowed from trace.nacka.v1 (centre at the front of its slot, back to the goal); how far the goalie leans (y = +28 mm) is assumed.",
   "Contact rules, ice friction and figure geometry as every move-engine trace (scripts/shotlib): restitution 0.5 assumed, friction from the spjass fit, AI-modelled molds at the preview scale."
  ],
- "tuning": "Turn angles, duration and step chosen with scripts/build-move.py --quick scans (2026-10-10): 181 -> 205 deg in 70 ms with a 14 mm step puts the shot 19 mm right of centre without touching the goalie; the release is a push of about 45-65 small touches.",
- "story": {
-  "title": "HJERPEFINTE",
-  "subtitle": "Table hockey · centre feint · designed from the NTHF description",
-  "bug": "HJERPEFINTE",
-  "end_steps": [
-   "PUCK OUT ON THE BLADE",
-   "GOALIE EXPECTS THE HJERPE",
-   "PUSH SHOT, RIGHT CORNER"
-  ],
-  "setup": {
-   "title": "THE SET-UP",
-   "text": "Back to the goal, puck out on the blade. A Hjerpe can come from the same stance, so the goalie covers it and opens the right corner.",
-   "highlight": {
-    "W-C": "CENTRE",
-    "E-G": "GOALIE"
-   },
-   "puck_label": "PUCK ON THE BLADE"
-  },
-  "beats": [
-   {
-    "contact": "shot",
-    "title": "THE SHOT",
-    "text": "He turns counter-clockwise and pushes the puck straight into the right corner.",
-    "label": "SHOT · BLADE PUSH",
-    "turn": {
-     "figure": "W-C",
-     "event": "turn.onset",
-     "direction": "ccw",
-     "label": "TURN"
-    }
-   }
-  ]
- }
+ "tuning": "Turn angles, duration and step chosen with scripts/build-move.py --quick scans (2026-10-10): 181 -> 205 deg in 70 ms with a 14 mm step puts the shot 19 mm right of centre without touching the goalie; the release is a push of about 45-65 small touches."
 }

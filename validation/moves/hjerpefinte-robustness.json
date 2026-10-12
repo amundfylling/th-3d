@@ -164,6 +164,7 @@
    "outcome_ok": true
   }
  ],
- "move_file_sha256": "b65a2ef25476bf5104dfd0da0af0af2ff7c7bbc22369627b362578e03fea8853",
+ "move_file_sha256": "9b247e6c73567fdccada6766f1ae7e8b9f68f13b509de696a2dcfa05ed7c74cf",
+ "move_motion_sha256": "01d01f5b47099f0deebebf66d6a76e6160e17cd0343569e1a13acfa72a4eb6cc",
  "canonical": true
 }

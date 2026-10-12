@@ -19,7 +19,7 @@ import multiprocessing as mp
 
 import numpy as np
 
-from . import build
+from . import build, identity
 from . import world as W
 
 VARIANTS = [
@@ -91,6 +91,7 @@ def robustness(move_id, spec, canonical=True):
            "variants_passed": f"{len(ok)}/{len(rows)}", "robust": len(ok) == len(rows),
            "goal_y_spread_mm": [min(ys), max(ys)] if ys else None, "rows": rows}
     rep["move_file_sha256"] = build.sha(W.REPO / "moves" / move_id / "move.json")
+    rep["move_motion_sha256"] = identity.motion_sha256(build.load_move(move_id)[1])
     rep["canonical"] = canonical
     out = W.REPO / (f"validation/moves/{move_id}-robustness.json" if canonical else f"out/moves/{move_id}/robustness.json")
     out.parent.mkdir(parents=True, exist_ok=True)
