@@ -35,11 +35,12 @@
  },
  "setup_set": {
   "frames": 20,
-  "frames_puck_mostly_hidden": 2,
+  "frames_puck_mostly_hidden": 3,
   "min_visible_fraction": 0.2,
   "first_poor_frames": [
    101,
-   102
+   102,
+   103
   ],
   "occluders": [
    "W-C"
@@ -75,14 +76,15 @@
  },
  "to_shot": {
   "frames": 33,
-  "frames_puck_mostly_hidden": 5,
-  "min_visible_fraction": 0.4,
+  "frames_puck_mostly_hidden": 11,
+  "min_visible_fraction": 0.0,
   "first_poor_frames": [
+   392,
+   393,
    394,
    395,
    396,
-   397,
-   398
+   397
   ],
   "occluders": [
    "W-C"
@@ -91,7 +93,7 @@
  "spin_in": {
   "frames": 47,
   "frames_puck_mostly_hidden": 0,
-  "min_visible_fraction": 1.0,
+  "min_visible_fraction": 0.8,
   "first_poor_frames": [],
   "occluders": []
  },
@@ -126,7 +128,7 @@
  "replay": {
   "frames": 50,
   "frames_puck_mostly_hidden": 0,
-  "min_visible_fraction": 1.0,
+  "min_visible_fraction": 0.8,
   "first_poor_frames": [],
   "occluders": []
  },

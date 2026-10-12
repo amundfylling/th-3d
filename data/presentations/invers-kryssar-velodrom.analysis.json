@@ -223,9 +223,9 @@
   },
   "broadcast": {
    "positionMm": [
-    -200,
+    -120,
     -300,
-    800
+    950
    ],
    "targetMm": [
     170,
@@ -288,9 +288,9 @@
   },
   "replay": {
    "positionMm": [
-    -80,
+    -20,
     -180,
-    620
+    760
    ],
    "targetMm": [
     190,
@@ -578,5 +578,6 @@
    "from": "replay.end-0.3",
    "to": "outro.end"
   }
- ]
+ ],
+ "views_note_2026_10_12": "broadcast and replay cameras raised (z 800 -> 950 and 620 -> 760): with the taller STL skater the left wing hid the puck for a few frames near the corner"
 }
