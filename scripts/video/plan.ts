@@ -8,11 +8,11 @@ export interface Range {
   to: number; // inclusive
 }
 
-/** Output frames of a segment: [floor(f0), ceil(f1) - 1] (a segment covers presentation frames [f0, f1)). */
+/** Output frames of a segment: the integer frames f with f0 <= f < f1 (segments cover [f0, f1); adjacent ones partition). */
 export function segmentRange(a: Analysis, id: string): Range {
   const s = a.timeline.segments.find((x) => x.id === id);
   if (!s) throw new Error(`no segment ${id}; segments: ${a.timeline.segments.map((x) => x.id).join(", ")}`);
-  return { from: Math.floor(s.f0 + 1e-9), to: Math.min(a.durationInFrames - 1, Math.ceil(s.f1 - 1e-9) - 1) };
+  return { from: Math.ceil(s.f0 - 1e-9), to: Math.min(a.durationInFrames - 1, Math.ceil(s.f1 - 1e-9) - 1) };
 }
 
 /** "--frames 100-160,200-220" and/or "--segment shot_in,shot_freeze" -> sorted ranges; adjacent segments merge. */

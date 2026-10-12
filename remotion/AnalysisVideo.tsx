@@ -132,7 +132,7 @@ function IceArrow({ proj, pts, color, progress, width = 7, outline }: { proj: Pr
 
 function Tag({ T, x, y, text, color, opacity }: { T: Theme; x: number; y: number; text: string; color: string; opacity: number }) {
   return (
-    <div style={{ position: "absolute", left: x, top: y, transform: "translate(-50%, -100%)", opacity, display: "flex", alignItems: "stretch", fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 30, letterSpacing: T.tracking, color: T.ink, whiteSpace: "nowrap", boxShadow: T.shadow, borderRadius: T.radius, overflow: "hidden" }}>
+    <div style={{ position: "absolute", left: x, top: y, transform: "translate(-50%, -100%)", opacity, display: "flex", alignItems: "stretch", fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 30, letterSpacing: T.tracking, color: T.ink, whiteSpace: "nowrap", boxShadow: T.id === "classic" ? "0 6px 18px rgba(0,0,0,0.35)" : T.shadow, borderRadius: T.radius, overflow: "hidden" }}>
       <div style={{ width: 7, background: color }} />
       <div style={{ background: T.panel, padding: "5px 14px 4px 12px" }}>{text}</div>
     </div>
@@ -271,7 +271,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
           if (a && b && Math.hypot(a[0] - b[0], a[1] - b[1]) > 0.5) {
             const fall = 1 - k / n;
             svg.push(
-              <line key={spec.id + "e" + k} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={T.outline} strokeWidth={9 * fall + 3} strokeLinecap="round" opacity={0.6 * o * fall} />,
+              <line key={spec.id + "e" + k} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={dark ? "rgba(9,14,24,0.55)" : T.outline} strokeWidth={9 * fall + 3} strokeLinecap="round" opacity={0.6 * o * fall} />,
               <line key={spec.id + k} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={ACCENT.amber} strokeWidth={9 * fall} strokeLinecap="round" opacity={0.9 * o * fall} />,
             );
           }
@@ -296,7 +296,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
           const k = 13, c0 = proj([b[0] - k, b[1] - k, 2]), c1 = proj([b[0] + k, b[1] + k, 2]), c2 = proj([b[0] - k, b[1] + k, 2]), c3 = proj([b[0] + k, b[1] - k, 2]);
           if (c0 && c1 && c2 && c3) {
             for (const [u, v, w] of [[c0, c1, 10], [c2, c3, 10], [c0, c1, 6], [c2, c3, 6]] as const) {
-              svg.push(<line key={spec.id + "x" + u[0] + w} x1={u[0]} y1={u[1]} x2={v[0]} y2={v[1]} stroke={w === 10 ? T.outline : ACCENT.red} strokeWidth={w} strokeLinecap="round" opacity={o} />);
+              svg.push(<line key={spec.id + "x" + u[0] + w} x1={u[0]} y1={u[1]} x2={v[0]} y2={v[1]} stroke={w === 10 ? (dark ? "rgba(0,0,0,0.5)" : T.outline) : ACCENT.red} strokeWidth={w} strokeLinecap="round" opacity={o} />);
             }
           }
         }
@@ -321,7 +321,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
             {T.minimal ? null : <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 34, letterSpacing: dark ? 8 : 3, color: ACCENT.amber }}>{cfg.text.kicker}</div>}
             <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: dark ? 150 : 132, lineHeight: 0.95, color: T.ink, letterSpacing: dark ? 2 + 6 * (1 - s) : 4 * (1 - s), textShadow: dark ? "0 6px 30px rgba(0,0,0,0.45)" : undefined, overflowWrap: "break-word" }}>{cfg.text.title}</div>
             <div style={{ height: 8, width: 460 * s, background: ACCENT.amber, marginTop: 14 }} />
-            {T.minimal ? null : <div style={{ fontFamily: T.body, fontWeight: 500, fontSize: 32, color: T.inkSoft, marginTop: 18, lineHeight: 1.3, textShadow: dark ? "0 2px 10px rgba(0,0,0,0.6)" : undefined }}>{cfg.text.subtitle}</div>}
+            {T.minimal ? null : <div style={{ fontFamily: T.body, fontWeight: 500, fontSize: 32, color: T.inkSoft, marginTop: 18, lineHeight: dark ? undefined : 1.3, textShadow: dark ? "0 2px 10px rgba(0,0,0,0.6)" : undefined }}>{cfg.text.subtitle}</div>}
           </div>,
         );
       } else if (spec.type === "end_card") {
@@ -371,7 +371,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
         ) : null}
         {chapter ? (
           <div style={{ position: "absolute", left: 56, bottom: 56, maxWidth: 1180, display: "flex", alignItems: "stretch", opacity: chapter.o, transform: `translateY(${(1 - chapter.o) * 18}px)`, boxShadow: T.shadow, borderRadius: T.radius, overflow: "hidden" }}>
-            <div style={{ minWidth: 92, flexShrink: 0, padding: "0 14px", boxSizing: "border-box", background: ACCENT.amber, color: T.onAccent, fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: 72, display: "flex", alignItems: "center", justifyContent: "center" }}>{chapter.c.item.number}</div>
+            <div style={{ ...(dark ? { width: 92 } : { minWidth: 92, flexShrink: 0, padding: "0 14px", boxSizing: "border-box" as const }), background: ACCENT.amber, color: T.onAccent, fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: 72, display: "flex", alignItems: "center", justifyContent: "center" }}>{chapter.c.item.number}</div>
             <div style={{ background: T.panel, padding: "16px 30px 18px 26px" }}>
               <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: 52, letterSpacing: dark ? 2 : 0.3, color: T.ink, lineHeight: 1 }}>{chapter.c.item.title}</div>
               <div style={{ fontFamily: T.body, fontWeight: 500, fontSize: 32, color: T.inkSoft, marginTop: 10, lineHeight: 1.3 }}>{chapter.c.item.text}</div>
