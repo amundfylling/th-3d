@@ -1,0 +1,82 @@
+{
+ "note": "Variants for Hjerpefinte's own assumptions: the goalie's reaction (starts sliding at 0.30 s), its slide (0.2 s) and its start (arc 44 mm, y = -11 mm). Sizes ASSUMED. Found 2026-10-12 with a scan: a reaction up to 0.10 s later still opens the corner; 0.15 s later the goalie's stick meets the puck (save).",
+ "variants": [
+  {
+   "id": "goalie reacts 0.05 s earlier",
+   "set": {
+    "figures.E-G.arc.keys.0.1": 44.0,
+    "figures.E-G.arc.keys.1.0": 0.25,
+    "figures.E-G.arc.keys.1.1": 44.0,
+    "figures.E-G.arc.moves.0.0": 0.25,
+    "figures.E-G.arc.moves.0.1": 0.45,
+    "figures.E-G.arc.moves.0.2": 44.0
+   }
+  },
+  {
+   "id": "goalie reacts 0.05 s later",
+   "set": {
+    "figures.E-G.arc.keys.0.1": 44.0,
+    "figures.E-G.arc.keys.1.0": 0.35,
+    "figures.E-G.arc.keys.1.1": 44.0,
+    "figures.E-G.arc.moves.0.0": 0.35,
+    "figures.E-G.arc.moves.0.1": 0.55,
+    "figures.E-G.arc.moves.0.2": 44.0
+   }
+  },
+  {
+   "id": "goalie reacts 0.10 s later",
+   "set": {
+    "figures.E-G.arc.keys.0.1": 44.0,
+    "figures.E-G.arc.keys.1.0": 0.4,
+    "figures.E-G.arc.keys.1.1": 44.0,
+    "figures.E-G.arc.moves.0.0": 0.4,
+    "figures.E-G.arc.moves.0.1": 0.6,
+    "figures.E-G.arc.moves.0.2": 44.0
+   }
+  },
+  {
+   "id": "goalie slides in 0.15 s",
+   "set": {
+    "figures.E-G.arc.keys.0.1": 44.0,
+    "figures.E-G.arc.keys.1.0": 0.3,
+    "figures.E-G.arc.keys.1.1": 44.0,
+    "figures.E-G.arc.moves.0.0": 0.3,
+    "figures.E-G.arc.moves.0.1": 0.45,
+    "figures.E-G.arc.moves.0.2": 44.0
+   }
+  },
+  {
+   "id": "goalie slides in 0.30 s",
+   "set": {
+    "figures.E-G.arc.keys.0.1": 44.0,
+    "figures.E-G.arc.keys.1.0": 0.3,
+    "figures.E-G.arc.keys.1.1": 44.0,
+    "figures.E-G.arc.moves.0.0": 0.3,
+    "figures.E-G.arc.moves.0.1": 0.6,
+    "figures.E-G.arc.moves.0.2": 44.0
+   }
+  },
+  {
+   "id": "goalie starts 6 mm nearer the centre (arc 38)",
+   "set": {
+    "figures.E-G.arc.keys.0.1": 38.0,
+    "figures.E-G.arc.keys.1.0": 0.3,
+    "figures.E-G.arc.keys.1.1": 38.0,
+    "figures.E-G.arc.moves.0.0": 0.3,
+    "figures.E-G.arc.moves.0.1": 0.5,
+    "figures.E-G.arc.moves.0.2": 38.0
+   }
+  },
+  {
+   "id": "goalie starts 6 mm further right (arc 50)",
+   "set": {
+    "figures.E-G.arc.keys.0.1": 50.0,
+    "figures.E-G.arc.keys.1.0": 0.3,
+    "figures.E-G.arc.keys.1.1": 50.0,
+    "figures.E-G.arc.moves.0.0": 0.3,
+    "figures.E-G.arc.moves.0.1": 0.5,
+    "figures.E-G.arc.moves.0.2": 50.0
+   }
+  }
+ ]
+}

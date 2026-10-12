@@ -11,6 +11,10 @@ the outcome holds:
 
     /root/venvs/blender/bin/python scripts/build-move.py <move-id> --robustness
 
+A move may add its own variants for the assumptions only it makes (a goalie's reaction time, a feint's size) in
+moves/<id>/robustness-variants.json: {"variants": [{"id": "...", "set": {"figures.E-G.arc.moves.0.0": 0.35, ...}}]}
+(dotted paths into move.json, as --set). They live beside the move file, so adding one does not change the trace.
+
 Output: validation/moves/<id>-robustness.json (scratch and --set runs: out/moves/<id>/robustness.json, never the saved one). The variants and their sizes are
 ASSUMED (below); they are the questions "what if the model is off by this much", not measured uncertainties.
 """
@@ -37,10 +41,19 @@ VARIANTS = [
 ]
 
 
+def _set(spec, key, val):
+    node, parts = spec, key.split(".")
+    for p_ in parts[:-1]:
+        node = node[int(p_)] if isinstance(node, list) else node[p_]
+    node[int(parts[-1]) if isinstance(node, list) else parts[-1]] = val
+
+
 def _run(args):
     spec, var = args
     W.set_footprint_transform(**var.get("footprint", {}))
     spec = json.loads(json.dumps(spec))
+    for k, v in var.get("set", {}).items():
+        _set(spec, k, v)
     ph = {**build.DEFAULT_PHYSICS, **spec.get("physics", {})}
     vp = dict(var.get("physics", {}))
     if "ice_deceleration_scale" in vp:
@@ -82,8 +95,11 @@ def _run(args):
 
 def robustness(move_id, spec, canonical=True):
     """canonical=False (scratch or --set runs): the report goes to out/moves/<id>/ and never replaces the saved one."""
-    with mp.get_context("fork").Pool(min(4, len(VARIANTS))) as pool:
-        rows = pool.map(_run, [(spec, v) for v in VARIANTS])
+    extra_path = W.REPO / "moves" / move_id / "robustness-variants.json"
+    extra = json.loads(extra_path.read_text())["variants"] if extra_path.exists() else []
+    variants = VARIANTS + extra
+    with mp.get_context("fork").Pool(min(4, len(variants))) as pool:
+        rows = pool.map(_run, [(spec, v) for v in variants])
     ys = [r["goal_y_mm"] for r in rows if r["goal_y_mm"] is not None]
     ok = [r for r in rows if r["outcome_ok"] and r["slide_ok"]]
     rep = {"move": move_id, "trace_id": spec["trace_id"],
@@ -91,6 +107,7 @@ def robustness(move_id, spec, canonical=True):
            "variants_passed": f"{len(ok)}/{len(rows)}", "robust": len(ok) == len(rows),
            "goal_y_spread_mm": [min(ys), max(ys)] if ys else None, "rows": rows}
     rep["move_file_sha256"] = build.sha(W.REPO / "moves" / move_id / "move.json")
+    rep["move_variants_sha256"] = build.sha(extra_path) if extra_path.exists() else None
     rep["canonical"] = canonical
     out = W.REPO / (f"validation/moves/{move_id}-robustness.json" if canonical else f"out/moves/{move_id}/robustness.json")
     out.parent.mkdir(parents=True, exist_ok=True)

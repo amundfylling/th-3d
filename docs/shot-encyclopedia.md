@@ -13,7 +13,7 @@ stays proposed.
 | Move files | `moves/<id>/move.json` | A move is data: figure keyframes and moves, the puck's start, named contacts, expectations, the video story. |
 | Build command | `scripts/build-move.py` | Builds in about 7 s on any Python with numpy, shapely and pillow; saves only if every check passes. |
 | Contact footprints | `data/figures/contact-footprints.json` (`scripts/shotlib/export_footprints.py`) | The figure geometry the puck can touch, exported once from the molds. No Blender or mesh files needed to build a move; one place to update when the figures are measured. Records the hashes of the mold data, the mesh-building code, the scale and puck files and the generated meshes; the engine and tests refuse a stale file. |
-| Robustness check | `scripts/shotlib/robustness.py`, `--robustness` | Reruns the move with each uncertain input changed and reports whether the goal and contact sequence hold. |
+| Robustness check | `scripts/shotlib/robustness.py`, `--robustness` | Reruns the move with each uncertain input changed and reports whether the goal and contact sequence hold. A move adds variants for its own assumptions in `moves/<id>/robustness-variants.json`. |
 | Generated video | `scripts/shotlib/presentation.py`, `--video-spec`; `remotion/EncyclopediaAnalysis.tsx`, `remotion/encyclopedia-registry.ts` | The analysis video (same template as the five hand-made ones) from a short `story` block: timeline, slow-motion rates, camera views, chapters and graphics are derived from the trace. Composition `move-<id>`. |
 | Index | `data/encyclopedia/index.json` (`scripts/encyclopedia-index.py`) | All 121 NTHF combinations with their stage (not started, move file, trace, video), a family (keyword heuristic), NM26 goal count and a suggested build order. |
 | Tests | `tests/encyclopedia.test.ts` | Every built move is tested automatically: checks, robustness, TypeScript playback equals the engine, video spec, registry. |
@@ -81,7 +81,10 @@ the blade off the puck, then back to it. The goalie reacts 0.15 s after the fein
 (0.3-0.5 s). While it is still moving, a 100 ms counter-clockwise turn (181 → 210°) with a 30 mm step pushes the puck from
 rest into the opened right corner (goal line at y = −19.4 mm, 854 mm/s off the blade).
 - Checks: no overlap; one contact, a push of 128 small touches with a peak impact of 22 mm/s; no unexplained motion change.
-- Robust in 11 of 11 variants; the goal-line crossing moves by 0.3 mm at most.
+- Robust in 18 of 18 variants; the goal-line crossing moves by 0.3 mm at most. Seven of them are the move's own
+  (`moves/hjerpefinte/robustness-variants.json`): the goalie reacting 0.05 s earlier or up to 0.10 s later, sliding in
+  0.15 or 0.30 s, starting 6 mm either side. A reaction 0.15 s later is saved (the goalie's stick meets the puck), so the
+  feint has to start the goalie moving before the shot does.
 - With the goalie standing still the same shot is saved (the puck meets E-G at 0.556 s): the goal depends on the feint.
 - Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (857 frames, 28.6 s, 1920x1080 30 fps, 11.06 MB; rendered in about 105 min on CPU; rerender with
   `node scripts/analysis-render.ts move:hjerpefinte`). Its report `validation/moves/hjerpefinte-video-report.json`

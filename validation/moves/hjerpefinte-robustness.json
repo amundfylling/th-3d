@@ -2,7 +2,7 @@
  "move": "hjerpefinte",
  "trace_id": "trace.hjerpefinte.v2",
  "rule": "the move must keep its outcome (goal, contact sequence) and the slide limits under every variant; variant sizes ASSUMED",
- "variants_passed": "11/11",
+ "variants_passed": "18/18",
  "robust": true,
  "goal_y_spread_mm": [
   -19.56,
@@ -162,8 +162,107 @@
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
+  },
+  {
+   "variant": "goalie reacts 0.05 s earlier",
+   "goal": "E",
+   "goal_y_mm": -19.43,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 21.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "goalie reacts 0.05 s later",
+   "goal": "E",
+   "goal_y_mm": -19.43,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 21.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "goalie reacts 0.10 s later",
+   "goal": "E",
+   "goal_y_mm": -19.43,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 21.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "goalie slides in 0.15 s",
+   "goal": "E",
+   "goal_y_mm": -19.43,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 21.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "goalie slides in 0.30 s",
+   "goal": "E",
+   "goal_y_mm": -19.43,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 21.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "goalie starts 6 mm nearer the centre (arc 38)",
+   "goal": "E",
+   "goal_y_mm": -19.43,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 21.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "goalie starts 6 mm further right (arc 50)",
+   "goal": "E",
+   "goal_y_mm": -19.43,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-C:stick/blade",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 21.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
   }
  ],
  "move_file_sha256": "7be96c6bce461f646243d4068b7bffaf89c7360ea5667214ccbbfe290f0c0c28",
+ "move_variants_sha256": "267e206a5d6f2273e8c4417fecd4991270c7451a2851b78f6d653cebde7d5bcc",
  "canonical": true
 }
