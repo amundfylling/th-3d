@@ -36,7 +36,9 @@ in a fresh session (`npm ci`; `pip install pymupdf pillow numpy` if PDF/image wo
 ## Remotion (iteration 19)
 
 - remotion 4.0.531 with React 19.2.0, three 0.186.1 and @react-three/fiber 9.4.0 (exact pins).
-- Browser for renders: `/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell` with `--gl=swangle`. The full Chromium binary does not support Remotion's headless mode.
+- Browser for renders: chosen by `scripts/video/render-env.ts` (`--browser`, `REMOTION_BROWSER_EXECUTABLE`, Remotion's own
+  download, or a Playwright chrome-headless-shell found by search; docs/video-workflow.md). In the cloud container that is
+  the headless shell under `/opt/pw-browsers` with `--gl=swangle`. The full Chromium binary does not support Remotion's headless mode.
 - The remotion.dev docs host is blocked by the network policy; the API was read from the installed packages.
 
 ## Player-figure pipeline (figure molds, 2026-09-30)

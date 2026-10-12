@@ -34,9 +34,12 @@ Changed shared files (small): `remotion/Root.tsx` (registers the `move-*` compos
 4. **Build and check.** `scripts/build-move.py <id> --robustness --video-spec`. It saves `data/traces/<id>.trace.json`,
    `shots/<id>/checks.json`, `validation/moves/<id>-sheet.png` (review sheet), the robustness report and the video spec
    only when the contact, slide and expectation checks pass.
-5. **Render.** `node scripts/analysis-render.ts move:<id>` (needs `npm run remotion:assets` once) →
-   `validation/moves/<id>.mp4` and its report; `COMP=move-<id> node scripts/analysis-stills.ts 0.5 <frames>` for quick
-   stills first.
+5. **Review and render** (docs/video-workflow.md). `npm run video:stills -- move:<id>` (automatic review stills and a
+   contact sheet), `npm run video:draft -- move:<id> --segment shot_in,shot_freeze` (low-resolution clip), then
+   `npm run video:final -- move:<id> --cache` → `validation/moves/<id>.mp4` and its report. Video text, pauses, slow-motion
+   rates, camera offsets and theme live in `moves/<id>/story.json`; after editing it, `python3 scripts/build-move.py <id>
+   --presentation` regenerates the presentation only (no simulation; refused if the motion, engine, model or checks are
+   stale).
 6. **Index and tests.** `python3 scripts/encyclopedia-index.py`, `npm test`.
 
 ## 3. Move file format (`move-spec/1`)
@@ -57,7 +60,7 @@ Changed shared files (small): `remotion/Root.tsx` (registers the `move-*` compos
  "contacts": [{"id": "shot", "figure": "W-C", "group": -1, "min_touches": 5}],   // which touch group is which
  "expect": {"goal": "E", "goal_y_mm": [-28.7, -8.0], "contact_sequence": ["W-C:stick/blade", "goal_net"]},
  "events": [{"id": "turn.onset", "t": 0.1}],
- "story": {...},                                            // video text (scripts/shotlib/presentation.py)
+ // the video text lives in moves/<id>/story.json (move-story/1; docs/video-workflow.md), not here
  "limitations": ["..."]
 }
 ```

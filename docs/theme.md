@@ -3,8 +3,11 @@
 Status: PROPOSED (2026-10-11), waiting for the user's review of `validation/theme/nbhf-theme-sheet.png`.
 
 The overlays of every analysis video (shared renderer `remotion/AnalysisVideo.tsx`: the move/encyclopedia videos,
-IKV, Näcka, spjass, Shovel, defence) take their look from `remotion/theme.ts`. The default theme is `nbhf`; the
-original dark broadcast look is kept as `classic` (`createAnalysisVideo({ ..., theme: "classic" })`).
+IKV, Näcka, spjass, Shovel, defence) take their look from `remotion/theme.ts`. On branch
+`claude/combo-video-workflow-j0piia` (2026-10-12) the default is `classic`, the original dark broadcast look, so every
+committed export stays valid (its overlay pixels are byte-identical to before the theme). A video opts into `nbhf` with
+`createAnalysisVideo({ ..., theme: "nbhf" })`, or for a move with `"theme": "nbhf"` in `moves/<id>/story.json` (then
+`python3 scripts/build-move.py <id> --presentation`). It was `nbhf` by default on the theme's own branch.
 Only presentation changes: the trace, the camera track, the rink, the figures and the contact gates are untouched.
 
 ## Source of the look
