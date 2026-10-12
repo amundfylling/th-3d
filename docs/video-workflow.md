@@ -158,6 +158,41 @@ IKV and Näcka differed from their alone render in at least one order; after it
 (`validation/video-workflow/scene-probe-fixed.json`) all are byte-identical, and the alone renders are byte-identical to
 the old code's.
 
-## 6. Benchmarks
+## 6. Benchmarks (measured 2026-10-12)
 
-See section "Benchmarks (measured)" below; filled from `validation/video-workflow/benchmarks.json`.
+Cloud container, 4 cores, no GPU; Chromium 141.0.7390.37 headless shell; `--gl=swangle`, WebGL renderer reported
+SwiftShader (CPU); concurrency 2. Every row is one measured run (`validation/video-workflow/benchmarks.json`); nothing is
+extrapolated. Pilot: Hjerpefinte (631 frames, 244 distinct scene states). Regression case: IKV (892 frames, four
+contacts).
+
+| workload | before (main) | now | notes |
+|---|---|---|---|
+| preparation: bundle | every script bundles per target | 12.6 s cold (`--cold`), 2.1-2.6 s warm | one bundle and one browser per invocation, any number of targets |
+| review stills, Hjerpefinte | frames picked by hand | 16 automatic stills: 98.4 s cold / 86.3 s warm (scale 0.5, direct); 89.5 s at 1080p direct; **9.8 s** at 1080p from a warm cache | contact sheet and reasons in `index.json` |
+| draft clip, Hjerpefinte `shot_in,shot_freeze` (156 frames, scale 0.5) | no draft mode | direct 572 s; cached **49.1 s** cold (4 scene renders), **22.1 s** warm | same frames, fps and camera timing as the final |
+| full 1080p export, Hjerpefinte | 2552 s direct (historical run, context only; not rerun here) | cached cold **1253 s** (244 scene renders 1156 s + composite 89 s); cached warm **99 s** | both cached runs give the same mp4 bytes |
+| caption-only change, full 1080p | full rerender | `--presentation` 0.24 s + render **96 s**: 244/244 hits, 0 scene renders | title and beat text edited, then reverted |
+| IKV regression | - | 33 automatic stills cached cold 164.5 s (32 scene renders); draft of 8 segments (348 frames, 0.5) cached 473.5 s: 112 states, 15 reused from the stills run | stills and drafts at one scale share a namespace |
+| `--gl angle` here | - | reports SwiftShader as well | no GPU in the container |
+
+Cache sizes: 244 PNGs at 1920x1080 = 238 MB; 133 PNGs at scale 0.5 = 54 MB (`out/scene-cache/`, not committed).
+
+Direct vs cached output (`validation/video-workflow/hjerpefinte-direct-vs-cached.jpg`): the scene layer alone
+(`--no-graphics`) is byte-identical at frames 23, 247, 399 and 489. With overlays, pixels differ by at most 3/255, only
+where overlays are drawn (translucent panels, text and line edges): the browser blends the overlays over a WebGL canvas
+in one case and over an image in the other. The committed Hjerpefinte export is now the cached render; its report
+records 631 frames checked against 244 verified entries (worst entry readback 2.8e-14, camera 0.005 mm).
+
+Not measured: a direct full export on this branch, and anything on a GPU.
+
+## 7. Limitations
+
+- The cache pays off where states repeat (freezes with a still camera, the static start). A freeze under a moving camera
+  is a new state per frame, so a cold cached export still renders 244 of 631 frames for Hjerpefinte.
+- Cached and direct exports are not byte-identical (overlay blending, above); each is verified against the pure
+  evaluation in its own way. The direct renderer stays the reference.
+- The cache lives in `out/` (not committed, about 1 MB per 1080p state); nothing prunes old namespaces.
+- `--presentation` covers shot-encyclopedia moves. The five hand-made videos keep their hand-written
+  `data/presentations/*.analysis.json`, which is already presentation-only data.
+- The Edwall analysis reports (`validation/analysis-edwall-g2-goal*-report.json`) fingerprint `AnalysisVideo.tsx` and are
+  now stale; no test reads them and their videos were not re-rendered.

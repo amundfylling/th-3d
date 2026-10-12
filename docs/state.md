@@ -407,6 +407,20 @@
   18/63, median 10 vs 34 mm where a position exists, last 2 s before goals 7/10 vs 1/10. Both tracks still report a puck
   the user could not see in about 2/3 of the "none" frames (next: the detector's false alarms). Taps mark the visible
   puck centre, scored after moving them up the documented 8.8 px. Edwall videos not re-rendered.
+- **Combination video workflow (2026-10-12, branch `claude/combo-video-workflow-j0piia`, not merged, PROPOSED;
+  `docs/video-workflow.md`):** one command `scripts/video.ts` (list / stills / draft / final / scene-cache / probe-scenes)
+  for all analysis videos, with automatic review stills, segment and frame ranges, low-res drafts, several targets per
+  bundle, and browser/GL discovery without the fixed `/opt/pw-browsers` path (`scripts/video/render-env.ts`; the observed
+  renderer is reported, SwiftShader here; GPU untested). Moves keep their video text in `moves/<id>/story.json`;
+  `build-move.py <id> --presentation` regenerates the presentation without simulating, behind a motion/engine/model/checks
+  gate (`scripts/shotlib/identity.py`). Scene-cache pilot on Hjerpefinte: 631 frames, 244 distinct scene states (the old
+  325 counted time+camera pairs); full 1080p export 1253 s cold / 99 s warm, caption-only rerender 96 s with 244/244 hits
+  (historical direct export 2552 s, not rerun). `ShotScene` no longer leaks poses between compositions (cloned GLTF scene,
+  per-frame reset; `validation/video-workflow/scene-probe-*.json`). Theme from the puck.no branch with `classic` as the
+  default; the five hand-made exports are byte-identical on 36 frames (`validation/video-workflow/refactor-identity.json`)
+  and not re-rendered. `validation/moves/hjerpefinte.mp4` re-exported through the cache. Open: the IKV engine-equivalence
+  report does not reproduce in this container (rebuilt on main too: 90 mm puck difference with identical inputs), and
+  its test fails here because `build.py` gained the motion fingerprint; Edwall reports are stale (not tested).
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -444,6 +458,7 @@ Iteration 20 closed without repair cycles:
 | Dimensional accuracy | Goalie height and stick blade measured by the user (2026-10-01). Everything else not measured. All sizes are `catalog_nominal`, `assumed` (preview scale) or `unknown`. |
 | Batch consolidation (2026-10-10) | Branch `claude/consolidation-batch-2026-10-10`: `npm run check` passes (typecheck, validate, 165/165 tests, including the 36 Python tests in `tests/synth/`). Rebuild runner: `analysis` stage and Edwall video specs byte-identical to the committed files; model, video and mesh steps not run (no video, Blender or PyTorch in that container). |
 | NM26 new tracks (2026-10-10) | Branch `claude/switch-new-tracks-0nujjo`: `npm run check` passes (typecheck, validate, 165/165 tests; Python tests 43/43 incl. 7 new track-selection tests). `npm run rebuild:nm26:analysis` reruns cleanly (its outputs differ from main by design). Old inputs reproduce the old outputs (env override). Edwall goals 2 and 4 v1 traces rebuild identical apart from the git commit. Not run: Edwall videos, g1 review page, evidence sheets. Taps pending. |
+| Video workflow (2026-10-12) | Branch `claude/combo-video-workflow-j0piia`: typecheck passes; `npm test` 170/171 (fails: the IKV equivalence report, see above). Rendered and inspected: Hjerpefinte stills, drafts, cached 1080p final, caption-only draft; IKV cached stills and draft; scene-isolation probe; 36-frame refactor identity. Not run: direct full export, GPU, Edwall videos. |
 
 ## Key decisions
 
