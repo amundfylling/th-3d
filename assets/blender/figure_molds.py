@@ -23,8 +23,57 @@ MOLDS_JSON = sb.REPO / "data" / "figure-molds.json"
 
 
 def load_molds() -> dict:
+    """data/figure-molds.json; a skater with `mesh_source` (data/figures/skater-stl.json, docs/skater-stl.md) takes its
+    stick, runner, socket and scale from that spec, and its body from the STL (build_skater)."""
     import json
-    return json.loads(MOLDS_JSON.read_text())
+    d = json.loads(MOLDS_JSON.read_text())
+    sk = d["skater"]
+    if sk.get("mesh_source"):
+        spec = json.loads((sb.REPO / sk["mesh_source"]).read_text())
+        for key in ("stick", "runner", "socket", "scale"):
+            sk[key] = spec[key]
+        sk["stl"] = spec
+    return d
+
+
+def _stl_module():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("stl_skater", sb.REPO / "scripts" / "stl-skater.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+FACE_KEYS = "mat_key"  # face attribute on a multi-material part: index into STL_REGIONS
+STL_REGIONS = ["kit", "blue", "skin"]
+
+
+def stl_body(name: str, spec: dict):
+    """The STL skater body in mold units (once subdivided), each face tagged with its colour region (face attribute
+    FACE_KEYS; data/figures/skater-stl-paint.json). Joiners give such a part one material slot per region."""
+    ss = _stl_module()
+    v, t = ss.load_stl()
+    V, T = ss.subdivide(ss.to_mold(v, spec), t)
+    lab = ss.paint_labels()
+    assert len(lab) == len(T), "paint labels do not match the subdivided STL; rerun scripts/stl-skater.py paint"
+    ob = mesh_object(name, V, [tuple(int(i) for i in f) for f in T])
+    at = ob.data.attributes.new(FACE_KEYS, "INT", "FACE")
+    at.data.foreach_set("value", lab.astype(int))
+    ob["material_key"] = "multi"
+    return ob
+
+
+def assign_part_materials(p, slot_of) -> None:
+    """Material slots for a part before joining: one slot by `material_key`, or one slot per STL region (stl_body)."""
+    p.data.materials.clear()
+    if p.get("material_key") == "multi":
+        for k in STL_REGIONS:
+            p.data.materials.append(slot_of(k))
+        vals = [0] * len(p.data.polygons)
+        p.data.attributes[FACE_KEYS].data.foreach_get("value", vals)
+        p.data.polygons.foreach_set("material_index", vals)
+    else:
+        p.data.materials.append(slot_of(p["material_key"]))
 
 
 def _elements(part):
@@ -547,6 +596,11 @@ def tag(ob, key: str):
 def build_skater(mold: dict | None = None):
     """Skater mold parts (see data/figure-molds.json 'skater')."""
     m = (mold or load_molds())["skater"]
+    if m.get("stl"):  # body from the Thingiverse STL (docs/skater-stl.md); stick, blade and runner from its spec
+        s, r = m["stick"], m["runner"]
+        return [stl_body("stl_body", m["stl"]), tag(tube("sk_shaft", s["shaft"], s["shaft_r"]), METAL),
+                tag(blade("sk_blade", s["blade"][0], s["blade"][1], s["blade_h"], s["blade_t"], z0=0.0), METAL),
+                tag(blade("sk_runner", r["a"], r["b"], r["height"], r["thickness"]), METAL)]
     head = m.get("head_pose")
     parts = []
     for n, p in m["parts"].items():

@@ -37,7 +37,11 @@ MOLDS = fm.load_molds()
 KS = {"skater": FIT["scale_k_mm_per_mold_unit"], "goalie": FIT["scale_k_mm_per_mold_unit"]}
 if MOLDS["goalie"].get("scale"):  # measured goalie scale (calibrate_goalie, data/figure-molds.json)
     KS["goalie"] = MOLDS["goalie"]["scale"]["k_mm_per_mold_unit"]
+if MOLDS["skater"].get("scale"):  # STL skater: the file's own size (data/figures/skater-stl.json, docs/skater-stl.md)
+    KS["skater"] = MOLDS["skater"]["scale"]["k_mm_per_mold_unit"]
 K = KS["skater"]
+# fitted photo cameras for the skater's review renders: the STL body has its own (validation/players/stl/)
+SKATER_FITS = VAL / "stl" / "skater-fit.json" if MOLDS["skater"].get("stl") else VAL / "skater-fit.json"
 TEAMS = {"SWE": {"kit": "sweden_yellow", "name": "SVERIGE", "ink": (24, 22, 20), "outline": (40, 32, 18)},
          "FIN": {"kit": "goalie_white", "name": "FINLAND", "ink": (28, 88, 160), "outline": (28, 88, 160)}}
 # Colours (sRGB) from the official overhead (validation/18-colour-samples.json). One blue for both teams: the
@@ -99,8 +103,7 @@ def build_mold(kind, scale=True):
     keys = [fm.KIT, fm.BLUE, fm.SKIN, fm.METAL, fm.TAN, fm.DARK]
     slot = {k: bpy.data.materials.new(f"slot_{k}") for k in keys}
     for p in parts:
-        p.data.materials.clear()
-        p.data.materials.append(slot[p["material_key"]])
+        fm.assign_part_materials(p, lambda k: slot[k])
     bpy.ops.object.select_all(action="DESELECT")
     for p in parts:
         p.select_set(True)
@@ -291,8 +294,13 @@ def calibrate_goalie():
 def main():
     VAL.mkdir(parents=True, exist_ok=True)
     kg = calibrate_goalie()
-    report = {"scale_k_mm_per_mold_unit": K, "scale_source": "validation/players/overhead-fit.json (4 Sweden skaters, official overhead, ASSUMED preview scale)",
-              "scales": dict(KS), "scale_sources": {"skater": "official overhead fit (ASSUMED preview scale), status traced",
+    stl = MOLDS["skater"].get("stl")
+    sk_src = (f"STL skater: the file's own size ({MOLDS['skater']['scale']['source']}; data/figures/skater-stl.json), status traced" if stl
+              else "official overhead fit (ASSUMED preview scale), status traced")
+    report = {"scale_k_mm_per_mold_unit": KS["skater"],
+              "scale_source": "data/figures/skater-stl.json (STL file size, user decision 2026-10-12)" if stl else "validation/players/overhead-fit.json (4 Sweden skaters, official overhead, ASSUMED preview scale)",
+              "skater_mesh_source": stl["source"] if stl else None,
+              "scales": dict(KS), "scale_sources": {"skater": sk_src,
                                                     "goalie": ("user ruler measurement: height 54 mm (data/figure-molds.json measurements), status measured" if kg else "shared skater scale")},
               "assets": {}}
     renders = []
@@ -330,7 +338,7 @@ def main():
             if team == "SWE":
                 for vid in {"skater": ["skater-video-t00.00", "skater-video-t07.25", "skater-video-t04.50"],
                             "goalie": ["goalie-photo-front", "goalie-photo-back", "goalie-photo-side"]}[kind]:
-                    cam, (cw, ch) = cam_from_fit(vid, kind)
+                    cam, (cw, ch) = cam_from_fit(vid, kind, SKATER_FITS if kind == "skater" else None)
                     s = 520 / max(cw, ch)
                     sb.render(cam, VIEWS / f"match_{vid}.png", (round(cw * s), round(ch * s)), 48)
     (VAL / "figures-report.json").write_text(json.dumps(report, indent=2) + "\n")

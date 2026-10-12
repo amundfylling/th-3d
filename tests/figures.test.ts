@@ -152,7 +152,7 @@ test("refinement round 2: held-out views fitted after the shape, close-up sheets
   for (const kind of ["skater", "goalie"]) assert.ok(molds.print_layout[kind].digit_h > 4);
 });
 
-test("goalie matches the user's ruler measurements; the skater keeps its own (overhead) scale", () => {
+test("goalie matches the user's ruler measurements; the skater has the STL file's size (user decision 2026-10-12)", () => {
   const m = molds.measurements.goalie;
   assert.deepEqual([m.height_mm, m.blade_length_mm, m.blade_height_mm], [54, 26, 5.5]);
   assert.equal(m.uncertainty_mm, null, "unstated uncertainty stays null");
@@ -162,7 +162,9 @@ test("goalie matches the user's ruler measurements; the skater keeps its own (ov
     assert.ok(Math.abs(r.blade_length_mm - 26) <= 0.05, `blade ${r.blade_length_mm}`);
     assert.ok(Math.abs(r.blade_height_mm - 5.5) <= 0.05, `blade height ${r.blade_height_mm}`);
   }
-  assert.equal(rep.scales.skater, over.scale_k_mm_per_mold_unit, "skater scale from the overhead fit");
+  const stl = JSON.parse(readFileSync("data/figures/skater-stl.json", "utf8"));
+  assert.equal(rep.scales.skater, stl.scale.k_mm_per_mold_unit, "skater scale = the Thingiverse STL's own size (user, 2026-10-12)");
+  assert.ok(Math.abs(rep.assets.skater_SWE.height_mm - 56.85) < 0.1, `skater height ${rep.assets.skater_SWE.height_mm}`);
   assert.ok(Math.abs(rep.scales.goalie - molds.goalie.scale.k_mm_per_mold_unit) < 1e-4);
   assert.notEqual(rep.scales.goalie, rep.scales.skater);
   const src = g.sources.find((s) => s.id === "user_measurement_2026_10_01_goalie")!;
@@ -256,7 +258,8 @@ test("refinement round 8 (skater): broad thin collar footprint, level rear helme
   assert.equal((P.helmet.negative_ellipsoids ?? {}).nape_cut, undefined, "no central notch in the rear helmet edge");
   const nb = P.face.capsules.neck_back;
   assert.ok(nb.b[2] <= 40.2, "back neck column stays below the helmet edge");
-  assert.ok(Math.abs(rep.assets.skater_SWE.height_mm - 51.24) < 0.3, `helmet top near the profile reading (${rep.assets.skater_SWE.height_mm} mm)`);
+  // helmet top: 51.24 mm with the parametric mold at the overhead scale; since 2026-10-12 the skater body is the
+  // Thingiverse STL at its own size (56.85 mm, tested above), so the parametric helmet is no longer the asset
 });
 
 test("refinement round 9 (skater face), carried into round 12: taper, small nose, turned with the head", () => {

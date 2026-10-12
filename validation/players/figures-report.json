@@ -1,28 +1,37 @@
 {
-  "scale_k_mm_per_mold_unit": 1.0814,
-  "scale_source": "validation/players/overhead-fit.json (4 Sweden skaters, official overhead, ASSUMED preview scale)",
+  "scale_k_mm_per_mold_unit": 1.19154,
+  "scale_source": "data/figures/skater-stl.json (STL file size, user decision 2026-10-12)",
+  "skater_mesh_source": {
+    "reference_id": "thingiverse_6898521_stiga_hockey_player",
+    "file": "references/models/thingiverse-6898521/STIGA HOCKEY PLAYER - 6898521.zip",
+    "member": "files/STIGA_HOCKEY_PLAYER.stl",
+    "license": "CC BY-SA",
+    "attribution": "STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521",
+    "status": "traced",
+    "note": "A sculpt of the STIGA skater mold: same pose and handedness as the user's skater no. 21. Used for the body only; its round printable stick is replaced by the traced wire stick."
+  },
   "scales": {
-    "skater": 1.0814,
+    "skater": 1.19154,
     "goalie": 1.1421889791935147
   },
   "scale_sources": {
-    "skater": "official overhead fit (ASSUMED preview scale), status traced",
+    "skater": "STL skater: the file's own size (user decision 2026-10-12 ('Use the measurement from thingiverse, 57 mm'): the STL file's own size, file mm = asset mm; data/figures/skater-stl.json), status traced",
     "goalie": "user ruler measurement: height 54 mm (data/figure-molds.json measurements), status measured"
   },
   "assets": {
     "skater_SWE": {
-      "height_mm": 51.09,
+      "height_mm": 56.85,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
-        -16.2,
-        16.4
+        -15.5,
+        18.7
       ],
       "footprint_y_mm": [
-        -19.9,
+        -20.0,
         43.5
       ],
-      "socket_bottom_diameter_mm": 12.11,
-      "socket_height_mm": 4.54,
+      "socket_bottom_diameter_mm": 13.48,
+      "socket_height_mm": 3.57,
       "blade_heel_mm": [
         3.24,
         22.71
@@ -35,23 +44,23 @@
       "blade_height_mm": 3.24,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 111740,
-      "decal_faces": 1330,
+      "triangles": 79504,
+      "decal_faces": 2578,
       "number_on_asset_decal": "21"
     },
     "skater_FIN": {
-      "height_mm": 51.09,
+      "height_mm": 56.85,
       "zmin_mm": 0.0,
       "footprint_x_mm": [
-        -16.2,
-        16.4
+        -15.5,
+        18.7
       ],
       "footprint_y_mm": [
-        -19.9,
+        -20.0,
         43.5
       ],
-      "socket_bottom_diameter_mm": 12.11,
-      "socket_height_mm": 4.54,
+      "socket_bottom_diameter_mm": 13.48,
+      "socket_height_mm": 3.57,
       "blade_heel_mm": [
         3.24,
         22.71
@@ -64,8 +73,8 @@
       "blade_height_mm": 3.24,
       "stick_zmin_mm": 0.0,
       "stick_side": "left (+y)",
-      "triangles": 111740,
-      "decal_faces": 1330,
+      "triangles": 79504,
+      "decal_faces": 2578,
       "number_on_asset_decal": "4"
     },
     "goalie_SWE": {

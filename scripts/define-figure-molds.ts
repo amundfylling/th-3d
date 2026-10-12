@@ -11,14 +11,18 @@ const round = (v: number, d = 2): number => Math.round(v * 10 ** d) / 10 ** d;
 const read = <T>(p: string): T => JSON.parse(readFileSync(p, "utf8")) as T;
 const g = read<GeometryFile>("data/geometry.json");
 const molds = read<Record<string, any>>("data/figure-molds.json");
+// STL skater (docs/skater-stl.md): body from the Thingiverse STL, stick/runner/socket/scale from its spec
+const STL = molds.skater.mesh_source ? read<Record<string, any>>(molds.skater.mesh_source) : null;
+if (STL) for (const k of ["stick", "runner", "socket", "scale"]) molds.skater[k] = STL[k];
 const rep = read<{ scale_k_mm_per_mold_unit: number; scales: { skater: number; goalie: number }; assets: Record<string, any> }>("validation/players/figures-report.json");
 const over = read<{ scale_k_mm_per_mold_unit: number; goalie_only_best_scale_k: number; figures: Record<string, { iou: number }> }>("validation/players/overhead-fit.json");
-const fits = { skater: read<{ mean_iou: number; views: Record<string, { iou: number }> }>("validation/players/skater-fit.json"), goalie: read<{ mean_iou: number; views: Record<string, { iou: number }> }>("validation/players/goalie-fit.json") };
+const fits = { skater: read<{ mean_iou: number; views: Record<string, { iou: number }> }>(STL ? "validation/players/stl/skater-fit.json" : "validation/players/skater-fit.json"), goalie: read<{ mean_iou: number; views: Record<string, { iou: number }> }>("validation/players/goalie-fit.json") };
 const index = read<{ sources: { id: string; local_path: string; sha256: string; native_width_px: number; native_height_px: number; title: string }[] }>("references/index.json");
 const K = rep.scales.skater;
 const KG = rep.scales.goalie;
 const KOF: Record<"skater" | "goalie", number> = { skater: K, goalie: KG };
-if (K !== over.scale_k_mm_per_mold_unit) throw new Error("figures-report and overhead-fit disagree on k: rebuild the figures");
+if (STL ? K !== STL.scale.k_mm_per_mold_unit : K !== over.scale_k_mm_per_mold_unit) throw new Error("figures-report and the skater scale source disagree on k: rebuild the figures");
+const overSk = STL ? read<{ scale_k_mm_per_mold_unit: number; figures: Record<string, { iou: number }> }>("validation/players/stl/overhead-fit.json") : over;
 type Meas = { source_id: string; height_mm: number; blade_length_mm: number; blade_height_mm: number; definitions: Record<string, string> };
 const measOpt = molds.measurements?.goalie as Meas | undefined;
 if (!measOpt) throw new Error("goalie measurements missing in data/figure-molds.json");
@@ -26,7 +30,7 @@ const meas: Meas = measOpt;
 const MEAS = meas.source_id;
 
 // ---- Sources ----------------------------------------------------------------------------------------
-const MEDIA = index.sources.filter((s) => s.id.startsWith("user_") && (s.id.includes("_photo_") || s.id.includes("_video_")));
+const MEDIA = index.sources.filter((s) => s.id.startsWith("user_") && (s.id.includes("_photo_") || s.id.includes("_video_")) && (s.local_path ?? "").startsWith("references/players_images/"));
 const STATEMENT = "user_statement_2026_09_30_players";
 const PACK = "stiga_ca_team_pack_finland";
 const OVER = "stiga_se_fi_overhead";
@@ -43,6 +47,12 @@ g.sources.push({ id: STATEMENT, kind: "user_statement", title: "User statement o
   note: "'Every player is identical, except the goalkeeper. The only difference between sweden and finland is the kit color and the country name on the back.' Photos/videos of the Sweden goalie and skater uploaded to references/players_images." });
 g.sources.push({ id: MEAS, kind: "user_measurement", title: "User ruler measurements of the STIGA Play Off 21 goalie (2026-10-01)",
   note: `Height ${meas.height_mm} mm (${meas.definitions.height}); stick blade length ${meas.blade_length_mm} mm (${meas.definitions.blade_length}); blade height ${meas.blade_height_mm} mm (${meas.definitions.blade_height}). Stated as 5,4 / 2,6 / 0,55 cm, uncertainty not stated. Endpoint sketch: references/user_measurements/goalie-measurements-2026-10-01.png (index id user_goalie_measurement_sketch).` });
+if (STL) {
+  const id = STL.source.reference_id as string;
+  g.sources = g.sources.filter((s) => s.id !== id);
+  g.sources.push({ id, kind: "document", title: "STIGA HOCKEY PLAYER by MAVRIS (Thingiverse thing:6898521, CC BY-SA): body STL of the skater mold",
+    index_id: id, url: "https://www.thingiverse.com/thing:6898521", note: "User upload 2026-10-12 (references/models/thingiverse-6898521/). The skater body; size = the file's own (user decision). docs/skater-stl.md." });
+}
 const photoIds = MEDIA.map((m) => m.id);
 const skaterMedia = photoIds.filter((i) => i.startsWith("user_skater_"));
 const goalieMedia = photoIds.filter((i) => i.startsWith("user_goalie_"));
@@ -52,7 +62,11 @@ const SCALE = "assume.figure_mold_scale";
 const HIDDEN = "assume.figure_mold_hidden_details";
 g.assumptions = g.assumptions.filter((a) => !a.id.startsWith("assume.debug_contacts.") && a.id !== SCALE && a.id !== HIDDEN);
 const assumptions: Assumption[] = [
-  { id: SCALE, statement: `Skater mold scale k = ${K} mm per mold unit, fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the ASSUMED preview scale. The goalie no longer shares it: its scale k = ${round(KG, 4)} comes from the user's measured height (${meas.height_mm} mm).`,
+  STL
+    ? { id: SCALE, statement: `Skater: the Thingiverse STL body (${STL.source.attribution}, ${STL.source.license}) at the file's own size, k = ${K} mm per mold unit (user decision 2026-10-12, height ${STL.scale.body_height_mm} mm). Check: the overhead fit with this shape at the ASSUMED preview scale gives k = ${overSk.scale_k_mm_per_mold_unit}. The goalie's scale k = ${round(KG, 4)} comes from the user's measured height (${meas.height_mm} mm).`,
+      reason: "No ruler measurement of a skater exists; the user chose the STL file's size (data/figures/skater-stl.json).",
+      affects: g.figure_assets.filter((a) => a.kind === "skater").map((a) => `figure_assets.${a.id}`), replace_with: "Ruler measurements of one skater: height (ice to helmet top), socket base diameter, blade length and heel offset from the socket axis." }
+    : { id: SCALE, statement: `Skater mold scale k = ${K} mm per mold unit, fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the ASSUMED preview scale. The goalie no longer shares it: its scale k = ${round(KG, 4)} comes from the user's measured height (${meas.height_mm} mm).`,
     reason: "No ruler measurement of a skater exists; the overhead is the only scaled view of the skaters (itself at the ASSUMED preview scale).",
     affects: g.figure_assets.filter((a) => a.kind === "skater").map((a) => `figure_assets.${a.id}`), replace_with: "Ruler measurements of one skater: height (ice to helmet top), socket base diameter, blade length and heel offset from the socket axis." },
   { id: HIDDEN, statement: "Hidden or unresolved mold details are assumed: socket bore (3 x 2 x 3 mold units), blade and runner thickness (0.9 mold units skater, 2.4 goalie blade), stick wire radius (0.75), print fonts.",
@@ -97,7 +111,8 @@ for (const a of g.figure_assets) {
   a.mold_group = `mold.${kind}`;
   if (kind === "goalie" && Math.abs(r.height_mm - meas.height_mm) > 0.1) throw new Error(`goalie asset height ${r.height_mm} != measured ${meas.height_mm}`);
   a.figure_height = kind === "skater"
-    ? q(r.height_mm, "traced", 2.5, src, `Ice (socket underside) to helmet top of the fitted mold at k = ${K}. The catalog 'figure height approx. 57 mm' (datum unspecified) is ${round(57 - r.height_mm, 1)} mm higher; not resolved (preview scale is assumed).`)
+    ? (STL ? q(r.height_mm, "traced", 2.5, [...src, STL.source.reference_id], `Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = ${K}). Not a ruler measurement. Checks: overhead fit with this shape ${round(STL.scale.checks.overhead_fit_body_height_mm, 1)} mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified).`)
+      : q(r.height_mm, "traced", 2.5, src, `Ice (socket underside) to helmet top of the fitted mold at k = ${K}. The catalog 'figure height approx. 57 mm' (datum unspecified) is ${round(57 - r.height_mm, 1)} mm higher; not resolved (preview scale is assumed).`))
     : q(meas.height_mm, "measured", null, [MEAS], `User ruler measurement: ${meas.definitions.height}. The asset is scaled to it (k = ${round(KG, 4)}). Independent check: the goalie-only overhead fit at the assumed preview scale gives k = ${over.goalie_only_best_scale_k}.`);
   a.blade_offset_from_pivot = kind === "skater"
     ? q(round(Math.hypot(heel[0]!, heel[1]!)), "traced", 2, [OVER, ...skaterMedia], `Horizontal distance from the fixture axis to the blade heel (inner end); the blade runs ${r.blade_length_mm} mm further toward the figure's left. Overhead: heel 21.1-22.8 mm lateral on four figures.`)
@@ -110,14 +125,14 @@ for (const a of g.figure_assets) {
     { item: "stick and blade", status: "traced", evidence: kind === "skater" ? "Metal wire stick through both gloves (left shot), flattened blade on the ice toward the figure's left; overhead: heel ~21.9 mm left of the axis, blade ~20.2 mm (4 figures, preview scale)." : "Tan plastic stick: paddle from the blocker (right hand) to a heel between the pads; blade across the front toward the goalie's left, longer than the body is wide." },
     { item: "skates", status: "traced", evidence: kind === "skater" ? "Left boot on the mount socket; right boot pushed back and out with a metal runner on the ice." : "Blue boots under yellow/white socks; right boot on the socket." },
     { item: "uniform", status: "traced", evidence: `Kit colour (${team === "SWE" ? "Sweden yellow" : "Finland white"}) on jersey and socks; shared blue helmet, gloves, pants, boots${kind === "goalie" ? ", pads, blocker, catcher, mask" : ""}; skin face; back print country name + number (data/figure-molds.json prints).` },
-    { item: "shape", status: "traced", evidence: `Camera-matched silhouette fit to the user's ${kind === "skater" ? "turntable video frames" : "photos and video frames"}: mean IoU ${fits[kind].mean_iou} (${Object.keys(fits[kind].views).length} views); overhead top-view IoU ${over.figures[kind === "skater" ? "E-LD" : "W-G"]?.iou ?? "n/a"}.` },
+    { item: "shape", status: "traced", evidence: `${kind === "skater" && STL ? `Thingiverse STL body (${STL.source.attribution}, ${STL.source.license}; docs/skater-stl.md). ` : ""}Camera-matched silhouette fit to the user's ${kind === "skater" ? "turntable video frames" : "photos and video frames"}: mean IoU ${fits[kind].mean_iou} (${Object.keys(fits[kind].views).length} views); overhead top-view IoU ${(kind === "skater" ? overSk : over).figures[kind === "skater" ? "E-LD" : "W-G"]?.iou ?? "n/a"}.` },
     kind === "skater"
-      ? { item: "absolute scale", status: "traced", evidence: `k = ${K} mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater.` }
+      ? { item: "absolute scale", status: "traced", evidence: STL ? `k = ${K} mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = ${overSk.scale_k_mm_per_mold_unit} at the ASSUMED preview scale; no ruler measurement of a skater.` : `k = ${K} mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater.` }
       : { item: "absolute scale", status: "measured", evidence: `k = ${round(KG, 4)} mm per mold unit = measured height ${meas.height_mm} mm / mold height. Overhead check: goalie-only fit k = ${over.goalie_only_best_scale_k} at the assumed preview scale.` },
     ...(kind === "goalie" ? [{ item: "measured dimensions", status: "measured" as const, evidence: `User ruler (2026-10-01): height ${meas.height_mm} mm, stick blade length ${meas.blade_length_mm} mm, blade height ${meas.blade_height_mm} mm; endpoints in references/user_measurements/goalie-measurements-2026-10-01.png. Asset: height ${r.height_mm} mm, blade ${r.blade_length_mm} x ${r.blade_height_mm} mm.` }] : []),
   ];
   a.inventory = inv;
-  a.note = `Rigid ${kind} mold (data/figure-molds.json) in the ${team === "SWE" ? "Sweden" : "Finland"} kit: assets/figures/${kind}_${team}.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left.`;
+  a.note = `Rigid ${kind} mold (data/figure-molds.json${kind === "skater" && STL ? "; body from the Thingiverse STL, data/figures/skater-stl.json" : ""}) in the ${team === "SWE" ? "Sweden" : "Finland"} kit: assets/figures/${kind}_${team}.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left.`;
 }
 for (const pl of g.players) {
   pl.stick_handedness = "left";

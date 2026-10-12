@@ -27,7 +27,8 @@ OUT = REPO / "data/figures/contact-footprints.json"
 # everything that decides the footprints: the mold data and the code that builds the meshes (out/figures/*.npz, not
 # committed), the figure scale and the puck thickness. The engine and the tests refuse the file when any of them changed.
 INPUTS = ["data/figure-molds.json", "assets/blender/figure_molds.py", "assets/blender/face_sections.py", "assets/blender/stiga_blender.py",
-          "assets/blender/preview_molds.py", "scripts/shotlib/export_footprints.py", "validation/players/figures-report.json", "validation/12-hardware-report.json"]
+          "assets/blender/preview_molds.py", "scripts/shotlib/export_footprints.py", "validation/players/figures-report.json", "validation/12-hardware-report.json",
+          "data/figures/skater-stl.json", "data/figures/skater-stl-paint.json", "scripts/stl-skater.py"]  # the STL skater (docs/skater-stl.md)
 
 
 def sha(p):
@@ -56,7 +57,7 @@ def to_json(poly):
 def main():
     out = {"schema": "contact-footprints/1",
            "description": "Figure footprints for puck contact: mold geometry below the puck top, projected on the ice, local mm (pivot at the origin; +y toward the blade, docs/pose.md). 'low' = everything the puck can touch, 'stick' = the stick and blade part of it (used to name a contact 'stick/blade' rather than 'skate/body').",
-           "status": "derived from the AI-modelled molds at the assumed preview scale (docs/players.md); not measured",
+           "status": "derived from the figure meshes: skater = the Thingiverse STL body at the file's size (docs/skater-stl.md), goalie = the AI-modelled mold at the measured height (docs/players.md); not measured",
            "puck_thickness_mm": PUCK_T, "puck_thickness_status": "assumed (preview)",
            "scale_mm_per_mold_unit": SCALE, "inputs_sha256": {p: sha(p) for p in INPUTS},
            "meshes_sha256": {f"out/figures/{k}.npz": sha(f"out/figures/{k}.npz") for k in ("skater", "goalie")},

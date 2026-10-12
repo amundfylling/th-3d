@@ -5,14 +5,14 @@
  "variants_passed": "11/11",
  "robust": true,
  "goal_y_spread_mm": [
-  -18.84,
-  -18.46
+  -18.87,
+  -18.48
  ],
  "rows": [
   {
    "variant": "nominal",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -18.73,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -26,7 +26,7 @@
   {
    "variant": "geometry +0.001 mm (numerical conditioning)",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -18.73,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -40,7 +40,7 @@
   {
    "variant": "geometry -0.001 mm (numerical conditioning)",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -18.73,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -54,7 +54,7 @@
   {
    "variant": "figure footprint 2% larger (mold scale)",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -18.73,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -68,7 +68,7 @@
   {
    "variant": "figure footprint 2% smaller (mold scale)",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -18.73,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -82,7 +82,7 @@
   {
    "variant": "puck start +0.2 mm x",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -18.75,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -96,7 +96,7 @@
   {
    "variant": "puck start +0.2 mm y",
    "goal": "E",
-   "goal_y_mm": -18.46,
+   "goal_y_mm": -18.48,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -110,7 +110,7 @@
   {
    "variant": "ice friction +25%",
    "goal": "E",
-   "goal_y_mm": -18.73,
+   "goal_y_mm": -18.75,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -124,7 +124,7 @@
   {
    "variant": "ice friction -25%",
    "goal": "E",
-   "goal_y_mm": -18.84,
+   "goal_y_mm": -18.87,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -138,7 +138,7 @@
   {
    "variant": "restitution 0.3",
    "goal": "E",
-   "goal_y_mm": -18.83,
+   "goal_y_mm": -18.85,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -152,7 +152,7 @@
   {
    "variant": "restitution 0.7",
    "goal": "E",
-   "goal_y_mm": -18.61,
+   "goal_y_mm": -18.74,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",

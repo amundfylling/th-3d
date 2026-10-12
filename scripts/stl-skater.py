@@ -218,7 +218,11 @@ def finish():
                                 "parametric_overhead_k": k_old, "catalog_height": "approx. 57 mm (datum unspecified)"},
                      "note": "Not a ruler measurement of the user's skater. The overhead fit with the STL shape (ASSUMED preview scale) gives "
                              f"{P[:, 2].max() * k_ov:.1f} mm, within 1% of the file; the parametric mold gave 51.1 mm."}
-    spec["stick"], spec["runner"] = stick, runner
+    base = P[(P[:, 2] < 0.05) & (np.hypot(P[:, 0], P[:, 1]) < 9)]
+    socket = {"r_bottom": round(float(np.hypot(base[:, 0], base[:, 1]).max()), 3), "height": 3.0,
+              "note": "The STL's round base disc (the mount socket) at the ice; height read from its radius profile (the boot starts "
+                      "about 3 units up). The key bore is not modelled on the STL body."}
+    spec["stick"], spec["runner"], spec["socket"] = stick, runner, socket
     SPEC_JSON.write_text(json.dumps(spec, indent=1) + "\n")
     write_npz(spec, stick)
     print(json.dumps({"scale": spec["scale"], "stick": stick, "runner": runner}, indent=1))

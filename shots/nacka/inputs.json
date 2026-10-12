@@ -71,19 +71,19 @@
    ],
    [
     4.31,
-    148.0
+    142.0
    ],
    [
     4.33,
-    170.0
+    164.0
    ],
    [
     4.35,
-    200.0
+    194.0
    ],
    [
     4.5,
-    210.0
+    204.0
    ]
   ],
   "arc_keyframes": [
@@ -93,17 +93,17 @@
    ],
    [
     4.3,
-    39.0
+    41.0
    ],
    [
     4.33,
-    43.0
+    45.0
    ],
    [
     4.45,
-    43.5
+    45.5
    ]
   ],
-  "note": "ASSUMED: W-C steps 43 mm up its slot and turns back counter-clockwise; the blade comes square behind the puck and drives it into the right corner (chosen from a scan of the lunge length and the heading at contact: cleanest goal, blade and net the only contacts)."
+  "note": "ASSUMED: W-C steps 43 mm up its slot and turns back counter-clockwise; the blade comes square behind the puck and drives it into the right corner (chosen from a scan of the lunge length and the heading at contact: cleanest goal, blade and net the only contacts). Re-scanned 2026-10-12 for the STL skater (larger body; the old values sent the puck into the goalie's stick): the lunge is 2 mm longer and the turn back 6 deg less; goals with only blade and net contacts lie in a 2 deg band of the turn (-7 to -5 deg)."
  }
 }

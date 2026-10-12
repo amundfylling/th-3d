@@ -17,19 +17,19 @@
    "id": "full",
    "kind": "play",
    "from": 0.1,
-   "to": 2.25,
+   "to": 2.42,
    "rate": 1
   },
   {
    "id": "goal_hold",
    "kind": "hold",
-   "at": 2.25,
+   "at": 2.42,
    "frames": 20
   },
   {
    "id": "rewind",
    "kind": "rewind",
-   "from": 2.25,
+   "from": 2.42,
    "to": 0.12,
    "rate": 2.5
   },
@@ -170,33 +170,33 @@
    "from": {
     "event": "contact.shot"
    },
-   "to": 2.2,
+   "to": 2.37,
    "rate": 0.4
   },
   {
    "id": "goal_freeze",
    "kind": "hold",
-   "at": 2.2,
+   "at": 2.37,
    "frames": 25
   },
   {
    "id": "to_replay",
    "kind": "hold",
-   "at": 2.2,
+   "at": 2.37,
    "frames": 28
   },
   {
    "id": "replay",
    "kind": "play",
    "from": 0.1,
-   "to": 2.25,
+   "to": 2.42,
    "rate": 0.9
   },
   {
    "id": "outro",
    "kind": "hold",
-   "at": 2.25,
-   "frames": 40
+   "at": 2.42,
+   "frames": 25
   }
  ],
  "unlabelled_holds": [

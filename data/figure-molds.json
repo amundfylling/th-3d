@@ -1,6 +1,7 @@
 {
  "description": "Rigid STIGA Play Off figure molds (docs/players.md). Figure-local MOLD units (~mm before the fitted scale in 'scale'): origin = mounting (fixture) axis at the underside of the mount socket (ice plane), +z up the axis, +x = facing direction, +y = the figure's LEFT. Body = metaball parts (ellipsoids, capsules, rounded boxes; surface at the stated semi-axes/radius). Shapes are operator readings of the user's photos/videos refined by camera-matched silhouette fits (scripts/fit-figure-views.py, scripts/fit-figure-shape.py): status traced; hidden details (bore, blade thickness) assumed.",
  "skater": {
+  "mesh_source": "data/figures/skater-stl.json",
   "parts": {
    "helmet": {
     "material": "blue",

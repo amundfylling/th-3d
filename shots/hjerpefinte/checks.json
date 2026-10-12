@@ -9,14 +9,14 @@
   {
    "obstacle": "E-G",
    "phase": "shot_free",
-   "min_clearance_mm": 5.136,
+   "min_clearance_mm": 5.151,
    "t_at_min": 0.237
   },
   {
    "obstacle": "W-C",
    "phase": "on_the_blade",
    "min_clearance_mm": 0.05,
-   "t_at_min": 0.1
+   "t_at_min": 0.0
   },
   {
    "obstacle": "W-C",
@@ -33,14 +33,14 @@
   {
    "obstacle": "goal_E_cage",
    "phase": "shot_free",
-   "min_clearance_mm": 11.297,
-   "t_at_min": 0.31675
+   "min_clearance_mm": 11.274,
+   "t_at_min": 0.31725
   },
   {
    "obstacle": "goal_E_post_neg_y",
    "phase": "shot_free",
-   "min_clearance_mm": 9.797,
-   "t_at_min": 0.31675
+   "min_clearance_mm": 9.774,
+   "t_at_min": 0.31725
   }
  ],
  "unexpected_penetrations": [],
@@ -52,13 +52,23 @@
   "limits_status": "assumed (CLAUDE.md 'Slide or bounce', user rule 2026-10-06)",
   "per_contact": [
    {
+    "contact": "other (W-C)",
+    "figure": "W-C",
+    "t": [
+     0.008,
+     0.008
+    ],
+    "touches": 1,
+    "peak_impact_mm_s": 0.0
+   },
+   {
     "contact": "shot",
     "figure": "W-C",
     "t": [
-     0.00125,
+     0.10025,
      0.142
     ],
-    "touches": 65,
+    "touches": 47,
     "peak_impact_mm_s": 32.8
    }
   ],
@@ -73,6 +83,7 @@
  "unexplained_count": 0,
  "contact_sequence": [
   "W-C:stick/blade",
+  "W-C:stick/blade",
   "goal_net"
  ],
  "contact_sequence_merged": [
@@ -83,7 +94,14 @@
   {
    "obstacle": "W-C:stick/blade",
    "t": [
-    0.00025,
+    0.008,
+    0.008
+   ]
+  },
+  {
+   "obstacle": "W-C:stick/blade",
+   "t": [
+    0.10025,
     0.142
    ]
   },
@@ -108,7 +126,7 @@
     -28.7,
     -8.0
    ],
-   "got": -18.71,
+   "got": -18.73,
    "passed": true
   },
   {
@@ -126,133 +144,14 @@
   {
    "what": "contact.shot touches (a push, not a strike)",
    "expected": ">= 5",
-   "got": 65,
+   "got": 47,
    "passed": true
   }
  ],
  "problems": [],
  "impulses": [
   {
-   "t": 0.00125,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.0025,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.00325,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.00625,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.00775,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
    "t": 0.008,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.0085,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.01275,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.01425,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.01725,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.019,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.0195,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.02575,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.034,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.04025,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.041,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.04325,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.0,
-   "dv": 0.0
-  },
-  {
-   "t": 0.0455,
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 0.0,
@@ -389,7 +288,7 @@
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 23.7,
-   "dv": 35.5
+   "dv": 35.6
   },
   {
    "t": 0.1265,
@@ -430,7 +329,7 @@
    "t": 0.13275,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 2.4,
+   "impact_mm_s": 2.5,
    "dv": 3.7
   },
   {
@@ -507,7 +406,7 @@
    "t": 0.13575,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 1.7,
+   "impact_mm_s": 1.8,
    "dv": 2.6
   },
   {
@@ -591,7 +490,7 @@
  "walls": [],
  "goal_line": {
   "goal": "E",
-  "crossing_y_mm": -18.71,
+  "crossing_y_mm": -18.73,
   "inside_mouth_window_y_mm": [
    -28.7,
    29.8

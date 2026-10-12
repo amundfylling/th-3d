@@ -88,5 +88,10 @@
   "height": 2.157,
   "thickness": 0.9,
   "note": "Metal runner from the ice up into the STL's right boot (boot underside z0 + 0.3 units overlap); ends from the boot underside (vertices within 0.6 units of its lowest point, principal axis). The STL boot floats above the ice by about the runner height."
+ },
+ "socket": {
+  "r_bottom": 5.657,
+  "height": 3.0,
+  "note": "The STL's round base disc (the mount socket) at the ice; height read from its radius profile (the boot starts about 3 units up). The key bore is not modelled on the STL body."
  }
 }
