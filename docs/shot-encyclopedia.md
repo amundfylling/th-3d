@@ -83,9 +83,9 @@ rest into the opened right corner (goal line at y = −19.4 mm, 854 mm/s off the
 - Checks: no overlap; one contact, a push of 128 small touches with a peak impact of 22 mm/s; no unexplained motion change.
 - Robust in 11 of 11 variants; the goal-line crossing moves by 0.3 mm at most.
 - With the goalie standing still the same shot is saved (the puck meets E-G at 0.556 s): the goal depends on the feint.
-- Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (VIDEO_FACTS; rerender with
+- Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (857 frames, 28.6 s, 1920x1080 30 fps, 11.06 MB; rendered in about 105 min on CPU; rerender with
   `node scripts/analysis-render.ts move:hjerpefinte`). Its report `validation/moves/hjerpefinte-video-report.json`
-  compares every frame with the pure evaluation of the trace.
+  finds every frame equal to the pure evaluation of the trace. Frames of the mp4 were checked: goal, feint, shot, replay.
 - The video has a feint beat: `story.beats` may now name a move event without a contact (`{"id": "feint", "event":
   "goalie.reacts"}`), and a beat's `highlight` figures are kept in its camera view (`scripts/shotlib/presentation.py`).
 - User input: reading approved 2026-10-10 (`approved_reading`); corrected 2026-10-11 (`user_feedback`: the goalie covers
@@ -100,6 +100,11 @@ rest into the opened right corner (goal line at y = −19.4 mm, 854 mm/s off the
   moves on a fixed clock, and the frictionless restitution-0.5 push makes many micro-bounces whose pattern changes with
   tiny inputs. Errors grow along the chain until the right wing's shot meets the puck at the wrong time.
 - It was found when the first footprint export, rounded to 0.000001 mm, already changed IKV's outcome.
+- It is also machine-dependent (found 2026-10-12): on a later cloud container with the same code, data and Python
+  packages, both the original `scripts/ikv-trace.py` and the engine port miss the goal (the original stops with "no goal
+  or missing board contacts"; the port ends 90 mm from the saved trace). Last-bit floating-point differences between CPUs
+  are enough. The saved IKV trace and the equivalence report stay valid for the machine they were made on. Hjerpefinte v2
+  was built and checked on the new machine (11 of 11 variants), which is the kind of margin a move needs.
 - Reactive timing (the receivers start when the puck arrives, `triggers`) was tried on IKV and did not make it robust
   (0 of 11): the push chaos changes where the puck is, not only when.
 - Single-contact moves from rest (Hjerpefinte) are robust. The shovels and Edwall moves sit in between: a carry and a

@@ -36,7 +36,8 @@ test("encyclopedia: the engine reproduces the hand-built IKV trace exactly", () 
   assert.equal(r.identical_within_0_01_mm, true);
   assert.equal(r.max_puck_node_diff_mm, 0);
   // the report is only evidence for the files it was made from: the move file, the legacy trace and the whole engine
-  const engine = [...readdirSync("scripts/shotlib").filter((f) => f.endsWith(".py")).map((f) => `scripts/shotlib/${f}`), "data/figures/contact-footprints.json"];
+  // (presentation.py only writes video specs from a saved trace; it cannot change the simulation)
+  const engine = [...readdirSync("scripts/shotlib").filter((f) => f.endsWith(".py") && f !== "presentation.py").map((f) => `scripts/shotlib/${f}`), "data/figures/contact-footprints.json"];
   for (const p of ["moves/invers-kryssar-velodrom/move.json", r.legacy_trace, ...engine]) assert.equal(r.inputs_sha256[p], sha(p), `${p} changed: rebuild the equivalence report`);
 });
 
