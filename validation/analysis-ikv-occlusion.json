@@ -7,9 +7,9 @@
   "occluders": []
  },
  "full": {
-  "frames": 65,
+  "frames": 70,
   "frames_puck_mostly_hidden": 0,
-  "min_visible_fraction": 0.8,
+  "min_visible_fraction": 0.6,
   "first_poor_frames": [],
   "occluders": []
  },
@@ -21,7 +21,7 @@
   "occluders": []
  },
  "rewind": {
-  "frames": 26,
+  "frames": 28,
   "frames_puck_mostly_hidden": 0,
   "min_visible_fraction": 0.6,
   "first_poor_frames": [],
@@ -70,14 +70,14 @@
   "occluders": []
  },
  "to_push": {
-  "frames": 17,
+  "frames": 19,
   "frames_puck_mostly_hidden": 0,
   "min_visible_fraction": 1.0,
   "first_poor_frames": [],
   "occluders": []
  },
  "push_in": {
-  "frames": 22,
+  "frames": 17,
   "frames_puck_mostly_hidden": 0,
   "min_visible_fraction": 1.0,
   "first_poor_frames": [],
@@ -100,7 +100,7 @@
  "to_velo": {
   "frames": 30,
   "frames_puck_mostly_hidden": 0,
-  "min_visible_fraction": 1.0,
+  "min_visible_fraction": 0.8,
   "first_poor_frames": [],
   "occluders": []
  },
@@ -133,9 +133,9 @@
   "occluders": []
  },
  "shot_out": {
-  "frames": 28,
+  "frames": 41,
   "frames_puck_mostly_hidden": 0,
-  "min_visible_fraction": 1.0,
+  "min_visible_fraction": 0.6,
   "first_poor_frames": [],
   "occluders": []
  },
@@ -154,14 +154,14 @@
   "occluders": []
  },
  "replay": {
-  "frames": 71,
+  "frames": 77,
   "frames_puck_mostly_hidden": 0,
   "min_visible_fraction": 0.6,
   "first_poor_frames": [],
   "occluders": []
  },
  "outro": {
-  "frames": 40,
+  "frames": 25,
   "frames_puck_mostly_hidden": 0,
   "min_visible_fraction": 1.0,
   "first_poor_frames": [],
