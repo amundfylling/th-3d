@@ -337,10 +337,10 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
           <div key={spec.id + "v"} style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: dark ? 1250 : 1040, opacity: o, background: T.titleBackdrop, borderRight: dark ? undefined : `10px solid ${ACCENT.amber}` }} />,
           <div key={spec.id} style={{ position: "absolute", left: 120, bottom: 150, opacity: o, maxWidth: dark ? undefined : 860 }}>
             {T.logo ? <div style={{ position: "absolute", left: 0, bottom: "100%", marginBottom: 110 }}><Brand T={T} size={150} /></div> : null}
-            <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 34, letterSpacing: dark ? 8 : 3, color: ACCENT.amber }}>{cfg.text.kicker}</div>
+            {T.minimal ? null : <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 34, letterSpacing: dark ? 8 : 3, color: ACCENT.amber }}>{cfg.text.kicker}</div>}
             <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: dark ? 150 : 132, lineHeight: 0.95, color: T.ink, letterSpacing: dark ? 2 + 6 * (1 - s) : 4 * (1 - s), textShadow: dark ? "0 6px 30px rgba(0,0,0,0.45)" : undefined, overflowWrap: "break-word" }}>{cfg.text.title}</div>
             <div style={{ height: 8, width: 460 * s, background: ACCENT.amber, marginTop: 14 }} />
-            <div style={{ fontFamily: T.body, fontWeight: 500, fontSize: 32, color: T.inkSoft, marginTop: 18, lineHeight: 1.3, textShadow: dark ? "0 2px 10px rgba(0,0,0,0.6)" : undefined }}>{cfg.text.subtitle}</div>
+            {T.minimal ? null : <div style={{ fontFamily: T.body, fontWeight: 500, fontSize: 32, color: T.inkSoft, marginTop: 18, lineHeight: 1.3, textShadow: dark ? "0 2px 10px rgba(0,0,0,0.6)" : undefined }}>{cfg.text.subtitle}</div>}
           </div>,
         );
       } else if (spec.type === "end_card") {
@@ -375,9 +375,9 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
         {!inCard ? (
           <div style={{ position: "absolute", left: 56, top: 44, display: "flex", alignItems: "stretch", fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 30, letterSpacing: dark ? 2 : 0.5, color: T.ink, borderRadius: T.radius, overflow: "hidden", boxShadow: dark ? undefined : T.shadow }}>
             <div style={{ width: 8, background: ACCENT.amber }} />
-            <div style={{ display: "flex", alignItems: "center", gap: 12, background: T.panel, padding: T.logo ? "4px 16px 4px 10px" : "6px 16px 5px 14px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, background: T.panel, padding: T.logo ? (T.minimal ? "4px 10px" : "4px 16px 4px 10px") : "6px 16px 5px 14px" }}>
               {T.logo ? <img src={staticFile(T.logo)} style={{ width: 40, height: 40, objectFit: "contain" }} /> : null}
-              {cfg.text.kicker}
+              {T.minimal ? null : cfg.text.kicker}
             </div>
             <div style={{ display: "flex", alignItems: "center", background: T.panelStrong, color: T.inkStrong, padding: "6px 16px 5px", fontWeight: T.heavy }}>{cfg.text.bug}</div>
           </div>

@@ -31,9 +31,11 @@ dividers, status as a small dot plus text, no gradient overlays on pictures.
 - Captions, tags, chapter panels, badge and end card: white panels, navy display type, slate body text, 6 px corners.
 - The single accent: brand red for the primary graphics (arrows, rules, chapter number, key step). Other graphic
   roles keep their meaning: secondary = blue `#1f5fbf`, open lane = green `#16a34a`, blocked lane = rose `#d1495b`.
-- Title card: a solid ice panel on the left with the shield, kicker in brand red, title in navy, a red edge line; no
-  gradient over the picture.
-- Bug (top left): small shield + kicker on white, video name on navy. Goal banner: navy with a red bar.
+- Title card: a solid ice panel on the left with the shield and the move's name in navy over a red rule, a red edge
+  line; no gradient over the picture.
+- Bug (top left): small shield on white, video name on navy.
+- Minimal text (user, 2026-10-12, `minimal: true` in the theme): no kicker anywhere (never "SHOT ENCYCLOPEDIA"), and
+  nothing under the name on the title card (the subtitle is dropped). Review: `validation/theme/nbhf-theme-sheet-v2.png`. Goal banner: navy with a red bar.
 - Background around the rink: navy gradient instead of grey.
 
 ## Re-rendering
