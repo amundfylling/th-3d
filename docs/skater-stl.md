@@ -9,9 +9,10 @@ licence **CC BY-SA**. The zip holds a body STL (19 854 triangles, one closed wat
 units) and a separate round printable stick. The derived assets `assets/figures/skater_stl_*` are under the same licence
 and must keep this attribution.
 
-**Status: PROPOSED, beside the parametric skater.** Nothing downstream is switched: `assets/figures/skater_{SWE,FIN}.glb`,
-`data/geometry.json` contacts, `data/figures/contact-footprints.json`, the traces and the videos still use the parametric
-mold (docs/players.md). AI review only.
+**Status: PROPOSED, and in use since 2026-10-12** (user: "Switch now"). The skater assets
+`assets/figures/skater_{SWE,FIN}.glb`, the contact shapes in `data/geometry.json`, `data/figures/contact-footprints.json`, the
+traces and the videos use the STL body (section "Switch" below). The comparison assets `assets/figures/skater_stl_*` and
+`validation/players/stl/` stay as the record of the side-by-side check. AI review only.
 
 ## Result
 
@@ -64,9 +65,24 @@ mold unit). It is not a ruler measurement of the user's skater. Checks: the over
 - The socket's key bore is not modelled on this body (hidden underside).
 - The STL's own stick is not used (round printable rod at another angle).
 
-## Switching to it (not done)
+## Switch (user: "Switch now", 2026-10-12)
 
-The footprint below the puck top changes (IoU 0.61 with the parametric one, up to 3.5 mm apart; the STL body is larger
-at its size). Switching the assets therefore means: regenerate `data/figures/contact-footprints.json` and the
-skater contact shapes, then re-run every saved trace's contact and slide checks (Shovel's W-RW foot drag is solved
-against the foot outline and will move). Not started: it waits on the user's go-ahead (the look and the re-run of the shots).
+How: `data/figure-molds.json` skater gets `"mesh_source": "data/figures/skater-stl.json"`. `assets/blender/figure_molds.py`
+then builds the skater as the STL body (per-face colours from `skater-stl-paint.json`), the wire shaft, blade and runner
+from the spec; `build_figures.py` takes k from the spec and the STL camera fits; `scripts/define-figure-molds.ts` writes
+the STL contacts and sources into `data/geometry.json`; `scripts/shotlib/export_footprints.py` hashes the STL inputs.
+
+The blade is the traced one in mm (heel 22.7 mm, toe 43.5 mm lateral). The old spjass-family traces read the
+parametric mesh at k 1.0814, whose blade toe sat about 4 mm nearer the axis (39.5 mm). The body is also larger.
+
+| Trace | Result with the STL skater | Change |
+| --- | --- | --- |
+| Shovel #17 (accepted) | passes; W-C skate exception still 2.05 mm (max 2.7) | none |
+| spjass, defence, Hjerpefinte v1, Edwall goal 2 | pass | none |
+| Näcka | the shot hit the goalie's stick | lunge ends 44.0 mm up the slot (slot end allows 44.1), turn back 8 deg less; goal at y -28.1 (window -28.7) |
+| IKV v2 | reception sent the puck off line; the longer blade met the puck early and hard | LW reception turn 240 ms (was 200); RW slides 18 ms earlier at 562 mm/s, faces 192 deg, turns 192 -> 293 deg in 120 ms (search over five values); window 2.45 s; LW push peak 190 mm/s (was 93; rule 500), shot 472 mm/s, boards 288 mm/s; wide and replay cameras raised (the taller wing hid the puck) |
+| Edwall goals 3 and 4 | no goal | refitted (`--fit pass`, `--fit shot`; goal 3 needed a larger search: shot maxiter 60, popsize 15) |
+
+IKV's engine port (`moves/invers-kryssar-velodrom/move.json`) follows the same values and still reproduces the trace
+exactly. Not rechecked: IKV v3 (PR #9) and Hjerpefinte v2 (PR #12) on their own branches, and the NM26 analysis (it reads
+`out/figures/skater.npz` reach; not rebuilt).

@@ -413,8 +413,15 @@
   0.819 / 0.807 / 0.805, fitting / former held-out / regression views). New assets `assets/figures/skater_stl_{SWE,FIN}.glb`
   beside the parametric ones (body = STL, colours voted from the turntable frames, traced wire stick and blade kept in
   mm). Size: the STL file's own **56.85 mm** (user decision 2026-10-12; overhead fit with this shape 57.4 mm, parametric
-  51.1 mm, catalog approx. 57 mm). Contacts, footprints, traces and videos NOT switched (footprint IoU 0.61,
-  up to 3.5 mm apart: switching means re-running every trace's checks). `npm run players:stl`.
+  51.1 mm, catalog approx. 57 mm). `npm run players:stl`.
+- **Switched to the STL skater (user: "Switch now", 2026-10-12, docs/skater-stl.md "Switch"):** `data/figure-molds.json`
+  skater `mesh_source` = `data/figures/skater-stl.json`; `skater_{SWE,FIN}.glb`, `out/figures/skater.npz`, geometry
+  contacts, contact footprints, the scene GLBs and the Remotion manifest rebuilt. Every saved trace re-run: Shovel, spjass,
+  defence, Hjerpefinte, Edwall goal 2 pass unchanged; Näcka (shot re-aimed), IKV v2 (reception and shot re-timed, window
+  2.45 s, wide cameras raised) and Edwall goals 3 and 4 (refitted) changed to pass again. All analysis videos, the Shovel
+  final, Hjerpefinte and the Edwall videos re-rendered in the NBHF theme (branch claude/puck-no-theme-4m6mqy merged in).
+  Not rechecked: IKV v3 (PR #9) and Hjerpefinte v2 (PR #12) on other branches; the NM26 analysis (reads skater.npz reach,
+  not rebuilt).
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
