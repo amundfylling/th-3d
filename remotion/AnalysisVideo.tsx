@@ -19,6 +19,7 @@ import type { ShotTrace } from "../src/model/trace.ts";
 import manifest from "./asset-manifest.json" with { type: "json" };
 import { toThree } from "./cameras.ts";
 import { ShotScene } from "./ShotScene.tsx";
+import { DEFAULT_THEME, THEMES, type Theme } from "./theme.ts";
 
 type Lane = { from_mm: [number, number]; to_mm: [number, number]; end_mm: [number, number]; blocked_by: string | null };
 type TraceEvent = { id: string; t_estimate: number; contact_point_local_mm?: [number, number]; lanes?: Record<string, Lane> };
@@ -40,17 +41,13 @@ export interface AnalysisConfig {
   /** extra render gate run before the trace checks (returns the names of the checks passed) */
   gate?: () => string[];
   text: { kicker: string; title: string; subtitle: string; bug: string; endTitle: string; endSteps: string[] };
+  /** visual theme of the overlays (remotion/theme.ts); default: the NBHF / puck.no look */
+  theme?: Theme["id"];
   /** per graphic type defaults merged under each graphic spec */
   defaults?: Partial<Record<GraphicSpec["type"], Partial<GraphicSpec>>>;
 }
 
 export type AnalysisProps = { graphics: boolean };
-
-const ACCENT = { amber: "#FFB21E", cyan: "#2FD6FF", red: "#FF4D4D", green: "#3BE07A" } as const;
-const INK = "#F4F6FA";
-const PANEL = "rgba(9, 14, 24, 0.84)";
-const COND = "'Barlow Condensed', 'DejaVu Sans', sans-serif";
-const SANS = "'Barlow', 'DejaVu Sans', sans-serif";
 
 /** Rejects mismatched geometry/asset versions, unreviewed traces (unless allowed) and traces that failed the contact check. */
 export function assertTraceRenderable(cfg: AnalysisConfig): string[] {
@@ -92,20 +89,17 @@ const CameraRig: React.FC<{ view: CameraView; frame: number; tag: string }> = ({
 };
 
 // ---------------------------------------------------------------- fonts
-const FONTS: [string, string, string][] = [
-  ["Barlow Condensed", "BarlowCondensed-ExtraBold.ttf", "800"],
-  ["Barlow Condensed", "BarlowCondensed-SemiBold.ttf", "600"],
-  ["Barlow", "Barlow-SemiBold.ttf", "600"],
-  ["Barlow", "Barlow-Medium.ttf", "500"],
-];
-function useFonts(): void {
+function useFonts(T: Theme): void {
   const { delayRender, continueRender } = useDelayRender();
   const [handle] = useState(() => delayRender("fonts"));
   useLayoutEffect(() => {
-    Promise.all(FONTS.map(([family, file, weight]) => new FontFace(family, `url(${staticFile(`fonts/${file}`)})`, { weight }).load().then((f) => document.fonts.add(f))))
+    const fonts = T.fonts.map(({ family, file, weight, stretch }) => new FontFace(family, `url(${staticFile(`fonts/${file}`)})`, { weight, ...(stretch ? { stretch } : {}) }).load().then((f) => document.fonts.add(f)));
+    // the brand mark is part of the frame: decode it before the first frame is captured
+    const logo = T.logo ? new Promise<void>((ok, fail) => Object.assign(new Image(), { onload: () => ok(), onerror: () => fail(new Error(`logo ${T.logo}`)), src: staticFile(T.logo!) })) : null;
+    Promise.all([...fonts, ...(logo ? [logo] : [])])
       .then(() => continueRender(handle))
       .catch((e: unknown) => cancelRender(e instanceof Error ? e : new Error(String(e))));
-  }, [continueRender, handle]);
+  }, [T, continueRender, handle]);
 }
 
 // ---------------------------------------------------------------- graphics helpers
@@ -129,7 +123,7 @@ function iceCircle(proj: Proj, c: Vec3, r: number, n = 48): string {
 }
 
 /** Arrow on the ice along world points, drawn on up to `progress` of its length; head at the end. */
-function IceArrow({ proj, pts, color, progress, width = 7 }: { proj: Proj; pts: Vec3[]; color: string; progress: number; width?: number }) {
+function IceArrow({ proj, pts, color, progress, width = 7, outline }: { proj: Proj; pts: Vec3[]; color: string; progress: number; width?: number; outline: string }) {
   const lens = pts.slice(1).map((p, i) => Math.hypot(p[0] - pts[i]![0], p[1] - pts[i]![1]));
   const total = lens.reduce((a, b) => a + b, 0);
   let left = total * Math.min(1, Math.max(0, progress));
@@ -148,24 +142,43 @@ function IceArrow({ proj, pts, color, progress, width = 7 }: { proj: Proj; pts: 
   const shaft = drawn.slice(0, -1).concat([[tip[0] - ux * hl * 0.6, tip[1] - uy * hl * 0.6, 1]]);
   return (
     <g>
-      <path d={pathD(shaft.map(proj))} fill="none" stroke="rgba(0,0,0,0.45)" strokeWidth={width + 5} strokeLinecap="round" strokeLinejoin="round" />
+      <path d={pathD(shaft.map(proj))} fill="none" stroke={outline} strokeWidth={width + 5} strokeLinecap="round" strokeLinejoin="round" />
       <path d={pathD(shaft.map(proj))} fill="none" stroke={color} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-      {head.every(Boolean) ? <path d={pathD(head) + " Z"} fill={color} stroke="rgba(0,0,0,0.45)" strokeWidth={2} /> : null}
+      {head.every(Boolean) ? <path d={pathD(head) + " Z"} fill={color} stroke={outline} strokeWidth={2} /> : null}
     </g>
   );
 }
 
-function Tag({ x, y, text, color, opacity }: { x: number; y: number; text: string; color: string; opacity: number }) {
+function Tag({ T, x, y, text, color, opacity }: { T: Theme; x: number; y: number; text: string; color: string; opacity: number }) {
   return (
-    <div style={{ position: "absolute", left: x, top: y, transform: "translate(-50%, -100%)", opacity, display: "flex", alignItems: "stretch", fontFamily: COND, fontWeight: 600, fontSize: 30, letterSpacing: 1.5, color: INK, whiteSpace: "nowrap", boxShadow: "0 6px 18px rgba(0,0,0,0.35)" }}>
+    <div style={{ position: "absolute", left: x, top: y, transform: "translate(-50%, -100%)", opacity, display: "flex", alignItems: "stretch", fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 30, letterSpacing: T.tracking, color: T.ink, whiteSpace: "nowrap", boxShadow: T.shadow, borderRadius: T.radius, overflow: "hidden" }}>
       <div style={{ width: 7, background: color }} />
-      <div style={{ background: PANEL, padding: "5px 14px 4px 12px" }}>{text}</div>
+      <div style={{ background: T.panel, padding: "5px 14px 4px 12px" }}>{text}</div>
+    </div>
+  );
+}
+
+/** Organisation mark: logo + short name (null for a theme without branding). */
+function Brand({ T, size, light = false }: { T: Theme; size: number; light?: boolean }) {
+  if (!T.logo) return null;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: size * 0.28 }}>
+      <img src={staticFile(T.logo)} style={{ width: size, height: size, objectFit: "contain" }} />
+      {T.orgShort ? (
+        <div style={{ lineHeight: 1.05 }}>
+          <div style={{ fontFamily: T.display, fontWeight: T.heavy, fontSize: size * 0.36, color: light ? T.inkStrong : T.ink, letterSpacing: 0.5 }}>{T.orgShort}</div>
+          {T.orgName ? <div style={{ fontFamily: T.body, fontWeight: 500, fontSize: size * 0.22, color: light ? T.inkStrong : T.inkSoft }}>{T.orgName}</div> : null}
+        </div>
+      ) : null}
     </div>
   );
 }
 
 // ---------------------------------------------------------------- composition factory
 export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; Component: React.FC<AnalysisProps> } {
+  const T = THEMES[cfg.theme ?? DEFAULT_THEME];
+  const ACCENT = T.accent;
+  const dark = T.id === "classic";
   const ANALYSIS = resolveAnalysis(cfg.spec, cfg.trace as unknown as Parameters<typeof resolveAnalysis>[1]);
   const stateAt = shotTimeEvaluator(cfg.trace, geometry as Parameters<typeof shotTimeEvaluator>[1]);
   const event = (id: string): TraceEvent => {
@@ -179,7 +192,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
     const lx = cc[0] + off[0], ly = cc[1] + off[1];
     const sx = Math.sign(off[0]) || 1, sy = Math.sign(off[1]) || 1;
     svg.push(<polyline key={id + "l"} points={`${cc[0] + 8 * sx},${cc[1] + 8 * sy} ${lx - 20 * sx},${ly - 20 * sy} ${lx},${ly - 20 * sy}`} fill="none" stroke={color} strokeWidth={2.5} opacity={o} />);
-    html.push(<Tag key={id + "t"} x={lx + 170 * sx} y={ly + (sy < 0 ? -40 : 0)} text={text} color={color} opacity={o} />);
+    html.push(<Tag T={T} key={id + "t"} x={lx + 170 * sx} y={ly + (sy < 0 ? -40 : 0)} text={text} color={color} opacity={o} />);
   };
 
   const Graphics: React.FC<{ frame: number; state: ShotFrameState; cam: THREE.PerspectiveCamera; width: number; height: number }> = ({ frame, state, cam, width, height }) => {
@@ -205,7 +218,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
           const tx = mid[0] + ox, ty = mid[1] + oy;
           const sx = Math.sign(ox) || -1;
           svg.push(<polyline key={spec.id + "l"} points={`${mid[0] + 22 * sx},${mid[1]} ${tx - 40 * sx},${ty} ${tx},${ty}`} fill="none" stroke={color} strokeWidth={2.5} opacity={o} />);
-          html.push(<Tag key={spec.id + "t"} x={tx + 70 * sx} y={ty + 20} text={spec.label ?? spec.target!} color={color} opacity={o} />);
+          html.push(<Tag T={T} key={spec.id + "t"} x={tx + 70 * sx} y={ty + 20} text={spec.label ?? spec.target!} color={color} opacity={o} />);
         }
       } else if (spec.type === "pass_arrow" || spec.type === "puck_arrow") {
         const te = event(spec.event!).t_estimate;
@@ -215,11 +228,11 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
         const s0 = spec.start_mm ?? 22, len = spec.length_mm ?? 175;
         const start: Vec3 = [p0[0] + u[0] * s0, p0[1] + u[1] * s0, 1];
         const end: Vec3 = [p0[0] + u[0] * len, p0[1] + u[1] * len, 1];
-        svg.push(<g key={spec.id} opacity={o}><IceArrow proj={proj} pts={[start, end]} color={color} progress={since(g) / 0.6} /></g>);
+        svg.push(<g key={spec.id} opacity={o}><IceArrow outline={T.outline} proj={proj} pts={[start, end]} color={color} progress={since(g) / 0.6} /></g>);
         const lo = spec.label_offset_mm ?? [30, 0];
         const la = spec.label_at_mm ?? 120;
         const lab = proj([p0[0] + u[0] * la + lo[0], p0[1] + u[1] * la + lo[1], 1]);
-        if (lab && spec.label && since(g) > 0.5) html.push(<Tag key={spec.id + "t"} x={lab[0] + 70} y={lab[1]} text={spec.label} color={color} opacity={o * Math.min(1, (since(g) - 0.5) / 0.25)} />);
+        if (lab && spec.label && since(g) > 0.5) html.push(<Tag T={T} key={spec.id + "t"} x={lab[0] + 70} y={lab[1]} text={spec.label} color={color} opacity={o * Math.min(1, (since(g) - 0.5) / 0.25)} />);
       } else if (spec.type === "contact_marker") {
         const ev = event(spec.event!);
         const local = spec.local_mm ?? ev.contact_point_local_mm!;
@@ -247,7 +260,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
           const s = a0 + ((a1 - a0) * k) / 12, q = path.at(s);
           pts.push([q.point[0] - q.tangent[1] * off, q.point[1] + q.tangent[0] * off, 1]);
         }
-        svg.push(<g key={spec.id} opacity={o}><IceArrow proj={proj} pts={pts} color={color} progress={since(g) / 0.7} /></g>);
+        svg.push(<g key={spec.id} opacity={o}><IceArrow outline={T.outline} proj={proj} pts={pts} color={color} progress={since(g) / 0.7} /></g>);
       } else if (spec.type === "rotation_arrow") {
         // arc around the figure's pivot at its pose at the event, seen from above: counter-clockwise = increasing angle
         const fig = stateAt(event(spec.event!).t_estimate, 0).figures[spec.target!]!;
@@ -258,11 +271,11 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
           const a = a0 + (sgn * sw * k) / 24;
           pts.push([fig.pivotMm[0] + r * Math.cos(a), fig.pivotMm[1] + r * Math.sin(a), 1]);
         }
-        svg.push(<g key={spec.id} opacity={o}><IceArrow proj={proj} pts={pts} color={color} progress={since(g) / 0.7} width={6} /></g>);
+        svg.push(<g key={spec.id} opacity={o}><IceArrow outline={T.outline} proj={proj} pts={pts} color={color} progress={since(g) / 0.7} width={6} /></g>);
         const mid = proj(pts[12]!);
         if (mid && spec.label && since(g) > 0.5) {
           const [ox, oy] = spec.label_offset_px ?? [0, -40];
-          html.push(<Tag key={spec.id + "t"} x={mid[0] + ox} y={mid[1] + oy} text={spec.label} color={color} opacity={o * Math.min(1, (since(g) - 0.5) / 0.25)} />);
+          html.push(<Tag T={T} key={spec.id + "t"} x={mid[0] + ox} y={mid[1] + oy} text={spec.label} color={color} opacity={o * Math.min(1, (since(g) - 0.5) / 0.25)} />);
         }
       } else if (spec.type === "puck_trail") {
         const n = 16, dt = 0.0035;
@@ -277,7 +290,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
           if (a && b && Math.hypot(a[0] - b[0], a[1] - b[1]) > 0.5) {
             const fall = 1 - k / n;
             svg.push(
-              <line key={spec.id + "e" + k} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="rgba(9,14,24,0.55)" strokeWidth={9 * fall + 3} strokeLinecap="round" opacity={0.6 * o * fall} />,
+              <line key={spec.id + "e" + k} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={T.outline} strokeWidth={9 * fall + 3} strokeLinecap="round" opacity={0.6 * o * fall} />,
               <line key={spec.id + k} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={ACCENT.amber} strokeWidth={9 * fall} strokeLinecap="round" opacity={0.9 * o * fall} />,
             );
           }
@@ -292,17 +305,17 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
         const col = spec.accent ? color : blocked ? ACCENT.red : ACCENT.green;
         const a: Vec3 = [ln.from_mm[0], ln.from_mm[1], 1], b: Vec3 = [end[0], end[1], 1];
         const prog = since(g) / (spec.ghost_s ?? 0.6);
-        svg.push(<g key={spec.id} opacity={o}><IceArrow proj={proj} pts={[a, b]} color={col} progress={blocked ? Math.min(prog, 0.999) : prog} width={6} /></g>);
+        svg.push(<g key={spec.id} opacity={o}><IceArrow outline={T.outline} proj={proj} pts={[a, b]} color={col} progress={blocked ? Math.min(prog, 0.999) : prog} width={6} /></g>);
         if (spec.ghost_s) {
           const f = Math.min(1, Math.max(0, prog));
           const c: Vec3 = [a[0] + f * (b[0] - a[0]), a[1] + f * (b[1] - a[1]), 1];
-          svg.push(<path key={spec.id + "g"} d={iceCircle(proj, c, 12.7)} fill="#10141c" fillOpacity={0.55 * o} stroke={col} strokeWidth={2} opacity={o} />);
+          svg.push(<path key={spec.id + "g"} d={iceCircle(proj, c, 12.7)} fill={T.ghost} fillOpacity={0.55 * o} stroke={col} strokeWidth={2} opacity={o} />);
         }
         if (blocked && prog >= 1) {
           const k = 13, c0 = proj([b[0] - k, b[1] - k, 2]), c1 = proj([b[0] + k, b[1] + k, 2]), c2 = proj([b[0] - k, b[1] + k, 2]), c3 = proj([b[0] + k, b[1] - k, 2]);
           if (c0 && c1 && c2 && c3) {
             for (const [u, v, w] of [[c0, c1, 10], [c2, c3, 10], [c0, c1, 6], [c2, c3, 6]] as const) {
-              svg.push(<line key={spec.id + "x" + u[0] + w} x1={u[0]} y1={u[1]} x2={v[0]} y2={v[1]} stroke={w === 10 ? "rgba(0,0,0,0.5)" : ACCENT.red} strokeWidth={w} strokeLinecap="round" opacity={o} />);
+              svg.push(<line key={spec.id + "x" + u[0] + w} x1={u[0]} y1={u[1]} x2={v[0]} y2={v[1]} stroke={w === 10 ? T.outline : ACCENT.red} strokeWidth={w} strokeLinecap="round" opacity={o} />);
             }
           }
         }
@@ -312,33 +325,37 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
         const s = Math.min(1, since(g) / 0.25);
         html.push(
           <div key={spec.id} style={{ position: "absolute", left: 56, top: 132, display: "flex", opacity: o }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 22, background: PANEL, padding: "10px 46px 8px 36px", transform: `scale(${0.9 + 0.1 * s})`, boxShadow: "0 10px 30px rgba(0,0,0,0.35)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 22, background: dark ? T.panel : T.panelStrong, borderRadius: T.radius, padding: "10px 46px 8px 36px", transform: `scale(${0.9 + 0.1 * s})`, boxShadow: T.shadow }}>
               <div style={{ width: 12, height: 64, background: color }} />
-              <div style={{ fontFamily: COND, fontWeight: 800, fontSize: 92, color: INK, letterSpacing: 6, lineHeight: 1 }}>{spec.label ?? "GOAL"}</div>
+              <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: 92, color: dark ? T.ink : T.inkStrong, letterSpacing: dark ? 6 : 2, lineHeight: 1 }}>{spec.label ?? "GOAL"}</div>
             </div>
           </div>,
         );
       } else if (spec.type === "title_card") {
         const s = Math.min(1, since(g) / 0.6);
         html.push(
-          <div key={spec.id + "v"} style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 1250, opacity: o, background: "linear-gradient(90deg, rgba(8,12,20,0.78) 0%, rgba(8,12,20,0.55) 55%, rgba(8,12,20,0) 100%)" }} />,
-          <div key={spec.id} style={{ position: "absolute", left: 120, bottom: 150, opacity: o }}>
-            <div style={{ fontFamily: COND, fontWeight: 600, fontSize: 34, letterSpacing: 8, color: ACCENT.amber }}>{cfg.text.kicker}</div>
-            <div style={{ fontFamily: COND, fontWeight: 800, fontSize: 150, lineHeight: 0.95, color: INK, letterSpacing: 2 + 6 * (1 - s), textShadow: "0 6px 30px rgba(0,0,0,0.45)" }}>{cfg.text.title}</div>
+          <div key={spec.id + "v"} style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: dark ? 1250 : 1040, opacity: o, background: T.titleBackdrop, borderRight: dark ? undefined : `10px solid ${ACCENT.amber}` }} />,
+          <div key={spec.id} style={{ position: "absolute", left: 120, bottom: 150, opacity: o, maxWidth: dark ? undefined : 860 }}>
+            {T.logo ? <div style={{ position: "absolute", left: 0, bottom: "100%", marginBottom: 110 }}><Brand T={T} size={150} /></div> : null}
+            {T.minimal ? null : <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 34, letterSpacing: dark ? 8 : 3, color: ACCENT.amber }}>{cfg.text.kicker}</div>}
+            <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: dark ? 150 : 132, lineHeight: 0.95, color: T.ink, letterSpacing: dark ? 2 + 6 * (1 - s) : 4 * (1 - s), textShadow: dark ? "0 6px 30px rgba(0,0,0,0.45)" : undefined, overflowWrap: "break-word" }}>{cfg.text.title}</div>
             <div style={{ height: 8, width: 460 * s, background: ACCENT.amber, marginTop: 14 }} />
-            <div style={{ fontFamily: SANS, fontWeight: 500, fontSize: 32, color: INK, marginTop: 18, textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}>{cfg.text.subtitle}</div>
+            {T.minimal ? null : <div style={{ fontFamily: T.body, fontWeight: 500, fontSize: 32, color: T.inkSoft, marginTop: 18, lineHeight: 1.3, textShadow: dark ? "0 2px 10px rgba(0,0,0,0.6)" : undefined }}>{cfg.text.subtitle}</div>}
           </div>,
         );
       } else if (spec.type === "end_card") {
         const steps = cfg.text.endSteps;
         html.push(
           <div key={spec.id} style={{ position: "absolute", left: 0, right: 0, bottom: 96, display: "flex", justifyContent: "center", opacity: o }}>
-            <div style={{ background: PANEL, padding: "26px 44px 24px", boxShadow: "0 10px 30px rgba(0,0,0,0.35)" }}>
-              <div style={{ fontFamily: COND, fontWeight: 800, fontSize: 64, color: INK, letterSpacing: 3, lineHeight: 1 }}>{cfg.text.endTitle}</div>
-              <div style={{ display: "flex", gap: 34, marginTop: 18 }}>
+            <div style={{ background: T.panel, borderRadius: T.radius, padding: "26px 44px 24px", boxShadow: T.shadow, borderTop: dark ? undefined : `8px solid ${ACCENT.amber}` }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 40 }}>
+                <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: 64, color: T.ink, letterSpacing: dark ? 3 : 0.5, lineHeight: 1 }}>{cfg.text.endTitle}</div>
+                <Brand T={T} size={84} />
+              </div>
+              <div style={{ display: "flex", gap: 34, marginTop: 18, paddingTop: dark ? 0 : 18, borderTop: dark ? undefined : "1px solid #e2e8f0" }}>
                 {steps.map((s, i) => (
-                  <div key={s} style={{ display: "flex", alignItems: "center", gap: 12, fontFamily: COND, fontWeight: 600, fontSize: 34, color: INK, letterSpacing: 1 }}>
-                    <div style={{ width: 40, height: 40, background: i === 1 ? ACCENT.amber : ACCENT.cyan, color: "#0A0F18", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{i + 1}</div>
+                  <div key={s} style={{ display: "flex", alignItems: "center", gap: 12, fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 34, color: T.ink, letterSpacing: dark ? 1 : 0.3 }}>
+                    <div style={{ width: 40, height: 40, borderRadius: T.radius, background: i === 1 ? ACCENT.amber : dark ? ACCENT.cyan : T.panelStrong, color: T.onAccent, fontWeight: T.heavy, display: "flex", alignItems: "center", justifyContent: "center" }}>{i + 1}</div>
                     {s}
                   </div>
                 ))}
@@ -350,29 +367,33 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
     }
     const chapter = ANALYSIS.chapters.map((c) => ({ c, o: windowOpacity(c, time) })).find((x) => x.o > 0);
     const inCard = active.some((x) => x.g.item.type === "title_card" || x.g.item.type === "end_card");
+    const badgeDot = (b: string): string => (b === "FREEZE" ? ACCENT.cyan : b.startsWith("FULL") ? ACCENT.green : b === "REWIND" ? ACCENT.red : ACCENT.amber);
     return (
       <AbsoluteFill>
         <svg width={width} height={height} style={{ position: "absolute", left: 0, top: 0 }}>{svg}</svg>
         {html}
         {!inCard ? (
-          <div style={{ position: "absolute", left: 56, top: 44, display: "flex", alignItems: "stretch", fontFamily: COND, fontWeight: 600, fontSize: 30, letterSpacing: 2, color: INK }}>
+          <div style={{ position: "absolute", left: 56, top: 44, display: "flex", alignItems: "stretch", fontFamily: T.display, ...T.displayStyle, fontWeight: T.label, fontSize: 30, letterSpacing: dark ? 2 : 0.5, color: T.ink, borderRadius: T.radius, overflow: "hidden", boxShadow: dark ? undefined : T.shadow }}>
             <div style={{ width: 8, background: ACCENT.amber }} />
-            <div style={{ background: PANEL, padding: "6px 16px 5px 14px" }}>{cfg.text.kicker}</div>
-            <div style={{ background: "rgba(255,255,255,0.92)", color: "#0A0F18", padding: "6px 16px 5px", fontWeight: 800 }}>{cfg.text.bug}</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, background: T.panel, padding: T.logo ? (T.minimal ? "4px 10px" : "4px 16px 4px 10px") : "6px 16px 5px 14px" }}>
+              {T.logo ? <img src={staticFile(T.logo)} style={{ width: 40, height: 40, objectFit: "contain" }} /> : null}
+              {T.minimal ? null : cfg.text.kicker}
+            </div>
+            <div style={{ display: "flex", alignItems: "center", background: T.panelStrong, color: T.inkStrong, padding: "6px 16px 5px", fontWeight: T.heavy }}>{cfg.text.bug}</div>
           </div>
         ) : null}
         {af.badge && !inCard ? (
-          <div style={{ position: "absolute", right: 56, top: 44, display: "flex", alignItems: "center", gap: 12, background: PANEL, padding: "6px 18px 5px 16px", fontFamily: COND, fontWeight: 800, fontSize: 30, letterSpacing: 3, color: INK }}>
-            <div style={{ width: 14, height: 14, borderRadius: 7, background: af.badge === "FREEZE" ? ACCENT.cyan : af.badge.startsWith("FULL") ? "#3BE07A" : af.badge === "REWIND" ? "#FF5A5A" : ACCENT.amber }} />
+          <div style={{ position: "absolute", right: 56, top: 44, display: "flex", alignItems: "center", gap: 12, background: T.panel, borderRadius: T.radius, boxShadow: dark ? undefined : T.shadow, padding: "6px 18px 5px 16px", fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: 30, letterSpacing: dark ? 3 : 1, color: T.ink }}>
+            <div style={{ width: 14, height: 14, borderRadius: 7, background: badgeDot(af.badge) }} />
             {af.badge}
           </div>
         ) : null}
         {chapter ? (
-          <div style={{ position: "absolute", left: 56, bottom: 56, maxWidth: 1180, display: "flex", alignItems: "stretch", opacity: chapter.o, transform: `translateY(${(1 - chapter.o) * 18}px)`, boxShadow: "0 10px 30px rgba(0,0,0,0.35)" }}>
-            <div style={{ width: 92, background: ACCENT.amber, color: "#0A0F18", fontFamily: COND, fontWeight: 800, fontSize: 72, display: "flex", alignItems: "center", justifyContent: "center" }}>{chapter.c.item.number}</div>
-            <div style={{ background: PANEL, padding: "16px 30px 18px 26px" }}>
-              <div style={{ fontFamily: COND, fontWeight: 800, fontSize: 52, letterSpacing: 2, color: INK, lineHeight: 1 }}>{chapter.c.item.title}</div>
-              <div style={{ fontFamily: SANS, fontWeight: 500, fontSize: 32, color: INK, marginTop: 10, lineHeight: 1.3 }}>{chapter.c.item.text}</div>
+          <div style={{ position: "absolute", left: 56, bottom: 56, maxWidth: 1180, display: "flex", alignItems: "stretch", opacity: chapter.o, transform: `translateY(${(1 - chapter.o) * 18}px)`, boxShadow: T.shadow, borderRadius: T.radius, overflow: "hidden" }}>
+            <div style={{ minWidth: 92, flexShrink: 0, padding: "0 14px", boxSizing: "border-box", background: ACCENT.amber, color: T.onAccent, fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: 72, display: "flex", alignItems: "center", justifyContent: "center" }}>{chapter.c.item.number}</div>
+            <div style={{ background: T.panel, padding: "16px 30px 18px 26px" }}>
+              <div style={{ fontFamily: T.display, ...T.displayStyle, fontWeight: T.heavy, fontSize: 52, letterSpacing: dark ? 2 : 0.3, color: T.ink, lineHeight: 1 }}>{chapter.c.item.title}</div>
+              <div style={{ fontFamily: T.body, fontWeight: 500, fontSize: 32, color: T.inkSoft, marginTop: 10, lineHeight: 1.3 }}>{chapter.c.item.text}</div>
             </div>
           </div>
         ) : null}
@@ -383,7 +404,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
   const Component: React.FC<AnalysisProps> = ({ graphics }) => {
     const { width, height } = useVideoConfig();
     const frame = useCurrentFrame();
-    useFonts();
+    useFonts(T);
     useMemo(() => console.log(`[${cfg.logTag}-check] PASS versions: ${assertTraceRenderable(cfg).join(", ")}`), []);
     const af = useMemo(() => analysisFrame(ANALYSIS, frame), [frame]);
     // shot timeline -> physical state (same pure evaluator as every other composition)
@@ -393,7 +414,7 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
     // one canvas camera for the life of the tab (a new camera object per frame makes the canvas reconfigure and leak)
     const [canvasCamera] = useState(() => Object.assign(new THREE.PerspectiveCamera(), { manual: true }));
     return (
-      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 40%, #3a4250 0%, #161b24 75%)" }}>
+      <AbsoluteFill style={{ background: T.background }}>
         <ThreeCanvas width={width} height={height} camera={canvasCamera} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true, alpha: true }}>
           <CameraRig view={view} frame={frame} tag={cfg.logTag} />
           <ShotScene state={state} logTag={cfg.logTag} />
