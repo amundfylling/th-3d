@@ -1,0 +1,37 @@
+{
+ "schema": "skater-stl-paint/1",
+ "description": "Colour region per triangle of the once-midpoint-subdivided STL body (scripts/stl-skater.py paint), in subdivision order: 0 = kit, 1 = blue, 2 = skin. Base64 of zlib-compressed uint8.",
+ "status": "traced",
+ "source_views": [
+  "skater-video-t00.00",
+  "skater-video-t03.00",
+  "skater-video-t04.50",
+  "skater-video-t06.00",
+  "skater-video-t07.25",
+  "skater-video-t08.50",
+  "skater-video-t10.75",
+  "skater-video-t13.25",
+  "skater-video-t01.50",
+  "skater-video-t14.50",
+  "skater-video-t02.25",
+  "skater-video-t05.25",
+  "skater-video-t09.25",
+  "skater-video-t10.25",
+  "skater-video-t00.75",
+  "skater-video-t03.75",
+  "skater-video-t06.75",
+  "skater-video-t08.00",
+  "skater-video-t01.10",
+  "skater-video-t04.10",
+  "skater-video-t06.40"
+ ],
+ "min_camera_iou": 0.85,
+ "triangles": 79416,
+ "unseen_triangles_filled": 20195,
+ "counts": {
+  "kit": 24212,
+  "blue": 49523,
+  "skin": 5681
+ },
+ "labels_b64_zlib": "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"
+}

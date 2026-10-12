@@ -407,6 +407,14 @@
   18/63, median 10 vs 34 mm where a position exists, last 2 s before goals 7/10 vs 1/10. Both tracks still report a puck
   the user could not see in about 2/3 of the "none" frames (next: the detector's false alarms). Taps mark the visible
   puck centre, scored after moving them up the documented 8.8 px. Edwall videos not re-rendered.
+- **Skater from a Thingiverse STL (2026-10-12, `docs/skater-stl.md`, PROPOSED):** the user supplied "STIGA HOCKEY
+  PLAYER" by MAVRIS (thing:6898521, CC BY-SA; `references/models/thingiverse-6898521/`). It is the same mold as the user's
+  skater and fits the turntable frames much better than the parametric mold (mean IoU 0.932 / 0.922 / 0.904 vs
+  0.819 / 0.807 / 0.805, fitting / former held-out / regression views). New assets `assets/figures/skater_stl_{SWE,FIN}.glb`
+  beside the parametric ones (body = STL, colours voted from the turntable frames, traced wire stick and blade kept in
+  mm). The overhead fit with this shape makes the skater **57.4 mm** tall (parametric 51.1 mm; STL file 56.85 mm; catalog
+  approx. 57 mm): needs a ruler measurement. Contacts, footprints, traces and videos NOT switched (footprint IoU 0.61,
+  up to 3.6 mm apart: switching means re-running every trace's checks). `npm run players:stl`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -508,6 +516,8 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **Skater from the STL (2026-10-12, PROPOSED):** `validation/players/stl/figures-vs-photos.png`, `figures-views.png`,
+  `paint-check.png`, `skater-fit.png`, `overhead-fit.png`; report `validation/players/stl/figures-report.json`.
 - **NM26 new tracks (2026-10-10, PROPOSED):** `docs/nm26-new-tracks.md`, tap page https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp
   (`validation/tap-review/`), `validation/nm26-track-switch.json`, `validation/edwall-g2-goal3-trace.png`, `validation/replays/`.
 - **Batch 2026-10-10 (all PROPOSED):** `validation/analysis-edwall-g2-goal{2,3,4}.mp4` (with `-review.jpg`,

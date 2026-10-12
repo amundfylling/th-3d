@@ -1,0 +1,85 @@
+{
+ "schema": "skater-stl/1",
+ "description": "Skater body from a third-party STL in the mold frame (scripts/stl-skater.py): origin = fixture axis at the socket underside, +x facing, +y the figure's left; mold units x scale.k_mm_per_mold_unit = mm. PROPOSED: the assets assets/figures/skater_stl_*.glb sit beside the parametric skater; contacts, footprints and traces still use the parametric mold.",
+ "source": {
+  "reference_id": "thingiverse_6898521_stiga_hockey_player",
+  "file": "references/models/thingiverse-6898521/STIGA HOCKEY PLAYER - 6898521.zip",
+  "member": "files/STIGA_HOCKEY_PLAYER.stl",
+  "license": "CC BY-SA",
+  "attribution": "STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521",
+  "status": "traced",
+  "note": "A sculpt of the STIGA skater mold: same pose and handedness as the user's skater no. 21. Used for the body only; its round printable stick is replaced by the traced wire stick."
+ },
+ "alignment": {
+  "axis_file_mm": [
+   -62.3617,
+   27.1759,
+   22.9934
+  ],
+  "yaw_deg": 29.972,
+  "scale_mold_units_per_file_mm": 0.83925,
+  "method": "axis = centre of the base disc (file z < min + 0.2 mm), underside -> z = 0; scale and yaw fitted to the parametric mold (symmetric nearest-point distance clipped at 3 units, stick excluded), so mold units and the fitted photo cameras keep their meaning",
+  "residual_mold_units": {
+   "stl_to_mold_median": 0.852,
+   "stl_to_mold_p90": 2.229,
+   "mold_to_stl_median": 1.224,
+   "mold_to_stl_p90": 3.004
+  },
+  "file_height_mm": 56.852,
+  "body_height_mold_units": 47.713
+ },
+ "scale": {
+  "k_mm_per_mold_unit": 1.2027,
+  "status": "traced",
+  "source": "validation/players/stl/overhead-fit.json: scripts/fit-figure-overhead.py with the STL body (4 Sweden skaters, official overhead at the ASSUMED preview scale)",
+  "body_height_mm": 57.38,
+  "file_scale": 1.0094,
+  "note": "The same overhead fit gives 1.0814 with the parametric mold (skater 51.1 mm). With the STL shape it gives 1.2027: the body is 57.4 mm tall, the STL file's own size x 1.009; the catalog says approx. 57 mm. No ruler measurement of a skater yet."
+ },
+ "stick": {
+  "shaft": [
+   [
+    7.5,
+    -5.0,
+    28.0
+   ],
+   [
+    2.7839,
+    18.1632,
+    1.4386
+   ],
+   [
+    2.6939,
+    18.8825,
+    0.8092
+   ]
+  ],
+  "shaft_r": 0.6744,
+  "blade": [
+   [
+    2.6939,
+    18.8825
+   ],
+   [
+    1.9789,
+    36.1437
+   ]
+  ],
+  "blade_h": 2.6939,
+  "blade_t": 0.8092,
+  "note": "Blade heel/toe and height kept in mm from the traced contact blade (data/geometry.json, official overhead); shaft top in the upper glove (parametric mold point, same mold units); wire radius and blade thickness kept in mm."
+ },
+ "runner": {
+  "a": [
+   -9.933,
+   -12.842
+  ],
+  "b": [
+   -5.153,
+   -11.262
+  ],
+  "height": 2.157,
+  "thickness": 0.9,
+  "note": "Metal runner from the ice up into the STL's right boot (boot underside z0 + 0.3 units overlap); ends from the boot underside (vertices within 0.6 units of its lowest point, principal axis). The STL boot floats above the ice by about the runner height."
+ }
+}

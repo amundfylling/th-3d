@@ -1,6 +1,6 @@
 """Fit the skater (and goalie) molds to the official overhead: absolute scale, figure poses, socket-on-slot check.
 
-    /root/venvs/blender/bin/python scripts/fit-figure-overhead.py [--mesh-dir out/figures]
+    /root/venvs/blender/bin/python scripts/fit-figure-overhead.py [--mesh-dir out/figures] [--out validation/players]
 The overhead is calibrated only on the ice plane (map.overhead.preview, ASSUMED 0.1796 mm/px). Elevated
 figure parts are displaced radially (relief), so the photo is modelled as a pinhole camera above the ice
 at (cx, cy, H) (world mm, unknown, shared). Each figure stands with its mount socket ON its slot centreline
@@ -134,6 +134,7 @@ def trace_mask(trace_id, pid):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mesh-dir", default=str(REPO / "out" / "figures"))
+    ap.add_argument("--out", default=str(REPO / "validation" / "players"))
     a = ap.parse_args()
     sk = load_mesh(Path(a.mesh_dir) / "skater.npz")
     go = load_mesh(Path(a.mesh_dir) / "goalie.npz")
@@ -238,7 +239,7 @@ def main():
     res["stick_check"] = {"local_mm": loc, "mean_heel_lateral_mm": round(float(np.mean([loc[p]["heel"][1] for p in use])), 2),
                           "mean_blade_length_mm": round(float(np.mean([loc[p]["blade_length_mm"] for p in use if "blade_length_mm" in loc[p]])), 2),
                           "note": "Figure frame from the fitted pivot (socket on the slot centreline) and heading; heading error rotates the heel along x."}
-    out = REPO / "validation" / "players"
+    out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     (out / "overhead-fit.json").write_text(json.dumps(res, indent=2) + "\n")
     ims = []

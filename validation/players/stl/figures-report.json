@@ -1,0 +1,70 @@
+{
+  "status": "PROPOSED (beside the parametric skater; contacts, footprints and traces unchanged)",
+  "scale_k_mm_per_mold_unit": 1.2027,
+  "scale_source": "validation/players/stl/overhead-fit.json: scripts/fit-figure-overhead.py with the STL body (4 Sweden skaters, official overhead at the ASSUMED preview scale)",
+  "mesh_source": {
+    "reference_id": "thingiverse_6898521_stiga_hockey_player",
+    "file": "references/models/thingiverse-6898521/STIGA HOCKEY PLAYER - 6898521.zip",
+    "member": "files/STIGA_HOCKEY_PLAYER.stl",
+    "license": "CC BY-SA",
+    "attribution": "STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521",
+    "status": "traced",
+    "note": "A sculpt of the STIGA skater mold: same pose and handedness as the user's skater no. 21. Used for the body only; its round printable stick is replaced by the traced wire stick."
+  },
+  "assets": {
+    "skater_stl_SWE": {
+      "height_mm": 57.38,
+      "zmin_mm": 0.0,
+      "footprint_x_mm": [
+        -15.6,
+        18.9
+      ],
+      "footprint_y_mm": [
+        -20.2,
+        43.5
+      ],
+      "socket_bottom_diameter_mm": 13.61,
+      "blade_heel_mm": [
+        3.24,
+        22.71
+      ],
+      "blade_toe_mm": [
+        2.38,
+        43.47
+      ],
+      "blade_length_mm": 20.78,
+      "blade_height_mm": 3.24,
+      "stick_side": "left (+y)",
+      "triangles": 79504,
+      "decal_faces": 2578,
+      "number_on_asset_decal": "21"
+    },
+    "skater_stl_FIN": {
+      "height_mm": 57.38,
+      "zmin_mm": 0.0,
+      "footprint_x_mm": [
+        -15.6,
+        18.9
+      ],
+      "footprint_y_mm": [
+        -20.2,
+        43.5
+      ],
+      "socket_bottom_diameter_mm": 13.61,
+      "blade_heel_mm": [
+        3.24,
+        22.71
+      ],
+      "blade_toe_mm": [
+        2.38,
+        43.47
+      ],
+      "blade_length_mm": 20.78,
+      "blade_height_mm": 3.24,
+      "stick_side": "left (+y)",
+      "triangles": 79504,
+      "decal_faces": 2578,
+      "number_on_asset_decal": "4"
+    }
+  }
+}
