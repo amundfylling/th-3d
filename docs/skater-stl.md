@@ -66,7 +66,7 @@ mold unit). It is not a ruler measurement of the user's skater. Checks: the over
 
 ## Switching to it (not done)
 
-The footprint below the puck top changes (IoU 0.61 with the parametric one, up to 3.6 mm apart; the STL body is larger
+The footprint below the puck top changes (IoU 0.61 with the parametric one, up to 3.5 mm apart; the STL body is larger
 at its size). Switching the assets therefore means: regenerate `data/figures/contact-footprints.json` and the
 skater contact shapes, then re-run every saved trace's contact and slide checks (Shovel's W-RW foot drag is solved
 against the foot outline and will move). Not started: it waits on the user's go-ahead (the look and the re-run of the shots).

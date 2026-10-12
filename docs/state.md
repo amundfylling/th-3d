@@ -414,7 +414,7 @@
   beside the parametric ones (body = STL, colours voted from the turntable frames, traced wire stick and blade kept in
   mm). Size: the STL file's own **56.85 mm** (user decision 2026-10-12; overhead fit with this shape 57.4 mm, parametric
   51.1 mm, catalog approx. 57 mm). Contacts, footprints, traces and videos NOT switched (footprint IoU 0.61,
-  up to 3.6 mm apart: switching means re-running every trace's checks). `npm run players:stl`.
+  up to 3.5 mm apart: switching means re-running every trace's checks). `npm run players:stl`.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
