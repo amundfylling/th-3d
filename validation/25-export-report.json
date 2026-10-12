@@ -3,7 +3,7 @@
  "composition": "shot25-shovel-17-final",
  "route": "Remotion/Three, rendered directly (renderer decision: docs/review.md - Cycles benchmark not run, not switched)",
  "versions": {
-  "node": "v22.22.2",
+  "node": "v22.22.0",
   "remotion": "4.0.531",
   "@remotion/three": "4.0.531",
   "@remotion/renderer": "4.0.531",
@@ -15,17 +15,17 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f",
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720",
   "asset_sha256": {
-   "figure_molds_sha256": "c189758e98559f61ad8a46315394eebd2fb137ab4eb662ac827d2e318de61c68",
-   "skater_glb_sha256": "c3be1369dc4bc21c9fd00030a1e32bf7ce99a07dddd180206c7423ddf28627e1",
+   "figure_molds_sha256": "9ee1f7bf4c0ae689d9a9102b987b581e0b8d4b641ac4ce4cb8d6a2fef3b8d4e3",
+   "skater_glb_sha256": "ae8f98b51123c8680b4d3ff1eeeb5e9eea5f195234a4320ed68408f2a8b49e30",
    "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929"
   }
  },
  "trace": {
   "trace_id": "trace.shovel-17.v2",
   "status": "accepted",
-  "sha256": "89eb5b16212c467b588116c3c628656e7ad635a687685118fd16a0e9d97f70d2",
+  "sha256": "ed4de6f309d1b3b68c045fc323349c02f1cd9ffd8b6252f285f223d9265011d8",
   "approved_exceptions": [
    "shot.W-C_right_skate_brush"
   ]
@@ -52,9 +52,9 @@
   "frames_logged": 446,
   "frames_differing_from_pure": [],
   "max_readback_diff": 2.84e-14,
-  "render_seconds": 2973,
-  "bytes": 124313,
-  "sha256": "04db611c5f40f842e79d2b660b88cef2cb345b3f4e949d58bfc8f87865286a60"
+  "render_seconds": 2787,
+  "bytes": 125468,
+  "sha256": "fa4dac50867b505ab5ea4d78de99a77a857acf5b4fb9d8a3a43a995167d1aa56"
  },
  "final": {
   "path": "validation/25-shovel-17-final.mp4",
@@ -70,8 +70,8 @@
   "frames_logged": 446,
   "frames_differing_from_pure": [],
   "max_readback_diff": 2.84e-14,
-  "render_seconds": 2946,
-  "bytes": 966576,
-  "sha256": "9883f90edf9524e457b1e33e955e2b519a5f8bdebbe2564f0838a4899b4c9da9"
+  "render_seconds": 2711,
+  "bytes": 1011666,
+  "sha256": "472c27580dc28df3b48e5370d61ced0e432737a301f45ad57ccb3ba219ab3a0a"
  }
 }
