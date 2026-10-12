@@ -6,14 +6,18 @@ import { bundle } from "@remotion/bundler";
 import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { resolveRenderEnv } from "./video/render-env.ts";
 
-const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
+// browser and GL backend: scripts/video/render-env.ts (--browser/--gl there; REMOTION_BROWSER_EXECUTABLE / REMOTION_GL here)
+const RENDER_ENV = await resolveRenderEnv();
+const BROWSER = RENDER_ENV.browserExecutable;
+const GL_LABEL = RENDER_ENV.gl === "swangle" ? "swangle (SwiftShader, CPU)" : `${RENDER_ENV.gl} (WebGL renderer not verified by this script)`;
 const v = JSON.parse(readFileSync(process.argv[2]!, "utf8"));
 const camera = { cx: 225, cy: 95, widthMm: 340 };
 mkdirSync("out/defence-goalie", { recursive: true });
 const serveUrl = await bundle({ entryPoint: path.resolve("remotion/index.ts") });
-const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" } });
-const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" as const }, puppeteerInstance: browser };
+const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions });
+const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions, puppeteerInstance: browser };
 for (const [name, g] of Object.entries(v.variants) as [string, { arc_mm: number; theta_deg: number }][]) {
   const inputProps = { poses: { "W-LW": { arc_mm: 60, theta_deg: 0 }, "W-C": { arc_mm: 200, theta_deg: 0 }, "E-RD": v.rd, "E-G": { arc_mm: g.arc_mm, theta_deg: g.theta_deg } }, puckMm: v.puck, camera };
   const comp = await selectComposition({ ...base, id: "pose-preview", inputProps });

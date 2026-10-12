@@ -126,4 +126,5 @@ export const THEMES: Record<Theme["id"], Theme> = {
   },
 };
 
-export const DEFAULT_THEME: Theme["id"] = "nbhf";
+// "classic" keeps every committed export valid; a video opts into "nbhf" with `theme` (moves: story.json "theme").
+export const DEFAULT_THEME: Theme["id"] = "classic";

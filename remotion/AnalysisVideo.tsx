@@ -5,8 +5,6 @@
 //   3. graphics: captions and object-anchored graphics, drawn in an SVG/HTML layer above the canvas.
 // The physical state comes only from the trace evaluator; graphics read it and never feed back. No useFrame, no clock.
 // Per-shot wording and graphic defaults come from an AnalysisConfig (remotion/ShotAnalysis.tsx, remotion/SpjassAnalysis.tsx).
-import { useThree } from "@react-three/fiber";
-import { ThreeCanvas } from "@remotion/three";
 import { useLayoutEffect, useMemo, useState } from "react";
 import { AbsoluteFill, cancelRender, staticFile, useCurrentFrame, useDelayRender, useVideoConfig } from "remotion";
 import * as THREE from "three";
@@ -18,7 +16,7 @@ import { checkTraceCompatibility, shotTimeEvaluator, type AssetManifest, type Sh
 import type { ShotTrace } from "../src/model/trace.ts";
 import manifest from "./asset-manifest.json" with { type: "json" };
 import { toThree } from "./cameras.ts";
-import { ShotScene } from "./ShotScene.tsx";
+import { CachedSceneLayer, makeCamera, SceneLayer } from "./SceneLayer.tsx";
 import { DEFAULT_THEME, THEMES, type Theme } from "./theme.ts";
 
 type Lane = { from_mm: [number, number]; to_mm: [number, number]; end_mm: [number, number]; blocked_by: string | null };
@@ -41,13 +39,22 @@ export interface AnalysisConfig {
   /** extra render gate run before the trace checks (returns the names of the checks passed) */
   gate?: () => string[];
   text: { kicker: string; title: string; subtitle: string; bug: string; endTitle: string; endSteps: string[] };
-  /** visual theme of the overlays (remotion/theme.ts); default: the NBHF / puck.no look */
+  /** visual theme of the overlays (remotion/theme.ts); default: DEFAULT_THEME (the original "classic" look) */
   theme?: Theme["id"];
   /** per graphic type defaults merged under each graphic spec */
   defaults?: Partial<Record<GraphicSpec["type"], Partial<GraphicSpec>>>;
 }
 
-export type AnalysisProps = { graphics: boolean };
+export type AnalysisProps = {
+  graphics: boolean;
+  /** render only these output frames, in this order (composition frame i shows output frame frameMap[i]); scene-cache fills */
+  frameMap?: number[] | null;
+  /** scene layer from cached PNGs (one URL per output frame) instead of WebGL; overlays are drawn live as usual */
+  sceneSrc?: string[] | null;
+};
+
+/** Duration override for frameMap renders (Composition calculateMetadata). */
+export const analysisMetadata = ({ props }: { props: AnalysisProps }) => (props.frameMap ? { durationInFrames: props.frameMap.length } : {});
 
 /** Rejects mismatched geometry/asset versions, unreviewed traces (unless allowed) and traces that failed the contact check. */
 export function assertTraceRenderable(cfg: AnalysisConfig): string[] {
@@ -61,32 +68,6 @@ export function assertTraceRenderable(cfg: AnalysisConfig): string[] {
   if (cfg.checks.unexpected_penetrations.length > 0) throw new Error(`trace ${t.trace_id} overlaps geometry: ${JSON.stringify(cfg.checks.unexpected_penetrations)}`);
   return [...compared, "contact_checks", ...(t.status === "proposed" ? ["status_proposed_allowed"] : [])];
 }
-
-// ---------------------------------------------------------------- camera
-function makeCamera(v: CameraView, width: number, height: number, cam = new THREE.PerspectiveCamera()): THREE.PerspectiveCamera {
-  cam.fov = v.fovDeg;
-  cam.aspect = width / height;
-  cam.near = 0.004;
-  cam.far = 10;
-  cam.up.set(0, 1, 0);
-  cam.position.set(...toThree(v.positionMm));
-  cam.lookAt(...toThree(v.targetMm));
-  cam.updateProjectionMatrix();
-  cam.updateMatrixWorld(true);
-  return cam;
-}
-
-/** Sets the canvas camera for this frame (absolute, from the camera track). */
-const CameraRig: React.FC<{ view: CameraView; frame: number; tag: string }> = ({ view, frame, tag }) => {
-  const { camera, size } = useThree();
-  useLayoutEffect(() => {
-    const c = makeCamera(view, size.width, size.height, camera as THREE.PerspectiveCamera);
-    // read back the canvas camera (glTF metres -> world mm) so the export can compare it with the pure camera track
-    const mm = (x: number, y: number, z: number): number[] => [x * 1000, -z * 1000, y * 1000].map((v) => Math.round(v * 100) / 100);
-    console.log(`[${tag}-camera] ${JSON.stringify({ frame, position: mm(c.position.x, c.position.y, c.position.z), fov: Math.round(c.fov * 1e4) / 1e4 })}`);
-  }, [view, camera, size, frame, tag]);
-  return null;
-};
 
 // ---------------------------------------------------------------- fonts
 function useFonts(T: Theme): void {
@@ -401,9 +382,11 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
     );
   };
 
-  const Component: React.FC<AnalysisProps> = ({ graphics }) => {
+  const Component: React.FC<AnalysisProps> = ({ graphics, frameMap, sceneSrc }) => {
     const { width, height } = useVideoConfig();
-    const frame = useCurrentFrame();
+    const index = useCurrentFrame();
+    const frame = frameMap ? frameMap[index]! : index;
+    if (!Number.isInteger(frame) || frame < 0 || frame >= ANALYSIS.durationInFrames) throw new Error(`frame ${frame} outside the analysis (${ANALYSIS.durationInFrames} frames)`);
     useFonts(T);
     useMemo(() => console.log(`[${cfg.logTag}-check] PASS versions: ${assertTraceRenderable(cfg).join(", ")}`), []);
     const af = useMemo(() => analysisFrame(ANALYSIS, frame), [frame]);
@@ -411,14 +394,15 @@ export function createAnalysisVideo(cfg: AnalysisConfig): { ANALYSIS: Analysis; 
     const state = useMemo(() => stateAt(af.t, frame), [af.t, frame]);
     const view = useMemo<CameraView>(() => ({ positionMm: af.camera.positionMm, targetMm: af.camera.targetMm, fovDeg: af.camera.fovDeg }), [af]);
     const cam = useMemo(() => makeCamera(view, width, height), [view, width, height]);
-    // one canvas camera for the life of the tab (a new camera object per frame makes the canvas reconfigure and leak)
-    const [canvasCamera] = useState(() => Object.assign(new THREE.PerspectiveCamera(), { manual: true }));
+    const src = sceneSrc ? sceneSrc[frame] : null;
+    if (sceneSrc && !src) throw new Error(`no cached scene image for frame ${frame}`);
     return (
-      <AbsoluteFill style={{ background: T.background }}>
-        <ThreeCanvas width={width} height={height} camera={canvasCamera} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true, alpha: true }}>
-          <CameraRig view={view} frame={frame} tag={cfg.logTag} />
-          <ShotScene state={state} logTag={cfg.logTag} />
-        </ThreeCanvas>
+      <AbsoluteFill>
+        {src ? (
+          <CachedSceneLayer src={src} frame={frame} tag={cfg.logTag} width={width} height={height} />
+        ) : (
+          <SceneLayer state={state} view={view} frame={frame} tag={cfg.logTag} background={T.background} width={width} height={height} />
+        )}
         {graphics ? <Graphics frame={frame} state={state} cam={cam} width={width} height={height} /> : null}
       </AbsoluteFill>
     );

@@ -4,8 +4,12 @@ import { bundle } from "@remotion/bundler";
 import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { resolveRenderEnv } from "./video/render-env.ts";
 
-const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
+// browser and GL backend: scripts/video/render-env.ts (--browser/--gl there; REMOTION_BROWSER_EXECUTABLE / REMOTION_GL here)
+const RENDER_ENV = await resolveRenderEnv();
+const BROWSER = RENDER_ENV.browserExecutable;
+const GL_LABEL = RENDER_ENV.gl === "swangle" ? "swangle (SwiftShader, CPU)" : `${RENDER_ENV.gl} (WebGL renderer not verified by this script)`;
 const g = JSON.parse(readFileSync("shots/invers-kryssar-velodrom/sketch-geometry.json", "utf8"));
 const camera = { cx: 150, cy: 0, widthMm: 640 };
 mkdirSync("out/ikv", { recursive: true });
@@ -15,8 +19,8 @@ const views = {
   end: { poses: { "W-RW": pose("rw_receive"), "W-LW": pose("lw_receive"), "W-C": pose("wc_static") }, puckMm: g.puck.rw_contact },
 };
 const serveUrl = await bundle({ entryPoint: path.resolve("remotion/index.ts") });
-const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" } });
-const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" as const }, puppeteerInstance: browser };
+const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions });
+const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions, puppeteerInstance: browser };
 for (const [name, v] of Object.entries(views)) {
   const inputProps = { ...v, camera };
   const comp = await selectComposition({ ...base, id: "pose-preview", inputProps });

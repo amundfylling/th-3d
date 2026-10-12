@@ -6,6 +6,6 @@ import { createAnalysisVideo } from "./AnalysisVideo.tsx";
 import { ENCYCLOPEDIA } from "./encyclopedia-registry.ts";
 
 export const ENCYCLOPEDIA_VIDEOS = ENCYCLOPEDIA.map((m) => {
-  const video = createAnalysisVideo({ spec: m.spec, trace: m.trace, checks: m.checks, logTag: `move-${m.id}`, allowProposed: true, text: m.text });
+  const video = createAnalysisVideo({ spec: m.spec, trace: m.trace, checks: m.checks, logTag: `move-${m.id}`, allowProposed: true, text: m.text, theme: m.theme });
   return { id: `move-${m.id}`, ANALYSIS: video.ANALYSIS, Component: video.Component };
 });

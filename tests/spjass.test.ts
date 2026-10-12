@@ -103,8 +103,7 @@ test("spjass analysis: the puck is visible in every explanation (ray cast agains
 });
 
 test("spjass analysis: composition registered, proposed trace allowed explicitly, export report matches", (t) => {
-  const root = read("remotion/Root.tsx");
-  assert.match(root, /id="analysis-spjass"/);
+  assert.match(read("remotion/analysis-videos.ts"), /id: "analysis-spjass"/);  // registered by Root.tsx from this list
   assert.match(read("remotion/SpjassAnalysis.tsx"), /allowProposed: true/);
   const p = "validation/analysis-spjass-report.json";
   if (!existsSync(p)) return t.skip("no export yet (npm run video:analysis-spjass)");
