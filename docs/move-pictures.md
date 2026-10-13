@@ -29,7 +29,7 @@ without the explanatory text the analysis videos carry. Pilot: five visibly diff
 3. `render.ts`: the rink straight from above with the pose-preview composition (same pose code as every video; the
    composition now takes `widthPx`, `heightPx`, `background`). The puck is drawn at contact 1.
 4. `build.py --draw`: rotated so the attacking goal is up (no mirroring: the attackers' left is on the left, as on
-   puck.no), green arrows, navy numbered circles at the contacts, the 0-9 level scale with the level boxed in NBHF
+   puck.no), green arrows, large navy numbered circles at the contacts (a circle steps aside when the arrow is too short to show, as in Näcka), the 0-9 level scale with the level boxed in NBHF
    red (docs/theme.md colours). No other text.
 
 Like puck.no, a figure is drawn once (at its first touch); a later touch by the same figure (Agdur 3, Veggdyr 2)

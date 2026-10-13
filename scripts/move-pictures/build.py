@@ -32,7 +32,7 @@ GX, GY = HW["goal"]["placement_mm"]["E"]
 BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"], float)
 PX_PER_MM = 3.0
 VIEWS = {"half": {"x": (68.0, 436.0), "y": (-252.0, 252.0)}, "full": {"x": (-436.0, 436.0), "y": (-252.0, 252.0)}}
-MARGIN_L = 70  # px, left strip for the level scale (as on puck.no)
+MARGIN_L = 92  # px, left strip for the level scale (as on puck.no)
 TURN_COST = 0.15  # mm per degree the blade is turned away from the push
 BACKHAND_COST = 2.0  # mm
 
@@ -251,10 +251,10 @@ def badge(d, p, n, r):
 
 def level_scale(d, h, level):
     """The puck.no difficulty scale 0-9 on the left edge, the move's level boxed in red."""
-    cell = 34
+    cell = 52
     x0 = (MARGIN_L - cell) // 2
-    y0 = int(h * 0.30)
-    f = ImageFont.truetype(FONT, 24)
+    y0 = int(h * 0.30) if h < 1500 else int(h * 0.40)
+    f = ImageFont.truetype(FONT, 38)
     for k in range(10):
         y = y0 + k * cell
         d.rectangle([x0, y, x0 + cell, y + cell], fill=ICE, outline=NAVY, width=1)
@@ -269,16 +269,23 @@ def draw(spec, geo):
     im = Image.new("RGB", (W, H), NAVY)
     im.paste(base, (MARGIN_L, 0))
     d = ImageDraw.Draw(im)
-    r = 21
+    r = 34
     pts = {k: to_px(geo, p) for k, p in geo["points_mm"].items()}
+    marks = {k: np.array(p) for k, p in pts.items() if k not in ("goal", "board")}  # where each numbered circle goes
     for a in geo["arrows_mm"]:
         P = [to_px(geo, p) for p in a]
-        start_is_badge = any(np.allclose(P[0], q) for k, q in pts.items() if k not in ("goal", "board"))
-        end_is_badge = any(np.allclose(P[-1], q) for k, q in pts.items() if k not in ("goal", "board"))
-        arrow(d, P, 13, GREEN, 46, r + 6 if start_is_badge else 0, r + 7 if end_is_badge else 0)
-    for k, p in pts.items():
-        if k not in ("goal", "board"):
-            badge(d, p, k, r)
+        ks = next((k for k, q in pts.items() if k in marks and np.allclose(P[0], q)), None)
+        ke = next((k for k, q in pts.items() if k in marks and np.allclose(P[-1], q)), None)
+        length = sum(math.dist(u, v) for u, v in zip(P, P[1:]))
+        cut_s, cut_e = (r + 6 if ks else 0), (r + 7 if ke else 0)
+        if ke and length < 5 * r:
+            # too short to show between two circles (Näcka's heel pass): the end circle steps aside, the arrow keeps its tip
+            u = (np.array(P[-1]) - np.array(P[-2])) / max(math.dist(P[-1], P[-2]), 1e-9)
+            marks[ke] = np.array(P[-1]) + np.array([-u[1], u[0]]) * (r + 12)
+            cut_s, cut_e = 0, 4
+        arrow(d, P, 13, GREEN, 46, cut_s, cut_e)
+    for k, p in marks.items():
+        badge(d, p, k, r)
     level_scale(d, H, spec["level"])
     VAL.mkdir(parents=True, exist_ok=True)
     out = VAL / f"{spec['id']}.png"
