@@ -19,6 +19,7 @@ ap.add_argument("moves", nargs="+")
 ap.add_argument("--set", action="append", default=[], help="override a move-file value: dotted.path=<json>")
 ap.add_argument("--scratch", action="store_true")
 ap.add_argument("--robustness", action="store_true", help="also rerun the move with its uncertain inputs changed (scripts/shotlib/robustness.py)")
+ap.add_argument("--margins", action="store_true", help="also find how far each uncertain input can change before the move misses (robustness.margins)")
 ap.add_argument("--video-spec", action="store_true", help="also write the analysis video spec and the Remotion registry (scripts/shotlib/presentation.py)")
 ap.add_argument("--quick", action="store_true", help="print the contact groups and the goal only (for scans)")
 a = ap.parse_args()
@@ -37,5 +38,10 @@ for m in a.moves:
         rb = robustness.robustness(m, build.load_move(m, a.set)[1], canonical=not (a.scratch or a.set))
         r["robustness"] = {k: rb[k] for k in ("variants_passed", "robust", "goal_y_spread_mm")}
         r["robustness"]["failed"] = [x["variant"] for x in rb["rows"] if not (x["outcome_ok"] and x["slide_ok"])]
+    if a.margins:
+        from shotlib import robustness
+        mg = robustness.margins(m, build.load_move(m, a.set)[1], canonical=not (a.scratch or a.set))
+        r["margins"] = {x["input"]: {"holds_up_to": [x["down"]["holds_up_to"], x["up"]["holds_up_to"]], "steps_holding": x["steps_holding"],
+                                     "steps_scoring": x["steps_scoring"]} for x in mg["margins"]}
     print(json.dumps(r, indent=1, ensure_ascii=False))
 sys.exit(0 if ok else 1)

@@ -407,6 +407,16 @@
   18/63, median 10 vs 34 mm where a position exists, last 2 s before goals 7/10 vs 1/10. Both tracks still report a puck
   the user could not see in about 2/3 of the "none" frames (next: the detector's false alarms). Taps mark the visible
   puck centre, scored after moving them up the documented 8.8 px. Edwall videos not re-rendered.
+- **Moves that meet the puck where it really is (2026-10-11, branch `claude/robust-moves-5yergg`, PROPOSED,
+  `docs/shot-encyclopedia.md` section 4b):** the move engine gains meets (a figure's keys are solved from where the
+  puck really goes) and controls (`aimed_push`: a figure steers a push tick by tick), a margin sweep (`--margins`) and a
+  fix for false contact kicks (`scripts/shotlib/puck.py`). New move file `moves/invers-kryssar-velodrom-v3/`.
+  IKV v3 scores in 10 of 11 robustness variants (v2: 1) after a pass tune (`tunes`: the right wing passes harder on
+  slow ice); only friction +25% fails. The wider margin sweep scores in 35 of 50 steps (43 before the tune) and keeps
+  the slide limits in 33: the far-corner exit and the shot direction (posts) are still fragile. Hjerpefinte stays 11/11
+  and holds every margin step (puck ±3 mm, scale ±5%, friction ±50%, restitution ±0.3).
+  The IKV equivalence report is kept as a record of the engine at commit 9e6c412; its test no longer checks the engine
+  hashes. Next: a shot aimed at the middle of the goal and a corner push that ends before the curve.
 - **Puck at the shot (2026-10-11, thread "Puck at the shot", `docs/synthetic-puck.md` section 8, PROPOSED):** a second
   puck track `<game>/puck-track-synth-v2.json` (tracker 2 on the v1 detector) beside v1; the NM26 analysis reads it since 2026-10-11
   (user's "Yes"; passes.json and everything downstream re-run, v1 passes in `passes-synth-v1.json`, before/after in
