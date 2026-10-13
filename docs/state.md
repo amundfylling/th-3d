@@ -407,6 +407,16 @@
   18/63, median 10 vs 34 mm where a position exists, last 2 s before goals 7/10 vs 1/10. Both tracks still report a puck
   the user could not see in about 2/3 of the "none" frames (next: the detector's false alarms). Taps mark the visible
   puck centre, scored after moving them up the documented 8.8 px. Edwall videos not re-rendered.
+- **Puck at the shot (2026-10-11, thread "Puck at the shot", `docs/synthetic-puck.md` section 8, PROPOSED):** a second
+  puck track `<game>/puck-track-synth-v2.json` (tracker 2 on the v1 detector) beside v1; the NM26 analysis reads it since 2026-10-11
+  (user's "Yes"; passes.json and everything downstream re-run, v1 passes in `passes-synth-v1.json`, before/after in
+  `validation/nm26-puck-v2-switch.json`; Edwall still on v1). Tracker 2 removes still low-score runs (dark ice marks: the ISOVER
+  "o" at the W near board, the centre spot) and re-tracks: false alarms on the user's "not in this picture" taps 13 → 4
+  of 21, tap frames right 32 → 41 of 63, median error 10 mm unchanged, coverage 76 → 70% of live play (28-row review: 2
+  removed rows were the puck). Shots before the 25 user goals stay 1/25: the broadcast does not show most shots (the puck
+  vanishes under the shooter's blur and behind the goalie in 1-3 frames). A fine-tune on 800 shot renders (detector v2,
+  not adopted, `/mnt/project-files/puck-det-v2-workdir/`) and a shot-completion rule (8/25, but every added position on
+  the goalie or a figure; off, user asked) did not change that. Scores: `validation/puck-track-v2-eval.json`.
 - **Trained models published (2026-10-11, `docs/models.md`):** goalie C, skater v2b, skater v3 and puck detector v1,
   the exact files behind the committed tracks, are assets of the GitHub release `nm26-models-v1`, with sha256 and
   provenance in `data/models/manifest.json`. Fetch: `npm run models:fetch` (`scripts/fetch-models.py`; also step
