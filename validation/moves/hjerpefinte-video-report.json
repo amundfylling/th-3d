@@ -13,17 +13,16 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
  },
  "trace": {
   "trace_id": "trace.hjerpefinte.v2",
   "status": "proposed",
-  "sha256": "538bd72fe41857b5094c80f579bd8c913079b2ffab402abe3ee6fb0dce5571cc",
-  "rehash_note": "2026-10-13 merge of IKV v3 (#9) and the video workflow (#14): the trace was rebuilt on the combined engine; move_motion_sha256 and every evaluation sample are identical, only engine/asset_refs metadata changed, so the rendered frames stand. Rendered from trace sha256 c60b166752e3e3ff0b8afb8b9b03fa5447ed764108780423b85465f8f2e266b3, spec sha256 a76cc5b08c02f90d4c6baf8700bf1609caf54db4add071c8aa17f68310318303."
+  "sha256": "0e797186cd4782eb356fe70e2fd42508c7ff60932913df0375a80adc43ce5d0d"
  },
  "analysis_spec": {
   "analysis_id": "analysis.hjerpefinte.v1",
-  "sha256": "0a5b063f129a34e8fe596011c7ec93bc049522568c9b439339ecc1c3591c2e7f",
+  "sha256": "7e671259782827afee0c5e166f1ec42eac2d95078a731c9fa5154d7b4d0a3c6b",
   "composition_files": [
    "remotion/EncyclopediaAnalysis.tsx",
    "remotion/encyclopedia-registry.ts",
@@ -32,7 +31,7 @@
    "remotion/ShotScene.tsx",
    "remotion/theme.ts"
   ],
-  "composition_sha256": "c465e91a24a62dc83b1b4de73176be33c9e428de6c36078da407d48e18f18754"
+  "composition_sha256": "59c792eae3edfd28bdba14c927cb9656b4b6d73ce9e951732170ade427af1c61"
  },
  "output": {
   "path": "validation/moves/hjerpefinte.mp4",
@@ -64,10 +63,10 @@
     "duration": "26.900000"
    }
   },
-  "bytes": 10683997,
-  "megabytes": 10.68,
+  "bytes": 10582098,
+  "megabytes": 10.58,
   "below_25_mb": true,
-  "sha256": "dff7dc0e75c1574236ae7f0ca71145c79eaa541b3cdbe1865c6a3eb982343b47"
+  "sha256": "3fe36620f9af74c8e47701418293d3fb9261b0157a1fdc166f02f3b363156c97"
  },
  "checks": {
   "frames_logged": 0,
@@ -77,19 +76,19 @@
   "camera_max_diff_vs_track": null,
   "scene_cache": {
    "checked": 807,
-   "entries_used": 311,
+   "entries_used": 313,
    "errors": [],
    "entries_max_readback_diff": 2.84e-14,
    "entries_camera_max_diff_mm": 0.005,
    "stats": {
-    "namespace": "c170118a0470ffc298f4494e",
+    "namespace": "d293e76bda968031b739aaa4",
     "frames": 807,
-    "unique_scene_states": 311,
+    "unique_scene_states": 313,
     "cache_hits": 0,
-    "scene_renders": 311,
-    "scene_render_seconds": 1643,
-    "frames_without_a_new_render": 496,
-    "entries_in_namespace": 555
+    "scene_renders": 313,
+    "scene_render_seconds": 2329.9,
+    "frames_without_a_new_render": 494,
+    "entries_in_namespace": 313
    }
   }
  },
@@ -102,5 +101,5 @@
   "webgl_renderers": [],
   "probe_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
  },
- "render_seconds": 103
+ "render_seconds": 140
 }
