@@ -376,8 +376,8 @@
      fail for both centres, E-LW, E-RW, E-RD; rotation unusable at 640 × 360.
   7. **Tests and reproducibility** (`docs/pipeline.md`): 36 Python unit tests in `tests/synth/` run by `npm test`; the NM26
      rebuild runner `scripts/pipeline/nm26_rebuild.py` (`npm run rebuild:nm26*`), verified from a fresh container (40
-     outputs byte-identical). Models are not rebuildable: the `.pt` files are not committed, the training command lines
-     were not recorded, and the goal-box plates have no script.
+     outputs byte-identical). Models are not rebuildable: the `.pt` files are not committed (published on a release since
+     2026-10-11, docs/models.md), the training command lines were not recorded, and the goal-box plates have no script.
   8. **Vision and shot encyclopedia** (`docs/vision.md`, `docs/shot-encyclopedia.md`): 12 ranked directions (the user
      chose the encyclopedia); move engine `scripts/shotlib/`, move files `moves/<id>/move.json`, `scripts/build-move.py`,
      contact footprints, robustness check, generated videos (`move-<id>` compositions via `remotion/encyclopedia-registry.ts`),
@@ -417,6 +417,21 @@
   and holds every margin step (puck ±3 mm, scale ±5%, friction ±50%, restitution ±0.3).
   The IKV equivalence report is kept as a record of the engine at commit 9e6c412; its test no longer checks the engine
   hashes. Next: a shot aimed at the middle of the goal and a corner push that ends before the curve.
+- **Puck at the shot (2026-10-11, thread "Puck at the shot", `docs/synthetic-puck.md` section 8, PROPOSED):** a second
+  puck track `<game>/puck-track-synth-v2.json` (tracker 2 on the v1 detector) beside v1; the NM26 analysis reads it since 2026-10-11
+  (user's "Yes"; passes.json and everything downstream re-run, v1 passes in `passes-synth-v1.json`, before/after in
+  `validation/nm26-puck-v2-switch.json`; Edwall still on v1). Tracker 2 removes still low-score runs (dark ice marks: the ISOVER
+  "o" at the W near board, the centre spot) and re-tracks: false alarms on the user's "not in this picture" taps 13 → 4
+  of 21, tap frames right 32 → 41 of 63, median error 10 mm unchanged, coverage 76 → 70% of live play (28-row review: 2
+  removed rows were the puck). Shots before the 25 user goals stay 1/25: the broadcast does not show most shots (the puck
+  vanishes under the shooter's blur and behind the goalie in 1-3 frames). A fine-tune on 800 shot renders (detector v2,
+  not adopted, `/mnt/project-files/puck-det-v2-workdir/`) and a shot-completion rule (8/25, but every added position on
+  the goalie or a figure; off, user asked) did not change that. Scores: `validation/puck-track-v2-eval.json`.
+- **Trained models published (2026-10-11, `docs/models.md`):** goalie C, skater v2b, skater v3 and puck detector v1,
+  the exact files behind the committed tracks, are assets of the GitHub release `nm26-models-v1`, with sha256 and
+  provenance in `data/models/manifest.json`. Fetch: `npm run models:fetch` (`scripts/fetch-models.py`; also step
+  `fetch-models` of the NM26 runner's `fetch` stage). It never overwrites a local model with a different sha256 unless
+  `--force`. Sessions cannot create releases, so the user uploaded the files.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
