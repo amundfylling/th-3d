@@ -46,9 +46,11 @@ def _wall(q, v, qq, obstacle, t, walls):
     return qq, v
 
 
-def run(t0, t1, p0, figs, physics, v0=(0.0, 0.0)):
+def run(t0, t1, p0, figs, physics, v0=(0.0, 0.0), controls=()):
     """Returns T, P, V (arrays), touching (obstacle names per step), impulses (figure touches) and walls (board, post,
-    cage touches with their normal impact speed), goal (the end whose goal the puck entered, or None)."""
+    cage touches with their normal impact speed), goal (the end whose goal the puck entered, or None).
+    `controls` (scripts/shotlib/control.py): figures steered from the puck's state; each is called before every step
+    with the state at the end of the previous step and only ever adds keyframes after the time being simulated."""
     e, a_fric, dt = physics["restitution_figure"], physics["ice_deceleration_mm_s2"], W.DT
     # optional low-speed restitution: a touch slower than `low_speed_mm_s` is inelastic in the normal direction (the
     # puck stays against the blade and slides along it), so a push is a contact, not a series of micro-bounces
@@ -60,6 +62,8 @@ def run(t0, t1, p0, figs, physics, v0=(0.0, 0.0)):
     for k in range(n + 1):
         t = t0 + k * dt
         hits = []
+        for c in controls:
+            c.step(t, p, v)
         if k and not in_net:
             s = float(np.linalg.norm(v))
             if s > 0:
@@ -76,11 +80,17 @@ def run(t0, t1, p0, figs, physics, v0=(0.0, 0.0)):
                     q_new = W.to_world(f, t, r_loc)
                     nrm = q_new - q
                     nn = float(np.linalg.norm(nrm))
-                    if nn > 1e-12:
+                    if nn > 1e-6:
                         nrm = nrm / nn
                     else:
-                        c = W.to_world(f, t, np.zeros(2))
-                        nrm = (q_new - c) / max(1e-9, float(np.linalg.norm(q_new - c)))
+                        # the puck already sits on the contact ring (a push-out of zero length): the normal is the
+                        # footprint's outward normal there (from its nearest solid point), not a direction of rounding
+                        # noise (before 2026-10-11 this fell back to the pivot -> puck direction, which gave impulses in
+                        # wrong directions on blades far from the pivot)
+                        lb = W.LOW[f.kind].boundary
+                        nb = np.array(lb.interpolate(lb.project(Point(*r_loc))).coords[0])
+                        nrm = W.rot(f.pose(t)[1]) @ (r_loc - nb)
+                        nrm = nrm / max(1e-12, float(np.linalg.norm(nrm)))
                     v_fig = (W.to_world(f, t, r_loc) - W.to_world(f, t - dt, r_loc)) / dt
                     vn = float((v - v_fig) @ nrm)
                     if vn < 0:

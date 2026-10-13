@@ -1,7 +1,7 @@
 """Train the synthetic puck detector (docs/synthetic-puck.md).
 
     /root/venvs/blender/bin/python scripts/synth/train-puck-detector.py [--epochs 12] [--name puck-det-v1]
-        [--val-games g3,g7] [--steps 1200] [--threads 4] [--init <model to start from>]
+        [--val-games g3,g7] [--steps 1200] [--threads 4] [--init <model to start from>] [--lr 2e-3]
 
 Training sample = one crop (384 x 256 stab px) of a real NM26 frame triplet (t-1, t, t+1; scripts/synth/puck-frames.py)
 plus the game's background (empty rink), with:
@@ -85,10 +85,15 @@ def to_input(frames3, bg):
 
 # ---------------------------------------------------------------- data
 def load_renders():
+    """Renders with all three frames on disk at their recorded crop size (a crop that Blender clipped at the picture edge,
+    possible for shot renders, is left out)."""
+    from PIL import Image
     S = []
     for l in open(RR / "labels.jsonl"):
         s = json.loads(l)
-        if all((RR / f"{s['seed']}_{k}.png").exists() for k in range(3)): S.append(s)
+        if all((RR / f"{s['seed']}_{k}.png").exists() for k in range(3)) and \
+                all(Image.open(RR / f"{s['seed']}_{k}.png").size == tuple(s["crop_ref_px"][k][2:]) for k in range(3)):
+            S.append(s)
     return S
 
 
@@ -284,8 +289,9 @@ if __name__ == "__main__":
     dv_syn = torch.utils.data.DataLoader(DS(fva, rva, 400, fixed=True), batch_size=BS, num_workers=3)
     net = PuckNet()
     if "--init" in A: net.load_state_dict(torch.load(REPO / f"out/synth/{arg('--init', '')}.pt"))
-    opt = torch.optim.AdamW(net.parameters(), 2e-3, weight_decay=1e-4)
-    sch = torch.optim.lr_scheduler.OneCycleLR(opt, 2e-3, total_steps=EPOCHS * STEPS, pct_start=0.15)
+    LR = float(arg("--lr", 2e-3))
+    opt = torch.optim.AdamW(net.parameters(), LR, weight_decay=1e-4)
+    sch = torch.optim.lr_scheduler.OneCycleLR(opt, LR, total_steps=EPOCHS * STEPS, pct_start=0.15)
     log = []
     for ep in range(EPOCHS):
         t0 = time.time(); L = []

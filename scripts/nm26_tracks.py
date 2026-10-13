@@ -1,8 +1,9 @@
 """Which puck and figure tracks the NM26 analysis reads (docs/nm26-new-tracks.md). Pure Python + NumPy.
 
-Defaults (switched 2026-10-10 from the old tracks):
-- puck: <game>/puck-track-synth.json, the synthetic puck detector (docs/synthetic-puck.md). x_mm, y_mm = the puck
-  centre (12 mm plane). The old <game>/puck-track.json gives the dark blob's centre on the ice plane, about 13 mm
+Defaults (switched 2026-10-10 from the old tracks; puck switched again 2026-10-11 to tracker 2, user's word):
+- puck: <game>/puck-track-synth-v2.json, the synthetic puck detector with tracker 2 (docs/synthetic-puck.md section 8:
+  ice-mark false alarms removed). x_mm, y_mm = the puck centre (12 mm plane). The 2026-10-10 track is
+  <game>/puck-track-synth.json (NM26_PUCK_TRACK=puck-track-synth.json brings it back). The old <game>/puck-track.json gives the dark blob's centre on the ice plane, about 13 mm
   further +y (away from the camera).
 - figures: <game>/figure-tracks-v3.json, tracker v3 (docs/tracker-v3.md). Same columns as the old cleaned tracks
   (<game>/figure-tracks-smooth.json): <fig>_u, <fig>_theta_deg, <fig>_src (u and theta null when unknown).
@@ -23,7 +24,7 @@ import numpy as np
 REPO = Path(__file__).resolve().parents[1]
 DATA = REPO / "data/games/nm26-semifinal"
 FPS = 30.0
-PUCK_TRACK = os.environ.get("NM26_PUCK_TRACK", "puck-track-synth.json")
+PUCK_TRACK = os.environ.get("NM26_PUCK_TRACK", "puck-track-synth-v2.json")
 FIGURE_TRACKS = os.environ.get("NM26_FIGURE_TRACKS", "figure-tracks-v3.json")
 SLOW_MM_S = 300.0  # the flight threshold of scripts/nm26-passes.py (MIN_SPEED)
 MAX_GAP = 3

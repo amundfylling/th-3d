@@ -34,7 +34,7 @@ class Selection(unittest.TestCase):
         m = fresh({})
         os.environ.pop("NM26_PUCK_TRACK", None); os.environ.pop("NM26_FIGURE_TRACKS", None)
         m = importlib.reload(m)
-        self.assertEqual(m.PUCK_TRACK, "puck-track-synth.json")
+        self.assertEqual(m.PUCK_TRACK, "puck-track-synth-v2.json")  # tracker 2 since 2026-10-11
         self.assertEqual(m.FIGURE_TRACKS, "figure-tracks-v3.json")
         for g in ("g1", "g7"):
             self.assertTrue(m.puck_path(g).exists()); self.assertTrue(m.figure_path(g).exists())

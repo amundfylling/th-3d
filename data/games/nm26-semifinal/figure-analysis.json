@@ -1,7 +1,7 @@
 {
  "description": "python3 scripts/nm26-figure-analysis.py",
  "figure_tracks": "figure-tracks-v3.json",
- "puck_track": "puck-track-synth.json",
+ "puck_track": "puck-track-synth-v2.json",
  "games": {
   "g1": {
    "frames": 4347,
@@ -19,18 +19,18 @@
     "interpolated_share": 0.0593,
     "unknown_share": 0.0093
    },
-   "puck_frames": 1378,
-   "touch_share": 0.172,
+   "puck_frames": 1197,
+   "touch_share": 0.19,
    "touches_by_figure": {
     "E-C": 17,
     "E-LD": 26,
     "E-LW": 9,
     "E-RD": 27,
     "E-RW": 3,
-    "W-C": 82,
+    "W-C": 73,
     "W-LD": 34,
     "W-LW": 31,
-    "W-RD": 5,
+    "W-RD": 4,
     "W-RW": 3
    }
   },
@@ -50,10 +50,10 @@
     "interpolated_share": 0.066,
     "unknown_share": 0.0055
    },
-   "puck_frames": 805,
-   "touch_share": 0.231,
+   "puck_frames": 780,
+   "touch_share": 0.235,
    "touches_by_figure": {
-    "E-C": 25,
+    "E-C": 22,
     "E-LD": 25,
     "E-LW": 5,
     "E-RD": 5,
@@ -81,12 +81,12 @@
     "interpolated_share": 0.0612,
     "unknown_share": 0.003
    },
-   "puck_frames": 791,
-   "touch_share": 0.154,
+   "puck_frames": 547,
+   "touch_share": 0.221,
    "touches_by_figure": {
     "E-C": 5,
     "E-LD": 8,
-    "E-LW": 5,
+    "E-LW": 4,
     "E-RD": 9,
     "E-RW": 5,
     "W-C": 9,
@@ -112,12 +112,12 @@
     "interpolated_share": 0.0558,
     "unknown_share": 0.0089
    },
-   "puck_frames": 1108,
-   "touch_share": 0.092,
+   "puck_frames": 801,
+   "touch_share": 0.126,
    "touches_by_figure": {
     "E-C": 9,
     "E-LD": 19,
-    "E-LW": 4,
+    "E-LW": 3,
     "E-RD": 8,
     "E-RW": 7,
     "W-C": 6,
@@ -143,12 +143,12 @@
     "interpolated_share": 0.0522,
     "unknown_share": 0.0055
    },
-   "puck_frames": 1077,
-   "touch_share": 0.157,
+   "puck_frames": 894,
+   "touch_share": 0.188,
    "touches_by_figure": {
     "E-C": 11,
     "E-LD": 28,
-    "E-LW": 8,
+    "E-LW": 7,
     "E-RD": 18,
     "E-RW": 9,
     "W-C": 58,
@@ -174,8 +174,8 @@
     "interpolated_share": 0.0618,
     "unknown_share": 0.0217
    },
-   "puck_frames": 439,
-   "touch_share": 0.134,
+   "puck_frames": 427,
+   "touch_share": 0.138,
    "touches_by_figure": {
     "E-C": 5,
     "E-LD": 14,
@@ -204,8 +204,8 @@
     "interpolated_share": 0.0656,
     "unknown_share": 0.0033
    },
-   "puck_frames": 584,
-   "touch_share": 0.171,
+   "puck_frames": 579,
+   "touch_share": 0.173,
    "touches_by_figure": {
     "E-LD": 20,
     "E-LW": 3,
@@ -222,46 +222,46 @@
  "touches_by_player_role": {
   "nygard": {
    "C": {
-    "touches": 183,
-    "share": 0.351
+    "touches": 174,
+    "share": 0.342
    },
    "LW": {
-    "touches": 142,
-    "share": 0.273
+    "touches": 140,
+    "share": 0.275
    },
    "LD": {
     "touches": 105,
-    "share": 0.202
+    "share": 0.206
    },
    "RD": {
-    "touches": 62,
-    "share": 0.119
+    "touches": 61,
+    "share": 0.12
    },
    "RW": {
     "touches": 29,
-    "share": 0.056
+    "share": 0.057
    }
   },
   "fjermestad": {
    "LD": {
     "touches": 126,
-    "share": 0.278
+    "share": 0.28
    },
    "LW": {
-    "touches": 120,
+    "touches": 119,
     "share": 0.264
    },
    "RD": {
     "touches": 77,
-    "share": 0.17
+    "share": 0.171
    },
    "C": {
-    "touches": 72,
-    "share": 0.159
+    "touches": 69,
+    "share": 0.153
    },
    "RW": {
     "touches": 59,
-    "share": 0.13
+    "share": 0.131
    }
   }
  },
