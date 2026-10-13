@@ -1,0 +1,55 @@
+{
+  "id": "senter-backnacka",
+  "name": "Senter-Backnäcka",
+  "level": 8,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-senter-backnacka-6f13def6.png",
+  "text": "Pass from center to the right defenseman, who shoots around the opponent's left defenseman and into the goal (see Backnäcka)",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        328,
+        374
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RD",
+      "picture_px": [
+        386,
+        644
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-RD",
+      "picture_px": [
+        436,
+        577
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        334,
+        209
+      ]
+    }
+  ]
+}

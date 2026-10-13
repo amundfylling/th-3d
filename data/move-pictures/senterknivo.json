@@ -1,0 +1,48 @@
+{
+  "id": "senterknivo",
+  "name": "Senterknivo",
+  "level": 7,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-senterknivo-caf5c8d7.png",
+  "text": "Pass from center behind the opponent's center to the left defenseman, who shoots one-timed into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        330,
+        375
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LD",
+      "picture_px": [
+        206,
+        658
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        [
+          312,
+          500
+        ]
+      ]
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        253,
+        212
+      ]
+    }
+  ]
+}

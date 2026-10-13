@@ -1,0 +1,42 @@
+{
+  "id": "omvendspjass",
+  "name": "Omvendspjass",
+  "level": 5,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-omvendspjass-e0edae5c.png",
+  "text": "Center starts with the puck in the toe groove, passes with the blade a few centimeters out to the right, spins all the way around and shoots with the blade into the right corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        307,
+        334
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        348,
+        317
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        344,
+        218
+      ]
+    }
+  ]
+}

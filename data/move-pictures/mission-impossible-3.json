@@ -1,0 +1,68 @@
+{
+  "id": "mission-impossible-3",
+  "name": "Mission Impossible 3",
+  "level": 9,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-mission-impossible-3-8f62525f.png",
+  "text": "Center plays the puck off the goal frame and puts the rebound into the goal",
+  "note": "The puck plays off the goal frame (an unnumbered point at the post, as on puck.no).",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        305,
+        339
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        348,
+        336
+      ],
+      "pose": false
+    },
+    {
+      "id": "post",
+      "kind": "point",
+      "picture_px": [
+        355,
+        231
+      ]
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        282,
+        350
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "post"
+    },
+    {
+      "from": "post",
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        257,
+        205
+      ]
+    }
+  ]
+}

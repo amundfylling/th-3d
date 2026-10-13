@@ -14,7 +14,8 @@ import { ShotScene } from "./ShotScene.tsx";
 export type PosePreviewProps = {
   poses: Record<string, { arc_mm: number; theta_deg: number }>;
   puckMm: [number, number];
-  camera: { cx: number; cy: number; widthMm: number };
+  /** Orthographic straight down ({cx, cy, widthMm}) or perspective ({positionMm, targetMm, upMm, fovDeg}, move pictures). */
+  camera: { cx: number; cy: number; widthMm: number } | { positionMm: [number, number, number]; targetMm: [number, number, number]; upMm: [number, number, number]; fovDeg: number };
   background?: string;
 };
 
@@ -31,6 +32,15 @@ export const PosePreview: React.FC<PosePreviewProps> = ({ poses, puckMm, camera,
     return shotTimeEvaluator(trace, geometry as Parameters<typeof shotTimeEvaluator>[1])(0, 0);
   }, [poses, puckMm]);
   const [cam] = useState(() => {
+    if ("positionMm" in camera) {
+      const c = new THREE.PerspectiveCamera(camera.fovDeg, width / height, 0.004, 10);
+      const o = new THREE.Vector3(...toThree([0, 0, 0]));
+      c.position.set(...toThree(camera.positionMm));
+      c.up.copy(new THREE.Vector3(...toThree(camera.upMm)).sub(o).normalize());
+      c.lookAt(...toThree(camera.targetMm));
+      c.updateProjectionMatrix();
+      return Object.assign(c, { manual: true });
+    }
     const halfW = camera.widthMm / 2000, aspect = height / width;
     const c = new THREE.OrthographicCamera(-halfW, halfW, halfW * aspect, -halfW * aspect, 0.01, 20);
     c.position.set(...toThree([camera.cx, camera.cy, 1000]));
@@ -41,7 +51,7 @@ export const PosePreview: React.FC<PosePreviewProps> = ({ poses, puckMm, camera,
   });
   return (
     <AbsoluteFill style={{ backgroundColor: background ?? "#1b212b" }}>
-      <ThreeCanvas width={width} height={height} camera={cam} orthographic linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true }}>
+      <ThreeCanvas width={width} height={height} camera={cam} orthographic={!("positionMm" in camera)} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true }}>
         <ShotScene state={state} logTag="pose-preview" />
       </ThreeCanvas>
     </AbsoluteFill>

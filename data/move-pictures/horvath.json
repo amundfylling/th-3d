@@ -1,0 +1,54 @@
+{
+  "id": "horvath",
+  "name": "Horvath",
+  "level": 7,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-horvath-142415eb.png",
+  "text": "Center starts with the puck a bit out on the blade to the right of the slot, shoots into the left rounded boards, gets the rebound, and shoots into the right corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        325,
+        344
+      ],
+      "pose": true
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        116,
+        108
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        353,
+        341
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        339,
+        206
+      ]
+    }
+  ]
+}

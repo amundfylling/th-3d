@@ -1,0 +1,55 @@
+{
+  "id": "fakie-veggdyr",
+  "name": "Fakie Veggdyr",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-veggdyr-e0b159da.png",
+  "text": "Center shoots the puck from the toe groove via the right boards, back to the center and into the goal",
+  "note": "The NTHF text says the RIGHT boards; the puck.no picture plays it off the LEFT boards (mirror of Veggdyr). The recreation follows the picture.",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        314,
+        329
+      ],
+      "pose": true
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        66,
+        297
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        341,
+        312
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        337,
+        209
+      ]
+    }
+  ]
+}

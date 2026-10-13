@@ -1,9 +1,13 @@
 # Move pictures: the puck.no pictures recreated on our rink
 
-Status: PILOT, PROPOSED (2026-10-13), waiting for the user's review of `validation/move-pictures/pilot-comparison.jpg`.
+Status: PROPOSED (2026-10-13). All 51 puck.no pictures recreated in the tilted view the user chose (angle 2):
+`validation/move-pictures/<id>.png`, side by side with puck.no in `validation/move-pictures/comparison/page1-8.jpg`.
 
 The user asked to recreate the puck.no move pictures (green arrows, numbered contacts) before animating every move,
-without the explanatory text the analysis videos carry. Pilot: five visibly different centre moves.
+without the explanatory text the analysis videos carry. Pilot: five visibly different centre moves (below). After the
+angle study the user chose the tilted view and asked for all combinations: the other 46 specs were written from the
+puck.no pictures (contacts, figures, arrow paths) and every picture was redrawn tilted. The 70 NTHF moves that have no
+puck.no picture (66 right-wing and 4 centre moves) are not drawn.
 
 | move | level | what it shows | source of the arrows |
 |---|---|---|---|
@@ -26,11 +30,17 @@ without the explanatory text the analysis videos carry. Pilot: five visibly diff
    the slot allows; turning away from the push costs 0.15 mm per degree, the backhand 2 mm. The miss and the turn are
    printed and saved in `out/move-pictures/<id>-geometry.json`. Board runs follow the inner boards offset by the puck
    radius. A move may move a bystander out of a lane (`figures`, with the reason).
-3. `render.ts`: the rink straight from above with the pose-preview composition (same pose code as every video; the
-   composition now takes `widthPx`, `heightPx`, `background`). The puck is drawn at contact 1.
-4. `build.py --draw`: rotated so the attacking goal is up (no mirroring: the attackers' left is on the left, as on
-   puck.no), green arrows, large navy numbered circles at the contacts (a circle steps aside when the arrow is too short to show, as in Näcka), the 0-9 level scale with the level boxed in NBHF
+3. `render.ts`: the rink with the pose-preview composition (same pose code as every video; the composition takes
+   `widthPx`, `heightPx`, `background` and a perspective camera). Camera: overhead tilted 20 deg toward the attackers'
+   end, goal up (no mirroring: the attackers' left is on the left, as on puck.no). Three framings by how much of the
+   rink the move uses: `half` (x 68-446 mm), `mid` (x -95-446) and `full` (whole rink). The puck is drawn at contact 1.
+4. `build.py --draw`: the arrows and circles projected with the same camera (matches three.js), green arrows, large navy numbered circles at the contacts (a circle steps aside when the arrow is too short to show, as in Näcka), the 0-9 level scale with the level boxed in NBHF
    red (docs/theme.md colours). No other text.
+
+Spec features added for the full set: unnumbered contacts (`{"id", "kind": "board"|"point"}`, e.g. a board touch or
+puck.no's plain dots), `via` points and `"boards"` in a path segment, goal segments with their own end point, `toward_px`
+for the facing, `snap: false`, per-move figure overrides, and `index_id` for moves whose file id is ASCII (Lillhæl ->
+lillhael, Lillstøvel, Søren). Spjass is read from its saved trace (`data/traces/spjass.trace.json`) like Näcka.
 
 Like puck.no, a figure is drawn once (at its first touch); a later touch by the same figure (Agdur 3, Veggdyr 2)
 is a numbered point without a figure.
@@ -39,12 +49,15 @@ is a numbered point without a figure.
 
 - The arrows are illustrations, not checked traces (no contact or slide check). Veggdyr's rebound off the boards
   would be a bounce under the slide rule; the picture shows it anyway because puck.no does.
-- Agdur contact 3: the centre's blade cannot reach the picture's point; it is snapped 12.7 mm away.
+- Contacts the blade cannot reach exactly (snapped more than 9 mm from the picture's point): Agdur 3 (12.7 mm),
+  Horvath 2 (11.7), Lillstøvel 2 (12.0), Omvendt spjass 2 (9.8), Senter-backnäcka 3 (10.7).
 - Poses are chosen by the snapping rule, not by the real technique (except Näcka, from its trace). Senter-Velodrom's
   right wing and Senterkniv's centre play backhand to reach the picture's points.
 - Bystanders moved out of a lane: Veggdyr's right wing (puck.no's arrow runs through it), Senterkniv's opposing centre.
-- Veggdyr: the NTHF text says the LEFT boards; the puck.no picture plays it off the RIGHT boards. Ours follows the
-  picture. To ask the user.
+- Text and picture disagree (ours follows the picture; to ask the user):
+  - Veggdyr: the NTHF text says the LEFT boards; the picture uses the RIGHT boards.
+  - Fakie-Veggdyr: the text says the right boards; the picture uses the left.
+  - Fakie-invers-halv-Agduro: the text passes to the right wing; the picture to the left wing (unnumbered dots).
 - Our slots are the user's table (geometry.json), so the figures stand on slightly different lines than puck.no's
   drawing.
 

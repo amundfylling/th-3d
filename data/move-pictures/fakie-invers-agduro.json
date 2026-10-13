@@ -1,0 +1,67 @@
+{
+  "id": "fakie-invers-agduro",
+  "name": "Fakie Invers Agduro",
+  "level": 7,
+  "view": "mid",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-invers-agduro-0d8a87b9.png",
+  "text": "Center carries the puck backward in the slot and passes behind the opponent's left defenseman to the right wing, who carries the puck forward in the slot and passes in front of the opponent's left defenseman back to the center and into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        314,
+        381
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        470
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        273,
+        330
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        [
+          320,
+          503
+        ]
+      ]
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "via": [
+        [
+          478,
+          331
+        ]
+      ]
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        262,
+        212
+      ]
+    }
+  ]
+}

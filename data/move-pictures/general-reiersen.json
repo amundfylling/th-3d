@@ -1,0 +1,49 @@
+{
+  "id": "general-reiersen",
+  "name": "General Reiersen",
+  "level": 8,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-general-reiersen-64423311.png",
+  "text": "Pass from center along the right boards behind their own goal to the left defenseman, who shoots one-timed into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        329,
+        372
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LD",
+      "picture_px": [
+        231,
+        942
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        [
+          534,
+          690
+        ],
+        "boards"
+      ]
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        259,
+        215
+      ]
+    }
+  ]
+}

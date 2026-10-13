@@ -1,0 +1,42 @@
+{
+  "id": "nackafinte",
+  "name": "Näckafinte",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-nackafinte-7dfe9545.png",
+  "text": "Center performs a Näcka, but places the puck in the left corner. Only works against a reacting goalie",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        303,
+        334
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        342,
+        323
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        261,
+        212
+      ]
+    }
+  ]
+}

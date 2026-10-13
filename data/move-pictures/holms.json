@@ -1,0 +1,70 @@
+{
+  "id": "holms",
+  "name": "Holms",
+  "level": 8,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-holms-8ed3df70.png",
+  "text": "Center shoots into the boards at the start of the right rounded boards, so that the puck glides along the boards to the left wing and on to the center, who shoots directly into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        308,
+        386
+      ],
+      "pose": true
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        535,
+        203
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        104,
+        386
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        336,
+        329
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": 2,
+      "via": [
+        "boards"
+      ]
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        327,
+        201
+      ]
+    }
+  ]
+}

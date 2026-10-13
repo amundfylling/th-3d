@@ -1,0 +1,49 @@
+{
+  "id": "fakie-invers-halv-agduro",
+  "name": "Fakie Invers Halv-Agduro",
+  "level": 7,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-invers-halv-agduro-8d975656.webp",
+  "text": "Center carries the puck backward in the slot and passes behind the opponent's left defenseman to the right wing, who shoots directly into the goal",
+  "note": "The NTHF text passes to the RIGHT wing; the puck.no picture (black dots, no numbers) passes to the LEFT wing. The recreation follows the picture and numbers the touches.",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        332,
+        403
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        100,
+        392
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        [
+          322,
+          569
+        ]
+      ]
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        243,
+        215
+      ]
+    }
+  ]
+}

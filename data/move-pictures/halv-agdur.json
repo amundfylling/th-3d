@@ -1,0 +1,42 @@
+{
+  "id": "halv-agdur",
+  "name": "Halv-Agdur",
+  "level": 7,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-halv-agdur-921a3a7c.png",
+  "text": "Pass from center to left wing, who shoots directly into the left corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        307,
+        337
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        106,
+        379
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        266,
+        204
+      ]
+    }
+  ]
+}

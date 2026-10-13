@@ -1,0 +1,42 @@
+{
+  "id": "omvendspjassfinte",
+  "name": "Omvendspjassfinte",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-omvendspjassfinte-6ba8f294.png",
+  "text": "Center performs an Omvendspjass, but places the puck in the left corner. Only works against a reacting goalie",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        309,
+        327
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        339,
+        319
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        262,
+        212
+      ]
+    }
+  ]
+}

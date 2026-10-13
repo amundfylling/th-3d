@@ -17,8 +17,8 @@
       "pose": true
     },
     {
-      "n": null,
-      "board": true,
+      "id": "board",
+      "kind": "board",
       "picture_px": [
         535,
         306

@@ -1,0 +1,29 @@
+{
+  "id": "senterkiosk",
+  "name": "Senterkiosk",
+  "level": 8,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-senterkiosk-0b633f17.png",
+  "text": "Center starts with the puck a couple of centimeters to the left of the slot and performs a Kiosk into the left or right top corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        280,
+        341
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "goal",
+      "picture_px": [
+        253,
+        214
+      ]
+    }
+  ]
+}

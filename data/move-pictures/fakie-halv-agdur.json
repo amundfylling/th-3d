@@ -1,0 +1,42 @@
+{
+  "id": "fakie-halv-agdur",
+  "name": "Fakie Halv-Agdur",
+  "level": 7,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-halv-agdur-ae8e3e5d.png",
+  "text": "Pass from center to right wing, who shoots directly into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        314,
+        331
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        484,
+        292
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        329,
+        211
+      ]
+    }
+  ]
+}

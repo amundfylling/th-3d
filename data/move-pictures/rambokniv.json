@@ -1,0 +1,55 @@
+{
+  "id": "rambokniv",
+  "name": "Rambokniv",
+  "level": 7,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-rambokniv-cb88b462.png",
+  "text": "Pass from center to the left defenseman, who passes behind the opponent's center and in to their own center, who shoots one-timed from the very back of the slot",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        276,
+        353
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LD",
+      "picture_px": [
+        192,
+        661
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        328,
+        547
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        334,
+        209
+      ]
+    }
+  ]
+}

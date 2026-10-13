@@ -1,0 +1,61 @@
+{
+  "id": "invers-agduro",
+  "name": "Invers Agduro",
+  "level": 8,
+  "view": "mid",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-invers-agduro-fa614eea.png",
+  "text": "Center carries the puck backward in the slot and passes behind the opponent's center to the left wing, who passes back to the center and into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        330,
+        375
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        102,
+        392
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        338,
+        338
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        [
+          318,
+          570
+        ]
+      ]
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        338,
+        206
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 """Move pictures: the puck.no move pictures recreated on our rink (docs/move-pictures.md).
 
     python3 scripts/move-pictures/build.py [ids...]           -> out/move-pictures/jobs.json + <id>-geometry.json
-    node scripts/move-pictures/render.ts [ids...]              -> out/move-pictures/<id>-base.png (overhead still)
+    node scripts/move-pictures/render.ts [ids...]              -> out/move-pictures/<id>-base.png (tilted 3D still)
     python3 scripts/move-pictures/build.py --draw [ids...]     -> validation/move-pictures/<id>.png
 
 Reads data/move-pictures/<id>.json (contacts and arrows read off the puck.no picture, or a saved trace) and
@@ -30,8 +30,12 @@ BLADE_MID = np.array([2.8, 33.1])  # skater blade middle, local mm (scripts/ikv-
 HOME = {"W": 0.0, "E": 180.0}
 GX, GY = HW["goal"]["placement_mm"]["E"]
 BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"], float)
-PX_PER_MM = 3.0
-VIEWS = {"half": {"x": (68.0, 436.0), "y": (-252.0, 252.0)}, "full": {"x": (-436.0, 436.0), "y": (-252.0, 252.0)}}
+# Camera (user's choice 2026-10-13, angle 2 of docs/move-pictures.md): overhead tilted 20 deg toward the attackers' end,
+# attacking goal up. The view frames the world rectangle x (bottom to top) by y (+-254 mm, the housing) at the ice.
+TILT_DEG = 20.0
+VIEWS = {"half": {"x": (68.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 1050.0, "height_px": 1100},
+         "mid": {"x": (-95.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 1400.0, "height_px": 1400},
+         "full": {"x": (-446.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 2000.0, "height_px": 1900}}
 MARGIN_L = 92  # px, left strip for the level scale (as on puck.no)
 TURN_COST = 0.15  # mm per degree the blade is turned away from the push
 BACKHAND_COST = 2.0  # mm
@@ -111,14 +115,14 @@ def board_path():
 
 
 def board_run(a, b):
-    """Board-riding path from near a to near b, the way round that passes the attacking end (largest x)."""
+    """Board-riding path from near a to near b, the shorter way round (as every puck.no board arrow runs)."""
     BP = board_path()
     n = len(BP)
     ia = int(np.argmin(np.linalg.norm(BP - a, axis=1)))
     ib = int(np.argmin(np.linalg.norm(BP - b, axis=1)))
     fwd = [BP[(ia + k) % n] for k in range((ib - ia) % n + 1)]
     bwd = [BP[(ia - k) % n] for k in range((ia - ib) % n + 1)]
-    run = fwd if max(p[0] for p in fwd) >= max(p[0] for p in bwd) else bwd
+    run = fwd if len(fwd) <= len(bwd) else bwd
     return [np.asarray(p) for p in run]
 
 
@@ -160,19 +164,36 @@ def build(spec):
             arrows.append([at(t0), *XY[sel][:: max(1, int(sel.sum() // 60))], at(t1)])
         puck = points[stops[0][0]]
     else:
+        # contacts: numbered (n) touches by a figure (pid; snapped to its blade unless "snap": false), and unnumbered
+        # points ("id"): "kind": "board" (snapped onto the boards) or "point" (a post, a figure the puck glances off)
         cs = spec["contacts"]
-        key = lambda c: "board" if c.get("board") else c["n"]
+        key = lambda c: c["n"] if c.get("n") is not None else c["id"]
         raw = {key(c): pic_to_world(*c["picture_px"]) for c in cs}
         for seg in spec["path"]:
             if seg["to"] == "goal":
                 raw["goal"] = pic_to_world(*seg["picture_px"])
+        first_via = {}
+        for seg in spec["path"]:
+            v = next((q for q in seg.get("via", []) if q != "boards"), None)
+            first_via[seg["from"]] = pic_to_world(*v) if v is not None else None
         nxt = {seg["from"]: seg["to"] for seg in spec["path"]}
         for c in cs:
             k = key(c)
-            if c.get("board"):
+            if c.get("kind") == "board":
                 points[k] = nearest_board(raw[k])
                 continue
-            toward = pic_to_world(*c["toward_px"]) if "toward_px" in c else raw[nxt[k]]
+            if c.get("kind") == "point" or not c.get("pid") or c.get("snap") is False:
+                points[k] = raw[k]
+                if c.get("pid") and c.get("pose"):
+                    arc, d = Slot(c["pid"]).nearest(raw[k])
+                    poses[c["pid"]] = {"arc_mm": round(arc, 1), "theta_deg": 0.0, "source": f"contact {k} (not snapped)"}
+                continue
+            if "toward_px" in c:
+                toward = pic_to_world(*c["toward_px"])
+            elif first_via.get(k) is not None:
+                toward = first_via[k]
+            else:
+                toward = raw[nxt[k]]
             sol = solve_contact(c["pid"], raw[k], toward)
             points[k] = np.array(sol["puck_mm"])
             notes.append({"contact": k, **sol, "picture_mm": [round(float(v), 1) for v in raw[k]], "drawn": c["pose"]})
@@ -181,31 +202,68 @@ def build(spec):
         points["goal"] = raw["goal"]
         for seg in spec["path"]:
             a, b = points[seg["from"]], points[seg["to"]]
-            if seg.get("via") == "boards":
-                arrows.append([a, *board_run(a, b), b])
-            else:
-                arrows.append([a, b])
-        first = cs[0]
-        puck = points[key(first)]
-    v = VIEWS[spec["view"]]
-    cx, cy = sum(v["x"]) / 2, sum(v["y"]) / 2
-    wmm, hmm = v["x"][1] - v["x"][0], v["y"][1] - v["y"][0]
+            vias = seg.get("via", [])
+            line = [a]
+            for i, q in enumerate(vias):
+                if q == "boards":
+                    nxt_pt = pic_to_world(*vias[i + 1]) if i + 1 < len(vias) else b
+                    line += board_run(line[-1], nxt_pt)
+                else:
+                    line.append(pic_to_world(*q))
+            arrows.append(line + [b])
+        puck = points[key(cs[0])]
+    cam = fit_camera(spec["view"])
     job = {"id": spec["id"], "poses": {k: {"arc_mm": p["arc_mm"], "theta_deg": p["theta_deg"]} for k, p in poses.items()},
            "puckMm": [round(float(puck[0]), 2), round(float(puck[1]), 2)],
-           "camera": {"cx": cx, "cy": cy, "widthMm": wmm}, "widthPx": int(round(wmm * PX_PER_MM)), "heightPx": int(round(hmm * PX_PER_MM)),
-           "background": "#%02x%02x%02x" % NAVY}
+           "camera": {"positionMm": cam["position_mm"], "targetMm": cam["target_mm"], "upMm": [1, 0, 0], "fovDeg": cam["fov_deg"]},
+           "widthPx": cam["width_px"], "heightPx": cam["height_px"], "background": "#%02x%02x%02x" % NAVY}
     geo = {"id": spec["id"], "status": "illustration (PROPOSED): arrows read off the puck.no picture, contacts snapped to the blades; not a checked trace",
-           "view": v, "px_per_mm": PX_PER_MM, "poses": poses, "contacts": notes,
+           "camera": cam, "poses": poses, "contacts": notes,
            "points_mm": {str(k): [round(float(c), 1) for c in p] for k, p in points.items()},
            "arrows_mm": [[[round(float(c), 1) for c in p] for p in a] for a in arrows]}
     return job, geo
 
 
+def _basis(cam):
+    E, T = np.array(cam["position_mm"], float), np.array(cam["target_mm"], float)
+    f = (T - E) / np.linalg.norm(T - E)
+    r = np.cross(f, [1.0, 0.0, 0.0])
+    r /= np.linalg.norm(r)
+    return E, f, r, np.cross(r, f)
+
+
+def project(cam, p, w=None, h=None):
+    """World mm (z = 0 unless given) -> canvas px of the perspective camera (three.js PerspectiveCamera, same fov,
+    aspect, lookAt and up)."""
+    E, f, r, u = _basis(cam)
+    q = np.array([p[0], p[1], p[2] if len(p) > 2 else 0.0]) - E
+    zc = q @ f
+    t = math.tan(math.radians(cam["fov_deg"]) / 2)
+    w = cam["width_px"] if w is None else w
+    h = cam["height_px"] if h is None else h
+    return ((q @ r) / (zc * t * w / h) + 1) / 2 * w, (1 - (q @ u) / (zc * t)) / 2 * h
+
+
+def fit_camera(view):
+    v = VIEWS[view]
+    tx = sum(v["x"]) / 2
+    a = math.radians(TILT_DEG)
+    cam = {"position_mm": [round(tx - v["dist_mm"] * math.sin(a), 2), 0.0, round(v["dist_mm"] * math.cos(a), 2)],
+           "target_mm": [tx, 0.0, 0.0], "tilt_deg": TILT_DEG}
+    corners = [(x, y) for x in v["x"] for y in v["y"]]
+    E, f, r, u = _basis(cam)
+    loc = [((np.array([x, y, 0.0]) - E) @ r, (np.array([x, y, 0.0]) - E) @ u, (np.array([x, y, 0.0]) - E) @ f) for x, y in corners]
+    ty = max(abs(yc / zc) for _, yc, zc in loc)  # tan(fov/2) that fits the x range (the target is the middle)
+    tx_ = max(abs(xc / zc) for xc, _, zc in loc)
+    cam["fov_deg"] = round(math.degrees(2 * math.atan(ty)), 4)
+    cam["height_px"] = v["height_px"]
+    cam["width_px"] = int(math.ceil(v["height_px"] * tx_ / ty / 2) * 2)
+    return cam
+
+
 def to_px(geo, p):
-    v = geo["view"]
-    s = geo["px_per_mm"]
-    # rotated 90 deg CCW: +x (attacking goal) up, +y (the attackers' left) left
-    return (MARGIN_L + (v["y"][1] - p[1]) * s, (v["x"][1] - p[0]) * s)
+    x, y = project(geo["camera"], p)
+    return (MARGIN_L + x, y)
 
 
 def arrow(d, pts, width, color, head, cut_start, cut_end):
@@ -253,7 +311,7 @@ def level_scale(d, h, level):
     """The puck.no difficulty scale 0-9 on the left edge, the move's level boxed in red."""
     cell = 52
     x0 = (MARGIN_L - cell) // 2
-    y0 = int(h * 0.30) if h < 1500 else int(h * 0.40)
+    y0 = int(h * 0.30) if h < 1500 else int(h * 0.36)
     f = ImageFont.truetype(FONT, 38)
     for k in range(10):
         y = y0 + k * cell
@@ -264,14 +322,14 @@ def level_scale(d, h, level):
 
 
 def draw(spec, geo):
-    base = Image.open(OUT / f"{spec['id']}-base.png").convert("RGB").rotate(90, expand=True)
+    base = Image.open(OUT / f"{spec['id']}-base.png").convert("RGB")
     W, H = base.width + MARGIN_L, base.height
     im = Image.new("RGB", (W, H), NAVY)
     im.paste(base, (MARGIN_L, 0))
     d = ImageDraw.Draw(im)
     r = 34
     pts = {k: to_px(geo, p) for k, p in geo["points_mm"].items()}
-    marks = {k: np.array(p) for k, p in pts.items() if k not in ("goal", "board")}  # where each numbered circle goes
+    marks = {k: np.array(p) for k, p in pts.items() if k.isdigit()}  # where each numbered circle goes
     for a in geo["arrows_mm"]:
         P = [to_px(geo, p) for p in a]
         ks = next((k for k, q in pts.items() if k in marks and np.allclose(P[0], q)), None)

@@ -1,0 +1,54 @@
+{
+  "id": "bacalao",
+  "name": "Bacalao",
+  "level": 8,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-bacalao-2c9bcf71.png",
+  "text": "Pass from center to the right defenseman, who shoots one-timed via the right boards and into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        329,
+        372
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RD",
+      "picture_px": [
+        404,
+        656
+      ],
+      "pose": true
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        534,
+        539
+      ]
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": "goal",
+      "picture_px": [
+        333,
+        197
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "agduro",
+  "name": "Agduro",
+  "level": 7,
+  "view": "mid",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-agduro-e9ce4ae3.png",
+  "text": "Pass from center to left wing, who carries the puck backward in the slot and passes behind the opponent's center back to their own center at the very back of the slot and into the goal (see Sentrifugo)",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        303,
+        337
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        101,
+        397
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        326,
+        547
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        337,
+        209
+      ]
+    }
+  ]
+}

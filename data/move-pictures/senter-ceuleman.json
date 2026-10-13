@@ -1,0 +1,41 @@
+{
+  "id": "senter-ceuleman",
+  "name": "Senter-Ceuleman",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-senter-ceuleman-06fd741e.png",
+  "text": "Center shoots the puck from the toe groove via the right boards and into the goal behind (or via) the goalie",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        312,
+        324
+      ],
+      "pose": true
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        536,
+        273
+      ]
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": "goal",
+      "picture_px": [
+        269,
+        203
+      ]
+    }
+  ]
+}

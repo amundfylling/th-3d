@@ -1,0 +1,44 @@
+{
+  "id": "skalpell",
+  "name": "Skalpell",
+  "level": 9,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-skalpell-8126d7d8.png",
+  "text": "Pass from center to the goalie, who shoots one-timed into the goal",
+  "note": "The goalie's touch is not snapped to a blade (the snapping rule is for skaters); the goalie stays in its assembly pose.",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        344,
+        361
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-G",
+      "picture_px": [
+        308,
+        761
+      ],
+      "pose": false,
+      "snap": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        259,
+        206
+      ]
+    }
+  ]
+}

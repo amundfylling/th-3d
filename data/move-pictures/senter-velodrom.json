@@ -7,5 +7,5 @@
     {"n": 2, "pid": "W-LW", "picture_px": [68, 272], "pose": true, "toward_px": [68, 200]},
     {"n": 3, "pid": "W-RW", "picture_px": [523, 278], "pose": true}
   ],
-  "path": [{"from": 1, "to": 2}, {"from": 2, "to": 3, "via": "boards"}, {"from": 3, "to": "goal", "picture_px": [320, 210]}]
+  "path": [{"from": 1, "to": 2}, {"from": 2, "to": 3, "via": ["boards"]}, {"from": 3, "to": "goal", "picture_px": [320, 210]}]
 }

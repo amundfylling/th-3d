@@ -1,0 +1,55 @@
+{
+  "id": "fakie-senter-rokkade",
+  "name": "Fakie Senter-Rokkade",
+  "level": 7,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-senter-rokkade-90a380f0.png",
+  "text": "Pass from center to the left defenseman and on to the right defenseman, who shoots one-timed into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        336,
+        369
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LD",
+      "picture_px": [
+        218,
+        677
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-RD",
+      "picture_px": [
+        389,
+        683
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        331,
+        206
+      ]
+    }
+  ]
+}
