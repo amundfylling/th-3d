@@ -23,8 +23,7 @@ KEYS = [fm.KIT, fm.BLUE, fm.SKIN, fm.METAL, fm.TAN, fm.DARK]
 def join(parts, name):
     mats = {k: sb.clay(f"prev_{k}", PREVIEW_RGB[k], 0.4) for k in KEYS}
     for p in parts:
-        p.data.materials.clear()
-        p.data.materials.append(mats[p["material_key"]])
+        fm.assign_part_materials(p, lambda k: mats[k])
     bpy.ops.object.select_all(action="DESELECT")
     for p in parts:
         p.select_set(True)
@@ -35,13 +34,14 @@ def join(parts, name):
     return ob
 
 
-def dump(ob, path, ratio=0.06):
+def dump(ob, path, ratio=0.06, max_tris=None):
     """Decimated copy (fitting only needs the silhouette) -> npz."""
     tmp = ob.copy()
     tmp.data = ob.data.copy()
     bpy.context.scene.collection.objects.link(tmp)
     mod = tmp.modifiers.new("dec", "DECIMATE")
-    mod.ratio = ratio
+    ob.data.calc_loop_triangles()
+    mod.ratio = min(1.0, max_tris / len(ob.data.loop_triangles)) if max_tris else ratio
     bpy.ops.object.select_all(action="DESELECT")
     bpy.context.view_layer.objects.active = tmp
     tmp.select_set(True)
@@ -68,7 +68,8 @@ for kind in (sys.argv[1:] or ["skater", "goalie"]):
             if f"prev_{k}" not in [m.name for m in ob.data.materials]:
                 ob.data.materials.append(bpy.data.materials[f"prev_{k}"])
         fm.apply_paint(ob, m_, lambda k: f"prev_{k}")
-    v = dump(ob, OUT / f"{kind}.npz")
+    # the STL skater body is already coarse: keep about as many triangles as the decimated parametric mold had
+    v = dump(ob, OUT / f"{kind}.npz", max_tris=22000 if (kind == "skater" and m_.get("stl")) else None)
     print(kind, "verts", len(v), "bbox mm", v.min(0).round(2), v.max(0).round(2))
     sb.set_world(0.6)
     sb.add_sun(3.0, (40, 10, 30))

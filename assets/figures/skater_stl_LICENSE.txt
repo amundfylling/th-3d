@@ -1,0 +1,8 @@
+assets/figures/skater_stl_SWE.* and skater_stl_FIN.* are derived from
+"STIGA HOCKEY PLAYER" by MAVRIS (https://www.thingiverse.com/thing:6898521),
+licensed under Creative Commons Attribution-ShareAlike (CC BY-SA).
+Changes: placed and scaled in the project's figure frame, subdivided, coloured from the
+user's photos, stick replaced by the traced wire stick, runner and back prints added
+(scripts/stl-skater.py, assets/blender/build_skater_stl.py; docs/skater-stl.md).
+These derived files are shared under the same licence.
+Original download: references/models/thingiverse-6898521/.

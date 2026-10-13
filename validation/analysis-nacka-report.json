@@ -2,7 +2,7 @@
  "analysis": "Näcka - sports-analysis video",
  "composition": "analysis-nacka",
  "versions": {
-  "node": "v22.22.2",
+  "node": "v22.22.0",
   "remotion": "4.0.531",
   "@remotion/three": "4.0.531",
   "three": "0.186.1",
@@ -13,12 +13,12 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
  },
  "trace": {
   "trace_id": "trace.nacka.v1",
   "status": "proposed",
-  "sha256": "b2a16b779336cf8688b57593126627a11bdac083d6543f19a54e9eec7e532e49"
+  "sha256": "fdc15e896128f80715d14e7794e5c669c5f89a7ca09e69f730414f30930ca1fd"
  },
  "analysis_spec": {
   "analysis_id": "analysis.nacka.v1",
@@ -30,7 +30,7 @@
    "remotion/ShotScene.tsx",
    "remotion/theme.ts"
   ],
-  "composition_sha256": "d973314ad8e3837603cb3e3284fe6c10fcf6a7ccc1d73d0dd77cf05461d271db"
+  "composition_sha256": "c619ecd02f742c96e5b7528022edc812488dc742c9b67b292dcf772e78ddee28"
  },
  "output": {
   "path": "validation/analysis-nacka.mp4",
@@ -62,10 +62,10 @@
     "duration": "24.800000"
    }
   },
-  "bytes": 9815348,
-  "megabytes": 9.82,
+  "bytes": 9629729,
+  "megabytes": 9.63,
   "below_25_mb": true,
-  "sha256": "1f20f8afc58756f0afd2e519e42ac23c0c7f2bf9add7cfe2b64a1e043579afb6"
+  "sha256": "fa179845e9fe572284a8d87c8693c30effe2d06ea654939f54b275c408bb3059"
  },
  "checks": {
   "frames_logged": 744,
@@ -74,23 +74,16 @@
   "camera_frames_logged": 744,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 3549,
+ "render_seconds": 4482,
  "composition_refactor": {
-  "date": "2026-10-12",
-  "change": "shared renderer split for the video workflow (docs/video-workflow.md): remotion/SceneLayer.tsx (scene layer, camera rig) out of AnalysisVideo.tsx, ShotScene.tsx clones the cached GLTF scene per mount and resets the figures every frame (no pose leak between compositions), remotion/theme.ts (overlay theme, default classic), optional frameMap/sceneSrc props (scene cache)",
+  "date": "2026-10-13",
+  "change": "merge of the video workflow (PR #14: remotion/SceneLayer.tsx split out of AnalysisVideo.tsx, ShotScene.tsx clones the scene per mount, frameMap/sceneSrc props, classic-only overlay tweaks) into the STL-skater branch (PR #13) this video was rendered on; default theme stays nbhf",
   "previous_composition_files": [
    "remotion/NackaAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "previous_composition_sha256": "14193df8d8c56203bef7277d9c9173f61c97cc5d972e45eaca0ce0b84a4bb8cb",
-  "verification": "frames 29, 186, 334, 446, 595, 721 rendered at scale 0.5 with the code before this change (commit 0b4caa2) and after it: PNG bytes identical for all six",
-  "video_rerendered": false,
-  "earlier": {
-   "date": "2026-10-06",
-   "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
-   "previous_composition_sha256": "41a7a793b9ac4762201090b59dc9da8c5854a4fa624194fbea25ad4146e17dc1",
-   "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
-   "video_rerendered": false
-  }
+  "previous_composition_sha256": "35f83e8df7f4e7643f1aeed1a3d55a90f35fd5c32786d0df828025dab9a0bdd8",
+  "verification": "frames 29, 186, 334, 446, 595, 721 rendered at scale 0.5 (swangle) with the STL-skater branch at commit 53c32b2 (scripts/analysis-stills.ts) and with the merged code (scripts/video.ts stills): pixels identical for all six (validation/video-workflow/stl-merge-identity.json)",
+  "video_rerendered": false
  }
 }

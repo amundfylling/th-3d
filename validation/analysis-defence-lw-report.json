@@ -2,7 +2,7 @@
  "analysis": "Defending the left wing - concept video",
  "composition": "analysis-defence-lw",
  "versions": {
-  "node": "v22.22.2",
+  "node": "v22.22.0",
   "remotion": "4.0.531",
   "@remotion/three": "4.0.531",
   "three": "0.186.1",
@@ -13,12 +13,12 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
  },
  "trace": {
   "trace_id": "trace.defence-left-wing.v1",
   "status": "proposed",
-  "sha256": "94e08908857336476c4d07ec80f35e426262477c2d591cb326bebe3801403fdd"
+  "sha256": "62a8a83a4fd328a86c16b9ce0abba4baa2c7d3993c137770dab906538e1fc271"
  },
  "analysis_spec": {
   "analysis_id": "analysis.defence-left-wing.v1",
@@ -30,7 +30,7 @@
    "remotion/ShotScene.tsx",
    "remotion/theme.ts"
   ],
-  "composition_sha256": "8d62626799dbbeab8acd3bee7c884747d0bda6f1dccbb5d7df35ce454872354e"
+  "composition_sha256": "c7494c51ec667ddc3e889529bf043c3c8ab50d61674cd355a56e83431467e880"
  },
  "output": {
   "path": "validation/analysis-defence-lw.mp4",
@@ -62,28 +62,28 @@
     "duration": "35.366667"
    }
   },
-  "bytes": 3810855,
-  "megabytes": 3.81,
+  "bytes": 3558924,
+  "megabytes": 3.56,
   "below_25_mb": true,
-  "sha256": "26008f37f1e24a9ada12751c4e9569b8beaf418000a081b5a7fc803967a9d2ea"
+  "sha256": "23eb7922ebcbf54a0b73e31845f43b1fc6731e2e88372c1e29be03fc040a102c"
  },
  "checks": {
   "frames_logged": 1061,
   "frames_differing_from_pure": [],
-  "max_readback_diff": 1.14e-13,
+  "max_readback_diff": 5.68e-14,
   "camera_frames_logged": 1061,
   "camera_max_diff_vs_track": 0.0049
  },
- "render_seconds": 4364,
+ "render_seconds": 4342,
  "composition_refactor": {
-  "date": "2026-10-12",
-  "change": "shared renderer split for the video workflow (docs/video-workflow.md): remotion/SceneLayer.tsx (scene layer, camera rig) out of AnalysisVideo.tsx, ShotScene.tsx clones the cached GLTF scene per mount and resets the figures every frame (no pose leak between compositions), remotion/theme.ts (overlay theme, default classic), optional frameMap/sceneSrc props (scene cache)",
+  "date": "2026-10-13",
+  "change": "merge of the video workflow (PR #14: remotion/SceneLayer.tsx split out of AnalysisVideo.tsx, ShotScene.tsx clones the scene per mount, frameMap/sceneSrc props, classic-only overlay tweaks) into the STL-skater branch (PR #13) this video was rendered on; default theme stays nbhf",
   "previous_composition_files": [
    "remotion/DefenceAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "previous_composition_sha256": "5a6fa2eccd3a2178eb6537ad917caf18082863aca61e271946d3f67a3afebeee",
-  "verification": "frames 42, 265, 477, 636, 848, 1029 rendered at scale 0.5 with the code before this change (commit 0b4caa2) and after it: PNG bytes identical for all six",
+  "previous_composition_sha256": "a10d01c4b09f6073bc6442633e45436bb7563b49d0bdea04fe2bab32c02efbc8",
+  "verification": "frames 42, 265, 477, 636, 848, 1040 rendered at scale 0.5 (swangle) with the STL-skater branch at commit 53c32b2 (scripts/analysis-stills.ts) and with the merged code (scripts/video.ts stills): pixels identical for all six (validation/video-workflow/stl-merge-identity.json)",
   "video_rerendered": false
  }
 }

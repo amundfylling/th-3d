@@ -154,10 +154,14 @@ both run while the trace is built, and the saved trace is still plain keyframes 
   both ways. The report gives the largest change for which that step and all smaller ones hold, and how many steps
   hold and how many score at all. The step sizes are ASSUMED.
 
-**IKV v3** (`moves/invers-kryssar-velodrom-v3/`, trace `data/traces/invers-kryssar-velodrom-v3.trace.json`): the v2
+**IKV v3** (`moves/invers-kryssar-velodrom-v3/`; NOT BUILT for the STL skater, see below): the v2
 move with its catch, corner push and shot as meets, and the right wing's first-time backhand as an aimed push at the
 far side of the goal (it meets the puck at arc 90 mm, 9 mm nearer the boards than v2's shot).
-- Checks on the saved trace: no overlap, slide check passed, no unexplained motion change; it scores in goal E.
+- **Since the STL-skater switch (merged 2026-10-13) the move does not build:** `meet 'lw_push': the puck never reaches
+  W-LW's point [17.12, 31.25]`. Its meet points are positions on the parametric blade; the STL blade reaches about 4 mm
+  further. The results below are for the parametric skater; their files moved to
+  `validation/moves/invers-kryssar-velodrom-v3-parametric-skater/`. Next: redo the meets and tunes for the STL skater.
+- Checks on the saved trace (parametric skater): no overlap, slide check passed, no unexplained motion change; it scores in goal E.
 - Robust in **10 of 11** variants (v2: 1 of 11; v3 before the pass tune: 7 of 11). Still failing: ice friction +25%:
   the left wing's designed corner push leaves the puck 6 mm off the end board (sideways 57 mm/s), so it meets the far
   corner curve at 501 mm/s (limit 300) and the shot comes too late and too flat. The move file records this

@@ -6,91 +6,91 @@
   {
    "obstacle": "E-G",
    "phase": "carried_by_W-C",
-   "min_clearance_mm": 143.86,
+   "min_clearance_mm": 143.13,
    "t_at_min": 1.855
   },
   {
    "obstacle": "E-G",
    "phase": "in_goal_rest",
-   "min_clearance_mm": 63.81,
-   "t_at_min": 1.9112
+   "min_clearance_mm": 63.55,
+   "t_at_min": 1.9107
   },
   {
    "obstacle": "E-G",
    "phase": "pass_free",
-   "min_clearance_mm": 227.79,
+   "min_clearance_mm": 227.06,
    "t_at_min": 1.8345
   },
   {
    "obstacle": "E-G",
    "phase": "pre_release_interpolated",
    "min_clearance_mm": 283.83,
-   "t_at_min": 1.77
+   "t_at_min": 1.7695
   },
   {
    "obstacle": "E-G",
    "phase": "prep_foot_drag",
-   "min_clearance_mm": 144.01,
+   "min_clearance_mm": 144.15,
    "t_at_min": 0.5
   },
   {
    "obstacle": "E-G",
    "phase": "shot_free",
-   "min_clearance_mm": 0.04,
+   "min_clearance_mm": 0.05,
    "t_at_min": 1.8905
   },
   {
    "obstacle": "E-LD",
    "phase": "carried_by_W-C",
-   "min_clearance_mm": 37.24,
-   "t_at_min": 1.8455
+   "min_clearance_mm": 39.66,
+   "t_at_min": 1.846
   },
   {
    "obstacle": "E-LD",
    "phase": "in_goal_rest",
-   "min_clearance_mm": 274.5,
-   "t_at_min": 2.18
+   "min_clearance_mm": 274.95,
+   "t_at_min": 1.9107
   },
   {
    "obstacle": "E-LD",
    "phase": "pass_free",
-   "min_clearance_mm": 35.18,
-   "t_at_min": 1.807
+   "min_clearance_mm": 34.24,
+   "t_at_min": 1.8077
   },
   {
    "obstacle": "E-LD",
    "phase": "pre_release_interpolated",
-   "min_clearance_mm": 53.5,
+   "min_clearance_mm": 53.51,
    "t_at_min": 1.77
   },
   {
    "obstacle": "E-LD",
    "phase": "prep_foot_drag",
-   "min_clearance_mm": 44.67,
-   "t_at_min": 1.3567
+   "min_clearance_mm": 45.32,
+   "t_at_min": 1.3572
   },
   {
    "obstacle": "E-LD",
    "phase": "shot_free",
-   "min_clearance_mm": 51.23,
+   "min_clearance_mm": 51.98,
    "t_at_min": 1.8552
   },
   {
    "obstacle": "E-RD",
    "phase": "carried_by_W-C",
-   "min_clearance_mm": 59.94,
-   "t_at_min": 1.8527
+   "min_clearance_mm": 60.43,
+   "t_at_min": 1.8525
   },
   {
    "obstacle": "E-RD",
    "phase": "in_goal_rest",
-   "min_clearance_mm": 242.74,
-   "t_at_min": 1.9112
+   "min_clearance_mm": 242.9,
+   "t_at_min": 1.9107
   },
   {
    "obstacle": "E-RD",
    "phase": "pass_free",
-   "min_clearance_mm": 90.18,
+   "min_clearance_mm": 90.03,
    "t_at_min": 1.8345
   },
   {
@@ -102,26 +102,26 @@
   {
    "obstacle": "E-RD",
    "phase": "prep_foot_drag",
-   "min_clearance_mm": 233.34,
+   "min_clearance_mm": 234.02,
    "t_at_min": 1.3435
   },
   {
    "obstacle": "E-RD",
    "phase": "shot_free",
-   "min_clearance_mm": 60.64,
+   "min_clearance_mm": 61.23,
    "t_at_min": 1.8552
   },
   {
    "obstacle": "W-C",
    "phase": "carried_by_W-C",
-   "min_clearance_mm": -0.04,
+   "min_clearance_mm": -0.05,
    "t_at_min": 1.855
   },
   {
    "obstacle": "W-C",
    "phase": "in_goal_rest",
-   "min_clearance_mm": 105.84,
-   "t_at_min": 1.9117
+   "min_clearance_mm": 106.19,
+   "t_at_min": 1.911
   },
   {
    "obstacle": "W-C",
@@ -138,26 +138,26 @@
   {
    "obstacle": "W-C",
    "phase": "prep_foot_drag",
-   "min_clearance_mm": 113.39,
-   "t_at_min": 1.501
+   "min_clearance_mm": 113.5,
+   "t_at_min": 1.6045
   },
   {
    "obstacle": "W-C",
    "phase": "shot_free",
-   "min_clearance_mm": -2.65,
-   "t_at_min": 1.874
+   "min_clearance_mm": -2.05,
+   "t_at_min": 1.8732
   },
   {
    "obstacle": "W-RW",
    "phase": "carried_by_W-C",
-   "min_clearance_mm": 114.76,
+   "min_clearance_mm": 114.8,
    "t_at_min": 1.8347
   },
   {
    "obstacle": "W-RW",
    "phase": "in_goal_rest",
-   "min_clearance_mm": 411.02,
-   "t_at_min": 1.9112
+   "min_clearance_mm": 410.69,
+   "t_at_min": 1.9107
   },
   {
    "obstacle": "W-RW",
@@ -180,20 +180,20 @@
   {
    "obstacle": "W-RW",
    "phase": "shot_free",
-   "min_clearance_mm": 178.41,
+   "min_clearance_mm": 178.78,
    "t_at_min": 1.8552
   },
   {
    "obstacle": "boards",
    "phase": "carried_by_W-C",
-   "min_clearance_mm": 185.77,
+   "min_clearance_mm": 185.37,
    "t_at_min": 1.8347
   },
   {
    "obstacle": "boards",
    "phase": "in_goal_rest",
-   "min_clearance_mm": 83.58,
-   "t_at_min": 2.18
+   "min_clearance_mm": 84.03,
+   "t_at_min": 1.9107
   },
   {
    "obstacle": "boards",
@@ -210,86 +210,86 @@
   {
    "obstacle": "boards",
    "phase": "prep_foot_drag",
-   "min_clearance_mm": 2.56,
-   "t_at_min": 1.197
+   "min_clearance_mm": 3.13,
+   "t_at_min": 1.1865
   },
   {
    "obstacle": "boards",
    "phase": "shot_free",
-   "min_clearance_mm": 83.58,
-   "t_at_min": 1.911
+   "min_clearance_mm": 84.03,
+   "t_at_min": 1.9105
   },
   {
    "obstacle": "goal_post_neg_y",
    "phase": "carried_by_W-C",
-   "min_clearance_mm": 188.24,
+   "min_clearance_mm": 187.43,
    "t_at_min": 1.855
   },
   {
    "obstacle": "goal_post_neg_y",
    "phase": "in_goal_rest",
-   "min_clearance_mm": 61.8,
-   "t_at_min": 1.9112
+   "min_clearance_mm": 61.77,
+   "t_at_min": 2.18
   },
   {
    "obstacle": "goal_post_neg_y",
    "phase": "pass_free",
-   "min_clearance_mm": 270.85,
+   "min_clearance_mm": 270.06,
    "t_at_min": 1.8345
   },
   {
    "obstacle": "goal_post_neg_y",
    "phase": "pre_release_interpolated",
    "min_clearance_mm": 313.82,
-   "t_at_min": 1.77
+   "t_at_min": 1.7697
   },
   {
    "obstacle": "goal_post_neg_y",
    "phase": "prep_foot_drag",
-   "min_clearance_mm": 151.98,
+   "min_clearance_mm": 152.1,
    "t_at_min": 0.5
   },
   {
    "obstacle": "goal_post_neg_y",
    "phase": "shot_free",
-   "min_clearance_mm": 41.82,
-   "t_at_min": 1.899
+   "min_clearance_mm": 41.96,
+   "t_at_min": 1.8987
   },
   {
    "obstacle": "goal_post_pos_y",
    "phase": "carried_by_W-C",
-   "min_clearance_mm": 199.24,
+   "min_clearance_mm": 198.63,
    "t_at_min": 1.855
   },
   {
    "obstacle": "goal_post_pos_y",
    "phase": "in_goal_rest",
-   "min_clearance_mm": 31.03,
-   "t_at_min": 2.18
+   "min_clearance_mm": 30.51,
+   "t_at_min": 1.9107
   },
   {
    "obstacle": "goal_post_pos_y",
    "phase": "pass_free",
-   "min_clearance_mm": 281.89,
+   "min_clearance_mm": 281.25,
    "t_at_min": 1.8345
   },
   {
    "obstacle": "goal_post_pos_y",
    "phase": "pre_release_interpolated",
-   "min_clearance_mm": 349.82,
-   "t_at_min": 1.7697
+   "min_clearance_mm": 349.81,
+   "t_at_min": 1.7695
   },
   {
    "obstacle": "goal_post_pos_y",
    "phase": "prep_foot_drag",
-   "min_clearance_mm": 236.71,
+   "min_clearance_mm": 236.84,
    "t_at_min": 0.5
   },
   {
    "obstacle": "goal_post_pos_y",
    "phase": "shot_free",
-   "min_clearance_mm": 15.07,
-   "t_at_min": 1.9027
+   "min_clearance_mm": 14.87,
+   "t_at_min": 1.9025
   }
  ],
  "unexpected_penetrations": [],
@@ -297,16 +297,16 @@
   "shot.W-C_right_skate_brush": {
    "obstacle": "W-C",
    "phase": "shot_free",
-   "t0": 1.8555,
-   "t1": 1.8797,
-   "worst_mm": -2.65,
+   "t0": 1.8552,
+   "t1": 1.8782,
+   "worst_mm": -2.05,
    "max_overlap_mm": 2.7,
    "approved_by": "user, 2026-10-05 (answer: 'Allow skate brush')"
   }
  },
  "goal_line": {
   "x_mm": 286.79,
-  "crossing_y_mm": 14.24,
+  "crossing_y_mm": 14.56,
   "clear_window_y_mm": [
    -28.7,
    29.8
@@ -360,7 +360,7 @@
    ],
    "distance_to_slot_mm": 0.6,
    "arc_from_blade_mm": 24.8,
-   "arc_in_trace_mm": 29.7
+   "arc_in_trace_mm": 29.0
   },
   {
    "player_id": "W-RW",
@@ -380,49 +380,49 @@
   {
    "frame": 30,
    "t": 0.5,
-   "arc_mm": 335.95,
+   "arc_mm": 335.8,
    "skate_row_arc_mm": 327.8,
-   "heading_deg": 18.75,
+   "heading_deg": 16.95,
    "visual_heading_deg": 0,
-   "push_from_observed_mm": 2.0,
+   "push_from_observed_mm": 1.98,
    "observed_sigma_mm": 5.6
   },
   {
    "frame": 37,
    "t": 0.6167,
-   "arc_mm": 228.08,
+   "arc_mm": 228.13,
    "skate_row_arc_mm": null,
    "heading_deg": 170.0,
    "visual_heading_deg": null,
-   "push_from_observed_mm": 1.38,
+   "push_from_observed_mm": 0.63,
    "observed_sigma_mm": 10.1
   },
   {
    "frame": 44,
    "t": 0.7333,
-   "arc_mm": 37.9,
+   "arc_mm": 37.6,
    "skate_row_arc_mm": 29.4,
-   "heading_deg": 184.9,
+   "heading_deg": 186.05,
    "visual_heading_deg": 188.5,
-   "push_from_observed_mm": 7.1,
+   "push_from_observed_mm": 6.57,
    "observed_sigma_mm": 10.4
   },
   {
    "frame": 51,
    "t": 0.85,
-   "arc_mm": 39.15,
+   "arc_mm": 38.65,
    "skate_row_arc_mm": null,
-   "heading_deg": 187.6,
+   "heading_deg": 188.5,
    "visual_heading_deg": 188.5,
-   "push_from_observed_mm": 0.49,
+   "push_from_observed_mm": 0.0,
    "observed_sigma_mm": 9.5
   },
   {
    "frame": 61,
    "t": 1.015,
-   "arc_mm": 215.92,
+   "arc_mm": 217.07,
    "skate_row_arc_mm": null,
-   "heading_deg": -0.05,
+   "heading_deg": -0.0,
    "visual_heading_deg": 0,
    "push_from_observed_mm": 0.0,
    "observed_sigma_mm": 8.6
@@ -430,69 +430,69 @@
   {
    "frame": 68,
    "t": 1.1317,
-   "arc_mm": 292.64,
+   "arc_mm": 296.49,
    "skate_row_arc_mm": 298.7,
-   "heading_deg": 336.0,
+   "heading_deg": 340.05,
    "visual_heading_deg": 0,
-   "push_from_observed_mm": 2.42,
+   "push_from_observed_mm": 2.87,
    "observed_sigma_mm": 5.5
   },
   {
    "frame": 78,
    "t": 1.2983,
-   "arc_mm": 203.67,
+   "arc_mm": 203.82,
    "skate_row_arc_mm": null,
    "heading_deg": 160.0,
    "visual_heading_deg": null,
-   "push_from_observed_mm": 3.13,
+   "push_from_observed_mm": 2.41,
    "observed_sigma_mm": 9.8
   },
   {
    "frame": 85,
    "t": 1.415,
-   "arc_mm": 22.55,
+   "arc_mm": 22.3,
    "skate_row_arc_mm": 18.9,
-   "heading_deg": 188.05,
+   "heading_deg": 188.6,
    "visual_heading_deg": 188.5,
-   "push_from_observed_mm": 5.3,
+   "push_from_observed_mm": 4.83,
    "observed_sigma_mm": 8.5
   },
   {
    "frame": 95,
    "t": 1.5817,
-   "arc_mm": 16.9,
+   "arc_mm": 16.15,
    "skate_row_arc_mm": null,
    "heading_deg": 188.5,
    "visual_heading_deg": 188.5,
-   "push_from_observed_mm": 0.02,
+   "push_from_observed_mm": 0.01,
    "observed_sigma_mm": 10.2
   },
   {
    "frame": 102,
    "t": 1.6983,
-   "arc_mm": 29.7,
+   "arc_mm": 29.0,
    "skate_row_arc_mm": null,
    "heading_deg": 188.45,
    "visual_heading_deg": -171.53747341440294,
-   "push_from_observed_mm": 0.0,
+   "push_from_observed_mm": 0.01,
    "observed_sigma_mm": 9.6
   }
  ],
  "max_push_out_by_phase_mm": {
   "prep_foot_drag": 0.05,
-  "pre_release_interpolated": 3.53,
-  "pass_free": 0.6
+  "pre_release_interpolated": 3.54,
+  "pass_free": 0.68
  },
  "penetration_tolerance_mm": 0.1,
  "shot_direction_diagnostic": {
   "separation_point_mm": [
-   84.0,
-   -26.0
+   84.8,
+   -26.4
   ],
   "rule_direction_deg": 7.0,
   "clear_plus_y_directions_deg": [
-   11.2,
-   15.2
+   11.4,
+   15.4
   ],
   "goalie_low_geometry_y_mm": [
    -47.3,
@@ -502,299 +502,299 @@
   "w_c_turn_scan": [
    {
     "turn_deg": 0.0,
-    "t_contact": 1.8343,
+    "t_contact": 1.834,
     "separation_dir_deg": 7.0,
-    "final_dir_deg": 5.77,
-    "goal_line_y_mm": -5.49,
-    "goalie_clearance_mm": -15.2,
+    "final_dir_deg": 5.6,
+    "goal_line_y_mm": -6.56,
+    "goalie_clearance_mm": -16.16,
     "ok": false
    },
    {
     "turn_deg": 5,
-    "t_contact": 1.8343,
+    "t_contact": 1.834,
     "separation_dir_deg": 6.88,
-    "final_dir_deg": 5.65,
-    "goal_line_y_mm": -5.54,
-    "goalie_clearance_mm": -15.17,
+    "final_dir_deg": 5.5,
+    "goal_line_y_mm": -6.46,
+    "goalie_clearance_mm": -15.98,
     "ok": false
    },
    {
     "turn_deg": -5,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 7.12,
-    "final_dir_deg": 5.87,
-    "goal_line_y_mm": -5.54,
-    "goalie_clearance_mm": -15.31,
+    "t_contact": 1.834,
+    "separation_dir_deg": 7.13,
+    "final_dir_deg": 5.75,
+    "goal_line_y_mm": -6.48,
+    "goalie_clearance_mm": -16.18,
     "ok": false
    },
    {
     "turn_deg": 10,
-    "t_contact": 1.8343,
+    "t_contact": 1.834,
     "separation_dir_deg": 6.75,
-    "final_dir_deg": 5.71,
-    "goal_line_y_mm": -4.88,
-    "goalie_clearance_mm": -14.55,
+    "final_dir_deg": 5.63,
+    "goal_line_y_mm": -5.46,
+    "goalie_clearance_mm": -15.07,
     "ok": false
    },
    {
     "turn_deg": -10,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 7.23,
-    "final_dir_deg": 5.85,
-    "goal_line_y_mm": -6.03,
-    "goalie_clearance_mm": -15.79,
+    "t_contact": 1.834,
+    "separation_dir_deg": 7.25,
+    "final_dir_deg": 5.84,
+    "goal_line_y_mm": -6.64,
+    "goalie_clearance_mm": -16.39,
     "ok": false
    },
    {
     "turn_deg": 15,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 6.62,
-    "final_dir_deg": 5.62,
-    "goal_line_y_mm": -4.8,
-    "goalie_clearance_mm": -14.41,
+    "t_contact": 1.834,
+    "separation_dir_deg": 6.61,
+    "final_dir_deg": 5.55,
+    "goal_line_y_mm": -5.31,
+    "goalie_clearance_mm": -14.88,
     "ok": false
    },
    {
     "turn_deg": -15,
     "t_contact": 1.8338,
     "separation_dir_deg": 7.37,
-    "final_dir_deg": 5.16,
-    "goal_line_y_mm": -9.54,
-    "goalie_clearance_mm": -18.74,
+    "final_dir_deg": 5.09,
+    "goal_line_y_mm": -10.02,
+    "goalie_clearance_mm": -18.48,
     "ok": false
    },
    {
     "turn_deg": 20,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 6.49,
-    "final_dir_deg": 5.43,
-    "goal_line_y_mm": -5.07,
-    "goalie_clearance_mm": -14.56,
+    "t_contact": 1.834,
+    "separation_dir_deg": 6.48,
+    "final_dir_deg": 5.47,
+    "goal_line_y_mm": -5.16,
+    "goalie_clearance_mm": -14.68,
     "ok": false
    },
    {
     "turn_deg": -20,
     "t_contact": 1.833,
     "separation_dir_deg": 7.55,
-    "final_dir_deg": 5.47,
-    "goal_line_y_mm": -10.42,
-    "goalie_clearance_mm": -17.87,
+    "final_dir_deg": 5.48,
+    "goal_line_y_mm": -10.35,
+    "goalie_clearance_mm": -17.93,
     "ok": false
    },
    {
     "turn_deg": 25,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 6.36,
+    "t_contact": 1.834,
+    "separation_dir_deg": 6.34,
     "final_dir_deg": 5.38,
-    "goal_line_y_mm": -4.8,
-    "goalie_clearance_mm": -14.26,
+    "goal_line_y_mm": -5.02,
+    "goalie_clearance_mm": -14.49,
     "ok": false
    },
    {
     "turn_deg": -25,
-    "t_contact": 1.8323,
-    "separation_dir_deg": 7.74,
-    "final_dir_deg": 5.83,
-    "goal_line_y_mm": -11.01,
-    "goalie_clearance_mm": -17.13,
+    "t_contact": 1.8325,
+    "separation_dir_deg": 7.71,
+    "final_dir_deg": 5.79,
+    "goal_line_y_mm": -10.94,
+    "goalie_clearance_mm": -17.39,
     "ok": false
    },
    {
     "turn_deg": 30,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 6.22,
-    "final_dir_deg": 5.46,
-    "goal_line_y_mm": -4.07,
-    "goalie_clearance_mm": -13.58,
+    "t_contact": 1.834,
+    "separation_dir_deg": 6.19,
+    "final_dir_deg": 5.31,
+    "goal_line_y_mm": -4.84,
+    "goalie_clearance_mm": -14.27,
     "ok": false
    },
    {
     "turn_deg": -30,
-    "t_contact": 1.8318,
-    "separation_dir_deg": 7.91,
-    "final_dir_deg": 6.16,
-    "goal_line_y_mm": -11.63,
-    "goalie_clearance_mm": -16.45,
+    "t_contact": 1.832,
+    "separation_dir_deg": 7.89,
+    "final_dir_deg": 6.06,
+    "goal_line_y_mm": -11.65,
+    "goalie_clearance_mm": -16.51,
     "ok": false
    },
    {
     "turn_deg": 35,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 6.08,
-    "final_dir_deg": 5.29,
-    "goal_line_y_mm": -4.24,
-    "goalie_clearance_mm": -13.63,
+    "t_contact": 1.834,
+    "separation_dir_deg": 6.05,
+    "final_dir_deg": 5.26,
+    "goal_line_y_mm": -4.56,
+    "goalie_clearance_mm": -13.96,
     "ok": false
    },
    {
     "turn_deg": -35,
-    "t_contact": 1.8313,
-    "separation_dir_deg": 8.09,
-    "final_dir_deg": 6.45,
-    "goal_line_y_mm": -12.4,
-    "goalie_clearance_mm": -15.85,
+    "t_contact": 1.8315,
+    "separation_dir_deg": 8.06,
+    "final_dir_deg": 6.37,
+    "goal_line_y_mm": -12.22,
+    "goalie_clearance_mm": -15.78,
     "ok": false
    },
    {
     "turn_deg": 40,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 5.94,
-    "final_dir_deg": 5.19,
-    "goal_line_y_mm": -4.16,
-    "goalie_clearance_mm": -13.49,
+    "t_contact": 1.834,
+    "separation_dir_deg": 5.9,
+    "final_dir_deg": 5.18,
+    "goal_line_y_mm": -4.36,
+    "goalie_clearance_mm": -13.72,
     "ok": false
    },
    {
     "turn_deg": -40,
-    "t_contact": 1.8308,
-    "separation_dir_deg": 8.26,
-    "final_dir_deg": 6.74,
-    "goal_line_y_mm": -13.04,
-    "goalie_clearance_mm": -15.11,
+    "t_contact": 1.831,
+    "separation_dir_deg": 8.23,
+    "final_dir_deg": 6.67,
+    "goal_line_y_mm": -12.77,
+    "goalie_clearance_mm": -15.24,
     "ok": false
    },
    {
     "turn_deg": 45,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 5.8,
-    "final_dir_deg": 5.1,
-    "goal_line_y_mm": -4.05,
-    "goalie_clearance_mm": -13.31,
+    "t_contact": 1.834,
+    "separation_dir_deg": 5.75,
+    "final_dir_deg": 5.09,
+    "goal_line_y_mm": -4.22,
+    "goalie_clearance_mm": -13.52,
     "ok": false
    },
    {
     "turn_deg": -45,
-    "t_contact": 1.8303,
-    "separation_dir_deg": 8.42,
-    "final_dir_deg": 6.99,
-    "goal_line_y_mm": -13.82,
-    "goalie_clearance_mm": -14.3,
+    "t_contact": 1.8305,
+    "separation_dir_deg": 8.39,
+    "final_dir_deg": 6.87,
+    "goal_line_y_mm": -13.58,
+    "goalie_clearance_mm": -14.81,
     "ok": false
    },
    {
     "turn_deg": 50,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 5.65,
-    "final_dir_deg": 5.08,
-    "goal_line_y_mm": -3.67,
-    "goalie_clearance_mm": -12.93,
+    "t_contact": 1.834,
+    "separation_dir_deg": 5.6,
+    "final_dir_deg": 4.99,
+    "goal_line_y_mm": -4.11,
+    "goalie_clearance_mm": -13.34,
     "ok": false
    },
    {
     "turn_deg": -50,
-    "t_contact": 1.83,
-    "separation_dir_deg": 8.55,
-    "final_dir_deg": 7.17,
-    "goal_line_y_mm": -14.77,
-    "goalie_clearance_mm": -13.64,
+    "t_contact": 1.8303,
+    "separation_dir_deg": 8.52,
+    "final_dir_deg": 7.2,
+    "goal_line_y_mm": -13.98,
+    "goalie_clearance_mm": -14.24,
     "ok": false
    },
    {
     "turn_deg": 55,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 5.5,
-    "final_dir_deg": 5.02,
-    "goal_line_y_mm": -3.42,
-    "goalie_clearance_mm": -12.65,
+    "t_contact": 1.834,
+    "separation_dir_deg": 5.45,
+    "final_dir_deg": 4.91,
+    "goal_line_y_mm": -3.92,
+    "goalie_clearance_mm": -13.08,
     "ok": false
    },
    {
     "turn_deg": -55,
-    "t_contact": 1.8295,
-    "separation_dir_deg": 8.69,
-    "final_dir_deg": 7.38,
-    "goal_line_y_mm": -15.51,
-    "goalie_clearance_mm": -14.43,
+    "t_contact": 1.8298,
+    "separation_dir_deg": 8.66,
+    "final_dir_deg": 7.31,
+    "goal_line_y_mm": -15.07,
+    "goalie_clearance_mm": -14.01,
     "ok": false
    },
    {
     "turn_deg": 60,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 5.36,
-    "final_dir_deg": 4.9,
-    "goal_line_y_mm": -3.41,
-    "goalie_clearance_mm": -12.58,
+    "t_contact": 1.834,
+    "separation_dir_deg": 5.3,
+    "final_dir_deg": 4.88,
+    "goal_line_y_mm": -3.55,
+    "goalie_clearance_mm": -12.69,
     "ok": false
    },
    {
     "turn_deg": -60,
-    "t_contact": 1.8293,
-    "separation_dir_deg": 8.79,
-    "final_dir_deg": 7.46,
-    "goal_line_y_mm": -16.64,
-    "goalie_clearance_mm": -15.44,
+    "t_contact": 1.8295,
+    "separation_dir_deg": 8.77,
+    "final_dir_deg": 7.41,
+    "goal_line_y_mm": -16.12,
+    "goalie_clearance_mm": -15.02,
     "ok": false
    },
    {
     "turn_deg": 65,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 5.21,
-    "final_dir_deg": 4.84,
-    "goal_line_y_mm": -3.14,
-    "goalie_clearance_mm": -12.29,
+    "t_contact": 1.834,
+    "separation_dir_deg": 5.15,
+    "final_dir_deg": 4.79,
+    "goal_line_y_mm": -3.39,
+    "goalie_clearance_mm": -12.46,
     "ok": false
    },
    {
     "turn_deg": -65,
-    "t_contact": 1.829,
-    "separation_dir_deg": 8.87,
-    "final_dir_deg": 7.43,
-    "goal_line_y_mm": -18.07,
-    "goalie_clearance_mm": -16.05,
+    "t_contact": 1.8293,
+    "separation_dir_deg": 8.85,
+    "final_dir_deg": 7.38,
+    "goal_line_y_mm": -17.5,
+    "goalie_clearance_mm": -15.96,
     "ok": false
    },
    {
     "turn_deg": 70,
-    "t_contact": 1.8343,
-    "separation_dir_deg": 5.07,
-    "final_dir_deg": 4.66,
-    "goal_line_y_mm": -3.34,
-    "goalie_clearance_mm": -12.37,
+    "t_contact": 1.834,
+    "separation_dir_deg": 5.0,
+    "final_dir_deg": 4.69,
+    "goal_line_y_mm": -3.24,
+    "goalie_clearance_mm": -12.26,
     "ok": false
    },
    {
     "turn_deg": -70,
-    "t_contact": 1.8288,
-    "separation_dir_deg": 8.93,
-    "final_dir_deg": 7.47,
-    "goal_line_y_mm": -19.07,
-    "goalie_clearance_mm": -15.99,
+    "t_contact": 1.829,
+    "separation_dir_deg": 8.91,
+    "final_dir_deg": 7.36,
+    "goal_line_y_mm": -18.72,
+    "goalie_clearance_mm": -15.85,
     "ok": false
    },
    {
     "turn_deg": 75,
     "t_contact": 1.834,
-    "separation_dir_deg": 4.88,
-    "final_dir_deg": 5.4,
-    "goal_line_y_mm": 0.03,
-    "goalie_clearance_mm": -9.46,
+    "separation_dir_deg": 4.85,
+    "final_dir_deg": 8.87,
+    "goal_line_y_mm": 12.16,
+    "goalie_clearance_mm": 0.01,
     "ok": false
    },
    {
     "turn_deg": -75,
-    "t_contact": 1.8285,
-    "separation_dir_deg": 8.97,
-    "final_dir_deg": 7.3,
-    "goal_line_y_mm": -20.72,
-    "goalie_clearance_mm": -15.61,
+    "t_contact": 1.829,
+    "separation_dir_deg": 8.96,
+    "final_dir_deg": 7.27,
+    "goal_line_y_mm": -19.98,
+    "goalie_clearance_mm": -16.27,
     "ok": false
    },
    {
     "turn_deg": 80,
     "t_contact": 1.833,
     "separation_dir_deg": 4.39,
-    "final_dir_deg": 4.45,
+    "final_dir_deg": 4.44,
     "goal_line_y_mm": -2.76,
     "goalie_clearance_mm": -11.62,
     "ok": false
    },
    {
     "turn_deg": -80,
-    "t_contact": 1.8285,
-    "separation_dir_deg": 8.99,
-    "final_dir_deg": 7.19,
-    "goal_line_y_mm": -22.01,
-    "goalie_clearance_mm": -15.33,
+    "t_contact": 1.8288,
+    "separation_dir_deg": 8.97,
+    "final_dir_deg": 7.02,
+    "goal_line_y_mm": -21.68,
+    "goalie_clearance_mm": -15.79,
     "ok": false
    },
    {
@@ -803,16 +803,16 @@
     "separation_dir_deg": 3.85,
     "final_dir_deg": 3.85,
     "goal_line_y_mm": -3.95,
-    "goalie_clearance_mm": -12.42,
+    "goalie_clearance_mm": -12.43,
     "ok": false
    },
    {
     "turn_deg": -85,
-    "t_contact": 1.8285,
-    "separation_dir_deg": 9.0,
-    "final_dir_deg": 7.02,
-    "goal_line_y_mm": -23.33,
-    "goalie_clearance_mm": -14.74,
+    "t_contact": 1.8288,
+    "separation_dir_deg": 8.98,
+    "final_dir_deg": 6.79,
+    "goal_line_y_mm": -23.06,
+    "goalie_clearance_mm": -15.1,
     "ok": false
    },
    {
@@ -826,11 +826,11 @@
    },
    {
     "turn_deg": -90,
-    "t_contact": 1.8283,
-    "separation_dir_deg": 8.95,
-    "final_dir_deg": 6.78,
-    "goal_line_y_mm": -24.84,
-    "goalie_clearance_mm": -13.81,
+    "t_contact": 1.8288,
+    "separation_dir_deg": 8.96,
+    "final_dir_deg": 6.9,
+    "goal_line_y_mm": -23.28,
+    "goalie_clearance_mm": -14.94,
     "ok": false
    },
    {
@@ -844,11 +844,11 @@
    },
    {
     "turn_deg": -95,
-    "t_contact": 1.8285,
-    "separation_dir_deg": 8.95,
-    "final_dir_deg": 6.49,
-    "goal_line_y_mm": -26.12,
-    "goalie_clearance_mm": -13.85,
+    "t_contact": 1.8288,
+    "separation_dir_deg": 8.93,
+    "final_dir_deg": 6.62,
+    "goal_line_y_mm": -24.72,
+    "goalie_clearance_mm": -13.97,
     "ok": false
    },
    {
@@ -862,11 +862,11 @@
    },
    {
     "turn_deg": -100,
-    "t_contact": 1.8285,
-    "separation_dir_deg": 8.88,
-    "final_dir_deg": 6.37,
-    "goal_line_y_mm": -26.78,
-    "goalie_clearance_mm": -13.82,
+    "t_contact": 1.8288,
+    "separation_dir_deg": 8.87,
+    "final_dir_deg": 6.36,
+    "goal_line_y_mm": -25.98,
+    "goalie_clearance_mm": -13.87,
     "ok": false
    },
    {
@@ -880,11 +880,11 @@
    },
    {
     "turn_deg": -105,
-    "t_contact": 1.8285,
-    "separation_dir_deg": 8.79,
-    "final_dir_deg": 6.38,
+    "t_contact": 1.829,
+    "separation_dir_deg": 8.84,
+    "final_dir_deg": 6.07,
     "goal_line_y_mm": -26.96,
-    "goalie_clearance_mm": -13.86,
+    "goalie_clearance_mm": -13.77,
     "ok": false
    },
    {
@@ -892,17 +892,17 @@
     "t_contact": 1.8245,
     "separation_dir_deg": 0.26,
     "final_dir_deg": 0.26,
-    "goal_line_y_mm": -3.46,
+    "goal_line_y_mm": -3.47,
     "goalie_clearance_mm": -9.67,
     "ok": false
    },
    {
     "turn_deg": -110,
-    "t_contact": 1.8288,
-    "separation_dir_deg": 8.75,
-    "final_dir_deg": 6.25,
-    "goal_line_y_mm": -27.54,
-    "goalie_clearance_mm": -13.59,
+    "t_contact": 1.829,
+    "separation_dir_deg": 8.74,
+    "final_dir_deg": 5.79,
+    "goal_line_y_mm": -28.0,
+    "goalie_clearance_mm": -13.96,
     "ok": false
    },
    {
@@ -916,11 +916,11 @@
    },
    {
     "turn_deg": -115,
-    "t_contact": 1.8288,
-    "separation_dir_deg": 8.65,
-    "final_dir_deg": 5.83,
-    "goal_line_y_mm": -29.22,
-    "goalie_clearance_mm": -13.72,
+    "t_contact": 1.8293,
+    "separation_dir_deg": 8.66,
+    "final_dir_deg": 5.54,
+    "goal_line_y_mm": -28.52,
+    "goalie_clearance_mm": -13.73,
     "ok": false
    },
    {
@@ -934,16 +934,16 @@
    },
    {
     "turn_deg": -120,
-    "t_contact": 1.8288,
-    "separation_dir_deg": 8.53,
-    "final_dir_deg": 5.63,
-    "goal_line_y_mm": -30.02,
-    "goalie_clearance_mm": -14.06,
+    "t_contact": 1.8298,
+    "separation_dir_deg": 8.64,
+    "final_dir_deg": 5.47,
+    "goal_line_y_mm": -27.91,
+    "goalie_clearance_mm": -13.77,
     "ok": false
    }
   ],
   "applied_w_c_turn_deg": 0.0,
-  "final_direction_after_contact_deg": 11.2,
+  "final_direction_after_contact_deg": 11.4,
   "contact_with_W-C_after_separation_s": null
  },
  "w_c_onset_scan": [
@@ -963,7 +963,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.8088,
    "goal_line_y_mm": -45.2,
-   "goalie_clearance_mm": -11.7,
+   "goalie_clearance_mm": -11.8,
    "peak_puck_speed_mm_s": 4456.0,
    "feasible": false
   },
@@ -1392,7 +1392,7 @@
    "t_top": 1.9207,
    "dtheta_deg": 0.0,
    "t_contact": 1.8245,
-   "goal_line_y_mm": -17.8,
+   "goal_line_y_mm": -17.7,
    "goalie_clearance_mm": -16.0,
    "peak_puck_speed_mm_s": 2769.0,
    "feasible": false
@@ -1681,9 +1681,9 @@
    "t_on": 1.7887,
    "t_top": 1.9267,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.9,
-   "goalie_clearance_mm": -16.7,
+   "t_contact": 1.8283,
+   "goal_line_y_mm": -11.4,
+   "goalie_clearance_mm": -16.3,
    "peak_puck_speed_mm_s": 2705.0,
    "feasible": false
   },
@@ -1691,9 +1691,9 @@
    "t_on": 1.7887,
    "t_top": 1.9297,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.4,
-   "goalie_clearance_mm": -17.1,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -11.0,
+   "goalie_clearance_mm": -16.6,
    "peak_puck_speed_mm_s": 2647.0,
    "feasible": false
   },
@@ -1942,28 +1942,28 @@
    "t_top": 1.9177,
    "dtheta_deg": 0.0,
    "t_contact": 1.8283,
-   "goal_line_y_mm": -11.4,
-   "goalie_clearance_mm": -16.2,
-   "peak_puck_speed_mm_s": 2961.0,
+   "goal_line_y_mm": -11.6,
+   "goalie_clearance_mm": -16.1,
+   "peak_puck_speed_mm_s": 2962.0,
    "feasible": false
   },
   {
    "t_on": 1.7917,
    "t_top": 1.9207,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.7,
-   "goalie_clearance_mm": -16.9,
-   "peak_puck_speed_mm_s": 2892.0,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -11.3,
+   "goalie_clearance_mm": -16.4,
+   "peak_puck_speed_mm_s": 2893.0,
    "feasible": false
   },
   {
    "t_on": 1.7917,
    "t_top": 1.9237,
    "dtheta_deg": 0.0,
-   "t_contact": 1.829,
-   "goal_line_y_mm": -10.2,
-   "goalie_clearance_mm": -17.3,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -10.7,
+   "goalie_clearance_mm": -16.8,
    "peak_puck_speed_mm_s": 2827.0,
    "feasible": false
   },
@@ -1971,9 +1971,9 @@
    "t_on": 1.7917,
    "t_top": 1.9267,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8293,
-   "goal_line_y_mm": -9.6,
-   "goalie_clearance_mm": -17.7,
+   "t_contact": 1.829,
+   "goal_line_y_mm": -10.2,
+   "goalie_clearance_mm": -17.3,
    "peak_puck_speed_mm_s": 2764.0,
    "feasible": false
   },
@@ -2192,7 +2192,7 @@
    "t_top": 1.9027,
    "dtheta_deg": 0.0,
    "t_contact": 1.8258,
-   "goal_line_y_mm": -15.7,
+   "goal_line_y_mm": -15.6,
    "goalie_clearance_mm": -14.4,
    "peak_puck_speed_mm_s": 3456.0,
    "feasible": false
@@ -2221,9 +2221,9 @@
    "t_on": 1.7947,
    "t_top": 1.9117,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.6,
-   "goalie_clearance_mm": -17.0,
+   "t_contact": 1.8283,
+   "goal_line_y_mm": -11.5,
+   "goalie_clearance_mm": -16.2,
    "peak_puck_speed_mm_s": 3188.0,
    "feasible": false
   },
@@ -2231,19 +2231,19 @@
    "t_on": 1.7947,
    "t_top": 1.9147,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.5,
-   "goalie_clearance_mm": -17.1,
-   "peak_puck_speed_mm_s": 3108.0,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -11.0,
+   "goalie_clearance_mm": -16.6,
+   "peak_puck_speed_mm_s": 3109.0,
    "feasible": false
   },
   {
    "t_on": 1.7947,
    "t_top": 1.9177,
    "dtheta_deg": 0.0,
-   "t_contact": 1.829,
-   "goal_line_y_mm": -9.9,
-   "goalie_clearance_mm": -17.5,
+   "t_contact": 1.8288,
+   "goal_line_y_mm": -10.4,
+   "goalie_clearance_mm": -17.1,
    "peak_puck_speed_mm_s": 3033.0,
    "feasible": false
   },
@@ -2251,10 +2251,10 @@
    "t_on": 1.7947,
    "t_top": 1.9207,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8295,
-   "goal_line_y_mm": -9.3,
-   "goalie_clearance_mm": -18.1,
-   "peak_puck_speed_mm_s": 2960.0,
+   "t_contact": 1.829,
+   "goal_line_y_mm": -9.7,
+   "goalie_clearance_mm": -17.7,
+   "peak_puck_speed_mm_s": 2961.0,
    "feasible": false
   },
   {
@@ -2433,7 +2433,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.8228,
    "goal_line_y_mm": -20.8,
-   "goalie_clearance_mm": -15.9,
+   "goalie_clearance_mm": -16.0,
    "peak_puck_speed_mm_s": 4289.0,
    "feasible": false
   },
@@ -2493,7 +2493,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.8283,
    "goal_line_y_mm": -11.5,
-   "goalie_clearance_mm": -16.3,
+   "goalie_clearance_mm": -16.2,
    "peak_puck_speed_mm_s": 3551.0,
    "feasible": false
   },
@@ -2501,9 +2501,9 @@
    "t_on": 1.7977,
    "t_top": 1.9057,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.8,
-   "goalie_clearance_mm": -16.9,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -11.3,
+   "goalie_clearance_mm": -16.3,
    "peak_puck_speed_mm_s": 3453.0,
    "feasible": false
   },
@@ -2511,19 +2511,19 @@
    "t_on": 1.7977,
    "t_top": 1.9087,
    "dtheta_deg": 0.0,
-   "t_contact": 1.829,
-   "goal_line_y_mm": -10.3,
-   "goalie_clearance_mm": -17.3,
-   "peak_puck_speed_mm_s": 3359.0,
+   "t_contact": 1.8288,
+   "goal_line_y_mm": -10.8,
+   "goalie_clearance_mm": -16.9,
+   "peak_puck_speed_mm_s": 3360.0,
    "feasible": false
   },
   {
    "t_on": 1.7977,
    "t_top": 1.9117,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8293,
-   "goal_line_y_mm": -9.6,
-   "goalie_clearance_mm": -17.8,
+   "t_contact": 1.829,
+   "goal_line_y_mm": -10.1,
+   "goalie_clearance_mm": -17.4,
    "peak_puck_speed_mm_s": 3271.0,
    "feasible": false
   },
@@ -2531,9 +2531,9 @@
    "t_on": 1.7977,
    "t_top": 1.9147,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8298,
-   "goal_line_y_mm": -8.9,
-   "goalie_clearance_mm": -18.5,
+   "t_contact": 1.8295,
+   "goal_line_y_mm": -9.4,
+   "goalie_clearance_mm": -18.0,
    "peak_puck_speed_mm_s": 3187.0,
    "feasible": false
   },
@@ -2541,9 +2541,9 @@
    "t_on": 1.7977,
    "t_top": 1.9177,
    "dtheta_deg": 0.0,
-   "t_contact": 1.83,
-   "goal_line_y_mm": -8.1,
-   "goalie_clearance_mm": -18.5,
+   "t_contact": 1.8298,
+   "goal_line_y_mm": -8.6,
+   "goalie_clearance_mm": -18.7,
    "peak_puck_speed_mm_s": 3107.0,
    "feasible": false
   },
@@ -2733,7 +2733,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.824,
    "goal_line_y_mm": -18.7,
-   "goalie_clearance_mm": -15.7,
+   "goalie_clearance_mm": -15.8,
    "peak_puck_speed_mm_s": 4605.0,
    "feasible": false
   },
@@ -2773,7 +2773,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.8278,
    "goal_line_y_mm": -12.4,
-   "goalie_clearance_mm": -15.6,
+   "goalie_clearance_mm": -15.7,
    "peak_puck_speed_mm_s": 4009.0,
    "feasible": false
   },
@@ -2781,9 +2781,9 @@
    "t_on": 1.8007,
    "t_top": 1.8967,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8285,
-   "goal_line_y_mm": -11.0,
-   "goalie_clearance_mm": -16.7,
+   "t_contact": 1.8283,
+   "goal_line_y_mm": -11.6,
+   "goalie_clearance_mm": -16.2,
    "peak_puck_speed_mm_s": 3883.0,
    "feasible": false
   },
@@ -2791,19 +2791,19 @@
    "t_on": 1.8007,
    "t_top": 1.8997,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.5,
-   "goalie_clearance_mm": -17.0,
-   "peak_puck_speed_mm_s": 3765.0,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -11.0,
+   "goalie_clearance_mm": -16.6,
+   "peak_puck_speed_mm_s": 3766.0,
    "feasible": false
   },
   {
    "t_on": 1.8007,
    "t_top": 1.9027,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8293,
-   "goal_line_y_mm": -10.0,
-   "goalie_clearance_mm": -17.5,
+   "t_contact": 1.8288,
+   "goal_line_y_mm": -10.3,
+   "goalie_clearance_mm": -17.2,
    "peak_puck_speed_mm_s": 3655.0,
    "feasible": false
   },
@@ -2811,29 +2811,29 @@
    "t_on": 1.8007,
    "t_top": 1.9057,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8295,
-   "goal_line_y_mm": -9.2,
-   "goalie_clearance_mm": -18.2,
-   "peak_puck_speed_mm_s": 3550.0,
+   "t_contact": 1.8293,
+   "goal_line_y_mm": -9.7,
+   "goalie_clearance_mm": -17.8,
+   "peak_puck_speed_mm_s": 3551.0,
    "feasible": false
   },
   {
    "t_on": 1.8007,
    "t_top": 1.9087,
    "dtheta_deg": 0.0,
-   "t_contact": 1.83,
-   "goal_line_y_mm": -8.4,
-   "goalie_clearance_mm": -18.8,
-   "peak_puck_speed_mm_s": 3451.0,
+   "t_contact": 1.8298,
+   "goal_line_y_mm": -8.9,
+   "goalie_clearance_mm": -18.4,
+   "peak_puck_speed_mm_s": 3452.0,
    "feasible": false
   },
   {
    "t_on": 1.8007,
    "t_top": 1.9117,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8305,
-   "goal_line_y_mm": -7.6,
-   "goalie_clearance_mm": -18.1,
+   "t_contact": 1.8303,
+   "goal_line_y_mm": -8.1,
+   "goalie_clearance_mm": -18.4,
    "peak_puck_speed_mm_s": 3358.0,
    "feasible": false
   },
@@ -3023,7 +3023,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.8245,
    "goal_line_y_mm": -18.1,
-   "goalie_clearance_mm": -16.2,
+   "goalie_clearance_mm": -16.1,
    "peak_puck_speed_mm_s": 5178.0,
    "feasible": false
   },
@@ -3063,7 +3063,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.828,
    "goal_line_y_mm": -11.9,
-   "goalie_clearance_mm": -15.9,
+   "goalie_clearance_mm": -16.0,
    "peak_puck_speed_mm_s": 4437.0,
    "feasible": false
   },
@@ -3071,9 +3071,9 @@
    "t_on": 1.8037,
    "t_top": 1.8907,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.9,
-   "goalie_clearance_mm": -16.8,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -11.4,
+   "goalie_clearance_mm": -16.2,
    "peak_puck_speed_mm_s": 4284.0,
    "feasible": false
   },
@@ -3081,9 +3081,9 @@
    "t_on": 1.8037,
    "t_top": 1.8937,
    "dtheta_deg": 0.0,
-   "t_contact": 1.829,
-   "goal_line_y_mm": -10.3,
-   "goalie_clearance_mm": -17.2,
+   "t_contact": 1.8288,
+   "goal_line_y_mm": -10.7,
+   "goalie_clearance_mm": -16.9,
    "peak_puck_speed_mm_s": 4141.0,
    "feasible": false
   },
@@ -3091,9 +3091,9 @@
    "t_on": 1.8037,
    "t_top": 1.8967,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8295,
-   "goal_line_y_mm": -9.6,
-   "goalie_clearance_mm": -17.9,
+   "t_contact": 1.8293,
+   "goal_line_y_mm": -10.1,
+   "goalie_clearance_mm": -17.4,
    "peak_puck_speed_mm_s": 4007.0,
    "feasible": false
   },
@@ -3101,9 +3101,9 @@
    "t_on": 1.8037,
    "t_top": 1.8997,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8298,
-   "goal_line_y_mm": -8.7,
-   "goalie_clearance_mm": -18.6,
+   "t_contact": 1.8295,
+   "goal_line_y_mm": -9.1,
+   "goalie_clearance_mm": -18.2,
    "peak_puck_speed_mm_s": 3882.0,
    "feasible": false
   },
@@ -3111,9 +3111,9 @@
    "t_on": 1.8037,
    "t_top": 1.9027,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8303,
-   "goal_line_y_mm": -7.9,
-   "goalie_clearance_mm": -18.3,
+   "t_contact": 1.83,
+   "goal_line_y_mm": -8.3,
+   "goalie_clearance_mm": -18.4,
    "peak_puck_speed_mm_s": 3764.0,
    "feasible": false
   },
@@ -3121,9 +3121,9 @@
    "t_on": 1.8037,
    "t_top": 1.9057,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8308,
-   "goal_line_y_mm": -7.0,
-   "goalie_clearance_mm": -17.4,
+   "t_contact": 1.8305,
+   "goal_line_y_mm": -7.4,
+   "goalie_clearance_mm": -17.8,
    "peak_puck_speed_mm_s": 3653.0,
    "feasible": false
   },
@@ -3131,10 +3131,10 @@
    "t_on": 1.8037,
    "t_top": 1.9087,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8313,
-   "goal_line_y_mm": -6.0,
-   "goalie_clearance_mm": -16.4,
-   "peak_puck_speed_mm_s": 3548.0,
+   "t_contact": 1.831,
+   "goal_line_y_mm": -6.4,
+   "goalie_clearance_mm": -16.9,
+   "peak_puck_speed_mm_s": 3549.0,
    "feasible": false
   },
   {
@@ -3341,39 +3341,39 @@
    "t_on": 1.8067,
    "t_top": 1.8817,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8285,
-   "goal_line_y_mm": -11.2,
-   "goalie_clearance_mm": -16.4,
-   "peak_puck_speed_mm_s": 4967.0,
+   "t_contact": 1.8283,
+   "goal_line_y_mm": -11.7,
+   "goalie_clearance_mm": -16.2,
+   "peak_puck_speed_mm_s": 4968.0,
    "feasible": false
   },
   {
    "t_on": 1.8067,
    "t_top": 1.8847,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -10.5,
-   "goalie_clearance_mm": -16.9,
-   "peak_puck_speed_mm_s": 4776.0,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -11.0,
+   "goalie_clearance_mm": -16.6,
+   "peak_puck_speed_mm_s": 4777.0,
    "feasible": false
   },
   {
    "t_on": 1.8067,
    "t_top": 1.8877,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8293,
-   "goal_line_y_mm": -9.9,
-   "goalie_clearance_mm": -17.6,
-   "peak_puck_speed_mm_s": 4599.0,
+   "t_contact": 1.829,
+   "goal_line_y_mm": -10.3,
+   "goalie_clearance_mm": -17.2,
+   "peak_puck_speed_mm_s": 4600.0,
    "feasible": false
   },
   {
    "t_on": 1.8067,
    "t_top": 1.8907,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8298,
-   "goal_line_y_mm": -9.2,
-   "goalie_clearance_mm": -18.2,
+   "t_contact": 1.8295,
+   "goal_line_y_mm": -9.6,
+   "goalie_clearance_mm": -17.8,
    "peak_puck_speed_mm_s": 4435.0,
    "feasible": false
   },
@@ -3381,8 +3381,8 @@
    "t_on": 1.8067,
    "t_top": 1.8937,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8303,
-   "goal_line_y_mm": -8.3,
+   "t_contact": 1.83,
+   "goal_line_y_mm": -8.7,
    "goalie_clearance_mm": -18.5,
    "peak_puck_speed_mm_s": 4282.0,
    "feasible": false
@@ -3391,9 +3391,9 @@
    "t_on": 1.8067,
    "t_top": 1.8967,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8308,
-   "goal_line_y_mm": -7.4,
-   "goalie_clearance_mm": -17.7,
+   "t_contact": 1.8305,
+   "goal_line_y_mm": -7.7,
+   "goalie_clearance_mm": -18.2,
    "peak_puck_speed_mm_s": 4139.0,
    "feasible": false
   },
@@ -3401,19 +3401,19 @@
    "t_on": 1.8067,
    "t_top": 1.8997,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8313,
-   "goal_line_y_mm": -6.3,
-   "goalie_clearance_mm": -16.8,
-   "peak_puck_speed_mm_s": 4005.0,
+   "t_contact": 1.831,
+   "goal_line_y_mm": -6.7,
+   "goalie_clearance_mm": -17.1,
+   "peak_puck_speed_mm_s": 4006.0,
    "feasible": false
   },
   {
    "t_on": 1.8067,
    "t_top": 1.9027,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8318,
-   "goal_line_y_mm": -5.2,
-   "goalie_clearance_mm": -15.7,
+   "t_contact": 1.8315,
+   "goal_line_y_mm": -5.6,
+   "goalie_clearance_mm": -16.1,
    "peak_puck_speed_mm_s": 3880.0,
    "feasible": false
   },
@@ -3421,9 +3421,9 @@
    "t_on": 1.8067,
    "t_top": 1.9057,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8323,
-   "goal_line_y_mm": -4.2,
-   "goalie_clearance_mm": -14.7,
+   "t_contact": 1.832,
+   "goal_line_y_mm": -4.5,
+   "goalie_clearance_mm": -15.0,
    "peak_puck_speed_mm_s": 3762.0,
    "feasible": false
   },
@@ -3523,7 +3523,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.822,
    "goal_line_y_mm": -22.6,
-   "goalie_clearance_mm": -15.0,
+   "goalie_clearance_mm": -14.9,
    "peak_puck_speed_mm_s": 8868.0,
    "feasible": false
   },
@@ -3572,7 +3572,7 @@
    "t_top": 1.8667,
    "dtheta_deg": 0.0,
    "t_contact": 1.8263,
-   "goal_line_y_mm": -15.1,
+   "goal_line_y_mm": -15.2,
    "goalie_clearance_mm": -13.8,
    "peak_puck_speed_mm_s": 6535.0,
    "feasible": false
@@ -3601,9 +3601,9 @@
    "t_on": 1.8097,
    "t_top": 1.8757,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8288,
-   "goal_line_y_mm": -11.0,
-   "goalie_clearance_mm": -16.7,
+   "t_contact": 1.8285,
+   "goal_line_y_mm": -11.5,
+   "goalie_clearance_mm": -16.3,
    "peak_puck_speed_mm_s": 5643.0,
    "feasible": false
   },
@@ -3611,9 +3611,9 @@
    "t_on": 1.8097,
    "t_top": 1.8787,
    "dtheta_deg": 0.0,
-   "t_contact": 1.829,
-   "goal_line_y_mm": -10.2,
-   "goalie_clearance_mm": -17.2,
+   "t_contact": 1.8288,
+   "goal_line_y_mm": -10.6,
+   "goalie_clearance_mm": -17.0,
    "peak_puck_speed_mm_s": 5398.0,
    "feasible": false
   },
@@ -3621,9 +3621,9 @@
    "t_on": 1.8097,
    "t_top": 1.8817,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8295,
-   "goal_line_y_mm": -9.5,
-   "goalie_clearance_mm": -18.0,
+   "t_contact": 1.8293,
+   "goal_line_y_mm": -9.8,
+   "goalie_clearance_mm": -17.6,
    "peak_puck_speed_mm_s": 5173.0,
    "feasible": false
   },
@@ -3631,9 +3631,9 @@
    "t_on": 1.8097,
    "t_top": 1.8847,
    "dtheta_deg": 0.0,
-   "t_contact": 1.83,
-   "goal_line_y_mm": -8.6,
-   "goalie_clearance_mm": -18.7,
+   "t_contact": 1.8298,
+   "goal_line_y_mm": -8.9,
+   "goalie_clearance_mm": -18.5,
    "peak_puck_speed_mm_s": 4966.0,
    "feasible": false
   },
@@ -3641,9 +3641,9 @@
    "t_on": 1.8097,
    "t_top": 1.8877,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8305,
-   "goal_line_y_mm": -7.6,
-   "goalie_clearance_mm": -17.9,
+   "t_contact": 1.8303,
+   "goal_line_y_mm": -7.9,
+   "goalie_clearance_mm": -18.3,
    "peak_puck_speed_mm_s": 4775.0,
    "feasible": false
   },
@@ -3652,18 +3652,18 @@
    "t_top": 1.8907,
    "dtheta_deg": 0.0,
    "t_contact": 1.831,
-   "goal_line_y_mm": -6.5,
-   "goalie_clearance_mm": -17.0,
-   "peak_puck_speed_mm_s": 4597.0,
+   "goal_line_y_mm": -7.0,
+   "goalie_clearance_mm": -17.5,
+   "peak_puck_speed_mm_s": 4598.0,
    "feasible": false
   },
   {
    "t_on": 1.8097,
    "t_top": 1.8937,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8318,
-   "goal_line_y_mm": -5.6,
-   "goalie_clearance_mm": -16.0,
+   "t_contact": 1.8315,
+   "goal_line_y_mm": -5.9,
+   "goalie_clearance_mm": -16.4,
    "peak_puck_speed_mm_s": 4433.0,
    "feasible": false
   },
@@ -3671,9 +3671,9 @@
    "t_on": 1.8097,
    "t_top": 1.8967,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8323,
-   "goal_line_y_mm": -4.4,
-   "goalie_clearance_mm": -14.9,
+   "t_contact": 1.832,
+   "goal_line_y_mm": -4.7,
+   "goalie_clearance_mm": -15.2,
    "peak_puck_speed_mm_s": 4280.0,
    "feasible": false
   },
@@ -3681,9 +3681,9 @@
    "t_on": 1.8097,
    "t_top": 1.8997,
    "dtheta_deg": 0.0,
-   "t_contact": 1.833,
-   "goal_line_y_mm": -3.3,
-   "goalie_clearance_mm": -13.8,
+   "t_contact": 1.8328,
+   "goal_line_y_mm": -3.6,
+   "goalie_clearance_mm": -14.2,
    "peak_puck_speed_mm_s": 4137.0,
    "feasible": false
   },
@@ -3783,7 +3783,7 @@
    "dtheta_deg": 0.0,
    "t_contact": 1.8248,
    "goal_line_y_mm": -17.5,
-   "goalie_clearance_mm": -15.6,
+   "goalie_clearance_mm": -15.5,
    "peak_puck_speed_mm_s": 8865.0,
    "feasible": false
   },
@@ -3821,9 +3821,9 @@
    "t_on": 1.8127,
    "t_top": 1.8667,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8285,
-   "goal_line_y_mm": -11.4,
-   "goalie_clearance_mm": -16.4,
+   "t_contact": 1.8283,
+   "goal_line_y_mm": -11.8,
+   "goalie_clearance_mm": -16.0,
    "peak_puck_speed_mm_s": 6895.0,
    "feasible": false
   },
@@ -3831,9 +3831,9 @@
    "t_on": 1.8127,
    "t_top": 1.8697,
    "dtheta_deg": 0.0,
-   "t_contact": 1.829,
-   "goal_line_y_mm": -10.8,
-   "goalie_clearance_mm": -16.9,
+   "t_contact": 1.8288,
+   "goal_line_y_mm": -11.2,
+   "goalie_clearance_mm": -16.3,
    "peak_puck_speed_mm_s": 6532.0,
    "feasible": false
   },
@@ -3842,9 +3842,9 @@
    "t_top": 1.8727,
    "dtheta_deg": 0.0,
    "t_contact": 1.8293,
-   "goal_line_y_mm": -9.8,
-   "goalie_clearance_mm": -17.7,
-   "peak_puck_speed_mm_s": 6205.0,
+   "goal_line_y_mm": -10.4,
+   "goalie_clearance_mm": -17.1,
+   "peak_puck_speed_mm_s": 6206.0,
    "feasible": false
   },
   {
@@ -3852,8 +3852,8 @@
    "t_top": 1.8757,
    "dtheta_deg": 0.0,
    "t_contact": 1.8298,
-   "goal_line_y_mm": -8.8,
-   "goalie_clearance_mm": -18.5,
+   "goal_line_y_mm": -9.4,
+   "goalie_clearance_mm": -18.0,
    "peak_puck_speed_mm_s": 5910.0,
    "feasible": false
   },
@@ -3861,8 +3861,8 @@
    "t_on": 1.8127,
    "t_top": 1.8787,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8305,
-   "goal_line_y_mm": -8.1,
+   "t_contact": 1.8303,
+   "goal_line_y_mm": -8.3,
    "goalie_clearance_mm": -18.5,
    "peak_puck_speed_mm_s": 5641.0,
    "feasible": false
@@ -3871,9 +3871,9 @@
    "t_on": 1.8127,
    "t_top": 1.8817,
    "dtheta_deg": 0.0,
-   "t_contact": 1.831,
-   "goal_line_y_mm": -6.9,
-   "goalie_clearance_mm": -17.3,
+   "t_contact": 1.8308,
+   "goal_line_y_mm": -7.2,
+   "goalie_clearance_mm": -17.6,
    "peak_puck_speed_mm_s": 5396.0,
    "feasible": false
   },
@@ -3882,8 +3882,8 @@
    "t_top": 1.8847,
    "dtheta_deg": 0.0,
    "t_contact": 1.8315,
-   "goal_line_y_mm": -5.7,
-   "goalie_clearance_mm": -16.2,
+   "goal_line_y_mm": -6.3,
+   "goalie_clearance_mm": -16.6,
    "peak_puck_speed_mm_s": 5171.0,
    "feasible": false
   },
@@ -3891,9 +3891,9 @@
    "t_on": 1.8127,
    "t_top": 1.8877,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8323,
-   "goal_line_y_mm": -4.8,
-   "goalie_clearance_mm": -15.2,
+   "t_contact": 1.832,
+   "goal_line_y_mm": -5.0,
+   "goalie_clearance_mm": -15.5,
    "peak_puck_speed_mm_s": 4964.0,
    "feasible": false
   },
@@ -3902,8 +3902,8 @@
    "t_top": 1.8907,
    "dtheta_deg": 0.0,
    "t_contact": 1.8328,
-   "goal_line_y_mm": -3.5,
-   "goalie_clearance_mm": -14.0,
+   "goal_line_y_mm": -3.9,
+   "goalie_clearance_mm": -14.4,
    "peak_puck_speed_mm_s": 4772.0,
    "feasible": false
   },
@@ -3911,9 +3911,9 @@
    "t_on": 1.8127,
    "t_top": 1.8937,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8335,
-   "goal_line_y_mm": -2.3,
-   "goalie_clearance_mm": -12.9,
+   "t_contact": 1.8333,
+   "goal_line_y_mm": -2.7,
+   "goalie_clearance_mm": -13.2,
    "peak_puck_speed_mm_s": 4595.0,
    "feasible": false
   },
@@ -3921,33 +3921,33 @@
    "t_on": 1.8127,
    "t_top": 1.8967,
    "dtheta_deg": 0.0,
-   "t_contact": 1.8343,
-   "goal_line_y_mm": -1.1,
-   "goalie_clearance_mm": -11.6,
-   "peak_puck_speed_mm_s": 4430.0,
+   "t_contact": 1.834,
+   "goal_line_y_mm": -1.6,
+   "goalie_clearance_mm": -12.1,
+   "peak_puck_speed_mm_s": 4431.0,
    "feasible": false
   }
  ],
  "w_c_rotation_diagnostic": [
   {
    "dtheta_deg": -120,
-   "n": 123,
+   "n": 120,
    "feasible": 0,
    "goal_line_y_mm": [
-    -37.5,
-    -18.3
+    -36.3,
+    -16.3
    ],
-   "best_goalie_clearance_mm": -12.6
+   "best_goalie_clearance_mm": -12.4
   },
   {
    "dtheta_deg": -90,
-   "n": 112,
+   "n": 110,
    "feasible": 0,
    "goal_line_y_mm": [
-    -25.2,
+    -24.4,
     -9.0
    ],
-   "best_goalie_clearance_mm": -13.2
+   "best_goalie_clearance_mm": -13.9
   },
   {
    "dtheta_deg": -60,
@@ -3955,9 +3955,9 @@
    "feasible": 0,
    "goal_line_y_mm": [
     -22.0,
-    -8.2
+    -8.9
    ],
-   "best_goalie_clearance_mm": -13.7
+   "best_goalie_clearance_mm": -13.6
   },
   {
    "dtheta_deg": -30,
@@ -3965,7 +3965,7 @@
    "feasible": 0,
    "goal_line_y_mm": [
     -33.6,
-    -4.1
+    -4.7
    ],
    "best_goalie_clearance_mm": -11.5
   },
@@ -3975,7 +3975,7 @@
    "feasible": 0,
    "goal_line_y_mm": [
     -45.3,
-    -1.1
+    -1.6
    ],
    "best_goalie_clearance_mm": -11.4
   },
@@ -3985,9 +3985,9 @@
    "feasible": 0,
    "goal_line_y_mm": [
     -49.0,
-    -1.4
+    -1.7
    ],
-   "best_goalie_clearance_mm": -7.6
+   "best_goalie_clearance_mm": -7.7
   },
   {
    "dtheta_deg": 60,
@@ -3995,9 +3995,9 @@
    "feasible": 0,
    "goal_line_y_mm": [
     -43.5,
-    -1.8
+    -2.0
    ],
-   "best_goalie_clearance_mm": -11.3
+   "best_goalie_clearance_mm": -11.5
   },
   {
    "dtheta_deg": 90,
@@ -4021,10 +4021,10 @@
   },
   {
    "dtheta_deg": 150,
-   "n": 109,
+   "n": 116,
    "feasible": 23,
    "goal_line_y_mm": [
-    -28.2,
+    -29.2,
     14.5
    ],
    "best_goalie_clearance_mm": 9.4

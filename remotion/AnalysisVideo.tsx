@@ -39,7 +39,7 @@ export interface AnalysisConfig {
   /** extra render gate run before the trace checks (returns the names of the checks passed) */
   gate?: () => string[];
   text: { kicker: string; title: string; subtitle: string; bug: string; endTitle: string; endSteps: string[] };
-  /** visual theme of the overlays (remotion/theme.ts); default: DEFAULT_THEME (the original "classic" look) */
+  /** visual theme of the overlays (remotion/theme.ts); default: DEFAULT_THEME (the NBHF / puck.no look) */
   theme?: Theme["id"];
   /** per graphic type defaults merged under each graphic spec */
   defaults?: Partial<Record<GraphicSpec["type"], Partial<GraphicSpec>>>;

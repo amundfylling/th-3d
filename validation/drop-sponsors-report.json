@@ -17,9 +17,9 @@
   "ice_shade_fit": {
     "model": "cubic polynomial per channel over clean ice + inpainted local residual (1/4 res)",
     "residual_std_rgb": [
-      5.53,
-      5.29,
-      5.93
+      5.55,
+      5.3,
+      5.95
     ]
   },
   "fitted_markings_tex_px": {
@@ -61,12 +61,12 @@
     },
     "crease.W": {
       "centre": [
-        760.8,
+        760.7,
         1304.5
       ],
       "r": 413.9,
       "width": 11.2,
-      "n": 10561
+      "n": 10499
     },
     "crease.E": {
       "centre": [

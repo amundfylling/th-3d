@@ -212,6 +212,14 @@
       "kind": "user_measurement",
       "title": "User ruler measurements of the STIGA Play Off 21 goalie (2026-10-01)",
       "note": "Height 54 mm (top of the mask to the bottom of the figure (socket underside = ice plane)); stick blade length 26 mm (along the blade's lower edge from the heel bend to the toe); blade height 5.5 mm (vertical height of the blade plank (at the toe)). Stated as 5,4 / 2,6 / 0,55 cm, uncertainty not stated. Endpoint sketch: references/user_measurements/goalie-measurements-2026-10-01.png (index id user_goalie_measurement_sketch)."
+    },
+    {
+      "id": "thingiverse_6898521_stiga_hockey_player",
+      "kind": "document",
+      "title": "STIGA HOCKEY PLAYER by MAVRIS (Thingiverse thing:6898521, CC BY-SA): body STL of the skater mold",
+      "index_id": "thingiverse_6898521_stiga_hockey_player",
+      "url": "https://www.thingiverse.com/thing:6898521",
+      "note": "User upload 2026-10-12 (references/models/thingiverse-6898521/). The skater body; size = the file's own (user decision). docs/skater-stl.md."
     }
   ],
   "source_images": [
@@ -399,8 +407,8 @@
     },
     {
       "id": "assume.figure_mold_scale",
-      "statement": "Skater mold scale k = 1.0814 mm per mold unit, fitted to four Sweden skaters on the official overhead (validation/players/overhead-fit.json) at the ASSUMED preview scale. The goalie no longer shares it: its scale k = 1.1422 comes from the user's measured height (54 mm).",
-      "reason": "No ruler measurement of a skater exists; the overhead is the only scaled view of the skaters (itself at the ASSUMED preview scale).",
+      "statement": "Skater: the Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA) at the file's own size, k = 1.19154 mm per mold unit (user decision 2026-10-12, height 56.85 mm). Check: the overhead fit with this shape at the ASSUMED preview scale gives k = 1.2027. The goalie's scale k = 1.1422 comes from the user's measured height (54 mm).",
+      "reason": "No ruler measurement of a skater exists; the user chose the STL file's size (data/figures/skater-stl.json).",
       "affects": [
         "figure_assets.fig.W-LD",
         "figure_assets.fig.W-RD",
@@ -37788,16 +37796,17 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -37869,9 +37878,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -37901,87 +37910,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -38003,13 +38012,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -38052,31 +38061,32 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.W-RD",
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -38148,9 +38158,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -38180,87 +38190,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -38282,13 +38292,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -38331,31 +38341,32 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.W-C",
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -38427,9 +38438,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -38459,87 +38470,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -38561,13 +38572,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -38610,31 +38621,32 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.W-LW",
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -38706,9 +38718,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -38738,87 +38750,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -38840,13 +38852,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -38889,31 +38901,32 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.W-RW",
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -38985,9 +38998,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -39017,87 +39030,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -39119,13 +39132,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -39168,15 +39181,15 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Finland kit: assets/figures/skater_FIN.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-G",
@@ -39576,16 +39589,17 @@
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -39657,9 +39671,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -39689,87 +39703,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -39791,13 +39805,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -39840,31 +39854,32 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-RD",
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -39936,9 +39951,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -39968,87 +39983,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -40070,13 +40085,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -40119,31 +40134,32 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-C",
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -40215,9 +40231,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -40247,87 +40263,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -40349,13 +40365,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -40398,31 +40414,32 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-LW",
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -40494,9 +40511,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -40526,87 +40543,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -40628,13 +40645,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -40677,31 +40694,32 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     },
     {
       "id": "fig.E-RW",
       "kind": "skater",
       "mold_group": "mold.skater",
       "figure_height": {
-        "value": 51.09,
+        "value": 56.85,
         "unit": "mm",
         "status": "traced",
         "uncertainty": 2.5,
         "source_ids": [
           "user_skater_video_2574",
           "stiga_se_fi_overhead",
-          "user_statement_2026_09_30_players"
+          "user_statement_2026_09_30_players",
+          "thingiverse_6898521_stiga_hockey_player"
         ],
-        "note": "Ice (socket underside) to helmet top of the fitted mold at k = 1.0814. The catalog 'figure height approx. 57 mm' (datum unspecified) is 5.9 mm higher; not resolved (preview scale is assumed)."
+        "note": "Ice (socket underside) to helmet top of the Thingiverse STL body at the file's own size (user decision 2026-10-12; k = 1.19154). Not a ruler measurement. Checks: overhead fit with this shape 57.4 mm (ASSUMED preview scale), catalog approx. 57 mm (datum unspecified)."
       },
       "blade_offset_from_pivot": {
         "value": 22.94,
@@ -40773,9 +40791,9 @@
             "type": "polyline",
             "points_mm": [
               [
-                8.11,
-                -5.41,
-                30.28
+                8.94,
+                -5.96,
+                33.36
               ],
               [
                 3.35,
@@ -40805,87 +40823,87 @@
             "type": "polyline",
             "points_mm": [
               [
-                6.06,
+                6.74,
                 0,
                 0
               ],
               [
-                5.59,
-                2.32,
+                6.23,
+                2.58,
                 0
               ],
               [
-                4.28,
-                4.28,
+                4.77,
+                4.77,
                 0
               ],
               [
-                2.32,
-                5.59,
-                0
-              ],
-              [
-                0,
-                6.06,
-                0
-              ],
-              [
-                -2.32,
-                5.59,
-                0
-              ],
-              [
-                -4.28,
-                4.28,
-                0
-              ],
-              [
-                -5.59,
-                2.32,
-                0
-              ],
-              [
-                -6.06,
-                0,
-                0
-              ],
-              [
-                -5.59,
-                -2.32,
-                0
-              ],
-              [
-                -4.28,
-                -4.28,
-                0
-              ],
-              [
-                -2.32,
-                -5.59,
+                2.58,
+                6.23,
                 0
               ],
               [
                 0,
-                -6.06,
+                6.74,
                 0
               ],
               [
-                2.32,
-                -5.59,
+                -2.58,
+                6.23,
                 0
               ],
               [
-                4.28,
-                -4.28,
+                -4.77,
+                4.77,
                 0
               ],
               [
-                5.59,
-                -2.32,
+                -6.23,
+                2.58,
                 0
               ],
               [
-                6.06,
+                -6.74,
+                0,
+                0
+              ],
+              [
+                -6.23,
+                -2.58,
+                0
+              ],
+              [
+                -4.77,
+                -4.77,
+                0
+              ],
+              [
+                -2.58,
+                -6.23,
+                0
+              ],
+              [
+                0,
+                -6.74,
+                0
+              ],
+              [
+                2.58,
+                -6.23,
+                0
+              ],
+              [
+                4.77,
+                -4.77,
+                0
+              ],
+              [
+                6.23,
+                -2.58,
+                0
+              ],
+              [
+                6.74,
                 0,
                 0
               ]
@@ -40907,13 +40925,13 @@
             "type": "polyline",
             "points_mm": [
               [
-                -14.71,
-                -14.92,
+                -11.84,
+                -15.3,
                 0
               ],
               [
-                -5.41,
-                -18.38,
+                -6.14,
+                -13.42,
                 0
               ]
             ]
@@ -40956,15 +40974,15 @@
         {
           "item": "shape",
           "status": "traced",
-          "evidence": "Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.8191 (8 views); overhead top-view IoU 0.7987."
+          "evidence": "Thingiverse STL body (STIGA HOCKEY PLAYER by MAVRIS, https://www.thingiverse.com/thing:6898521, CC BY-SA; docs/skater-stl.md). Camera-matched silhouette fit to the user's turntable video frames: mean IoU 0.9324 (8 views); overhead top-view IoU 0.8154."
         },
         {
           "item": "absolute scale",
           "status": "traced",
-          "evidence": "k = 1.0814 mm per mold unit from the official overhead at the ASSUMED preview scale; no ruler measurement of a skater."
+          "evidence": "k = 1.19154 mm per mold unit: the STL file's own size (user decision 2026-10-12); overhead check k = 1.2027 at the ASSUMED preview scale; no ruler measurement of a skater."
         }
       ],
-      "note": "Rigid skater mold (data/figure-molds.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
+      "note": "Rigid skater mold (data/figure-molds.json; body from the Thingiverse STL, data/figures/skater-stl.json) in the Sweden kit: assets/figures/skater_SWE.glb. One rigid mesh, origin on the fixture axis at the socket underside, +x facing, +y the figure's left."
     }
   ],
   "preview_parameters": {

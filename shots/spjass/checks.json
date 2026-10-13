@@ -8,43 +8,37 @@
   {
    "obstacle": "E-G",
    "phase": "shot_free",
-   "min_clearance_mm": 0.863,
+   "min_clearance_mm": 0.856,
    "t_at_min": 4.40625
   },
   {
    "obstacle": "W-C",
-   "phase": "flick_backhand",
-   "min_clearance_mm": 0.056,
-   "t_at_min": 4.13475
-  },
-  {
-   "obstacle": "W-C",
    "phase": "rest_at_heel",
-   "min_clearance_mm": 0.05,
+   "min_clearance_mm": 0.054,
    "t_at_min": 4.1345
   },
   {
    "obstacle": "W-C",
    "phase": "shot_free",
-   "min_clearance_mm": 0.6,
+   "min_clearance_mm": 0.599,
    "t_at_min": 4.36925
   },
   {
    "obstacle": "W-C",
    "phase": "slide",
-   "min_clearance_mm": 0.162,
+   "min_clearance_mm": 0.166,
    "t_at_min": 4.13525
   },
   {
    "obstacle": "goal_post_pos_y",
    "phase": "in_goal",
-   "min_clearance_mm": 28.622,
+   "min_clearance_mm": 28.625,
    "t_at_min": 5.0
   },
   {
    "obstacle": "goal_post_pos_y",
    "phase": "shot_free",
-   "min_clearance_mm": 1.175,
+   "min_clearance_mm": 1.182,
    "t_at_min": 4.43
   }
  ],
@@ -53,7 +47,7 @@
  "contacts": [
   {
    "obstacle": "W-C:stick/blade",
-   "t0": 4.1345,
+   "t0": 4.13475,
    "t1": 4.13475
   },
   {
@@ -107,12 +101,12 @@
     "source": "frame 124 blade pose (toe mark)"
    }
   ],
-  "model_contact_normal_deg": 81.72,
+  "model_contact_normal_deg": 81.54,
   "observed_impulse_direction_deg": 65.63,
-  "impulse_minus_normal_deg": -16.09,
+  "impulse_minus_normal_deg": -15.91,
   "contact_local_mm": [
-   2.42,
-   22.56
+   2.44,
+   22.52
   ],
   "part": "stick/blade"
  },
@@ -133,18 +127,18 @@
   ],
   "direction_used_deg": -4.58,
   "direction_rule": "window_centre",
-  "model_contact_normal_deg": -0.17,
+  "model_contact_normal_deg": -0.18,
   "contact_local_mm": [
    2.92,
    42.42
   ],
   "part": "stick/blade",
   "spin_speed_at_strike_deg_s": -1305.2,
-  "impulse_minus_normal_deg": -4.41
+  "impulse_minus_normal_deg": -4.4
  },
  "rest": {
   "arc_mm_reading": 207.6,
-  "arc_mm_used": 205.85,
+  "arc_mm_used": 206.2,
   "puck_rest_mm": [
    171.79,
    -4.73
@@ -152,7 +146,7 @@
  },
  "goal_line": {
   "x_mm": 286.79,
-  "crossing_y_mm": 28.57,
+  "crossing_y_mm": 28.56,
   "inside_mouth_window_y_mm": [
    -28.7,
    29.8
@@ -448,7 +442,7 @@
    ],
    "trace_mm": [
     175.6,
-    3.7
+    3.6
    ],
    "residual_mm": 0.2,
    "reading_uncertainty_mm": 2.5
@@ -532,7 +526,7 @@
    ],
    "trace_mm": [
     190.3,
-    36.2
+    36.1
    ],
    "residual_mm": 0.3,
    "reading_uncertainty_mm": 2.5
@@ -545,7 +539,7 @@
     37.4
    ],
    "trace_mm": [
-    239.7,
+    239.6,
     32.3
    ],
    "residual_mm": 5.1,
@@ -560,7 +554,7 @@
    ],
    "trace_mm": [
     290.8,
-    28.3
+    28.2
    ],
    "residual_mm": 8.2,
    "reading_uncertainty_mm": 6.0

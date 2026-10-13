@@ -7,12 +7,12 @@
   {
    "obstacle": "W-LW",
    "min_clearance_mm": 0.05,
-   "t_at_min": 6.0
+   "t_at_min": 0.0
   },
   {
    "obstacle": "boards",
-   "min_clearance_mm": 10.578,
-   "t_at_min": 0.0
+   "min_clearance_mm": 10.579,
+   "t_at_min": 6.0
   }
  ],
  "unexpected_penetrations": [],
@@ -49,7 +49,7 @@
     "blocked_by": "E-G",
     "end_mm": [
      229.53,
-     -1.59
+     -1.6
     ]
    }
   },
@@ -57,14 +57,14 @@
    "straight_shot": {
     "blocked_by": "E-RD",
     "end_mm": [
-     216.98,
-     109.77
+     216.7,
+     110.18
     ]
    },
    "centrifuge_pass": {
     "blocked_by": null,
     "end_mm": [
-     157.41,
+     157.4,
      23.38
     ]
    },
@@ -72,7 +72,7 @@
     "blocked_by": "E-G",
     "end_mm": [
      229.53,
-     -1.59
+     -1.6
     ]
    }
   },
@@ -87,8 +87,8 @@
    "centrifuge_pass": {
     "blocked_by": "E-RD",
     "end_mm": [
-     153.04,
-     111.78
+     153.02,
+     112.28
     ]
    },
    "centre_shot": {
@@ -103,14 +103,14 @@
    "straight_shot": {
     "blocked_by": "E-RD",
     "end_mm": [
-     216.98,
-     109.77
+     216.7,
+     110.18
     ]
    },
    "centrifuge_pass": {
     "blocked_by": null,
     "end_mm": [
-     157.41,
+     157.4,
      23.38
     ]
    },
@@ -118,7 +118,7 @@
     "blocked_by": "E-G",
     "end_mm": [
      229.53,
-     -1.59
+     -1.6
     ]
    }
   },
@@ -133,8 +133,8 @@
    "centrifuge_pass": {
     "blocked_by": "E-RD",
     "end_mm": [
-     153.04,
-     111.78
+     153.02,
+     112.28
     ]
    },
    "centre_shot": {
@@ -149,14 +149,14 @@
    "straight_shot": {
     "blocked_by": "E-RD",
     "end_mm": [
-     216.98,
-     109.77
+     216.7,
+     110.18
     ]
    },
    "centrifuge_pass": {
     "blocked_by": null,
     "end_mm": [
-     157.41,
+     157.4,
      23.38
     ]
    },
@@ -164,7 +164,7 @@
     "blocked_by": "E-G",
     "end_mm": [
      229.53,
-     -1.59
+     -1.6
     ]
    }
   }

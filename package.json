@@ -80,7 +80,8 @@
     "rebuild:nm26:analysis": "python3 scripts/pipeline/nm26_rebuild.py analysis --check",
     "rebuild:nm26:edwall": "python3 scripts/pipeline/nm26_rebuild.py meshes edwall --keep-going --check",
     "rebuild:nm26:from-zero": "python3 scripts/pipeline/nm26_rebuild.py fetch cache calibrate meshes puck figures analysis sheets pages --keep-going --check",
-    "test:synth": "python3 -m unittest discover -s tests/synth -p \"test_*.py\" -v"
+    "test:synth": "python3 -m unittest discover -s tests/synth -p \"test_*.py\" -v",
+    "players:stl": "/root/venvs/blender/bin/python assets/blender/preview_molds.py skater && /root/venvs/blender/bin/python scripts/stl-skater.py align && for m in '' --heldout --independent; do /root/venvs/blender/bin/python scripts/fit-figure-views.py skater --mesh out/figures/skater-stl.npz --out validation/players/stl --reuse $m || exit 1; done && /root/venvs/blender/bin/python assets/blender/preview_molds.py goalie && mkdir -p out/figures/stl-mesh && cp out/figures/skater-stl.npz out/figures/stl-mesh/skater.npz && cp out/figures/goalie.npz out/figures/stl-mesh/ && /root/venvs/blender/bin/python scripts/fit-figure-overhead.py --mesh-dir out/figures/stl-mesh --out validation/players/stl && /root/venvs/blender/bin/python scripts/stl-skater.py finish && /root/venvs/blender/bin/python scripts/stl-skater.py paint && /root/venvs/blender/bin/python assets/blender/build_skater_stl.py"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

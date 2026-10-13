@@ -1,14 +1,14 @@
 {
  "trace_id": "trace.edwall-g2-goal2.v1",
  "sampling_s": 0.00025,
- "max_puck_step_mm": 0.461,
+ "max_puck_step_mm": 0.46,
  "penetration_tolerance_mm": 0.1,
  "contact_rule": "CLAUDE.md 'Contact physics': the puck may touch figures, boards and goal but never overlap them (every 0.25 ms, whole trace, all 12 figures, boards, posts, cage; no phase exemptions)",
  "min_clearance_by_obstacle_and_phase": [
   {
    "obstacle": "E-G",
    "phase": "pass_slide",
-   "min_clearance_mm": 20.975,
+   "min_clearance_mm": 20.977,
    "t_at_min": 0.91225
   },
   {
@@ -20,44 +20,44 @@
   {
    "obstacle": "E-G",
    "phase": "shovel_carry",
-   "min_clearance_mm": 16.043,
+   "min_clearance_mm": 16.044,
    "t_at_min": 0.91675
   },
   {
    "obstacle": "W-C",
    "phase": "pass_slide",
-   "min_clearance_mm": 0.148,
+   "min_clearance_mm": 0.147,
    "t_at_min": 0.91225
   },
   {
    "obstacle": "W-C",
    "phase": "shot_slide",
-   "min_clearance_mm": 0.052,
+   "min_clearance_mm": 0.053,
    "t_at_min": 0.917
   },
   {
    "obstacle": "W-C",
    "phase": "shovel_carry",
    "min_clearance_mm": 0.047,
-   "t_at_min": 0.91525
+   "t_at_min": 0.91325
   },
   {
    "obstacle": "W-RW",
    "phase": "pass_carry",
-   "min_clearance_mm": 0.004,
-   "t_at_min": 0.75575
+   "min_clearance_mm": 0.006,
+   "t_at_min": 0.75775
   },
   {
    "obstacle": "W-RW",
    "phase": "pass_slide",
-   "min_clearance_mm": 0.026,
+   "min_clearance_mm": 0.027,
    "t_at_min": 0.75875
   },
   {
    "obstacle": "W-RW",
    "phase": "rest_at_blade",
-   "min_clearance_mm": 0.006,
-   "t_at_min": 0.71
+   "min_clearance_mm": 0.008,
+   "t_at_min": 0.0
   },
   {
    "obstacle": "boards",
@@ -68,7 +68,7 @@
   {
    "obstacle": "boards",
    "phase": "pass_slide",
-   "min_clearance_mm": 29.418,
+   "min_clearance_mm": 29.419,
    "t_at_min": 0.75875
   },
   {
@@ -122,7 +122,7 @@
      0.9125
     ],
     "touches": 1,
-    "peak_impact_mm_s": 448.8
+    "peak_impact_mm_s": 468.7
    },
    {
     "contact": "other (E-G)",
@@ -152,17 +152,17 @@
      "steps_checked": 47,
      "steps_needing_pull": 47,
      "share_needing_pull": 1.0,
-     "worst_outside_fan_deg": 126.9
+     "worst_outside_fan_deg": 126.8
     }
    },
    {
     "figure": "W-C",
     "t_catch": 0.9125,
     "t_release": 0.91687,
-    "catch_impact_mm_s": 448.8,
+    "catch_impact_mm_s": 468.7,
     "relative_speed_mm_s": 1441.9,
     "local_mm": [
-     9.96,
+     9.959,
      54.097
     ],
     "part": "stick/blade",
@@ -172,7 +172,7 @@
      "steps_checked": 1,
      "steps_needing_pull": 1,
      "share_needing_pull": 1.0,
-     "worst_outside_fan_deg": 155.9
+     "worst_outside_fan_deg": 156.0
     }
    }
   ],
@@ -191,7 +191,7 @@
    "t": 0.9125,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 448.8,
+   "impact_mm_s": 468.7,
    "dv": null,
    "catch": true
   },
@@ -229,7 +229,7 @@
     "steps_checked": 47,
     "steps_needing_pull": 47,
     "share_needing_pull": 1.0,
-    "worst_outside_fan_deg": 126.9
+    "worst_outside_fan_deg": 126.8
    },
    {
     "figure": "W-C",
@@ -242,7 +242,7 @@
     "steps_checked": 1,
     "steps_needing_pull": 1,
     "share_needing_pull": 1.0,
-    "worst_outside_fan_deg": 155.9
+    "worst_outside_fan_deg": 156.0
    }
   ],
   "passed": false
@@ -327,7 +327,7 @@
     -176.69
    ],
    "trace_mm": [
-    63.97,
+    63.96,
     -181.16
    ],
    "error_mm": 4.69

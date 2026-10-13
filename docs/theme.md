@@ -3,11 +3,11 @@
 Status: PROPOSED (2026-10-11), waiting for the user's review of `validation/theme/nbhf-theme-sheet.png`.
 
 The overlays of every analysis video (shared renderer `remotion/AnalysisVideo.tsx`: the move/encyclopedia videos,
-IKV, Näcka, spjass, Shovel, defence) take their look from `remotion/theme.ts`. On branch
-`claude/combo-video-workflow-j0piia` (2026-10-12) the default is `classic`, the original dark broadcast look, so every
-committed export stays valid (its overlay pixels are byte-identical to before the theme). A video opts into `nbhf` with
-`createAnalysisVideo({ ..., theme: "nbhf" })`, or for a move with `"theme": "nbhf"` in `moves/<id>/story.json` (then
-`python3 scripts/build-move.py <id> --presentation`). It was `nbhf` by default on the theme's own branch.
+IKV, Näcka, spjass, Shovel, defence) take their look from `remotion/theme.ts`. The default theme is `nbhf`; the
+original dark broadcast look is kept as `classic` (`createAnalysisVideo({ ..., theme: "classic" })`, or for a move
+`"theme"` in `moves/<id>/story.json`, then `python3 scripts/build-move.py <id> --presentation`). The video-workflow branch
+had made `classic` the default so its exports stayed byte-identical; when it was merged with the STL-skater branch
+(2026-10-13), whose re-renders of every video are in `nbhf`, the default went back to `nbhf`.
 Only presentation changes: the trace, the camera track, the rink, the figures and the contact gates are untouched.
 
 ## Source of the look

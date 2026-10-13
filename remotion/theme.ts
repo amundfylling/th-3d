@@ -126,5 +126,5 @@ export const THEMES: Record<Theme["id"], Theme> = {
   },
 };
 
-// "classic" keeps every committed export valid; a video opts into "nbhf" with `theme` (moves: story.json "theme").
-export const DEFAULT_THEME: Theme["id"] = "classic";
+// "nbhf" (puck.no) since the STL-skater re-renders of 2026-10-12; "classic" is the original dark broadcast look (opt in with `theme`).
+export const DEFAULT_THEME: Theme["id"] = "nbhf";

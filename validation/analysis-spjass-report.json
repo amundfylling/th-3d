@@ -2,7 +2,7 @@
  "analysis": "The spjass - sports-analysis video",
  "composition": "analysis-spjass",
  "versions": {
-  "node": "v22.22.2",
+  "node": "v22.22.0",
   "remotion": "4.0.531",
   "@remotion/three": "4.0.531",
   "three": "0.186.1",
@@ -13,12 +13,12 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
  },
  "trace": {
   "trace_id": "trace.spjass.v1",
   "status": "proposed",
-  "sha256": "c68af5f93f83558a81ab71e0549c98cfd879ae11089ad9f5eed29071c1fa0a76"
+  "sha256": "fff5df9e3070f0781b74202b6bc7440b653f3cc79478a9106a6da5de9f33101a"
  },
  "analysis_spec": {
   "analysis_id": "analysis.spjass.v1",
@@ -30,7 +30,7 @@
    "remotion/ShotScene.tsx",
    "remotion/theme.ts"
   ],
-  "composition_sha256": "75d40279648ed1cb62972f4d39ae1959932939f4c4c6494e27557397f1626928"
+  "composition_sha256": "f57f9b2135b54e77610c1d57963f59f2f249b32ea87458890e8c3607409328db"
  },
  "output": {
   "path": "validation/analysis-spjass.mp4",
@@ -62,10 +62,10 @@
     "duration": "24.733333"
    }
   },
-  "bytes": 10489441,
-  "megabytes": 10.49,
+  "bytes": 10365344,
+  "megabytes": 10.37,
   "below_25_mb": true,
-  "sha256": "81315298af595f3436714f4e0fdcde11276d1cc3ab6c78d0742a9b7f7db84430"
+  "sha256": "e386d87a2daf09536019aa21991fab0591dcddb0b80c747a97e10b87e4db1b47"
  },
  "checks": {
   "frames_logged": 742,
@@ -74,23 +74,16 @@
   "camera_frames_logged": 742,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 3349,
+ "render_seconds": 3571,
  "composition_refactor": {
-  "date": "2026-10-12",
-  "change": "shared renderer split for the video workflow (docs/video-workflow.md): remotion/SceneLayer.tsx (scene layer, camera rig) out of AnalysisVideo.tsx, ShotScene.tsx clones the cached GLTF scene per mount and resets the figures every frame (no pose leak between compositions), remotion/theme.ts (overlay theme, default classic), optional frameMap/sceneSrc props (scene cache)",
+  "date": "2026-10-13",
+  "change": "merge of the video workflow (PR #14: remotion/SceneLayer.tsx split out of AnalysisVideo.tsx, ShotScene.tsx clones the scene per mount, frameMap/sceneSrc props, classic-only overlay tweaks) into the STL-skater branch (PR #13) this video was rendered on; default theme stays nbhf",
   "previous_composition_files": [
    "remotion/SpjassAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "previous_composition_sha256": "ec5dffa8b9cc5f9de6f41619829d5ce722728ae2a6f4b49e13817e3f64932e92",
-  "verification": "frames 29, 185, 333, 445, 593, 719 rendered at scale 0.5 with the code before this change (commit 0b4caa2) and after it: PNG bytes identical for all six",
-  "video_rerendered": false,
-  "earlier": {
-   "date": "2026-10-06",
-   "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
-   "previous_composition_sha256": "6b8c377ef754739328d3ccd9f8ec99ebc0a5152b0497b2afadf9a05f7460ffb8",
-   "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
-   "video_rerendered": false
-  }
+  "previous_composition_sha256": "b26dbe95f36a35b73c6ae1155d3bf201337c874202ef759550bbcd34e0f35fa0",
+  "verification": "frames 29, 185, 333, 445, 593, 719 rendered at scale 0.5 (swangle) with the STL-skater branch at commit 53c32b2 (scripts/analysis-stills.ts) and with the merged code (scripts/video.ts stills): pixels identical for all six (validation/video-workflow/stl-merge-identity.json)",
+  "video_rerendered": false
  }
 }

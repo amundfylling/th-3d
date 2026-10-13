@@ -828,6 +828,18 @@
       "bytes": 183519,
       "sha256": "5df20d97499b93058a787f4155489c3f437e92963e32571eae09e9dbc60afe2d",
       "provenance": "web (found by Claude, fetched 2026-10-08)"
+    },
+    {
+      "id": "thingiverse_6898521_stiga_hockey_player",
+      "local_path": "references/models/thingiverse-6898521/STIGA HOCKEY PLAYER - 6898521.zip",
+      "url": "https://www.thingiverse.com/thing:6898521",
+      "title": "STIGA HOCKEY PLAYER by MAVRIS on Thingiverse: 3D-printable skater body and separate stick (STL), with preview images",
+      "text": "Zip as downloaded by the user: files/STIGA_HOCKEY_PLAYER.stl (body, 19 854 triangles, watertight, 56.85 mm tall in file units), files/STIGA_HOCKEY_STICK.stl (round printable stick), images/, README.txt, LICENSE.txt. License: Creative Commons Attribution-ShareAlike (CC BY-SA); attribution 'STIGA HOCKEY PLAYER by MAVRIS (thing:6898521)'. Derived meshes in assets/figures/skater_* carry the same licence.",
+      "format": "zip",
+      "bytes": 5621372,
+      "sha256": "fe5f7b5aef7166893b9c05739804f87082d59fba8f40dada95ee02dd8f7c8291",
+      "license": "CC BY-SA (Thingiverse user MAVRIS)",
+      "provenance": "user upload (downloaded from Thingiverse by the user, 2026-10-12)"
     }
   ],
   "not_obtained": [

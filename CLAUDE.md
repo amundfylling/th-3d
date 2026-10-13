@@ -29,6 +29,10 @@ docs/invers-kryssar-velodrom.md.
 A concept video of the three ways to defend when the opponent's left wing has the puck (passive/box, active, mix; user's
 TikTok references/shots/defence-vs-left-wing-tiktok.mp4) uses the PROPOSED, DESIGNED trace data/traces/defence-left-wing.trace.json
 (video validation/analysis-defence-lw.mp4); its shots and passes are lanes drawn as graphics; see docs/defence-left-wing.md.
+All analysis videos share remotion/AnalysisVideo.tsx.
+The skater is built from a Thingiverse STL (thing:6898521 by MAVRIS, CC BY-SA, keep the attribution), 56.85 mm tall (the file's
+own size, user decision 2026-10-12). Since 2026-10-12 the assets, contacts, footprints, traces and videos all use it (user:
+"Switch now"); the parametric mold stays in data/figure-molds.json as the shape record; see docs/skater-stl.md.
 All analysis videos share remotion/AnalysisVideo.tsx; preview, draft and export them with `scripts/video.ts` (docs/video-workflow.md;
 move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`).
 Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,

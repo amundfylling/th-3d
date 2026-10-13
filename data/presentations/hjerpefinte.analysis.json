@@ -17,19 +17,19 @@
    "id": "full",
    "kind": "play",
    "from": 0.0,
-   "to": 0.763,
+   "to": 0.7628,
    "rate": 1
   },
   {
    "id": "goal_hold",
    "kind": "hold",
-   "at": 0.763,
+   "at": 0.7628,
    "frames": 20
   },
   {
    "id": "rewind",
    "kind": "rewind",
-   "from": 0.763,
+   "from": 0.7628,
    "to": 0.0,
    "rate": 1.2
   },
@@ -120,13 +120,13 @@
    "id": "replay",
    "kind": "play",
    "from": 0.0,
-   "to": 0.763,
+   "to": 0.7628,
    "rate": 0.4
   },
   {
    "id": "outro",
    "kind": "hold",
-   "at": 0.763,
+   "at": 0.7628,
    "frames": 50
   }
  ],
@@ -141,12 +141,12 @@
  "views": {
   "intro_high": {
    "positionMm": [
-    -359.3,
+    -359.2,
     -820.0,
     820.0
    ],
    "targetMm": [
-    230.7,
+    230.8,
     0.0,
     0.0
    ],
@@ -154,12 +154,12 @@
   },
   "broadcast": {
    "positionMm": [
-    -134.3,
+    -134.2,
     -342.6,
     380.0
    ],
    "targetMm": [
-    230.7,
+    230.8,
     -12.6,
     0.0
    ],
@@ -167,12 +167,12 @@
   },
   "replay": {
    "positionMm": [
-    50.7,
+    50.8,
     -342.6,
     330.0
    ],
    "targetMm": [
-    230.7,
+    230.8,
     -12.6,
     0.0
    ],
@@ -420,9 +420,9 @@
  ],
  "generated_from": {
   "story": "moves/hjerpefinte/story.json",
-  "story_sha256": "b205ca78a0d5db8ddcb46fd3a1425fbe2356749caae23e9be1e224f13c1845e5",
+  "story_sha256": "39c77d6052cbe1f263a17269abd35e0aa04532360d34036fb5cfcad4d669e722",
   "trace": "data/traces/hjerpefinte.trace.json",
-  "trace_sha256": "538bd72fe41857b5094c80f579bd8c913079b2ffab402abe3ee6fb0dce5571cc",
+  "trace_sha256": "0e797186cd4782eb356fe70e2fd42508c7ff60932913df0375a80adc43ce5d0d",
   "generator": "scripts/shotlib/presentation.py"
  }
 }

@@ -52,7 +52,9 @@ test("invers kryssar med velodrom: slide or bounce (CLAUDE.md, user rule 2026-10
   assert.ok(sc.peak_board_impact_mm_s <= sc.wall_impact_max_mm_s && sc.peak_post_impact_mm_s <= sc.wall_impact_max_mm_s);
   // the left wing's pass is a sustained forward push (many small touches), not one strike
   const push = sc.per_contact.find((c: { contact: string }) => c.contact === "lw_push");
-  assert.ok(push.touches > 50 && push.peak_impact_mm_s < 150 && push.t[1] - push.t[0] > 0.15);
+  // peak 93 mm/s with the parametric skater; 190 mm/s since the STL skater (2026-10-12: its blade reaches further, the
+  // reception was re-timed); still well below the 500 mm/s rule
+  assert.ok(push.touches > 50 && push.peak_impact_mm_s < 200 && push.t[1] - push.t[0] > 0.15);
   const e = ev("contact.lw_push");
   assert.ok(Math.abs((e.release_direction_deg as number) + 90) < 3, "released along the end board");
   assert.ok((e.release_speed_mm_s as number) < 1600);

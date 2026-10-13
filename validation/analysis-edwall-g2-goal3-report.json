@@ -13,29 +13,29 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
  },
  "trace": {
-  "trace_id": "trace.edwall-g2-goal3.v1",
+  "trace_id": "trace.edwall-g2-goal3.v2",
   "status": "proposed",
-  "sha256": "da0c462f1439171b0adf0b5b7f2cfb68980950d45c7f343b5f1c01da297a110f"
+  "sha256": "2050464a62fce23d220fb56a8a0d32ec65bea89682dba3eb9c066ea1df706e22"
  },
  "analysis_spec": {
   "analysis_id": "analysis.edwall-g2-goal3.v1",
-  "sha256": "77fcabf5ab0b249f9f53d7ca14bc3f6ba5e2775b0a95bf68be57c05f8b1d6ac5",
+  "sha256": "41478b7e8a8850dd6dc05add8522fa3b01b57fa71aa552328b66ad8d93ea84fa",
   "composition_files": [
    "remotion/EdwallAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "composition_sha256": "61497d2c759971d928688804e645d7fb70994162669732c30db503e60bb9fa8c"
+  "composition_sha256": "a0034fcf82038cf61665ad6e9a4f389fb285487cee2a68e80be6d0c0d54794c8"
  },
  "output": {
   "path": "validation/analysis-edwall-g2-goal3.mp4",
   "width": 1920,
   "height": 1080,
   "fps": 30,
-  "frames": 559,
-  "duration_s": 18.633333333333333,
+  "frames": 579,
+  "duration_s": 19.3,
   "codec": "h264",
   "crf": 20,
   "pixel_format": "yuv420p",
@@ -49,27 +49,27 @@
      "height": 1080,
      "pix_fmt": "yuvj420p",
      "r_frame_rate": "30/1",
-     "nb_frames": "559",
+     "nb_frames": "579",
      "side_data_list": [
       {}
      ]
     }
    ],
    "format": {
-    "duration": "18.633333"
+    "duration": "19.300000"
    }
   },
-  "bytes": 8555516,
-  "megabytes": 8.56,
+  "bytes": 8801740,
+  "megabytes": 8.8,
   "below_25_mb": true,
-  "sha256": "cf836a409c4ce238e876c6e3aebd51acc0843815c40824d2e5d08f2a99c8df89"
+  "sha256": "84a9ebac261e921a4dd98a4ef7acfd9b29b28c609ca5acaf07ef20726d6e5c41"
  },
  "checks": {
-  "frames_logged": 559,
+  "frames_logged": 579,
   "frames_differing_from_pure": [],
   "max_readback_diff": 1.14e-13,
-  "camera_frames_logged": 559,
+  "camera_frames_logged": 579,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 4219
+ "render_seconds": 2940
 }

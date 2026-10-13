@@ -9,8 +9,8 @@
   {
    "obstacle": "E-G",
    "phase": "shot_free",
-   "min_clearance_mm": 4.083,
-   "t_at_min": 0.44525
+   "min_clearance_mm": 4.109,
+   "t_at_min": 0.445
   },
   {
    "obstacle": "W-C",
@@ -28,19 +28,19 @@
    "obstacle": "W-C",
    "phase": "shot_push",
    "min_clearance_mm": 0.05,
-   "t_at_min": 0.284
+   "t_at_min": 0.2805
   },
   {
    "obstacle": "goal_E_cage",
    "phase": "shot_free",
-   "min_clearance_mm": 12.385,
-   "t_at_min": 0.51575
+   "min_clearance_mm": 12.35,
+   "t_at_min": 0.5155
   },
   {
    "obstacle": "goal_E_post_neg_y",
    "phase": "shot_free",
-   "min_clearance_mm": 10.885,
-   "t_at_min": 0.51575
+   "min_clearance_mm": 10.85,
+   "t_at_min": 0.5155
   }
  ],
  "unexpected_penetrations": [],
@@ -56,9 +56,9 @@
     "figure": "W-C",
     "t": [
      0.002,
-     0.002
+     0.0895
     ],
-    "touches": 1,
+    "touches": 29,
     "peak_impact_mm_s": 0.0
    },
    {
@@ -94,8 +94,8 @@
   {
    "obstacle": "W-C:stick/blade",
    "t": [
-    0.002,
-    0.002
+    0.00025,
+    0.0895
    ]
   },
   {
@@ -108,8 +108,8 @@
   {
    "obstacle": "goal_net",
    "t": [
-    0.613,
-    0.613
+    0.61275,
+    0.61275
    ]
   }
  ],
@@ -126,7 +126,7 @@
     -28.7,
     -8.0
    ],
-   "got": -17.6,
+   "got": -17.63,
    "passed": true
   },
   {
@@ -152,6 +152,202 @@
  "impulses": [
   {
    "t": 0.002,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.00325,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.00425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.005,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0085,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.012,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0135,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0155,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02175,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02225,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02325,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02375,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02875,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.03075,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.03175,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0325,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0385,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.03925,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0485,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0535,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.05425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.05775,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.059,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0655,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.07425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.08175,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0825,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.08825,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0895,
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 0.0,
@@ -239,7 +435,7 @@
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 35.0,
-   "dv": 52.5
+   "dv": 52.4
   },
   {
    "t": 0.26225,
@@ -288,7 +484,7 @@
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 29.8,
-   "dv": 44.6
+   "dv": 44.7
   },
   {
    "t": 0.27625,
@@ -434,7 +630,7 @@
  "walls": [],
  "goal_line": {
   "goal": "E",
-  "crossing_y_mm": -17.6,
+  "crossing_y_mm": -17.63,
   "inside_mouth_window_y_mm": [
    -28.7,
    29.8

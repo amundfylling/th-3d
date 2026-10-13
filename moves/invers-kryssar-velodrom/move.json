@@ -22,7 +22,7 @@
  "approved_reading": "validation/ikv-sketch.png (user: 'The picture is correct', 2026-10-06)",
  "window_s": [
   0.0,
-  2.35
+  2.45
  ],
  "physics": {
   "restitution_figure": 0.5
@@ -63,26 +63,26 @@
       "start position"
      ],
      [
-      1.5,
+      1.482,
       140.0,
       "starts down the slot"
      ]
     ],
     "moves": [
      [
-      1.5,
-      1.825,
+      1.482,
+      1.807,
       140.0,
       0.0,
       99.0,
-      -450.0,
+      -562.5,
       "down the slot ahead of the arriving puck"
      ],
      [
-      1.825,
-      1.945,
+      1.807,
+      1.927,
       99.0,
-      -450.0,
+      -562.5,
       72.0,
       0.0,
       "giving way as the puck arrives, then stopping"
@@ -101,17 +101,18 @@
       1.0,
       0.4,
       20.0,
-      204.0
+      192.0
      ],
      [
-      1.825,
-      0.06,
-      204.0,
-      275.0
+      1.807,
+      0.12,
+      192.0,
+      293.0
      ]
     ]
    },
-   "note": "Pass: the puck rests against the front of the blade; a clockwise turn 72 -> 20 deg pushes it across the ice (sustained contact, no strike). Then the right wing turns round (counter-clockwise to 204 deg) and, as the puck comes along the -y board, slides down his slot ahead of it at 450 mm/s, so it catches him up softly on the back of the blade; a counter-clockwise turn 204 -> 275 deg pushes it into the goal (first-time: it is never stopped)."
+   "note": "Pass: the puck rests against the front of the blade; a clockwise turn 72 -> 20 deg pushes it across the ice (sustained contact, no strike). Then the right wing turns round (counter-clockwise to 204 deg) and, as the puck comes along the -y board, slides down his slot ahead of it at 450 mm/s, so it catches him up softly on the back of the blade; a counter-clockwise turn 204 -> 275 deg pushes it into the goal (first-time: it is never stopped).",
+   "note_2026_10_12": "Re-timed for the STL skater (its blade reaches about 4 mm further out, so the old slide met the puck early and hard): the slide starts 18 ms earlier at 1.25x the speed (562 mm/s), the right wing faces 192 deg while sliding and turns 192 -> 293 deg in 120 ms for the shot. Found by a differential-evolution search over these five values against the goal and the slide-rule limits."
   },
   "W-LW": {
    "status": "moving: soft reception, then a forward push along its slot into the corner (designed)",
@@ -177,7 +178,7 @@
     "turns": [
      [
       0.48,
-      0.2,
+      0.24,
       -90.0,
       0.0
      ],
@@ -190,7 +191,8 @@
     ]
    },
    "follow_tangent_from_s": 0.68,
-   "note": "Reception: the left wing faces the pass (theta -90: front of the blade toward the right wing) and turns counter-clockwise to face forward (0) as the puck arrives, so the blade gives way; the puck runs on to the board at a glancing angle. Push: facing forward, he skates up his slot behind the puck and through the curve of the corner; from 0.68 s he turns the figure with the slot (the blade stays square to the curved board; 3.29 deg = the slot direction at the start of the follow, so the blade ends square to the end board). He slows down behind the goal and the puck runs on along the end board (the velodrome)."
+   "note": "Reception: the left wing faces the pass (theta -90: front of the blade toward the right wing) and turns counter-clockwise to face forward (0) as the puck arrives, so the blade gives way; the puck runs on to the board at a glancing angle. Push: facing forward, he skates up his slot behind the puck and through the curve of the corner; from 0.68 s he turns the figure with the slot (the blade stays square to the curved board; 3.29 deg = the slot direction at the start of the follow, so the blade ends square to the end board). He slows down behind the goal and the puck runs on along the end board (the velodrome).",
+   "note_2026_10_12": "Re-timed for the STL skater: the reception turn -90 -> 0 deg lasts 240 ms (was 200 ms), so the puck again runs on to the board at a glancing angle."
   },
   "W-C": {
    "static": {

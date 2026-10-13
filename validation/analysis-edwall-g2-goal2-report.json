@@ -13,12 +13,12 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
  },
  "trace": {
   "trace_id": "trace.edwall-g2-goal2.v1",
   "status": "proposed",
-  "sha256": "5ee42cb9fa040048db0ec815942f070011564d3beb11df335cdce68f1b4ecf78"
+  "sha256": "d55be0144bc55d1780d85bf3e289a881a80aeb2f9aa4b9360a6a51d490264a97"
  },
  "analysis_spec": {
   "analysis_id": "analysis.edwall-g2-goal2.v1",
@@ -27,7 +27,7 @@
    "remotion/EdwallAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "composition_sha256": "61497d2c759971d928688804e645d7fb70994162669732c30db503e60bb9fa8c"
+  "composition_sha256": "a0034fcf82038cf61665ad6e9a4f389fb285487cee2a68e80be6d0c0d54794c8"
  },
  "output": {
   "path": "validation/analysis-edwall-g2-goal2.mp4",
@@ -59,10 +59,10 @@
     "duration": "17.600000"
    }
   },
-  "bytes": 8699320,
-  "megabytes": 8.7,
+  "bytes": 8575949,
+  "megabytes": 8.58,
   "below_25_mb": true,
-  "sha256": "c02afd02cb6312de3ec95964b391ed63a7642d396634b3b12498b1ae25baa0d7"
+  "sha256": "ee8ac7d0ad07f51878a950394b19f9c6202007e60b5f0db30e9868394816fdb8"
  },
  "checks": {
   "frames_logged": 528,
@@ -71,5 +71,5 @@
   "camera_frames_logged": 528,
   "camera_max_diff_vs_track": 0.0049
  },
- "render_seconds": 4503
+ "render_seconds": 2907
 }

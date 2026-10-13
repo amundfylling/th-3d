@@ -407,6 +407,21 @@
   18/63, median 10 vs 34 mm where a position exists, last 2 s before goals 7/10 vs 1/10. Both tracks still report a puck
   the user could not see in about 2/3 of the "none" frames (next: the detector's false alarms). Taps mark the visible
   puck centre, scored after moving them up the documented 8.8 px. Edwall videos not re-rendered.
+- **Skater from a Thingiverse STL (2026-10-12, `docs/skater-stl.md`, PROPOSED):** the user supplied "STIGA HOCKEY
+  PLAYER" by MAVRIS (thing:6898521, CC BY-SA; `references/models/thingiverse-6898521/`). It is the same mold as the user's
+  skater and fits the turntable frames much better than the parametric mold (mean IoU 0.932 / 0.922 / 0.904 vs
+  0.819 / 0.807 / 0.805, fitting / former held-out / regression views). New assets `assets/figures/skater_stl_{SWE,FIN}.glb`
+  beside the parametric ones (body = STL, colours voted from the turntable frames, traced wire stick and blade kept in
+  mm). Size: the STL file's own **56.85 mm** (user decision 2026-10-12; overhead fit with this shape 57.4 mm, parametric
+  51.1 mm, catalog approx. 57 mm). `npm run players:stl`.
+- **Switched to the STL skater (user: "Switch now", 2026-10-12, docs/skater-stl.md "Switch"):** `data/figure-molds.json`
+  skater `mesh_source` = `data/figures/skater-stl.json`; `skater_{SWE,FIN}.glb`, `out/figures/skater.npz`, geometry
+  contacts, contact footprints, the scene GLBs and the Remotion manifest rebuilt. Every saved trace re-run: Shovel, spjass,
+  defence, Hjerpefinte, Edwall goal 2 pass unchanged; Näcka (shot re-aimed), IKV v2 (reception and shot re-timed, window
+  2.45 s, wide cameras raised) and Edwall goals 3 and 4 (refitted) changed to pass again. All analysis videos, the Shovel
+  final, Hjerpefinte and the Edwall videos re-rendered in the NBHF theme (branch claude/puck-no-theme-4m6mqy merged in).
+  Not rechecked: IKV v3 (PR #9) and Hjerpefinte v2 (PR #12) on other branches; the NM26 analysis (reads skater.npz reach,
+  not rebuilt).
 - **Combination video workflow (2026-10-12, branch `claude/combo-video-workflow-j0piia`, not merged, PROPOSED;
   `docs/video-workflow.md`):** one command `scripts/video.ts` (list / stills / draft / final / scene-cache / probe-scenes)
   for all analysis videos, with automatic review stills, segment and frame ranges, low-res drafts, several targets per
@@ -426,6 +441,13 @@
   on the Hjerpe threat), so the right corner opens only as the centre shoots. Turn 60 ms and a 20 mm step keep the longer
   shot at 692 mm/s. All contact, slide and expectation checks pass; robust 11/11. The video gains a "feint" freeze. Blue
   line position, goalie cover position and slide timing ASSUMED (`moves/hjerpefinte/move.json` limitations).
+- **All open PRs merged (2026-10-13, thread "Merge all open PRs"):** #11 models, #10 NM26 puck v2, #9 IKV v3, #14 video
+  workflow, #12 Hjerpefinte v2, #13 STL skater, in that order, each by merging main into its branch. Hjerpefinte keeps the
+  2026-10-12 user revision (#14), with #12's goalie-timing robustness variants ported to it (18/18), and is rebuilt on the
+  STL skater (checks pass, puck within 0.06 mm of the parametric build); its video is re-rendered in the nbhf theme.
+  The overlay default theme is `nbhf` (every STL re-render uses it). IKV v3 does not build on the STL skater (meet
+  `lw_push` fails); its parametric-skater outputs are in `validation/moves/invers-kryssar-velodrom-v3-parametric-skater/`
+  and it needs its meets redone.
 - **Moves that meet the puck where it really is (2026-10-11, branch `claude/robust-moves-5yergg`, PROPOSED,
   `docs/shot-encyclopedia.md` section 4b):** the move engine gains meets (a figure's keys are solved from where the
   puck really goes) and controls (`aimed_push`: a figure steers a push tick by tick), a margin sweep (`--margins`) and a
@@ -553,6 +575,8 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **Skater from the STL (2026-10-12, PROPOSED):** `validation/players/stl/figures-vs-photos.png`, `figures-views.png`,
+  `paint-check.png`, `skater-fit.png`, `overhead-fit.png`; report `validation/players/stl/figures-report.json`.
 - **NM26 new tracks (2026-10-10, PROPOSED):** `docs/nm26-new-tracks.md`, tap page https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp
   (`validation/tap-review/`), `validation/nm26-track-switch.json`, `validation/edwall-g2-goal3-trace.png`, `validation/replays/`.
 - **Batch 2026-10-10 (all PROPOSED):** `validation/analysis-edwall-g2-goal{2,3,4}.mp4` (with `-review.jpg`,

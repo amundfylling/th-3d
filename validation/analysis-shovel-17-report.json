@@ -2,7 +2,7 @@
  "analysis": "#17 The Shovel - sports-analysis video",
  "composition": "analysis-shovel-17",
  "versions": {
-  "node": "v22.22.2",
+  "node": "v22.22.0",
   "remotion": "4.0.531",
   "@remotion/three": "4.0.531",
   "three": "0.186.1",
@@ -13,24 +13,24 @@
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
  },
  "trace": {
   "trace_id": "trace.shovel-17.v2",
   "status": "accepted",
-  "sha256": "89eb5b16212c467b588116c3c628656e7ad635a687685118fd16a0e9d97f70d2"
+  "sha256": "ed4de6f309d1b3b68c045fc323349c02f1cd9ffd8b6252f285f223d9265011d8"
  },
  "analysis_spec": {
   "analysis_id": "analysis.shovel-17.v1",
   "sha256": "7903d36ea22b69459e1d3cfb04328c69d2cd94c31ea896008b74a7ace38636a3",
-  "composition_sha256": "e3342e4e3ed95190587ee3cab8f38540db929ea1d92e5f3e00a1d9f8297c878c",
   "composition_files": [
    "remotion/ShotAnalysis.tsx",
    "remotion/AnalysisVideo.tsx",
    "remotion/SceneLayer.tsx",
    "remotion/ShotScene.tsx",
    "remotion/theme.ts"
-  ]
+  ],
+  "composition_sha256": "ad8d5e8f2550b1b3c3aef91d300b8faa5a8849bb00f2f96af104d11b6886f947"
  },
  "output": {
   "path": "validation/analysis-shovel-17.mp4",
@@ -62,10 +62,10 @@
     "duration": "24.933333"
    }
   },
-  "bytes": 12144395,
-  "megabytes": 12.14,
+  "bytes": 12070109,
+  "megabytes": 12.07,
   "below_25_mb": true,
-  "sha256": "194a50a7c77654104be0c94e4697aef7f2d0ac96cd91fc3f666d0ba212c14b78"
+  "sha256": "05818d8f92c12db27245add1ad59af347a00c803c3f14b91dc1a25a059952cfb"
  },
  "checks": {
   "frames_logged": 748,
@@ -74,30 +74,16 @@
   "camera_frames_logged": 748,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 3962,
+ "render_seconds": 3965,
  "composition_refactor": {
-  "date": "2026-10-12",
-  "change": "shared renderer split for the video workflow (docs/video-workflow.md): remotion/SceneLayer.tsx (scene layer, camera rig) out of AnalysisVideo.tsx, ShotScene.tsx clones the cached GLTF scene per mount and resets the figures every frame (no pose leak between compositions), remotion/theme.ts (overlay theme, default classic), optional frameMap/sceneSrc props (scene cache)",
+  "date": "2026-10-13",
+  "change": "merge of the video workflow (PR #14: remotion/SceneLayer.tsx split out of AnalysisVideo.tsx, ShotScene.tsx clones the scene per mount, frameMap/sceneSrc props, classic-only overlay tweaks) into the STL-skater branch (PR #13) this video was rendered on; default theme stays nbhf",
   "previous_composition_files": [
    "remotion/ShotAnalysis.tsx",
    "remotion/AnalysisVideo.tsx"
   ],
-  "previous_composition_sha256": "c06e5bbd4bbaf6544a7f21c2b3f586c8b2c71b1f76e96998d07f282330b143c0",
-  "verification": "frames 29, 187, 336, 448, 598, 725 rendered at scale 0.5 with the code before this change (commit 0b4caa2) and after it: PNG bytes identical for all six",
-  "video_rerendered": false,
-  "earlier": {
-   "date": "2026-10-06",
-   "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
-   "previous_composition_sha256": "7caf2f772ed0b165673adf92810da6521da040ad267deb732c2957f5c28fcf8a",
-   "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
-   "video_rerendered": false,
-   "earlier": {
-    "date": "2026-10-06",
-    "change": "remotion/ShotAnalysis.tsx split into the shared remotion/AnalysisVideo.tsx (used by analysis-spjass) and a Shovel config; no change in behaviour intended",
-    "previous_composition_sha256 (remotion/ShotAnalysis.tsx)": "676d5769f62fe4b32cccc36f908f4b93fcc4d3323a3ccb3732ab6e5896e99f2f",
-    "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 before and after the refactor (scripts/analysis-stills.ts): PNG bytes identical for all six",
-    "video_rerendered": false
-   }
-  }
+  "previous_composition_sha256": "bc691078f605358a1bf83be38a6bc3ec19a955ab1bb350c3ffb0b6292a2b6efe",
+  "verification": "frames 29, 187, 336, 448, 598, 725 rendered at scale 0.5 (swangle) with the STL-skater branch at commit 53c32b2 (scripts/analysis-stills.ts) and with the merged code (scripts/video.ts stills): pixels identical for all six (validation/video-workflow/stl-merge-identity.json)",
+  "video_rerendered": false
  }
 }

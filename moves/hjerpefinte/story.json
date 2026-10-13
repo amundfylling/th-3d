@@ -2,7 +2,7 @@
  "schema": "move-story/1",
  "move": "hjerpefinte",
  "note": "Presentation source of the Hjerpefinte video (scripts/shotlib/presentation.py). Editing it never changes the motion: regenerate with python3 scripts/build-move.py hjerpefinte --presentation.",
- "theme": "classic",
+ "theme": "nbhf",
  "title": "HJERPEFINTE",
  "subtitle": "Table hockey · centre feint · the goalie must expect a Hjerpe",
  "bug": "HJERPEFINTE",

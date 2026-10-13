@@ -163,7 +163,10 @@
    ]
   },
   "de_maxiter": 15,
-  "de_popsize": 6
+  "de_popsize": 15,
+  "de_maxiter_shot": 60,
+  "budget_note": "2026-10-12 (STL skater): the refit needed a larger search than goal 4 (pass maxiter 25, shot maxiter 60, popsize 15)",
+  "de_maxiter_pass": 25
  },
  "rw_return": {
   "duration_s": 0.12,
@@ -177,32 +180,32 @@
  "fitted": {
   "method": "two stages (scripts/edwall-trace.py --fit pass|shot), each a differential-evolution search inside fit.bounds and a Nelder-Mead polish: pass = the passer's rest rotation, lunge and turn against the puck readings (streak weight 0.15) and the slide-rule limits; shot = the shooter's lunge and turns against the goal window, the goal-line target and the slide-rule limits",
   "objective": {
-   "pass": 4618.24,
-   "shot": 2515.05
+   "pass": 1943.45,
+   "shot": 2691.41
   },
   "evaluations": {
-   "pass": 1174,
-   "shot": 1174
+   "pass": 3478,
+   "shot": 15766
   },
   "values": {
-   "rw_theta0": 234.62762,
-   "rw_t_lunge": 0.88692,
-   "rw_d_lunge": 0.12998,
-   "rw_lunge_mm": 104.515,
-   "rw_t_turn": 0.92478,
-   "rw_d_turn": 0.102,
-   "rw_turn_deg": 79.6811,
-   "rw_t_release": 0.93921,
-   "wc_t_lunge": 0.95484,
-   "wc_d_lunge": 0.17379,
-   "wc_theta0": 325.18664,
-   "wc_t_turn0": 1.06288,
-   "wc_d_turn0": 0.05615,
-   "wc_turn0_deg": 63.15829,
-   "wc_d_shot": 0.06054,
-   "wc_shot_deg": 20.34607,
-   "wc_t_release": 1.10503,
-   "wc_arc1": 248.954
+   "rw_theta0": 235.79505,
+   "rw_t_lunge": 0.87453,
+   "rw_d_lunge": 0.1349,
+   "rw_lunge_mm": 82.85748,
+   "rw_t_turn": 0.9275,
+   "rw_d_turn": 0.10363,
+   "rw_turn_deg": 79.98416,
+   "rw_t_release": 0.93584,
+   "wc_t_lunge": 1.02089,
+   "wc_d_lunge": 0.07826,
+   "wc_theta0": 312.84011,
+   "wc_t_turn0": 1.06085,
+   "wc_d_turn0": 0.06389,
+   "wc_turn0_deg": 19.02371,
+   "wc_d_shot": 0.09001,
+   "wc_shot_deg": -87.98782,
+   "wc_t_release": 1.09233,
+   "wc_arc1": 219.01247
   }
  },
  "limitations": [

@@ -5,14 +5,14 @@
  "variants_passed": "18/18",
  "robust": true,
  "goal_y_spread_mm": [
-  -17.69,
-  -17.38
+  -17.73,
+  -17.41
  ],
  "rows": [
   {
    "variant": "nominal",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -26,7 +26,7 @@
   {
    "variant": "geometry +0.001 mm (numerical conditioning)",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -40,7 +40,7 @@
   {
    "variant": "geometry -0.001 mm (numerical conditioning)",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.65,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -54,7 +54,7 @@
   {
    "variant": "figure footprint 2% larger (mold scale)",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -68,7 +68,7 @@
   {
    "variant": "figure footprint 2% smaller (mold scale)",
    "goal": "E",
-   "goal_y_mm": -17.61,
+   "goal_y_mm": -17.65,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -82,7 +82,7 @@
   {
    "variant": "puck start +0.2 mm x",
    "goal": "E",
-   "goal_y_mm": -17.62,
+   "goal_y_mm": -17.65,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -96,7 +96,7 @@
   {
    "variant": "puck start +0.2 mm y",
    "goal": "E",
-   "goal_y_mm": -17.38,
+   "goal_y_mm": -17.41,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -110,7 +110,7 @@
   {
    "variant": "ice friction +25%",
    "goal": "E",
-   "goal_y_mm": -17.52,
+   "goal_y_mm": -17.55,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -124,7 +124,7 @@
   {
    "variant": "ice friction -25%",
    "goal": "E",
-   "goal_y_mm": -17.69,
+   "goal_y_mm": -17.73,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -138,7 +138,7 @@
   {
    "variant": "restitution 0.3",
    "goal": "E",
-   "goal_y_mm": -17.59,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -152,7 +152,7 @@
   {
    "variant": "restitution 0.7",
    "goal": "E",
-   "goal_y_mm": -17.38,
+   "goal_y_mm": -17.41,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -166,7 +166,7 @@
   {
    "variant": "goalie reacts 0.05 s earlier",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -180,7 +180,7 @@
   {
    "variant": "goalie reacts 0.05 s later",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -194,7 +194,7 @@
   {
    "variant": "goalie reacts 0.10 s later",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -208,7 +208,7 @@
   {
    "variant": "goalie slides in 0.09 s",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -222,7 +222,7 @@
   {
    "variant": "goalie slides in 0.18 s",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -236,7 +236,7 @@
   {
    "variant": "goalie starts 6 mm nearer the centre (arc 39)",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
@@ -250,7 +250,7 @@
   {
    "variant": "goalie starts 6 mm further right (arc 51)",
    "goal": "E",
-   "goal_y_mm": -17.6,
+   "goal_y_mm": -17.63,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
