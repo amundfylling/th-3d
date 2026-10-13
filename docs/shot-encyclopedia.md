@@ -13,7 +13,7 @@ stays proposed.
 | Move files | `moves/<id>/move.json` | A move is data: figure keyframes and moves, the puck's start, named contacts, expectations, the video story. |
 | Build command | `scripts/build-move.py` | Builds in about 7 s on any Python with numpy, shapely and pillow; saves only if every check passes. |
 | Contact footprints | `data/figures/contact-footprints.json` (`scripts/shotlib/export_footprints.py`) | The figure geometry the puck can touch, exported once from the molds. No Blender or mesh files needed to build a move; one place to update when the figures are measured. Records the hashes of the mold data, the mesh-building code, the scale and puck files and the generated meshes; the engine and tests refuse a stale file. |
-| Robustness check | `scripts/shotlib/robustness.py`, `--robustness`, `--margins` | Reruns the move with each uncertain input changed and reports whether the goal and contact sequence hold; `--margins` finds how far each input can change. |
+| Robustness check | `scripts/shotlib/robustness.py`, `--robustness`, `--margins` | Reruns the move with each uncertain input changed and reports whether the goal and contact sequence hold; `--margins` finds how far each input can change. A move adds variants for its own assumptions in `moves/<id>/robustness-variants.json`. |
 | Meets and controls | `scripts/shotlib/build.py` (`solve_meets`), `scripts/shotlib/control.py` | A figure meets the puck where it really is (solved from a run without it) and can steer a push tick by tick (section 4b). |
 | Generated video | `scripts/shotlib/presentation.py`, `--video-spec`; `remotion/EncyclopediaAnalysis.tsx`, `remotion/encyclopedia-registry.ts` | The analysis video (same template as the five hand-made ones) from a short `story` block: timeline, slow-motion rates, camera views, chapters and graphics are derived from the trace. Composition `move-<id>`. |
 | Index | `data/encyclopedia/index.json` (`scripts/encyclopedia-index.py`) | All 121 NTHF combinations with their stage (not started, move file, trace, video), a family (keyword heuristic), NM26 goal count and a suggested build order. |
@@ -48,7 +48,7 @@ Changed shared files (small): `remotion/Root.tsx` (registers the `move-*` compos
 ```jsonc
 {
  "schema": "move-spec/1", "id": "hjerpefinte", "name": "...", "nthf": {"name": "Hjerpefinte", "player": "Centre", "level": 2},
- "trace_id": "trace.hjerpefinte.v1", "status": "proposed", "kind": "designed",
+ "trace_id": "trace.hjerpefinte.v2", "status": "proposed", "kind": "designed",
  "source_text": "...", "approved_reading": null, "window_s": [0.0, 0.7],
  "physics": {"restitution_figure": 0.5},                    // optional; defaults in scripts/shotlib/build.py
  "puck": {"start": {"against": "W-C", "local_mm": [-10.0, 26.8]}, "start_phase": "on_the_blade"},
@@ -97,7 +97,9 @@ blade to the right of the slot: the Hjerpe stance. The goalie covers the right s
 slides to the left post (y = +28 mm) from 0.22 s; at 0.25 s a 60 ms counter-clockwise turn (181 → 205°) with a 20 mm step
 pushes the puck from rest straight into the right corner it is leaving (goal line at y = −17.6 mm, 692 mm/s).
 - Checks: no overlap; one contact, a push of 39 small touches with a peak impact of 44 mm/s; no unexplained motion change.
-- Robust in 11 of 11 variants.
+- Robust in 18 of 18 variants; the goal-line crossing stays at y = −17.4 to −17.7 mm. Seven of them are the move's own
+  (`moves/hjerpefinte/robustness-variants.json`, ported 2026-10-13 from the 2026-10-11 version): the goalie reacting
+  0.05 s earlier or up to 0.10 s later, sliding in 0.09 or 0.18 s, starting 6 mm either side.
 - Video `validation/moves/hjerpefinte.mp4` (`npm run video:final -- move:hjerpefinte --cache`): set-up (goalie covers
   right), the feint (goalie bites), the shot, goal with the right corner open, replay.
 - Reading approved by the user (2026-10-10, `approved_reading`) and revised by the user (2026-10-12, `user_revision`):
@@ -113,6 +115,11 @@ pushes the puck from rest straight into the right corner it is leaving (goal lin
   moves on a fixed clock, and the frictionless restitution-0.5 push makes many micro-bounces whose pattern changes with
   tiny inputs. Errors grow along the chain until the right wing's shot meets the puck at the wrong time.
 - It was found when the first footprint export, rounded to 0.000001 mm, already changed IKV's outcome.
+- It is also machine-dependent (found 2026-10-12): on a later cloud container with the same code, data and Python
+  packages, both the original `scripts/ikv-trace.py` and the engine port miss the goal (the original stops with "no goal
+  or missing board contacts"; the port ends 90 mm from the saved trace). Last-bit floating-point differences between CPUs
+  are enough. The saved IKV trace and the equivalence report stay valid for the machine they were made on. Hjerpefinte v2
+  was built and checked on the new machine (11 of 11 variants), which is the kind of margin a move needs.
 - Reactive timing (the receivers start when the puck arrives, `triggers`) was tried on IKV and did not make it robust
   (0 of 11): the push chaos changes where the puck is, not only when.
 - Single-contact moves from rest (Hjerpefinte) are robust. The shovels and Edwall moves sit in between: a carry and a
@@ -214,7 +221,7 @@ Lindahl-innspill, Sørenfinte) and the level-3 ones (Direkteskudd, Lillstøvel, 
 
 ## 7. Open
 
-1. Accept the Hjerpefinte trace (its reading is approved), or correct how far the goalie leans.
+1. Accept the Hjerpefinte v2 trace (the 2026-10-12 user revision), or correct the goalie's timing.
 2. Should robustness be a hard gate for saving a move?
 3. IKV v3 (solved receptions, steered shot) is proposed beside v2. Should the next step steer the left wing too
    (section 4b), and should v3 replace v2 in the video once it holds?

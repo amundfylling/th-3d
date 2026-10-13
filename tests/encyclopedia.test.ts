@@ -77,6 +77,8 @@ for (const { dir, spec } of BUILT) {
     assert.equal(r.canonical, true);
     if (r.move_motion_sha256) assert.equal(r.move_motion_sha256, trace.source.move_motion_sha256, "motion changed since the robustness run");
     else assert.equal(r.move_file_sha256, sha(`moves/${dir}/move.json`), "move file changed since the robustness run");
+    const vp = `moves/${dir}/robustness-variants.json`;
+    assert.equal(r.move_variants_sha256 ?? null, existsSync(vp) ? sha(vp) : null, "move variants changed since the robustness run");
     // a move may declare that it is not robust yet (expect.robustness: the variants it must at least pass and why
     // the rest fail); the declaration is checked both ways, so a regression or an unrecorded improvement fails
     const declared = spec.expect?.robustness;
