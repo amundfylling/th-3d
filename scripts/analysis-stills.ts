@@ -1,26 +1,10 @@
-// Renders selected frames of the analysis composition (review / tuning).
-//   node scripts/analysis-stills.ts <scale> <frame> [<frame> ...]                ->  out/analysis/fNNN.png (analysis-shovel-17)
-//   COMP=analysis-spjass node scripts/analysis-stills.ts <scale> <frame> ...     ->  out/analysis-spjass/fNNN.png
-import { bundle } from "@remotion/bundler";
-import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
-import { mkdirSync } from "node:fs";
-import path from "node:path";
+// Kept for older notes: selected frames of an analysis composition as PNGs (scripts/video.ts stills does more).
+//   node scripts/analysis-stills.ts <scale> <frame> [<frame> ...]                ->  out/analysis/fNNNN.png (analysis-shovel-17)
+//   COMP=analysis-spjass node scripts/analysis-stills.ts <scale> <frame> ...     ->  out/analysis-spjass/fNNNN.png
+import { spawnSync } from "node:child_process";
 
-const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
-const [scaleArg, ...frameArgs] = process.argv.slice(2);
-const scale = Number(scaleArg ?? 0.5);
-const COMP = process.env.COMP ?? "analysis-shovel-17";
-const OUT_DIR = COMP === "analysis-shovel-17" ? "out/analysis" : `out/${COMP}`;
-mkdirSync(OUT_DIR, { recursive: true });
-const serveUrl = await bundle({ entryPoint: path.resolve("remotion/index.ts") });
-const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" } });
-const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" as const }, puppeteerInstance: browser };
-const comp = await selectComposition({ ...base, id: COMP, inputProps: { graphics: true } });
-console.log("composition", comp.durationInFrames, "frames");
-for (const f of frameArgs.map(Number)) {
-  const out = `${OUT_DIR}/f${String(f).padStart(3, "0")}.png`;
-  await renderStill({ ...base, composition: comp, frame: f, output: out, inputProps: { graphics: true }, scale,
-    onBrowserLog: (l) => { if (/Error|error|FAIL/.test(l.text)) console.log(l.text.slice(0, 300)); } });
-  console.log("wrote", out);
-}
-await browser.close({ silent: true });
+const [scale = "0.5", ...frames] = process.argv.slice(2);
+const comp = process.env.COMP ?? "analysis-shovel-17";
+const out = comp === "analysis-shovel-17" ? "out/analysis" : `out/${comp}`;
+const r = spawnSync(process.execPath, ["scripts/video.ts", "stills", comp, "--scale", scale, "--frames", frames.join(","), "--out", out], { stdio: "inherit" });
+process.exit(r.status ?? 1);

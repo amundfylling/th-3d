@@ -126,4 +126,5 @@ export const THEMES: Record<Theme["id"], Theme> = {
   },
 };
 
+// "nbhf" (puck.no) since the STL-skater re-renders of 2026-10-12; "classic" is the original dark broadcast look (opt in with `theme`).
 export const DEFAULT_THEME: Theme["id"] = "nbhf";

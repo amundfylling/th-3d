@@ -16,8 +16,12 @@ import path from "node:path";
 import { analysisFrame, resolveAnalysis, type AnalysisSpec } from "../src/model/analysis.ts";
 import { shotTimeEvaluator } from "../src/model/shot-pose.ts";
 import type { ShotTrace } from "../src/model/trace.ts";
+import { resolveRenderEnv } from "./video/render-env.ts";
 
-const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
+// browser and GL backend: scripts/video/render-env.ts (--browser/--gl there; REMOTION_BROWSER_EXECUTABLE / REMOTION_GL here)
+const RENDER_ENV = await resolveRenderEnv();
+const BROWSER = RENDER_ENV.browserExecutable;
+const GL_LABEL = RENDER_ENV.gl === "swangle" ? "swangle (SwiftShader, CPU)" : `${RENDER_ENV.gl} (WebGL renderer not verified by this script)`;
 const VIDEOS = Object.fromEntries((["g2-goal2", "g2-goal3", "g2-goal4"] as const).map((g, i) => [g, {
   composition: `analysis-edwall-${g}`, spec: `data/presentations/edwall-${g}.analysis.json`, trace: `data/traces/edwall-${g}.trace.json`,
   files: ["remotion/EdwallAnalysis.tsx", "remotion/AnalysisVideo.tsx"], tag: `edwall${i + 1}`, out: `validation/analysis-edwall-${g}.mp4`,
@@ -57,8 +61,8 @@ function pure(frame: number): Omit<Logged, "frame" | "readback_max_diff"> {
 }
 
 const serveUrl = await bundle({ entryPoint: path.resolve("remotion/edwall-index.ts") });
-const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" } });
-const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" as const }, puppeteerInstance: browser };
+const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions });
+const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions, puppeteerInstance: browser };
 const comp = await selectComposition({ ...base, id: COMPOSITION, inputProps: { graphics: true } });
 
 const states = new Map<number, Logged>();
@@ -89,7 +93,7 @@ const report = {
   composition: COMPOSITION,
   versions: {
     node: process.version, remotion: ver("remotion"), "@remotion/three": ver("@remotion/three"), three: ver("three"), "@react-three/fiber": ver("@react-three/fiber"),
-    react: ver("react"), browser: `chrome-headless-shell ${execFileSync(BROWSER, ["--version"], { encoding: "utf8" }).trim()}`, gl: "swangle (SwiftShader, CPU)",
+    react: ver("react"), browser: `chrome-headless-shell ${execFileSync(BROWSER, ["--version"], { encoding: "utf8" }).trim()}`, gl: GL_LABEL,
   },
   model: { geometry_version: geometry.geometry_version, scene_glb_sha256: manifest.scene_glb.sha256 },
   trace: { trace_id: trace.trace_id, status: trace.status, sha256: sha(V.trace) },

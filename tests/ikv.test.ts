@@ -99,7 +99,7 @@ test("invers kryssar med velodrom analysis: 1080p, readable chapters, smooth cam
 });
 
 test("invers kryssar med velodrom analysis: composition registered, export report matches", (t) => {
-  assert.match(read("remotion/Root.tsx"), /id="analysis-ikv"/);
+  assert.match(read("remotion/analysis-videos.ts"), /id: "analysis-ikv"/);  // registered by Root.tsx from this list
   assert.match(read("remotion/IkvAnalysis.tsx"), /allowProposed: true/);
   const p = "validation/analysis-ikv-report.json";
   if (!existsSync(p)) return t.skip("no export yet (npm run video:analysis-ikv)");

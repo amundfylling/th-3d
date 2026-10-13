@@ -32,15 +32,24 @@ Output: data/games/nm26-semifinal/<game>/passes.json.
    - carry: same skater, or a short flight;
    - loose: no skater can reach the reception point.
 """
+import os
 import sys
 
 import numpy as np
 from shapely.geometry import LineString, Point, Polygon
 
 from nm26_common import CFG, FPS, REPO, game_dir, load, save
-from nm26_tracks import PUCK_TRACK, puck_path
+import nm26_tracks
+from nm26_tracks import puck_path
 
 GAME = sys.argv[1] if len(sys.argv) > 1 else "g1"
+# `--track <file> --out <file>` (or $NM26_PUCK_TRACK, $NM26_PASSES_OUT): another puck track in, another file out, for a
+# track that is not (yet) the analysis input, e.g. `g1 --track puck-track-synth-v2.json --out passes-synth-v2.json`
+# (docs/synthetic-puck.md section 8). Kept out of the docstring: it is copied into every passes.json as "definition".
+_A = sys.argv[2:]
+if "--track" in _A: nm26_tracks.PUCK_TRACK = _A[_A.index("--track") + 1]
+PUCK_TRACK = nm26_tracks.PUCK_TRACK
+PASSES_OUT = _A[_A.index("--out") + 1] if "--out" in _A else os.environ.get("NM26_PASSES_OUT", "passes.json")
 MAX_GAP, MIN_SPEED, SIMPLIFY_MM, NEAR_BOARD_MM = 3, 300.0, 15.0, 40.0
 LINE_TOL_MM, CONTEST_MM, MIN_FLIGHT_MM = 20.0, 15.0, 60.0
 MIN_TURN_DEG, BATTLE_MM, SHOT_REACH_MM = 30.0, 150.0, 150.0
@@ -247,7 +256,7 @@ summary = {k: sum(1 for e in events if e["kind"] == k) for k in kinds}
 by_player = {pl: {"passes": sum(1 for e in events if e["kind"] == "pass" and e["player_from"] == pl),
                   "shots": sum(1 for e in events if e["kind"] == "shot" and e["player_from"] == pl),
                   "turnovers_lost": sum(1 for e in events if e["kind"] == "turnover" and e["player_from"] == pl)} for pl in TEAM.values()}
-save(game_dir(GAME) / "passes.json", {
+save(game_dir(GAME) / PASSES_OUT, {
     "description": "Flights of the puck classified as passes, shots, turnovers, carries and loose pucks (scripts/nm26-passes.py). Video seconds. PROPOSED: definitions assumed, to be confirmed by the user.",
     "puck_track": PUCK_TRACK,
     "definition": __doc__.split("\n\n", 1)[1].strip(),

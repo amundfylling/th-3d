@@ -7,7 +7,7 @@
   "player": "Centre",
   "level": 2
  },
- "trace_id": "trace.hjerpefinte.v1",
+ "trace_id": "trace.hjerpefinte.v2",
  "status": "proposed",
  "kind": "designed",
  "source_text": "Center starts with the puck out on the blade to the right of the slot, and shoots directly into the right corner. Only works against a goalie expecting a Hjerpe",
@@ -20,10 +20,10 @@
   "text": "Yes, but the trick is that you can do a hjerpe from the same position. So you are dependent on the goalie predicting a hjerpe and opening up the right corner",
   "applies_to": "the reading (set-up, ccw push into the right corner, goalie opening the right corner); the trace stays proposed"
  },
- "reading": "DESIGNED by Claude as the first move of the move engine; the reading was approved by the user on 2026-10-10 (approved_reading): a Hjerpe can be played from the same position, so the feint relies on the goalie predicting the Hjerpe and opening the right corner. The centre stands at the front of its slot with its back to the goal (the Näcka/spjass set-up), the puck resting against the blade on the right (-y) of the slot. A counter-clockwise turn with a short step up the slot pushes the puck from rest (a push, not a strike: CLAUDE.md 'Slide or bounce') into the right corner, while the goalie leans to the left post expecting the Hjerpe.",
+ "reading": "DESIGNED by Claude; reading approved by the user on 2026-10-10 (approved_reading) and revised on 2026-10-12 (user_revision). The centre stands in its slot about one puck diameter in front of the E blue line, back to the goal, the puck resting against the blade on the right (-y): the Hjerpe stance, from which the puck can also be carried round to the left. The goalie covers the right side. Reading a Hjerpe, it slides to the left post just as the centre turns counter-clockwise with a short step and pushes the puck from rest (a push, not a strike: CLAUDE.md 'Slide or bounce') straight into the right corner it has just opened.",
  "window_s": [
   0.0,
-  0.7
+  1.1
  ],
  "puck": {
   "start": {
@@ -43,24 +43,24 @@
     "keys": [
      [
       0.0,
-      232.0,
-      "front of the slot, as the Näcka shot (248.9 mm at contact) minus the step"
+      184.0,
+      "one puck diameter in front of the E blue line (user, 2026-10-12): puck near edge about 25 mm ahead of the line"
      ],
      [
-      0.1,
-      232.0,
-      "waits"
+      0.25,
+      184.0,
+      "waits in the Hjerpe stance"
      ]
     ],
     "moves": [
      [
-      0.1,
-      0.2,
-      232.0,
+      0.25,
+      0.35,
+      184.0,
       0.0,
-      246.0,
+      204.0,
       0.0,
-      "short step up the slot with the shot"
+      "step of 20 mm up the slot with the shot (a longer, faster push than v1: the shot is 48 mm longer)"
      ]
     ]
    },
@@ -68,8 +68,8 @@
     "start": 181.0,
     "turns": [
      [
-      0.1,
-      0.07,
+      0.25,
+      0.06,
       181.0,
       205.0,
       "counter-clockwise turn: the blade pushes the puck from rest toward the right corner"
@@ -78,18 +78,47 @@
    }
   },
   "E-G": {
-   "static": {
-    "y_mm": 28.0,
-    "theta_deg": 0.0,
-    "why": "leans to the left post, predicting the Hjerpe and opening the right corner (the lean: user-approved reading; y = +28 mm of its slot's +33: ASSUMED)"
+   "status": "moving: goalie reading the Hjerpe (designed)",
+   "arc": {
+    "keys": [
+     [
+      0.0,
+      45.0,
+      "covers the right side (y = -12 mm): the straight shot is closed"
+     ],
+     [
+      0.22,
+      45.0,
+      "holds"
+     ]
+    ],
+    "moves": [
+     [
+      0.22,
+      0.34,
+      45.0,
+      0.0,
+      5.0,
+      0.0,
+      "bites on the Hjerpe threat: slides to the left post (y = +28 mm) as the centre shoots, opening the right corner"
+     ]
+    ]
+   },
+   "theta": {
+    "start": 0.0
    }
   }
  },
  "events": [
   {
    "id": "turn.onset",
-   "t": 0.1,
+   "t": 0.25,
    "why": "the centre starts the counter-clockwise turn"
+  },
+  {
+   "id": "goalie.bites",
+   "t": 0.22,
+   "why": "the goalie reads a Hjerpe and starts to slide to the left post"
   }
  ],
  "contacts": [
@@ -115,42 +144,17 @@
   ]
  },
  "limitations": [
-  "No recording: the whole move is DESIGNED from the one-line NTHF text; the user approved the reading on 2026-10-10.",
-  "Set-up borrowed from trace.nacka.v1 (centre at the front of its slot, back to the goal); how far the goalie leans (y = +28 mm) is assumed.",
+  "No recording: the whole move is DESIGNED from the one-line NTHF text and the user's description (2026-10-10, 2026-10-12).",
+  "The blue line position (x = 95 mm) comes from the preview overhead mapping (data/geometry.json image_to_world, ASSUMED scale); 'one puck distance in front' is read as the puck's near edge about one diameter ahead of the line.",
+  "The goalie's covering position (y = -12 mm), the timing of its slide (0.22-0.34 s, starting 30 ms before the turn) and its end position (y = +28 mm) are ASSUMED.",
+  "The centre's fake is the stance only (no separate fake movement): the goalie reacts to the Hjerpe threat.",
   "Contact rules, ice friction and figure geometry as every move-engine trace (scripts/shotlib): restitution 0.5 assumed, friction from the spjass fit, AI-modelled molds at the preview scale."
  ],
- "tuning": "Turn angles, duration and step chosen with scripts/build-move.py --quick scans (2026-10-10): 181 -> 205 deg in 70 ms with a 14 mm step puts the shot 19 mm right of centre without touching the goalie; the release is a push of about 45-65 small touches.",
- "story": {
-  "title": "HJERPEFINTE",
-  "subtitle": "Table hockey · centre feint · designed from the NTHF description",
-  "bug": "HJERPEFINTE",
-  "end_steps": [
-   "PUCK OUT ON THE BLADE",
-   "GOALIE EXPECTS THE HJERPE",
-   "PUSH SHOT, RIGHT CORNER"
-  ],
-  "setup": {
-   "title": "THE SET-UP",
-   "text": "Back to the goal, puck out on the blade. A Hjerpe can come from the same stance, so the goalie covers it and opens the right corner.",
-   "highlight": {
-    "W-C": "CENTRE",
-    "E-G": "GOALIE"
-   },
-   "puck_label": "PUCK ON THE BLADE"
-  },
-  "beats": [
-   {
-    "contact": "shot",
-    "title": "THE SHOT",
-    "text": "He turns counter-clockwise and pushes the puck straight into the right corner.",
-    "label": "SHOT · BLADE PUSH",
-    "turn": {
-     "figure": "W-C",
-     "event": "turn.onset",
-     "direction": "ccw",
-     "label": "TURN"
-    }
-   }
-  ]
+ "tuning": "v2 (2026-10-12), scripts/build-move.py --quick scans: from 48 mm further back the v1 push (181 -> 205 deg in 70 ms, 14 mm step) scores but reaches the net too slowly to stay robust under +25% ice friction; 181 -> 205 deg in 60 ms with a 20 mm step gives 692 mm/s, the right corner at y = -17.6 mm, a push of 39 small touches (peak 44 mm/s) and 11/11 robustness variants.",
+ "user_revision": {
+  "by": "Amund",
+  "date": "2026-10-12",
+  "text": "The hjerpefinte only works when the goalie expects a hjerpe. Now it leaves the room open the entire time which does not make sense in real life. I want the video to emphasise that you need to make the opponent think you do a hjerpe and then shoot it straight. The goalie should cover the side and then open it as the center shoots. Also it must start a bit further back, maybe one puck distance in front of the blue line",
+  "applied": "v2: the centre starts at arc 184 mm (puck centre x = 136 mm, about one puck diameter in front of the E blue line at x = 95 mm, preview scale); the goalie covers the right side (y = -12 mm) and slides to the left post (y = +28 mm) from 0.22 s, just before the shot at 0.25 s; turn 60 ms and step 20 mm so the longer shot keeps its speed."
  }
 }

@@ -21,6 +21,17 @@ Older files may give a turn without `why` and `theta.segments` instead of `theta
 Reactive timing: any start time (a key's t, a move's t0, a turn's t_start, follow_tangent_from_s) may instead be
 {"trigger": name, "offset": s}, and a move's end {"dur": s}: the figure then starts when something happens to the puck,
 as a player reacts (scripts/shotlib/build.py resolves the triggers by re-running the puck until they settle).
+
+Solved meets (`meets` in the move file, scripts/shotlib/build.py solve_meets): the figure meets the puck where the puck
+really is. A meet names a point on the figure (local mm) where the puck centre must be at the meet; the build finds the
+time and slot position at which that holds on the puck's actual path. Values may then refer to the meet:
+- a time {"meet": name, "offset": s} (the meet time plus offset);
+- an arc {"meet": name, "offset": mm} (the slot position at the meet plus offset);
+- a slot speed {"meet": name, "puck_along_slot": true, "scale": k, "offset": mm/s} (k times the puck's velocity along
+  the slot at the meet, plus offset: e.g. a give-way or a push that starts just faster than the puck slides).
+
+Controlled contacts (`controls`, scripts/shotlib/control.py) take a figure over from the design for one contact; the
+design goes on from where the controller left the figure: a time, arc or heading {"control_end": pid, "offset": x}.
 """
 import numpy as np
 
@@ -33,28 +44,59 @@ def smooth(u):
 
 
 TRIG = {}  # resolved trigger times (s), set by build.simulate
+MEET = {}  # solved meets: name -> {"t", "arc_mm", "puck_along_slot_mm_s"}, set by build.solve_meets
+CTRL_END = {}  # where a controlled figure was left: pid -> {"t", "arc_mm", "theta_deg"}, set by scripts/shotlib/control.py
 
 
 def tv(x, start=None):
-    """A time value: a number, {"trigger": name, "offset": s} or, for an end, {"dur": s} after `start`."""
+    """A time value: a number, {"trigger": name, "offset": s}, {"meet": name, "offset": s} or, for an end, {"dur": s}
+    after `start`."""
     if isinstance(x, dict):
         if "dur" in x:
             return start + x["dur"]
+        if "meet" in x:
+            return MEET[x["meet"]]["t"] + x.get("offset", 0.0)
+        if "control_end" in x:
+            return CTRL_END[x["control_end"]]["t"] + x.get("offset", 0.0)
         return TRIG[x["trigger"]] + x.get("offset", 0.0)
+    return x
+
+
+def thv(x):
+    """A heading value (deg): a number or {"control_end": pid, "offset": deg} (where the controller left it)."""
+    if isinstance(x, dict):
+        return CTRL_END[x["control_end"]]["theta_deg"] + x.get("offset", 0.0)
+    return x
+
+
+def av(x):
+    """An arc value (mm): a number or {"meet": name, "offset": mm}."""
+    if isinstance(x, dict):
+        if "control_end" in x:
+            return CTRL_END[x["control_end"]]["arc_mm"] + x.get("offset", 0.0)
+        return MEET[x["meet"]]["arc_mm"] + x.get("offset", 0.0)
+    return x
+
+
+def vv(x):
+    """A slot speed (mm/s): a number or {"meet": name, "puck_along_slot": true, "scale": k, "offset": mm/s}."""
+    if isinstance(x, dict):
+        m = MEET[x["meet"]]
+        return x.get("scale", 1.0) * (m["puck_along_slot_mm_s"] if x.get("puck_along_slot") else 0.0) + x.get("offset", 0.0)
     return x
 
 
 def _turns(th):
     segs = th.get("turns", th.get("segments", []))
-    return [[tv(s[0])] + list(s[1:4]) + [s[4] if len(s) > 4 else "designed turn"] for s in segs]
+    return [[tv(s[0]), s[1], thv(s[2]), thv(s[3])] + [s[4] if len(s) > 4 else "designed turn"] for s in segs]
 
 
 def theta_keys(th, t0):
     """Theta keyframes: holds and smootherstep turns, sampled every 2 ms (scripts/ikv-trace.py theta_track)."""
     segs = _turns(th)
     if not segs:
-        return [{"t": t0, "theta_deg": th["start"], "sigma_deg": None, "source": "designed: held"}]
-    ks = [(t0, th.get("start", segs[0][2]), "designed: start heading")]
+        return [{"t": t0, "theta_deg": thv(th["start"]), "sigma_deg": None, "source": "designed: held"}]
+    ks = [(t0, thv(th.get("start", segs[0][2])), "designed: start heading")]
     for ts, d, a, b, why in segs:
         ks.append((ts, a, "designed: " + why))
         n = max(2, int(round(d / 0.002)))
@@ -77,11 +119,15 @@ def quintic(t0, t1, a0, v0, a1, v1, dt=0.005):
 
 
 def arc_keys(arc):
-    ks = [{"t": tv(k[0]), "arc_mm": k[1], "sigma_mm": None, "source": "designed: " + (k[2] if len(k) > 2 else "held")} for k in arc.get("keys", [])]
+    ks = [{"t": round(tv(k[0]), 5), "arc_mm": round(av(k[1]), 4), "sigma_mm": None, "source": "designed: " + (k[2] if len(k) > 2 else "held")} for k in arc.get("keys", [])]
     for t0_, t1_, a0, v0, a1, v1, *why in arc.get("moves", []):
         t0_ = tv(t0_); t1_ = tv(t1_, t0_)
-        ks += [{"t": t, "arc_mm": a, "sigma_mm": None, "source": "designed: " + (why[0] if why else "slot move")} for t, a in quintic(t0_, t1_, a0, v0, a1, v1)]
-    return sorted(ks, key=lambda k: k["t"])
+        ks += [{"t": t, "arc_mm": a, "sigma_mm": None, "source": "designed: " + (why[0] if why else "slot move")} for t, a in quintic(t0_, t1_, av(a0), vv(v0), av(a1), vv(v1))]
+    ks = sorted(ks, key=lambda k: k["t"])
+    for a, b in zip(ks, ks[1:]):
+        if b["t"] <= a["t"]:
+            raise ValueError(f"arc keys out of order or repeated at t = {b['t']} s (a meet moved a key past another one)")
+    return ks
 
 
 def build_figure(pid, spec, t0, t1):

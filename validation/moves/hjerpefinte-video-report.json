@@ -8,35 +8,39 @@
   "three": "0.186.1",
   "@react-three/fiber": "9.4.0",
   "react": "19.2.0",
-  "browser": "chrome-headless-shell Chromium 141.0.7390.37",
-  "gl": "swangle (SwiftShader, CPU)"
+  "browser": "Chromium 141.0.7390.37",
+  "gl": "--gl=swangle; WebGL renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
  },
  "model": {
   "geometry_version": "0.6.0",
-  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
+  "scene_glb_sha256": "a520190b14e8702bc50fc4efde46f966aa11df79a495b9d086395a38c557a06f"
  },
  "trace": {
-  "trace_id": "trace.hjerpefinte.v1",
+  "trace_id": "trace.hjerpefinte.v2",
   "status": "proposed",
-  "sha256": "b3078cfccce95d899e7ca706dae7b2e51c5b6da6c71d8365031dfbe4ddd3e6cc"
+  "sha256": "538bd72fe41857b5094c80f579bd8c913079b2ffab402abe3ee6fb0dce5571cc",
+  "rehash_note": "2026-10-13 merge of IKV v3 (#9) and the video workflow (#14): the trace was rebuilt on the combined engine; move_motion_sha256 and every evaluation sample are identical, only engine/asset_refs metadata changed, so the rendered frames stand. Rendered from trace sha256 c60b166752e3e3ff0b8afb8b9b03fa5447ed764108780423b85465f8f2e266b3, spec sha256 a76cc5b08c02f90d4c6baf8700bf1609caf54db4add071c8aa17f68310318303."
  },
  "analysis_spec": {
   "analysis_id": "analysis.hjerpefinte.v1",
-  "sha256": "b4f3ef99dcbfa9b8efa3080d29bc6fbfb2c02d857127075821fe8413a92dcd6f",
+  "sha256": "0a5b063f129a34e8fe596011c7ec93bc049522568c9b439339ecc1c3591c2e7f",
   "composition_files": [
    "remotion/EncyclopediaAnalysis.tsx",
    "remotion/encyclopedia-registry.ts",
-   "remotion/AnalysisVideo.tsx"
+   "remotion/AnalysisVideo.tsx",
+   "remotion/SceneLayer.tsx",
+   "remotion/ShotScene.tsx",
+   "remotion/theme.ts"
   ],
-  "composition_sha256": "8a73877b0ca4c0c8309b4433b61d8056f284a3d4c04c5207a3d54eb1ff8f72b3"
+  "composition_sha256": "c465e91a24a62dc83b1b4de73176be33c9e428de6c36078da407d48e18f18754"
  },
  "output": {
   "path": "validation/moves/hjerpefinte.mp4",
   "width": 1920,
   "height": 1080,
   "fps": 30,
-  "frames": 631,
-  "duration_s": 21.033333333333335,
+  "frames": 807,
+  "duration_s": 26.9,
   "codec": "h264",
   "crf": 20,
   "pixel_format": "yuv420p",
@@ -50,27 +54,53 @@
      "height": 1080,
      "pix_fmt": "yuvj420p",
      "r_frame_rate": "30/1",
-     "nb_frames": "631",
+     "nb_frames": "807",
      "side_data_list": [
       {}
      ]
     }
    ],
    "format": {
-    "duration": "21.033333"
+    "duration": "26.900000"
    }
   },
-  "bytes": 7596408,
-  "megabytes": 7.6,
+  "bytes": 10683997,
+  "megabytes": 10.68,
   "below_25_mb": true,
-  "sha256": "11c51c1047638f5c25e6848f662634b7a37c7354562dc812f3a709e50bff99c7"
+  "sha256": "dff7dc0e75c1574236ae7f0ca71145c79eaa541b3cdbe1865c6a3eb982343b47"
  },
  "checks": {
-  "frames_logged": 631,
+  "frames_logged": 0,
   "frames_differing_from_pure": [],
-  "max_readback_diff": 2.84e-14,
-  "camera_frames_logged": 631,
-  "camera_max_diff_vs_track": 0.005
+  "max_readback_diff": null,
+  "camera_frames_logged": 0,
+  "camera_max_diff_vs_track": null,
+  "scene_cache": {
+   "checked": 807,
+   "entries_used": 311,
+   "errors": [],
+   "entries_max_readback_diff": 2.84e-14,
+   "entries_camera_max_diff_mm": 0.005,
+   "stats": {
+    "namespace": "c170118a0470ffc298f4494e",
+    "frames": 807,
+    "unique_scene_states": 311,
+    "cache_hits": 0,
+    "scene_renders": 311,
+    "scene_render_seconds": 1643,
+    "frames_without_a_new_render": 496,
+    "entries_in_namespace": 555
+   }
+  }
  },
- "render_seconds": 2524
+ "render": {
+  "mode": "cached",
+  "concurrency": 2,
+  "scale": 1,
+  "browser": "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell",
+  "gl_flag": "swangle",
+  "webgl_renderers": [],
+  "probe_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
+ },
+ "render_seconds": 103
 }

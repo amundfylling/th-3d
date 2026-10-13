@@ -1,16 +1,16 @@
 {
- "trace_id": "trace.hjerpefinte.v1",
+ "trace_id": "trace.hjerpefinte.v2",
  "passed": true,
  "sampling_s": 0.00025,
- "max_puck_step_mm": 0.145,
+ "max_puck_step_mm": 0.174,
  "penetration_tolerance_mm": 0.1,
  "contact_rule": "CLAUDE.md 'Contact physics': the puck may touch figures, boards and goal but never overlap them (every 0.25 ms, whole trace, all 12 figures, boards, posts, cages; no phase exemptions)",
  "min_clearance_by_obstacle_and_phase": [
   {
    "obstacle": "E-G",
    "phase": "shot_free",
-   "min_clearance_mm": 5.151,
-   "t_at_min": 0.237
+   "min_clearance_mm": 4.109,
+   "t_at_min": 0.445
   },
   {
    "obstacle": "W-C",
@@ -21,26 +21,26 @@
   {
    "obstacle": "W-C",
    "phase": "shot_free",
-   "min_clearance_mm": 0.123,
-   "t_at_min": 0.1465
+   "min_clearance_mm": 0.058,
+   "t_at_min": 0.288
   },
   {
    "obstacle": "W-C",
    "phase": "shot_push",
    "min_clearance_mm": 0.05,
-   "t_at_min": 0.142
+   "t_at_min": 0.2805
   },
   {
    "obstacle": "goal_E_cage",
    "phase": "shot_free",
-   "min_clearance_mm": 11.274,
-   "t_at_min": 0.31725
+   "min_clearance_mm": 12.35,
+   "t_at_min": 0.5155
   },
   {
    "obstacle": "goal_E_post_neg_y",
    "phase": "shot_free",
-   "min_clearance_mm": 9.774,
-   "t_at_min": 0.31725
+   "min_clearance_mm": 10.85,
+   "t_at_min": 0.5155
   }
  ],
  "unexpected_penetrations": [],
@@ -55,21 +55,21 @@
     "contact": "other (W-C)",
     "figure": "W-C",
     "t": [
-     0.008,
-     0.008
+     0.002,
+     0.0895
     ],
-    "touches": 1,
+    "touches": 29,
     "peak_impact_mm_s": 0.0
    },
    {
     "contact": "shot",
     "figure": "W-C",
     "t": [
-     0.10025,
-     0.142
+     0.25025,
+     0.284
     ],
-    "touches": 47,
-    "peak_impact_mm_s": 32.8
+    "touches": 39,
+    "peak_impact_mm_s": 44.3
    }
   ],
   "peak_board_impact_mm_s": 0.0,
@@ -94,22 +94,22 @@
   {
    "obstacle": "W-C:stick/blade",
    "t": [
-    0.008,
-    0.008
+    0.00025,
+    0.0895
    ]
   },
   {
    "obstacle": "W-C:stick/blade",
    "t": [
-    0.10025,
-    0.142
+    0.25025,
+    0.284
    ]
   },
   {
    "obstacle": "goal_net",
    "t": [
-    0.43325,
-    0.43325
+    0.61275,
+    0.61275
    ]
   }
  ],
@@ -126,7 +126,7 @@
     -28.7,
     -8.0
    ],
-   "got": -18.73,
+   "got": -17.63,
    "passed": true
   },
   {
@@ -144,353 +144,493 @@
   {
    "what": "contact.shot touches (a push, not a strike)",
    "expected": ">= 5",
-   "got": 47,
+   "got": 39,
    "passed": true
   }
  ],
  "problems": [],
  "impulses": [
   {
-   "t": 0.008,
+   "t": 0.002,
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 0.0,
    "dv": 0.0
   },
   {
-   "t": 0.10025,
+   "t": 0.00325,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 1.5,
-   "dv": 2.2
+   "impact_mm_s": 0.0,
+   "dv": 0.0
   },
   {
-   "t": 0.10075,
+   "t": 0.00425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.005,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0085,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.012,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0135,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0155,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02175,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02225,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02325,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02375,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.02875,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.03075,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.03175,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0325,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0385,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.03925,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0485,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0535,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.05425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.05775,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.059,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0655,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.07425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.08175,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0825,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.08825,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.0895,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.0,
+   "dv": 0.0
+  },
+  {
+   "t": 0.25025,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 2.3,
+   "dv": 3.5
+  },
+  {
+   "t": 0.25075,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 0.4,
+   "dv": 0.6
+  },
+  {
+   "t": 0.251,
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 0.5,
    "dv": 0.8
   },
   {
-   "t": 0.101,
+   "t": 0.25125,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 0.4,
-   "dv": 0.5
+   "impact_mm_s": 0.5,
+   "dv": 0.7
   },
   {
-   "t": 0.10125,
+   "t": 0.2515,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 0.4,
-   "dv": 0.6
+   "impact_mm_s": 0.5,
+   "dv": 0.7
   },
   {
-   "t": 0.1015,
+   "t": 0.25175,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 0.4,
-   "dv": 0.6
+   "impact_mm_s": 0.5,
+   "dv": 0.7
   },
   {
-   "t": 0.10175,
+   "t": 0.252,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 0.4,
-   "dv": 0.6
+   "impact_mm_s": 0.5,
+   "dv": 0.7
   },
   {
-   "t": 0.102,
+   "t": 0.25225,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 0.4,
-   "dv": 0.5
+   "impact_mm_s": 11.6,
+   "dv": 17.5
   },
   {
-   "t": 0.10225,
+   "t": 0.2545,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 7.5,
-   "dv": 11.3
+   "impact_mm_s": 19.7,
+   "dv": 29.5
   },
   {
-   "t": 0.10425,
+   "t": 0.25625,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 13.3,
-   "dv": 20.0
+   "impact_mm_s": 32.1,
+   "dv": 48.1
   },
   {
-   "t": 0.10625,
+   "t": 0.2585,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 22.5,
-   "dv": 33.8
+   "impact_mm_s": 34.8,
+   "dv": 52.2
   },
   {
-   "t": 0.1085,
+   "t": 0.26075,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 24.2,
-   "dv": 36.3
+   "impact_mm_s": 35.0,
+   "dv": 52.4
   },
   {
-   "t": 0.11075,
+   "t": 0.26225,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 24.9,
-   "dv": 37.3
+   "impact_mm_s": 40.2,
+   "dv": 60.3
   },
   {
-   "t": 0.11225,
+   "t": 0.2645,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 28.7,
-   "dv": 43.1
+   "impact_mm_s": 37.5,
+   "dv": 56.3
   },
   {
-   "t": 0.1145,
+   "t": 0.2665,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 44.3,
+   "dv": 66.4
+  },
+  {
+   "t": 0.2685,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 37.7,
+   "dv": 56.6
+  },
+  {
+   "t": 0.27075,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 37.4,
+   "dv": 56.0
+  },
+  {
+   "t": 0.27225,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 31.0,
+   "dv": 46.4
+  },
+  {
+   "t": 0.27425,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 29.8,
+   "dv": 44.7
+  },
+  {
+   "t": 0.27625,
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 27.6,
    "dv": 41.4
   },
   {
-   "t": 0.1165,
+   "t": 0.278,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 32.8,
-   "dv": 49.2
+   "impact_mm_s": 13.1,
+   "dv": 19.7
   },
   {
-   "t": 0.1185,
+   "t": 0.27825,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 29.0,
-   "dv": 43.6
+   "impact_mm_s": 3.6,
+   "dv": 5.4
   },
   {
-   "t": 0.12075,
+   "t": 0.2785,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 29.5,
-   "dv": 44.2
+   "impact_mm_s": 1.4,
+   "dv": 2.1
   },
   {
-   "t": 0.1225,
+   "t": 0.27875,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 28.4,
-   "dv": 42.6
+   "impact_mm_s": 2.4,
+   "dv": 3.6
   },
   {
-   "t": 0.1245,
+   "t": 0.279,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 23.7,
-   "dv": 35.6
+   "impact_mm_s": 1.8,
+   "dv": 2.7
   },
   {
-   "t": 0.1265,
+   "t": 0.27925,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 27.1,
-   "dv": 40.7
+   "impact_mm_s": 1.9,
+   "dv": 2.9
   },
   {
-   "t": 0.1285,
+   "t": 0.2795,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 21.0,
-   "dv": 31.5
+   "impact_mm_s": 1.7,
+   "dv": 2.6
   },
   {
-   "t": 0.1305,
+   "t": 0.27975,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 17.1,
-   "dv": 25.6
+   "impact_mm_s": 1.7,
+   "dv": 2.6
   },
   {
-   "t": 0.132,
+   "t": 0.28,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 8.3,
-   "dv": 12.5
+   "impact_mm_s": 1.6,
+   "dv": 2.4
   },
   {
-   "t": 0.13225,
+   "t": 0.28025,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 4.7,
-   "dv": 7.1
+   "impact_mm_s": 2.6,
+   "dv": 3.9
   },
   {
-   "t": 0.13275,
+   "t": 0.2805,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 3.1,
+   "dv": 4.6
+  },
+  {
+   "t": 0.28075,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 2.7,
+   "dv": 4.1
+  },
+  {
+   "t": 0.281,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 2.8,
+   "dv": 4.2
+  },
+  {
+   "t": 0.28125,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 2.6,
+   "dv": 4.0
+  },
+  {
+   "t": 0.2815,
+   "figure": "W-C",
+   "part": "stick/blade",
+   "impact_mm_s": 2.6,
+   "dv": 3.9
+  },
+  {
+   "t": 0.28175,
    "figure": "W-C",
    "part": "stick/blade",
    "impact_mm_s": 2.5,
    "dv": 3.7
   },
   {
-   "t": 0.133,
+   "t": 0.282,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 1.0,
-   "dv": 1.6
+   "impact_mm_s": 2.4,
+   "dv": 3.6
   },
   {
-   "t": 0.13325,
+   "t": 0.28325,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 1.7,
-   "dv": 2.5
+   "impact_mm_s": 8.3,
+   "dv": 12.4
   },
   {
-   "t": 0.1335,
+   "t": 0.284,
    "figure": "W-C",
    "part": "stick/blade",
-   "impact_mm_s": 1.3,
-   "dv": 1.9
-  },
-  {
-   "t": 0.13375,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.4,
-   "dv": 2.1
-  },
-  {
-   "t": 0.134,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.2,
-   "dv": 1.9
-  },
-  {
-   "t": 0.13425,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 3.2,
-   "dv": 4.7
-  },
-  {
-   "t": 0.13475,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.8,
-   "dv": 2.7
-  },
-  {
-   "t": 0.135,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 0.7,
-   "dv": 1.0
-  },
-  {
-   "t": 0.13525,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.8,
-   "dv": 2.7
-  },
-  {
-   "t": 0.1355,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.8,
-   "dv": 2.8
-  },
-  {
-   "t": 0.13575,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.8,
-   "dv": 2.6
-  },
-  {
-   "t": 0.136,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.7,
-   "dv": 2.6
-  },
-  {
-   "t": 0.1365,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.9,
-   "dv": 2.8
-  },
-  {
-   "t": 0.13675,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.4,
-   "dv": 2.1
-  },
-  {
-   "t": 0.137,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.6,
-   "dv": 2.3
-  },
-  {
-   "t": 0.13725,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.4,
-   "dv": 2.1
-  },
-  {
-   "t": 0.1375,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.4,
-   "dv": 2.1
-  },
-  {
-   "t": 0.13775,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.3,
-   "dv": 2.0
-  },
-  {
-   "t": 0.138,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.3,
-   "dv": 1.9
-  },
-  {
-   "t": 0.14125,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 4.9,
-   "dv": 7.3
-  },
-  {
-   "t": 0.14175,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.4,
-   "dv": 2.1
-  },
-  {
-   "t": 0.142,
-   "figure": "W-C",
-   "part": "stick/blade",
-   "impact_mm_s": 1.1,
-   "dv": 1.7
+   "impact_mm_s": 4.3,
+   "dv": 6.4
   }
  ],
  "walls": [],
  "goal_line": {
   "goal": "E",
-  "crossing_y_mm": -18.73,
+  "crossing_y_mm": -17.63,
   "inside_mouth_window_y_mm": [
    -28.7,
    29.8

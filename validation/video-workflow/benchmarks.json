@@ -1,0 +1,552 @@
+{
+ "note": "Measured 2026-10-12 in the cloud container (4 cores, no GPU): Chromium 141.0.7390.37 headless shell, --gl=swangle -> WebGL renderer SwiftShader (CPU), concurrency 2. Raw run reports: out/bench/*.json (not committed). Nothing extrapolated.",
+ "runs": {
+  "b1-stills-cold": {
+   "command": "stills",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 98.4,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.3,
+    "bundle": 12.6,
+    "open_browser": 0.1,
+    "probe_renderer": 1.1
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "direct",
+     "scale": 0.5,
+     "stills": 16,
+     "cache": null,
+     "live_differing": [],
+     "mapping_errors": null
+    }
+   ]
+  },
+  "b1-stills-warm": {
+   "command": "stills",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 86.3,
+   "timings": {
+    "prepare_assets": 0.2,
+    "gates": 0.1,
+    "resolve_browser": 0.3,
+    "bundle": 2.5,
+    "open_browser": 0.1,
+    "probe_renderer": 1.1
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "direct",
+     "scale": 0.5,
+     "stills": 16,
+     "cache": null,
+     "live_differing": [],
+     "mapping_errors": null
+    }
+   ]
+  },
+  "b10-draft-cached-cold": {
+   "command": "draft",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 49.1,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.3,
+    "bundle": 2.6,
+    "open_browser": 0.1,
+    "probe_renderer": 1.1,
+    "move:hjerpefinte:scene_renders(4)": 25.7,
+    "move:hjerpefinte:draft-259-414": 17.4
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "cached",
+     "scale": 0.5,
+     "frames": 156,
+     "clip_seconds": 17.4,
+     "megabytes": 0.12,
+     "accounting_ok": true,
+     "cache": {
+      "namespace": "3778d6059db2a42bc0443987",
+      "frames": 156,
+      "unique_scene_states": 4,
+      "cache_hits": 0,
+      "scene_renders": 4,
+      "scene_render_seconds": 25.7,
+      "frames_without_a_new_render": 152,
+      "entries_in_namespace": 4
+     },
+     "mapping_errors": [],
+     "live_differing": []
+    }
+   ]
+  },
+  "b11-draft-cached-warm": {
+   "command": "draft",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 22.1,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.2,
+    "bundle": 2.2,
+    "open_browser": 0.1,
+    "probe_renderer": 1,
+    "move:hjerpefinte:draft-259-414": 17
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "cached",
+     "scale": 0.5,
+     "frames": 156,
+     "clip_seconds": 17,
+     "megabytes": 0.12,
+     "accounting_ok": true,
+     "cache": {
+      "namespace": "3778d6059db2a42bc0443987",
+      "frames": 156,
+      "unique_scene_states": 4,
+      "cache_hits": 4,
+      "scene_renders": 0,
+      "scene_render_seconds": 0,
+      "frames_without_a_new_render": 156,
+      "entries_in_namespace": 4
+     },
+     "mapping_errors": [],
+     "live_differing": []
+    }
+   ]
+  },
+  "b12-stills-direct": {
+   "command": "stills",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 89.5,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.2,
+    "bundle": 2.2,
+    "open_browser": 0.1,
+    "probe_renderer": 1.2
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "direct",
+     "scale": 1,
+     "stills": 16,
+     "cache": null,
+     "live_differing": [],
+     "mapping_errors": null
+    }
+   ]
+  },
+  "b13-stills-cached": {
+   "command": "stills",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 9.8,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.2,
+    "bundle": 2.3,
+    "open_browser": 0.1,
+    "probe_renderer": 1.1
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "cached",
+     "scale": 1,
+     "stills": 16,
+     "cache": {
+      "namespace": "c170118a0470ffc298f4494e",
+      "frames": 16,
+      "unique_scene_states": 14,
+      "cache_hits": 14,
+      "scene_renders": 0,
+      "scene_render_seconds": 0,
+      "frames_without_a_new_render": 16,
+      "entries_in_namespace": 244
+     },
+     "live_differing": [],
+     "mapping_errors": []
+    }
+   ]
+  },
+  "b14-stills-two-targets": {
+   "command": "stills",
+   "targets": [
+    "ikv",
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 247.6,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.2,
+    "bundle": 2.1,
+    "open_browser": 0.1,
+    "probe_renderer": 1
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "ikv",
+     "mode": "direct",
+     "scale": 0.5,
+     "stills": 33,
+     "cache": null,
+     "live_differing": [],
+     "mapping_errors": null
+    },
+    {
+     "target": "move:hjerpefinte",
+     "mode": "direct",
+     "scale": 0.5,
+     "stills": 16,
+     "cache": null,
+     "live_differing": [],
+     "mapping_errors": null
+    }
+   ]
+  },
+  "b15-ikv-stills-cached": {
+   "command": "stills",
+   "targets": [
+    "ikv"
+   ],
+   "total_seconds": 164.5,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0,
+    "resolve_browser": 0.2,
+    "bundle": 2,
+    "open_browser": 0.1,
+    "probe_renderer": 1,
+    "ikv:scene_renders(32)": 153.2
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "ikv",
+     "mode": "cached",
+     "scale": 0.5,
+     "stills": 33,
+     "cache": {
+      "namespace": "3778d6059db2a42bc0443987",
+      "frames": 33,
+      "unique_scene_states": 32,
+      "cache_hits": 0,
+      "scene_renders": 32,
+      "scene_render_seconds": 153.2,
+      "frames_without_a_new_render": 1,
+      "entries_in_namespace": 36
+     },
+     "live_differing": [],
+     "mapping_errors": []
+    }
+   ]
+  },
+  "b16-ikv-draft-cached": {
+   "command": "draft",
+   "targets": [
+    "ikv"
+   ],
+   "total_seconds": 473.5,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0,
+    "resolve_browser": 0.3,
+    "bundle": 2,
+    "open_browser": 0.1,
+    "probe_renderer": 0.9,
+    "ikv:scene_renders(97)": 432.6,
+    "ikv:draft-171-518": 35.6
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "ikv",
+     "mode": "cached",
+     "scale": 0.5,
+     "frames": 348,
+     "clip_seconds": 35.7,
+     "megabytes": 1.02,
+     "accounting_ok": true,
+     "cache": {
+      "namespace": "3778d6059db2a42bc0443987",
+      "frames": 348,
+      "unique_scene_states": 112,
+      "cache_hits": 15,
+      "scene_renders": 97,
+      "scene_render_seconds": 432.6,
+      "frames_without_a_new_render": 251,
+      "entries_in_namespace": 133
+     },
+     "mapping_errors": [],
+     "live_differing": []
+    }
+   ]
+  },
+  "b17-gl-angle": {
+   "command": "stills",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 12.9,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.3,
+    "bundle": 2.1,
+    "open_browser": 0.1,
+    "probe_renderer": 1.1
+   },
+   "gl": "angle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "direct",
+     "scale": 0.25,
+     "stills": 1,
+     "cache": null,
+     "live_differing": [],
+     "mapping_errors": null
+    }
+   ]
+  },
+  "b18-final-cached-warm2": {
+   "command": "final",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 89.3,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.3,
+    "bundle": 2.2,
+    "open_browser": 0.1,
+    "probe_renderer": 1.1,
+    "move:hjerpefinte:final": 82.2
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "cached",
+     "scale": 1,
+     "frames": 631,
+     "clip_seconds": 82.2,
+     "megabytes": 7.97,
+     "accounting_ok": true,
+     "cache": {
+      "namespace": "c170118a0470ffc298f4494e",
+      "frames": 631,
+      "unique_scene_states": 244,
+      "cache_hits": 244,
+      "scene_renders": 0,
+      "scene_render_seconds": 0,
+      "frames_without_a_new_render": 631,
+      "entries_in_namespace": 244
+     },
+     "mapping_errors": [],
+     "live_differing": []
+    }
+   ]
+  },
+  "b6-final-cached-cold": {
+   "command": "final",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 1252.9,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.3,
+    "bundle": 2.3,
+    "open_browser": 0.1,
+    "probe_renderer": 1.1,
+    "move:hjerpefinte:scene_renders(244)": 1156.2,
+    "move:hjerpefinte:final": 89.3
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "cached",
+     "scale": 1,
+     "frames": 631,
+     "clip_seconds": 89.3,
+     "megabytes": 7.97,
+     "accounting_ok": true,
+     "cache": {
+      "namespace": "c170118a0470ffc298f4494e",
+      "frames": 631,
+      "unique_scene_states": 244,
+      "cache_hits": 0,
+      "scene_renders": 244,
+      "scene_render_seconds": 1156.2,
+      "frames_without_a_new_render": 387,
+      "entries_in_namespace": 244
+     },
+     "mapping_errors": [],
+     "live_differing": []
+    }
+   ]
+  },
+  "b7-caption-only-cached": {
+   "command": "draft",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 96,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.2,
+    "bundle": 4.7,
+    "open_browser": 0.1,
+    "probe_renderer": 1.2,
+    "move:hjerpefinte:draft": 87.1
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "cached",
+     "scale": 1,
+     "frames": 631,
+     "clip_seconds": 87.1,
+     "megabytes": 7.89,
+     "accounting_ok": true,
+     "cache": {
+      "namespace": "c170118a0470ffc298f4494e",
+      "frames": 631,
+      "unique_scene_states": 244,
+      "cache_hits": 244,
+      "scene_renders": 0,
+      "scene_render_seconds": 0,
+      "frames_without_a_new_render": 631,
+      "entries_in_namespace": 244
+     },
+     "mapping_errors": [],
+     "live_differing": []
+    }
+   ]
+  },
+  "b8-final-cached-warm": {
+   "command": "final",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 99.3,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.2,
+    "bundle": 2.5,
+    "open_browser": 0.1,
+    "probe_renderer": 1.2,
+    "move:hjerpefinte:final": 91.4
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "cached",
+     "scale": 1,
+     "frames": 631,
+     "clip_seconds": 91.4,
+     "megabytes": 7.97,
+     "accounting_ok": true,
+     "cache": {
+      "namespace": "c170118a0470ffc298f4494e",
+      "frames": 631,
+      "unique_scene_states": 244,
+      "cache_hits": 244,
+      "scene_renders": 0,
+      "scene_render_seconds": 0,
+      "frames_without_a_new_render": 631,
+      "entries_in_namespace": 244
+     },
+     "mapping_errors": [],
+     "live_differing": []
+    }
+   ]
+  },
+  "b9-draft-direct": {
+   "command": "draft",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "total_seconds": 572.2,
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.3,
+    "bundle": 2.3,
+    "open_browser": 0.1,
+    "probe_renderer": 1.1,
+    "move:hjerpefinte:draft-259-414": 566.6
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "results": [
+    {
+     "target": "move:hjerpefinte",
+     "mode": "direct",
+     "scale": 0.5,
+     "frames": 156,
+     "clip_seconds": 566.6,
+     "megabytes": 0.12,
+     "accounting_ok": true,
+     "cache": null,
+     "mapping_errors": null,
+     "live_differing": []
+    }
+   ]
+  }
+ }
+}

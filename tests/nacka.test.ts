@@ -80,7 +80,7 @@ test("näcka analysis: 1080p, 20-25 s, readable chapters with a still camera, sm
 });
 
 test("näcka analysis: composition registered, export report matches", (t) => {
-  assert.match(read("remotion/Root.tsx"), /id="analysis-nacka"/);
+  assert.match(read("remotion/analysis-videos.ts"), /id: "analysis-nacka"/);  // registered by Root.tsx from this list
   assert.match(read("remotion/NackaAnalysis.tsx"), /allowProposed: true/);
   const p = "validation/analysis-nacka-report.json";
   if (!existsSync(p)) return t.skip("no export yet (npm run video:analysis-nacka)");
