@@ -15,9 +15,10 @@ export type PosePreviewProps = {
   poses: Record<string, { arc_mm: number; theta_deg: number }>;
   puckMm: [number, number];
   camera: { cx: number; cy: number; widthMm: number };
+  background?: string;
 };
 
-export const PosePreview: React.FC<PosePreviewProps> = ({ poses, puckMm, camera }) => {
+export const PosePreview: React.FC<PosePreviewProps> = ({ poses, puckMm, camera, background }) => {
   const { width, height } = useVideoConfig();
   const state = useMemo(() => {
     const figures: ShotTrace["figures"] = {};
@@ -39,7 +40,7 @@ export const PosePreview: React.FC<PosePreviewProps> = ({ poses, puckMm, camera 
     return Object.assign(c, { manual: true });
   });
   return (
-    <AbsoluteFill style={{ backgroundColor: "#1b212b" }}>
+    <AbsoluteFill style={{ backgroundColor: background ?? "#1b212b" }}>
       <ThreeCanvas width={width} height={height} camera={cam} orthographic linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true }}>
         <ShotScene state={state} logTag="pose-preview" />
       </ThreeCanvas>

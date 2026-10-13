@@ -828,6 +828,424 @@
       "bytes": 183519,
       "sha256": "5df20d97499b93058a787f4155489c3f437e92963e32571eae09e9dbc60afe2d",
       "provenance": "web (found by Claude, fetched 2026-10-08)"
+    },
+    {
+      "id": "puck_no_move_pictures",
+      "title": "All 51 NTHF/puck.no move illustrations (centre moves; top view, goal at the top, green arrows, numbered contacts, 0-9 level scale)",
+      "provenance": "web, fetched 2026-10-13 from the image links in references/combinations/puck-no-combination-catalogue-no.html",
+      "local_path": "references/combinations/puck-no-pictures/",
+      "format": "png (one webp-named file is png data), 600 px wide (one 1600 px)",
+      "files": [
+        {
+          "file": "trick-agdur-d68ac5fd.png",
+          "sha256": "f82bbc6817a25d408ea0af65231b2c41ac6d47baed45e10ccf7a6027a45a5522",
+          "bytes": 35659,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-agdur-d68ac5fd.png"
+        },
+        {
+          "file": "trick-agduro-e9ce4ae3.png",
+          "sha256": "ab66ad7fbfb04c7e37fa1119ed54d4c54303b28ecc1e286a423e881dec59f328",
+          "bytes": 47361,
+          "width_px": 600,
+          "height_px": 600,
+          "url": "https://www.puck.no/media/images/trick-agduro-e9ce4ae3.png"
+        },
+        {
+          "file": "trick-bacalao-2c9bcf71.png",
+          "sha256": "a3f33ecd85e46af09f1055597d3b9ece5773fa1d2f8425857afcbb826d06abf1",
+          "bytes": 78331,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-bacalao-2c9bcf71.png"
+        },
+        {
+          "file": "trick-fakie-agdur-5400f2d4.png",
+          "sha256": "7b1d9c21ab7e2b21af8b672be3f1b4b9137dc339f272eaf3151b8f5069f887a9",
+          "bytes": 34660,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-fakie-agdur-5400f2d4.png"
+        },
+        {
+          "file": "trick-fakie-halv-agdur-ae8e3e5d.png",
+          "sha256": "88f44929c161e514ea948dbb356170314aa7b1714955f30224ac963688eaab3d",
+          "bytes": 34846,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-fakie-halv-agdur-ae8e3e5d.png"
+        },
+        {
+          "file": "trick-fakie-horvath-0d649889.png",
+          "sha256": "aad99499dcdfff8ef890b4bceaf6f0bacd060fbc59d53061b3db9e30748cb701",
+          "bytes": 35272,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-fakie-horvath-0d649889.png"
+        },
+        {
+          "file": "trick-fakie-invers-agduro-0d8a87b9.png",
+          "sha256": "79e613ab18da044a06279fdafe7de36130cc139951b71f858c2ef17c50884f5e",
+          "bytes": 46446,
+          "width_px": 600,
+          "height_px": 600,
+          "url": "https://www.puck.no/media/images/trick-fakie-invers-agduro-0d8a87b9.png"
+        },
+        {
+          "file": "trick-fakie-invers-halv-agduro-8d975656.webp",
+          "sha256": "32715b93b4ad9d8a9d40cdb0557e30b529ca75e27517b5b3ff490f1de4f18235",
+          "bytes": 150270,
+          "width_px": 1600,
+          "height_px": 2769,
+          "url": "https://www.puck.no/media/images/trick-fakie-invers-halv-agduro-8d975656.webp"
+        },
+        {
+          "file": "trick-fakie-invers-kano-6edf9a40.png",
+          "sha256": "347ad17445f0e0fc8613459985feeade34a858623266a9a927664f59fe4cecb3",
+          "bytes": 77049,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-fakie-invers-kano-6edf9a40.png"
+        },
+        {
+          "file": "trick-fakie-senter-ceuleman-9e6a38fa.png",
+          "sha256": "d6bc470e9ca3c31477063bf5d9950dfb97666a956c66a1ad5e0b3b26f0360d72",
+          "bytes": 33925,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-fakie-senter-ceuleman-9e6a38fa.png"
+        },
+        {
+          "file": "trick-fakie-senter-karusell-d46b2d2c.png",
+          "sha256": "0041daa2aa043b9edfbd022fc9fdae47e0e93db0a25db79d8a60b85871ab5884",
+          "bytes": 37821,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-fakie-senter-karusell-d46b2d2c.png"
+        },
+        {
+          "file": "trick-fakie-senter-rokkade-90a380f0.png",
+          "sha256": "19e104dff5933cf20d6bf7619c14228f259320bf8a114f94ad7018d224c96e45",
+          "bytes": 79624,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-fakie-senter-rokkade-90a380f0.png"
+        },
+        {
+          "file": "trick-fakie-senter-velodrom-84e8f8f6.png",
+          "sha256": "28f887321cf8f12c693dad1ff1e1852e7a5a3843654a309156140a7c4c296f54",
+          "bytes": 37225,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-fakie-senter-velodrom-84e8f8f6.png"
+        },
+        {
+          "file": "trick-fakie-senterkniv-96970c00.png",
+          "sha256": "ff77a64d0ad5e830f8d39d1e23d8f8335bd8ce6248b8875847e825e16883ce10",
+          "bytes": 76114,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-fakie-senterkniv-96970c00.png"
+        },
+        {
+          "file": "trick-fakie-veggdyr-e0b159da.png",
+          "sha256": "ad16a886b75399db19294b991a90ee6dd95c6f226de4fbfd6c8064520efd8c48",
+          "bytes": 33594,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-fakie-veggdyr-e0b159da.png"
+        },
+        {
+          "file": "trick-general-reiersen-64423311.png",
+          "sha256": "8c49aca4029d6979b45218e4be642eb2b2a26c3bb6cfc28e6215778c6df84098",
+          "bytes": 78869,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-general-reiersen-64423311.png"
+        },
+        {
+          "file": "trick-halv-agdur-921a3a7c.png",
+          "sha256": "ebe9361059dead6ba8d9b16c3fe0bae2382656f97238203fb0eb8ee1589141d9",
+          "bytes": 34564,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-halv-agdur-921a3a7c.png"
+        },
+        {
+          "file": "trick-hjerpe-c68b7726.png",
+          "sha256": "4f0dea02bb086a05373d6316223c892bffc45140ad396442db4f1d0425c49acd",
+          "bytes": 34348,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-hjerpe-c68b7726.png"
+        },
+        {
+          "file": "trick-hjerpefinte-f9523f5c.png",
+          "sha256": "19628e3b68c81d696a9d69f45c4c0d23ecb33700dcc6ed5eea7f38cf907bb65f",
+          "bytes": 33359,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-hjerpefinte-f9523f5c.png"
+        },
+        {
+          "file": "trick-holmin-cec1a26c.png",
+          "sha256": "fefa55c9b32639c838639f224686e810fbd11fb15a1efff17216e2313c8d321a",
+          "bytes": 37326,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-holmin-cec1a26c.png"
+        },
+        {
+          "file": "trick-holms-8ed3df70.png",
+          "sha256": "3eba153a7e28e1cfc81fb661756d8fcae5a1cb440d03d96add2eb1837b9d3902",
+          "bytes": 38300,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-holms-8ed3df70.png"
+        },
+        {
+          "file": "trick-holms-gretzky-0e16faa4.png",
+          "sha256": "317dc8ed604088f956945121c0f7862b4920ed97c967e43e252a2acccca37923",
+          "bytes": 38063,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-holms-gretzky-0e16faa4.png"
+        },
+        {
+          "file": "trick-horvath-142415eb.png",
+          "sha256": "26a3cf55c997ed448de77adcbbede61117eb3569982fc5d3700937850735952d",
+          "bytes": 35980,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-horvath-142415eb.png"
+        },
+        {
+          "file": "trick-invers-agduro-fa614eea.png",
+          "sha256": "5269680e67b00b37bda2ac9b04684d0ee0670f4e12561551c940f2d212b02c4c",
+          "bytes": 49185,
+          "width_px": 600,
+          "height_px": 600,
+          "url": "https://www.puck.no/media/images/trick-invers-agduro-fa614eea.png"
+        },
+        {
+          "file": "trick-invers-halv-agduro-759c5e3e.png",
+          "sha256": "6121ec1c46d400259dbf176aec80cdc825e62e47e4707f9d43a7cf79e7d34d6f",
+          "bytes": 48625,
+          "width_px": 600,
+          "height_px": 600,
+          "url": "https://www.puck.no/media/images/trick-invers-halv-agduro-759c5e3e.png"
+        },
+        {
+          "file": "trick-invers-kano-392cbabd.png",
+          "sha256": "0ef41a12f1adfe43d8f7093c8df06045fcf967b5c4c58ede8aeecde0a99b4488",
+          "bytes": 75703,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-invers-kano-392cbabd.png"
+        },
+        {
+          "file": "trick-lillhæl-92398556.png",
+          "sha256": "cef202c72c00eed1a2fd59e16281498427f6c97ce7b2870c1a74185ebe805c2d",
+          "bytes": 33286,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-lillhæl-92398556.png"
+        },
+        {
+          "file": "trick-lillstøvel-2c0457d4.png",
+          "sha256": "8b5e3d003ed990c57c87ef95b7768a6175e228fafb91902ed17f9f4a41a4ad5d",
+          "bytes": 33492,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-lillstøvel-2c0457d4.png"
+        },
+        {
+          "file": "trick-lillstøvelfinte-c-29-43746e89.png",
+          "sha256": "d299941f3f505f6565080dba4866d25a45f5fcfbeec27ebcc8bb4dda8912aee4",
+          "bytes": 34300,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-lillstøvelfinte-c-29-43746e89.png"
+        },
+        {
+          "file": "trick-mission-impossible-3-8f62525f.png",
+          "sha256": "b2d11029724c2d3ed63563dd96a5e52db9f0d77044743908f73f27288b44fb10",
+          "bytes": 35552,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-mission-impossible-3-8f62525f.png"
+        },
+        {
+          "file": "trick-nacka-2e6af9fd.png",
+          "sha256": "b41e3ba0a327975450024e1a8576bfc81f83dbd0ea41700ebf92fbbcad89b945",
+          "bytes": 33196,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-nacka-2e6af9fd.png"
+        },
+        {
+          "file": "trick-nackafinte-7dfe9545.png",
+          "sha256": "13cb29cee34d9348d9b4aa63a424f3726a1fa2e8fc5ce2e7ba6fbe8fb7826658",
+          "bytes": 33883,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-nackafinte-7dfe9545.png"
+        },
+        {
+          "file": "trick-newton-0bbc8f04.png",
+          "sha256": "7b3115282cf189509e9a1fca23331cd09cd66951bb1201da12871286a0f45d75",
+          "bytes": 33347,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-newton-0bbc8f04.png"
+        },
+        {
+          "file": "trick-omvendspjass-e0edae5c.png",
+          "sha256": "9287745e25df240feeb91b4128a25581c4ba4d40c2bcbd467b7268f1e4c11590",
+          "bytes": 33764,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-omvendspjass-e0edae5c.png"
+        },
+        {
+          "file": "trick-omvendspjassfinte-6ba8f294.png",
+          "sha256": "40b47d6d7dec8be4ca8e649477c8fb6df9185a56dab6ed25562f8134f47f1f91",
+          "bytes": 33689,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-omvendspjassfinte-6ba8f294.png"
+        },
+        {
+          "file": "trick-rambokniv-cb88b462.png",
+          "sha256": "af67548a45b16a57175fda2c8199cb4c8a25f33920dc95e7089fa6790d0bd3b4",
+          "bytes": 76222,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-rambokniv-cb88b462.png"
+        },
+        {
+          "file": "trick-senter-backnacka-6f13def6.png",
+          "sha256": "aa914260940b99df5439353fae04bb8eb5584b16f65ce50cfa9e51fb1f63c545",
+          "bytes": 77595,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-senter-backnacka-6f13def6.png"
+        },
+        {
+          "file": "trick-senter-ceuleman-06fd741e.png",
+          "sha256": "45f6c1c779fd329ab315301b31c1d9f6d172f7c474d9d9e360e42c03940ede84",
+          "bytes": 33939,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-senter-ceuleman-06fd741e.png"
+        },
+        {
+          "file": "trick-senter-karusell-9eb56e04.png",
+          "sha256": "6a3e73495604d00a363b9aa498d4227b09c7ec387f10f529a3339424ca580c23",
+          "bytes": 39094,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-senter-karusell-9eb56e04.png"
+        },
+        {
+          "file": "trick-senter-rokkade-9c4a9212.png",
+          "sha256": "ac9471f7da10fd4bb9a060a37b32df59dbd81e9025819120e1fdb9fa16a8285c",
+          "bytes": 78366,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-senter-rokkade-9c4a9212.png"
+        },
+        {
+          "file": "trick-senter-velodrom-81bdbd16.png",
+          "sha256": "1dc219f3a25f153b06f7f2468dffbd7a86e84b53df782f4b5f0281f4701274b5",
+          "bytes": 37298,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-senter-velodrom-81bdbd16.png"
+        },
+        {
+          "file": "trick-senterkiosk-0b633f17.png",
+          "sha256": "cd956d3f53cb853012c1f234614d03176d0e00931e206be747f2dc20d4db249e",
+          "bytes": 32927,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-senterkiosk-0b633f17.png"
+        },
+        {
+          "file": "trick-senterkniv-23db4593.png",
+          "sha256": "7b30183e19d0afab4472c838848f85abf449cbe8504d8e8ecfe9fd1df449328e",
+          "bytes": 75205,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-senterkniv-23db4593.png"
+        },
+        {
+          "file": "trick-senterknivo-caf5c8d7.png",
+          "sha256": "84bdff531dce787f98fa96ce1bca3b0404b835ed0e3c2cb37d51b1379d6bf423",
+          "bytes": 78599,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-senterknivo-caf5c8d7.png"
+        },
+        {
+          "file": "trick-skalpell-8126d7d8.png",
+          "sha256": "170ae41cfc898d53c0ac0546a217e5cb7555e22f167d014baf2408859c595309",
+          "bytes": 78011,
+          "width_px": 600,
+          "height_px": 1038,
+          "url": "https://www.puck.no/media/images/trick-skalpell-8126d7d8.png"
+        },
+        {
+          "file": "trick-spjass-6dadefbc.png",
+          "sha256": "868b465985fbbae6d2a036d86083084192a7a5b80704ccca6c2ccac19c5f0f2e",
+          "bytes": 33981,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-spjass-6dadefbc.png"
+        },
+        {
+          "file": "trick-spjass-horvath-5e975a0d.png",
+          "sha256": "3a895d3d2385e0fa105fe85dc2ea830729bce3f9fda28830c0efdd150e39e3b7",
+          "bytes": 37158,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-spjass-horvath-5e975a0d.png"
+        },
+        {
+          "file": "trick-spjassfinte-067aa3e8.png",
+          "sha256": "4ddcfc6391ae9767a013067c56d57ed28dafdfe0a7d6752988cbf33b3998aac4",
+          "bytes": 33083,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-spjassfinte-067aa3e8.png"
+        },
+        {
+          "file": "trick-søren-ada0bf2a.png",
+          "sha256": "c0c58f26772efcca9dc438ae554100318c3d59cde4d4e62bda57b3d1c863fb8b",
+          "bytes": 34121,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-søren-ada0bf2a.png"
+        },
+        {
+          "file": "trick-sørenfinte-748f5082.png",
+          "sha256": "1ecb419926a7e9954a6d6f08fb75a692434bd338313ab6c4bf991e1afed25e74",
+          "bytes": 33239,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-sørenfinte-748f5082.png"
+        },
+        {
+          "file": "trick-veggdyr-0e070a3a.png",
+          "sha256": "32afe41fdb7b98cae68aefdfa2075744d057a38824b402a09f84c884f73ab973",
+          "bytes": 33366,
+          "width_px": 600,
+          "height_px": 438,
+          "url": "https://www.puck.no/media/images/trick-veggdyr-0e070a3a.png"
+        }
+      ],
+      "note": "trick-nacka-2e6af9fd.png and trick-spjass-6dadefbc.png duplicate the earlier copies trick-nacka.png / trick-spjass.png. Used by docs/move-pictures.md."
     }
   ],
   "not_obtained": [

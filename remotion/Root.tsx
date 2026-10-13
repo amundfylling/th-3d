@@ -52,7 +52,7 @@ export const RemotionRoot: React.FC = () => (
     {ENCYCLOPEDIA_VIDEOS.map((v) => (
       <Composition key={v.id} id={v.id} component={v.Component} durationInFrames={v.ANALYSIS.durationInFrames} fps={v.ANALYSIS.spec.fps} width={v.ANALYSIS.spec.width} height={v.ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     ))}
-    <Composition id="pose-preview" component={PosePreview} durationInFrames={1} fps={30} width={1600} height={1300} defaultProps={{ poses: {}, puckMm: [0, 0] as [number, number], camera: { cx: 150, cy: 0, widthMm: 640 } }} />
+    <Composition id="pose-preview" component={PosePreview} durationInFrames={1} fps={30} width={1600} height={1300} defaultProps={{ poses: {}, puckMm: [0, 0] as [number, number], camera: { cx: 150, cy: 0, widthMm: 640 } }} calculateMetadata={({ props }) => ({ width: (props as { widthPx?: number }).widthPx ?? 1600, height: (props as { heightPx?: number }).heightPx ?? 1300 })} />
     <Composition id="static-checks" component={StaticInspection} durationInFrames={30} fps={30} width={1920} height={1080} defaultProps={{ camera: "oblique", showChecks: true }} />
   </>
 );

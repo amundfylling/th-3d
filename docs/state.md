@@ -432,6 +432,11 @@
   provenance in `data/models/manifest.json`. Fetch: `npm run models:fetch` (`scripts/fetch-models.py`; also step
   `fetch-models` of the NM26 runner's `fetch` stage). It never overwrites a local model with a different sha256 unless
   `--force`. Sessions cannot create releases, so the user uploaded the files.
+- **Move pictures pilot (user request, 2026-10-13, `docs/move-pictures.md`, PROPOSED):** the puck.no move pictures
+  recreated on our rink before any more animations: Näcka, Agdur, Veggdyr, Senter-Velodrom, Senterkniv
+  (`validation/move-pictures/`, side by side with puck.no in `pilot-comparison.jpg`). Green arrows, numbered contacts,
+  level scale, no other text. All 51 puck.no pictures saved in `references/combinations/puck-no-pictures/`. Waiting for
+  the user's review before doing the other 46. Open question: Veggdyr left boards (text) vs right boards (picture).
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -533,6 +538,7 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
+- **Move pictures pilot (2026-10-13, PROPOSED):** `validation/move-pictures/pilot-comparison.jpg`; docs/move-pictures.md.
 - **NM26 new tracks (2026-10-10, PROPOSED):** `docs/nm26-new-tracks.md`, tap page https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp
   (`validation/tap-review/`), `validation/nm26-track-switch.json`, `validation/edwall-g2-goal3-trace.png`, `validation/replays/`.
 - **Batch 2026-10-10 (all PROPOSED):** `validation/analysis-edwall-g2-goal{2,3,4}.mp4` (with `-review.jpg`,

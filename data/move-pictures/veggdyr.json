@@ -1,0 +1,64 @@
+{
+  "id": "veggdyr",
+  "name": "Veggdyr",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-veggdyr-0e070a3a.png",
+  "text": "Center shoots the puck from the heel groove via the left boards, back to the center and into the goal",
+  "conflict": "The NTHF text says the LEFT boards; the puck.no picture plays it off the RIGHT boards (the shooter's right, the same side convention as Näcka and Agdur). The recreation follows the picture.",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        318,
+        330
+      ],
+      "pose": true
+    },
+    {
+      "n": null,
+      "board": true,
+      "picture_px": [
+        535,
+        306
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        268,
+        307
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        268,
+        210
+      ]
+    }
+  ],
+  "figures": {
+    "W-RW": {
+      "picture_px": [
+        505,
+        400
+      ],
+      "why": "moved down its slot, out of the lane to the boards (on puck.no the arrow runs through the right wing)"
+    }
+  }
+}
