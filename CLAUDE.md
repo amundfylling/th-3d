@@ -50,6 +50,9 @@ false alarms removed; shots not improved because the broadcast does not show the
 docs/synthetic-puck.md section 8. Every committed file under
 `data/games/nm26-semifinal/` needs a step or a SOURCES entry in `scripts/pipeline/nm26_rebuild.py` (`npm test` checks it;
 docs/pipeline.md).
+The four trained models behind the NM26 tracks (goalie C, skater v2b, skater v3, puck detector v1) are assets of the
+GitHub release `nm26-models-v1`, listed with sha256 in `data/models/manifest.json`; fetch them with `npm run models:fetch`
+(docs/models.md). Never replace an asset under an existing tag: changed weights get a new tag.
 
 ## Key files
 

@@ -65,6 +65,7 @@
     "rebuild:nm26:check": "python3 scripts/pipeline/nm26_rebuild.py --keep-going --check",
     "rebuild:nm26:list": "python3 scripts/pipeline/nm26_rebuild.py fetch cache calibrate meshes puck figures analysis sheets pages edwall models --list",
     "rebuild:nm26:fetch": "python3 scripts/pipeline/nm26_rebuild.py fetch",
+    "models:fetch": "python3 scripts/fetch-models.py",
     "rebuild:nm26:cache": "python3 scripts/pipeline/nm26_rebuild.py fetch cache",
     "rebuild:nm26:puck": "python3 scripts/pipeline/nm26_rebuild.py meshes puck --check",
     "rebuild:nm26:figures": "python3 scripts/pipeline/nm26_rebuild.py figures --check",

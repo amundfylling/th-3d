@@ -247,7 +247,7 @@ for g in g1 g2 g3 g4 g5 g6 g7; do /root/venvs/blender/bin/python scripts/synth/t
 /root/venvs/blender/bin/python scripts/synth/puck-compare.py
 ```
 
-The model (`out/synth/puck-det-v1.pt`, 1.1 MB) is not committed, like the other models. The candidates
+The model (`out/synth/puck-det-v1.pt`, 1.1 MB) is not committed, like the other models; it is published on a release (`npm run models:fetch`, docs/models.md). The candidates
 (`out/nm26/<game>/puck-cands-puck-det-v1.json`) let `track-puck.py <game> --track-only` re-run the tracker in seconds.
 
 ## 8. Tracker 2 and the puck at the shot (2026-10-11)
