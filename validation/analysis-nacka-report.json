@@ -25,9 +25,12 @@
   "sha256": "c3aef9cee284506d6fb77c388e9d72171e9c4b290ab2ee6fa03d2e3b428791a2",
   "composition_files": [
    "remotion/NackaAnalysis.tsx",
-   "remotion/AnalysisVideo.tsx"
+   "remotion/AnalysisVideo.tsx",
+   "remotion/SceneLayer.tsx",
+   "remotion/ShotScene.tsx",
+   "remotion/theme.ts"
   ],
-  "composition_sha256": "14193df8d8c56203bef7277d9c9173f61c97cc5d972e45eaca0ce0b84a4bb8cb"
+  "composition_sha256": "d973314ad8e3837603cb3e3284fe6c10fcf6a7ccc1d73d0dd77cf05461d271db"
  },
  "output": {
   "path": "validation/analysis-nacka.mp4",
@@ -73,10 +76,21 @@
  },
  "render_seconds": 3549,
  "composition_refactor": {
-  "date": "2026-10-06",
-  "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
-  "previous_composition_sha256": "41a7a793b9ac4762201090b59dc9da8c5854a4fa624194fbea25ad4146e17dc1",
-  "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
-  "video_rerendered": false
+  "date": "2026-10-12",
+  "change": "shared renderer split for the video workflow (docs/video-workflow.md): remotion/SceneLayer.tsx (scene layer, camera rig) out of AnalysisVideo.tsx, ShotScene.tsx clones the cached GLTF scene per mount and resets the figures every frame (no pose leak between compositions), remotion/theme.ts (overlay theme, default classic), optional frameMap/sceneSrc props (scene cache)",
+  "previous_composition_files": [
+   "remotion/NackaAnalysis.tsx",
+   "remotion/AnalysisVideo.tsx"
+  ],
+  "previous_composition_sha256": "14193df8d8c56203bef7277d9c9173f61c97cc5d972e45eaca0ce0b84a4bb8cb",
+  "verification": "frames 29, 186, 334, 446, 595, 721 rendered at scale 0.5 with the code before this change (commit 0b4caa2) and after it: PNG bytes identical for all six",
+  "video_rerendered": false,
+  "earlier": {
+   "date": "2026-10-06",
+   "change": "remotion/AnalysisVideo.tsx gains the lane graphic, red/green accents and a goal_banner label (for analysis-defence-lw); existing graphics unchanged",
+   "previous_composition_sha256": "41a7a793b9ac4762201090b59dc9da8c5854a4fa624194fbea25ad4146e17dc1",
+   "verification": "frames 30, 200, 400, 510, 660 and 730 rendered at scale 0.5 (scripts/analysis-stills.ts) with the previous and the new remotion/AnalysisVideo.tsx: PNG bytes identical for all six",
+   "video_rerendered": false
+  }
  }
 }

@@ -122,7 +122,7 @@ So the presence output, trained on renders only (plus present real crops), trans
 rejects 92% of the wrong ones. At most "can't see it" labels it says no skater is there; the decoder then interpolates
 over the short gap (only 4% of those frames end up unknown).
 
-**Model** (`out/synth/skater-pose-v3.pt`, not committed; `train-skater-v3.py`, 24 epochs in three runs: 4 epochs with
+**Model** (`out/synth/skater-pose-v3.pt`, not committed, published on a release: `npm run models:fetch`, docs/models.md; `train-skater-v3.py`, 24 epochs in three runs: 4 epochs with
 presence weight 1, which left presence stuck at "present"; 12 with weight 5; 8 fine-tuning at a lower learning rate):
 on the 152 real test crops facing 8.3° median, no flips (v2b 7.0°); on validation renders facing 5.0°, pivot 2.3 px,
 presence right in 98.4% (absent crops called present 7%).

@@ -1,0 +1,50 @@
+{
+ "schema": "move-story/1",
+ "move": "hjerpefinte",
+ "note": "Presentation source of the Hjerpefinte video (scripts/shotlib/presentation.py). Editing it never changes the motion: regenerate with python3 scripts/build-move.py hjerpefinte --presentation.",
+ "theme": "classic",
+ "title": "HJERPEFINTE",
+ "subtitle": "Table hockey · centre feint · the goalie must expect a Hjerpe",
+ "bug": "HJERPEFINTE",
+ "end_steps": [
+  "HJERPE STANCE, PUCK ON THE BLADE",
+  "GOALIE BITES, SLIDES LEFT",
+  "STRAIGHT PUSH, RIGHT CORNER"
+ ],
+ "setup": {
+  "title": "THE SET-UP",
+  "text": "One puck in front of the blue line, back to the goal, puck out on the right of the blade. From here the centre can also play a Hjerpe to the left. The goalie still covers the right side.",
+  "highlight": {
+   "W-C": "CENTRE",
+   "E-G": "GOALIE COVERS RIGHT"
+  },
+  "puck_label": "PUCK ON THE BLADE",
+  "frame_highlighted": true
+ },
+ "beats": [
+  {
+   "id": "feint",
+   "event": "goalie.bites",
+   "title": "THE FEINT",
+   "text": "The stance sells the Hjerpe. The goalie reads it and starts to slide to the left post.",
+   "highlight": {
+    "E-G": "GOALIE BITES"
+   }
+  },
+  {
+   "contact": "shot",
+   "title": "THE SHOT",
+   "text": "As the goalie commits to the left post, the centre turns counter-clockwise and pushes the puck straight into the right corner the goalie is leaving.",
+   "label": "SHOT · BLADE PUSH",
+   "highlight": {
+    "E-G": "GOALIE SLIDES LEFT"
+   },
+   "turn": {
+    "figure": "W-C",
+    "event": "turn.onset",
+    "direction": "ccw",
+    "label": "TURN"
+   }
+  }
+ ]
+}

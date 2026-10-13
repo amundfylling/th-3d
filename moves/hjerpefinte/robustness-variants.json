@@ -1,81 +1,81 @@
 {
- "note": "Variants for Hjerpefinte's own assumptions: the goalie's reaction (starts sliding at 0.30 s), its slide (0.2 s) and its start (arc 44 mm, y = -11 mm). Sizes ASSUMED. Found 2026-10-12 with a scan: a reaction up to 0.10 s later still opens the corner; 0.15 s later the goalie's stick meets the puck (save).",
+ "note": "Variants for Hjerpefinte's own assumptions (trace v2 of 2026-10-12, the user revision): the goalie's reaction (starts sliding at 0.22 s, the shot turn starts at 0.25 s), its slide (0.12 s) and its start (arc 45 mm, y = -12 mm). Sizes ASSUMED. Ported 2026-10-13 from the variants written for the 2026-10-11 version (reaction 0.30 s, slide 0.2 s, arc 44 mm), keeping the same offsets and the same slide-time ratios.",
  "variants": [
   {
    "id": "goalie reacts 0.05 s earlier",
    "set": {
-    "figures.E-G.arc.keys.0.1": 44.0,
-    "figures.E-G.arc.keys.1.0": 0.25,
-    "figures.E-G.arc.keys.1.1": 44.0,
-    "figures.E-G.arc.moves.0.0": 0.25,
-    "figures.E-G.arc.moves.0.1": 0.45,
-    "figures.E-G.arc.moves.0.2": 44.0
+    "figures.E-G.arc.keys.0.1": 45.0,
+    "figures.E-G.arc.keys.1.0": 0.17,
+    "figures.E-G.arc.keys.1.1": 45.0,
+    "figures.E-G.arc.moves.0.0": 0.17,
+    "figures.E-G.arc.moves.0.1": 0.29,
+    "figures.E-G.arc.moves.0.2": 45.0
    }
   },
   {
    "id": "goalie reacts 0.05 s later",
    "set": {
-    "figures.E-G.arc.keys.0.1": 44.0,
-    "figures.E-G.arc.keys.1.0": 0.35,
-    "figures.E-G.arc.keys.1.1": 44.0,
-    "figures.E-G.arc.moves.0.0": 0.35,
-    "figures.E-G.arc.moves.0.1": 0.55,
-    "figures.E-G.arc.moves.0.2": 44.0
+    "figures.E-G.arc.keys.0.1": 45.0,
+    "figures.E-G.arc.keys.1.0": 0.27,
+    "figures.E-G.arc.keys.1.1": 45.0,
+    "figures.E-G.arc.moves.0.0": 0.27,
+    "figures.E-G.arc.moves.0.1": 0.39,
+    "figures.E-G.arc.moves.0.2": 45.0
    }
   },
   {
    "id": "goalie reacts 0.10 s later",
    "set": {
-    "figures.E-G.arc.keys.0.1": 44.0,
-    "figures.E-G.arc.keys.1.0": 0.4,
-    "figures.E-G.arc.keys.1.1": 44.0,
-    "figures.E-G.arc.moves.0.0": 0.4,
-    "figures.E-G.arc.moves.0.1": 0.6,
-    "figures.E-G.arc.moves.0.2": 44.0
+    "figures.E-G.arc.keys.0.1": 45.0,
+    "figures.E-G.arc.keys.1.0": 0.32,
+    "figures.E-G.arc.keys.1.1": 45.0,
+    "figures.E-G.arc.moves.0.0": 0.32,
+    "figures.E-G.arc.moves.0.1": 0.44,
+    "figures.E-G.arc.moves.0.2": 45.0
    }
   },
   {
-   "id": "goalie slides in 0.15 s",
+   "id": "goalie slides in 0.09 s",
    "set": {
-    "figures.E-G.arc.keys.0.1": 44.0,
-    "figures.E-G.arc.keys.1.0": 0.3,
-    "figures.E-G.arc.keys.1.1": 44.0,
-    "figures.E-G.arc.moves.0.0": 0.3,
-    "figures.E-G.arc.moves.0.1": 0.45,
-    "figures.E-G.arc.moves.0.2": 44.0
+    "figures.E-G.arc.keys.0.1": 45.0,
+    "figures.E-G.arc.keys.1.0": 0.22,
+    "figures.E-G.arc.keys.1.1": 45.0,
+    "figures.E-G.arc.moves.0.0": 0.22,
+    "figures.E-G.arc.moves.0.1": 0.31,
+    "figures.E-G.arc.moves.0.2": 45.0
    }
   },
   {
-   "id": "goalie slides in 0.30 s",
+   "id": "goalie slides in 0.18 s",
    "set": {
-    "figures.E-G.arc.keys.0.1": 44.0,
-    "figures.E-G.arc.keys.1.0": 0.3,
-    "figures.E-G.arc.keys.1.1": 44.0,
-    "figures.E-G.arc.moves.0.0": 0.3,
-    "figures.E-G.arc.moves.0.1": 0.6,
-    "figures.E-G.arc.moves.0.2": 44.0
+    "figures.E-G.arc.keys.0.1": 45.0,
+    "figures.E-G.arc.keys.1.0": 0.22,
+    "figures.E-G.arc.keys.1.1": 45.0,
+    "figures.E-G.arc.moves.0.0": 0.22,
+    "figures.E-G.arc.moves.0.1": 0.4,
+    "figures.E-G.arc.moves.0.2": 45.0
    }
   },
   {
-   "id": "goalie starts 6 mm nearer the centre (arc 38)",
+   "id": "goalie starts 6 mm nearer the centre (arc 39)",
    "set": {
-    "figures.E-G.arc.keys.0.1": 38.0,
-    "figures.E-G.arc.keys.1.0": 0.3,
-    "figures.E-G.arc.keys.1.1": 38.0,
-    "figures.E-G.arc.moves.0.0": 0.3,
-    "figures.E-G.arc.moves.0.1": 0.5,
-    "figures.E-G.arc.moves.0.2": 38.0
+    "figures.E-G.arc.keys.0.1": 39.0,
+    "figures.E-G.arc.keys.1.0": 0.22,
+    "figures.E-G.arc.keys.1.1": 39.0,
+    "figures.E-G.arc.moves.0.0": 0.22,
+    "figures.E-G.arc.moves.0.1": 0.34,
+    "figures.E-G.arc.moves.0.2": 39.0
    }
   },
   {
-   "id": "goalie starts 6 mm further right (arc 50)",
+   "id": "goalie starts 6 mm further right (arc 51)",
    "set": {
-    "figures.E-G.arc.keys.0.1": 50.0,
-    "figures.E-G.arc.keys.1.0": 0.3,
-    "figures.E-G.arc.keys.1.1": 50.0,
-    "figures.E-G.arc.moves.0.0": 0.3,
-    "figures.E-G.arc.moves.0.1": 0.5,
-    "figures.E-G.arc.moves.0.2": 50.0
+    "figures.E-G.arc.keys.0.1": 51.0,
+    "figures.E-G.arc.keys.1.0": 0.22,
+    "figures.E-G.arc.keys.1.1": 51.0,
+    "figures.E-G.arc.moves.0.0": 0.22,
+    "figures.E-G.arc.moves.0.1": 0.34,
+    "figures.E-G.arc.moves.0.2": 51.0
    }
   }
  ]

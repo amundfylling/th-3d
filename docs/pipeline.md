@@ -33,8 +33,8 @@ These are the existing npm scripts, in dependency order. Each iteration's doc ha
 | 9 | Own match, per-frame camera and figure tracks | `own-video-camera.py`, `own-video-figures.py`, `own-video-figure-paths.py`, `own-video-review.py` (about 20 min; commands in the doc) | docs/own-video-tracking.md |
 | 10 | Shot encyclopedia moves | `scripts/build-move.py <id> --robustness --video-spec`, `python3 scripts/encyclopedia-index.py`, `node scripts/analysis-render.ts move:<id>` | docs/shot-encyclopedia.md |
 
-Remotion renders need the headless shell `/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell` with
-`--gl=swangle` (docs/remotion.md). Not re-verified in this workstream: steps 2-8 (they predate it and have their own
+Remotion renders find their browser and GL backend through `scripts/video/render-env.ts` (default `--gl=swangle`;
+docs/video-workflow.md). Not re-verified in this workstream: steps 2-8 (they predate it and have their own
 checks in `npm test`).
 
 ## 2. NM26 semi-final: one runner
@@ -114,7 +114,8 @@ Fresh container, pinned Blender venv (section 0), `npm run rebuild:nm26:from-zer
   `nm26-g1-review.html`; `nm26-goals-review.html`. The figure meshes give the committed reach (skater 56.3 mm, goalie
   48.7 mm).
 - **Differs:** `validation/board-g2-goal2.png` (stale, see section 6).
-- **Not rebuilt:** `rebuild/g2-goal{2,3,4}-evidence.json` and their sheets need goalie model C (not committed);
+- **Not rebuilt:** `rebuild/g2-goal{2,3,4}-evidence.json` and their sheets need goalie model C (published since
+  2026-10-11, docs/models.md; not re-run);
   `<g>/figure-tracks.json` need both models (section 3).
 - The whole cache-to-outputs run (`npm run rebuild:nm26`) takes about 15 min, mostly the goal clips and the review page.
 - An OpenCV 5.0 / NumPy 2 environment was not compared; use the pinned venv.
@@ -122,8 +123,9 @@ Fresh container, pinned Blender venv (section 0), `npm run rebuild:nm26:from-zer
 ## 3. Synthetic-data models (stage `models`, not rebuilt)
 
 The figure tracks (`<g>/figure-tracks.json`) come from two networks trained on Blender renders: goalie model C
-(`out/synth/goalie-pose-v2c.pt`) and skater model v2b (`out/synth/skater-pose-v2b.pt`). `out/` is not committed, so the
-models, renders and plates are not in the repository. Rebuilding them takes hours of CPU (about 1 s per render, 6,000+
+(`out/synth/goalie-pose-v2c.pt`) and skater model v2b (`out/synth/skater-pose-v2b.pt`). `out/` is not committed; the
+trained models are published on a GitHub release and fetched with `npm run models:fetch` (docs/models.md, also stage
+`fetch` of the runner). The renders and plates are not in the repository. Rebuilding them takes hours of CPU (about 1 s per render, 6,000+
 renders per model, plus training) and needs PyTorch. The order (docs/synthetic-goalie-pilot.md):
 
 1. Plates: goal-box plates (`out/synth/plates/`), `synth/skater-frames.py <g>` and `synth/skater-plates.py`.
@@ -136,8 +138,8 @@ renders per model, plus training) and needs PyTorch. The order (docs/synthetic-g
 **Gaps:** the goal-box plates (`out/synth/plates/plate_{W,E}_raw.png`) have no committed script, so the goalie
 training steps stay skipped until one is written; and the exact command lines of the committed models (render directories, seed ranges, epochs of model C and A)
 were not recorded; the lines above are reconstructed from the doc and are not verified. Retrained models will not
-reproduce the committed tracks bit for bit (random augmentation, thread scheduling). To make the tracks reproducible,
-publish the two `.pt` files as a release asset next to the video, with their sha256 in `config.json`.
+reproduce the committed tracks bit for bit (random augmentation, thread scheduling); use the published models
+(docs/models.md) to re-run tracking.
 
 ## 4. Tests
 
@@ -183,6 +185,7 @@ compares after.
 | Combination recognition | analysis | `combo-recognition` | **verified 2026-10-10: byte-identical** (`combo-labels.json`, `validation/nm26-combo-spots.png`) |
 | All-goals replays | pages | `goal-replays` (`npm run nm26:replays` runs the script alone) | registered; not run here (needs the video) |
 | Edwall rebuild | edwall (not default) | `edwall-trace-<goal>`, `edwall-presentation-<goal>` | presentation steps **verified: byte-identical**; trace steps not run (need the figure meshes, bpy). Videos: `node scripts/edwall-render.ts <goal>`, outside the runner. |
+| Puck at the shot (2026-10-11) | models, puck, analysis | `track-puck-synth-v2-<g>` (tracker 2 on the v1 candidates, seconds), `passes-synth-v1-<g>` (v1 kept for the comparison; the analysis reads v2 since 2026-10-11), `puck-track-eval`; detector v2 (not adopted): `puck-renders-shots`, `train-puck-v2`, `eval-puck-v2`, `detect-puck-v2-<g>` | run 2026-10-11 (docs/synthetic-puck.md section 8). v1 working files: `/mnt/project-files/puck-det-v1-workdir/`, v2: `puck-det-v2-workdir/` |
 | Own-video pipeline | — | not an NM26 step | section 1, row 9 |
 
 Review sheets without recorded command lines (not registered): `validation/synthetic-puck-*.jpg`

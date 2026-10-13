@@ -97,7 +97,7 @@ test("defence vs the left wing video: 1080p, readable chapters, still camera, pu
 });
 
 test("defence vs the left wing video: composition registered, export report matches", (t) => {
-  assert.match(read("remotion/Root.tsx"), /id="analysis-defence-lw"/);
+  assert.match(read("remotion/analysis-videos.ts"), /id: "analysis-defence-lw"/);  // registered by Root.tsx from this list
   assert.match(read("remotion/DefenceAnalysis.tsx"), /allowProposed: true/);
   const p = "validation/analysis-defence-lw-report.json";
   if (!existsSync(p)) return t.skip("no export yet (npm run video:analysis-defence-lw)");

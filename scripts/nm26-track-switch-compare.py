@@ -1,10 +1,11 @@
 """Before/after numbers for the NM26 track switch (docs/nm26-new-tracks.md).
 
-    python3 scripts/nm26-track-switch-compare.py [--base <git rev>]
+    python3 scripts/nm26-track-switch-compare.py [--base <git rev>] [--out <json>]
 
 Before = the outputs at --base (default ee0681d, the consolidation branch head built on puck-track.json and the v2
 figure tracks); after = the outputs in the working tree (puck-track-synth.json, figure-tracks-v3.json). Compares
-passes, patterns, figure analysis, combination labels and the replays' coverage. Writes validation/nm26-track-switch.json.
+passes, patterns, figure analysis, combination labels and the replays' coverage. Writes validation/nm26-track-switch.json
+(or --out; the puck switch to tracker 2 of 2026-10-11: --base 16cad11 --out validation/nm26-puck-v2-switch.json).
 """
 import json
 import subprocess
@@ -81,7 +82,8 @@ if ra and rb:
     mean = lambda X, k: round(sum(x["coverage"][k] for x in X.values()) / len(X), 3)
     out["replays"] = {k: [mean(A, k), mean(B, k)] for k in ("puck_seen", "puck_disk", "figures_shown_mean", "figure_rows_every_frame")}
     out["replays"]["note"] = "means over the replay windows; puck_disk = slow (after) or disk (before)"
-(REPO / "validation/nm26-track-switch.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
+OUT = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else "validation/nm26-track-switch.json"
+(REPO / OUT).write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
 print(json.dumps({k: out[k] for k in ("combinations", "replays")}, indent=1, ensure_ascii=False)[:3000])
 print(json.dumps(out["passes"]["all"]))
 for g in GAMES: print(g, out["passes"][g]["before_passes_found_after"], out["passes"][g]["after_passes_found_before"], out["figure_analysis"]["touch_share"][g])

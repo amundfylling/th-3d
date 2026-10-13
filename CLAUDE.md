@@ -29,7 +29,8 @@ docs/invers-kryssar-velodrom.md.
 A concept video of the three ways to defend when the opponent's left wing has the puck (passive/box, active, mix; user's
 TikTok references/shots/defence-vs-left-wing-tiktok.mp4) uses the PROPOSED, DESIGNED trace data/traces/defence-left-wing.trace.json
 (video validation/analysis-defence-lw.mp4); its shots and passes are lanes drawn as graphics; see docs/defence-left-wing.md.
-All analysis videos share remotion/AnalysisVideo.tsx.
+All analysis videos share remotion/AnalysisVideo.tsx; preview, draft and export them with `scripts/video.ts` (docs/video-workflow.md;
+move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`).
 Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
 references/games/; handheld phone) are digested in docs/game-mechanics.md, with the user's answers. A first PROPOSED
 tracking pipeline (stabilisation, calibration, puck track, possession per skater by exclusive reach areas;
@@ -45,9 +46,14 @@ switch ends 2-2-1-1-1).
 Parallel batch 2026-10-10 (eight workstreams, all PROPOSED) is consolidated on branch
 `claude/consolidation-batch-2026-10-10` (not merged to main); summary and docs in docs/state.md. New tracks sit beside the
 old ones: `<game>/puck-track-synth.json` (x/y = puck centre, ~13 mm nearer the camera than `puck-track.json`) and
-`<game>/figure-tracks-v3.json`; nothing downstream is switched yet. Every committed file under
+`<game>/figure-tracks-v3.json`; nothing downstream is switched yet. A second puck track `<game>/puck-track-synth-v2.json` (tracker 2: ice-mark
+false alarms removed; shots not improved because the broadcast does not show them) sits beside it; the NM26 analysis reads it since 2026-10-11 (user approved; v1 passes in `passes-synth-v1.json`); see
+docs/synthetic-puck.md section 8. Every committed file under
 `data/games/nm26-semifinal/` needs a step or a SOURCES entry in `scripts/pipeline/nm26_rebuild.py` (`npm test` checks it;
 docs/pipeline.md).
+The four trained models behind the NM26 tracks (goalie C, skater v2b, skater v3, puck detector v1) are assets of the
+GitHub release `nm26-models-v1`, listed with sha256 in `data/models/manifest.json`; fetch them with `npm run models:fetch`
+(docs/models.md). Never replace an asset under an existing tag: changed weights get a new tag.
 
 ## Key files
 

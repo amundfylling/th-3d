@@ -1,0 +1,96 @@
+{
+  "description": "The trained models behind the NM26 tracks, published as assets of a GitHub release (docs/models.md). Fetch with python3 scripts/fetch-models.py; each file is checked against its sha256. status: exact = the file that produced the committed tracks; retrained = rebuilt from the repo scripts (tracks rebuilt from it may differ slightly). All model outputs are PROPOSED.",
+  "release": {
+    "repo": "amundfylling/th-3d",
+    "tag": "nm26-models-v1",
+    "download_base": "https://github.com/amundfylling/th-3d/releases/download/nm26-models-v1"
+  },
+  "models": [
+    {
+      "id": "goalie-c",
+      "name": "Goalie pose model C",
+      "file": "goalie-pose-v2c.pt",
+      "local_path": "out/synth/goalie-pose-v2c.pt",
+      "sha256": "54d36e0f36ad47c3d00f34a418434d0d6181c1752149ecca6537d4fd3cf2a167",
+      "size_bytes": 44803275,
+      "format": "PyTorch state_dict (scripts/synth/train-goalie-pose.py model)",
+      "status": "exact",
+      "provenance": "Session 'Claude Code Stiga iteration 01' (synthetic-data pilot, 2026-10-09), handed over 2026-10-11 on a temporary branch; that session confirmed it is the file that produced the committed figure-tracks.json.",
+      "produced": [
+        "data/games/nm26-semifinal/<game>/figure-tracks.json (goalies)",
+        "data/games/nm26-semifinal/rebuild/<goal>-evidence.json"
+      ],
+      "doc": "docs/synthetic-goalie-pilot.md",
+      "trained_by": "scripts/synth/train-goalie-pose.py",
+      "loaded_by": [
+        "scripts/synth/track-figures.py",
+        "scripts/nm26-rebuild-evidence.py"
+      ]
+    },
+    {
+      "id": "skater-v2b",
+      "name": "Skater pose model v2b",
+      "file": "skater-pose-v2b.pt",
+      "local_path": "out/synth/skater-pose-v2b.pt",
+      "sha256": "48859fd63891deab126aa326f397adf938754ac56d1564b84b8c5a97283d093d",
+      "size_bytes": 44918219,
+      "format": "PyTorch state_dict (scripts/synth/train-skater-pose.py model)",
+      "status": "exact",
+      "provenance": "Session 'Claude Code Stiga iteration 01' (synthetic-data pilot, 2026-10-09), handed over 2026-10-11 on a temporary branch; that session confirmed it is the file that produced the committed figure-tracks.json.",
+      "produced": [
+        "data/games/nm26-semifinal/<game>/figure-tracks.json (skaters)"
+      ],
+      "doc": "docs/synthetic-goalie-pilot.md",
+      "trained_by": "scripts/synth/train-skater-pose.py",
+      "loaded_by": [
+        "scripts/synth/track-figures.py"
+      ]
+    },
+    {
+      "id": "puck-v1",
+      "name": "Synthetic puck detector v1",
+      "file": "puck-det-v1.pt",
+      "local_path": "out/synth/puck-det-v1.pt",
+      "sha256": "354139c333d2f3cca4525d77a477ff4670722b2f8fa03c8dd40730305a066abb",
+      "size_bytes": 1095809,
+      "format": "PyTorch state_dict of PuckNet (scripts/synth/train-puck-detector.py)",
+      "status": "exact",
+      "provenance": "Synthetic puck detector thread, 2026-10-10: written 11:46 UTC at the end of epoch 7 (--init puck-det-v0); every game was detected after that with --model puck-det-v1.",
+      "produced": [
+        "data/games/nm26-semifinal/<game>/puck-track-synth.json"
+      ],
+      "doc": "docs/synthetic-puck.md",
+      "trained_by": "scripts/synth/train-puck-detector.py",
+      "loaded_by": [
+        "scripts/synth/track-puck.py",
+        "scripts/synth/eval-puck-detector.py"
+      ]
+    },
+    {
+      "id": "skater-v3",
+      "name": "Skater pose model v3 (tracker v3)",
+      "file": "skater-pose-v3.pt",
+      "local_path": "out/synth/skater-pose-v3.pt",
+      "sha256": "d5721e869cf5348a357a9f448be0e3542bf148288530afcec6ec7a1e38bbff81",
+      "size_bytes": 44920139,
+      "format": "PyTorch state_dict (scripts/synth/train-skater-v3.py model)",
+      "status": "exact",
+      "provenance": "Tracker v3 thread, 2026-10-10: written 11:42 UTC at the end of the 8-epoch fine-tune; every observation pass behind the committed v3 tracks ran after that (12:06-15:27 UTC).",
+      "produced": [
+        "data/games/nm26-semifinal/<game>/figure-tracks-v3.json"
+      ],
+      "doc": "docs/tracker-v3.md",
+      "trained_by": "scripts/synth/train-skater-v3.py",
+      "loaded_by": [
+        "scripts/synth/track-figures-v3.py"
+      ],
+      "start_weights": {
+        "file": "resnet18_a1_0-d63eafa0.pth",
+        "url": "https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-rsb-weights/resnet18_a1_0-d63eafa0.pth",
+        "sha256": "d63eafa07a6e32a39d328e364f8c9f89d671444ecc7f02aa0f7eb8882af3dd29",
+        "local_path": "/root/.cache/torch/hub/checkpoints/alt/resnet18_a1.pth",
+        "note": "ImageNet start weights for training only (timm ResNet-18 RSB A1); not needed to run the model."
+      }
+    }
+  ]
+}
