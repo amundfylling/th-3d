@@ -192,14 +192,17 @@ def build(spec):
                 toward = pic_to_world(*c["toward_px"])
             elif first_via.get(k) is not None:
                 toward = first_via[k]
-            else:
+            elif k in nxt:
                 toward = raw[nxt[k]]
+            else:  # the last receiver of an innspill: faces the goal
+                toward = pic_to_world(297, 212)
             sol = solve_contact(c["pid"], raw[k], toward)
             points[k] = np.array(sol["puck_mm"])
             notes.append({"contact": k, **sol, "picture_mm": [round(float(v), 1) for v in raw[k]], "drawn": c["pose"]})
             if c["pose"]:
                 poses[c["pid"]] = {"arc_mm": sol["arc_mm"], "theta_deg": sol["theta_deg"], "source": f"contact {k} (blade snapped)"}
-        points["goal"] = raw["goal"]
+        if "goal" in raw:  # an innspill ends at the receiver, with no shot
+            points["goal"] = raw["goal"]
         for seg in spec["path"]:
             a, b = points[seg["from"]], points[seg["to"]]
             vias = seg.get("via", [])

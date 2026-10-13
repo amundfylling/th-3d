@@ -1,0 +1,181 @@
+<title>Move Picture Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: a header with the review tally and filters, then a grid of move cards (picture on top, text and verdict below). */
+:root {
+  --bg: #eef2f7; --surface: #ffffff; --ink: #0e1d33; --muted: #52627a; --line: #d3dbe6;
+  --navy: #0e2a57; --red: #c8102e; --green: #12873a; --green-soft: #e3f4e8; --red-soft: #fbe7ea; --chip: #e2e8f1;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1424; --surface: #132036; --ink: #e8eef7; --muted: #9fb0c8; --line: #24344f;
+  --navy: #9cc0ff; --red: #ff6b7f; --green: #4fd07a; --green-soft: #12301f; --red-soft: #3a1820; --chip: #1c2c46; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1424; --surface: #132036; --ink: #e8eef7; --muted: #9fb0c8; --line: #24344f;
+  --navy: #9cc0ff; --red: #ff6b7f; --green: #4fd07a; --green-soft: #12301f; --red-soft: #3a1820; --chip: #1c2c46; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 48px; display: grid; gap: 18px; }
+h1 { font: 800 2.2rem/1 var(--display); letter-spacing: .01em; margin: 0; color: var(--navy); text-wrap: balance; }
+.lede { margin: 6px 0 0; color: var(--muted); max-width: 70ch; }
+.tally { display: flex; flex-wrap: wrap; gap: 8px 18px; font: 600 1rem var(--display); letter-spacing: .04em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.tally b { font-size: 1.35rem; }
+.t-ok { color: var(--green); } .t-ch { color: var(--red); } .t-no { color: var(--muted); }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: 600 .95rem var(--body); border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 13px; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--navy); color: var(--surface); border-color: var(--navy); }
+.banner { background: var(--red-soft); color: var(--ink); border-radius: 8px; padding: 10px 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); gap: 18px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.card.ok { border-color: var(--green); box-shadow: inset 0 4px 0 var(--green); }
+.card.change { border-color: var(--red); box-shadow: inset 0 4px 0 var(--red); }
+.shot { position: relative; background: #0e2a57; display: block; border: 0; padding: 0; cursor: zoom-in; width: 100%; }
+.shot img { display: block; width: 100%; height: 300px; object-fit: contain; }
+.shot .src { position: absolute; left: 8px; top: 8px; font: 600 .78rem var(--body); letter-spacing: .04em; text-transform: uppercase; background: rgba(255,255,255,.92); color: #0e2a57; padding: 2px 8px; border-radius: 4px; }
+.body { padding: 12px 14px 14px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.head h2 { font: 800 1.45rem/1.1 var(--display); margin: 0; }
+.meta { color: var(--muted); font-size: .9rem; }
+.lvl { font: 800 .95rem var(--display); background: var(--chip); border-radius: 4px; padding: 0 7px; font-variant-numeric: tabular-nums; }
+.text { margin: 0; }
+.note { margin: 0; font-size: .88rem; color: var(--muted); }
+.swap { justify-self: start; font: 500 .88rem var(--body); background: none; border: 0; color: var(--navy); text-decoration: underline; cursor: pointer; padding: 0; }
+.verdict { display: flex; gap: 8px; flex-wrap: wrap; }
+.verdict button { flex: 1 1 140px; font: 600 .95rem var(--body); border-radius: 6px; padding: 7px 10px; cursor: pointer; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); }
+.verdict .b-ok[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: var(--surface); }
+.verdict .b-ch[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: var(--surface); }
+textarea { width: 100%; box-sizing: border-box; min-height: 64px; resize: vertical; font: 15px/1.4 var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.save { font: 600 .9rem var(--body); background: var(--navy); color: var(--surface); border: 0; border-radius: 6px; padding: 6px 14px; cursor: pointer; }
+.status { font-size: .85rem; color: var(--muted); }
+button:focus-visible, textarea:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.empty { color: var(--muted); padding: 30px 0; }
+dialog { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
+dialog::backdrop { background: rgba(5,12,24,.85); }
+dialog img { display: block; max-width: 96vw; max-height: 90vh; object-fit: contain; }
+dialog form { text-align: right; } dialog form button { font: 600 1rem var(--body); background: var(--surface); color: var(--ink); border: 0; border-radius: 6px; padding: 4px 12px; margin-bottom: 6px; cursor: pointer; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Move pictures for review</h1>
+    <p class="lede">One picture per NTHF move on our Play Off 21 rink. Mark each one <b>Looks good</b> or <b>Needs change</b>, and write what to change in the comment. Moves without a puck.no picture are new drawings made from the NTHF text. The others are redrawn from puck.no, and you can swap to the original.</p>
+  </header>
+  <div class="tally" id="tally"></div>
+  <div class="filters" id="filters" role="group" aria-label="Filter moves"></div>
+  <div class="banner" id="banner" hidden></div>
+  <div class="grid" id="grid"></div>
+</div>
+<dialog id="zoom"><form method="dialog"><button>Close</button></form><img id="zoomImg" alt=""></dialog>
+
+<script>
+const MOVES = /*MOVES*/[];
+const reviews = {};          // id -> {verdict, comment}
+let db = null, filter = "designed";
+const FILTERS = [
+  ["designed", "New drawings", m => m.source === "designed"],
+  ["puckno", "Redrawn from puck.no", m => m.source === "puckno"],
+  ["todo", "Not reviewed", m => !reviews[m.id]?.verdict],
+  ["change", "Needs change", m => reviews[m.id]?.verdict === "change"],
+  ["ok", "Looks good", m => reviews[m.id]?.verdict === "ok"],
+  ["all", "All", () => true],
+];
+const $ = id => document.getElementById(id);
+
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") e.className = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else if (v !== null && v !== undefined) e.setAttribute(k, v);
+  }
+  for (const k of kids) if (k !== null && k !== undefined) e.append(k);
+  return e;
+}
+
+function renderTally() {
+  const ok = MOVES.filter(m => reviews[m.id]?.verdict === "ok").length;
+  const ch = MOVES.filter(m => reviews[m.id]?.verdict === "change").length;
+  $("tally").replaceChildren(
+    el("span", { class: "t-ok" }, el("b", {}, String(ok)), " looks good"),
+    el("span", { class: "t-ch" }, el("b", {}, String(ch)), " needs change"),
+    el("span", { class: "t-no" }, el("b", {}, String(MOVES.length - ok - ch)), " not reviewed"));
+}
+
+function renderFilters() {
+  $("filters").replaceChildren(...FILTERS.map(([key, label, fn]) =>
+    el("button", { "aria-pressed": String(filter === key), onclick: () => { filter = key; try { localStorage.setItem("filter", key); } catch (e) {} render(); } },
+      `${label} (${MOVES.filter(fn).length})`)));
+}
+
+async function save(m, patch, statusEl) {
+  if (!db) return;
+  const next = { verdict: reviews[m.id]?.verdict || null, comment: reviews[m.id]?.comment || "", ...patch, updatedAt: new Date().toISOString(), name: m.name };
+  statusEl.textContent = "Saving…";
+  try {
+    await db.collection("reviews").doc(m.id).set(next);
+    reviews[m.id] = next;
+    statusEl.textContent = "Saved";
+    renderTally(); renderFilters();
+  } catch (e) {
+    statusEl.textContent = e?.code === "not_granted" ? "You can view this page but not save reviews." : "Not saved. Check your connection and try again.";
+  }
+}
+
+function card(m) {
+  const r = reviews[m.id] || {};
+  let showingOrig = false;
+  const img = el("img", { src: m.img, alt: `${m.name}: our picture`, loading: "lazy" });
+  const srcTag = el("span", { class: "src" }, m.source === "designed" ? "New drawing" : "Ours");
+  const shot = el("button", { class: "shot", type: "button", "aria-label": `Enlarge ${m.name}`, onclick: () => { $("zoomImg").src = img.src; $("zoomImg").alt = img.alt; $("zoom").showModal(); } }, img, srcTag);
+  const swap = m.orig ? el("button", { class: "swap", type: "button", onclick: () => {
+    showingOrig = !showingOrig;
+    img.src = showingOrig ? m.orig : m.img;
+    img.alt = `${m.name}: ${showingOrig ? "puck.no original" : "our picture"}`;
+    srcTag.textContent = showingOrig ? "puck.no original" : "Ours";
+    swap.textContent = showingOrig ? "Show ours" : "Show the puck.no original";
+  } }, "Show the puck.no original") : null;
+  const status = el("span", { class: "status" }, r.updatedAt ? "Saved" : "");
+  const ta = el("textarea", { id: `c-${m.id}`, placeholder: "What should change? (arrow, figure, which boards…)" });
+  ta.value = r.comment || "";
+  const dis = db ? null : "";
+  const bOk = el("button", { class: "b-ok", type: "button", "aria-pressed": String(r.verdict === "ok"), disabled: dis, onclick: () => save(m, { verdict: "ok", comment: ta.value }, status).then(render) }, "Looks good");
+  const bCh = el("button", { class: "b-ch", type: "button", "aria-pressed": String(r.verdict === "change"), disabled: dis, onclick: () => { save(m, { verdict: "change", comment: ta.value }, status).then(render); } }, "Needs change");
+  const bSave = el("button", { class: "save", type: "button", disabled: dis, onclick: () => save(m, { comment: ta.value }, status) }, "Save comment");
+  return el("article", { class: `card ${r.verdict || ""}`, id: m.id },
+    shot,
+    el("div", { class: "body" },
+      el("div", { class: "head" }, el("h2", {}, m.name), el("span", { class: "lvl", title: "NTHF level 0-9" }, `Level ${m.level}`), el("span", { class: "meta" }, m.player)),
+      el("p", { class: "text" }, m.text),
+      m.note ? el("p", { class: "note" }, m.note) : null,
+      swap,
+      el("div", { class: "verdict" }, bOk, bCh),
+      ta,
+      el("div", { class: "row" }, bSave, status)));
+}
+
+function render() {
+  renderTally(); renderFilters();
+  const fn = FILTERS.find(f => f[0] === filter)[2];
+  const list = MOVES.filter(fn);
+  $("grid").replaceChildren(...(list.length ? list.map(card) : [el("p", { class: "empty" }, "No moves in this group.")]));
+}
+
+try { const f = localStorage.getItem("filter"); if (FILTERS.some(x => x[0] === f)) filter = f; } catch (e) {}
+render();
+$("banner").hidden = false;
+$("banner").textContent = "Loading saved reviews…";
+
+(async () => {
+  db = window.claude?.use ? await window.claude.use("db") : null;
+  if (!db) { $("banner").textContent = "Reviews can't be saved in this view. Open the page on claude.ai while signed in."; render(); return; }
+  $("banner").hidden = true;
+  let first = true;
+  db.collection("reviews").onSnapshot(snap => {
+    for (const d of snap.docs) reviews[d.id] = d.data();
+    // keep what the viewer is typing: only re-render on the first load or when the grid has no focus
+    if (first || !document.activeElement || document.activeElement.tagName !== "TEXTAREA") render(); else { renderTally(); renderFilters(); }
+    first = false;
+  }, () => { $("banner").hidden = false; $("banner").textContent = "Saved reviews could not be loaded. Reload the page to try again."; });
+})();
+</script>

@@ -1,0 +1,58 @@
+{
+  "id": "reiersen",
+  "name": "Reiersen",
+  "level": 7,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing along the right boards behind their own goal to the left defenseman, who shoots directly into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        450
+      ],
+      "pose": true,
+      "toward_px": [
+        520,
+        700
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-LD",
+      "picture_px": [
+        176,
+        800
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        "boards",
+        [
+          300,
+          952
+        ],
+        "boards",
+        [
+          66,
+          800
+        ]
+      ]
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        297,
+        212
+      ]
+    }
+  ]
+}

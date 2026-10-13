@@ -1,0 +1,54 @@
+{
+  "id": "snik",
+  "name": "Snik",
+  "level": 5,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Right wing shoots the puck via the goalie to the center, who shoots directly into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        474,
+        320
+      ],
+      "pose": true
+    },
+    {
+      "id": "goalie",
+      "kind": "point",
+      "picture_px": [
+        310,
+        262
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        318,
+        345
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "goalie"
+    },
+    {
+      "from": "goalie",
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        258,
+        212
+      ]
+    }
+  ]
+}

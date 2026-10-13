@@ -71,3 +71,30 @@ video): `validation/move-pictures/angles/nacka-{overhead,tilted,oblique,goalie}.
 `nacka-angles.jpg`. Composition `angle-study` (`remotion/AngleStudy.tsx`, the saved Näcka trace through the usual
 gate), rendered by `node scripts/move-pictures/angles.ts` (last frame, 1920x1080; `--video` renders the slow-motion
 clip instead). The arrows are projected from the puck path on the ice, so they are drawn over figures in the 3D views.
+
+## Moves without a puck.no picture (2026-10-13)
+
+The user asked for pictures of the 70 NTHF moves that have no puck.no picture (66 right-wing moves and 4 centre
+fakie tricks). Their specs (`data/move-pictures/<id>.json`, `"source": "designed from the NTHF text"`) were written
+from the NTHF description alone, with the same contacts, arrows and figure snapping as the redrawn pictures:
+- Contacts are placed on the figures' real slots (W-RW in its slot, passes to the centre's usual shooting spot, the
+  defenders and goalie in their slots). "Left corner" and "right corner" are seen from the attackers.
+- A carry (the same figure touching the puck twice in a row) is drawn as a short arrow; the figure stands where it
+  releases the puck, and the puck where the carry starts.
+- An innspill ends at the receiving centre (no goal arrow); `build.py` now allows a path without a goal.
+- "Behind their own goal" runs along the bottom boards (via the point behind the own goal); "Jorda rundt" goes all the
+  way round with board waypoints.
+- The fakie centre tricks (Fakie-Lillstøvel, -Näcka, -Omvendspjass, -Spjass) start from the other groove; the quick
+  groove shift is too small to draw and is not shown.
+- Assumed where the text is silent: Snok plays off the far right corner, Fakie-Tomahawk off the left boards near the
+  goal line, Tomahawk off the right boards.
+- Contacts more than 9 mm off the drawn point (blade cannot reach): Fakie-Lillstøvel 2 (12.0 mm), Fakie-Omvendspjass 2
+  (9.8 mm), as in their base moves.
+
+## Review page
+
+`python3 scripts/move-pictures/review-page.py` (`npm run pictures:review`) writes `out/move-pictures/review/`: one
+page with every move picture (121), its NTHF text, the puck.no original where there is one, and per move a
+"Looks good" / "Needs change" choice and a comment. The page keeps the verdicts in its artifact database
+(collection `reviews`, document id = move id from `data/encyclopedia/index.json`), which Claude reads back with the
+artifact data tool. Published as an artifact for the user (link in the thread and in docs/state.md).

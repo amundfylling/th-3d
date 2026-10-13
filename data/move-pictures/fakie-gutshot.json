@@ -1,0 +1,44 @@
+{
+  "id": "fakie-gutshot",
+  "name": "Fakie Gutshot",
+  "level": 7,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing to the goalie, who shoots directly into the goal",
+  "note": "The goalie's touch is not snapped to a blade; the goalie stays in its assembly pose.",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        474,
+        360
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-G",
+      "picture_px": [
+        300,
+        775
+      ],
+      "pose": false,
+      "snap": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        297,
+        212
+      ]
+    }
+  ]
+}

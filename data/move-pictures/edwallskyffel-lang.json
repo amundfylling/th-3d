@@ -1,0 +1,55 @@
+{
+  "id": "edwallskyffel-lang",
+  "name": "Edwallskyffel lang",
+  "level": 4,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Right wing carries the puck forward in the slot with the heel groove and passes in to the center, who shoots into the left corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        476,
+        410
+      ],
+      "pose": false
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        476,
+        300
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        316,
+        342
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        258,
+        212
+      ]
+    }
+  ]
+}

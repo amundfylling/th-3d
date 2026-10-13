@@ -1,0 +1,63 @@
+{
+  "id": "invers-kryssar-med-velodrom",
+  "name": "Invers Kryssar med Velodrom",
+  "level": 7,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who shoots directly into the goal",
+  "note": "The saved trace (data/traces/invers-kryssar-velodrom.trace.json) is not used here; the arrows are drawn from the text like the other designed pictures.",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        474,
+        340
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        92,
+        300
+      ],
+      "pose": true,
+      "toward_px": [
+        90,
+        150
+      ]
+    },
+    {
+      "n": 3,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        270
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "via": [
+        "boards"
+      ]
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        338,
+        212
+      ]
+    }
+  ]
+}

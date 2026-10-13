@@ -1,0 +1,57 @@
+{
+  "id": "fakie-gutshot-hansen",
+  "name": "Fakie Gutshot-Hansen",
+  "level": 8,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing to the goalie, who sends it back to the right wing, who shoots into the right corner",
+  "note": "The goalie's touch is not snapped to a blade; the goalie stays in its assembly pose.",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        474,
+        360
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-G",
+      "picture_px": [
+        300,
+        775
+      ],
+      "pose": false,
+      "snap": false
+    },
+    {
+      "n": 3,
+      "pid": "W-RW",
+      "picture_px": [
+        474,
+        290
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        338,
+        212
+      ]
+    }
+  ]
+}

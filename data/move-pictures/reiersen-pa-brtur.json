@@ -1,0 +1,87 @@
+{
+  "id": "reiersen-pa-brtur",
+  "name": "Reiersen på bærtur",
+  "level": 9,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing along the right boards behind their own goal to the left defenseman, who sends it behind their own goal to the right defenseman, who shoots directly into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        450
+      ],
+      "pose": true,
+      "toward_px": [
+        520,
+        700
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-LD",
+      "picture_px": [
+        176,
+        820
+      ],
+      "pose": true,
+      "toward_px": [
+        150,
+        952
+      ]
+    },
+    {
+      "n": 3,
+      "pid": "W-RD",
+      "picture_px": [
+        412,
+        800
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        "boards",
+        [
+          300,
+          952
+        ],
+        "boards",
+        [
+          66,
+          800
+        ]
+      ]
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "via": [
+        "boards",
+        [
+          300,
+          952
+        ],
+        "boards",
+        [
+          531,
+          800
+        ]
+      ]
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        297,
+        212
+      ]
+    }
+  ]
+}

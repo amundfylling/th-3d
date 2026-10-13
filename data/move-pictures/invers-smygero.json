@@ -1,0 +1,42 @@
+{
+  "id": "invers-smygero",
+  "name": "Invers Smygero / Eidsneskølle",
+  "level": 4,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Right wing carries the puck quickly backward along the boards, goes past the puck and shoots with a set blade into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        255
+      ],
+      "pose": false
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        400
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        338,
+        212
+      ]
+    }
+  ]
+}

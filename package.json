@@ -73,7 +73,8 @@
     "rebuild:nm26:analysis": "python3 scripts/pipeline/nm26_rebuild.py analysis --check",
     "rebuild:nm26:edwall": "python3 scripts/pipeline/nm26_rebuild.py meshes edwall --keep-going --check",
     "rebuild:nm26:from-zero": "python3 scripts/pipeline/nm26_rebuild.py fetch cache calibrate meshes puck figures analysis sheets pages --keep-going --check",
-    "test:synth": "python3 -m unittest discover -s tests/synth -p \"test_*.py\" -v"
+    "test:synth": "python3 -m unittest discover -s tests/synth -p \"test_*.py\" -v",
+    "pictures:review": "python3 scripts/move-pictures/review-page.py"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

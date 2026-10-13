@@ -436,7 +436,10 @@
   recreated on our rink before any more animations, in the tilted 20 deg overhead view the user chose after the Näcka
   angle study (`validation/move-pictures/<id>.png`; side by side with puck.no in `validation/move-pictures/comparison/`).
   Green arrows, numbered contacts, level scale, no other text. `npm run pictures:moves` rebuilds them. The 70 NTHF
-  moves without a puck.no picture are not drawn. Open questions: three text-vs-picture conflicts (Veggdyr,
+  moves without a puck.no picture were then drawn from their NTHF text (same pipeline, `"source": "designed..."`), so all
+  121 NTHF moves have a picture. Review page (user request): https://claude.ai/artifact/P1sVBnjbTc6QZ7ktskAbDE
+  (`npm run pictures:review`); the user's verdicts and comments are in its database, collection `reviews` (read them
+  with the artifact data tool before changing pictures). Open questions: three text-vs-picture conflicts (Veggdyr,
   Fakie-Veggdyr, Fakie-invers-halv-Agduro); ours follow the pictures.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
@@ -539,7 +542,7 @@ Iteration 20 closed without repair cycles:
 
 ## Review artifacts
 
-- **Move pictures, all 51 (2026-10-13, PROPOSED):** `validation/move-pictures/comparison/page1-8.jpg`; docs/move-pictures.md.
+- **Move pictures, all 121 (2026-10-13, PROPOSED):** review page https://claude.ai/artifact/P1sVBnjbTc6QZ7ktskAbDE; `validation/move-pictures/comparison/page1-8.jpg` (the 51 redrawn); docs/move-pictures.md.
 - **NM26 new tracks (2026-10-10, PROPOSED):** `docs/nm26-new-tracks.md`, tap page https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp
   (`validation/tap-review/`), `validation/nm26-track-switch.json`, `validation/edwall-g2-goal3-trace.png`, `validation/replays/`.
 - **Batch 2026-10-10 (all PROPOSED):** `validation/analysis-edwall-g2-goal{2,3,4}.mp4` (with `-review.jpg`,

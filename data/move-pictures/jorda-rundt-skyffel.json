@@ -1,0 +1,77 @@
+{
+  "id": "jorda-rundt-skyffel",
+  "name": "Jorda Rundt-skyffel",
+  "level": 9,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing along the boards behind their own goal and all the way around back to the right wing, who sends it to the center, who scores",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        360
+      ],
+      "pose": false,
+      "toward_px": [
+        520,
+        700
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        270
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        316,
+        342
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        "boards",
+        [
+          300,
+          952
+        ],
+        "boards",
+        [
+          64,
+          520
+        ],
+        "boards",
+        [
+          300,
+          89
+        ],
+        "boards"
+      ]
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        258,
+        212
+      ]
+    }
+  ]
+}

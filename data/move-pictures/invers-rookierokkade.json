@@ -1,0 +1,55 @@
+{
+  "id": "invers-rookierokkade",
+  "name": "Invers Rookierokkade",
+  "level": 7,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing far back in the slot to the right defenseman, who sends it back to the right wing, who scores",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        472,
+        560
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RD",
+      "picture_px": [
+        402,
+        640
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-RW",
+      "picture_px": [
+        472,
+        470
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        338,
+        212
+      ]
+    }
+  ]
+}
