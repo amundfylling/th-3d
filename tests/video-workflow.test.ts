@@ -46,7 +46,7 @@ test("video workflow: review stills cover the set-up, every contact, the freezes
   const A = resolveAnalysis(SPEC, TRACE);
   const st = reviewStills(A, TRACE.events);
   const why = st.flatMap((s) => s.reasons).join("\n");
-  for (const re of [/title card/, /SET-UP/, /just before shot/, /at shot/, /just after shot/, /freeze shot_freeze/, /camera move beat_feint -> beat_shot/, /goal at full speed/, /end card/]) assert.match(why, re);
+  for (const re of [/title card/, /SET-UP/, /just before shot/, /at shot/, /just after shot/, /freeze shot_freeze/, /camera move setup -> beat_feint/, /freeze feint_freeze/, /goal at full speed/, /end card/]) assert.match(why, re);
   for (const s of st) assert.ok(s.frame >= 0 && s.frame < A.durationInFrames);
   // "at shot" is the slow-motion frame nearest the contact
   const at = st.find((s) => s.reasons.some((r) => r.startsWith("at shot")))!;
@@ -54,7 +54,8 @@ test("video workflow: review stills cover the set-up, every contact, the freezes
   assert.ok(Math.abs(analysisFrame(A, at.frame).t - contact) < 0.003);
 });
 
-test("scene cache: the Hjerpefinte pilot has 807 frames and 311 distinct scene states (406 time + camera pairs)", () => {
+// trace v2 (2026-10-12); the v1 pilot had 631 frames, 325 time + camera pairs and 244 states (docs/video-workflow.md)
+test("scene cache: the Hjerpefinte video has 807 frames and 311 distinct scene states (406 time + camera pairs)", () => {
   const k = keys(SPEC);
   assert.equal(k.length, 807);
   assert.equal(new Set(k).size, 311);
