@@ -378,7 +378,9 @@ async function fillCache(L: Loaded, frames: number[], scale: number) {
     const { out, sink } = await timed(`${L.t.name}:scene_renders(${reps.length})`, () => renderPngs(L, reps, scale, tmp, false, null));
     renderSeconds = Math.round((Date.now() - t0) / 100) / 10;
     sink.renderers.forEach((r) => renderers.add(r));
-    for (const r of sink.renderers) if (!r.startsWith(probe.split(" (")[0]!)) throw new Error(`scene renders used ${r}, the probe said ${probe}: not caching`);
+    // the namespace and every entry name the probe's renderer: the scene renders must report exactly that one
+    if (!sink.renderers.size) throw new Error(`${L.t.name}: the scene renders logged no WebGL renderer; nothing cached`);
+    for (const r of sink.renderers) if (r !== probe) throw new Error(`scene renders used ${r}, the probe said ${probe}: not caching`);
     const v = verifyLive(L, sink, reps);
     if (v.differing.length || v.missing.length || v.camWorst > 0.02 || v.readback > 1e-3) throw new Error(`${L.t.name}: scene renders failed verification ${JSON.stringify(v)}; nothing cached`);
     reps.forEach((f, i) => {
