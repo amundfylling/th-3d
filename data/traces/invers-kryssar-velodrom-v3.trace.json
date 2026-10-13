@@ -10,11 +10,12 @@
   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
   "skater_scale_k": 1.0814,
   "goalie_scale_k": 1.1421889791935147,
-  "git_commit": "8cf096fa9c0d56a132fdfa813a13228f47bda3f4"
+  "git_commit": "1c4c431d0fe006267a816816b7660426178d087e"
  },
  "source": {
   "move_file": "moves/invers-kryssar-velodrom-v3/move.json",
   "move_file_sha256": "87cfbe0a0f6b173d084e2e5929c2d97194a0da297bb11003e1f7ca1d182c1d65",
+  "move_motion_sha256": "efe08b927092168e0b24359bf1a866e4455008239aecc56b44f4522e9e45bc9c",
   "overrides": [],
   "kind": "designed",
   "text": "Pass from right wing to left wing, who passes along the boards behind the goal to the right wing, who shoots directly into the goal",
@@ -26,7 +27,15 @@
  "engine": {
   "path": "scripts/shotlib",
   "contact_footprints": "data/figures/contact-footprints.json",
-  "contact_footprints_sha256": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563"
+  "contact_footprints_sha256": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563",
+  "code_sha256": "c6f51d1e28246083c270627e6aa3cdf3c840a327df846523802a0324f6fff525",
+  "inputs_sha256": {
+   "data/geometry.json": "54d2283dd7f6c7b47e9843e90b65d5e20695e6ab18f80ae2f0becb81a2112bdf",
+   "validation/12-hardware-report.json": "9922135cf1f8eef92db99d858ed75cf240642e6f9be60fc708c9dff77138602c",
+   "validation/16-assembly-poses.json": "e554dab779c7771692c63b6815beaef2868681e774cbdb3c69d382638d5a3908",
+   "data/figures/contact-footprints.json": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563",
+   "shots/spjass/checks.json": "26dea11026b80faa1d8b9ce248db2a751893ecadb71c2aa1f49066ddecf65e75"
+  }
  },
  "time_base": {
   "t": "designed time (s); no recording",

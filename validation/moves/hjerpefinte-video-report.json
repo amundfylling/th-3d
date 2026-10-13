@@ -18,11 +18,12 @@
  "trace": {
   "trace_id": "trace.hjerpefinte.v2",
   "status": "proposed",
-  "sha256": "c60b166752e3e3ff0b8afb8b9b03fa5447ed764108780423b85465f8f2e266b3"
+  "sha256": "538bd72fe41857b5094c80f579bd8c913079b2ffab402abe3ee6fb0dce5571cc",
+  "rehash_note": "2026-10-13 merge of IKV v3 (#9) and the video workflow (#14): the trace was rebuilt on the combined engine; move_motion_sha256 and every evaluation sample are identical, only engine/asset_refs metadata changed, so the rendered frames stand. Rendered from trace sha256 c60b166752e3e3ff0b8afb8b9b03fa5447ed764108780423b85465f8f2e266b3, spec sha256 a76cc5b08c02f90d4c6baf8700bf1609caf54db4add071c8aa17f68310318303."
  },
  "analysis_spec": {
   "analysis_id": "analysis.hjerpefinte.v1",
-  "sha256": "a76cc5b08c02f90d4c6baf8700bf1609caf54db4add071c8aa17f68310318303",
+  "sha256": "0a5b063f129a34e8fe596011c7ec93bc049522568c9b439339ecc1c3591c2e7f",
   "composition_files": [
    "remotion/EncyclopediaAnalysis.tsx",
    "remotion/encyclopedia-registry.ts",

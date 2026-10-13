@@ -46,7 +46,7 @@ test("video workflow: review stills cover the set-up, every contact, the freezes
   const A = resolveAnalysis(SPEC, TRACE);
   const st = reviewStills(A, TRACE.events);
   const why = st.flatMap((s) => s.reasons).join("\n");
-  for (const re of [/title card/, /SET-UP/, /just before shot/, /at shot/, /just after shot/, /freeze shot_freeze/, /camera move setup -> beat_shot/, /goal at full speed/, /end card/]) assert.match(why, re);
+  for (const re of [/title card/, /SET-UP/, /just before shot/, /at shot/, /just after shot/, /freeze shot_freeze/, /camera move beat_feint -> beat_shot/, /goal at full speed/, /end card/]) assert.match(why, re);
   for (const s of st) assert.ok(s.frame >= 0 && s.frame < A.durationInFrames);
   // "at shot" is the slow-motion frame nearest the contact
   const at = st.find((s) => s.reasons.some((r) => r.startsWith("at shot")))!;
@@ -54,13 +54,13 @@ test("video workflow: review stills cover the set-up, every contact, the freezes
   assert.ok(Math.abs(analysisFrame(A, at.frame).t - contact) < 0.003);
 });
 
-test("scene cache: the Hjerpefinte pilot has 631 frames and 244 distinct scene states (325 time + camera pairs)", () => {
+test("scene cache: the Hjerpefinte pilot has 807 frames and 311 distinct scene states (406 time + camera pairs)", () => {
   const k = keys(SPEC);
-  assert.equal(k.length, 631);
-  assert.equal(new Set(k).size, 244);
+  assert.equal(k.length, 807);
+  assert.equal(new Set(k).size, 311);
   const A = resolveAnalysis(SPEC, TRACE);
-  const tc = new Set(Array.from({ length: 631 }, (_, f) => { const a = analysisFrame(A, f); return JSON.stringify([a.t, a.camera.positionMm, a.camera.targetMm, a.camera.fovDeg]); }));
-  assert.equal(tc.size, 325);
+  const tc = new Set(Array.from({ length: 807 }, (_, f) => { const a = analysisFrame(A, f); return JSON.stringify([a.t, a.camera.positionMm, a.camera.targetMm, a.camera.fovDeg]); }));
+  assert.equal(tc.size, 406);
 });
 
 test("scene cache: overlay-only changes keep every key; camera and trace changes invalidate exactly the affected frames", () => {
@@ -76,7 +76,7 @@ test("scene cache: overlay-only changes keep every key; camera and trace changes
   cam.views.beat_shot!.positionMm[2] += 1;
   const kc = keys(cam);
   const changed = kc.filter((k, i) => k !== base[i]).length;
-  assert.ok(changed > 100 && changed < 631, `${changed}`);
+  assert.ok(changed > 100 && changed < 807, `${changed}`);
   assert.equal(kc[0], base[0]);
   // trace: one figure keyframe nudged -> keys change from that time on (the scene drawn is different)
   const tr = clone(TRACE);

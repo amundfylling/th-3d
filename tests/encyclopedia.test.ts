@@ -54,7 +54,9 @@ for (const { dir, spec } of BUILT) {
     // the motion (move.json without presentation keys), engine and model files the trace was built from are today's
     // (scripts/shotlib/identity.py; story.json edits never require a rebuild)
     const gate = spawnSync("python3", ["scripts/build-move.py", dir, "--check"], { encoding: "utf8" });
-    assert.deepEqual(JSON.parse(gate.stdout)[0].problems, [], "saved trace or presentation stale: rebuild / --presentation");
+    // a move without a story (moves/<id>/story.json) has no video yet, so only its motion is gated
+    const problems = (JSON.parse(gate.stdout)[0].problems as string[]).filter((p) => existsSync(`moves/${dir}/story.json`) || !p.startsWith(`data/presentations/${dir}.analysis.json is missing`));
+    assert.deepEqual(problems, [], "saved trace or presentation stale: rebuild / --presentation");
     assert.equal(trace.engine.contact_footprints_sha256, sha("data/figures/contact-footprints.json"), "footprints changed since the build: rebuild");
     assert.ok(checks.passed);
     assert.ok(checks.sampling_s <= 0.00025 && checks.penetration_tolerance_mm <= 0.1);

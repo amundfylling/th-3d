@@ -422,7 +422,7 @@
   "story": "moves/hjerpefinte/story.json",
   "story_sha256": "b205ca78a0d5db8ddcb46fd3a1425fbe2356749caae23e9be1e224f13c1845e5",
   "trace": "data/traces/hjerpefinte.trace.json",
-  "trace_sha256": "c60b166752e3e3ff0b8afb8b9b03fa5447ed764108780423b85465f8f2e266b3",
+  "trace_sha256": "538bd72fe41857b5094c80f579bd8c913079b2ffab402abe3ee6fb0dce5571cc",
   "generator": "scripts/shotlib/presentation.py"
  }
 }

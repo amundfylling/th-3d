@@ -10,7 +10,7 @@
   "goalie_glb_sha256": "76312ad5760356e66e8481855f07c6c3b2555a0a348dbe018c5137384c65d929",
   "skater_scale_k": 1.0814,
   "goalie_scale_k": 1.1421889791935147,
-  "git_commit": "0b1a15a3786184614ddeaf25ed29e481faee889f"
+  "git_commit": "1c4c431d0fe006267a816816b7660426178d087e"
  },
  "source": {
   "move_file": "moves/hjerpefinte/move.json",
@@ -33,7 +33,7 @@
   "path": "scripts/shotlib",
   "contact_footprints": "data/figures/contact-footprints.json",
   "contact_footprints_sha256": "3220b2a30c74f8e01a25ef968dd780c3e60c8cc7160fe339be6f570f27974563",
-  "code_sha256": "5011054a59c5b4ccf5622631db1677ad8370ed1d4fdab8052b28f8d185280163",
+  "code_sha256": "c6f51d1e28246083c270627e6aa3cdf3c840a327df846523802a0324f6fff525",
   "inputs_sha256": {
    "data/geometry.json": "54d2283dd7f6c7b47e9843e90b65d5e20695e6ab18f80ae2f0becb81a2112bdf",
    "validation/12-hardware-report.json": "9922135cf1f8eef92db99d858ed75cf240642e6f9be60fc708c9dff77138602c",
