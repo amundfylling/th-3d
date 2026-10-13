@@ -55,10 +55,10 @@ test("video workflow: review stills cover the set-up, every contact, the freezes
 });
 
 // trace v2 (2026-10-12); the v1 pilot had 631 frames, 325 time + camera pairs and 244 states (docs/video-workflow.md)
-test("scene cache: the Hjerpefinte video has 807 frames and 311 distinct scene states (406 time + camera pairs)", () => {
+test("scene cache: the Hjerpefinte video has 807 frames and 313 distinct scene states (406 time + camera pairs)", () => {
   const k = keys(SPEC);
   assert.equal(k.length, 807);
-  assert.equal(new Set(k).size, 311);
+  assert.equal(new Set(k).size, 313);
   const A = resolveAnalysis(SPEC, TRACE);
   const tc = new Set(Array.from({ length: 807 }, (_, f) => { const a = analysisFrame(A, f); return JSON.stringify([a.t, a.camera.positionMm, a.camera.targetMm, a.camera.fovDeg]); }));
   assert.equal(tc.size, 406);

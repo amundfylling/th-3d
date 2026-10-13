@@ -441,6 +441,13 @@
   on the Hjerpe threat), so the right corner opens only as the centre shoots. Turn 60 ms and a 20 mm step keep the longer
   shot at 692 mm/s. All contact, slide and expectation checks pass; robust 11/11. The video gains a "feint" freeze. Blue
   line position, goalie cover position and slide timing ASSUMED (`moves/hjerpefinte/move.json` limitations).
+- **All open PRs merged (2026-10-13, thread "Merge all open PRs"):** #11 models, #10 NM26 puck v2, #9 IKV v3, #14 video
+  workflow, #12 Hjerpefinte v2, #13 STL skater, in that order, each by merging main into its branch. Hjerpefinte keeps the
+  2026-10-12 user revision (#14), with #12's goalie-timing robustness variants ported to it (18/18), and is rebuilt on the
+  STL skater (checks pass, puck within 0.06 mm of the parametric build); its video is re-rendered in the nbhf theme.
+  The overlay default theme is `nbhf` (every STL re-render uses it). IKV v3 does not build on the STL skater (meet
+  `lw_push` fails); its parametric-skater outputs are in `validation/moves/invers-kryssar-velodrom-v3-parametric-skater/`
+  and it needs its meets redone.
 - **Moves that meet the puck where it really is (2026-10-11, branch `claude/robust-moves-5yergg`, PROPOSED,
   `docs/shot-encyclopedia.md` section 4b):** the move engine gains meets (a figure's keys are solved from where the
   puck really goes) and controls (`aimed_push`: a figure steers a push tick by tick), a margin sweep (`--margins`) and a

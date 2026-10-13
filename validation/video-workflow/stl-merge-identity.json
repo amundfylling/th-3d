@@ -1,0 +1,136 @@
+{
+ "note": "STL-skater videos (PR #13, rendered at commit 53c32b2) vs the code after merging main (video workflow #14) into it, 2026-10-13. Six frames per composition at scale 0.5, gl swangle (SwiftShader), Playwright headless shell 1194. Old: scripts/analysis-stills.ts at 53c32b2; new: node scripts/video.ts stills <target> --frames ... --scale 0.5. Compared as decoded RGB pixels (the two scripts write PNGs with different encoders).",
+ "rerun": "analysis-ikv frame 750 differed by at most 7 (sum of RGB levels) on 9,097 pixels inside the chapter card in the first batch run of the new code; a single-frame rerun was pixel-identical to the old render, so the first difference was render nondeterminism, not the code.",
+ "frames": {
+  "analysis-ikv": {
+   "40": {
+    "pixels_identical": true,
+    "rgb_sha256": "700f6dd626fd4d661aeeb4a79a824042011958f53066c66d5731d64cfac683bd"
+   },
+   "225": {
+    "pixels_identical": true,
+    "rgb_sha256": "cfdd3066b7e9fe306456710809ef8289b18a458231c1330925c1783ca8dbb3f5"
+   },
+   "450": {
+    "pixels_identical": true,
+    "rgb_sha256": "210654e381e6595c168d3361df8a54bc07b2e8971a6a54222bc7022910fcd603"
+   },
+   "600": {
+    "pixels_identical": true,
+    "rgb_sha256": "12a2c6d580eefa6d7e128fdaece5c90a66e3e622c0e6ad3af1d2783982c9b5f4"
+   },
+   "750": {
+    "pixels_identical": true,
+    "rgb_sha256": "510fa057277cdac578ccaa108e00a16957675c26ce72079f69e0ebc024411d85"
+   },
+   "880": {
+    "pixels_identical": true,
+    "rgb_sha256": "eb4608c568216daafe0f7e87bbf126ec47c3fd23e09a9038f04e493e4e29347b"
+   }
+  },
+  "analysis-defence-lw": {
+   "42": {
+    "pixels_identical": true,
+    "rgb_sha256": "181db7d193230dd71ae5d6753686ba673c4fa2be9db52c8d9829d169cce01739"
+   },
+   "265": {
+    "pixels_identical": true,
+    "rgb_sha256": "f53ff52229f13000860069fa6f01108b6386a5c19cc8ecf1fa7b00a99cff8531"
+   },
+   "477": {
+    "pixels_identical": true,
+    "rgb_sha256": "2ba53c8cb471481bf4e235b4c49ea9af4b3b897129067c1dbb2c72d703033c8b"
+   },
+   "636": {
+    "pixels_identical": true,
+    "rgb_sha256": "f52c10ab1ab2e12fe89008e23ec41336df2e834c71c0441a6759e699c0d369e4"
+   },
+   "848": {
+    "pixels_identical": true,
+    "rgb_sha256": "c155ae3c2695f61e6e0865f67b1c58f2f1f0bb47c99cbc4c1e8722efa9ad5a9b"
+   },
+   "1040": {
+    "pixels_identical": true,
+    "rgb_sha256": "6ea0dd32d09938f2644cd3f4f73db51db27faa9369c8deec5b49eb8adb5b0e5f"
+   }
+  },
+  "analysis-nacka": {
+   "29": {
+    "pixels_identical": true,
+    "rgb_sha256": "c1b1ab3893b9a93f7f096eb3333268a5cea023832e9d4f910768489fb4b6b38b"
+   },
+   "186": {
+    "pixels_identical": true,
+    "rgb_sha256": "2c54db808911c5153077d03afadbd8fc3f0ae8f04fd5de9b7a09115af7516a14"
+   },
+   "334": {
+    "pixels_identical": true,
+    "rgb_sha256": "955cedd28eb86d507a78037179cffda4c42f1d002afbe6d9ad1ac62c7d91cb41"
+   },
+   "446": {
+    "pixels_identical": true,
+    "rgb_sha256": "ff29de03d99e17b235160043ba5987190952abb328e0c9409f14193e44794d10"
+   },
+   "595": {
+    "pixels_identical": true,
+    "rgb_sha256": "5cfe185a4523a66512d4bd67f6450a0292f6e6c1fb77ba12d7bee5106c48a7c1"
+   },
+   "721": {
+    "pixels_identical": true,
+    "rgb_sha256": "749e25f0194668910c1bab071d025775f068efbfebd4060fc9f1b3c068177d93"
+   }
+  },
+  "analysis-spjass": {
+   "29": {
+    "pixels_identical": true,
+    "rgb_sha256": "5d11500d27c965bfe807e4a8b424c56649dcc30cd0d42e7826e3d05fa9eb48b7"
+   },
+   "185": {
+    "pixels_identical": true,
+    "rgb_sha256": "6d02b45800622abdebda5129bb3c564836be645bc6843eaac8b4b798dabda506"
+   },
+   "333": {
+    "pixels_identical": true,
+    "rgb_sha256": "10cc91d24c83bcfd004ec3fdf5d5cff4be56dc4e83cc8a4d53716d42cddcdf2d"
+   },
+   "445": {
+    "pixels_identical": true,
+    "rgb_sha256": "e42e4dc21cd6abdade729c4934b4c634a8a9205dee7cc3e0002d5222a7766312"
+   },
+   "593": {
+    "pixels_identical": true,
+    "rgb_sha256": "b48bb49b2f65a7ad38836a3e567941f9c5f0195dc1819d59d8b531c565ccbd03"
+   },
+   "719": {
+    "pixels_identical": true,
+    "rgb_sha256": "de7737f1d152f09c79702144a2fc17fea4d23836a87ab200ae1779cb49c0ccde"
+   }
+  },
+  "analysis-shovel-17": {
+   "29": {
+    "pixels_identical": true,
+    "rgb_sha256": "2c6b036f75937f526a7223cc7d2b119d0b86a86eae77418d6209ee80d2ff7e06"
+   },
+   "187": {
+    "pixels_identical": true,
+    "rgb_sha256": "a9965fa8e5b89e9ce72166b767fea6180123ce7fec2cb7266e4ca96c60604b70"
+   },
+   "336": {
+    "pixels_identical": true,
+    "rgb_sha256": "d787be79b22b0d73d52b858c41f4e5c7935613383e4b69546cb09bb85bd859ea"
+   },
+   "448": {
+    "pixels_identical": true,
+    "rgb_sha256": "ac162e6568147c69222e86ea95c662f7ef380f4045f7abca63681bf0803282fe"
+   },
+   "598": {
+    "pixels_identical": true,
+    "rgb_sha256": "f90dd56199dd126ee033e2e19431807719b77d61bdd33648ecdd25ba762628c3"
+   },
+   "725": {
+    "pixels_identical": true,
+    "rgb_sha256": "5c19597cf63299d5e5bf1924c2ef52cb6cca57a4da0e0f4b5212646c314b721a"
+   }
+  }
+ }
+}

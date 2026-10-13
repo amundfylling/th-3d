@@ -25,9 +25,12 @@
   "sha256": "c3aef9cee284506d6fb77c388e9d72171e9c4b290ab2ee6fa03d2e3b428791a2",
   "composition_files": [
    "remotion/NackaAnalysis.tsx",
-   "remotion/AnalysisVideo.tsx"
+   "remotion/AnalysisVideo.tsx",
+   "remotion/SceneLayer.tsx",
+   "remotion/ShotScene.tsx",
+   "remotion/theme.ts"
   ],
-  "composition_sha256": "35f83e8df7f4e7643f1aeed1a3d55a90f35fd5c32786d0df828025dab9a0bdd8"
+  "composition_sha256": "c619ecd02f742c96e5b7528022edc812488dc742c9b67b292dcf772e78ddee28"
  },
  "output": {
   "path": "validation/analysis-nacka.mp4",
@@ -71,5 +74,16 @@
   "camera_frames_logged": 744,
   "camera_max_diff_vs_track": 0.005
  },
- "render_seconds": 4482
+ "render_seconds": 4482,
+ "composition_refactor": {
+  "date": "2026-10-13",
+  "change": "merge of the video workflow (PR #14: remotion/SceneLayer.tsx split out of AnalysisVideo.tsx, ShotScene.tsx clones the scene per mount, frameMap/sceneSrc props, classic-only overlay tweaks) into the STL-skater branch (PR #13) this video was rendered on; default theme stays nbhf",
+  "previous_composition_files": [
+   "remotion/NackaAnalysis.tsx",
+   "remotion/AnalysisVideo.tsx"
+  ],
+  "previous_composition_sha256": "35f83e8df7f4e7643f1aeed1a3d55a90f35fd5c32786d0df828025dab9a0bdd8",
+  "verification": "frames 29, 186, 334, 446, 595, 721 rendered at scale 0.5 (swangle) with the STL-skater branch at commit 53c32b2 (scripts/analysis-stills.ts) and with the merged code (scripts/video.ts stills): pixels identical for all six (validation/video-workflow/stl-merge-identity.json)",
+  "video_rerendered": false
+ }
 }

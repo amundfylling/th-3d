@@ -25,9 +25,12 @@
   "sha256": "a9c6f526feed72319b87fb5843fe340045440107118eab04a6f448cde093fffa",
   "composition_files": [
    "remotion/DefenceAnalysis.tsx",
-   "remotion/AnalysisVideo.tsx"
+   "remotion/AnalysisVideo.tsx",
+   "remotion/SceneLayer.tsx",
+   "remotion/ShotScene.tsx",
+   "remotion/theme.ts"
   ],
-  "composition_sha256": "a10d01c4b09f6073bc6442633e45436bb7563b49d0bdea04fe2bab32c02efbc8"
+  "composition_sha256": "c7494c51ec667ddc3e889529bf043c3c8ab50d61674cd355a56e83431467e880"
  },
  "output": {
   "path": "validation/analysis-defence-lw.mp4",
@@ -71,5 +74,16 @@
   "camera_frames_logged": 1061,
   "camera_max_diff_vs_track": 0.0049
  },
- "render_seconds": 4342
+ "render_seconds": 4342,
+ "composition_refactor": {
+  "date": "2026-10-13",
+  "change": "merge of the video workflow (PR #14: remotion/SceneLayer.tsx split out of AnalysisVideo.tsx, ShotScene.tsx clones the scene per mount, frameMap/sceneSrc props, classic-only overlay tweaks) into the STL-skater branch (PR #13) this video was rendered on; default theme stays nbhf",
+  "previous_composition_files": [
+   "remotion/DefenceAnalysis.tsx",
+   "remotion/AnalysisVideo.tsx"
+  ],
+  "previous_composition_sha256": "a10d01c4b09f6073bc6442633e45436bb7563b49d0bdea04fe2bab32c02efbc8",
+  "verification": "frames 42, 265, 477, 636, 848, 1040 rendered at scale 0.5 (swangle) with the STL-skater branch at commit 53c32b2 (scripts/analysis-stills.ts) and with the merged code (scripts/video.ts stills): pixels identical for all six (validation/video-workflow/stl-merge-identity.json)",
+  "video_rerendered": false
+ }
 }
