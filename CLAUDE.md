@@ -48,6 +48,9 @@ old ones: `<game>/puck-track-synth.json` (x/y = puck centre, ~13 mm nearer the c
 `<game>/figure-tracks-v3.json`; nothing downstream is switched yet. Every committed file under
 `data/games/nm26-semifinal/` needs a step or a SOURCES entry in `scripts/pipeline/nm26_rebuild.py` (`npm test` checks it;
 docs/pipeline.md).
+The four trained models behind the NM26 tracks (goalie C, skater v2b, skater v3, puck detector v1) are assets of the
+GitHub release `nm26-models-v1`, listed with sha256 in `data/models/manifest.json`; fetch them with `npm run models:fetch`
+(docs/models.md). Never replace an asset under an existing tag: changed weights get a new tag.
 
 ## Key files
 

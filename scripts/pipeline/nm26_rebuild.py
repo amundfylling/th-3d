@@ -3,7 +3,8 @@
     python3 scripts/pipeline/nm26_rebuild.py [stage ...] [--check] [--list] [--games g1,g2] [--keep-going]
 
 Stages, in order (default: every stage marked "default" below):
-- fetch     the broadcast video from the GitHub release (config.json url), checked against its sha256;
+- fetch     the broadcast video from the GitHub release (config.json url) and the four trained models from theirs
+            (data/models/manifest.json, scripts/fetch-models.py), each checked against its sha256;
 - cache     register every frame and find puck candidates (scripts/nm26-detect.py): out/nm26/<game>/frames.json;
 - calibrate rink-plane calibration of game 1 (the reference frame all games are registered to);
 - meshes    the figure meshes (out/figures/*.npz, Blender) that nm26-passes.py reads the reach of a figure from;
@@ -14,7 +15,7 @@ Stages, in order (default: every stage marked "default" below):
 - pages     the pass review page (game 1), the goal clips and goal review page, the all-goals replays;
 - edwall    the Edwall hat-trick traces and video specs from their fitted inputs (not default; videos rendered outside);
 - models    renders, training and tracking of the figure (v2, v3) and puck (synthetic detector) models (hours;
-            out/synth/*.pt are not committed). Never run by default.
+            out/synth/*.pt are not committed: the published ones come from stage fetch). Never run by default.
 
 Every step names its inputs and outputs. A step whose inputs or Python modules are missing is SKIPPED with the reason;
 nothing is faked. --check compares the outputs that git tracks with the committed versions afterwards (git status and,
@@ -41,6 +42,7 @@ CACHE = "out/nm26/{g}/frames.json"
 BLENDER_PY = "/root/venvs/blender/bin/python"
 sys.path.insert(0, str(REPO / "scripts"))
 from nm26_tracks import FIGURE_TRACKS as FIGS, PUCK_TRACK as PUCK  # noqa: E402  (the tracks the analysis reads)
+MODELS = {m["id"]: m["local_path"] for m in json.loads((REPO / "data/models/manifest.json").read_text())["models"]}
 PY = os.environ.get("NM26_PY") or (BLENDER_PY if Path(BLENDER_PY).exists() else sys.executable)
 
 
@@ -62,6 +64,8 @@ def py(script, *args): return ["{py}", script, *args]
 def steps(games):
     S = []
     S.append(Step("fetch-video", "fetch", ["@fetch"], outputs=[VIDEO], note="about 660 MB"))
+    S.append(Step("fetch-models", "fetch", [sys.executable, "scripts/fetch-models.py"], outputs=list(MODELS.values()),
+                  note="goalie C, skater v2b, skater v3, puck detector v1 (docs/models.md); a differing local model is kept"))
     for g in games:
         S.append(Step(f"detect-{g}", "cache", py("scripts/nm26-detect.py", g), [VIDEO, f"{DATA}/{g}/background.png"],
                       ["av", "cv2"], [CACHE.format(g=g)], "about 12 min per game on 4 CPUs; background.png is reused"))
@@ -96,7 +100,7 @@ def steps(games):
         S.append(Step(f"rebuild-evidence-{gid}", "sheets", py("scripts/nm26-rebuild-evidence.py", gid),
                       [VIDEO, CACHE.format(g="g2"), "out/synth/goalie-pose-v2c.pt"], ["av", "cv2", "torch", "torchvision"],
                       [f"{DATA}/rebuild/{gid}-evidence.json", f"validation/rebuild-{gid}-sheet.jpg"],
-                      "needs goalie model C (out/synth/goalie-pose-v2c.pt, not committed: stage models)"))
+                      "needs goalie model C (out/synth/goalie-pose-v2c.pt, from stage fetch)"))
     S.append(Step("review-page-g1", "pages", py("scripts/nm26-review-page.py", "g1"),
                   [VIDEO, CACHE.format(g="g1"), f"{DATA}/g1/passes.json"], ["av", "cv2"], ["validation/nm26-g1-review.html"]))
     S.append(Step("goal-clips", "pages", py("scripts/nm26-goal-clips.py"), [VIDEO] + [CACHE.format(g=g) for g in GAMES], ["av", "cv2"],
