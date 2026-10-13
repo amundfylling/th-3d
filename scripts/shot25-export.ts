@@ -16,13 +16,17 @@ import { resolveTimeline, sourceAtFrame, type PresentationSpec } from "../src/mo
 import { shotTimeEvaluator } from "../src/model/shot-pose.ts";
 import type { ShotTrace } from "../src/model/trace.ts";
 
-const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
+// browser and GL backend: scripts/video/render-env.ts (--browser/--gl there; REMOTION_BROWSER_EXECUTABLE / REMOTION_GL here)
+const RENDER_ENV = await resolveRenderEnv();
+const BROWSER = RENDER_ENV.browserExecutable;
+const GL_LABEL = RENDER_ENV.gl === "swangle" ? "swangle (SwiftShader, CPU)" : `${RENDER_ENV.gl} (WebGL renderer not verified by this script)`;
 const COMPOSITION = "shot25-shovel-17-final";
 // concurrency: SwiftShader is itself multi-threaded; on the 4-CPU container 3 parallel tabs were slower per frame than 2
 const FINAL = { path: "validation/25-shovel-17-final.mp4", scale: 1, codec: "h264" as const, crf: 18, pixelFormat: "yuv420p" as const, concurrency: 2 };
 const DRAFT = { path: "out/25/draft-480x270-60fps.mp4", scale: 0.25, codec: "h264" as const, crf: 23, pixelFormat: "yuv420p" as const, concurrency: 3 };
 const REPORT = "validation/25-export-report.json";
 import { execFileSync } from "node:child_process";
+import { resolveRenderEnv } from "./video/render-env.ts";
 const BROWSER_VERSION = execFileSync(BROWSER, ["--version"], { encoding: "utf8" }).trim();
 
 const args = new Set(process.argv.slice(2));
@@ -45,8 +49,8 @@ type Logged = { frame: number; t: number; figures: Record<string, number[]>; puc
 const parse = (text: string): Logged | null => (text.startsWith("[shot24-state] ") ? (JSON.parse(text.slice(15)) as Logged) : null);
 
 const serveUrl = await bundle({ entryPoint: path.resolve("remotion/index.ts") });
-const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" } });
-const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" as const }, puppeteerInstance: browser };
+const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions });
+const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions, puppeteerInstance: browser };
 const comp = await selectComposition({ ...base, id: COMPOSITION, inputProps: { overlays: true } });
 const tl = resolveTimeline(spec, trace, comp.fps);
 
@@ -78,7 +82,7 @@ Object.assign(report, {
   versions: {
     node: process.version, remotion: ver("remotion"), "@remotion/three": ver("@remotion/three"), "@remotion/renderer": ver("@remotion/renderer"),
     three: ver("three"), "@react-three/fiber": ver("@react-three/fiber"), react: ver("react"), browser: `chrome-headless-shell ${BROWSER_VERSION}`,
-    gl: "swangle (SwiftShader, CPU)",
+    gl: GL_LABEL,
   },
   model: { geometry_version: geometry.geometry_version, scene_glb_sha256: manifest.scene_glb.sha256, asset_sha256: manifest.asset_sha256 },
   trace: { trace_id: trace.trace_id, status: trace.status, sha256: sha("data/traces/shovel-17.trace.json"), approved_exceptions: trace.review?.revisions?.at(-1)?.approved_exceptions ?? [] },

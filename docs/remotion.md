@@ -21,7 +21,10 @@ npm run remotion:stills   # copies the GLB to public/ and renders out/19-{obliqu
 npm run remotion:studio   # interactive studio (not used in the cloud container)
 ```
 
-- **Browser.** The full Chromium 141 in `/opt/pw-browsers` refuses Remotion's headless mode ("Old Headless mode has been removed"). The environment's **chrome-headless-shell** (`/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`) works.
+- **Browser.** Chosen by `scripts/video/render-env.ts` (docs/video-workflow.md "Browser and GL"): `--browser` /
+  `REMOTION_BROWSER_EXECUTABLE`, else Remotion's own chrome-headless-shell, else a Playwright chrome-headless-shell found by
+  search. A full Chromium refuses Remotion's headless mode ("Old Headless mode has been removed"); use a headless shell.
+  (Before 2026-10-12 the cloud container's `/opt/pw-browsers/chromium_headless_shell-1194` was hard-coded.)
 - **WebGL.** `--gl=swangle` gives WebGL through SwiftShader (CPU), about 25 s per 1920 × 1080 still.
 
 ## Structure

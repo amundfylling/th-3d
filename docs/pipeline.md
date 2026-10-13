@@ -33,8 +33,8 @@ These are the existing npm scripts, in dependency order. Each iteration's doc ha
 | 9 | Own match, per-frame camera and figure tracks | `own-video-camera.py`, `own-video-figures.py`, `own-video-figure-paths.py`, `own-video-review.py` (about 20 min; commands in the doc) | docs/own-video-tracking.md |
 | 10 | Shot encyclopedia moves | `scripts/build-move.py <id> --robustness --video-spec`, `python3 scripts/encyclopedia-index.py`, `node scripts/analysis-render.ts move:<id>` | docs/shot-encyclopedia.md |
 
-Remotion renders need the headless shell `/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell` with
-`--gl=swangle` (docs/remotion.md). Not re-verified in this workstream: steps 2-8 (they predate it and have their own
+Remotion renders find their browser and GL backend through `scripts/video/render-env.ts` (default `--gl=swangle`;
+docs/video-workflow.md). Not re-verified in this workstream: steps 2-8 (they predate it and have their own
 checks in `npm test`).
 
 ## 2. NM26 semi-final: one runner

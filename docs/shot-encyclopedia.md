@@ -35,9 +35,12 @@ Changed shared files (small): `remotion/Root.tsx` (registers the `move-*` compos
 4. **Build and check.** `scripts/build-move.py <id> --robustness --video-spec`. It saves `data/traces/<id>.trace.json`,
    `shots/<id>/checks.json`, `validation/moves/<id>-sheet.png` (review sheet), the robustness report and the video spec
    only when the contact, slide and expectation checks pass.
-5. **Render.** `node scripts/analysis-render.ts move:<id>` (needs `npm run remotion:assets` once) →
-   `validation/moves/<id>.mp4` and its report; `COMP=move-<id> node scripts/analysis-stills.ts 0.5 <frames>` for quick
-   stills first.
+5. **Review and render** (docs/video-workflow.md). `npm run video:stills -- move:<id>` (automatic review stills and a
+   contact sheet), `npm run video:draft -- move:<id> --segment shot_in,shot_freeze` (low-resolution clip), then
+   `npm run video:final -- move:<id> --cache` → `validation/moves/<id>.mp4` and its report. Video text, pauses, slow-motion
+   rates, camera offsets and theme live in `moves/<id>/story.json`; after editing it, `python3 scripts/build-move.py <id>
+   --presentation` regenerates the presentation only (no simulation; refused if the motion, engine, model or checks are
+   stale).
 6. **Index and tests.** `python3 scripts/encyclopedia-index.py`, `npm test`.
 
 ## 3. Move file format (`move-spec/1`)
@@ -58,7 +61,7 @@ Changed shared files (small): `remotion/Root.tsx` (registers the `move-*` compos
  "contacts": [{"id": "shot", "figure": "W-C", "group": -1, "min_touches": 5}],   // which touch group is which
  "expect": {"goal": "E", "goal_y_mm": [-28.7, -8.0], "contact_sequence": ["W-C:stick/blade", "goal_net"]},
  "events": [{"id": "turn.onset", "t": 0.1}],
- "story": {...},                                            // video text (scripts/shotlib/presentation.py)
+ // the video text lives in moves/<id>/story.json (move-story/1; docs/video-workflow.md), not here
  "limitations": ["..."]
 }
 ```
@@ -88,19 +91,19 @@ it no longer reproduces: the contact-normal fix (section 4b) changes the v2 port
 different numpy/shapely build in a fresh container moved the port's puck by 90 mm, because v2 only scores with exact
 inputs. The test now checks the report against the move file and the legacy trace only.
 
-**New move: Hjerpefinte** (centre, level 2; `moves/hjerpefinte/`). The centre stands at the front of its slot with its
-back to the goal, the puck resting on the blade to the right of the slot. A 70 ms counter-clockwise turn (181 → 205°)
-with a 14 mm step pushes the puck from rest into the right corner (goal line at y = −18.7 mm, 575 mm/s).
-- Checks: no overlap; one contact, a push of 65 small touches with a peak impact of 33 mm/s; no unexplained motion change.
-- Robust in 11 of 11 variants; the goal-line crossing moves by 0.4 mm at most.
-- Sheet `validation/moves/hjerpefinte-sheet.png`. Video `validation/moves/hjerpefinte.mp4` (631 frames, 21.0 s,
-  1920x1080 30 fps, 8.01 MB; rendered in about 35 min on CPU; rerender with `node scripts/analysis-render.ts
-  move:hjerpefinte`). Its report `validation/moves/hjerpefinte-video-report.json` finds every frame equal to the pure
-  evaluation of the trace. Frames of the mp4 were checked: rewind, slow-motion approach, contact freeze with the push
-  arrow, replay.
-- Reading approved by the user (2026-10-10, `approved_reading`): "you can do a hjerpe from the same position. So you are
-  dependent on the goalie predicting a hjerpe and opening up the right corner." The goalie leans to the left post;
-  how far (y = +28 mm) is assumed. The video's set-up caption says this.
+**New move: Hjerpefinte** (centre, level 2; `moves/hjerpefinte/`, trace v2 2026-10-12). The centre stands in its slot
+about one puck diameter in front of the E blue line (the user's revision), back to the goal, the puck resting on the
+blade to the right of the slot: the Hjerpe stance. The goalie covers the right side (y = −12 mm). Reading a Hjerpe, it
+slides to the left post (y = +28 mm) from 0.22 s; at 0.25 s a 60 ms counter-clockwise turn (181 → 205°) with a 20 mm step
+pushes the puck from rest straight into the right corner it is leaving (goal line at y = −17.6 mm, 692 mm/s).
+- Checks: no overlap; one contact, a push of 39 small touches with a peak impact of 44 mm/s; no unexplained motion change.
+- Robust in 11 of 11 variants.
+- Video `validation/moves/hjerpefinte.mp4` (`npm run video:final -- move:hjerpefinte --cache`): set-up (goalie covers
+  right), the feint (goalie bites), the shot, goal with the right corner open, replay.
+- Reading approved by the user (2026-10-10, `approved_reading`) and revised by the user (2026-10-12, `user_revision`):
+  the goalie must cover the side first and open it only as the centre shoots; start further back. The blue line
+  position (preview scale), the goalie's covering position and its slide timing are ASSUMED.
+- v1 (2026-10-10: front of the slot, goalie already at the left post throughout) is replaced.
 
 **Finding: the IKV v2 trace only works with its exact inputs.** The robustness run
 (`validation/moves/invers-kryssar-velodrom-robustness.json`) scores in 1 of 11 variants: the nominal one.

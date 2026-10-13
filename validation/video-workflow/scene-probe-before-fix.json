@@ -1,0 +1,130 @@
+[Tab 0, remotion/SceneProbe.tsx:30] [gl-renderer] {"vendor":"Google Inc. (Google)","renderer":"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)","version":"WebGL 2.0 (OpenGL ES 3.0 Chromium)"}
+[Tab 0, remotion/AnalysisVideo.tsx:390] [analysis-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks
+[Tab 0, remotion/SceneLayer.tsx:36] [analysis-camera] {"frame":300,"position":[176.93,38.49,145.84],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:91] [analysis-state] {"frame":300,"t":1.772,"figures":{"W-C":[0.541,-197.3424,-56.623,-34.1542,-197.3424],"W-RW":[14.2479,-22.4018,-57.0517,-189.5904,-22.4018],"E-G":[45.8,33.33,250.6609,-12.8253,213.33],"E-RD":[2.8,0,67.7989,88.3879,180],"E-LD":[93.4,0,43.507,-100.4428,180]},"puck":[-27.152,-143.483],"phase":"pass_free","readback_max_diff":2.84e-14}
+[Tab 0, remotion/SceneLayer.tsx:36] [analysis-camera] {"frame":300,"position":[176.93,38.49,145.84],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:52] [analysis-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [move-hjerpefinte-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [move-hjerpefinte-camera] {"frame":330,"position":[33.8,-202.5,230],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:91] [move-hjerpefinte-state] {"frame":330,"t":0.1003,"figures":{"W-C":[232.0001,181.0007,173.1047,-5.9154,181.0007],"E-G":[4.95,0,252.4803,27.9818,180]},"puck":[183.7552,-32.5259],"phase":"on_the_blade","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [move-hjerpefinte-camera] {"frame":330,"position":[33.8,-202.5,230],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:52] [move-hjerpefinte-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [ikv-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [ikv-camera] {"frame":450,"position":[520,-20,400],"fov":36}
+[Tab 0, remotion/ShotScene.tsx:91] [ikv-state] {"frame":450,"t":1.1065,"figures":{"W-RW":[140,42.3383,68.589,-184.3191,42.3383],"W-LW":[287.5528,-44.2292,351.8957,163.9993,-44.2292],"W-C":[60,0,2.3841,-26.8451,0],"E-G":[12.95,0,252.1469,19.9891,180]},"puck":[390.0212,180.4422],"phase":"lw_push","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [ikv-camera] {"frame":450,"position":[520,-20,400],"fov":36}
+[Tab 0, remotion/ShotScene.tsx:52] [ikv-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [nacka-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [nacka-camera] {"frame":400,"position":[-19.5,-167.11,280.69],"fov":31.8435}
+[Tab 0, remotion/ShotScene.tsx:91] [nacka-state] {"frame":400,"t":4.0505,"figures":{"W-C":[205.85,179.9717,147.1484,-9.0909,179.9717],"E-G":[12.95,0,252.1469,19.9891,180]},"puck":[171.807,-4.7465],"phase":"heel_pass","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [nacka-camera] {"frame":400,"position":[-19.5,-167.11,280.69],"fov":31.8435}
+[Tab 0, remotion/ShotScene.tsx:52] [nacka-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [analysis-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks
+[Tab 0, remotion/SceneLayer.tsx:36] [analysis-camera] {"frame":300,"position":[176.93,38.49,145.84],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:91] [analysis-state] {"frame":300,"t":1.772,"figures":{"W-C":[0.541,-197.3424,-56.623,-34.1542,-197.3424],"W-RW":[14.2479,-22.4018,-57.0517,-189.5904,-22.4018],"E-G":[45.8,33.33,250.6609,-12.8253,213.33],"E-RD":[2.8,0,67.7989,88.3879,180],"E-LD":[93.4,0,43.507,-100.4428,180]},"puck":[-27.152,-143.483],"phase":"pass_free","readback_max_diff":2.84e-14}
+[Tab 0, remotion/SceneLayer.tsx:36] [analysis-camera] {"frame":300,"position":[176.93,38.49,145.84],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:52] [analysis-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [move-hjerpefinte-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [move-hjerpefinte-camera] {"frame":330,"position":[33.8,-202.5,230],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:91] [move-hjerpefinte-state] {"frame":330,"t":0.1003,"figures":{"W-C":[232.0001,181.0007,173.1047,-5.9154,181.0007],"E-G":[4.95,0,252.4803,27.9818,180]},"puck":[183.7552,-32.5259],"phase":"on_the_blade","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [move-hjerpefinte-camera] {"frame":330,"position":[33.8,-202.5,230],"fov":30}
+[Tab 0, node_modules/three/build/three.core.js:1956] THREE.WebGLRenderer: Context Lost.
+[Tab 0, remotion/ShotScene.tsx:52] [move-hjerpefinte-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [ikv-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [ikv-camera] {"frame":450,"position":[520,-20,400],"fov":36}
+[Tab 0, remotion/ShotScene.tsx:91] [ikv-state] {"frame":450,"t":1.1065,"figures":{"W-RW":[140,42.3383,68.589,-184.3191,42.3383],"W-LW":[287.5528,-44.2292,351.8957,163.9993,-44.2292],"W-C":[60,0,2.3841,-26.8451,0],"E-G":[12.95,0,252.1469,19.9891,180]},"puck":[390.0212,180.4422],"phase":"lw_push","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [ikv-camera] {"frame":450,"position":[520,-20,400],"fov":36}
+[Tab 0, node_modules/three/build/three.core.js:1956] THREE.WebGLRenderer: Context Lost.
+[Tab 0, remotion/ShotScene.tsx:52] [ikv-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [nacka-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [nacka-camera] {"frame":400,"position":[-19.5,-167.11,280.69],"fov":31.8435}
+[Tab 0, remotion/ShotScene.tsx:91] [nacka-state] {"frame":400,"t":4.0505,"figures":{"W-C":[205.85,179.9717,147.1484,-9.0909,179.9717],"E-G":[12.95,0,252.1469,19.9891,180]},"puck":[171.807,-4.7465],"phase":"heel_pass","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [nacka-camera] {"frame":400,"position":[-19.5,-167.11,280.69],"fov":31.8435}
+[Tab 0, node_modules/three/build/three.core.js:1956] THREE.WebGLRenderer: Context Lost.
+[Tab 0, remotion/ShotScene.tsx:52] [nacka-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [nacka-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [nacka-camera] {"frame":400,"position":[-19.5,-167.11,280.69],"fov":31.8435}
+[Tab 0, remotion/ShotScene.tsx:91] [nacka-state] {"frame":400,"t":4.0505,"figures":{"W-C":[205.85,179.9717,147.1484,-9.0909,179.9717],"E-G":[12.95,0,252.1469,19.9891,180]},"puck":[171.807,-4.7465],"phase":"heel_pass","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [nacka-camera] {"frame":400,"position":[-19.5,-167.11,280.69],"fov":31.8435}
+[Tab 0, remotion/ShotScene.tsx:52] [nacka-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [ikv-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [ikv-camera] {"frame":450,"position":[520,-20,400],"fov":36}
+[Tab 0, remotion/ShotScene.tsx:91] [ikv-state] {"frame":450,"t":1.1065,"figures":{"W-RW":[140,42.3383,68.589,-184.3191,42.3383],"W-LW":[287.5528,-44.2292,351.8957,163.9993,-44.2292],"W-C":[60,0,2.3841,-26.8451,0],"E-G":[12.95,0,252.1469,19.9891,180]},"puck":[390.0212,180.4422],"phase":"lw_push","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [ikv-camera] {"frame":450,"position":[520,-20,400],"fov":36}
+[Tab 0, node_modules/three/build/three.core.js:1956] THREE.WebGLRenderer: Context Lost.
+[Tab 0, remotion/ShotScene.tsx:52] [ikv-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [move-hjerpefinte-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks, status_proposed_allowed
+[Tab 0, remotion/SceneLayer.tsx:36] [move-hjerpefinte-camera] {"frame":330,"position":[33.8,-202.5,230],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:91] [move-hjerpefinte-state] {"frame":330,"t":0.1003,"figures":{"W-C":[232.0001,181.0007,173.1047,-5.9154,181.0007],"E-G":[4.95,0,252.4803,27.9818,180]},"puck":[183.7552,-32.5259],"phase":"on_the_blade","readback_max_diff":0}
+[Tab 0, remotion/SceneLayer.tsx:36] [move-hjerpefinte-camera] {"frame":330,"position":[33.8,-202.5,230],"fov":30}
+[Tab 0, node_modules/three/build/three.core.js:1956] THREE.WebGLRenderer: Context Lost.
+[Tab 0, remotion/ShotScene.tsx:52] [move-hjerpefinte-check] PASS scene GLB sha256 a520190b14e8...
+[Tab 0, remotion/AnalysisVideo.tsx:390] [analysis-check] PASS versions: geometry_version, figure_molds_sha256, skater_glb_sha256, goalie_glb_sha256, contact_checks
+[Tab 0, remotion/SceneLayer.tsx:36] [analysis-camera] {"frame":300,"position":[176.93,38.49,145.84],"fov":30}
+[Tab 0, remotion/ShotScene.tsx:91] [analysis-state] {"frame":300,"t":1.772,"figures":{"W-C":[0.541,-197.3424,-56.623,-34.1542,-197.3424],"W-RW":[14.2479,-22.4018,-57.0517,-189.5904,-22.4018],"E-G":[45.8,33.33,250.6609,-12.8253,213.33],"E-RD":[2.8,0,67.7989,88.3879,180],"E-LD":[93.4,0,43.507,-100.4428,180]},"puck":[-27.152,-143.483],"phase":"pass_free","readback_max_diff":2.84e-14}
+[Tab 0, remotion/SceneLayer.tsx:36] [analysis-camera] {"frame":300,"position":[176.93,38.49,145.84],"fov":30}
+[Tab 0, node_modules/three/build/three.core.js:1956] THREE.WebGLRenderer: Context Lost.
+[Tab 0, remotion/ShotScene.tsx:52] [analysis-check] PASS scene GLB sha256 a520190b14e8...
+{
+ "command": "probe-scenes",
+ "targets": [],
+ "backend": "--gl=swangle; WebGL renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+ "browser": {
+  "path": "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell",
+  "source": "playwright",
+  "version": "Chromium 141.0.7390.37"
+ },
+ "gl": "swangle",
+ "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+ "concurrency": 2,
+ "timings": {
+  "prepare_assets": 0.1,
+  "gates": 0,
+  "resolve_browser": 0.3,
+  "bundle": 2.2,
+  "open_browser": 0.1,
+  "probe_renderer": 1
+ },
+ "total_seconds": 147.8,
+ "results": [
+  {
+   "probe": "scene isolation",
+   "scale": 0.25,
+   "items": [
+    {
+     "video": "analysis-shovel-17",
+     "frame": 300,
+     "alone": "291ab3e6415731b0",
+     "forward": "291ab3e6415731b0",
+     "reverse": "291ab3e6415731b0",
+     "identical": true
+    },
+    {
+     "video": "move-hjerpefinte",
+     "frame": 330,
+     "alone": "1404eebaceddc234",
+     "forward": "f5da3ce9398bb6b1",
+     "reverse": "39892f96951ebf29",
+     "identical": false
+    },
+    {
+     "video": "analysis-ikv",
+     "frame": 450,
+     "alone": "f64761740556eece",
+     "forward": "ede0541a2866fbec",
+     "reverse": "f64761740556eece",
+     "identical": false
+    },
+    {
+     "video": "analysis-nacka",
+     "frame": 400,
+     "alone": "9646570d2f0400d3",
+     "forward": "c0d7a12677f9c70e",
+     "reverse": "9646570d2f0400d3",
+     "identical": false
+    }
+   ],
+   "passed": false
+  }
+ ]
+}

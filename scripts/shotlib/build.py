@@ -18,7 +18,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from shapely.geometry import Point
 
-from . import control, motion, puck
+from . import control, identity, motion, puck
 from . import world as W
 
 REPO = W.REPO
@@ -528,9 +528,11 @@ def build(move_id, sets=(), scratch=False):
     fig_out["others"] = "static assembly pose (validation/16-assembly-poses.json), as the renderer shows them; included in the checks"
     trace = {
         "schema": "shot-trace/1", "trace_id": trace_id, "status": spec["status"], "shot": spec["name"], "geometry_version": geo, "asset_refs": asset_refs,
-        "source": {"move_file": str(move_path.relative_to(REPO)), "move_file_sha256": sha(move_path), "overrides": list(sets), "kind": spec.get("kind", "designed"),
+        "source": {"move_file": str(move_path.relative_to(REPO)), "move_file_sha256": sha(move_path), "move_motion_sha256": identity.motion_sha256(load_move(move_id)[1]),
+                   "overrides": list(sets), "kind": spec.get("kind", "designed"),
                    "text": spec.get("source_text"), "references": spec.get("references", []), "approved_reading": spec.get("approved_reading")},
-        "engine": {"path": "scripts/shotlib", "contact_footprints": "data/figures/contact-footprints.json", "contact_footprints_sha256": sha(REPO / "data/figures/contact-footprints.json")},
+        "engine": {"path": "scripts/shotlib", "contact_footprints": "data/figures/contact-footprints.json", "contact_footprints_sha256": sha(REPO / "data/figures/contact-footprints.json"),
+                   **identity.engine_identity()},
         "time_base": {"t": "designed time (s); no recording" if spec.get("kind", "designed") == "designed" else spec.get("time_base", "source time (s)"), "window_s": [t0, t1]},
         "interpolation": {"arc_mm": "Fritsch-Carlson monotone cubic Hermite through arc_keyframes (held outside)", "theta_deg": "linear between theta_keyframes (held outside)",
                           "puck": "linear between puck.nodes (held outside)", "implementation": "src/model/trace.ts traceEvaluator (mirrors scripts/shotlib/world.py)"},

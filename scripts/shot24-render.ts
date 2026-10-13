@@ -17,8 +17,12 @@ import path from "node:path";
 import { resolveTimeline, sourceAtFrame, type PresentationSpec } from "../src/model/presentation.ts";
 import { shotTimeEvaluator, type ShotFrameState } from "../src/model/shot-pose.ts";
 import type { ShotTrace } from "../src/model/trace.ts";
+import { resolveRenderEnv } from "./video/render-env.ts";
 
-const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
+// browser and GL backend: scripts/video/render-env.ts (--browser/--gl there; REMOTION_BROWSER_EXECUTABLE / REMOTION_GL here)
+const RENDER_ENV = await resolveRenderEnv();
+const BROWSER = RENDER_ENV.browserExecutable;
+const GL_LABEL = RENDER_ENV.gl === "swangle" ? "swangle (SwiftShader, CPU)" : `${RENDER_ENV.gl} (WebGL renderer not verified by this script)`;
 const OUT = "out/24";
 const trace = JSON.parse(readFileSync("data/traces/shovel-17.trace.json", "utf8"));
 const geometry = JSON.parse(readFileSync("data/geometry.json", "utf8"));
@@ -42,8 +46,8 @@ function pure(frame: number): Phys {
 }
 
 const serveUrl = await bundle({ entryPoint: path.resolve("remotion/index.ts") });
-const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" } });
-const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" as const }, puppeteerInstance: browser };
+const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions });
+const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions, puppeteerInstance: browser };
 const parse = (text: string): Logged | null => (text.startsWith("[shot24-state] ") ? (JSON.parse(text.slice(15)) as Logged) : null);
 const comps: Record<string, Awaited<ReturnType<typeof selectComposition>>> = {};
 
@@ -61,7 +65,7 @@ const report: Record<string, unknown> = {
   presentation_id: spec.presentation_id, trace_id: trace.trace_id, camera: spec.camera, fps: tl.fps, frames: tl.durationInFrames,
   timeline: tl.segments.map((s) => ({ id: s.id, kind: s.kind, frames: [Number(s.f0.toFixed(3)), Number(s.f1.toFixed(3))], rate: s.rate,
     source_s: s.kind === "hold" ? [s.t, s.t] : [tl.windowStartS + s.u0 / tl.fps, tl.windowStartS + (s.u0 + (s.f1 - s.f0) * s.rate) / tl.fps] })),
-  renderer: "Remotion 4.0.531, chrome-headless-shell, --gl=swangle (SwiftShader, CPU); no motion blur or depth of field",
+  renderer: `Remotion 4.0.531, chrome-headless-shell, --gl=${GL_LABEL}; no motion blur or depth of field`,
 };
 
 // 1. normal vs replay at the same source time

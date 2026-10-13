@@ -6,6 +6,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { analysisFrame, resolveAnalysis, type AnalysisSpec } from "../src/model/analysis.ts";
 import { traceEvaluator, type ShotTrace } from "../src/model/trace.ts";
+import { spawnSync } from "node:child_process";
 
 const read = (p: string): string => readFileSync(p, "utf8");
 const json = (p: string) => JSON.parse(read(p));
@@ -50,7 +51,12 @@ for (const { dir, spec } of BUILT) {
     assert.equal(trace.trace_id, spec.trace_id);
     assert.equal(checks.trace_id, trace.trace_id);
     assert.equal(trace.status, spec.status);
-    assert.equal(trace.source.move_file_sha256, sha(`moves/${dir}/move.json`), "move file changed since the build: rebuild");
+    // the motion (move.json without presentation keys), engine and model files the trace was built from are today's
+    // (scripts/shotlib/identity.py; story.json edits never require a rebuild)
+    const gate = spawnSync("python3", ["scripts/build-move.py", dir, "--check"], { encoding: "utf8" });
+    // a move without a story (moves/<id>/story.json) has no video yet, so only its motion is gated
+    const problems = (JSON.parse(gate.stdout)[0].problems as string[]).filter((p) => existsSync(`moves/${dir}/story.json`) || !p.startsWith(`data/presentations/${dir}.analysis.json is missing`));
+    assert.deepEqual(problems, [], "saved trace or presentation stale: rebuild / --presentation");
     assert.equal(trace.engine.contact_footprints_sha256, sha("data/figures/contact-footprints.json"), "footprints changed since the build: rebuild");
     assert.ok(checks.passed);
     assert.ok(checks.sampling_s <= 0.00025 && checks.penetration_tolerance_mm <= 0.1);
@@ -69,7 +75,8 @@ for (const { dir, spec } of BUILT) {
     const r = json(p);
     assert.equal(r.trace_id, trace.trace_id);
     assert.equal(r.canonical, true);
-    assert.equal(r.move_file_sha256, sha(`moves/${dir}/move.json`), "move file changed since the robustness run");
+    if (r.move_motion_sha256) assert.equal(r.move_motion_sha256, trace.source.move_motion_sha256, "motion changed since the robustness run");
+    else assert.equal(r.move_file_sha256, sha(`moves/${dir}/move.json`), "move file changed since the robustness run");
     // a move may declare that it is not robust yet (expect.robustness: the variants it must at least pass and why
     // the rest fail); the declaration is checked both ways, so a regression or an unrecorded improvement fails
     const declared = spec.expect?.robustness;
@@ -91,7 +98,7 @@ for (const { dir, spec } of BUILT) {
     }
   });
 
-  if (spec.story) {
+  if (spec.story || existsSync(`moves/${dir}/story.json`)) {
     test(`encyclopedia ${dir}: generated video spec resolves, is registered, camera stays smooth`, (t) => {
       const sp = json(`data/presentations/${dir}.analysis.json`) as AnalysisSpec;
       assert.equal(sp.trace_id, trace.trace_id);
@@ -111,6 +118,14 @@ for (const { dir, spec } of BUILT) {
       assert.equal(r.analysis_spec.sha256, sha(`data/presentations/${dir}.analysis.json`), "video spec changed since the render");
       assert.equal(r.output.frames, A.durationInFrames);
       assert.deepEqual(r.checks.frames_differing_from_pure, []);
+      // every frame verified: drawn live and logged, or composited over a verified scene-cache image of its own state
+      const sc = r.checks.scene_cache;
+      assert.equal(r.checks.frames_logged + (sc ? sc.checked : 0), A.durationInFrames);
+      if (sc) {
+        assert.deepEqual(sc.errors, []);
+        // the reused images' own scene renders matched the pure evaluation and the camera track
+        assert.ok(sc.entries_max_readback_diff <= 1e-9 && sc.entries_camera_max_diff_mm <= 0.02);
+      }
     });
   }
 }

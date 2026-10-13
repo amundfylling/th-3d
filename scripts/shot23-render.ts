@@ -16,8 +16,12 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { shotFrameEvaluator, type ShotFrameState } from "../src/model/shot-pose.ts";
 import type { ShotTrace } from "../src/model/trace.ts";
+import { resolveRenderEnv } from "./video/render-env.ts";
 
-const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
+// browser and GL backend: scripts/video/render-env.ts (--browser/--gl there; REMOTION_BROWSER_EXECUTABLE / REMOTION_GL here)
+const RENDER_ENV = await resolveRenderEnv();
+const BROWSER = RENDER_ENV.browserExecutable;
+const GL_LABEL = RENDER_ENV.gl === "swangle" ? "swangle (SwiftShader, CPU)" : `${RENDER_ENV.gl} (WebGL renderer not verified by this script)`;
 const OUT = "out/23";
 const trace = JSON.parse(readFileSync("data/traces/shovel-17.trace.json", "utf8"));
 const geometry = JSON.parse(readFileSync("data/geometry.json", "utf8"));
@@ -61,8 +65,8 @@ function shuffled<T>(xs: T[], seed: number): T[] {
 }
 
 const serveUrl = await bundle({ entryPoint: path.resolve("remotion/index.ts") });
-const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" } });
-const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" as const }, puppeteerInstance: browser };
+const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions });
+const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: RENDER_ENV.chromiumOptions, puppeteerInstance: browser };
 const parse = (text: string): Logged | null => (text.startsWith("[shot23-state] ") ? (JSON.parse(text.slice(15)) as Logged) : null);
 
 async function still(id: string, frame: number, output: string, inputProps: Record<string, unknown>, scale = 1): Promise<{ state: Logged; checks: string[]; sha256: string }> {
@@ -74,7 +78,7 @@ async function still(id: string, frame: number, output: string, inputProps: Reco
   return { state: states[states.length - 1]!, checks: logs.filter((l) => l.startsWith("[shot23-check]")), sha256: sha(output) };
 }
 
-const report: Record<string, unknown> = { trace_id: trace.trace_id, trace_status: trace.status, geometry_version: trace.geometry_version, renderer: "Remotion 4.0.531, chrome-headless-shell, --gl=swangle (SwiftShader, CPU)" };
+const report: Record<string, unknown> = { trace_id: trace.trace_id, trace_status: trace.status, geometry_version: trace.geometry_version, renderer: `Remotion 4.0.531, chrome-headless-shell, --gl=${GL_LABEL}` };
 
 // 1. Diagnostic stills at the contact times.
 // two moments of W-RW's foot drag-back (prep phase; user rule 2026-10-05) and the four contact events

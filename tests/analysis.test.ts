@@ -134,7 +134,7 @@ test("analysis: graphics and captions resolve, anchor to real figures and stay w
 });
 
 test("analysis: the composition uses only the pure evaluators and keeps the diagnostic compositions", () => {
-  const src = read("remotion/AnalysisVideo.tsx"), shovel = read("remotion/ShotAnalysis.tsx");
+  const src = read("remotion/AnalysisVideo.tsx") + read("remotion/SceneLayer.tsx"), shovel = read("remotion/ShotAnalysis.tsx");
   for (const s of [src, shovel]) assert.doesNotMatch(s, /useFrame\s*\(|Date\.now|performance\.now|Math\.random|requestAnimationFrame/);
   assert.match(src, /shotTimeEvaluator/);
   assert.match(shovel, /gate: assertShotRenderable/);
@@ -143,7 +143,9 @@ test("analysis: the composition uses only the pure evaluators and keeps the diag
   assert.doesNotMatch(src, /camera=\{[^}]*new THREE\./);
   assert.match(src, /camera=\{canvasCamera\}/);
   const root = read("remotion/Root.tsx");
-  for (const id of ["analysis-shovel-17", "shot23-shovel-17", "shot23-at-time", "shot24-shovel-17", "shot25-shovel-17-final", "static-checks"]) assert.match(root, new RegExp(`id="${id}"`), id);
+  for (const id of ["shot23-shovel-17", "shot23-at-time", "shot24-shovel-17", "shot25-shovel-17-final", "static-checks"]) assert.match(root, new RegExp(`id="${id}"`), id);
+  assert.match(read("remotion/analysis-videos.ts"), /id: "analysis-shovel-17"/);
+  assert.match(root, /ANALYSIS_VIDEOS\.map/);
   for (const f of ["Barlow-Medium.ttf", "Barlow-SemiBold.ttf", "BarlowCondensed-SemiBold.ttf", "BarlowCondensed-ExtraBold.ttf", "OFL.txt"]) assert.ok(existsSync(`public/fonts/${f}`), f);
 });
 

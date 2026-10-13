@@ -1,24 +1,24 @@
 {
  "move": "hjerpefinte",
- "trace_id": "trace.hjerpefinte.v1",
+ "trace_id": "trace.hjerpefinte.v2",
  "rule": "the move must keep its outcome (goal, contact sequence) and the slide limits under every variant; variant sizes ASSUMED",
  "variants_passed": "11/11",
  "robust": true,
  "goal_y_spread_mm": [
-  -18.84,
-  -18.46
+  -17.69,
+  -17.38
  ],
  "rows": [
   {
    "variant": "nominal",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -17.6,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 32.8,
+   "peak_figure_impact_mm_s": 44.3,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -26,13 +26,13 @@
   {
    "variant": "geometry +0.001 mm (numerical conditioning)",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -17.6,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 32.8,
+   "peak_figure_impact_mm_s": 44.3,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -40,13 +40,13 @@
   {
    "variant": "geometry -0.001 mm (numerical conditioning)",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -17.6,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 32.8,
+   "peak_figure_impact_mm_s": 44.3,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -54,13 +54,13 @@
   {
    "variant": "figure footprint 2% larger (mold scale)",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -17.6,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 32.8,
+   "peak_figure_impact_mm_s": 44.2,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -68,13 +68,13 @@
   {
    "variant": "figure footprint 2% smaller (mold scale)",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -17.61,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 32.8,
+   "peak_figure_impact_mm_s": 44.3,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -82,13 +82,13 @@
   {
    "variant": "puck start +0.2 mm x",
    "goal": "E",
-   "goal_y_mm": -18.71,
+   "goal_y_mm": -17.62,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 32.8,
+   "peak_figure_impact_mm_s": 44.2,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -96,13 +96,13 @@
   {
    "variant": "puck start +0.2 mm y",
    "goal": "E",
-   "goal_y_mm": -18.46,
+   "goal_y_mm": -17.38,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 32.7,
+   "peak_figure_impact_mm_s": 44.1,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -110,13 +110,13 @@
   {
    "variant": "ice friction +25%",
    "goal": "E",
-   "goal_y_mm": -18.73,
+   "goal_y_mm": -17.52,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 33.1,
+   "peak_figure_impact_mm_s": 44.5,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -124,13 +124,13 @@
   {
    "variant": "ice friction -25%",
    "goal": "E",
-   "goal_y_mm": -18.84,
+   "goal_y_mm": -17.69,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 32.6,
+   "peak_figure_impact_mm_s": 44.0,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -138,13 +138,13 @@
   {
    "variant": "restitution 0.3",
    "goal": "E",
-   "goal_y_mm": -18.83,
+   "goal_y_mm": -17.59,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 35.7,
+   "peak_figure_impact_mm_s": 47.4,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
@@ -152,18 +152,19 @@
   {
    "variant": "restitution 0.7",
    "goal": "E",
-   "goal_y_mm": -18.61,
+   "goal_y_mm": -17.38,
    "sequence_as_expected": true,
    "sequence": [
     "W-C:stick/blade",
     "goal_net"
    ],
-   "peak_figure_impact_mm_s": 29.5,
+   "peak_figure_impact_mm_s": 40.0,
    "peak_wall_impact_mm_s": 0.0,
    "slide_ok": true,
    "outcome_ok": true
   }
  ],
- "move_file_sha256": "b65a2ef25476bf5104dfd0da0af0af2ff7c7bbc22369627b362578e03fea8853",
+ "move_file_sha256": "bccf229897585615dce7fde86baa5e16ef3b9e316e65944125489abcc9d2b401",
+ "move_motion_sha256": "a46886b44e0458bef2e9e0f86927a2405f5e4a40a612efb7bf51c4c312b25fe7",
  "canonical": true
 }
