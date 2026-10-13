@@ -6,6 +6,7 @@ import { ANALYSIS, ShotAnalysis } from "./ShotAnalysis.tsx";
 import { SPJASS_ANALYSIS, SpjassAnalysis } from "./SpjassAnalysis.tsx";
 import { NACKA_ANALYSIS, NackaAnalysis } from "./NackaAnalysis.tsx";
 import { PosePreview } from "./PosePreview.tsx";
+import { ANGLE_FPS, ANGLE_FRAMES, AngleStudy } from "./AngleStudy.tsx";
 import { IKV_ANALYSIS, IkvAnalysis } from "./IkvAnalysis.tsx";
 import { DEFENCE_ANALYSIS, DefenceAnalysis } from "./DefenceAnalysis.tsx";
 import { ENCYCLOPEDIA_VIDEOS } from "./EncyclopediaAnalysis.tsx";
@@ -52,6 +53,8 @@ export const RemotionRoot: React.FC = () => (
     {ENCYCLOPEDIA_VIDEOS.map((v) => (
       <Composition key={v.id} id={v.id} component={v.Component} durationInFrames={v.ANALYSIS.durationInFrames} fps={v.ANALYSIS.spec.fps} width={v.ANALYSIS.spec.width} height={v.ANALYSIS.spec.height} defaultProps={{ graphics: true }} />
     ))}
+    {/* Camera-angle study for the move pictures (docs/move-pictures.md): Näcka from one of four cameras. */}
+    <Composition id="angle-study" component={AngleStudy} durationInFrames={ANGLE_FRAMES} fps={ANGLE_FPS} width={1280} height={720} defaultProps={{ angle: "overhead" as const }} />
     <Composition id="pose-preview" component={PosePreview} durationInFrames={1} fps={30} width={1600} height={1300} defaultProps={{ poses: {}, puckMm: [0, 0] as [number, number], camera: { cx: 150, cy: 0, widthMm: 640 } }} calculateMetadata={({ props }) => ({ width: (props as { widthPx?: number }).widthPx ?? 1600, height: (props as { heightPx?: number }).heightPx ?? 1300 })} />
     <Composition id="static-checks" component={StaticInspection} durationInFrames={30} fps={30} width={1920} height={1080} defaultProps={{ camera: "oblique", showChecks: true }} />
   </>

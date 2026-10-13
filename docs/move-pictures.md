@@ -50,3 +50,11 @@ is a numbered point without a figure.
 
 Sources: `references/combinations/puck-no-pictures/` (all 51 pictures, fetched 2026-10-13, index entry
 `puck_no_move_pictures`).
+
+## Camera-angle study (2026-10-13)
+
+The user asked whether another angle would be better and wanted one Näcka picture per suggested angle (images, not
+video): `validation/move-pictures/angles/nacka-{overhead,tilted,oblique,goalie}.png`, side by side in
+`nacka-angles.jpg`. Composition `angle-study` (`remotion/AngleStudy.tsx`, the saved Näcka trace through the usual
+gate), rendered by `node scripts/move-pictures/angles.ts` (last frame, 1920x1080; `--video` renders the slow-motion
+clip instead). The arrows are projected from the puck path on the ice, so they are drawn over figures in the 3D views.
