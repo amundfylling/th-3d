@@ -107,11 +107,12 @@ Six pictures redrawn after the user's comments on the review page:
   groove, Edwall) or between the stick and the skate (stick groove, Lindahl). Grip positions are ASSUMED from the
   skater keypoints (`data/figure-keypoints.json`). The contact's circle steps aside so the grip stays visible. New view
   `deep` (x 0-446 mm) shows the back of the slots.
-- Fakie Lillstøvel, Näcka, Omvendspjass and Spjass: played from the middle of the centre's slot (the user: impossible
-  from further forward).
+- Fakie Lillstøvel, Näcka, Omvendspjass and Spjass: the puck starts centred ACROSS the centre's slot (on its line), at
+  the same height as the normal move, so the normal and the fakie move share one start (the user's correction of a
+  first try that moved the trick to the middle of the slot's length).
 On the page the redone moves go back to "not reviewed" with the user's comment kept and a "Redrawn" note.
 - Start position of the fakie centre tricks (user's choice 2026-10-14, "ghost + dashed"): spec field `ghost` (figure,
   facing, puck in the start groove). `build.py` adds a second render job `<id>-ghost` with the figure at its start, and
   `--draw` blends that figure in at 50 % around the start position, with a dashed grey arrow from the start puck to
-  contact 1. The start is ASSUMED to be the centre's usual forward spot (formation), heel groove for Fakie Lillstøvel
-  and Fakie Omvendspjass, toe groove for Fakie Näcka and Fakie Spjass (the NTHF text's start groove).
+  contact 1 (drawn only when the start and the trick are apart). For the fakie centre tricks the ghost is the centre
+  right behind the centred puck, facing forward (ASSUMED); the solid figure is the centre turned into the trick.

@@ -2,17 +2,17 @@
   "id": "fakie-lillstvel",
   "name": "Fakie Lillstøvel",
   "level": 5,
-  "view": "deep",
+  "view": "half",
   "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
   "text": "Center starts with the puck in the heel groove, quickly shifts to having the puck in the toe groove, and performs a Lillstøvel",
-  "note": "User review 2026-10-14: played from the middle of the centre's slot (not possible from further forward).",
+  "note": "User review 2026-10-14: the puck starts centred on the centre's slot line (same start as the normal move); the ghost is the centre at that start, behind the puck.",
   "contacts": [
     {
       "n": 1,
       "pid": "W-C",
       "picture_px": [
-        326,
-        452
+        305,
+        342
       ],
       "pose": false
     },
@@ -20,8 +20,8 @@
       "n": 2,
       "pid": "W-C",
       "picture_px": [
-        268,
-        437
+        251,
+        321
       ],
       "pose": true
     }
@@ -35,21 +35,21 @@
       "from": 2,
       "to": "goal",
       "picture_px": [
-        258,
-        214
+        251,
+        216
       ]
     }
   ],
   "ghost": {
     "pid": "W-C",
     "figure_px": [
-      300,
-      368
+      307,
+      367
     ],
     "theta_deg": 0.0,
     "puck_local_mm": [
-      -3.0,
-      22.0
+      24.0,
+      0.0
     ]
   }
 }

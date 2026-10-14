@@ -394,6 +394,8 @@ def draw(spec, geo):
     marks = {k: np.array(p) for k, p in pts.items() if k.isdigit()}  # where each numbered circle goes
     # a set grip must stay visible: its circle steps to the side, away from the figure, and the arrow starts at the puck
     grips = {str(c["n"]) for c in spec.get("contacts", []) if "puck_local_mm" in c}
+    if "ghost" in geo:  # the start under the ghost stays visible too
+        grips.add(geo["ghost"]["to"])
     for k in grips:
         marks[k] = marks[k] + np.array([-(2 * r + 14), 0.0])
     for a in geo["arrows_mm"]:

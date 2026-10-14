@@ -2,17 +2,17 @@
   "id": "fakie-spjass",
   "name": "Fakie Spjass",
   "level": 6,
-  "view": "deep",
+  "view": "half",
   "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
   "text": "Center starts with the puck in the toe groove, quickly shifts to having the puck in the heel groove, and performs a Spjass",
-  "note": "User review 2026-10-14: played from the middle of the centre's slot.",
+  "note": "User review 2026-10-14: the puck starts centred on the centre's slot line (same start as the normal move); the ghost is the centre at that start, behind the puck.",
   "contacts": [
     {
       "n": 1,
       "pid": "W-C",
       "picture_px": [
-        318,
-        454
+        305,
+        342
       ],
       "pose": false
     },
@@ -20,8 +20,8 @@
       "n": 2,
       "pid": "W-C",
       "picture_px": [
-        285,
-        436
+        272,
+        324
       ],
       "pose": true
     }
@@ -43,13 +43,13 @@
   "ghost": {
     "pid": "W-C",
     "figure_px": [
-      300,
-      368
+      307,
+      367
     ],
     "theta_deg": 0.0,
     "puck_local_mm": [
-      10.0,
-      48.0
+      24.0,
+      0.0
     ]
   }
 }
