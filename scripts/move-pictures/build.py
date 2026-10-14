@@ -366,8 +366,8 @@ def draw(spec, geo):
         gb = Image.open(OUT / f"{spec['id']}-ghost-base.png").convert("RGB")
         gx, gy = to_px(geo, geo["ghost"]["figure_mm"])
         px, py = to_px(geo, geo["ghost"]["puck_mm"])
-        cx, cy = (gx + px) / 2 - MARGIN_L, (gy + py) / 2 - 20
-        R, zoom_half = 190, 95
+        cx, cy = (gx + px) / 2 - MARGIN_L, (gy + py) / 2 + 5
+        R, zoom_half = 190, 135  # wide enough for the whole figure (user, 2026-10-14)
         bub = gb.crop((int(cx - zoom_half), int(cy - zoom_half), int(cx + zoom_half), int(cy + zoom_half))).resize((2 * R, 2 * R), Image.LANCZOS)
         bmask = Image.new("L", (2 * R, 2 * R), 0)
         ImageDraw.Draw(bmask).ellipse([0, 0, 2 * R, 2 * R], fill=255)
