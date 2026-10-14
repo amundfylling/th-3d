@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 REPO = Path(__file__).resolve().parents[2]
 G = json.loads((REPO / "data/geometry.json").read_text())
@@ -46,6 +46,7 @@ BACKHAND_COST = 2.0  # mm
 # Picture style: puck.no arrows (green, numbered circles), NBHF (puck.no) colours from docs/theme.md.
 NAVY, RED, ICE = (14, 42, 87), (200, 16, 46), (244, 247, 251)
 GREEN = (22, 190, 52)
+GREY = (120, 128, 140)  # the dashed move of a figure to where the trick starts
 FONT = str(REPO / "public/fonts/BarlowCondensed-ExtraBold.ttf")
 
 
@@ -224,6 +225,15 @@ def build(spec):
                     line.append(pic_to_world(*q))
             arrows.append(line + [b])
         puck = points[key(cs[0])]
+    ghost = None
+    if "ghost" in spec:  # where the figure starts before it moves to the trick (user's choice 2026-10-14: ghost + dashed)
+        g = spec["ghost"]
+        slot = Slot(g["pid"])
+        arc, _ = slot.nearest(pic_to_world(*g["figure_px"]))
+        th = g.get("theta_deg", 0.0)
+        gpuck = slot.at(arc) + rot(HOME[g["pid"][0]] + th) @ np.array(g["puck_local_mm"], float)
+        ghost = {"pid": g["pid"], "arc_mm": round(arc, 1), "theta_deg": th, "figure_mm": [round(float(c), 1) for c in slot.at(arc)],
+                 "puck_mm": [round(float(c), 1) for c in gpuck], "to": str(g.get("to", key(spec["contacts"][0])))}
     cam = fit_camera(spec["view"])
     job = {"id": spec["id"], "poses": {k: {"arc_mm": p["arc_mm"], "theta_deg": p["theta_deg"]} for k, p in poses.items()},
            "puckMm": [round(float(puck[0]), 2), round(float(puck[1]), 2)],
@@ -233,7 +243,15 @@ def build(spec):
            "camera": cam, "poses": poses, "contacts": notes,
            "points_mm": {str(k): [round(float(c), 1) for c in p] for k, p in points.items()},
            "arrows_mm": [[[round(float(c), 1) for c in p] for p in a] for a in arrows]}
-    return job, geo
+    jobs = [job]
+    if ghost:
+        geo["ghost"] = ghost
+        gjob = json.loads(json.dumps(job))
+        gjob["id"] = f"{spec['id']}-ghost"
+        gjob["poses"][ghost["pid"]] = {"arc_mm": ghost["arc_mm"], "theta_deg": ghost["theta_deg"]}
+        gjob["puckMm"] = ghost["puck_mm"]
+        jobs.append(gjob)
+    return jobs, geo
 
 
 def _basis(cam):
@@ -312,6 +330,24 @@ def arrow(d, pts, width, color, head, cut_start, cut_end):
     d.polygon([tuple(tip), tuple(base + nrm * head * 0.55), tuple(base - nrm * head * 0.55)], fill=color)
 
 
+def dashed_arrow(d, a, b, width, color, head, cut_start, cut_end, dash=22, gap=14):
+    """Straight dashed arrow from a to b (the figure moving with the puck before the move starts)."""
+    v = b - a
+    L = float(np.linalg.norm(v))
+    if L < cut_start + cut_end + head:
+        return
+    u = v / L
+    n = np.array([-u[1], u[0]])
+    s, e = cut_start, L - cut_end - head * 0.8
+    while s < e:
+        p, q = a + u * s, a + u * min(s + dash, e)
+        d.line([tuple(p), tuple(q)], fill=color, width=width)
+        s += dash + gap
+    tip = a + u * (L - cut_end)
+    base = tip - u * head
+    d.polygon([tuple(tip), tuple(base + n * head * 0.5), tuple(base - n * head * 0.5)], fill=color)
+
+
 def badge(d, p, n, r):
     d.ellipse([p[0] - r - 3, p[1] - r - 3, p[0] + r + 3, p[1] + r + 3], fill=(255, 255, 255))
     d.ellipse([p[0] - r, p[1] - r, p[0] + r, p[1] + r], fill=NAVY)
@@ -338,8 +374,22 @@ def draw(spec, geo):
     W, H = base.width + MARGIN_L, base.height
     im = Image.new("RGB", (W, H), NAVY)
     im.paste(base, (MARGIN_L, 0))
+    if "ghost" in geo:
+        gb = Image.open(OUT / f"{spec['id']}-ghost-base.png").convert("RGB")
+        gx, gy = to_px(geo, geo["ghost"]["figure_mm"])
+        gpx = to_px(geo, geo["ghost"]["puck_mm"])
+        rad = 1.15 * max(math.dist((gx, gy), gpx), 1) + 40  # the figure and its puck, not the figure at the trick
+        mask = Image.new("L", gb.size, 0)
+        ImageDraw.Draw(mask).ellipse([gx - MARGIN_L - rad, gy - rad, gx - MARGIN_L + rad, gy + rad], fill=255)
+        diff = Image.eval(ImageChops.difference(gb, base).convert("L"), lambda q: 255 if q > 12 else 0)
+        mask = ImageChops.multiply(mask, diff).filter(ImageFilter.MaxFilter(3)).point(lambda q: int(q * 0.5))
+        im.paste(Image.composite(gb, base, mask), (MARGIN_L, 0))
     d = ImageDraw.Draw(im)
     r = 34
+    if "ghost" in geo:
+        a0 = np.array(to_px(geo, geo["ghost"]["puck_mm"]), float)
+        a1 = np.array(to_px(geo, geo["points_mm"][geo["ghost"]["to"]]), float)
+        dashed_arrow(d, a0, a1, 8, GREY, 30, 26, r + 8)
     pts = {k: to_px(geo, p) for k, p in geo["points_mm"].items()}
     marks = {k: np.array(p) for k, p in pts.items() if k.isdigit()}  # where each numbered circle goes
     # a set grip must stay visible: its circle steps to the side, away from the figure, and the arrow starts at the puck
@@ -380,8 +430,8 @@ def main():
     jobs = []
     for i in ids:
         spec = json.loads((REPO / f"data/move-pictures/{i}.json").read_text())
-        job, geo = build(spec)
-        jobs.append(job)
+        js, geo = build(spec)
+        jobs += js
         (OUT / f"{i}-geometry.json").write_text(json.dumps(geo, indent=1, ensure_ascii=False) + "\n")
         for c in geo["contacts"]:
             print(i, "contact", c["contact"], c["pid"], "arc", c["arc_mm"], "theta", c["theta_deg"], c["face"], "turned", c["turned_from_push_deg"], "miss", c["miss_mm"], "mm")
