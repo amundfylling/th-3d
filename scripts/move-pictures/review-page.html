@@ -40,6 +40,7 @@ h1 { font: 800 2.2rem/1 var(--display); letter-spacing: .01em; margin: 0; color:
 .lvl { font: 800 .95rem var(--display); background: var(--chip); border-radius: 4px; padding: 0 7px; font-variant-numeric: tabular-nums; }
 .text { margin: 0; }
 .note { margin: 0; font-size: .88rem; color: var(--muted); }
+.redone { margin: 0; font-size: .9rem; font-weight: 600; color: var(--navy); background: var(--chip); border-radius: 6px; padding: 5px 9px; }
 .swap { justify-self: start; font: 500 .88rem var(--body); background: none; border: 0; color: var(--navy); text-decoration: underline; cursor: pointer; padding: 0; }
 .verdict { display: flex; gap: 8px; flex-wrap: wrap; }
 .verdict button { flex: 1 1 140px; font: 600 .95rem var(--body); border-radius: 6px; padding: 7px 10px; cursor: pointer; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); }
@@ -111,6 +112,7 @@ function renderFilters() {
 async function save(m, patch, statusEl) {
   if (!db) return;
   const next = { verdict: reviews[m.id]?.verdict || null, comment: reviews[m.id]?.comment || "", ...patch, updatedAt: new Date().toISOString(), name: m.name };
+  if (reviews[m.id]?.redoneAt && !patch.verdict) next.redoneAt = reviews[m.id].redoneAt;
   statusEl.textContent = "Saving…";
   try {
     await db.collection("reviews").doc(m.id).set(next);
@@ -148,6 +150,7 @@ function card(m) {
       el("div", { class: "head" }, el("h2", {}, m.name), el("span", { class: "lvl", title: "NTHF level 0-9" }, `Level ${m.level}`), el("span", { class: "meta" }, m.player)),
       el("p", { class: "text" }, m.text),
       m.note ? el("p", { class: "note" }, m.note) : null,
+      r.redoneAt ? el("p", { class: "redone" }, `Redrawn ${new Date(r.redoneAt).toLocaleDateString()} after your comment. Your earlier comment is below.`) : null,
       swap,
       el("div", { class: "verdict" }, bOk, bCh),
       ta,

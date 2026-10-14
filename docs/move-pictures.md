@@ -98,3 +98,15 @@ page with every move picture (121), its NTHF text, the puck.no original where th
 "Looks good" / "Needs change" choice and a comment. The page keeps the verdicts in its artifact database
 (collection `reviews`, document id = move id from `data/encyclopedia/index.json`), which Claude reads back with the
 artifact data tool. Published as an artifact for the user (link in the thread and in docs/state.md).
+
+### First review round (2026-10-14)
+
+Six pictures redrawn after the user's comments on the review page:
+- Edwall-innspill and Lindahl-innspill: the wing is drawn at the START of the carry, further back in its slot, facing
+  forward, with a set grip (`puck_local_mm` in the contact): the puck between the blade heel and the skate (heel
+  groove, Edwall) or between the stick and the skate (stick groove, Lindahl). Grip positions are ASSUMED from the
+  skater keypoints (`data/figure-keypoints.json`). The contact's circle steps aside so the grip stays visible. New view
+  `deep` (x 0-446 mm) shows the back of the slots.
+- Fakie Lillstøvel, Näcka, Omvendspjass and Spjass: played from the middle of the centre's slot (the user: impossible
+  from further forward).
+On the page the redone moves go back to "not reviewed" with the user's comment kept and a "Redrawn" note.

@@ -2,27 +2,46 @@
   "id": "edwall-innspill",
   "name": "Edwall-innspill",
   "level": 2,
-  "view": "half",
+  "view": "deep",
   "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
   "text": "Right wing carries the puck forward in the slot with the heel groove and sends it in to the center",
+  "note": "User review 2026-10-14: the wing starts further back in its slot, faces forward, puck between the blade heel and the skate (heel groove).",
   "contacts": [
     {
       "n": 1,
       "pid": "W-RW",
       "picture_px": [
-        476,
-        410
+        495,
+        470
       ],
-      "pose": false
+      "figure_px": [
+        495,
+        470
+      ],
+      "theta_deg": 0.0,
+      "puck_local_mm": [
+        -3.0,
+        22.0
+      ],
+      "pose": true
     },
     {
       "n": 2,
       "pid": "W-RW",
       "picture_px": [
-        476,
-        300
+        495,
+        330
       ],
-      "pose": true
+      "figure_px": [
+        495,
+        330
+      ],
+      "theta_deg": 0.0,
+      "puck_local_mm": [
+        -3.0,
+        22.0
+      ],
+      "pose": false
     },
     {
       "n": 3,

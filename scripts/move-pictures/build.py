@@ -34,6 +34,7 @@ BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"], float)
 # attacking goal up. The view frames the world rectangle x (bottom to top) by y (+-254 mm, the housing) at the ice.
 TILT_DEG = 20.0
 VIEWS = {"half": {"x": (68.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 1050.0, "height_px": 1100},
+         "deep": {"x": (0.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 1150.0, "height_px": 1180},
          "mid": {"x": (-95.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 1400.0, "height_px": 1400},
          "full": {"x": (-446.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 2000.0, "height_px": 1900}}
 MARGIN_L = 92  # px, left strip for the level scale (as on puck.no)
@@ -179,6 +180,14 @@ def build(spec):
         nxt = {seg["from"]: seg["to"] for seg in spec["path"]}
         for c in cs:
             k = key(c)
+            if "puck_local_mm" in c:  # a set grip (the user's review): figure at figure_px facing theta_deg, puck in the groove
+                arc, d = Slot(c["pid"]).nearest(pic_to_world(*c["figure_px"]))
+                th = c.get("theta_deg", 0.0)
+                h = HOME[c["pid"][0]] + th
+                points[k] = Slot(c["pid"]).at(arc) + rot(h) @ np.array(c["puck_local_mm"], float)
+                if c.get("pose", True):
+                    poses[c["pid"]] = {"arc_mm": round(arc, 1), "theta_deg": th, "source": f"contact {k} (set grip {c['puck_local_mm']} mm)"}
+                continue
             if c.get("kind") == "board":
                 points[k] = nearest_board(raw[k])
                 continue
@@ -333,12 +342,17 @@ def draw(spec, geo):
     r = 34
     pts = {k: to_px(geo, p) for k, p in geo["points_mm"].items()}
     marks = {k: np.array(p) for k, p in pts.items() if k.isdigit()}  # where each numbered circle goes
+    # a set grip must stay visible: its circle steps to the side, away from the figure, and the arrow starts at the puck
+    grips = {str(c["n"]) for c in spec.get("contacts", []) if "puck_local_mm" in c}
+    for k in grips:
+        marks[k] = marks[k] + np.array([-(2 * r + 14), 0.0])
     for a in geo["arrows_mm"]:
         P = [to_px(geo, p) for p in a]
         ks = next((k for k, q in pts.items() if k in marks and np.allclose(P[0], q)), None)
         ke = next((k for k, q in pts.items() if k in marks and np.allclose(P[-1], q)), None)
         length = sum(math.dist(u, v) for u, v in zip(P, P[1:]))
         cut_s, cut_e = (r + 6 if ks else 0), (r + 7 if ke else 0)
+        cut_s, cut_e = (40 if ks in grips else cut_s), (40 if ke in grips else cut_e)
         if ke and length < 5 * r:
             # too short to show between two circles (Näcka's heel pass): the end circle steps aside, the arrow keeps its tip
             u = (np.array(P[-1]) - np.array(P[-2])) / max(math.dist(P[-1], P[-2]), 1e-9)

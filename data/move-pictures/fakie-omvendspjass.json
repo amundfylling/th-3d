@@ -2,16 +2,17 @@
   "id": "fakie-omvendspjass",
   "name": "Fakie Omvendspjass",
   "level": 6,
-  "view": "half",
+  "view": "deep",
   "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
   "text": "Center starts with the puck in the heel groove, quickly shifts to having the puck in the toe groove, and performs an Omvendspjass",
+  "note": "User review 2026-10-14: played from the middle of the centre's slot.",
   "contacts": [
     {
       "n": 1,
       "pid": "W-C",
       "picture_px": [
-        290,
-        340
+        305,
+        452
       ],
       "pose": false
     },
@@ -20,7 +21,7 @@
       "pid": "W-C",
       "picture_px": [
         348,
-        317
+        430
       ],
       "pose": true
     }
@@ -34,8 +35,8 @@
       "from": 2,
       "to": "goal",
       "picture_px": [
-        344,
-        218
+        340,
+        216
       ]
     }
   ]
