@@ -37,7 +37,7 @@ VIEWS = {"half": {"x": (68.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 1050.0, "
          "deep": {"x": (0.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 1150.0, "height_px": 1180},
          "mid": {"x": (-95.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 1400.0, "height_px": 1400},
          "full": {"x": (-446.0, 446.0), "y": (-254.0, 254.0), "dist_mm": 2000.0, "height_px": 1900}}
-MARGIN_L = 92  # px, left strip for the level scale (as on puck.no)
+MARGIN_L = 0  # px; the 0-9 level scale strip was dropped at the user's request (2026-10-14)
 TURN_COST = 0.15  # mm per degree the blade is turned away from the push
 BACKHAND_COST = 2.0  # mm
 
@@ -355,20 +355,6 @@ def badge(d, p, n, r):
     d.text((p[0], p[1] + 1), str(n), font=f, fill=(255, 255, 255), anchor="mm")
 
 
-def level_scale(d, h, level):
-    """The puck.no difficulty scale 0-9 on the left edge, the move's level boxed in red."""
-    cell = 52
-    x0 = (MARGIN_L - cell) // 2
-    y0 = int(h * 0.30) if h < 1500 else int(h * 0.36)
-    f = ImageFont.truetype(FONT, 38)
-    for k in range(10):
-        y = y0 + k * cell
-        d.rectangle([x0, y, x0 + cell, y + cell], fill=ICE, outline=NAVY, width=1)
-        d.text((x0 + cell / 2, y + cell / 2 + 1), str(k), font=f, fill=NAVY, anchor="mm")
-    y = y0 + level * cell
-    d.rectangle([x0 - 3, y - 3, x0 + cell + 3, y + cell + 3], outline=RED, width=5)
-
-
 def draw(spec, geo):
     base = Image.open(OUT / f"{spec['id']}-base.png").convert("RGB")
     W, H = base.width + MARGIN_L, base.height
@@ -415,7 +401,6 @@ def draw(spec, geo):
         im.paste(inset, (x0, y0))
         d.rectangle([x0, y0 - 52, x0 + inset.width, y0 - 2], fill=NAVY)
         d.text((x0 + inset.width / 2, y0 - 27), "START", font=ImageFont.truetype(FONT, 38), fill=(255, 255, 255), anchor="mm")
-    level_scale(d, H, spec["level"])
     VAL.mkdir(parents=True, exist_ok=True)
     out = VAL / f"{spec['id']}.png"
     im.save(out, optimize=True)

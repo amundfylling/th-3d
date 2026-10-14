@@ -117,3 +117,5 @@ On the page the redone moves go back to "not reviewed" with the user's comment k
   50 % ghost into the picture; the user found it hard to read), with a dashed grey arrow from the start puck to contact 1
   when the start and the trick are apart. For the fakie centre tricks the ghost is the centre
   right behind the centred puck, facing forward (ASSUMED); the solid figure is the centre turned into the trick.
+- The 0-9 level scale on the left was dropped from every picture (user, 2026-10-14); the level stays in the specs and on
+  the review page.
