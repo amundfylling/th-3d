@@ -113,6 +113,7 @@ Six pictures redrawn after the user's comments on the review page:
 On the page the redone moves go back to "not reviewed" with the user's comment kept and a "Redrawn" note.
 - Start position of the fakie centre tricks (user's choice 2026-10-14, "ghost + dashed"): spec field `ghost` (figure,
   facing, puck in the start groove). `build.py` adds a second render job `<id>-ghost` with the figure at its start, and
-  `--draw` blends that figure in at 50 % around the start position, with a dashed grey arrow from the start puck to
-  contact 1 (drawn only when the start and the trick are apart). For the fakie centre tricks the ghost is the centre
+  `--draw` shows that start as a close-up inset marked START in the bottom-left corner (a first version blended a
+  50 % ghost into the picture; the user found it hard to read), with a dashed grey arrow from the start puck to contact 1
+  when the start and the trick are apart. For the fakie centre tricks the ghost is the centre
   right behind the centred puck, facing forward (ASSUMED); the solid figure is the centre turned into the trick.

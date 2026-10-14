@@ -374,16 +374,14 @@ def draw(spec, geo):
     W, H = base.width + MARGIN_L, base.height
     im = Image.new("RGB", (W, H), NAVY)
     im.paste(base, (MARGIN_L, 0))
-    if "ghost" in geo:
+    inset = None
+    if "ghost" in geo:  # the start position as a close-up inset (a blended ghost was hard to read, user 2026-10-14)
         gb = Image.open(OUT / f"{spec['id']}-ghost-base.png").convert("RGB")
         gx, gy = to_px(geo, geo["ghost"]["figure_mm"])
-        gpx = to_px(geo, geo["ghost"]["puck_mm"])
-        rad = 1.15 * max(math.dist((gx, gy), gpx), 1) + 40  # the figure and its puck, not the figure at the trick
-        mask = Image.new("L", gb.size, 0)
-        ImageDraw.Draw(mask).ellipse([gx - MARGIN_L - rad, gy - rad, gx - MARGIN_L + rad, gy + rad], fill=255)
-        diff = Image.eval(ImageChops.difference(gb, base).convert("L"), lambda q: 255 if q > 12 else 0)
-        mask = ImageChops.multiply(mask, diff).filter(ImageFilter.MaxFilter(3)).point(lambda q: int(q * 0.5))
-        im.paste(Image.composite(gb, base, mask), (MARGIN_L, 0))
+        px, py = to_px(geo, geo["ghost"]["puck_mm"])
+        cx, cy = (gx + px) / 2 - MARGIN_L, (gy + py) / 2 - 20
+        half = 150
+        inset = gb.crop((int(cx - half), int(cy - half), int(cx + half), int(cy + half))).resize((390, 390), Image.LANCZOS)
     d = ImageDraw.Draw(im)
     r = 34
     if "ghost" in geo:
@@ -394,8 +392,6 @@ def draw(spec, geo):
     marks = {k: np.array(p) for k, p in pts.items() if k.isdigit()}  # where each numbered circle goes
     # a set grip must stay visible: its circle steps to the side, away from the figure, and the arrow starts at the puck
     grips = {str(c["n"]) for c in spec.get("contacts", []) if "puck_local_mm" in c}
-    if "ghost" in geo:  # the start under the ghost stays visible too
-        grips.add(geo["ghost"]["to"])
     for k in grips:
         marks[k] = marks[k] + np.array([-(2 * r + 14), 0.0])
     for a in geo["arrows_mm"]:
@@ -413,6 +409,12 @@ def draw(spec, geo):
         arrow(d, P, 13, GREEN, 46, cut_s, cut_e)
     for k, p in marks.items():
         badge(d, p, k, r)
+    if inset is not None:
+        x0, y0, bw = MARGIN_L + 24, H - inset.height - 24, 6
+        d.rectangle([x0 - bw, y0 - 52 - bw, x0 + inset.width + bw, y0 + inset.height + bw], fill=(255, 255, 255))
+        im.paste(inset, (x0, y0))
+        d.rectangle([x0, y0 - 52, x0 + inset.width, y0 - 2], fill=NAVY)
+        d.text((x0 + inset.width / 2, y0 - 27), "START", font=ImageFont.truetype(FONT, 38), fill=(255, 255, 255), anchor="mm")
     level_scale(d, H, spec["level"])
     VAL.mkdir(parents=True, exist_ok=True)
     out = VAL / f"{spec['id']}.png"
