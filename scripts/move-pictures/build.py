@@ -360,14 +360,28 @@ def draw(spec, geo):
     W, H = base.width + MARGIN_L, base.height
     im = Image.new("RGB", (W, H), NAVY)
     im.paste(base, (MARGIN_L, 0))
-    inset = None
-    if "ghost" in geo:  # the start position as a close-up inset (a blended ghost was hard to read, user 2026-10-14)
+    if "ghost" in geo:
+        # the start position as a magnifier bubble with a leader line to the spot (user's choice 2026-10-14; a blended
+        # ghost was hard to read). No ring at the spot itself: it looked messy over the figure at the trick.
         gb = Image.open(OUT / f"{spec['id']}-ghost-base.png").convert("RGB")
         gx, gy = to_px(geo, geo["ghost"]["figure_mm"])
         px, py = to_px(geo, geo["ghost"]["puck_mm"])
         cx, cy = (gx + px) / 2 - MARGIN_L, (gy + py) / 2 - 20
-        half = 150
-        inset = gb.crop((int(cx - half), int(cy - half), int(cx + half), int(cy + half))).resize((390, 390), Image.LANCZOS)
+        R, zoom_half = 190, 95
+        bub = gb.crop((int(cx - zoom_half), int(cy - zoom_half), int(cx + zoom_half), int(cy + zoom_half))).resize((2 * R, 2 * R), Image.LANCZOS)
+        bmask = Image.new("L", (2 * R, 2 * R), 0)
+        ImageDraw.Draw(bmask).ellipse([0, 0, 2 * R, 2 * R], fill=255)
+        bx, by = MARGIN_L + 250, H - R - 60
+        dd = ImageDraw.Draw(im)
+        u = np.array([cx + MARGIN_L - bx, cy - by], float)
+        u /= max(np.linalg.norm(u), 1e-9)
+        dd.line([(bx + u[0] * (R + 8), by + u[1] * (R + 8)), (cx + MARGIN_L, cy)], fill=(255, 255, 255), width=6)
+        dd.ellipse([bx - R - 8, by - R - 8, bx + R + 8, by + R + 8], fill=(255, 255, 255))
+        im.paste(bub, (bx - R, by - R), bmask)
+        f = ImageFont.truetype(FONT, 36)
+        tw = dd.textlength("Startposisjon", font=f) + 36
+        dd.rectangle([bx - tw / 2, by + R - 14, bx + tw / 2, by + R + 34], fill=NAVY)
+        dd.text((bx, by + R + 10), "Startposisjon", font=f, fill=(255, 255, 255), anchor="mm")
     d = ImageDraw.Draw(im)
     r = 34
     if "ghost" in geo:
@@ -395,12 +409,6 @@ def draw(spec, geo):
         arrow(d, P, 13, GREEN, 46, cut_s, cut_e)
     for k, p in marks.items():
         badge(d, p, k, r)
-    if inset is not None:
-        x0, y0, bw = MARGIN_L + 24, H - inset.height - 24, 6
-        d.rectangle([x0 - bw, y0 - 52 - bw, x0 + inset.width + bw, y0 + inset.height + bw], fill=(255, 255, 255))
-        im.paste(inset, (x0, y0))
-        d.rectangle([x0, y0 - 52, x0 + inset.width, y0 - 2], fill=NAVY)
-        d.text((x0 + inset.width / 2, y0 - 27), "START", font=ImageFont.truetype(FONT, 38), fill=(255, 255, 255), anchor="mm")
     VAL.mkdir(parents=True, exist_ok=True)
     out = VAL / f"{spec['id']}.png"
     im.save(out, optimize=True)
