@@ -125,3 +125,55 @@ def solve_frame(bgr, pose0, intr, coarse=True):
     q = project(BOARD3, pose[0], pose[1], K, D)
     st[0]["board_in_frame"] = float(np.mean((q[:, 0] >= 0) & (q[:, 0] < W_PX) & (q[:, 1] >= 0) & (q[:, 1] < H_PX)))
     return pose, st[0]
+
+
+# ------------------------------------------------------------------ ice markings (centre line, blue lines)
+# The slots and boards leave the camera free to slide along the table's long axis by up to ~30 mm (most slot length
+# runs along x). The red centre line and the two blue lines fix that. Positions: centre line x = 0 (ASSUMED: the rink
+# is point-symmetric); blue lines x = +-BLUE_X (TRACED: 94 mm, median over 8 rectified frames of game 0002, +-4 mm).
+BLUE_X = 94.0
+MARK_Y = 222.0   # the lines run board to board; |y| <= MARK_Y keeps the points off the board foot strip
+_ys = np.arange(-MARK_Y, MARK_Y + 0.1, 4.0)
+MARK_RED = np.c_[np.zeros_like(_ys), _ys, np.zeros_like(_ys)]
+MARK_BLUE = np.r_[np.c_[np.full_like(_ys, -BLUE_X), _ys, np.zeros_like(_ys)], np.c_[np.full_like(_ys, BLUE_X), _ys, np.zeros_like(_ys)]]
+
+
+class ColourLineTarget:
+    """Thin red or blue line pixels: colour excess over the other two channels, minus blobs (logos, circles)."""
+
+    def __init__(self, bgr, colour, roi=None, thr=14):
+        b = bgr.astype(np.int16)
+        ex = (b[..., 0] - (b[..., 1] + b[..., 2]) // 2) if colour == "blue" else (b[..., 2] - (b[..., 0] + b[..., 1]) // 2)
+        m = (ex > thr).astype(np.uint8)
+        m &= (1 - cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8)))
+        m = m.astype(bool)
+        if roi is not None:
+            m &= roi
+        ys, xs = np.nonzero(m)
+        self.px = np.c_[xs, ys].astype(float)
+        self.tree = cKDTree(self.px if len(self.px) else np.zeros((1, 2)))
+
+
+def refine_pairs(pairs, pose, intr, radii=(8, 5, 4, 3)):
+    """Single-frame fit on several (model points, target) pairs at once, intrinsics fixed. Returns pose, stats per pair."""
+    rv, tv = np.asarray(pose[0], float).ravel(), np.asarray(pose[1], float).ravel()
+    K, D = K_of(intr[0]), dist_of(intr[1:])
+    for rad in radii:
+        mt = []
+        for model, tgt in pairs:
+            ok, k = _match(tgt, project(model, rv, tv, K, D), rad)
+            mt.append((model[ok], tgt.px[k[ok]] if ok.any() else np.zeros((0, 2))))
+
+        def resid(x):
+            return np.concatenate([np.nan_to_num((project(m, x[:3], x[3:], K, D) - tp).ravel(), nan=1e3, posinf=1e3, neginf=-1e3)
+                                   for m, tp in mt if len(m)] or [np.zeros(1)])
+        x = least_squares(resid, np.r_[rv, tv], loss="soft_l1", f_scale=1.5, x_scale="jac", max_nfev=200).x
+        rv, tv = x[:3], x[3:]
+    stats = []
+    for model, tgt in pairs:
+        q = np.nan_to_num(project(model, rv, tv, K, D), nan=-1e6, posinf=-1e6, neginf=-1e6)
+        inside = (q[:, 0] > 2) & (q[:, 0] < W_PX - 2) & (q[:, 1] > 2) & (q[:, 1] < H_PX - 2)
+        d, _ = tgt.tree.query(q[inside]) if inside.any() else (np.array([99.0]), None)
+        stats.append({"median_px": float(np.median(d)), "p90_px": float(np.percentile(d, 90)),
+                      "within2px": float(np.mean(d < 2.0)), "points_in_frame": int(inside.sum())})
+    return (rv, tv), stats
