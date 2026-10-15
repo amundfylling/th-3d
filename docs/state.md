@@ -2,6 +2,9 @@
 
 ## Current position
 
+- **POV videos (2026-10-15, PROPOSED):** plan steps 1-5 done on one Swedish Masters game (docs/pov-videos.md): camera
+  solved per frame (95%, 0.57 px), lens from the rink, NM26 models baselined (skater/goalie fail, puck partly works).
+  Steps 6-8 next; only one .LRF is readable (Drive throttles downloads).
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
