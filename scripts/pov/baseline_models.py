@@ -169,7 +169,7 @@ if __name__ == "__main__":
     T = np.load(track); A = T["rows"]; intr = T["intr"]
     K, D = K_of(intr[0]), cf.dist_of(intr[1:])
     plate = cv2.imread(plate_path)
-    good = A[(A[:, 11] > 0) & (A[:, 13] >= 0.98)]
+    good = A[(A[:, 11] > 0) & (A[:, 13] >= 0.7)]   # solved; most of the table in view (the near end may be cut off)
     sel = good[np.linspace(0, len(good) - 1, min(N, len(good))).astype(int)]
     sk, gk = skater_model(), goalie_model()
     rows, crops_keep = [], {}

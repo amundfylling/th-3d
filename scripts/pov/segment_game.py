@@ -5,8 +5,11 @@ A frame is GOOD when (thresholds ASSUMED, checked by eye on the contact sheets):
   - the angular speed (quaternion difference, smoothed over 3 frames) is below MAX_SPEED deg/s (motion blur);
   - the roll from the smoothed accelerometer (3.2.10, 0.5 s median) is within MAX_ROLL deg of the game median (upright);
   - the central-image Laplacian sharpness is at least MIN_SHARP_REL of its 10 s running median.
+  - with --track <track.npz> (step 4): the rink fit is OK and the whole inner board boundary projects inside the
+    frame (the "whole table in view" condition; the orientation gate alone misses a raised head that cuts off the
+    near end).
 Good runs shorter than MIN_SEG s are dropped; gaps shorter than MAX_GAP s inside a run are bridged.
-Usage: python3 scripts/pov/segment_game.py <video.LRF> <indexdir> <outdir>
+Usage: python3 scripts/pov/segment_game.py <video.LRF> <indexdir> <outdir> [--track track.npz]
 """
 import json, os, subprocess, sys
 import numpy as np
@@ -32,6 +35,12 @@ roll -= np.median(roll)
 sharp_rel = d['sharp'] / median_filter(d['sharp'], size=int(10 * FPS), mode='nearest')
 reasons = {'turned_away': angle > MAX_ANGLE, 'fast_turn': speed > MAX_SPEED, 'rotated': np.abs(roll) > MAX_ROLL,
            'blurred': sharp_rel < MIN_SHARP_REL}
+if "--track" in sys.argv:
+    TA = np.load(sys.argv[sys.argv.index("--track") + 1])["rows"]
+    fit_ok = np.zeros(n, bool); bif = np.zeros(n)
+    fit_ok[TA[:, 0].astype(int)] = TA[:, 11] > 0; bif[TA[:, 0].astype(int)] = np.nan_to_num(TA[:, 13])
+    reasons["camera_not_solved"] = ~fit_ok
+    reasons["table_cut_off"] = fit_ok & (bif < 0.98)
 good = ~np.any(list(reasons.values()), axis=0)
 
 # bridge short gaps, then drop short runs
@@ -80,7 +89,7 @@ print(f"{len(segs)} segments, usable {usable.sum()}/{n} = {usable.mean():.1%}; r
 def sheet(frames_idx, path, cols=6, w=320, label=None):
     sel = '+'.join(f'eq(n\\,{k})' for k in frames_idx)
     rows = int(np.ceil(len(frames_idx) / cols))
-    vf = f"select='{sel}',scale={w}:{w * 3 // 4},drawtext=text='%{{n}}':x=4:y=4:fontsize=18:fontcolor=yellow:box=1:boxcolor=black@0.6,tile={cols}x{rows}"
+    vf = f"drawtext=text='%{{n}}':x=8:y=8:fontsize=48:fontcolor=yellow:box=1:boxcolor=black@0.6,select='{sel}',scale={w}:{w * 3 // 4},tile={cols}x{rows}"
     subprocess.run(['ffmpeg', '-v', 'error', '-i', video, '-map', '0:v:0', '-vf', vf, '-vsync', '0', '-frames:v', '1',
                     '-y', path], check=True)
 

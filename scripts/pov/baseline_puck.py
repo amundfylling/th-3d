@@ -70,7 +70,7 @@ if __name__ == "__main__":
     T = np.load(track); A = T["rows"]; intr = T["intr"]
     K, D = K_of(intr[0]), cf.dist_of(intr[1:])
     okf = {int(r[0]): r for r in A if r[11] > 0}
-    cand = [i for i in sorted(okf) if i - 1 in okf and i + 1 in okf and okf[i][13] >= 0.98]
+    cand = [i for i in sorted(okf) if i - 1 in okf and i + 1 in okf and okf[i][13] >= 0.7]
     sel = [cand[j] for j in np.linspace(0, len(cand) - 1, min(N, len(cand))).astype(int)]
     bg = stab_background(cv2.imread(plate_path))
     bgh = cv2.resize(bg, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
