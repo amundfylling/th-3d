@@ -68,8 +68,11 @@ def predict(prev_gray, gray, pose):
         return None, int(good.sum())
     Wp, ok = backproject(p0[good, 0], pose[0], pose[1])
     Wp, ip = Wp[ok], p1[good, 0][ok]
-    r = cv2.solvePnPRansac(Wp, ip.astype(np.float64), K, D, pose[0].copy(), pose[1].copy(), useExtrinsicGuess=True,
-                           iterationsCount=100, reprojectionError=2.0, flags=cv2.SOLVEPNP_ITERATIVE)
+    try:
+        r = cv2.solvePnPRansac(Wp, ip.astype(np.float64), K, D, pose[0].copy(), pose[1].copy(), useExtrinsicGuess=True,
+                               iterationsCount=100, reprojectionError=2.0, flags=cv2.SOLVEPNP_ITERATIVE)
+    except cv2.error:
+        return None, 0
     if not r[0] or r[3] is None or len(r[3]) < 12:
         return None, 0 if r[3] is None else len(r[3])
     new = (r[1].ravel(), r[2].ravel())
@@ -96,8 +99,11 @@ def relocalise(gray):
     if len(good) < 12:
         return None
     ip = np.array([kp[a.queryIdx].pt for a in good]); wp = WP[[a.trainIdx for a in good]]
-    ok, rv, tv, inl = cv2.solvePnPRansac(wp, ip, K, D, iterationsCount=2000, reprojectionError=4.0,
-                                         flags=cv2.SOLVEPNP_SQPNP)
+    try:
+        ok, rv, tv, inl = cv2.solvePnPRansac(wp, ip, K, D, iterationsCount=2000, reprojectionError=4.0,
+                                             flags=cv2.SOLVEPNP_SQPNP)
+    except cv2.error:
+        return None
     if not ok or inl is None or len(inl) < 12:
         return None
     return rv.ravel(), tv.ravel()
