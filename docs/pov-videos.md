@@ -37,7 +37,25 @@ seed: one frame solved from ten hand-picked line-board points (`lm.board.*`) and
   E), which is consistent but not an independent check.
 - Gate and tracker thresholds (angles, speeds, residuals) are assumed.
 
-## Next (steps 6-8, not started)
+## Steps 6-8 (2026-10-15, PROPOSED)
 
-POV-camera renders (head height at the table end, this lens) for the skater and goalie models and a POV localiser;
-real facing labels on the near figures; puck hard cases including the far goal net as a negative.
+Results and outputs: `/mnt/project-files/pov-videos/game-0002/README.md` (steps 6-8 section).
+
+| Step | Script | Output |
+| --- | --- | --- |
+| 4 fix | `fix_track_markings.py <video> <track.npz> <out.npz>` | the track without its along-table slide (centre/blue lines) |
+| 6. poses | `pov_synth_poses.py <track.npz> <poses.json> [n] --exclude-eval figures.json` | real cameras for the renders |
+| 6. renders | `/root/venvs/blender/bin/python render_pov_frames.py <poses.json> <out> <seed0> <count>` | RGBA canvases + labels.jsonl |
+| 6. composite | `compose_pov.py <video> <plate.png> <render_dir> --track <fixed track>` | <seed>.jpg |
+| 6. train | `train_pov_figures.py <render_dir> <out.pt> [epochs]` | POV figure model (`pov_figures.py`) |
+| 6. eval | `eval_pov_figures.py <video> <track> <plate> <model> <out> --frames figures.json --run start n` | summary.json, sheet |
+| 7 | `facing_review_page.py ...` (template `facing-review.template.html`) | facing tap page, db `pov_facing` |
+| 8 | `puck_review_page.py ...` (template `puck-review.template.html`) | puck tap page, db `pov_puck` |
+
+Added assumptions: centre line at x = 0 (symmetry), blue lines at x = +-94 mm (traced, +-4 mm); synthetic pivots on
+the slot centreline; goalie rotations within +-100 deg of home in the renders.
+
+## Next
+
+Turn the user's taps into the first real rotation and puck test sets, score the POV model and puck-v1 on them,
+then fine-tune puck-v1 for the POV view (far goal net as a negative). Step 9 (more games) waits on that.

@@ -1,6 +1,6 @@
 """Step 6: composite the POV renders (render_pov_frames.py) onto their real frames (docs/pov-videos.md).
 
-    python3 scripts/pov/compose_pov.py <video> <plate.png> <render_dir> [--sheet sheet.jpg]
+    python3 scripts/pov/compose_pov.py <video> <plate.png> <render_dir> [--track track.npz] [--sheet sheet.jpg]
 
 Per render: the real frame whose camera the render used is the background. Its real figures and puck are removed
 first: inside the space a figure can occupy (every slot +-45 mm, up to 60 mm high) every pixel whose softened colour differs
@@ -9,6 +9,8 @@ is softer than the frame (it is a median at 1 px/mm), so those patches are blurr
 warped through the lens distortion into the 960 x 720 frame, and the figures, goals and puck are laid over it (alpha),
 with a random contrast and gain and the cast shadows lightened (the hall light is diffuse). A light camera degradation follows (blur, head-motion blur in 15%, colour, noise,
 JPEG), so the frames look like the LRF proxy. Writes <render_dir>/<seed>.jpg.
+--track: warp the plate with that track's pose for the frame (the marking-fixed track, whose world agrees with the
+plate's) instead of the render's pose; both poses put the slots on the same pixels, so the render still lines up.
 """
 import json, os, random, sys
 import numpy as np
@@ -78,9 +80,10 @@ def degrade(img, rnd, blur=(0.15, 0.7), jpeg=(55, 92)):
     return cv2.imdecode(buf, cv2.IMREAD_COLOR)
 
 
-def compose(rgba, real, plate, lab, rnd):
+def compose(rgba, real, plate, lab, rnd, plate_pose=None):
     lens = lab["lens"]; K, D = K_of(lens["f"]), cf.dist_of([lens["k1"], lens["k2"]])
-    bg = clean_background(real, plate, np.array(lab["rv"]), np.array(lab["tv"]), K, D).astype(np.float32)
+    rv, tv = plate_pose if plate_pose is not None else (np.array(lab["rv"]), np.array(lab["tv"]))
+    bg = clean_background(real, plate, rv, tv, K, D).astype(np.float32)
     mx, my = distort_map(lens, lab["margin_px"])
     r = cv2.remap(rgba, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0).astype(np.float32)
     a = r[..., 3:4] / 255.0
@@ -92,6 +95,7 @@ def compose(rgba, real, plate, lab, rnd):
 if __name__ == "__main__":
     video, plate_path, rdir = sys.argv[1:4]
     plate = cv2.imread(plate_path)
+    TR = np.load(sys.argv[sys.argv.index("--track") + 1])["rows"] if "--track" in sys.argv else None
     L = [json.loads(s) for s in open(os.path.join(rdir, "labels.jsonl"))]
     L = [l for l in L if os.path.exists(os.path.join(rdir, f"{l['seed']}.png")) and not os.path.exists(os.path.join(rdir, f"{l['seed']}.jpg"))]
     L.sort(key=lambda l: l["frame"])
@@ -99,7 +103,8 @@ if __name__ == "__main__":
         chunk = L[k:k + 60]; frs = read_frames(video, [l["frame"] for l in chunk])
         for l in chunk:
             rgba = cv2.imread(os.path.join(rdir, f"{l['seed']}.png"), cv2.IMREAD_UNCHANGED)
-            out = compose(rgba, frs[l["frame"]], plate, l, random.Random(l["seed"] * 31 + 7))
+            pp = (TR[l["frame"], 1:4], TR[l["frame"], 4:7]) if TR is not None else None
+            out = compose(rgba, frs[l["frame"]], plate, l, random.Random(l["seed"] * 31 + 7), pp)
             cv2.imwrite(os.path.join(rdir, f"{l['seed']}.jpg"), out, [cv2.IMWRITE_JPEG_QUALITY, 92])
         print(k + len(chunk), "/", len(L), flush=True)
     if "--sheet" in sys.argv:
