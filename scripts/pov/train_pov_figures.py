@@ -1,6 +1,6 @@
 """Step 6: train the POV figure model (pov_figures.py) on the composited POV renders (docs/pov-videos.md).
 
-    python3 scripts/pov/train_pov_figures.py <render_dir> <out.pt> [epochs=6] [--lr 1e-3]
+    python3 scripts/pov/train_pov_figures.py <render_dir[,render_dir...]> <out.pt> [epochs=6] [--lr 1e-3] [--init model.pt]
 
 Samples (drawn afresh every epoch): a composited frame (compose_pov.py) and a target figure. In 60% the crop is placed
 at the target's slot position plus up to 30 mm along the slot (the localiser's search step and error); otherwise at a
@@ -37,7 +37,7 @@ class DS(torch.utils.data.Dataset):
     def __getitem__(self, j):
         i, pid = self.E[j]; l = self.L[i]
         rnd = random.Random((np.random.randint(1 << 30) if self.train else 0) + j * 7919)
-        img = cv2.imread(os.path.join(self.rdir, f"{l['seed']}.jpg"))
+        img = cv2.imread(os.path.join(l["_dir"], f"{l['seed']}.jpg"))
         lens = l["lens"]; K, D = K_of(lens["f"]), cf.dist_of([lens["k1"], lens["k2"]]); rv, tv = np.array(l["rv"]), np.array(l["tv"])
         fig = l["figures"].get(pid); P = pf.SL[pid]
         for _ in range(20):
@@ -75,8 +75,11 @@ def ang_err(p, y):
 if __name__ == "__main__":
     rdir, out = A[0], A[1]; EPOCHS = int(A[2]) if len(A) > 2 and not A[2].startswith("--") else 6
     torch.set_num_threads(4); torch.manual_seed(0); np.random.seed(0)
-    L = [json.loads(s) for s in open(os.path.join(rdir, "labels.jsonl"))]
-    L = [l for l in L if os.path.exists(os.path.join(rdir, f"{l['seed']}.jpg"))]
+    L = []
+    for d in rdir.split(","):   # several render dirs, comma-separated
+        for s in open(os.path.join(d, "labels.jsonl")):
+            l = json.loads(s); l["_dir"] = d
+            if os.path.exists(os.path.join(d, f"{l['seed']}.jpg")): L.append(l)
     TR = [l for l in L if (l["seed"] // 10) % 10 != 9]; VA = [l for l in L if (l["seed"] // 10) % 10 == 9]
     net = pf.model(True)
     if "--init" in A: net.load_state_dict(torch.load(arg("--init", "")))

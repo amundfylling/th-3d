@@ -7,8 +7,9 @@ solved real frames {frame, rv, tv} (OpenCV world-to-camera, mm). Per sample (see
 - the camera of one real solved frame (so the render lines up with that frame's boards, goals and hall, which
   compose_pov.py uses as background); a pinhole render with the track's focal length on a canvas with a MARGIN px border,
   the lens distortion is applied afterwards (compose_pov.py);
-- all twelve figures at uniform random slot positions; skaters at a uniform rotation in [0, 360), goalies within
-  +-100 deg of home (W 0, E 180), the pivot on the slot centreline (assumed, as scripts/synth); a figure whose pivot would
+- all twelve figures at uniform random slot positions and a uniform rotation in [0, 360) (goalies too: the user's
+  goalie stands turned toward its own goal in most game-0002 frames, user 2026-10-16; v1 renders, seeds < 10000, had
+  goalies within +-100 deg of home), the pivot on the slot centreline (assumed, as scripts/synth); a figure whose pivot would
   come within 60 mm of an already placed one is re-drawn (10 tries) or hidden; 8% of figures hidden at random;
 - a puck in 75% of samples: half next to a random figure (20-90 mm from its pivot), half anywhere on the ice;
 - kit colour jitter (white/blue W, yellow E, as the game), random back prints, random sun and ambient light.
@@ -93,7 +94,7 @@ for seed in range(SEED0, SEED0 + COUNT):
     for pid in rnd.sample(ALL, len(ALL)):
         ob = figs[pid]; ok = False
         for _ in range(10):
-            u = rnd.random(); th = rnd.uniform(-100, 100) if pid.endswith("-G") else rnd.uniform(0, 360)
+            u = rnd.random(); th = rnd.uniform(-100, 100) if (pid.endswith("-G") and seed < 10000) else rnd.uniform(0, 360)
             p, s, head = place(ob, pid, u, th)
             if all(np.linalg.norm(p - q) >= 60 for q in piv): ok = True; break
         if ok and rnd.random() < 0.08: ok = False
