@@ -2,6 +2,11 @@
 
 ## Current position
 
+- **POV videos (2026-10-15, PROPOSED):** steps 1-8 of the plan on one Swedish Masters game (docs/pov-videos.md;
+  outputs in /mnt/project-files/pov-videos/game-0002/). The broadcast models do not transfer (step 5); a POV figure
+  model trained on synthetic POV frames finds 83-99% of figures on real frames (step 6, rotation not yet scored). The
+  camera track's along-table slide (median 17.5 mm) is fixed with the centre and blue lines. Waiting on the user's
+  facing and puck taps (steps 7-8) for the first real POV test sets.
 - Last completed iteration: **05 - Trace only the installed board boundary** (2026-09-30), plus the post-05
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
