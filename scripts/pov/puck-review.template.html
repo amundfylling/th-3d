@@ -47,6 +47,13 @@ button:focus-visible, .cell:focus-visible { outline: 3px solid var(--mark); outl
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
 .note { border: 1.5px solid var(--warn); border-radius: 8px; padding: 10px 12px; font-size: .95rem; }
 h2 { font: 700 1.1rem var(--display); letter-spacing: .05em; text-transform: uppercase; margin: 6px 0 0; }
+.fine { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+.fine[hidden] { display: none; }
+.loupe { aspect-ratio: 1; border-radius: 6px; overflow: hidden; background: var(--line); }
+.loupe svg { display: block; width: 100%; height: 100%; }
+.pad { display: grid; grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(3, 52px); gap: 6px; }
+.pad button { padding: 0; font-size: 1.2rem; }
+.pad #step { font-size: .85rem; }
 @media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
 </style>
 
@@ -56,7 +63,7 @@ h2 { font: 700 1.1rem var(--display); letter-spacing: .05em; text-transform: upp
     <div class="count" id="count">0 of 0 marked</div>
     <div class="bar"><i id="barfill"></i></div>
   </header>
-  <p class="how">Each picture is the half of the table nearest the head camera. <b>Tap the puck</b> (its centre), then save. If the puck is not in this half, or you cannot find it, use the buttons. Stop whenever you like.</p>
+  <p class="how">Each picture is the half of the table nearest the head camera. <b>Tap the puck</b> (its centre), fine-tune it with the arrows (the zoom shows the circle up close), then save. If the puck is not in this half, or you cannot find it, use the buttons. Stop whenever you like.</p>
   <div class="note" id="dbnote" hidden>Your taps can't be saved in this view. Open the page in the Claude app while signed in.</div>
   <div class="meta"><span id="where"></span><span id="pos"></span></div>
   <div class="stage" id="stage">
@@ -64,6 +71,14 @@ h2 { font: 700 1.1rem var(--display); letter-spacing: .05em; text-transform: upp
       <image id="img" x="0" y="0" href=""></image>
       <circle id="mark" r="7" fill="none" stroke="var(--mark)" stroke-width="2.2" visibility="hidden"></circle>
     </svg>
+  </div>
+  <div class="fine" id="fine" hidden>
+    <div class="loupe"><svg id="loupe" role="img" aria-label="Zoomed view around the circle"><image id="limg" x="0" y="0" href=""></image><line id="lh" stroke="var(--mark)" stroke-width=".35"></line><line id="lv" stroke="var(--mark)" stroke-width=".35"></line><circle id="lmark" r="3" fill="none" stroke="var(--mark)" stroke-width=".5"></circle></svg></div>
+    <div class="pad" aria-label="Move the circle">
+      <span></span><button id="up" type="button" aria-label="Move up">&#9650;</button><span></span>
+      <button id="left" type="button" aria-label="Move left">&#9664;</button><button id="step" type="button" aria-label="Step size">1 px</button><button id="right" type="button" aria-label="Move right">&#9654;</button>
+      <span></span><button id="down" type="button" aria-label="Move down">&#9660;</button><span></span>
+    </div>
   </div>
   <div class="state" id="state"></div>
   <div class="actions">
@@ -86,7 +101,27 @@ const labels = {};
 let cur = 0, tap = null, db = null;
 const $ = (id) => document.getElementById(id);
 function say(text, cls) { const st = $("state"); st.className = "state" + (cls ? " " + cls : ""); st.textContent = text; }
-function draw() { const m = $("mark"); if (tap) { m.setAttribute("cx", tap[0]); m.setAttribute("cy", tap[1]); m.setAttribute("visibility", "visible"); } else m.setAttribute("visibility", "hidden"); $("save").disabled = !tap; }
+let step = 1;
+const LZ = 24;  // loupe half-width, picture px
+function draw() {
+  const m = $("mark"), c = D[cur];
+  if (tap) { m.setAttribute("cx", tap[0]); m.setAttribute("cy", tap[1]); m.setAttribute("visibility", "visible"); } else m.setAttribute("visibility", "hidden");
+  $("save").disabled = !tap; $("fine").hidden = !tap;
+  if (tap) {
+    const L = $("loupe"), li = $("limg");
+    L.setAttribute("viewBox", `${tap[0] - LZ} ${tap[1] - LZ} ${2 * LZ} ${2 * LZ}`);
+    li.setAttribute("href", c.img); li.setAttribute("width", c.w); li.setAttribute("height", c.h);
+    const lm = $("lmark"); lm.setAttribute("cx", tap[0]); lm.setAttribute("cy", tap[1]);
+    const h = $("lh"), v = $("lv");
+    h.setAttribute("x1", tap[0] - LZ); h.setAttribute("x2", tap[0] - 4); h.setAttribute("y1", tap[1]); h.setAttribute("y2", tap[1]);
+    v.setAttribute("y1", tap[1] - LZ); v.setAttribute("y2", tap[1] - 4); v.setAttribute("x1", tap[0]); v.setAttribute("x2", tap[0]);
+  }
+}
+function nudge(dx, dy) {
+  if (!tap) return; const c = D[cur];
+  tap = [Math.min(c.w, Math.max(0, Math.round((tap[0] + dx * step) * 10) / 10)), Math.min(c.h, Math.max(0, Math.round((tap[1] + dy * step) * 10) / 10))];
+  draw(); say("Save to keep this, or move it again.");
+}
 function show(i) {
   cur = (i + D.length) % D.length; const c = D[cur], L = labels[c.id];
   $("svg").setAttribute("viewBox", `0 0 ${c.w} ${c.h}`); $("stage").style.setProperty("--ar", c.w / c.h);
@@ -119,6 +154,11 @@ async function store(verdict) {
 $("save").onclick = () => tap && store("puck");
 $("none").onclick = () => store("none");
 $("unsure").onclick = () => store("unsure");
+$("up").onclick = () => nudge(0, -1);
+$("down").onclick = () => nudge(0, 1);
+$("left").onclick = () => nudge(-1, 0);
+$("right").onclick = () => nudge(1, 0);
+$("step").onclick = () => { step = step === 1 ? 4 : 1; $("step").textContent = `${step} px`; };
 $("prev").onclick = () => show(cur - 1);
 $("next").onclick = () => show(cur + 1);
 show(0);
