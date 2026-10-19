@@ -1,0 +1,272 @@
+{
+ "schema": "move-spec/1",
+ "id": "shovel-17-v3",
+ "name": "Shovel #17 (right wing -> centre), move engine",
+ "family": {
+  "name": "Shovel (skyffel), right wing -> centre",
+  "player": "Right wing",
+  "note": "Shovel #17 is the user's recorded shovel, not an NTHF catalogue entry (the catalogue lists the Lindahl/Edwall/... shovel variants)"
+ },
+ "trace_id": "trace.shovel-17-v3.v1",
+ "status": "proposed",
+ "kind": "designed",
+ "source_text": "Shovel #17 (iteration 21-22, accepted trace trace.shovel-17.v2): the right wing, back to the goal with the puck behind it, turns counter-clockwise and passes across with the backhand; the centre, back to the goal at the bottom of its slot, takes the puck on the back of the figure, runs up the slot and shovels it into the far corner.",
+ "references": [
+  "data/traces/shovel-17.trace.json",
+  "docs/shot22.md",
+  "docs/table-hockey-playbook.md"
+ ],
+ "approved_reading": null,
+ "reading": "DESIGNED by Claude (2026-10-19) from the accepted Shovel #17 trace (trace.shovel-17.v2: the same figures, sides, contacts and far-corner goal), rebuilt on the move engine with the STL skater so it obeys 'Slide or bounce' with no overlap exception. The right wing stands back to the goal near the centre line with the puck at rest behind the back of its blade, turns counter-clockwise and pushes a soft backhand pass across (about 600 mm/s). The centre, back to the goal at the bottom of its slot, steps up so the back of its skates meets the pass where it really is (meet c_catch), turns counter-clockwise with the puck as it lands (a soft reception), then runs up the slot with the puck against the back of its skates, building the speed up to about 1.4 m/s (a push of many small touches), and keeps turning so the puck leaves toward the far corner.",
+ "window_s": [
+  0.0,
+  1.0
+ ],
+ "puck": {
+  "start": {
+   "against": "W-RW",
+   "local_mm": [
+    -11.5,
+    28.0
+   ],
+   "why": "at rest against the back of the right wing's blade"
+  },
+  "start_phase": "rest_at_blade"
+ },
+ "figures": {
+  "W-RW": {
+   "status": "moving: passer (designed)",
+   "arc": {
+    "keys": [
+     [
+      0.0,
+      20.0,
+      "near the centre line, stick to the boards"
+     ]
+    ]
+   },
+   "theta": {
+    "start": -120.0,
+    "turns": [
+     [
+      0.2,
+      0.14,
+      -120.0,
+      -60.0,
+      "backhand pass: a counter-clockwise turn pushes the puck from rest across to the centre"
+     ]
+    ]
+   }
+  },
+  "W-C": {
+   "status": "moving: shooter (designed)",
+   "arc": {
+    "keys": [
+     [
+      0.0,
+      0.0,
+      "back to the goal at the bottom of its slot (as trace.shovel-17.v2)"
+     ],
+     [
+      {
+       "meet": "c_catch",
+       "offset": -0.2
+      },
+      0.0,
+      "waits for the pass"
+     ]
+    ],
+    "moves": [
+     [
+      {
+       "meet": "c_catch",
+       "offset": -0.2
+      },
+      {
+       "meet": "c_catch",
+       "offset": 0.0
+      },
+      0.0,
+      0.0,
+      {
+       "meet": "c_catch",
+       "offset": 0.0
+      },
+      0.0,
+      "steps up the slot so its back is where the pass arrives, and stands there as it lands"
+     ],
+     [
+      {
+       "meet": "c_catch",
+       "offset": 0.0
+      },
+      {
+       "meet": "c_catch",
+       "offset": 0.12
+      },
+      {
+       "meet": "c_catch",
+       "offset": 0.0
+      },
+      0.0,
+      {
+       "meet": "c_catch",
+       "offset": 84.0
+      },
+      1400.0,
+      "the shovel: runs up the slot with the puck against the back of the skates, building the speed up (a push)"
+     ],
+     [
+      {
+       "meet": "c_catch",
+       "offset": 0.12
+      },
+      {
+       "meet": "c_catch",
+       "offset": 0.18
+      },
+      {
+       "meet": "c_catch",
+       "offset": 84.0
+      },
+      1400.0,
+      {
+       "meet": "c_catch",
+       "offset": 126.0
+      },
+      0.0,
+      "stops near the top of the slot after the release"
+     ]
+    ]
+   },
+   "theta": {
+    "start": -197.6,
+    "turns": [
+     [
+      {
+       "meet": "c_catch",
+       "offset": -0.03
+      },
+      0.08,
+      -197.6,
+      -155.0,
+      "gives way: turns counter-clockwise as the pass lands, so the back of the skates moves with the puck and faces the far corner"
+     ],
+     [
+      {
+       "meet": "c_catch",
+       "offset": 0.04
+      },
+      0.08,
+      -155.0,
+      -146.0,
+      "keeps turning counter-clockwise with the push, so the puck leaves toward the far corner"
+     ]
+    ]
+   }
+  },
+  "E-G": {
+   "static": {
+    "arc_mm": 45.8,
+    "theta_deg": 33.33,
+    "why": "as trace.shovel-17.v2 (feet and paddle, frame 167)"
+   }
+  },
+  "E-RD": {
+   "static": {
+    "arc_mm": 2.8,
+    "theta_deg": 0.0,
+    "why": "as trace.shovel-17.v2"
+   }
+  },
+  "E-LD": {
+   "static": {
+    "arc_mm": 93.4,
+    "theta_deg": 0.0,
+    "why": "as trace.shovel-17.v2"
+   }
+  }
+ },
+ "meets": {
+  "c_catch": {
+   "figure": "W-C",
+   "local_mm": [
+    -19.5,
+    2.6
+   ],
+   "search_s": [
+    0.3,
+    1.0
+   ],
+   "guess": {
+    "t": 0.5,
+    "arc_mm": 70.0,
+    "puck_along_slot_mm_s": 300.0
+   },
+   "why": "the puck reaches the back of the centre's skate where trace.shovel-17.v2 had its first touch"
+  }
+ },
+ "controls": [],
+ "contacts": [
+  {
+   "id": "pass",
+   "figure": "W-RW",
+   "group": 0,
+   "part": "back of the blade, backhand push",
+   "phase": "pass_push",
+   "after": "pass_free"
+  },
+  {
+   "id": "shovel",
+   "figure": "W-C",
+   "group": 0,
+   "part": "back of the figure, shovel push",
+   "phase": "shovel_push",
+   "after": "shot_free"
+  }
+ ],
+ "expect": {
+  "goal": "E",
+  "goal_y_mm": [
+   0.0,
+   29.8
+  ],
+  "contact_sequence": [
+   "W-RW:stick/blade",
+   "W-C:skate/body",
+   "goal_net"
+  ]
+ },
+ "limitations": [
+  "Not reconstructed from the recording: the timing, speeds and headings are DESIGNED to reproduce the accepted Shovel #17 contacts (backhand pass on the right wing, reception on the centre's back, far corner) under the contact-physics and slide-or-bounce rules.",
+  "The right wing's foot drag-back (trace.shovel-17.v2, 0.5-1.7 s) is not in this move: it starts with the puck at rest behind the blade, where the drag ended.",
+  "The pass (about 600 mm/s) and the shot (about 1.4 m/s) are slower than in the recording (1.8 and 4.4 m/s): a recorded-speed reception or carry exceeds the 500 mm/s figure-impact limit (CLAUDE.md 'Slide or bounce').",
+  "The centre's headings (wait -197.6 deg as observed at the reception, then a give-way turn to -155 and on to -146 deg during the push) are designed; the recording shows the centre facing back at the reception and at the top of the slot, and the push turn is not observed.",
+  "E-G, E-RD and E-LD stand where trace.shovel-17.v2 had them (frame 167); the other figures stand in the assembly pose.",
+  "Contact model, ice friction and figure footprints as every engine move (scripts/shotlib; frictionless restitution 0.5, ASSUMED); robustness variants are the engine defaults."
+ ],
+ "events": [
+  {
+   "id": "pass.turn",
+   "t": 0.2,
+   "why": "the right wing starts its counter-clockwise backhand turn"
+  },
+  {
+   "id": "centre.gives_way",
+   "t": 0.5665,
+   "why": "the centre starts its give-way turn as the pass arrives (meet c_catch - 0.03 s; nominal meet 0.5965 s)"
+  }
+ ],
+ "tunes": [
+  {
+   "set": "figures.W-RW.theta.turns.0.1",
+   "range": [
+    0.1,
+    0.18
+   ],
+   "meet": "c_catch",
+   "puck_speed_mm_s": 316.0,
+   "why": "the right wing passes harder on slow ice and softer on fast ice (a quicker or slower turn), so the pass reaches the centre at the same speed (316 mm/s, the nominal pass)"
+  }
+ ]
+}

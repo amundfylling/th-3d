@@ -1,0 +1,62 @@
+{
+ "schema": "move-story/1",
+ "move": "shovel-17-v3",
+ "note": "Presentation source of the Shovel #17 move-engine video (scripts/shotlib/presentation.py). Editing it never changes the motion: regenerate with python3 scripts/build-move.py shovel-17-v3 --presentation.",
+ "theme": "nbhf",
+ "title": "SHOVEL",
+ "subtitle": "Table hockey · right wing to centre · far corner",
+ "bug": "SHOVEL #17",
+ "end_steps": [
+  "RIGHT WING: BACKHAND PASS ACROSS",
+  "CENTRE GIVES WAY, PUCK ON ITS BACK",
+  "SHOVEL UP THE SLOT, FAR CORNER"
+ ],
+ "setup": {
+  "title": "THE SET-UP",
+  "text": "The right wing stands back to the goal with the puck behind its blade. The centre waits at the bottom of its slot, also back to the goal.",
+  "highlight": {
+   "W-RW": "RIGHT WING",
+   "W-C": "CENTRE"
+  },
+  "puck_label": "PUCK BEHIND THE BLADE",
+  "frame_highlighted": true
+ },
+ "beats": [
+  {
+   "contact": "pass",
+   "title": "THE PASS",
+   "text": "The right wing turns counter-clockwise. The back of the blade pushes the puck across to the centre: a push, not a strike.",
+   "label": "PASS · BACKHAND PUSH",
+   "turn": {
+    "figure": "W-RW",
+    "event": "pass.turn",
+    "direction": "ccw",
+    "label": "TURN"
+   }
+  },
+  {
+   "contact": "shovel",
+   "title": "THE SHOVEL",
+   "text": "The centre steps up to meet the pass and turns with it, so the puck lands softly on the back of its skates. Then it runs up the slot and pushes the puck into the far corner.",
+   "label": "SHOVEL · BACK OF THE SKATES",
+   "turn": {
+    "figure": "W-C",
+    "event": "centre.gives_way",
+    "direction": "ccw",
+    "label": "GIVES WAY"
+   },
+   "label_offset_px": [
+    200,
+    -140
+   ],
+   "camera": {
+    "offset_mm": [
+     -230,
+     -150,
+     300
+    ],
+    "fov_deg": 38
+   }
+  }
+ ]
+}

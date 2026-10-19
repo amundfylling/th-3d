@@ -473,6 +473,14 @@
   provenance in `data/models/manifest.json`. Fetch: `npm run models:fetch` (`scripts/fetch-models.py`; also step
   `fetch-models` of the NM26 runner's `fetch` stage). It never overwrites a local model with a different sha256 unless
   `--force`. Sessions cannot create releases, so the user uploaded the files.
+- **Shovel #17 on the move engine (2026-10-19, `docs/shovel-17-v3.md`, PROPOSED, DESIGNED):** user: "create the 3D animation of
+  the shovel with the new players and the latest logic". `moves/shovel-17-v3/` rebuilds the accepted Shovel #17 with the STL
+  skater on the move engine: soft backhand pass (push, peak 144 mm/s), the centre meets the pass where it is (`meets`),
+  gives way with a counter-clockwise turn and shovels it up the slot with the back of its skates (69 touches, peak 249 mm/s)
+  into the far corner (y = +18.8 mm). No overlap, no exception, slide check passed, robust 11/11; a pass tune keeps the
+  pass speed on any ice. No foot drag-back, slower than the recording. Video `validation/moves/shovel-17-v3.mp4`
+  (`npm run video:final -- move:shovel-17-v3 --cache`, puck.no theme). v2 trace and its videos unchanged. Next: the user's
+  review of the reading; optionally add the foot drag-back.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.

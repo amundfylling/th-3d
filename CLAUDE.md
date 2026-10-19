@@ -33,6 +33,8 @@ All analysis videos share remotion/AnalysisVideo.tsx.
 The skater is built from a Thingiverse STL (thing:6898521 by MAVRIS, CC BY-SA, keep the attribution), 56.85 mm tall (the file's
 own size, user decision 2026-10-12). Since 2026-10-12 the assets, contacts, footprints, traces and videos all use it (user:
 "Switch now"); the parametric mold stays in data/figure-molds.json as the shape record; see docs/skater-stl.md.
+Shovel #17 is also rebuilt on the move engine with the STL skater (PROPOSED, DESIGNED: moves/shovel-17-v3/, video
+validation/moves/shovel-17-v3.mp4; no overlap exception, slide check passed); see docs/shovel-17-v3.md.
 All analysis videos share remotion/AnalysisVideo.tsx; preview, draft and export them with `scripts/video.ts` (docs/video-workflow.md;
 move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`).
 Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
