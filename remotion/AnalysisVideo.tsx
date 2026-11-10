@@ -51,6 +51,8 @@ export type AnalysisProps = {
   frameMap?: number[] | null;
   /** scene layer from cached PNGs (one URL per output frame) instead of WebGL; overlays are drawn live as usual */
   sceneSrc?: string[] | null;
+  /** draw the scene with the plain single three.js call instead of remotion/scene-render.ts (read there with getInputProps) */
+  plainRender?: boolean;
 };
 
 /** Duration override for frameMap renders (Composition calculateMetadata). */
