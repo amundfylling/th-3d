@@ -67,15 +67,95 @@ class Slot:
         return np.array([np.interp(a, self.s, self.P[:, 0]), np.interp(a, self.s, self.P[:, 1])])
 
     def nearest(self, q):
-        arcs = np.linspace(0.5, self.length - 0.5, int(self.length * 2) + 1)
-        d = [np.linalg.norm(self.at(a) - q) for a in arcs]
+        if not hasattr(self, "_arcs"):
+            self._arcs = np.linspace(0.5, self.length - 0.5, int(self.length * 2) + 1)
+            self._pts = np.c_[np.interp(self._arcs, self.s, self.P[:, 0]), np.interp(self._arcs, self.s, self.P[:, 1])]
+        d = np.linalg.norm(self._pts - np.asarray(q, float), axis=1)
         i = int(np.argmin(d))
-        return float(arcs[i]), float(d[i])
+        return float(self._arcs[i]), float(d[i])
+
+
+_SLOTS = {}
+_Slot = Slot
+
+
+def Slot(pid):  # one sampled slot per player
+    if pid not in _SLOTS:
+        _SLOTS[pid] = _Slot(pid)
+    return _SLOTS[pid]
 
 
 def pic_to_world(u, v):
     m = FORM["picture_to_world"]
     return np.array([m["goal_line_x_mm"] - (v - m["goal_line_v_px"]) / m["s_px_per_mm"], (m["centre_u_px"] - u) / m["s_px_per_mm"]])
+
+
+H0_DEG = 17.0  # heading of our skater that matches the puck.no sprite at phi 0 (blade middle on blade middle; detect.py)
+SKATERS = ("LW", "C", "RW", "LD", "RD")
+# The goalies never move in the puck.no pictures (detect check 2026-11-10): helmet at y +7 mm (E) and -17 mm (W).
+GOALIES = {"E-G": {"arc_mm": 26.0, "theta_deg": 0.0}, "W-G": {"arc_mm": 66.6, "theta_deg": 15.8}}
+MIN_SCORE = 0.42
+
+
+def _assign(figs):
+    """Sprite detections -> {pid: pose}: the team by jersey (yellow attacks = W), the player by the nearest slot."""
+    out = {}
+    cand = []
+    for f in figs:
+        if f["score"] < MIN_SCORE:
+            continue
+        team = "W" if f["team"] == "yellow" else "E"
+        q = pic_to_world(f["u"], f["v"])
+        for k in SKATERS:
+            arc, d = Slot(f"{team}-{k}").nearest(q)
+            cand.append((d, id(f), f"{team}-{k}", arc, f, q))
+    used = set()
+    for d, fid, pid, arc, f, q in sorted(cand, key=lambda c: c[0]):
+        if fid in used or pid in out:
+            continue
+        used.add(fid)
+        h = f["phi"] + H0_DEG
+        at = Slot(pid).at(arc)
+        out[pid] = {"arc_mm": round(arc, 1), "theta_deg": round((h - HOME[pid[0]] + 180) % 360 - 180, 1), "picture_px": [f["u"], f["v"]], "phi_deg": f["phi"],
+                    "slot_miss_mm": round(d, 1), "shift_mm": [round(float(c), 2) for c in at - q], "score": f["score"]}
+    return out
+
+
+_DEFAULTS = None
+
+
+def default_poses():
+    """Where puck.no draws a figure that a move does not use: the median detection over all 51 pictures."""
+    global _DEFAULTS
+    if _DEFAULTS is None:
+        acc = {}
+        for p in sorted((REPO / "data/move-pictures/detected").glob("*.json")):
+            for pid, o in _assign(json.loads(p.read_text())["figures"]).items():
+                acc.setdefault(pid, []).append((o["picture_px"][0], o["picture_px"][1], o["phi_deg"]))
+        _DEFAULTS = {}
+        for pid, v in acc.items():
+            u, w, phi = (float(np.median([r[i] for r in v])) for i in range(3))
+            _DEFAULTS[pid] = _assign([{"team": "yellow" if pid[0] == "W" else "white", "u": u, "v": w, "phi": phi, "score": 1.0}])[pid]
+    return _DEFAULTS
+
+
+def picture_poses(spec):
+    """Every figure as the puck.no picture draws it (position along its slot, turn), figures the picture leaves out."""
+    det = json.loads((REPO / f"data/move-pictures/detected/{spec['id']}.json").read_text())
+    found = _assign(det["figures"])
+    im = Image.open(REPO / spec["puck_no_picture"])
+    height = im.height * 600 / im.width
+    poses, hidden = {}, []
+    for pid, dflt in default_poses().items():
+        if pid in found:
+            poses[pid] = {**found[pid], "source": "puck.no picture (sprite detection)"}
+        elif dflt["picture_px"][1] > height - 12:
+            poses[pid] = {**dflt, "source": "below the puck.no picture's edge: the place it has in the full-rink pictures"}
+        else:
+            hidden.append(pid)  # puck.no draws no figure here
+    for pid, o in GOALIES.items():
+        poses[pid] = {**o, "source": "puck.no picture (the goalies stand the same in all 51)"}
+    return poses, hidden
 
 
 def solve_contact(pid, target, toward):
@@ -135,6 +215,8 @@ def nearest_board(q):
 
 def build(spec):
     poses, points, arrows, notes = {}, {}, [], []
+    if "puck_no_picture" in spec:
+        return build_from_picture(spec)
     # everyone not in the move stands where the puck.no pictures put them
     for pid, uv in FORM["figures"].items():
         arc, d = Slot(pid).nearest(pic_to_world(*uv))
@@ -252,6 +334,45 @@ def build(spec):
         gjob["puckMm"] = ghost["puck_mm"]
         jobs.append(gjob)
     return jobs, geo
+
+
+def build_from_picture(spec):
+    """A puck.no picture redrawn: every figure where and how the picture has it; the contacts and arrows at the
+    picture's points, moved with the figure that plays them (our slots lie a few mm from the drawing's)."""
+    poses, hidden = picture_poses(spec)
+    cs = spec["contacts"]
+    key = lambda c: c["n"] if c.get("n") is not None else c["id"]
+    shift = lambda pid: np.array(poses[pid]["shift_mm"]) if pid in poses and "shift_mm" in poses[pid] else np.zeros(2)
+    points, arrows = {}, []
+    for c in cs:
+        k = key(c)
+        q = pic_to_world(*c["picture_px"])
+        points[k] = nearest_board(q) if c.get("kind") == "board" else q + shift(c.get("pid"))
+    for seg in spec["path"]:
+        if seg["to"] == "goal":
+            points["goal"] = pic_to_world(*seg["picture_px"])
+    for seg in spec["path"]:
+        a, b = points[seg["from"]], points[seg["to"]]
+        vias = seg.get("via", [])
+        line = [a]
+        for i, q in enumerate(vias):
+            if q == "boards":
+                nxt_pt = pic_to_world(*vias[i + 1]) if i + 1 < len(vias) else b
+                line += board_run(line[-1], nxt_pt)
+            else:
+                line.append(pic_to_world(*q))
+        arrows.append(line + [b])
+    puck = points[key(cs[0])]
+    cam = fit_camera(spec["view"])
+    job = {"id": spec["id"], "poses": {k: {"arc_mm": p["arc_mm"], "theta_deg": p["theta_deg"]} for k, p in poses.items()}, "hidden": hidden,
+           "puckMm": [round(float(puck[0]), 2), round(float(puck[1]), 2)],
+           "camera": {"positionMm": cam["position_mm"], "targetMm": cam["target_mm"], "upMm": [1, 0, 0], "fovDeg": cam["fov_deg"]},
+           "widthPx": cam["width_px"], "heightPx": cam["height_px"], "background": "#%02x%02x%02x" % NAVY}
+    geo = {"id": spec["id"], "status": "illustration (PROPOSED): figures, contacts and arrows read off the puck.no picture; not a checked trace",
+           "camera": cam, "poses": poses, "hidden": hidden, "contacts": [],
+           "points_mm": {str(k): [round(float(c), 1) for c in p] for k, p in points.items()},
+           "arrows_mm": [[[round(float(c), 1) for c in p] for p in a] for a in arrows]}
+    return [job], geo
 
 
 def _basis(cam):

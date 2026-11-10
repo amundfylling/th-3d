@@ -1,0 +1,35 @@
+{
+ "id": "fakie-veggdyr",
+ "picture": "references/combinations/puck-no-pictures/trick-fakie-veggdyr-e0b159da.png",
+ "note": "sprite detections: peg (u, v) in px of the 600 px wide picture, phi deg counter-clockwise on screen (0 = the Agdur right wing sprite)",
+ "figures": [
+  {
+   "team": "yellow",
+   "u": 96,
+   "v": 354,
+   "phi": 65.0,
+   "score": 0.791
+  },
+  {
+   "team": "yellow",
+   "u": 309,
+   "v": 365,
+   "phi": 173.0,
+   "score": 0.774
+  },
+  {
+   "team": "white",
+   "u": 397,
+   "v": 384,
+   "phi": 102.5,
+   "score": 0.673
+  },
+  {
+   "team": "white",
+   "u": 195,
+   "v": 331,
+   "phi": 70.5,
+   "score": 0.478
+  }
+ ]
+}

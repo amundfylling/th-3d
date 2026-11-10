@@ -2,7 +2,8 @@
 // straight from above (orthographic). Used for interpretation sketches before a trace exists (scripts/ikv-sketch-render.ts).
 // The pose goes through the same pure pose code as every trace (shotTimeEvaluator on a one-keyframe in-memory trace).
 import { ThreeCanvas } from "@remotion/three";
-import { useMemo, useState } from "react";
+import { useThree } from "@react-three/fiber";
+import { useLayoutEffect, useMemo, useState } from "react";
 import { AbsoluteFill, useVideoConfig } from "remotion";
 import * as THREE from "three";
 import geometry from "../data/geometry.json" with { type: "json" };
@@ -17,9 +18,25 @@ export type PosePreviewProps = {
   /** Orthographic straight down ({cx, cy, widthMm}) or perspective ({positionMm, targetMm, upMm, fovDeg}, move pictures). */
   camera: { cx: number; cy: number; widthMm: number } | { positionMm: [number, number, number]; targetMm: [number, number, number]; upMm: [number, number, number]; fovDeg: number };
   background?: string;
+  /** Figures left out of the still (player ids). */
+  hidden?: string[];
 };
 
-export const PosePreview: React.FC<PosePreviewProps> = ({ poses, puckMm, camera, background }) => {
+/** Leaves figures out of the still (move pictures: puck.no draws no figure where an arrow runs through its place).
+ * A sibling of ShotScene inside the canvas, so it commits with the loaded scene; this composition is a single still. */
+const HideFigures: React.FC<{ ids: string[] }> = ({ ids }) => {
+  const { scene } = useThree();
+  useLayoutEffect(() => {
+    for (const pid of ids) {
+      const node = scene.getObjectByName(THREE.PropertyBinding.sanitizeNodeName(`Figure.${pid}`));
+      if (!node) throw new Error(`figure ${pid} not in the scene`);
+      node.visible = false;
+    }
+  }, [ids, scene]);
+  return null;
+};
+
+export const PosePreview: React.FC<PosePreviewProps> = ({ poses, puckMm, camera, background, hidden }) => {
   const { width, height } = useVideoConfig();
   const state = useMemo(() => {
     const figures: ShotTrace["figures"] = {};
@@ -53,6 +70,7 @@ export const PosePreview: React.FC<PosePreviewProps> = ({ poses, puckMm, camera,
     <AbsoluteFill style={{ backgroundColor: background ?? "#1b212b" }}>
       <ThreeCanvas width={width} height={height} camera={cam} orthographic={!("positionMm" in camera)} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true }}>
         <ShotScene state={state} logTag="pose-preview" />
+        <HideFigures ids={hidden ?? []} />
       </ThreeCanvas>
     </AbsoluteFill>
   );

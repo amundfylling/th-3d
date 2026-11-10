@@ -1,6 +1,8 @@
 # Move pictures: the puck.no pictures recreated on our rink
 
-Status: PROPOSED (2026-10-13). All 51 puck.no pictures recreated in the tilted view the user chose (angle 2):
+Status: PROPOSED. Since 2026-11-10 every figure in the 51 redrawn pictures stands and is turned exactly as in the
+puck.no picture (section "Figures as puck.no draws them" below, which replaces the blade-snapping rule for these 51).
+First version 2026-10-13. All 51 puck.no pictures recreated in the tilted view the user chose (angle 2):
 `validation/move-pictures/<id>.png`, side by side with puck.no in `validation/move-pictures/comparison/page1-8.jpg`.
 
 The user asked to recreate the puck.no move pictures (green arrows, numbered contacts) before animating every move,
@@ -119,3 +121,35 @@ On the page the redone moves go back to "not reviewed" with the user's comment k
   right behind the centred puck, facing forward (ASSUMED); the solid figure is the centre turned into the trick.
 - The 0-9 level scale on the left was dropped from every picture (user, 2026-10-14); the level stays in the specs and on
   the review page.
+
+## Figures as puck.no draws them (2026-11-10)
+
+The user: "It is important that all players are placed the correct way. The existing pics are correct already." Until
+then only the figures that touch the puck were posed (by the snapping rule above) and every other figure stood at
+theta 0, so most figures were turned differently from the puck.no picture. Now, for the 51 moves with a puck.no picture:
+
+1. `scripts/move-pictures/detect.py` finds every skater in every picture. puck.no draws all skaters with one sprite
+   (yellow or white jersey) turned in the picture plane; the sprite is cut from the Agdur picture and matched at every
+   position and every 2 deg (refined to 0.5 deg) by colour class. Result: `data/move-pictures/detected/<id>.json` (peg
+   px, rotation phi, score) and a review overlay `out/move-pictures/detect/<id>.png`. All 51 overlays were looked at.
+   Real sprites score 0.43 or more (the lowest are centres half hidden by arrows), false answers 0.40 or less;
+   the threshold is 0.42.
+2. `build.py` (`build_from_picture`): team by jersey (yellow attacks = our W), player by the nearest slot. The figure
+   stands at the nearest point of OUR slot (puck.no's drawn slots lie up to 7 mm from ours, the home right defender's
+   20 mm) and its heading is phi + 17 deg. The 17 deg makes our blade middle fall on the sprite's blade middle
+   (ASSUMED from the Agdur right wing; checked by laying a straight-down render of our model over the Agdur and Bacalao
+   pictures: sticks and bodies coincide).
+3. A figure below the edge of a half-rink picture gets the pose it has in the full-rink pictures (the figures no move
+   uses stand the same in all 51). A figure puck.no leaves out is left out (`hidden` in the job; pose-preview prop
+   `hidden`, handled in remotion/PosePreview.tsx so the shared scene code and the video export hashes are untouched): the right wing in Veggdyr, Fakie-Veggdyr and Fakie-Horvath, where the arrow runs through its place.
+   The two bystander overrides of the first version (Veggdyr's right wing, Senterkniv's opposing centre) are gone.
+4. The goalies never move in the 51 pictures: E-G arc 26 mm, W-G arc 66.6 mm at 15.8 deg (read off the pictures).
+5. Contacts are the picture's points, moved by the same few mm as the figure that plays them (so the puck keeps its
+   place relative to the stick); they are no longer snapped to a blade. Näcka and Spjass are now read off their
+   pictures too, not off the saved traces (whose poses differ from the pictures).
+6. `compare.py` writes the side-by-side sheets `validation/move-pictures/comparison/page01-13.jpg`.
+
+Kit colours: puck.no's attackers are yellow; ours are white/blue, because in our model the white/blue figures belong to
+the end that attacks the far goal (kit colour is an end, CLAUDE.md).
+
+The 70 moves without a puck.no picture are unchanged (their bystanders still stand at theta 0).

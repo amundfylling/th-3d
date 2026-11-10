@@ -1,0 +1,77 @@
+{
+ "id": "fakie-invers-halv-agduro",
+ "picture": "references/combinations/puck-no-pictures/trick-fakie-invers-halv-agduro-8d975656.webp",
+ "note": "sprite detections: peg (u, v) in px of the 600 px wide picture, phi deg counter-clockwise on screen (0 = the Agdur right wing sprite)",
+ "figures": [
+  {
+   "team": "yellow",
+   "u": 496,
+   "v": 308,
+   "phi": 0.0,
+   "score": 1.005
+  },
+  {
+   "team": "yellow",
+   "u": 96,
+   "v": 354,
+   "phi": 65.0,
+   "score": 0.765
+  },
+  {
+   "team": "white",
+   "u": 264,
+   "v": 460,
+   "phi": 47.0,
+   "score": 0.758
+  },
+  {
+   "team": "white",
+   "u": 416,
+   "v": 297,
+   "phi": 241.5,
+   "score": 0.755
+  },
+  {
+   "team": "yellow",
+   "u": 190,
+   "v": 588,
+   "phi": 176.5,
+   "score": 0.739
+  },
+  {
+   "team": "yellow",
+   "u": 324,
+   "v": 372,
+   "phi": 286.0,
+   "score": 0.725
+  },
+  {
+   "team": "white",
+   "u": 480,
+   "v": 651,
+   "phi": 83.5,
+   "score": 0.704
+  },
+  {
+   "team": "yellow",
+   "u": 415,
+   "v": 699,
+   "phi": 279.5,
+   "score": 0.672
+  },
+  {
+   "team": "white",
+   "u": 102,
+   "v": 645,
+   "phi": 69.0,
+   "score": 0.65
+  },
+  {
+   "team": "white",
+   "u": 195,
+   "v": 315,
+   "phi": 70.5,
+   "score": 0.629
+  }
+ ]
+}

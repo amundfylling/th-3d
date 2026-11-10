@@ -37,6 +37,8 @@
     "blender:assembly": "/root/venvs/blender/bin/python assets/blender/build_assembly.py",
     "blender:materials": "/root/venvs/blender/bin/python assets/blender/make_ice_texture.py && /root/venvs/blender/bin/python assets/blender/drop_sponsors.py && /root/venvs/blender/bin/python assets/blender/build_materials.py",
     "blender:appearance": "/root/venvs/blender/bin/python assets/blender/build_appearance.py && /root/venvs/blender/bin/python assets/blender/render_appearance.py",
+    "pictures:detect": "python3 scripts/move-pictures/detect.py",
+    "pictures:compare": "python3 scripts/move-pictures/compare.py",
     "pictures:moves": "npm run remotion:assets && python3 scripts/move-pictures/build.py && node scripts/move-pictures/render.ts && python3 scripts/move-pictures/build.py --draw",
     "remotion:assets": "mkdir -p public && cp assets/scene/full_static_appearance.glb public/ && node scripts/shot23-manifest.ts",
     "remotion:studio": "npm run remotion:assets && remotion studio remotion/index.ts",

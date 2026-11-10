@@ -6,12 +6,15 @@ import { openBrowser, renderStill, selectComposition } from "@remotion/renderer"
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
+import { resolveRenderEnv } from "../video/render-env.ts";
+
+// browser and GL backend: scripts/video/render-env.ts (REMOTION_BROWSER_EXECUTABLE / REMOTION_GL)
+const env = await resolveRenderEnv({ quiet: true });
 const jobs = JSON.parse(readFileSync("out/move-pictures/jobs.json", "utf8")) as Array<Record<string, unknown> & { id: string }>;
 const only = process.argv.slice(2);
 const serveUrl = await bundle({ entryPoint: path.resolve("remotion/index.ts") });
-const browser = await openBrowser("chrome", { browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" } });
-const base = { serveUrl, browserExecutable: BROWSER, chromiumOptions: { gl: "swangle" as const }, puppeteerInstance: browser };
+const browser = await openBrowser("chrome", { browserExecutable: env.browserExecutable, chromiumOptions: env.chromiumOptions });
+const base = { serveUrl, browserExecutable: env.browserExecutable, chromiumOptions: env.chromiumOptions, puppeteerInstance: browser };
 for (const job of jobs) {
   if (only.length && !only.includes(job.id)) continue;
   const { id, ...inputProps } = job;
