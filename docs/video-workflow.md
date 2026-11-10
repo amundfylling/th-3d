@@ -247,8 +247,28 @@ The differences sit where a screen meets an opaque edge (one depth per pixel ins
 | one frame, 1080p, scene loaded | 4.2 s | 2.5 s |
 | 24 frames 300-323, 1080p, direct (`final --frames 300-323`) | 121.4 s (2 tabs) | 68.6 s |
 | the same 24 frames as a half-size draft | about 121 s (it was drawn at 1080p and shrunk); 77.9 s with only the pixel-ratio fix | 41.6 s |
-| full 1080p Hjerpefinte export, empty cache (807 frames, 313 scene states) | not rerun; 313 states at the measured 4.2 s plus the composite is about 24 min, a direct export about 56 min | **941 s (15.7 min)**: 313 scene renders 853 s (2.7 s each), composite 81 s |
+| full 1080p Hjerpefinte export, empty cache (807 frames, 313 scene states) | 2470 s recorded on 2026-10-13 (2330 s scene renders + 140 s composite, two tabs, Chromium 141); not rerun today | **941 s (15.7 min)**: 313 scene renders 853 s (2.7 s each), composite 81 s |
 | composite of 807 frames over cached scenes | 2 tabs (99 s for 631 frames on 2026-10-12) | 81 s, 4 tabs |
+
+All six committed videos were re-exported with the new renderer (`final --cache`, empty cache, scale 1). "Previous" is
+the render time recorded in the report each export replaces (2026-10-06 to 2026-10-13: the five hand-made videos direct
+with two tabs, Hjerpefinte cached from an empty cache; Chromium 141, today 149), so that column is another day and browser
+build and includes the move from direct to cached exports:
+
+| video | frames | scene states | previous export | now |
+|---|---|---|---|---|
+| move:hjerpefinte | 807 | 313 | 2470 s | **938 s** (852.8 s scenes + 81.3 s composite) |
+| shovel-17 | 748 | 405 | 3965 s | **1255 s** (1167.9 s scenes + 83.6 s composite) |
+| spjass | 742 | 335 | 3571 s | **958 s** (879.6 s scenes + 74.7 s composite) |
+| ikv | 900 | 509 | 4261 s | **1309 s** (1215.2 s scenes + 90.6 s composite) |
+| defence-lw | 1061 | 154 | 4342 s | **427 s** (328.7 s scenes + 95.3 s composite) |
+| nacka | 744 | 316 | 4482 s | **826 s** (753.8 s scenes + 68.8 s composite) |
+| all six | | | 23091 s (6.4 h) | **5712 s (1.6 h)** |
+
+Every scene state was drawn by the new path (`scene_draws: reuse`), every frame was checked against a verified cache
+entry, and frame accounting passed for all six. Frames 450 (IKV) and 60 (Hjerpefinte) of the new files were looked at.
+The review sheets and occlusion reports next to the hand-made videos (`validation/analysis-*-review.png`,
+`-occlusion.json`) were not regenerated: they do not depend on the renderer's pixels beyond what is described above.
 
 **What is left, and what would be the next step**: a frame is now about 1.9 s of opaque scene (half of it the 4x
 multisampling) plus 0.6 s for the screens. At half size the figures' triangles dominate (1.7 s per frame), which is why a

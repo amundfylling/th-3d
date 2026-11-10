@@ -34,7 +34,8 @@ The skater is built from a Thingiverse STL (thing:6898521 by MAVRIS, CC BY-SA, k
 own size, user decision 2026-10-12). Since 2026-10-12 the assets, contacts, footprints, traces and videos all use it (user:
 "Switch now"); the parametric mold stays in data/figure-molds.json as the shape record; see docs/skater-stl.md.
 All analysis videos share remotion/AnalysisVideo.tsx; preview, draft and export them with `scripts/video.ts` (docs/video-workflow.md;
-move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`).
+move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`). The scene is drawn by `remotion/scene-render.ts`
+(the end screens reuse the drawn frame, about 1.7x faster per frame; `--plain-render` is the reference; docs/video-workflow.md section 8).
 Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
 references/games/; handheld phone) are digested in docs/game-mechanics.md, with the user's answers. A first PROPOSED
 tracking pipeline (stabilisation, calibration, puck track, possession per skater by exclusive reach areas;

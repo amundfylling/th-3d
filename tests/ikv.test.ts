@@ -110,6 +110,9 @@ test("invers kryssar med velodrom analysis: composition registered, export repor
   assert.equal(r.output.frames, N);
   assert.ok(r.output.below_25_mb && r.output.width === 1920 && r.output.height === 1080);
   assert.deepEqual(r.checks.frames_differing_from_pure, []);
-  assert.equal(r.checks.frames_logged, N);
+  // a cached export (scripts/video.ts --cache) checks every frame against a verified scene-cache entry instead of logging it live
+  const cached = r.checks.scene_cache ? r.checks.scene_cache.checked : 0;
+  if (r.checks.scene_cache) assert.deepEqual(r.checks.scene_cache.errors, []);
+  assert.equal(r.checks.frames_logged + cached, N);
   if (existsSync(r.output.path)) assert.equal(sha(r.output.path), r.output.sha256);
 });

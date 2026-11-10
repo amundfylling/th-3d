@@ -6,6 +6,15 @@
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
 - Batch run 06-20 complete. Last completed: **20 - Review the model and incorporate calibration** (2026-09-30). Next: **21** (blocked on user review feedback + a real shot recording).
+- **Render speed (user request, 2026-11-10, PROPOSED, branch `claude/project-thread-k1lpin`):** a 1080p frame took 4.2 s on
+  the CPU renderer, 4.0 s of it the WebGL draw; half of that was three.js drawing the whole scene a second time for the
+  two clear end screens. `remotion/scene-render.ts` now draws the scene once and feeds that pass from the canvas (2.5 s
+  per frame; pixels unchanged outside the screens, at most 17/255 different on a few pixels where a screen meets an
+  edge). Drafts at scale 0.5 now draw a quarter of the pixels; one tab for software WebGL, one per core for cached
+  composites. All six videos re-exported (`final --cache`): 5712 s in total against 23091 s recorded for the exports they
+  replace. `--plain-render` keeps the old draw as the reference. `npm test` 171/171. Not done (needs a decision): a
+  lower-detail figure copy for rendering, GPU rendering (unverified, no GPU here), reuse of the still background.
+  Details and numbers: docs/video-workflow.md section 8, `validation/video-workflow/render-speed.json`.
 - **Player figures (user request, done before 21, 2026-09-30):** the skater and goalie proxies and the ten
   placeholders are replaced by two rigid STIGA molds (skater shared by all ten skaters, goalie by both goalies)
   in Sweden/Finland kits, fitted to the user's photos/videos (`references/players_images`) and the official

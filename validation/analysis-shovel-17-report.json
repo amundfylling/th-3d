@@ -2,14 +2,14 @@
  "analysis": "#17 The Shovel - sports-analysis video",
  "composition": "analysis-shovel-17",
  "versions": {
-  "node": "v22.22.0",
+  "node": "v22.23.4",
   "remotion": "4.0.531",
   "@remotion/three": "4.0.531",
   "three": "0.186.1",
   "@react-three/fiber": "9.4.0",
   "react": "19.2.0",
-  "browser": "chrome-headless-shell Chromium 141.0.7390.37",
-  "gl": "swangle (SwiftShader, CPU)"
+  "browser": "Chromium 149.0.7790.0",
+  "gl": "--gl=swangle; WebGL renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
  },
  "model": {
   "geometry_version": "0.6.0",
@@ -28,9 +28,10 @@
    "remotion/AnalysisVideo.tsx",
    "remotion/SceneLayer.tsx",
    "remotion/ShotScene.tsx",
+   "remotion/scene-render.ts",
    "remotion/theme.ts"
   ],
-  "composition_sha256": "ad8d5e8f2550b1b3c3aef91d300b8faa5a8849bb00f2f96af104d11b6886f947"
+  "composition_sha256": "d41d0a3a603fb55bd36559270b2037ca84b453ed9cd7cf4a8c054e3cc155fa8d"
  },
  "output": {
   "path": "validation/analysis-shovel-17.mp4",
@@ -62,28 +63,50 @@
     "duration": "24.933333"
    }
   },
-  "bytes": 12070109,
-  "megabytes": 12.07,
+  "bytes": 12099926,
+  "megabytes": 12.1,
   "below_25_mb": true,
-  "sha256": "05818d8f92c12db27245add1ad59af347a00c803c3f14b91dc1a25a059952cfb"
+  "sha256": "270291f70fa3e8f1542d00c852f9963e9647c2d0e48c42205bbe1abfe469b371"
  },
  "checks": {
-  "frames_logged": 748,
+  "frames_logged": 0,
   "frames_differing_from_pure": [],
-  "max_readback_diff": 2.84e-14,
-  "camera_frames_logged": 748,
-  "camera_max_diff_vs_track": 0.005
+  "max_readback_diff": null,
+  "camera_frames_logged": 0,
+  "camera_max_diff_vs_track": null,
+  "scene_cache": {
+   "checked": 748,
+   "entries_used": 405,
+   "errors": [],
+   "entries_max_readback_diff": 2.84e-14,
+   "entries_camera_max_diff_mm": 0.005,
+   "stats": {
+    "namespace": "dd1dadde738afce275c5bf68",
+    "frames": 748,
+    "unique_scene_states": 405,
+    "cache_hits": 0,
+    "scene_renders": 405,
+    "scene_render_seconds": 1167.9,
+    "scene_draws": {
+     "reuse": 405
+    },
+    "frames_without_a_new_render": 343,
+    "entries_in_namespace": 718
+   }
+  }
  },
- "render_seconds": 3965,
- "composition_refactor": {
-  "date": "2026-10-13",
-  "change": "merge of the video workflow (PR #14: remotion/SceneLayer.tsx split out of AnalysisVideo.tsx, ShotScene.tsx clones the scene per mount, frameMap/sceneSrc props, classic-only overlay tweaks) into the STL-skater branch (PR #13) this video was rendered on; default theme stays nbhf",
-  "previous_composition_files": [
-   "remotion/ShotAnalysis.tsx",
-   "remotion/AnalysisVideo.tsx"
-  ],
-  "previous_composition_sha256": "bc691078f605358a1bf83be38a6bc3ec19a955ab1bb350c3ffb0b6292a2b6efe",
-  "verification": "frames 29, 187, 336, 448, 598, 725 rendered at scale 0.5 (swangle) with the STL-skater branch at commit 53c32b2 (scripts/analysis-stills.ts) and with the merged code (scripts/video.ts stills): pixels identical for all six (validation/video-workflow/stl-merge-identity.json)",
-  "video_rerendered": false
- }
+ "render": {
+  "mode": "cached",
+  "scene_render": "reuse",
+  "concurrency": {
+   "live": 1,
+   "composite": 4
+  },
+  "scale": 1,
+  "browser": "/home/user/th-3d/node_modules/.remotion/chrome-headless-shell/linux64/chrome-headless-shell-linux64/chrome-headless-shell",
+  "gl_flag": "swangle",
+  "webgl_renderers": [],
+  "probe_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
+ },
+ "render_seconds": 84
 }
