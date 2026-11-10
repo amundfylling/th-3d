@@ -1,0 +1,55 @@
+{
+  "id": "hlskyffel-kort",
+  "name": "Hælskyffel kort",
+  "level": 4,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Right wing carries the puck backward in the slot with the stick groove and passes in with the heel to the center, who shoots into the right corner. Can also be performed with a blade pass",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        470,
+        290
+      ],
+      "pose": false
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        470,
+        400
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        318,
+        380
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        338,
+        212
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "note": "Default figure layout of the puck.no move pictures, read off the pictures (puck.no px, 600 px wide picture). Every picture places these figures at the nearest point of their slot (theta 0) unless the move poses them. Status: traced from an illustration (not a recording).",
+  "picture_to_world": {"note": "x = goal_line_x - (v - goal_line_v) / s, y = (centre_u - u) / s; s from goal line to blue line (202 px for 192.4 mm) and the face-off circle spacing (298 px for 282 mm)", "goal_line_x_mm": 286.5, "goal_line_v_px": 219, "centre_u_px": 298, "s_px_per_mm": 1.054},
+  "figures": {
+    "W-LW": [95, 345], "W-C": [300, 368], "W-RW": [505, 305],
+    "W-LD": [203, 700], "W-RD": [412, 705],
+    "E-RD": [190, 322], "E-LD": [393, 383], "E-C": [267, 450], "E-RW": [90, 460], "E-LW": [475, 642]
+  }
+}

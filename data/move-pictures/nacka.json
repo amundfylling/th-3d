@@ -1,0 +1,6 @@
+{
+  "id": "nacka", "name": "Näcka", "level": 4, "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-nacka-2e6af9fd.png",
+  "from_trace": {"trace": "data/traces/nacka.trace.json", "contacts": [{"n": 1, "t": 4.0505}, {"n": 2, "t": 4.33525}], "end": {"t": 4.487, "label": "goal"}, "pose_t": 4.0505},
+  "note": "Arrows and pose from the saved Näcka trace (PROPOSED): figure W-C posed at the heel pass, puck path split at the contacts."
+}

@@ -1,0 +1,75 @@
+{
+  "id": "fakie-senter-karusell",
+  "name": "Fakie Senter-Karusell",
+  "level": 7,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-senter-karusell-d46b2d2c.png",
+  "text": "Center passes to the right wing, who sends the puck in a Velodrom over to the left wing and in to the center and into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        321,
+        333
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        534,
+        286
+      ],
+      "pose": true,
+      "toward_px": [
+        534,
+        200
+      ]
+    },
+    {
+      "n": 3,
+      "pid": "W-LW",
+      "picture_px": [
+        100,
+        394
+      ],
+      "pose": true
+    },
+    {
+      "n": 4,
+      "pid": "W-C",
+      "picture_px": [
+        336,
+        317
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "via": [
+        "boards"
+      ]
+    },
+    {
+      "from": 3,
+      "to": 4
+    },
+    {
+      "from": 4,
+      "to": "goal",
+      "picture_px": [
+        336,
+        205
+      ]
+    }
+  ]
+}

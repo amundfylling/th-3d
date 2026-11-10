@@ -1,0 +1,62 @@
+{
+  "id": "fakie-senter-velodrom",
+  "name": "Fakie Senter-Velodrom",
+  "level": 7,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-senter-velodrom-84e8f8f6.png",
+  "text": "Center passes to the right wing, who sends the puck in a Velodrom over to the left wing, who shoots directly into the left corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        318,
+        334
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        533,
+        286
+      ],
+      "pose": true,
+      "toward_px": [
+        533,
+        200
+      ]
+    },
+    {
+      "n": 3,
+      "pid": "W-LW",
+      "picture_px": [
+        79,
+        324
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "via": [
+        "boards"
+      ]
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        266,
+        204
+      ]
+    }
+  ]
+}

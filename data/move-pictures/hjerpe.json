@@ -1,0 +1,42 @@
+{
+  "id": "hjerpe",
+  "name": "Hjerpe",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-hjerpe-c68b7726.png",
+  "text": "Center starts with the puck out on the blade to the right of the slot, carries the puck over to the left side of the slot, and shoots into the left corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        344,
+        342
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        256,
+        322
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        253,
+        209
+      ]
+    }
+  ]
+}

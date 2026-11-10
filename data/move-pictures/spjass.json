@@ -1,0 +1,27 @@
+{
+  "id": "spjass",
+  "name": "Spjass",
+  "level": 5,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-spjass-6dadefbc.png",
+  "text": "Center starts with the puck in the heel groove, passes with the blade a few centimeters out to the left, spins all the way around and shoots with the blade into the left corner",
+  "from_trace": {
+    "trace": "data/traces/spjass.trace.json",
+    "contacts": [
+      {
+        "n": 1,
+        "t": 4.1345
+      },
+      {
+        "n": 2,
+        "t": 4.36875
+      }
+    ],
+    "end": {
+      "t": 4.4565,
+      "label": "goal"
+    },
+    "pose_t": 4.1345
+  },
+  "note": "Arrows and pose from the saved Spjass trace (PROPOSED), like Näcka."
+}
