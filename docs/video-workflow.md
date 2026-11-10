@@ -41,7 +41,8 @@ a generated video. Options (all commands):
 | `--scale 0.5` | resolution factor (stills and draft default 0.5, final 1) |
 | `--cache` | scene layer from the scene cache (section 4); default is the direct WebGL renderer |
 | `--browser <path>`, `--gl <backend>` | section 3 |
-| `--concurrency 2` | browser tabs rendering in parallel (2 is the measured safe value on the 4-core cloud container) |
+| `--concurrency n` | browser tabs rendering in parallel. Default: 1 for WebGL on a software renderer (it already uses every core), 2 on a GPU, one per core (at most 8) for cached composites (section 8) |
+| `--plain-render` | draw the scene with the plain single three.js call, the reference of the faster scene renderer (section 8); its cached images get their own namespace |
 | `--out <dir>` | output directory for stills, draft and partial finals |
 | `--report <file>`, `--cold` | timings as JSON; `--cold` deletes the bundler cache first (benchmarks) |
 
@@ -138,9 +139,9 @@ How it works (`scripts/video/scene-cache.ts`, `remotion/SceneLayer.tsx`):
    claimed: `frames_logged` counts live scene renders, `scene_cache.checked` the frames checked against an entry.
 
 The namespace (anything that changes pixels without changing the state) is: `SceneLayer.tsx`, `ShotScene.tsx`,
-`cameras.ts`, `coordinates.ts`, `asset-manifest.json`, the served scene GLB, `geometry.json`, the three / r3f /
+`scene-render.ts`, `cameras.ts`, `coordinates.ts`, `asset-manifest.json`, the served scene GLB, `geometry.json`, the three / r3f /
 remotion / react versions, the browser version, the `--gl` flag and the reported WebGL renderer, width, height, scale,
-PNG and the theme background. Overlay text, graphics and chapter timing are not in it.
+PNG, the theme background and the scene draw mode (`reuse` or `plain`, section 8). Overlay text, graphics and chapter timing are not in it.
 
 Kept as the reference and fallback: without `--cache` every frame renders the scene live, exactly as before.
 
@@ -196,3 +197,65 @@ Not measured: a direct full export on this branch, and anything on a GPU.
   `data/presentations/*.analysis.json`, which is already presentation-only data.
 - The Edwall analysis reports (`validation/analysis-edwall-g2-goal*-report.json`) fingerprint `AnalysisVideo.tsx` and are
   now stale; no test reads them and their videos were not re-rendered.
+
+## 8. Render speed (2026-11-10)
+
+Status: PROPOSED (branch `claude/project-thread-k1lpin`). Measured in the cloud container: 4 cores, no GPU, SwiftShader,
+Chromium 141, 1920x1080. Raw numbers: `validation/video-workflow/render-speed.json`.
+
+**Where a frame's time went** (Hjerpefinte, frames 300-305, one tab, after the scene has loaded): 4.2 s per frame, of which
+4.0 s is the WebGL draw itself. The screenshot, the overlays and React are about 0.2 s. Inside the draw:
+
+| part | cost per frame | how it was measured |
+|---|---|---|
+| second full-scene draw for the two clear end screens (three.js transmission pass) | 2.3 s | the screens made opaque: 1.9 s per frame |
+| 4x multisampling (smooth edges) | about 1.0 s | `antialias: false`: 3.1 s; with the screens opaque as well: 0.93 s |
+| the twelve figures (1.12 of the scene's 1.2 million triangles) | about 0.9 s of the 1.9 s | figures hidden: 1.0 s with the screens opaque |
+| rink (49 k triangles, but most of the pixels) | about 1.0 s of the 1.9 s | same run |
+
+Two more findings: a second tab does not help on a software renderer (12 frames: 32 s with one tab, 36 s with two, 44 s
+with four; SwiftShader already runs on all four cores), and `--scale 0.5` did not make the 3D draw smaller (R3F clamps the
+device pixel ratio to at least 1, so a half-size draft was drawn at 1080p and shrunk by the screenshot).
+
+**What changed**
+
+1. `remotion/scene-render.ts` draws the opaque scene once and gives three's transmission pass the canvas itself (colour
+   converted back from ACES + sRGB to linear light, and the canvas depth) instead of a second draw of the whole scene.
+   three's own transmission shader still draws the screens. `--plain-render` keeps the old single call as the reference.
+   If the canvas depth cannot be copied, the tone mapping is not ACES filmic + sRGB, or no screen is in view, the plain
+   call is used. Every frame logs how it was drawn (`[<tag>-draw]`; reports: `scene_draws`).
+2. The canvas uses the page's device pixel ratio while rendering, so a draft or still at scale 0.5 draws a quarter of the
+   pixels. Scale 1 is unchanged.
+3. Tabs: 1 for WebGL on a software renderer, 2 on a GPU, one per core (at most 8) for composites over cached scene images.
+
+**Picture**: outside the end screens the new renderer gives the plain render's bytes. Through a screen, three frames
+compared at 1080p without overlays (`validation/video-workflow/scene-render-before-after.jpg`):
+
+| frame (Hjerpefinte) | pixels that differ (of 2 073 600) | by more than 2/255 | by more than 8/255 | largest |
+|---|---|---|---|---|
+| 40 (wide view, both screens) | 6270 | 1064 | 21 | 17/255 |
+| 300 (goal view) | 1201 | 145 | 7 | 11/255 |
+| 480 (replay view) | 1254 | 159 | 8 | 10/255 |
+
+The differences sit where a screen meets an opaque edge (one depth per pixel instead of one per sample) and, below
+2/255, in what is seen through the plastic (it has passed through the canvas' 8 bits).
+
+**Time**
+
+| workload | before | now |
+|---|---|---|
+| one frame, 1080p, scene loaded | 4.2 s | 2.5 s |
+| 24 frames 300-323, 1080p, direct (`final --frames 300-323`) | 121.4 s (2 tabs) | 68.6 s |
+| the same 24 frames as a half-size draft | about 121 s (it was drawn at 1080p and shrunk); 77.9 s with only the pixel-ratio fix | 41.6 s |
+| full 1080p Hjerpefinte export, empty cache (807 frames, 313 scene states) | not rerun; 313 states at the measured 4.2 s plus the composite is about 24 min, a direct export about 56 min | **941 s (15.7 min)**: 313 scene renders 853 s (2.7 s each), composite 81 s |
+| composite of 807 frames over cached scenes | 2 tabs (99 s for 631 frames on 2026-10-12) | 81 s, 4 tabs |
+
+**What is left, and what would be the next step**: a frame is now about 1.9 s of opaque scene (half of it the 4x
+multisampling) plus 0.6 s for the screens. At half size the figures' triangles dominate (1.7 s per frame), which is why a
+draft is 1.6x and not 4x faster than a final. Not done, each needs a decision:
+- a lower-detail copy of the figures for rendering (80 k triangles per skater, 160 k per goalie, drawn at 100-300 pixels
+  height): an estimated further 0.5-0.7 s per frame; changes the drawn model slightly;
+- a GPU: `--gl angle` (or `angle-egl`, `vulkan`) on a machine with one draws a frame in a small fraction of this; still
+  unverified because the container has none;
+- reusing the unchanged background while the camera stands still (131 of Hjerpefinte's 313 states): about a quarter of
+  the scene time, a larger change to the renderer.
