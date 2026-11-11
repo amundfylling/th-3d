@@ -113,6 +113,8 @@ GitHub release `nm26-models-v1`, listed with sha256 in `data/models/manifest.jso
   the stick through the puck. When the evidence is unclear, choose a contact that is physically possible (touching,
   pushing in the direction of motion), never an overlap. Rigid figures also obey rule 5: rotate the figure, don't
   bend it.
+- `python3 scripts/verify-trace.py` re-checks every saved trace against this rule from the trace file alone (no generator,
+  no Blender; docs/trace-verification.md). `npm test` runs it. Run it after any change to a trace, a footprint or the rink.
 - Exceptions only with the user's explicit approval, recorded as data (`shots/*/inputs.json`
   `approved_overlap_exceptions`: what, why, maximum depth, approver, removal condition) and reported in the checks.
   Never add one silently, and never widen one without asking.
