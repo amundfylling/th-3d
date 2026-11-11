@@ -1,7 +1,7 @@
 """The table as the tracking scripts see it: figure ids, home headings, slots and the NM26 reference camera.
 
 One definition of what the NM26, synthetic-data and replay scripts each used to spell out themselves (the slot-position
-helper alone existed twelve times). Pure Python + NumPy: importable from the Blender, PyTorch and plain scripts alike,
+helper alone existed fourteen times). Pure Python + NumPy: importable from the Blender, PyTorch and plain scripts alike,
 and from the tests (tests/synth/test_table_common.py).
 
 Conventions (docs/pose.md, docs/synthetic-goalie-pilot.md):

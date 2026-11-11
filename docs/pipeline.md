@@ -160,7 +160,7 @@ reproduce the committed tracks bit for bit (random augmentation, thread scheduli
 synthetic-data, replay and calibration scripts each spelled out before: the figure ids and the skater order, `HOME`, the
 slot centrelines with their arc lengths, slot position to point (`arc_point`, `slot_point`), point to slot position
 (`nearest_on_slot`) and the reference camera (`ref_camera`, `ref_project`, `ref_to_plane`). 34 scripts import it; the
-slot-position helper alone existed twelve times. A new script takes these from the module; `test_table_common.py` fails
+slot-position helper alone existed fourteen times. A new script takes these from the module; `test_table_common.py` fails
 when a copy comes back. Not included, on purpose: `scripts/shotlib/world.py` (its files are part of every engine-built
 trace's identity), `shot22-trace.py` and `spjass-trace.py` (kept as they produced the saved traces) and
 `own_video_common.py` (its own skater order).
