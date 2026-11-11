@@ -33,6 +33,8 @@ All analysis videos share remotion/AnalysisVideo.tsx.
 The skater is built from a Thingiverse STL (thing:6898521 by MAVRIS, CC BY-SA, keep the attribution), 56.85 mm tall (the file's
 own size, user decision 2026-10-12). Since 2026-10-12 the assets, contacts, footprints, traces and videos all use it (user:
 "Switch now"); the parametric mold stays in data/figure-molds.json as the shape record; see docs/skater-stl.md.
+A PROPOSED goalie bent toward the user's photo outlines (data/figures/goalie-warp.json, assets/figures/goalie_warp_*; no goalie 3D model exists online)
+sits beside the current goalie and is NOT in use; see docs/goalie-warp.md.
 All analysis videos share remotion/AnalysisVideo.tsx; preview, draft and export them with `scripts/video.ts` (docs/video-workflow.md;
 move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`).
 Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
