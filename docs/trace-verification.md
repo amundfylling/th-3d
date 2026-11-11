@@ -25,9 +25,12 @@ because nothing else measures its trace.
 - It measures the puck against all twelve figures' contact footprints (`data/figures/contact-footprints.json`, the
   footprints of the move engine), the boards, both goals' posts and cages, every 0.25 ms over the whole window, in every
   phase. Tolerance 0.1 mm. A puck outside the boards is an overlap however far out it is. The cage of the goal the puck
-  enters stops being an obstacle at the goal line; the posts never do.
+  enters is not an obstacle while the puck centre is inside it (the net catches the puck); a puck that goes on through
+  the back or a side of the net is an overlap. The posts are always obstacles.
 - Exceptions are only the user's recorded ones (`approved_overlap_exceptions` in the inputs file beside the trace's
-  checks file). Each covers its own obstacle, phase and depth, and needs "user" in `approved_by`.
+  checks file). Each covers its own obstacle, phase and depth, and needs "user" in `approved_by`. Rows are named by the phase of the
+  puck node before the sample, as the generators name them; where the recorded intervals (`puck.phases`, what the
+  renderer reads) say another phase, an exception does not apply (the Shovel has 7 such samples, none in an overlap).
 - It also reports the largest puck step between two samples (a jump is 2 mm or more) and the smallest clearance per
   obstacle and phase.
 
@@ -53,7 +56,7 @@ under the neighbouring phases).
 
 ## Tests
 
-`tests/trace-verify.test.ts` runs `tests/traces/test_verify.py` (20 tests, about 10 s). It is skipped, and says so, when
+`tests/trace-verify.test.ts` runs `tests/traces/test_verify.py` (22 tests, about 10 s). It is skipped, and says so, when
 the Python has no shapely.
 
 | Test group | Covers |

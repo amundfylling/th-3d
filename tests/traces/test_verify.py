@@ -130,6 +130,22 @@ class Catches(unittest.TestCase):
         r = V.contact_check(with_puck(self.trace, lambda t: side))
         self.assertIn("goal_E_cage", {o["obstacle"] for o in r["unexpected_penetrations"]})
 
+    def test_a_puck_that_enters_the_goal_and_goes_on_through_the_net(self):
+        """In the net the puck may rest against the cage; leaving it through the back or a side is an overlap."""
+        g = W.GOALS["E"]
+        r = V.contact_check(self.trace)
+        self.assertEqual(r["goal_entered"], "E")
+        nodes = self.trace["puck"]["nodes"]
+        k = next(i for i, n in enumerate(nodes) if g.sign * (n["x_mm"] - g.x) >= 0)
+        t_in, t_end = nodes[k]["t"], nodes[-1]["t"]
+        back = lambda t: None if t <= t_in else (g.x + g.sign * (g.depth + 30.0 * (t - t_in) / (t_end - t_in)), g.y)
+        side = lambda t: None if t <= t_in else (g.x + g.sign * g.depth / 2, g.y + (g.half + 30.0) * (t - t_in) / (t_end - t_in))
+        for name, path in (("back", back), ("side", side)):
+            r = V.contact_check(with_puck(self.trace, path))
+            self.assertEqual(r["goal_entered"], "E", name)
+            self.assertIn("goal_E_cage", {o["obstacle"] for o in r["unexpected_penetrations"]}, name)
+            self.assertFalse(r["passed"], name)
+
     def test_a_jump_between_samples(self):
         tm = (self.t0 + self.t1) / 2
         nodes = self.trace["puck"]["nodes"]
@@ -173,6 +189,22 @@ class Exceptions(unittest.TestCase):
         self.assertFalse(self.check(max_overlap_mm=1.0)["passed"])
         self.assertFalse(self.check(phase="carried_by_W-C")["passed"])
         self.assertFalse(self.check(obstacle="W-RW")["passed"])
+
+    def test_it_covers_only_samples_that_both_phase_readings_put_in_its_phase(self):
+        """A phase boundary can fall between two puck nodes: the node before a sample says one phase, the recorded
+        interval (puck.phases, what the renderer reads) another. There the exception does not apply."""
+        r = V.contact_check(self.trace, self.exc)
+        self.assertTrue(r["passed"])
+        self.assertGreater(r["phase_boundary_samples"], 0)  # the Shovel has such samples, away from the brush
+        moved = copy.deepcopy(self.trace)
+        q = next(q for q in moved["puck"]["phases"] if q["id"] == "shot_free")
+        b = r["approved_exceptions"]["shot.W-C_right_skate_brush"]
+        q["t"][0] = (b["t0"] + b["t1"]) / 2  # the interval now says the brush starts in the phase before
+        i = moved["puck"]["phases"].index(q)
+        moved["puck"]["phases"][i - 1]["t"][1] = q["t"][0]
+        r = V.contact_check(moved, self.exc)
+        self.assertFalse(r["passed"])
+        self.assertEqual(r["approved_exceptions"], {})
 
     def test_it_needs_the_users_approval(self):
         self.assertFalse(self.check(approved_by="AI review")["passed"])

@@ -136,10 +136,20 @@ def contact_check(trace, exceptions=(), dt=DT):
     p = np.c_[np.interp(t, nt, [n["x_mm"] for n in nodes]), np.interp(t, nt, [n["y_mm"] for n in nodes])]
     phase_of_node = [n["phase"] for n in nodes]
     ph = np.array(phase_of_node)[np.clip(np.searchsorted(nt, t, side="right") - 1, 0, len(nodes) - 1)]
+    # Rows are named by the phase of the node before the sample, as the generators name them. The trace also records
+    # phase intervals (puck.phases, half-open, the reading of src/model/trace.ts), and a boundary can fall between two
+    # nodes, where the two readings differ for a few samples. An exception is scoped to a phase, so it covers an
+    # overlap only where BOTH readings give its phase.
+    ph_interval = ph.astype(object)
+    for q in reversed(trace["puck"].get("phases") or []):  # where intervals overlap, the first listed wins
+        a, b = q["t"]
+        ph_interval[(t >= a) & (t < (np.inf if b is None else b))] = q["id"]
     step = np.hypot(*np.diff(p, axis=0).T) if len(p) > 1 else np.zeros(0)
 
     # the goal the puck enters (first crossing of a goal line between the posts): from then on its cage is not an
-    # obstacle, the puck is inside it. The posts stay obstacles throughout.
+    # obstacle WHILE the puck centre is inside it (the net catches the puck and may give under it). A centre that
+    # leaves the cage through a side or the back is measured against the walls again, so a puck through the net is
+    # an overlap. The posts stay obstacles throughout.
     entered, k_in = None, len(t)
     for g in W.GOALS.values():
         beyond = g.sign * (p[:, 0] - g.x) >= 0
@@ -159,7 +169,10 @@ def contact_check(trace, exceptions=(), dt=DT):
             obstacles[f"goal_{g.end}_post_{'pos' if k == 0 else 'neg'}_y"] = np.hypot(p[:, 0] - po[0], p[:, 1] - po[1]) - W.R_PUCK - g.post_r
         cage = shapely.distance(g.walls, pts) - W.R_PUCK
         if entered == g.end:
-            cage[k_in:] = np.inf
+            depth = g.sign * (p[:, 0] - g.x)
+            inside = (depth >= 0) & (depth <= g.depth) & (np.abs(p[:, 1] - g.y) <= g.half)
+            inside[:k_in] = False
+            cage[inside] = np.inf
         obstacles[f"goal_{g.end}_cage"] = cage
 
     exc = [dict(e) for e in exceptions]
@@ -176,7 +189,7 @@ def contact_check(trace, exceptions=(), dt=DT):
                 continue
             item = {"obstacle": ob, "phase": name, "t0": round(float(t[bad[0]]), 5), "t1": round(float(t[bad[-1]]), 5), "worst_mm": round(float(c[bad].min()), 3)}
             e = next((e for e in exc if e.get("obstacle") == ob and e.get("phase") == name), None)
-            if e and "user" in str(e.get("approved_by", "")) and item["worst_mm"] >= -float(e["max_overlap_mm"]):
+            if e and "user" in str(e.get("approved_by", "")) and item["worst_mm"] >= -float(e["max_overlap_mm"]) and np.all(ph_interval[bad] == name):
                 used[e["id"]] = {**item, "max_overlap_mm": e["max_overlap_mm"], "approved_by": e["approved_by"]}
             else:
                 overlaps.append(item)
@@ -185,7 +198,7 @@ def contact_check(trace, exceptions=(), dt=DT):
     return {
         "trace_id": trace["trace_id"], "status": trace["status"], "window_s": [t0, t1], "sampling_s": dt, "samples": int(len(t)),
         "penetration_tolerance_mm": PEN_TOL, "figures_checked": len(W.ALL_FIGURES), "goal_entered": entered,
-        "max_puck_step_mm": max_step, "unexpected_penetrations": overlaps, "approved_exceptions": used,
+        "max_puck_step_mm": max_step, "phase_boundary_samples": int(np.sum(ph_interval != ph)), "unexpected_penetrations": overlaps, "approved_exceptions": used,
         "unused_exceptions": [e["id"] for e in exc if e["id"] not in used], "problems": problems,
         "min_clearance_by_obstacle_and_phase": rows, "passed": not overlaps and not problems,
     }
