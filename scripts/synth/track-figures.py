@@ -22,6 +22,8 @@ import numpy as np
 import torch
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 sys.path.insert(0, str(REPO / "scripts")); sys.path.insert(0, str(REPO / "scripts/synth"))
 from nm26_common import frames, load, OUT  # noqa: E402
 
@@ -41,8 +43,8 @@ def load_mod(name, path):
 ts = load_mod("ts", REPO / "scripts/synth/train-skater-pose.py"); tg = load_mod("tg", REPO / "scripts/synth/train-goalie-pose.py")
 sk = ts.model(); sk.load_state_dict(torch.load(REPO / "out/synth/skater-pose-v2b.pt")); sk.eval()
 gk = tg.model(); gk.load_state_dict(torch.load(REPO / "out/synth/goalie-pose-v2c.pt")); gk.eval()
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"]); BOX = CAM["goal_crop_boxes_video_px"]
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera(); BOX = CAM["goal_crop_boxes_video_px"]
 ROI = (160, 360, 1900, 1000); x0, y0, x1, y1 = ROI; T0 = np.array([[1, 0, -x0], [0, 1, -y0], [0, 0, 1.0]])
 ORDER = ts.ORDER; SLOT = ts.SLOT
 plate = cv2.imread(str(REPO / f"out/synth/skaters/plate_{game}.png"))

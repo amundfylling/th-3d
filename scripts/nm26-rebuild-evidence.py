@@ -18,6 +18,8 @@ import numpy as np
 import torch
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 sys.path.insert(0, str(REPO / "scripts")); sys.path.insert(0, str(REPO / "scripts/synth"))
 from nm26_common import frames, load, OUT  # noqa: E402
 
@@ -25,11 +27,11 @@ gid = sys.argv[1]; before = float(sys.argv[2]) if len(sys.argv) > 2 else 4.0
 lab = {r["id"]: r for r in json.loads((REPO / "data/games/nm26-semifinal/goal-labels.json").read_text())["labels"]}[gid]
 game, t_goal, end = lab["game"], lab["goal_video_s"], lab["scoring_end"]
 defend = "E" if end == "W" else "W"
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"]); BOX = CAM["goal_crop_boxes_video_px"]
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-HOME = {"W": 0.0, "E": 180.0}
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera(); BOX = CAM["goal_crop_boxes_video_px"]
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+HOME = table_common.HOME
 HALF = (900, 360, 1900, 1000) if defend == "E" else (160, 360, 1160, 1000)  # attacking half, reference px
 
 spec = importlib.util.spec_from_file_location("tr", REPO / "scripts/synth/train-goalie-pose.py"); tr = importlib.util.module_from_spec(spec)
@@ -41,10 +43,7 @@ def proj(P):
     P = np.atleast_2d(P); X = np.c_[P, np.zeros(len(P))] @ R.T + t; q = X @ K.T; return q[:, :2] / q[:, 2:]
 
 
-def arc_point(P, u):
-    seg = np.linalg.norm(np.diff(P, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return P[k] + f * (P[k + 1] - P[k])
+arc_point = table_common.arc_point
 
 
 t0, t1 = t_goal - before, t_goal + 0.5

@@ -26,6 +26,7 @@ import numpy as np
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 from game_common import GAME, crop_matrix, frames, stabilisation, world_to_crop, geometry, FPS  # noqa: E402
+import table_common  # noqa: E402
 
 OUTD = GAME / "own-video"; OUTD.mkdir(parents=True, exist_ok=True)
 W, H = 640, 360
@@ -70,7 +71,7 @@ for i in range(N):
 
 # 3. slot check
 G = geometry()
-SL = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
+SL = table_common.SLOT
 slot_pts = np.concatenate([np.c_[P[::2], np.zeros(len(P[::2]))] for P in SL.values()])
 slot_score = {}
 for i, fr in frames():

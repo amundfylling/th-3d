@@ -33,6 +33,8 @@ from pathlib import Path
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 sys.path.insert(0, str(REPO / "scripts")); sys.path.insert(0, str(REPO / "scripts/synth"))
 import tracker_v3_decode as dec  # noqa: E402
 
@@ -40,10 +42,10 @@ DATA = REPO / "data/games/nm26-semifinal"; V3 = REPO / "out/synth/v3"; V3.mkdir(
 A = sys.argv[1:]; CMD = A[0] if A else ""
 def arg(n, d): return A[A.index(n) + 1] if n in A else d
 ROI = (160, 360, 1900, 1000); x0, y0, x1, y1 = ROI
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-SLOT_LEN = {p: float(np.linalg.norm(np.diff(P, axis=0), axis=1).sum()) for p, P in SLOT.items()}
-ORDER = ["W-LW", "E-LW", "W-RW", "E-RW", "W-C", "E-C", "W-LD", "E-LD", "W-RD", "E-RD"]
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+SLOT_LEN = table_common.SLOT_LEN
+ORDER = table_common.SKATERS
 SEP_MM, SECOND_FRAC, NCAND = 40.0, 0.3, 2  # assumed
 
 
@@ -102,7 +104,7 @@ class Localiser:
         # the near board and the adverts below it: image rows below the ice in each column
         self.near = np.cumsum(self.ice[::-1], 0)[::-1] == 0
         self.near &= np.cumsum(self.ice, 0) > 0
-        CAM = json.loads((DATA / "camera-ref.json").read_text()); K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+        CAM = table_common.REF_CAMERA; K, R, t = table_common.ref_camera()
 
         def proj3(P):
             X = np.atleast_2d(P) @ R.T + t; q = X @ K.T; return q[:, :2] / q[:, 2:] - [x0, y0]

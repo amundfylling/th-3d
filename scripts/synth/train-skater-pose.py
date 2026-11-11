@@ -30,7 +30,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from compose import compose, degrade  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-ORDER = ["W-LW", "E-LW", "W-RW", "E-RW", "W-C", "E-C", "W-LD", "E-LD", "W-RD", "E-RD"]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+ORDER = table_common.SKATERS
 ROI = (160, 360)
 A = sys.argv[1:]
 def arg(name, default):
@@ -44,11 +46,11 @@ SD = REPO / "out/synth/skaters"
 PLATES = [cv2.imread(str(f)).astype(np.float32) for f in sorted(SD.glob("plate_*.png"))]
 
 
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-_K, _R, _t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+CAM = table_common.REF_CAMERA
+_K, _R, _t = table_common.ref_camera()
 _Hinv = np.linalg.inv(_K @ np.c_[_R[:, 0], _R[:, 1], _t])
-_G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in _G["fixture_paths"]}
+_G = table_common.GEOMETRY
+SLOT = table_common.SLOT
 
 
 def px_to_net(xy):
@@ -66,12 +68,9 @@ def ice_from_ref_px(q):
 
 def pivot_to_u(pid, crop_xy, crop_origin):
     """Pivot pixel in the crop -> (u on the slot, distance from the slot in mm)."""
-    q = ice_from_ref_px((crop_xy[0] + crop_origin[0], crop_xy[1] + crop_origin[1])); P = SLOT[pid]
-    seg = np.diff(P, axis=0); L = np.linalg.norm(seg, axis=1); acc = np.r_[0, np.cumsum(L)]; best = (1e9, 0.0)
-    for k in range(len(seg)):
-        f = np.clip(np.dot(q - P[k], seg[k]) / (L[k] ** 2), 0, 1); d = np.linalg.norm(P[k] + f * seg[k] - q)
-        if d < best[0]: best = (d, (acc[k] + f * L[k]) / acc[-1])
-    return best[1], best[0]
+    q = ice_from_ref_px((crop_xy[0] + crop_origin[0], crop_xy[1] + crop_origin[1]))
+    d, u = table_common.nearest_on_slot(SLOT[pid], q)
+    return u, d
 
 
 def to_tensor(bgr, pid):

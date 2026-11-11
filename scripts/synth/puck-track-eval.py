@@ -19,12 +19,14 @@ import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+sys.path.insert(0, str(REPO / "scripts"))
 D = REPO / "data/games/nm26-semifinal"
 TL = json.loads((D / "timeline.json").read_text())["games"]
 LABS = [x for x in json.loads((D / "goal-labels.json").read_text())["labels"] if x.get("goal_video_s")]
-CAM = json.loads((D / "camera-ref.json").read_text())
+CAM = table_common.REF_CAMERA
 CFG = json.loads((D / "config.json").read_text())
-K, R, T = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+K, R, T = table_common.ref_camera()
 X0, Y0 = CFG["roi_px"][:2]
 GAMES = [f"g{k}" for k in range(1, 8)]
 TAP = REPO / "validation/tap-review"

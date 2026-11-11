@@ -12,22 +12,21 @@ import cv2, numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+sys.path.insert(0, str(REPO / "scripts"))
 from nm26_common import frames, load, OUT  # noqa: E402
 
 game = sys.argv[1]; n = int(sys.argv[2]) if len(sys.argv) > 2 else 6
 D = json.loads((REPO / f"data/games/nm26-semifinal/{game}/figure-tracks.json").read_text()); C = D["columns"]
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-HOME = {"W": 0.0, "E": 180.0}; ROI = (160, 360, 1900, 1000)
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera()
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+HOME = table_common.HOME; ROI = (160, 360, 1900, 1000)
 FIG = [c[:-2] for c in C if c.endswith("_u")]
 
 
-def arc_point(P, u):
-    seg = np.linalg.norm(np.diff(P, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return P[k] + f * (P[k + 1] - P[k])
+arc_point = table_common.arc_point
 
 
 def proj(p):

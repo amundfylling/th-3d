@@ -18,12 +18,14 @@ from pathlib import Path
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]; D = REPO / "data/games/nm26-semifinal"
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import tracker_v3_decode as dec  # noqa: E402
 
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT_LEN = {f["player_id"]: float(np.linalg.norm(np.diff(np.array(f["centreline"]["points_mm"]), axis=0), axis=1).sum()) for f in G["fixture_paths"]}
-GAMES = [f"g{k}" for k in range(1, 8)]; TEST = {"g3", "g5", "g7"}; HOME = {"W": 0.0, "E": 180.0}
+G = table_common.GEOMETRY
+SLOT_LEN = table_common.SLOT_LEN
+GAMES = [f"g{k}" for k in range(1, 8)]; TEST = {"g3", "g5", "g7"}; HOME = table_common.HOME
 SK = json.loads((D / "skater-labels.json").read_text())["labels"]
 GL = json.loads((D / "goalie-facing-labels.json").read_text())["labels"]
 GC = {c["id"]: c for c in json.loads((D / "goalie-facing-crops.json").read_text())["crops"]}

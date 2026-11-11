@@ -33,14 +33,16 @@ import numpy as np
 from mathutils import Matrix
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 OUT = Path(sys.argv[1]); OUT.mkdir(parents=True, exist_ok=True)
 SEED0, COUNT = int(sys.argv[2]), int(sys.argv[3])
 SHOTS = "--shots" in sys.argv
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-G = json.loads((REPO / "data/geometry.json").read_text())
+CAM = table_common.REF_CAMERA
+G = table_common.GEOMETRY
 BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"], float)
 R_PUCK = G["puck"]["diameter"]["value"] / 2
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+K, R, t = table_common.ref_camera()
 W_IMG, H_IMG = CAM["image_size"]
 
 bpy.ops.wm.open_mainfile(filepath=str(REPO / "assets/scene/full_static.blend"))

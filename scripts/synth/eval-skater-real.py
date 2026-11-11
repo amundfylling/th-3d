@@ -16,6 +16,8 @@ import numpy as np
 import torch
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 A = sys.argv[1:]; MODEL = A[0]; NAME = Path(MODEL).stem
 TEST = A[A.index("--test-games") + 1].split(",") if "--test-games" in A else ["g3", "g5", "g7"]
 spec = importlib.util.spec_from_file_location("ts", REPO / "scripts/synth/train-skater-pose.py"); ts = importlib.util.module_from_spec(spec)
@@ -24,11 +26,11 @@ sd = torch.load(REPO / MODEL); V1 = sd["fc.weight"].shape[0] == 3  # v1 predicte
 net = ts.model()
 if V1: net.fc = torch.nn.Linear(512, 3)
 net.load_state_dict(sd); net.eval()
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-HOME = {"W": 0.0, "E": 180.0}
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera()
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+HOME = table_common.HOME
 labels = {r["id"]: r for r in json.loads((REPO / "data/games/nm26-semifinal/skater-labels.json").read_text())["labels"]}
 crops = {c["id"]: c for c in json.loads((REPO / "data/games/nm26-semifinal/skater-facing-crops.json").read_text())["crops"]}
 
@@ -36,10 +38,7 @@ crops = {c["id"]: c for c in json.loads((REPO / "data/games/nm26-semifinal/skate
 def slot_len(pid): return float(np.linalg.norm(np.diff(SLOT[pid], axis=0), axis=1).sum())
 
 
-def arc_point(P, u):
-    seg = np.linalg.norm(np.diff(P, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return P[k] + f * (P[k + 1] - P[k])
+arc_point = table_common.arc_point
 
 
 def proj(p, origin):

@@ -53,12 +53,14 @@ import numpy as np
 
 REPO = Path(__file__).resolve().parents[1]; D = REPO / "data/games/nm26-semifinal"
 sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+sys.path.insert(0, str(REPO / "scripts"))
 import nm26_tracks  # noqa: E402
 PUCK = sys.argv[sys.argv.index("--puck") + 1] if "--puck" in sys.argv else nm26_tracks.PUCK_TRACK
 FIGS = nm26_tracks.FIGURE_TRACKS
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-ACC = {p: np.r_[0, np.cumsum(np.linalg.norm(np.diff(P, axis=0), axis=1))] for p, P in SLOT.items()}
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+ACC = table_common.ACC
 ROLES = ["LW", "RW", "C", "LD", "RD"]; BLADE = np.array([12.0, 33.0]); FPS = 30.0
 TL = json.loads((D / "timeline.json").read_text())["games"]
 LAB = {r["id"]: r for r in json.loads((D / "goal-labels.json").read_text())["labels"]}
@@ -72,8 +74,7 @@ def mirror(end, xy):
 
 
 def pivot_world(pid, u):
-    P, acc = SLOT[pid], ACC[pid]; s = float(u) * acc[-1]
-    return np.array([np.interp(s, acc, P[:, 0]), np.interp(s, acc, P[:, 1])])
+    return table_common.slot_point(pid, float(u))
 
 
 def own_end_u(pid):

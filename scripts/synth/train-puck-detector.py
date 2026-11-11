@@ -30,6 +30,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 A = sys.argv[1:]
 def arg(n, d): return A[A.index(n) + 1] if n in A else d
 NAME = arg("--name", "puck-det-v1"); EPOCHS = int(arg("--epochs", 12)); STEPS = int(arg("--steps", 1200))
@@ -37,8 +39,8 @@ VAL_GAMES = arg("--val-games", "g3,g7").split(","); BS = int(arg("--batch", 16))
 torch.set_num_threads(int(arg("--threads", 4)))
 CFG = json.loads((REPO / "data/games/nm26-semifinal/config.json").read_text())
 X0, Y0 = CFG["roi_px"][:2]                       # stab px = reference video px - (X0, Y0)
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-Kc, Rc, tc = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+CAM = table_common.REF_CAMERA
+Kc, Rc, tc = table_common.ref_camera()
 R_PUCK = 12.7
 RD = REPO / "out/synth/puck/real"; RR = REPO / "out/synth/puck/renders"
 CW, CH = 384, 256                                # crop, stab px (full resolution)

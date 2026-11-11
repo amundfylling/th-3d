@@ -26,16 +26,18 @@ import numpy as np
 from mathutils import Matrix
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 OUT = Path(sys.argv[1]); OUT.mkdir(parents=True, exist_ok=True)
 SEED0, COUNT = int(sys.argv[2]), int(sys.argv[3]); KIT = sys.argv[4] if len(sys.argv) > 4 else "ref"
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-HOME = {"W": 0.0, "E": 180.0}
-ORDER = ["W-LW", "E-LW", "W-RW", "E-RW", "W-C", "E-C", "W-LD", "E-LD", "W-RD", "E-RD"]
+CAM = table_common.REF_CAMERA
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+HOME = table_common.HOME
+ORDER = table_common.SKATERS
 ROI = (160, 360, 1900, 1000)  # reference video px, as scripts/synth/skater-frames.py
 CS, AY = 200, 136             # crop size, pivot row in the crop
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+K, R, t = table_common.ref_camera()
 
 bpy.ops.wm.open_mainfile(filepath=str(REPO / "assets/scene/full_static.blend"))
 sc = bpy.context.scene
@@ -51,10 +53,7 @@ def set_camera():
     sc.render.resolution_x, sc.render.resolution_y, sc.render.resolution_percentage = W_IMG, H_IMG, 100
 
 
-def arc_point(P, u):
-    seg = np.linalg.norm(np.diff(P, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return P[k] + f * (P[k + 1] - P[k]), s
+arc_point = table_common.arc_point_s
 
 
 def place(ob, pid, u, theta):
