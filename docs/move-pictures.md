@@ -152,4 +152,17 @@ theta 0, so most figures were turned differently from the puck.no picture. Now, 
 Kit colours: puck.no's attackers are yellow; ours are white/blue, because in our model the white/blue figures belong to
 the end that attacks the far goal (kit colour is an end, CLAUDE.md).
 
-The 70 moves without a puck.no picture are unchanged (their bystanders still stand at theta 0).
+## The 70 moves without a puck.no picture, second round (2026-11-11)
+
+The user asked for pictures of the moves without a drawing and a page to tune them before they are posted. The 70
+designed pictures are redrawn: every figure that is not part of the move now stands and is turned as puck.no draws a
+figure no move uses (the median sprite detection over the 51 pictures, `default_poses()` in build.py), and the goalies
+stand as on puck.no. Before, every bystander faced straight ahead. The figures that play the puck are still snapped
+to the drawn points as described above.
+
+Review page (PROPOSED, waiting for the user): https://claude.ai/artifact/W8i2bf6ZSrKrE8bHZtAMSb, built by
+`python3 scripts/move-pictures/review-page.py --designed --earlier <comments.json>` into
+`out/move-pictures/review-designed/` (only the 70 designed moves; filters Centre / Right wing / Not reviewed / Needs
+change / Looks good). Verdicts are kept in the page's database (collection `reviews`, document id = move id from
+`data/encyclopedia/index.json`). The user's six comments from the first review page (Edwall- and Lindahl-innspill and
+the four fakie centre tricks, 14 Oct) are shown on those cards.

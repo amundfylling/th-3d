@@ -217,10 +217,12 @@ def build(spec):
     poses, points, arrows, notes = {}, {}, [], []
     if "puck_no_picture" in spec:
         return build_from_picture(spec)
-    # everyone not in the move stands where the puck.no pictures put them
-    for pid, uv in FORM["figures"].items():
-        arc, d = Slot(pid).nearest(pic_to_world(*uv))
-        poses[pid] = {"arc_mm": round(arc, 1), "theta_deg": 0.0, "source": f"formation (slot {d:.1f} mm from the picture)"}
+    # everyone not in the move stands and is turned as the puck.no pictures draw a figure no move uses (2026-11-10:
+    # the median of the sprite detections over all 51 pictures; before, every bystander faced straight ahead)
+    for pid, o in default_poses().items():
+        poses[pid] = {"arc_mm": o["arc_mm"], "theta_deg": o["theta_deg"], "source": "puck.no default pose (median over the 51 pictures)"}
+    for pid, o in GOALIES.items():
+        poses[pid] = {**o, "source": "puck.no goalie pose (the same in all 51 pictures)"}
     for pid, o in spec.get("figures", {}).items():  # a move may move a bystander (e.g. out of a passing lane)
         arc, d = Slot(pid).nearest(pic_to_world(*o["picture_px"]))
         poses[pid] = {"arc_mm": round(arc, 1), "theta_deg": o.get("theta_deg", 0.0), "source": o.get("why", "move spec")}
