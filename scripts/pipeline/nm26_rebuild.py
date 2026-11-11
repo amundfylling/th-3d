@@ -20,8 +20,8 @@ Stages, in order (default: every stage marked "default" below):
 Every step names its inputs and outputs. A step whose inputs or Python modules are missing is SKIPPED with the reason;
 nothing is faked. --check compares the outputs that git tracks with the committed versions afterwards (git status and,
 for JSON, the share of rows that differ) and writes out/pipeline/rebuild-report.json. --list prints the steps and
-whether each can run here. Step commands run with $NM26_PY, else /root/venvs/blender/bin/python (docs/blender.md),
-else this interpreter. Status of every rebuilt output: as the script that writes it says (PROPOSED for all NM26 tracks).
+whether each can run here. Step commands run with $PYTHON, else $NM26_PY, else /root/venvs/blender/bin/python
+(docs/blender.md) if it exists, else this interpreter: the order of scripts/py.ts. Status of every rebuilt output: as the script that writes it says (PROPOSED for all NM26 tracks).
 """
 import hashlib
 import json
@@ -43,7 +43,15 @@ BLENDER_PY = "/root/venvs/blender/bin/python"
 sys.path.insert(0, str(REPO / "scripts"))
 from nm26_tracks import FIGURE_TRACKS as FIGS, PUCK_TRACK as PUCK  # noqa: E402  (the tracks the analysis reads)
 MODELS = {m["id"]: m["local_path"] for m in json.loads((REPO / "data/models/manifest.json").read_text())["models"]}
-PY = os.environ.get("NM26_PY") or (BLENDER_PY if Path(BLENDER_PY).exists() else sys.executable)
+
+
+def step_python(env=os.environ, exists=lambda p: Path(p).exists()):
+    """The interpreter of the step commands: the order of scripts/py.ts (PYTHON, NM26_PY, the Blender venv if it exists),
+    then this interpreter where py.ts falls back to python3."""
+    return env.get("PYTHON") or env.get("NM26_PY") or (BLENDER_PY if exists(BLENDER_PY) else sys.executable)
+
+
+PY = step_python()
 
 
 @dataclass

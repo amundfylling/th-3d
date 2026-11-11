@@ -3,15 +3,18 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { analysisFrame, resolveAnalysis, type AnalysisSpec } from "../src/model/analysis.ts";
 import { shotTimeEvaluator } from "../src/model/shot-pose.ts";
 import { framesOf, reviewStills, segmentRange, selectRanges } from "../scripts/video/plan.ts";
 import { namespaceId, namespaceInputs, sceneState, stateKey } from "../scripts/video/scene-cache.ts";
+import { testPython } from "../scripts/py.ts";
 
 const json = (p: string) => JSON.parse(readFileSync(p, "utf8"));
+const SCENE = "assets/scene/full_static_appearance.glb";
+const PUBLIC_SCENE = "public/full_static_appearance.glb";
 const geometry = json("data/geometry.json");
 const TRACE = json("data/traces/hjerpefinte.trace.json");
 const SPEC = json("data/presentations/hjerpefinte.analysis.json") as AnalysisSpec;
@@ -90,6 +93,9 @@ test("scene cache: overlay-only changes keep every key; camera and trace changes
 });
 
 test("scene cache: the namespace changes with the renderer, model, backend, size and background", () => {
+  // public/*.glb is not committed (.gitignore): it is the copy `npm run remotion:assets` makes of the committed scene.
+  // On a fresh checkout that copy does not exist yet, so make it here the same way instead of failing with ENOENT.
+  if (!existsSync(PUBLIC_SCENE)) copyFileSync(SCENE, PUBLIC_SCENE);
   const b = { browserVersion: "Chromium 141", gl: "swangle", webglRenderer: "SwiftShader", width: 1920, height: 1080, scale: 1, background: "classic:x" };
   const ns = namespaceInputs(b);
   const id = namespaceId(ns);
@@ -111,7 +117,7 @@ test("presentation-only route: the gate passes today and refuses stale motion, e
     "shots/spjass/checks.json", "remotion/asset-manifest.json", "data/figure-molds.json", "assets/figures/skater_FIN.glb", "assets/figures/goalie_SWE.glb"];
   for (const f of files) { mkdirSync(path.dirname(path.join(tmp, f)), { recursive: true }); cpSync(f, path.join(tmp, f), { recursive: true }); }
   const gate = (): string[] => {
-    const r = spawnSync("python3", ["-c", `import sys, json; from pathlib import Path; sys.path.insert(0, "scripts"); from shotlib import identity; identity.REPO = Path(${JSON.stringify(tmp)}); print(json.dumps(identity.presentation_gate("hjerpefinte")))`], { encoding: "utf8" });
+    const r = spawnSync(testPython(), ["-c", `import sys, json; from pathlib import Path; sys.path.insert(0, "scripts"); from shotlib import identity; identity.REPO = Path(${JSON.stringify(tmp)}); print(json.dumps(identity.presentation_gate("hjerpefinte")))`], { encoding: "utf8" });
     assert.equal(r.status, 0, r.stderr);
     return JSON.parse(r.stdout);
   };
