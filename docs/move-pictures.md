@@ -166,3 +166,17 @@ Review page (PROPOSED, waiting for the user): https://claude.ai/artifact/W8i2bf6
 change / Looks good). Verdicts are kept in the page's database (collection `reviews`, document id = move id from
 `data/encyclopedia/index.json`). The user's six comments from the first review page (Edwall- and Lindahl-innspill and
 the four fakie centre tricks, 14 Oct) are shown on those cards.
+
+### Review comments, 2026-11-11
+
+The user commented on three cards (Fakie Näcka marked good). Redrawn, PROPOSED, cards marked redrawn on the page:
+
+- **Fakie Lillstøvel** ("starts backwards"): the start bubble shows the centre turned backwards (theta 180) with the
+  puck behind it in the heel groove (`puck_local_mm` [-24, 0]); point 1 sits on that puck (`"snap": false`).
+- **Fakie Omvendspjass** ("swap start and position"): swapped literally. The start is the old trick pose (arc 238.3,
+  theta -131.7, puck on the blade); the trick is the old start (arc 204.9, facing forward, puck in the toe groove),
+  set with the set-grip fields on contact 2.
+- **Fakie Spjass** ("start right, position opposite"): the trick is played turned backwards as in Fakie Näcka (arc
+  233.8, theta -177.9, puck on the back of the blade), shot to the left corner.
+
+`solve_contact` also takes a contact's `"face": "front"|"back"` to fix the blade side (not used by the final specs).

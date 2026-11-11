@@ -5,16 +5,17 @@
   "view": "half",
   "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
   "text": "Center starts with the puck in the heel groove, quickly shifts to having the puck in the toe groove, and performs a Lillstøvel",
-  "note": "User review 2026-10-14: the puck starts centred on the centre's slot line (same start as the normal move); the ghost is the centre at that start, behind the puck.",
+  "note": "User review 2026-10-14: the puck starts centred on the centre's slot line (same start as the normal move); the ghost is the centre at that start, behind the puck. User review 2026-11-11: the centre starts facing backwards (puck in the heel groove, behind it), not forward.",
   "contacts": [
     {
       "n": 1,
       "pid": "W-C",
       "picture_px": [
-        305,
+        308,
         342
       ],
-      "pose": false
+      "pose": false,
+      "snap": false
     },
     {
       "n": 2,
@@ -46,9 +47,9 @@
       307,
       367
     ],
-    "theta_deg": 0.0,
+    "theta_deg": 180.0,
     "puck_local_mm": [
-      24.0,
+      -24.0,
       0.0
     ]
   }

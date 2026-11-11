@@ -586,7 +586,7 @@ Iteration 20 closed without repair cycles:
 
 - **Skater from the STL (2026-10-12, PROPOSED):** `validation/players/stl/figures-vs-photos.png`, `figures-views.png`,
   `paint-check.png`, `skater-fit.png`, `overhead-fit.png`; report `validation/players/stl/figures-report.json`.
-- **Move pictures without a puck.no picture, 70 redrawn with puck.no bystander poses (2026-11-11, PROPOSED):** review page https://claude.ai/artifact/W8i2bf6ZSrKrE8bHZtAMSb (verdicts in its `reviews` collection); docs/move-pictures.md.
+- **Move pictures without a puck.no picture, 70 redrawn with puck.no bystander poses (2026-11-11, PROPOSED):** review page https://claude.ai/artifact/W8i2bf6ZSrKrE8bHZtAMSb (verdicts in its `reviews` collection); docs/move-pictures.md. Review comments of 2026-11-11 (Fakie Lillstøvel, Omvendspjass, Spjass) redrawn, see docs/move-pictures.md.
 - **Move pictures, the 51 puck.no pictures redrawn with every figure as puck.no draws it (2026-11-10, PROPOSED):** `validation/move-pictures/<id>.png`, side by side with puck.no in `validation/move-pictures/comparison/page01-13.jpg` (all 13 pages AI-reviewed); figure poses read by `scripts/move-pictures/detect.py` into `data/move-pictures/detected/`; method in docs/move-pictures.md ("Figures as puck.no draws them"). Waiting for the user's review. The 70 designed pictures are unchanged.
 - **Move pictures, all 121 (2026-10-13, PROPOSED):** review page https://claude.ai/artifact/P1sVBnjbTc6QZ7ktskAbDE; `validation/move-pictures/comparison/page1-8.jpg` (the 51 redrawn); docs/move-pictures.md.
 - **NM26 new tracks (2026-10-10, PROPOSED):** `docs/nm26-new-tracks.md`, tap page https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp

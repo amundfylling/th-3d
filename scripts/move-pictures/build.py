@@ -158,7 +158,7 @@ def picture_poses(spec):
     return poses, hidden
 
 
-def solve_contact(pid, target, toward):
+def solve_contact(pid, target, toward, face_only=None):
     """Pose of pid with the puck against the blade middle (front face pushing toward `toward`, or the back face,
     backhand), as close to target as the slot allows. Turning away from the push direction costs 0.08 mm per degree,
     the backhand 4 mm, so the figure faces the pass unless that leaves the blade far from the picture's point."""
@@ -167,6 +167,8 @@ def solve_contact(pid, target, toward):
     want = math.degrees(math.atan2(*(toward - target)[::-1]))
     best = None
     for face, extra in ((1, 0.0), (-1, BACKHAND_COST)):
+        if face_only and face != (1 if face_only == "front" else -1):
+            continue
         loc = BLADE_MID + np.array([face * (R + 1.6), 0.0])
         for dh in range(-180, 181, 2):
             h = want + dh + (0 if face > 0 else 180)
@@ -290,7 +292,7 @@ def build(spec):
                 toward = raw[nxt[k]]
             else:  # the last receiver of an innspill: faces the goal
                 toward = pic_to_world(297, 212)
-            sol = solve_contact(c["pid"], raw[k], toward)
+            sol = solve_contact(c["pid"], raw[k], toward, c.get("face"))  # "face": the user fixed which side plays it
             points[k] = np.array(sol["puck_mm"])
             notes.append({"contact": k, **sol, "picture_mm": [round(float(v), 1) for v in raw[k]], "drawn": c["pose"]})
             if c["pose"]:
