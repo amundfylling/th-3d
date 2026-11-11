@@ -27,7 +27,7 @@ Every `npm run` script that starts Python goes through `node scripts/py.ts <scri
 4. `python3`
 
 `node scripts/py.ts --which` prints the choice. `scripts/pipeline/nm26_rebuild.py` follows the same order for its steps
-(its last fallback is the Python that runs the runner). The tests use `$PYTHON`, else `python3`, and never pick the venv
+(its last fallback is the Python that runs the runner; the `rebuild:nm26*` scripts start the runner itself through the launcher, since it imports NumPy). The tests use `$PYTHON`, else `python3`, and never pick the venv
 by themselves (`testPython` in the same file), so `npm test` does not depend on whether the venv is installed.
 
 The launcher changes only the interpreter. A script that needs `bpy` or `torch` still needs a Python that has them and

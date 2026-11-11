@@ -101,3 +101,10 @@ test("py launcher: the rebuild runner picks the same interpreter", () => {
     assert.equal(got, source === "python3" ? self : command, JSON.stringify([a, b, e]));
   });
 });
+
+test("py launcher: the rebuild runner itself starts through the launcher (it imports numpy before it picks the step interpreter)", () => {
+  const scripts = JSON.parse(readFileSync("package.json", "utf8")).scripts as Record<string, string>;
+  const runner = Object.entries(scripts).filter(([, cmd]) => cmd.includes("nm26_rebuild.py"));
+  assert.ok(runner.length >= 11, `${runner.length} rebuild scripts`);
+  for (const [name, cmd] of runner) assert.match(cmd, /^node scripts\/py\.ts scripts\/pipeline\/nm26_rebuild\.py/, name);
+});
