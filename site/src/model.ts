@@ -185,6 +185,8 @@ export function normalizeCombo(input: unknown, base: Combo): { combo: Combo; not
     figures[pid] = { arc_mm: r1(clamped), theta_deg: r1(wrapDeg(isNum(f.theta_deg) ? f.theta_deg : b.theta_deg)), ...(f.hidden === true ? { hidden: true } : {}) };
   }
   const pin = (o.puck ?? {}) as Record<string, unknown>;
+  if ((pin.x_mm !== undefined || pin.y_mm !== undefined) && !(isNum(pin.x_mm) && isNum(pin.y_mm)))
+    throw new Error("puck: x_mm and y_mm must both be numbers.");
   let puckPt: Vec2 = isNum(pin.x_mm) && isNum(pin.y_mm) ? [pin.x_mm, pin.y_mm] : [base.puck.x_mm, base.puck.y_mm];
   const cl = clampInsideBoards(puckPt, RINK.puck_radius_mm);
   if (Math.hypot(cl[0] - puckPt[0], cl[1] - puckPt[1]) > 0.5) notes.push("The puck was outside the boards; moved inside.");

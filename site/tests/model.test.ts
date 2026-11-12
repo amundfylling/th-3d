@@ -71,6 +71,8 @@ test("hand-written JSON is repaired where possible and refused where not", () =>
   assert.throws(() => normalizeCombo({ schema: "other/9" }, base), /Unknown schema/);
   assert.throws(() => normalizeCombo({ figures: { "W-C": { arc_mm: "far" } } }, base), /arc_mm must be a number/);
   assert.throws(() => normalizeCombo([], base), /JSON object/);
+  assert.throws(() => normalizeCombo({ puck: { x_mm: 100 } }, base), /puck: x_mm and y_mm/);
+  assert.throws(() => normalizeCombo({ puck: { x_mm: "100", y_mm: 0 } }, base), /puck: x_mm and y_mm/);
 });
 
 test("the puck stays inside the boards", () => {

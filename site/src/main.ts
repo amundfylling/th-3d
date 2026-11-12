@@ -254,7 +254,14 @@ function applyDrag(d: Drag, x: number, y: number, shift: boolean): void {
     let p = clampInsideBoards([q[0] + d.offset[0], q[1] + d.offset[1]], RINK.puck_radius_mm);
     if (snapPuck && !shift) {
       let bd = 7;
-      for (const s of bladeSpots()) { const dist = Math.hypot(s[0] - p[0], s[1] - p[1]); if (dist < bd) { bd = dist; p = s; } }
+      for (const s of bladeSpots()) {
+        const dist = Math.hypot(s[0] - p[0], s[1] - p[1]);
+        if (dist >= bd) continue;
+        // a blade can reach nearer the boards than the puck fits: never snap the puck into a rail
+        const c = clampInsideBoards(s, RINK.puck_radius_mm);
+        if (Math.hypot(c[0] - s[0], c[1] - s[1]) > 0.05) continue;
+        bd = dist; p = s;
+      }
     }
     combo.puck.x_mm = r1(p[0]);
     combo.puck.y_mm = r1(p[1]);
@@ -816,6 +823,8 @@ $("ai-copy").onclick = async () => { await copyText(promptForClipboard(combo, $<
 $("ai-apply").onclick = () => applyAnswer($<HTMLTextAreaElement>("ai-answer").value);
 $("ai-forget").onclick = () => { store.set("key", null); $<HTMLInputElement>("ai-key").value = ""; showNotes($("ai-status"), ["The key was removed from this browser."]); };
 $("ai-stop").onclick = () => aiAbort?.abort();
+// closing the dialog stops a running request, so a late answer cannot replace newer edits
+$<HTMLDialogElement>("dlg-ai").addEventListener("close", () => aiAbort?.abort());
 $("ai-ask").onclick = async () => {
   const key = $<HTMLInputElement>("ai-key").value.trim(), request = $<HTMLTextAreaElement>("ai-request").value.trim(), status = $("ai-status");
   const model = $<HTMLSelectElement>("ai-model").value;
@@ -829,6 +838,7 @@ $("ai-ask").onclick = async () => {
   showNotes(status, ["Claude is thinking…"]);
   try {
     const text = await askClaude({ apiKey: key, model, combo, request, signal: aiAbort.signal, onText: (t) => showNotes(status, [`Claude is writing… ${t.length} characters`]) });
+    if (aiAbort.signal.aborted) throw new Error("Stopped.");
     applyAnswer(text);
   } catch (e) {
     showNotes(status, [aiAbort.signal.aborted ? "Stopped." : (e as Error).message], !aiAbort.signal.aborted);
