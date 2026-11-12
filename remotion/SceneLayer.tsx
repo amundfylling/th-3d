@@ -7,7 +7,7 @@
 import { useThree } from "@react-three/fiber";
 import { ThreeCanvas } from "@remotion/three";
 import { useLayoutEffect, useState } from "react";
-import { AbsoluteFill, Img } from "remotion";
+import { AbsoluteFill, Img, useRemotionEnvironment } from "remotion";
 import * as THREE from "three";
 import type { CameraView } from "../src/model/camera-track.ts";
 import type { ShotFrameState } from "../src/model/shot-pose.ts";
@@ -43,9 +43,14 @@ const CameraRig: React.FC<{ view: CameraView; frame: number; tag: string }> = ({
 export const SceneLayer: React.FC<{ state: ShotFrameState; view: CameraView; frame: number; tag: string; background: string; width: number; height: number }> = ({ state, view, frame, tag, background, width, height }) => {
   // one canvas camera for the life of the tab (a new camera object per frame makes the canvas reconfigure and leak)
   const [canvasCamera] = useState(() => Object.assign(new THREE.PerspectiveCamera(), { manual: true }));
+  // A render at --scale s runs the page at device pixel ratio s. R3F's default clamps the ratio to at least 1, which
+  // drew a half-size draft at full size and let the screenshot shrink it; with the page's own ratio the canvas has
+  // exactly the output's pixels (a quarter of the work at scale 0.5). At scale 1 nothing changes.
+  const { isRendering } = useRemotionEnvironment();
+  const dpr = isRendering ? { dpr: window.devicePixelRatio } : {};
   return (
     <AbsoluteFill style={{ background }}>
-      <ThreeCanvas width={width} height={height} camera={canvasCamera} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true, alpha: true }}>
+      <ThreeCanvas width={width} height={height} {...dpr} camera={canvasCamera} linear={false} flat={false} gl={{ antialias: true, preserveDrawingBuffer: true, alpha: true }}>
         <CameraRig view={view} frame={frame} tag={tag} />
         <ShotScene state={state} logTag={tag} />
       </ThreeCanvas>

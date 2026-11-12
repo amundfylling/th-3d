@@ -10,6 +10,7 @@ import type { ShotFrameState } from "../src/model/shot-pose.ts";
 import geometry from "../data/geometry.json" with { type: "json" };
 import manifest from "./asset-manifest.json" with { type: "json" };
 import { toThree } from "./cameras.ts";
+import { useSceneDraw } from "./scene-render.ts";
 
 /** Every node a shot may move: the twelve figures (geometry fixture paths) and the puck. */
 const DYNAMIC_NODES = [...geometry.fixture_paths.map((p) => `Figure.${p.player_id}`), "Puck"];
@@ -129,6 +130,11 @@ export const ShotScene: React.FC<{ state: ShotFrameState; logTag: string }> = ({
     console.log(`[${logTag}-state] ${JSON.stringify({ frame, t: r4(s.t), figures: readback, puck: [r4(s.puckMm[0]), r4(s.puckMm[1])], phase: s.puckPhase, readback_max_diff: Number(worst.toExponential(2)) })}`);
     if (worst > 1e-3) cancelRender(new Error(`frame ${frame}: scene readback differs from the pure state by ${worst}`));
   }, [state, logTag, nodes, scene, rest]);
+
+  // The frame is drawn here instead of by R3F's default `gl.render(scene, camera)`: the same pixels with the end screens'
+  // transmission source taken from the frame itself (remotion/scene-render.ts). Still one draw per `advance()`, of the state
+  // applied above; nothing is carried between frames. Input prop `plainRender: true` draws the plain single call.
+  useSceneDraw(scene, logTag, state.frame);
 
   return (
     <>

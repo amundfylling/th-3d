@@ -74,6 +74,10 @@ test("iteration 24: the composition reads the trace only through the pure evalua
     const src = readFileSync(file, "utf8").replace(/\/\/.*$/gm, "");
     for (const bad of ["useFrame(", "Date.now", "performance.now", "new THREE.Clock", "getDelta", "requestAnimationFrame", "setInterval", "blur(", "DepthOfField", "Bokeh", "motionBlur"]) assert.ok(!src.includes(bad), `${file}: ${bad}`);
   }
+  // the draw call of the scene lives in a useFrame callback (remotion/scene-render.ts): it must not read any time
+  const draw = readFileSync("remotion/scene-render.ts", "utf8").replace(/\/\/.*$/gm, "");
+  for (const bad of ["Date.now", "performance.now", "Clock", "clock", "delta", "elapsed", "requestAnimationFrame", "setInterval"]) assert.ok(!draw.includes(bad), `remotion/scene-render.ts: ${bad}`);
+  assert.equal(draw.split("useFrame(").length - 1, 1, "one useFrame, the draw call");
   const src = readFileSync("remotion/ShotPresentation.tsx", "utf8");
   assert.match(src, /stateAt\(sourceAtFrame\(timeline, frame\)\.t, frame\)/);
   assert.match(src, /shotTimeEvaluator\(SHOT_TRACE/);
