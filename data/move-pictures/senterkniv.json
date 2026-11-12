@@ -1,0 +1,51 @@
+{
+  "id": "senterkniv",
+  "name": "Senterkniv",
+  "level": 7,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-senterkniv-23db4593.png",
+  "text": "Pass from center to the left defenseman, who shoots one-timed into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        280,
+        352
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LD",
+      "picture_px": [
+        203,
+        665
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        258,
+        212
+      ]
+    }
+  ],
+  "figures": {
+    "E-C": {
+      "picture_px": [
+        267,
+        584
+      ],
+      "why": "moved down its slot, out of the pass lane (on puck.no the pass runs past the opposing centre)"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+ "id": "holmin",
+ "picture": "references/combinations/puck-no-pictures/trick-holmin-cec1a26c.png",
+ "note": "sprite detections: peg (u, v) in px of the 600 px wide picture, phi deg counter-clockwise on screen (0 = the Agdur right wing sprite)",
+ "figures": [
+  {
+   "team": "yellow",
+   "u": 496,
+   "v": 308,
+   "phi": 0.0,
+   "score": 1.191
+  },
+  {
+   "team": "yellow",
+   "u": 96,
+   "v": 354,
+   "phi": 65.0,
+   "score": 0.771
+  },
+  {
+   "team": "yellow",
+   "u": 301,
+   "v": 358,
+   "phi": 62.0,
+   "score": 0.728
+  },
+  {
+   "team": "white",
+   "u": 195,
+   "v": 330,
+   "phi": 70.5,
+   "score": 0.712
+  },
+  {
+   "team": "white",
+   "u": 397,
+   "v": 384,
+   "phi": 102.5,
+   "score": 0.676
+  }
+ ]
+}

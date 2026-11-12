@@ -17,10 +17,12 @@ from pathlib import Path
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"]); BOX = CAM["goal_crop_boxes_video_px"]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera(); BOX = CAM["goal_crop_boxes_video_px"]
 Hinv = np.linalg.inv(K @ np.c_[R[:, 0], R[:, 1], t])
-HOME = {"W": 0.0, "E": 180.0}
+HOME = table_common.HOME
 crops = {c["id"]: c for c in json.loads((REPO / "data/games/nm26-semifinal/goalie-facing-crops.json").read_text())["crops"]}
 cand = {c["id"]: c for c in json.loads((REPO / "out/synth/real_val_candidates.json").read_text())}
 

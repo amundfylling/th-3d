@@ -15,10 +15,11 @@ import numpy as np
 from scipy.optimize import least_squares
 
 from game_common import GAME, REPO, geometry, load, proj, save
+import table_common
 
 G = geometry()
 INP = load(GAME / "calibration-inputs.json")
-SL = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
+SL = table_common.SLOT
 B = np.array(G["board"]["inner_boundary"]["world"]["points_mm"], float)
 M = np.array(G["image_to_world"][0]["matrix"]).reshape(3, 3)
 LM = {l["id"]: proj(M, [l["px"]])[0] for l in G["landmarks"] if l["source_image_id"] == "stiga_se_fi_overhead"}

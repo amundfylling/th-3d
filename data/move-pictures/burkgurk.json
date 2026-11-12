@@ -1,0 +1,58 @@
+{
+  "id": "burkgurk",
+  "name": "Burkgurk",
+  "level": 8,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing along the boards behind their own goal to the left wing, who flicks directly into the left corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        450
+      ],
+      "pose": true,
+      "toward_px": [
+        520,
+        700
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        112,
+        445
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        "boards",
+        [
+          300,
+          952
+        ],
+        "boards",
+        [
+          66,
+          460
+        ]
+      ]
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        258,
+        212
+      ]
+    }
+  ]
+}

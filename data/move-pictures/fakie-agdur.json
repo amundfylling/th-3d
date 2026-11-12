@@ -1,0 +1,55 @@
+{
+  "id": "fakie-agdur",
+  "name": "Fakie Agdur",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-agdur-5400f2d4.png",
+  "text": "Pass from center to right wing, back to the center and into the left corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        315,
+        337
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        482,
+        289
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        272,
+        316
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        258,
+        212
+      ]
+    }
+  ]
+}

@@ -6,9 +6,12 @@ parses the script, takes only the requested top-level definitions (functions, cl
 them in a namespace seeded with the caller's globals (numpy, a stub camera, a slot table ...).
 """
 import ast
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402  (importable as it is: pure NumPy, no side effects)
 
 
 def load_defs(script, names, env=None):
@@ -28,6 +31,6 @@ def load_defs(script, names, env=None):
     missing = want - found
     if missing:
         raise LookupError(f"{script}: no top-level definition of {sorted(missing)}")
-    ns = dict(env or {})
+    ns = {"table_common": table_common, **(env or {})}  # the scripts take slots, headings and the camera from it
     exec(compile(ast.Module(body=body, type_ignores=[]), str(REPO / script), "exec"), ns)
     return ns

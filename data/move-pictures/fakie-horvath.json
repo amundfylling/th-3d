@@ -1,0 +1,54 @@
+{
+  "id": "fakie-horvath",
+  "name": "Fakie Horvath",
+  "level": 7,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-horvath-0d649889.png",
+  "text": "Center shoots into the right boards behind the opponent's goal, gets the rebound, and shoots into the left corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        329,
+        346
+      ],
+      "pose": true
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        481,
+        97
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        275,
+        342
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        262,
+        209
+      ]
+    }
+  ]
+}

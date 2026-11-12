@@ -6,12 +6,26 @@
   decisions of the same day (docs/decisions.md D1-D5). The user delegated the board-trace review to the AI.
   AI review accepted the trace from recorded evidence. No personal user approval is claimed.
 - Batch run 06-20 complete. Last completed: **20 - Review the model and incorporate calibration** (2026-09-30). Next: **21** (blocked on user review feedback + a real shot recording).
+- **Render speed (user request, 2026-11-10, PROPOSED, branch `claude/project-thread-k1lpin`):** a 1080p frame took 4.2 s on
+  the CPU renderer, 4.0 s of it the WebGL draw; half of that was three.js drawing the whole scene a second time for the
+  two clear end screens. `remotion/scene-render.ts` now draws the scene once and feeds that pass from the canvas (2.5 s
+  per frame; pixels unchanged outside the screens, at most 17/255 different on a few pixels where a screen meets an
+  edge). Drafts at scale 0.5 now draw a quarter of the pixels; one tab for software WebGL, one per core for cached
+  composites. All six videos re-exported (`final --cache`): 5712 s in total against 23091 s recorded for the exports they
+  replace. `--plain-render` keeps the old draw as the reference. `npm test` 171/171. Not done (needs a decision): a
+  lower-detail figure copy for rendering, GPU rendering (unverified, no GPU here), reuse of the still background.
+  Details and numbers: docs/video-workflow.md section 8, `validation/video-workflow/render-speed.json`.
 - **Goalie bent toward the photos (user request, 2026-11-11, `docs/goalie-warp.md`, PROPOSED, not in use):** no goalie 3D
   model exists online; the parametric goalie is warped by a smooth displacement field fitted to the user's photo outlines
   (`data/figures/goalie-warp.json`, `assets/figures/goalie_warp_*`). Silhouette IoU 0.858 -> 0.915 (8 fitting views),
   0.815 -> 0.833 on 10 unused frames (6 better, 4 worse). Height 54 mm, socket and blade size unchanged. Current goalie
   assets, contacts and traces untouched; a switch needs the user's go and a recheck of every trace. Details inside the
   outline (mask face, chest, pad fronts) are still hand-built: a real 3D scan of the goalie would beat this.
+- **Pipeline audit, refactor 1 (user request, 2026-11-11, `docs/trace-verification.md`):** one contact check for saved
+  traces that needs no generator (`scripts/shotlib/verify.py`, `python3 scripts/verify-trace.py`): all 12 figures, boards,
+  posts and cages every 0.25 ms from the trace file alone. All nine saved traces pass; the only overlap is the Shovel's
+  user-approved skate brush (2.051 mm). `npm test` runs it (`tests/trace-verify.test.ts`, 20 Python tests). No trace,
+  checks file, engine hash or video changed. The slide rule is not covered (it needs a simulation's contact events).
 - **Player figures (user request, done before 21, 2026-09-30):** the skater and goalie proxies and the ten
   placeholders are replaced by two rigid STIGA molds (skater shared by all ten skaters, goalie by both goalies)
   in Sweden/Finland kits, fitted to the user's photos/videos (`references/players_images`) and the official
@@ -483,6 +497,15 @@
   provenance in `data/models/manifest.json`. Fetch: `npm run models:fetch` (`scripts/fetch-models.py`; also step
   `fetch-models` of the NM26 runner's `fetch` stage). It never overwrites a local model with a different sha256 unless
   `--force`. Sessions cannot create releases, so the user uploaded the files.
+- **Move pictures (user request, 2026-10-13, `docs/move-pictures.md`, PROPOSED):** all 51 puck.no move pictures
+  recreated on our rink before any more animations, in the tilted 20 deg overhead view the user chose after the Näcka
+  angle study (`validation/move-pictures/<id>.png`; side by side with puck.no in `validation/move-pictures/comparison/`).
+  Green arrows, numbered contacts, level scale, no other text. `npm run pictures:moves` rebuilds them. The 70 NTHF
+  moves without a puck.no picture were then drawn from their NTHF text (same pipeline, `"source": "designed..."`), so all
+  121 NTHF moves have a picture. Review page (user request): https://claude.ai/artifact/P1sVBnjbTc6QZ7ktskAbDE
+  (`npm run pictures:review`); the user's verdicts and comments are in its database, collection `reviews` (read them
+  with the artifact data tool before changing pictures). Open questions: three text-vs-picture conflicts (Veggdyr,
+  Fakie-Veggdyr, Fakie-invers-halv-Agduro); ours follow the pictures.
 - Geometry version: `0.5.0` (`data/geometry.json`). Board boundary, all 12 slots and both goal regions traced in pixels;
   goal setup = without inserts (user). No meshes or movement.
 - Animated shots: the iteration-23 playback (`shot23-shovel-17`) and the iteration-24 presentation (`shot24-shovel-17`) of the accepted trace.
@@ -587,6 +610,9 @@ Iteration 20 closed without repair cycles:
 
 - **Skater from the STL (2026-10-12, PROPOSED):** `validation/players/stl/figures-vs-photos.png`, `figures-views.png`,
   `paint-check.png`, `skater-fit.png`, `overhead-fit.png`; report `validation/players/stl/figures-report.json`.
+- **Move pictures without a puck.no picture, 70 redrawn with puck.no bystander poses (2026-11-11, PROPOSED):** review page https://claude.ai/artifact/W8i2bf6ZSrKrE8bHZtAMSb (verdicts in its `reviews` collection); docs/move-pictures.md. Review comments of 2026-11-11 (Fakie Lillstøvel, Omvendspjass, Spjass) redrawn, see docs/move-pictures.md.
+- **Move pictures, the 51 puck.no pictures redrawn with every figure as puck.no draws it (2026-11-10, PROPOSED):** `validation/move-pictures/<id>.png`, side by side with puck.no in `validation/move-pictures/comparison/page01-13.jpg` (all 13 pages AI-reviewed); figure poses read by `scripts/move-pictures/detect.py` into `data/move-pictures/detected/`; method in docs/move-pictures.md ("Figures as puck.no draws them"). Waiting for the user's review. The 70 designed pictures are unchanged.
+- **Move pictures, all 121 (2026-10-13, PROPOSED):** review page https://claude.ai/artifact/P1sVBnjbTc6QZ7ktskAbDE; `validation/move-pictures/comparison/page1-8.jpg` (the 51 redrawn); docs/move-pictures.md.
 - **NM26 new tracks (2026-10-10, PROPOSED):** `docs/nm26-new-tracks.md`, tap page https://claude.ai/artifact/21hTqYXsKVvuYDcZHGuWXp
   (`validation/tap-review/`), `validation/nm26-track-switch.json`, `validation/edwall-g2-goal3-trace.png`, `validation/replays/`.
 - **Batch 2026-10-10 (all PROPOSED):** `validation/analysis-edwall-g2-goal{2,3,4}.mp4` (with `-review.jpg`,
@@ -677,3 +703,4 @@ Iteration 20 closed without repair cycles:
 | G1 | 2026-10-07 | Game mechanics (user request): references/rules/ithf-game-rules.pdf, references/games/fylling-vs-moe-trondheim-open-2022-final.mov (indexed); docs/game-mechanics.md; docs/state.md; CLAUDE.md | rules PDF read in full; video probed (ffprobe); audio spectrogram for the timer signals; frame registration and contact sheets around the start and the hand episodes (scratch only); no build or test changes |
 | G2 | 2026-10-07 | Match tracking (user request): scripts/game_common.py, game-{stabilise,calibrate,puck,possession,review}.py; data/games/fylling-vs-moe-2022/{stabilisation.json, background.png, calibration-inputs.json, calibration.json, puck-labels.json, puck-track.json, possession.json, review.json}; validation/game-{calibration,figure-areas,possession}.png, game-{puck-spotcheck,possession-review}.jpg; tests/game-tracking.test.ts; docs/game-tracking.md; package.json (game:track); docs/state.md; CLAUDE.md | full pipeline run; calibration overlay reviewed; classifier cross-validated in time blocks; 40 random frames and 24 random episodes reviewed by eye; false-detection hotspots inspected and fixed; sensitivity table; `npm run check` |
 | GW | 2026-11-11 | Goalie bent toward the photos (user request): scripts/goalie-silhouette-warp.py; data/figures/goalie-warp.json; assets/blender/build_goalie_warp.py; assets/figures/goalie_warp_{SWE,FIN}.*; validation/players/warp/*; docs/goalie-warp.md; `players:goalie-warp` | warp fit + fit-figure-views on 3 view sets for both shapes; asset build; `npm test` 170 of 171 (the one failure, scene cache, needs the untracked public/full_static_appearance.glb, unrelated); sheets AI-reviewed |
+| A2 | 2026-11-11 | Pipeline audit, refactor 2 (user request): scripts/table_common.py (figure ids and skater order, HOME, slots, arc_point / slot_point / nearest_on_slot, NM26 reference camera); 34 NM26, synth, replay and calibration scripts import it instead of their own copies (the slot-position helper existed fourteen times); tests/synth/test_table_common.py; tests/synth/_load.py seeds it; docs/pipeline.md section 4 | `npm test`; `rebuild:nm26:figures`, `analysis`, Edwall presentations and `calibrate` byte-identical before and after; render, training and tracking scripts not run (Blender, PyTorch, video) |

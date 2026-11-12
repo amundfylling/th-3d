@@ -2,14 +2,14 @@
  "analysis": "Defending the left wing - concept video",
  "composition": "analysis-defence-lw",
  "versions": {
-  "node": "v22.22.0",
+  "node": "v22.23.4",
   "remotion": "4.0.531",
   "@remotion/three": "4.0.531",
   "three": "0.186.1",
   "@react-three/fiber": "9.4.0",
   "react": "19.2.0",
-  "browser": "chrome-headless-shell Chromium 141.0.7390.37",
-  "gl": "swangle (SwiftShader, CPU)"
+  "browser": "Chromium 149.0.7790.0",
+  "gl": "--gl=swangle; WebGL renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
  },
  "model": {
   "geometry_version": "0.6.0",
@@ -28,9 +28,10 @@
    "remotion/AnalysisVideo.tsx",
    "remotion/SceneLayer.tsx",
    "remotion/ShotScene.tsx",
+   "remotion/scene-render.ts",
    "remotion/theme.ts"
   ],
-  "composition_sha256": "c7494c51ec667ddc3e889529bf043c3c8ab50d61674cd355a56e83431467e880"
+  "composition_sha256": "0a9d7ea727b00dfe1d50030c0fd0b6c226dd3e4241e34994cc8fee5cb6127180"
  },
  "output": {
   "path": "validation/analysis-defence-lw.mp4",
@@ -62,28 +63,50 @@
     "duration": "35.366667"
    }
   },
-  "bytes": 3558924,
+  "bytes": 3561787,
   "megabytes": 3.56,
   "below_25_mb": true,
-  "sha256": "23eb7922ebcbf54a0b73e31845f43b1fc6731e2e88372c1e29be03fc040a102c"
+  "sha256": "b2dab390ee14424fe23d61b7da864447179594e55775665fad8ff5b1a636da4f"
  },
  "checks": {
-  "frames_logged": 1061,
+  "frames_logged": 0,
   "frames_differing_from_pure": [],
-  "max_readback_diff": 5.68e-14,
-  "camera_frames_logged": 1061,
-  "camera_max_diff_vs_track": 0.0049
+  "max_readback_diff": null,
+  "camera_frames_logged": 0,
+  "camera_max_diff_vs_track": null,
+  "scene_cache": {
+   "checked": 1061,
+   "entries_used": 154,
+   "errors": [],
+   "entries_max_readback_diff": 5.68e-14,
+   "entries_camera_max_diff_mm": 0.0049,
+   "stats": {
+    "namespace": "dd1dadde738afce275c5bf68",
+    "frames": 1061,
+    "unique_scene_states": 154,
+    "cache_hits": 0,
+    "scene_renders": 154,
+    "scene_render_seconds": 328.7,
+    "scene_draws": {
+     "reuse": 154
+    },
+    "frames_without_a_new_render": 907,
+    "entries_in_namespace": 1716
+   }
+  }
  },
- "render_seconds": 4342,
- "composition_refactor": {
-  "date": "2026-10-13",
-  "change": "merge of the video workflow (PR #14: remotion/SceneLayer.tsx split out of AnalysisVideo.tsx, ShotScene.tsx clones the scene per mount, frameMap/sceneSrc props, classic-only overlay tweaks) into the STL-skater branch (PR #13) this video was rendered on; default theme stays nbhf",
-  "previous_composition_files": [
-   "remotion/DefenceAnalysis.tsx",
-   "remotion/AnalysisVideo.tsx"
-  ],
-  "previous_composition_sha256": "a10d01c4b09f6073bc6442633e45436bb7563b49d0bdea04fe2bab32c02efbc8",
-  "verification": "frames 42, 265, 477, 636, 848, 1040 rendered at scale 0.5 (swangle) with the STL-skater branch at commit 53c32b2 (scripts/analysis-stills.ts) and with the merged code (scripts/video.ts stills): pixels identical for all six (validation/video-workflow/stl-merge-identity.json)",
-  "video_rerendered": false
- }
+ "render": {
+  "mode": "cached",
+  "scene_render": "reuse",
+  "concurrency": {
+   "live": 1,
+   "composite": 4
+  },
+  "scale": 1,
+  "browser": "/home/user/th-3d/node_modules/.remotion/chrome-headless-shell/linux64/chrome-headless-shell-linux64/chrome-headless-shell",
+  "gl_flag": "swangle",
+  "webgl_renderers": [],
+  "probe_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
+ },
+ "render_seconds": 95
 }

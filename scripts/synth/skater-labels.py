@@ -15,12 +15,14 @@ from pathlib import Path
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera()
 Hinv = np.linalg.inv(K @ np.c_[R[:, 0], R[:, 1], t])
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-HOME = {"W": 0.0, "E": 180.0}
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+HOME = table_common.HOME
 crops = {c["id"]: c for c in json.loads((REPO / "data/games/nm26-semifinal/skater-facing-crops.json").read_text())["crops"]}
 
 
@@ -28,12 +30,7 @@ def ice(px, origin):
     w = Hinv @ np.array([px[0] + origin[0], px[1] + origin[1], 1.0]); return w[:2] / w[2]
 
 
-def on_slot(P, q):
-    seg = np.diff(P, axis=0); L = np.linalg.norm(seg, axis=1); acc = np.r_[0, np.cumsum(L)]; best = (1e9, 0.0)
-    for k in range(len(seg)):
-        f = np.clip(np.dot(q - P[k], seg[k]) / (L[k] ** 2), 0, 1); d = np.linalg.norm(P[k] + f * seg[k] - q)
-        if d < best[0]: best = (d, (acc[k] + f * L[k]) / acc[-1])
-    return best
+on_slot = table_common.nearest_on_slot
 
 
 rows = []

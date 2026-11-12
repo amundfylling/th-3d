@@ -4,25 +4,25 @@ The goalie mold's vertices are projected with the reference camera for candidate
 compared with the real foreground (difference from the clean plate) by IoU inside the goalie column.
 """
 import json
+import sys
 from pathlib import Path
 
 import cv2
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera()
 BOX = CAM["goal_crop_boxes_video_px"]
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-HOME = {"W": 0.0, "E": 180.0}
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+HOME = table_common.HOME
 M = np.load(REPO / "out/synth/goalie_mesh.npz"); V = M["V"][::3].astype(np.float64)   # every 3rd vertex is dense enough at ~1.5 px/mm
 
 
-def arc_point(P, u):
-    seg = np.linalg.norm(np.diff(P, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return P[k] + f * (P[k + 1] - P[k])
+arc_point = table_common.arc_point
 
 
 def silhouette(end, u, theta, shape=(200, 200)):

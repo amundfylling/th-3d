@@ -6,6 +6,7 @@ import { PosePreview } from "./PosePreview.tsx";
 import { analysisMetadata } from "./AnalysisVideo.tsx";
 import { ANALYSIS_VIDEOS } from "./analysis-videos.ts";
 import { GlProbe, SceneProbe, sceneProbeMetadata } from "./SceneProbe.tsx";
+import { ANGLE_FPS, ANGLE_FRAMES, AngleStudy } from "./AngleStudy.tsx";
 
 // Iteration 25: final export settings (presentation choice, not geometry precision): 1920 x 1080 at 60 fps.
 export const FINAL_FPS = 60;
@@ -49,7 +50,9 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="scene-probe" component={SceneProbe} durationInFrames={1} fps={30} width={1920} height={1080} defaultProps={{ items: [{ video: "analysis-shovel-17", frame: 0 }] }} calculateMetadata={sceneProbeMetadata} />
     {/* Which WebGL implementation a render's browser flags give (scripts/video/render-env.ts probeRenderer). */}
     <Composition id="gl-probe" component={GlProbe} durationInFrames={1} fps={30} width={64} height={64} />
-    <Composition id="pose-preview" component={PosePreview} durationInFrames={1} fps={30} width={1600} height={1300} defaultProps={{ poses: {}, puckMm: [0, 0] as [number, number], camera: { cx: 150, cy: 0, widthMm: 640 } }} />
+    {/* Camera-angle study for the move pictures (docs/move-pictures.md): Näcka from one of four cameras. */}
+    <Composition id="angle-study" component={AngleStudy} durationInFrames={ANGLE_FRAMES} fps={ANGLE_FPS} width={1280} height={720} defaultProps={{ angle: "overhead" as const }} />
+    <Composition id="pose-preview" component={PosePreview} durationInFrames={1} fps={30} width={1600} height={1300} defaultProps={{ poses: {}, puckMm: [0, 0] as [number, number], camera: { cx: 150, cy: 0, widthMm: 640 } }} calculateMetadata={({ props }) => ({ width: (props as { widthPx?: number }).widthPx ?? 1600, height: (props as { heightPx?: number }).heightPx ?? 1300 })} />
     <Composition id="static-checks" component={StaticInspection} durationInFrames={30} fps={30} width={1920} height={1080} defaultProps={{ camera: "oblique", showChecks: true }} />
   </>
 );

@@ -1,0 +1,43 @@
+{
+  "id": "lillstovel",
+  "name": "Lillstøvel",
+  "level": 3,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-lillstøvel-2c0457d4.png",
+  "text": "Center starts with the puck in the toe groove, passes with the toe a few centimeters out to the left, and shoots with the blade into the left corner. Named after the legendary Djurgården player Carl-Göran 'Lill-Stöveln' Öberg, younger brother of Hans 'Stöveln' Öberg",
+  "index_id": "lillstvel",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        311,
+        336
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        251,
+        321
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        251,
+        216
+      ]
+    }
+  ]
+}

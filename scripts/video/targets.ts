@@ -22,7 +22,7 @@ export interface Target {
 }
 
 // shared by every analysis composition: the renderer, its scene layer, the scene and the overlay theme
-const SHARED = ["remotion/AnalysisVideo.tsx", "remotion/SceneLayer.tsx", "remotion/ShotScene.tsx", "remotion/theme.ts"];
+const SHARED = ["remotion/AnalysisVideo.tsx", "remotion/SceneLayer.tsx", "remotion/ShotScene.tsx", "remotion/scene-render.ts", "remotion/theme.ts"];
 
 const HAND_MADE: Target[] = [
   { name: "shovel-17", composition: "analysis-shovel-17", spec: "data/presentations/shovel-17.analysis.json", trace: "data/traces/shovel-17.trace.json", checks: "shots/22-shovel/checks.json",

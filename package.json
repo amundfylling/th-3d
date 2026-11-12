@@ -37,6 +37,9 @@
     "blender:assembly": "node scripts/py.ts assets/blender/build_assembly.py",
     "blender:materials": "node scripts/py.ts assets/blender/make_ice_texture.py && node scripts/py.ts assets/blender/drop_sponsors.py && node scripts/py.ts assets/blender/build_materials.py",
     "blender:appearance": "node scripts/py.ts assets/blender/build_appearance.py && node scripts/py.ts assets/blender/render_appearance.py",
+    "pictures:detect": "python3 scripts/move-pictures/detect.py",
+    "pictures:compare": "python3 scripts/move-pictures/compare.py",
+    "pictures:moves": "npm run remotion:assets && python3 scripts/move-pictures/build.py && node scripts/move-pictures/render.ts && python3 scripts/move-pictures/build.py --draw",
     "remotion:assets": "mkdir -p public && cp assets/scene/full_static_appearance.glb public/ && node scripts/shot23-manifest.ts",
     "remotion:studio": "npm run remotion:assets && remotion studio remotion/index.ts",
     "remotion:stills": "npm run remotion:assets && B=$(node scripts/video/render-env.ts) && for c in oblique overhead side checks; do remotion still remotion/index.ts static-$c out/19-$c.png --frame=0 --browser-executable=\"$B\" --gl=${REMOTION_GL:-swangle}; done",
@@ -82,7 +85,8 @@
     "rebuild:nm26:from-zero": "node scripts/py.ts scripts/pipeline/nm26_rebuild.py fetch cache calibrate meshes puck figures analysis sheets pages --keep-going --check",
     "test:synth": "python3 -m unittest discover -s tests/synth -p \"test_*.py\" -v",
     "players:goalie-warp": "node scripts/py.ts assets/blender/preview_molds.py goalie && node scripts/py.ts scripts/goalie-silhouette-warp.py apply && node scripts/py.ts assets/blender/build_goalie_warp.py",
-    "players:stl": "node scripts/py.ts assets/blender/preview_molds.py skater && node scripts/py.ts scripts/stl-skater.py align && for m in '' --heldout --independent; do node scripts/py.ts scripts/fit-figure-views.py skater --mesh out/figures/skater-stl.npz --out validation/players/stl --reuse $m || exit 1; done && node scripts/py.ts assets/blender/preview_molds.py goalie && mkdir -p out/figures/stl-mesh && cp out/figures/skater-stl.npz out/figures/stl-mesh/skater.npz && cp out/figures/goalie.npz out/figures/stl-mesh/ && node scripts/py.ts scripts/fit-figure-overhead.py --mesh-dir out/figures/stl-mesh --out validation/players/stl && node scripts/py.ts scripts/stl-skater.py finish && node scripts/py.ts scripts/stl-skater.py paint && node scripts/py.ts assets/blender/build_skater_stl.py"
+    "players:stl": "node scripts/py.ts assets/blender/preview_molds.py skater && node scripts/py.ts scripts/stl-skater.py align && for m in '' --heldout --independent; do node scripts/py.ts scripts/fit-figure-views.py skater --mesh out/figures/skater-stl.npz --out validation/players/stl --reuse $m || exit 1; done && node scripts/py.ts assets/blender/preview_molds.py goalie && mkdir -p out/figures/stl-mesh && cp out/figures/skater-stl.npz out/figures/stl-mesh/skater.npz && cp out/figures/goalie.npz out/figures/stl-mesh/ && node scripts/py.ts scripts/fit-figure-overhead.py --mesh-dir out/figures/stl-mesh --out validation/players/stl && node scripts/py.ts scripts/stl-skater.py finish && node scripts/py.ts scripts/stl-skater.py paint && node scripts/py.ts assets/blender/build_skater_stl.py",
+    "pictures:review": "python3 scripts/move-pictures/review-page.py"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

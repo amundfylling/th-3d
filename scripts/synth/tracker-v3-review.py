@@ -16,24 +16,23 @@ import cv2
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 spec = importlib.util.spec_from_file_location("tv3", REPO / "scripts/synth/track-figures-v3.py"); tv3 = importlib.util.module_from_spec(spec)
 _argv = sys.argv; sys.argv = [_argv[0], "-"]; spec.loader.exec_module(tv3); sys.argv = _argv
 A = sys.argv[1:]; PA, PB = A[0], A[1]
 def arg(n, d): return A[A.index(n) + 1] if n in A else d
 N = int(arg("--n", 48)); NAME = arg("--name", "v2-v3")
 PART = {"dense": 1, "sparse": 0}.get(arg("--part", ""))  # dense = the goal windows (30 fps), sparse = the 5 fps rest
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text()); K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
-HOME = {"W": 0.0, "E": 180.0}; x0, y0 = tv3.x0, tv3.y0
+CAM = table_common.REF_CAMERA; K, R, t = table_common.ref_camera()
+HOME = table_common.HOME; x0, y0 = tv3.x0, tv3.y0
 
 
 def proj(p):
     q = K @ (R @ np.array([p[0], p[1], 0.0]) + t); return q[:2] / q[2] - [x0, y0]
 
 
-def arc_point(P, u):
-    seg = np.linalg.norm(np.diff(P, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return P[k] + f * (P[k + 1] - P[k])
+arc_point = table_common.arc_point
 
 
 def load(p):

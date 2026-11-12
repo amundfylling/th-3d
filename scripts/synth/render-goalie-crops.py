@@ -30,14 +30,16 @@ from mathutils import Matrix
 from mathutils.bvhtree import BVHTree
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 OUT = Path(sys.argv[1]); OUT.mkdir(parents=True, exist_ok=True)
 SEED0, COUNT = int(sys.argv[2]), int(sys.argv[3])
 ENDS = sys.argv[4] if len(sys.argv) > 4 else "both"; KIT = sys.argv[5] if len(sys.argv) > 5 else "ref"
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
+CAM = table_common.REF_CAMERA
 BOX = CAM["goal_crop_boxes_video_px"]
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-HOME = {"W": 0.0, "E": 180.0}
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
+HOME = table_common.HOME
 DISTRACT = {"W": ["W-LD", "W-RD", "E-LW", "E-RW", "E-C"], "E": ["E-LD", "E-RD", "W-LW", "W-RW", "W-C"]}
 
 bpy.ops.wm.open_mainfile(filepath=str(REPO / "assets/scene/full_static.blend"))
@@ -45,7 +47,7 @@ sc = bpy.context.scene
 
 
 def set_camera():
-    K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+    K, R, t = table_common.ref_camera()
     cam = bpy.data.cameras.new("NM26Ref"); ob = bpy.data.objects.new("NM26Ref", cam); sc.collection.objects.link(ob)
     W, H = CAM["image_size"]
     cam.sensor_fit = "HORIZONTAL"; cam.sensor_width = 36.0; cam.lens = K[0, 0] * 36.0 / W
@@ -55,10 +57,7 @@ def set_camera():
     sc.render.resolution_x, sc.render.resolution_y, sc.render.resolution_percentage = W, H, 100
 
 
-def arc_point(P, u):
-    seg = np.linalg.norm(np.diff(P, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return P[k] + f * (P[k + 1] - P[k]), s
+arc_point = table_common.arc_point_s
 
 
 def place(ob, pid, u, theta):

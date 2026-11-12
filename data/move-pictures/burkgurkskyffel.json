@@ -1,0 +1,71 @@
+{
+  "id": "burkgurkskyffel",
+  "name": "Burkgurkskyffel",
+  "level": 8,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing along the boards behind their own goal to the left wing, who sends it on to the center, who scores",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        450
+      ],
+      "pose": true,
+      "toward_px": [
+        520,
+        700
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        112,
+        445
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        318,
+        380
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        "boards",
+        [
+          300,
+          952
+        ],
+        "boards",
+        [
+          66,
+          460
+        ]
+      ]
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        338,
+        212
+      ]
+    }
+  ]
+}

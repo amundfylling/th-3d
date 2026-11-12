@@ -1,0 +1,42 @@
+{
+  "id": "newton",
+  "name": "Newton",
+  "level": 7,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-newton-0bbc8f04.png",
+  "text": "Center shoots via the opponent's right defenseman and into the goal",
+  "note": "The puck glances off the opposing right defender (an unnumbered point, as on puck.no).",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        311,
+        334
+      ],
+      "pose": true
+    },
+    {
+      "id": "opponent",
+      "kind": "point",
+      "picture_px": [
+        212,
+        321
+      ]
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "opponent"
+    },
+    {
+      "from": "opponent",
+      "to": "goal",
+      "picture_px": [
+        275,
+        205
+      ]
+    }
+  ]
+}

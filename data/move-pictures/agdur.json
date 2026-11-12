@@ -1,0 +1,11 @@
+{
+  "id": "agdur", "name": "Agdur", "level": 6, "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-agdur-d68ac5fd.png",
+  "text": "Pass from center to left wing, back to the center and into the right corner",
+  "contacts": [
+    {"n": 1, "pid": "W-C", "picture_px": [305, 337], "pose": true},
+    {"n": 2, "pid": "W-LW", "picture_px": [103, 390], "pose": true},
+    {"n": 3, "pid": "W-C", "picture_px": [350, 307], "pose": false}
+  ],
+  "path": [{"from": 1, "to": 2}, {"from": 2, "to": 3}, {"from": 3, "to": "goal", "picture_px": [337, 210]}]
+}
