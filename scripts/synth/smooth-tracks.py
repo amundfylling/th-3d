@@ -20,8 +20,10 @@ from pathlib import Path
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]; D = REPO / "data/games/nm26-semifinal"
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT_LEN = {f["player_id"]: float(np.linalg.norm(np.diff(np.array(f["centreline"]["points_mm"]), axis=0), axis=1).sum()) for f in G["fixture_paths"]}
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+G = table_common.GEOMETRY
+SLOT_LEN = table_common.SLOT_LEN
 WIN, DS_MM, DTH, GAP, SD = 0.3, 25.0, 45.0, 1.0, 15.0
 
 

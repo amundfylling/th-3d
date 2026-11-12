@@ -25,7 +25,7 @@ import { sha } from "./targets.ts";
 
 export const CACHE_ROOT = "out/scene-cache";
 export const SCHEMA = "scene-cache/1";
-export const RENDERER_FILES = ["remotion/SceneLayer.tsx", "remotion/ShotScene.tsx", "remotion/cameras.ts", "src/model/coordinates.ts", "remotion/asset-manifest.json", "public/full_static_appearance.glb", "data/geometry.json"];
+export const RENDERER_FILES = ["remotion/SceneLayer.tsx", "remotion/ShotScene.tsx", "remotion/scene-render.ts", "remotion/cameras.ts", "src/model/coordinates.ts", "remotion/asset-manifest.json", "public/full_static_appearance.glb", "data/geometry.json"];
 const PACKAGES = ["three", "@react-three/fiber", "@remotion/three", "remotion", "react", "react-dom"];
 
 export interface NamespaceInputs {
@@ -39,15 +39,17 @@ export interface NamespaceInputs {
   scale: number;
   image_format: "png";
   background: string;
+  /** how the scene is drawn: "reuse" (remotion/scene-render.ts, the default) or "plain" (--plain-render) */
+  scene_render: "reuse" | "plain";
 }
 
-export function namespaceInputs(o: { browserVersion: string; gl: string; webglRenderer: string; width: number; height: number; scale: number; background: string }): NamespaceInputs {
+export function namespaceInputs(o: { browserVersion: string; gl: string; webglRenderer: string; width: number; height: number; scale: number; background: string; plainRender?: boolean }): NamespaceInputs {
   const lock = JSON.parse(readFileSync("package-lock.json", "utf8"));
   return {
     files: Object.fromEntries(RENDERER_FILES.map((f) => [f, sha(f)])),
     packages: Object.fromEntries(PACKAGES.map((p) => [p, lock.packages[`node_modules/${p}`]?.version ?? "missing"])),
     browser: o.browserVersion, gl: o.gl, webgl_renderer: o.webglRenderer,
-    width: o.width, height: o.height, scale: o.scale, image_format: "png", background: o.background,
+    width: o.width, height: o.height, scale: o.scale, image_format: "png", background: o.background, scene_render: o.plainRender ? "plain" : "reuse",
   };
 }
 

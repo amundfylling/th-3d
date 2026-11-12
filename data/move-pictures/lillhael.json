@@ -1,0 +1,43 @@
+{
+  "id": "lillhael",
+  "name": "Lillhæl",
+  "level": 5,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-lillhæl-92398556.png",
+  "text": "Center starts with the puck in the heel groove, passes with the blade about one centimeter out to the left, and shoots with the heel into the left corner",
+  "index_id": "lillhl",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        307,
+        339
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        280,
+        328
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        253,
+        220
+      ]
+    }
+  ]
+}

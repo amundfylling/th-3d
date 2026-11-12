@@ -6,6 +6,7 @@ Pixel frames: out/edwall/<goal_id>/<frame>.png are the E half of the game's refe
 """
 import os
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -13,9 +14,11 @@ import numpy as np
 from nm26_tracks import FIGURE_TRACKS
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 D = REPO / "data/games/nm26-semifinal"
-CAM = json.loads((D / "camera-ref.json").read_text())
-K, R, T = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+CAM = table_common.REF_CAMERA
+K, R, T = table_common.ref_camera()
 HALF0 = np.array([900.0, 360.0]); SCALE = 2.0
 GOALS = {r["id"]: r for r in json.loads((D / "goal-labels.json").read_text())["labels"]}
 FPS = 30

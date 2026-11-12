@@ -25,19 +25,19 @@ import numpy as np
 
 REPO = Path(__file__).resolve().parents[1]; D = REPO / "data/games/nm26-semifinal"
 sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+sys.path.insert(0, str(REPO / "scripts"))
 from nm26_tracks import FIGURE_TRACKS, PUCK_TRACK, load_figures, load_puck  # noqa: E402
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
 CFG = json.loads((D / "config.json").read_text())
-HOME = {"W": 0.0, "E": 180.0}; SKATERS = ["W-LW", "E-LW", "W-RW", "E-RW", "W-C", "E-C", "W-LD", "E-LD", "W-RD", "E-RD"]
+HOME = table_common.HOME; SKATERS = table_common.SKATERS
 BLADE = np.array([12.0, 33.0]); TOUCH_MM = 25.0
-ACC = {p: np.r_[0, np.cumsum(np.linalg.norm(np.diff(P, axis=0), axis=1))] for p, P in SLOT.items()}
+ACC = table_common.ACC
 labels = {r["id"]: r for r in json.loads((D / "goal-labels.json").read_text())["labels"]}
 
 
-def pivots(pid, u):
-    P, acc = SLOT[pid], ACC[pid]; s = np.asarray(u) * acc[-1]
-    return np.c_[np.interp(s, acc, P[:, 0]), np.interp(s, acc, P[:, 1])]
+pivots = table_common.slot_points
 
 
 def blade(pid, u, th):

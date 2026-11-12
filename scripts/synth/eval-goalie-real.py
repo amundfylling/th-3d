@@ -24,6 +24,7 @@ SUF = "" if Path(MODEL).stem == "goalie-pose" else "-" + Path(MODEL).stem
 sys.argv = [sys.argv[0], "0"]; spec.loader.exec_module(tr)
 from fit_goalie import silhouette, column, foreground, fit, SLOT  # noqa: E402
 from nm26_common import frames, load, OUT  # noqa: E402
+import table_common  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 net = tr.model(); net.load_state_dict(torch.load(REPO / MODEL)); net.eval()
@@ -63,7 +64,7 @@ for c, crop, u, th in zip(C, crops, U, TH):
 cv2.imwrite(str(REPO / f"validation/synth-goalie-pilot-real{SUF}.jpg"), np.vstack([np.hstack(tiles[i:i + 8]) for i in range(0, 24, 8)]), [cv2.IMWRITE_JPEG_QUALITY, 85])
 # temporal smoothness: 10 s of continuous frames per end
 F = {f[0]: f for f in load(OUT / "g5/frames.json")}
-BOX = tr.json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())["goal_crop_boxes_video_px"]
+BOX = table_common.REF_CAMERA["goal_crop_boxes_video_px"]
 seq = {"W": [], "E": []}
 for i, a in frames(2400.0, 2410.0):
     H = np.r_[F[i][2], 1].reshape(3, 3)

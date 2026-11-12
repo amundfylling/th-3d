@@ -1,0 +1,55 @@
+{
+  "id": "senter-rokkade",
+  "name": "Senter-Rokkade",
+  "level": 6,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-senter-rokkade-9c4a9212.png",
+  "text": "Pass from center to the right defenseman and on to the left defenseman, who shoots one-timed into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        336,
+        372
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RD",
+      "picture_px": [
+        409,
+        671
+      ],
+      "pose": true
+    },
+    {
+      "n": 3,
+      "pid": "W-LD",
+      "picture_px": [
+        214,
+        669
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        259,
+        206
+      ]
+    }
+  ]
+}

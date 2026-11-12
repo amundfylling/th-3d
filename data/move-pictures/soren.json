@@ -1,0 +1,43 @@
+{
+  "id": "soren",
+  "name": "Søren",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-søren-ada0bf2a.png",
+  "text": "Center starts with the puck out on the blade to the left of the slot, carries the puck over to the right side of the slot, and shoots into the right corner. Named after the legendary table hockey and ice hockey player Sören Johansson, who did a similar feint in ice hockey",
+  "index_id": "sren",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        277,
+        362
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        346,
+        320
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        342,
+        218
+      ]
+    }
+  ]
+}

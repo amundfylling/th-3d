@@ -16,8 +16,9 @@ REPO = Path(__file__).resolve().parents[2]
 
 # move.json keys that only feed the video (older move files kept the story there); never part of the motion identity
 PRESENTATION_KEYS = ("story",)
-# engine files that do not change a simulation: the video spec generator, the robustness reruns and this module
-NOT_ENGINE = ("presentation.py", "robustness.py", "identity.py")
+# engine files that do not change a simulation: the video spec generator, the robustness reruns, this module and the
+# check of saved traces (verify.py reads a trace file; it never builds one)
+NOT_ENGINE = ("presentation.py", "robustness.py", "identity.py", "verify.py")
 # data files the simulation reads (scripts/shotlib/world.py, build.py)
 ENGINE_DATA = ("data/geometry.json", "validation/12-hardware-report.json", "validation/16-assembly-poses.json",
                "data/figures/contact-footprints.json", "shots/spjass/checks.json")

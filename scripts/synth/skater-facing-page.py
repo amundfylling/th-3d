@@ -14,12 +14,14 @@ from pathlib import Path
 import cv2, numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera()
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
 ROI = (160, 360)  # skater-frames.py crop origin in reference video px
-ORDER = ["W-LW", "E-LW", "W-RW", "E-RW", "W-C", "E-C", "W-LD", "E-LD", "W-RD", "E-RD"]
+ORDER = table_common.SKATERS
 NAME = {"LW": "Left wing", "RW": "Right wing", "C": "Centre", "LD": "Left defence", "RD": "Right defence"}
 KIT = {"W": "white/blue", "E": "yellow"}
 N, S = 40, 200

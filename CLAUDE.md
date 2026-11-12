@@ -30,13 +30,19 @@ A concept video of the three ways to defend when the opponent's left wing has th
 TikTok references/shots/defence-vs-left-wing-tiktok.mp4) uses the PROPOSED, DESIGNED trace data/traces/defence-left-wing.trace.json
 (video validation/analysis-defence-lw.mp4); its shots and passes are lanes drawn as graphics; see docs/defence-left-wing.md.
 All analysis videos share remotion/AnalysisVideo.tsx.
+Move pictures (still pictures of the NTHF moves, docs/move-pictures.md, PROPOSED): the 51 puck.no pictures are redrawn on our rink
+with every figure placed and turned as puck.no draws it (user rule 2026-11-10: the puck.no pictures are correct), read off the
+pictures by `scripts/move-pictures/detect.py`; 70 more moves are drawn from the NTHF text. `npm run pictures:moves`.
 The skater is built from a Thingiverse STL (thing:6898521 by MAVRIS, CC BY-SA, keep the attribution), 56.85 mm tall (the file's
 own size, user decision 2026-10-12). Since 2026-10-12 the assets, contacts, footprints, traces and videos all use it (user:
 "Switch now"); the parametric mold stays in data/figure-molds.json as the shape record; see docs/skater-stl.md.
 Shovel #17 is also rebuilt on the move engine with the STL skater (PROPOSED, DESIGNED: moves/shovel-17-v3/, video
 validation/moves/shovel-17-v3.mp4; no overlap exception, slide check passed); see docs/shovel-17-v3.md.
+A PROPOSED goalie bent toward the user's photo outlines (data/figures/goalie-warp.json, assets/figures/goalie_warp_*; no goalie 3D model exists online)
+sits beside the current goalie and is NOT in use; see docs/goalie-warp.md.
 All analysis videos share remotion/AnalysisVideo.tsx; preview, draft and export them with `scripts/video.ts` (docs/video-workflow.md;
-move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`).
+move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`). The scene is drawn by `remotion/scene-render.ts`
+(the end screens reuse the drawn frame, about 1.7x faster per frame; `--plain-render` is the reference; docs/video-workflow.md section 8).
 Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
 references/games/; handheld phone) are digested in docs/game-mechanics.md, with the user's answers. A first PROPOSED
 tracking pipeline (stabilisation, calibration, puck track, possession per skater by exclusive reach areas;
@@ -113,6 +119,8 @@ GitHub release `nm26-models-v1`, listed with sha256 in `data/models/manifest.jso
   the stick through the puck. When the evidence is unclear, choose a contact that is physically possible (touching,
   pushing in the direction of motion), never an overlap. Rigid figures also obey rule 5: rotate the figure, don't
   bend it.
+- `python3 scripts/verify-trace.py` re-checks every saved trace against this rule from the trace file alone (no generator,
+  no Blender; docs/trace-verification.md). `npm test` runs it. Run it after any change to a trace, a footprint or the rink.
 - Exceptions only with the user's explicit approval, recorded as data (`shots/*/inputs.json`
   `approved_overlap_exceptions`: what, why, maximum depth, approver, removal condition) and reported in the checks.
   Never add one silently, and never widen one without asking.

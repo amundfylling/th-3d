@@ -9,11 +9,14 @@ filled convex hull of the top and bottom rims. Writes out/synth/puck/blob-offset
 px); scripts/synth/train-puck-detector.py adds the mean to the current track's positions.
 """
 import json
+import sys
 from pathlib import Path
 import cv2, numpy as np
 REPO = Path(__file__).resolve().parents[2]
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera()
 def project(P): q = (np.atleast_2d(P) @ R.T + t) @ K.T; return q[:, :2] / q[:, 2:]
 rng = np.random.default_rng(0); a = np.linspace(0, 2 * np.pi, 64, endpoint=False); D = []
 for _ in range(400):

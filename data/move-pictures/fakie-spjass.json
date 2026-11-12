@@ -1,0 +1,64 @@
+{
+  "id": "fakie-spjass",
+  "name": "Fakie Spjass",
+  "level": 6,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Center starts with the puck in the toe groove, quickly shifts to having the puck in the heel groove, and performs a Spjass",
+  "note": "User review 2026-10-14: the puck starts centred on the centre's slot line (same start as the normal move); the ghost is the centre at that start, behind the puck. User review 2026-11-11: the start is right; the trick is played the opposite way: the centre turned backwards as in Fakie Näcka (puck on the back of the blade), shooting to the left corner.",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        305,
+        342
+      ],
+      "pose": false
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        338,
+        323
+      ],
+      "pose": true,
+      "figure_px": [
+        304,
+        337
+      ],
+      "theta_deg": -177.9,
+      "puck_local_mm": [
+        -11.5,
+        33.1
+      ]
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        275,
+        212
+      ]
+    }
+  ],
+  "ghost": {
+    "pid": "W-C",
+    "figure_px": [
+      307,
+      367
+    ],
+    "theta_deg": 0.0,
+    "puck_local_mm": [
+      24.0,
+      0.0
+    ]
+  }
+}

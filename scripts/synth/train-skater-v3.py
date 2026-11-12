@@ -25,6 +25,8 @@ import torch.nn as nn
 import torchvision
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 spec = importlib.util.spec_from_file_location("ts", REPO / "scripts/synth/train-skater-pose.py"); ts = importlib.util.module_from_spec(spec)
 _argv = sys.argv; sys.argv = [_argv[0], "0"]; spec.loader.exec_module(ts); sys.argv = _argv
@@ -32,9 +34,9 @@ from compose import compose, degrade  # noqa: E402
 
 ORDER = ts.ORDER; A = sys.argv[1:]
 def arg(n, d): return A[A.index(n) + 1] if n in A else d
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-K, R, t = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
-HOME = {"W": 0.0, "E": 180.0}
+CAM = table_common.REF_CAMERA
+K, R, t = table_common.ref_camera()
+HOME = table_common.HOME
 WIN = (25, 175, 30, 180)  # crop px window in which a pivot counts as present (x0, x1, y0, y1)
 PRES_W = float(sys.argv[sys.argv.index("--presence-weight") + 1]) if "--presence-weight" in sys.argv else 5.0  # weight 1 left presence stuck at 'present' for 4 epochs
 
@@ -43,10 +45,7 @@ def project(p):
     q = K @ (R @ np.array([p[0], p[1], 0.0]) + t); return q[:2] / q[2]
 
 
-def arc_point(P, u):
-    seg = np.linalg.norm(np.diff(P, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return P[k] + f * (P[k + 1] - P[k])
+arc_point = table_common.arc_point
 
 
 SLOTPX = {p: np.array([project(arc_point(ts.SLOT[p], u)) for u in np.linspace(0, 1, 120)]) for p in ORDER}

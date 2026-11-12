@@ -31,6 +31,8 @@ import cv2
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 sys.path.insert(0, str(REPO / "scripts")); sys.path.insert(0, str(REPO / "scripts/synth"))
 from nm26_common import CFG, OUT, T_ROI, W_STAB, H_STAB, X0, Y0, frames, game_dir, save, FPS  # noqa: E402
 
@@ -53,11 +55,11 @@ SHOT_MIN_SPEED, SHOT_REACH_MM, SHOT_MAX_GAP = 1500.0, 150.0, 4
 SHOT_COMPLETION = "--shot-completion" in A   # off by default: its rows are not sightings (docs/synthetic-puck.md 8.4)
 SHOT_MIN_SCORE = float(arg("--shot-min-score", 0.05)); SHOT_COS = np.cos(np.radians(20.0))
 SHOT_QUIET = int(arg("--shot-quiet", 0))   # a completed shot is kept only if the track has no row for this many frames after it
-G = json.loads((REPO / "data/geometry.json").read_text())
+G = table_common.GEOMETRY
 HW = json.loads((REPO / "validation/12-hardware-report.json").read_text())["goal"]
 R_PUCK = G["puck"]["diameter"]["value"] / 2
-CAM = json.loads((REPO / "data/games/nm26-semifinal/camera-ref.json").read_text())
-Kc, Rc, tc = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+CAM = table_common.REF_CAMERA
+Kc, Rc, tc = table_common.ref_camera()
 # plane z = TOP_MM: world (x, y) -> stab px
 H_TOP = np.array([[1, 0, -X0], [0, 1, -Y0], [0, 0, 1.0]]) @ Kc @ np.c_[Rc[:, 0], Rc[:, 1], Rc[:, 2] * TOP_MM + tc]
 H_TOP_INV = np.linalg.inv(H_TOP)

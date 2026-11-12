@@ -1,0 +1,42 @@
+{
+ "id": "omvendspjassfinte",
+ "picture": "references/combinations/puck-no-pictures/trick-omvendspjassfinte-6ba8f294.png",
+ "note": "sprite detections: peg (u, v) in px of the 600 px wide picture, phi deg counter-clockwise on screen (0 = the Agdur right wing sprite)",
+ "figures": [
+  {
+   "team": "yellow",
+   "u": 496,
+   "v": 308,
+   "phi": 0.0,
+   "score": 1.12
+  },
+  {
+   "team": "yellow",
+   "u": 96,
+   "v": 354,
+   "phi": 65.0,
+   "score": 0.765
+  },
+  {
+   "team": "white",
+   "u": 195,
+   "v": 330,
+   "phi": 70.5,
+   "score": 0.705
+  },
+  {
+   "team": "white",
+   "u": 397,
+   "v": 384,
+   "phi": 102.5,
+   "score": 0.648
+  },
+  {
+   "team": "yellow",
+   "u": 301,
+   "v": 358,
+   "phi": 62.5,
+   "score": 0.614
+  }
+ ]
+}

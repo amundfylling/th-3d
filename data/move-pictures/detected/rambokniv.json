@@ -1,0 +1,77 @@
+{
+ "id": "rambokniv",
+ "picture": "references/combinations/puck-no-pictures/trick-rambokniv-cb88b462.png",
+ "note": "sprite detections: peg (u, v) in px of the 600 px wide picture, phi deg counter-clockwise on screen (0 = the Agdur right wing sprite)",
+ "figures": [
+  {
+   "team": "yellow",
+   "u": 496,
+   "v": 308,
+   "phi": 0.0,
+   "score": 0.954
+  },
+  {
+   "team": "yellow",
+   "u": 96,
+   "v": 354,
+   "phi": 65.0,
+   "score": 0.694
+  },
+  {
+   "team": "yellow",
+   "u": 202,
+   "v": 700,
+   "phi": 161.0,
+   "score": 0.67
+  },
+  {
+   "team": "white",
+   "u": 92,
+   "v": 466,
+   "phi": 70.5,
+   "score": 0.655
+  },
+  {
+   "team": "yellow",
+   "u": 309,
+   "v": 365,
+   "phi": 173.0,
+   "score": 0.648
+  },
+  {
+   "team": "yellow",
+   "u": 415,
+   "v": 699,
+   "phi": 279.5,
+   "score": 0.642
+  },
+  {
+   "team": "white",
+   "u": 480,
+   "v": 651,
+   "phi": 83.5,
+   "score": 0.636
+  },
+  {
+   "team": "white",
+   "u": 195,
+   "v": 330,
+   "phi": 70.5,
+   "score": 0.624
+  },
+  {
+   "team": "white",
+   "u": 264,
+   "v": 460,
+   "phi": 47.0,
+   "score": 0.617
+  },
+  {
+   "team": "white",
+   "u": 397,
+   "v": 384,
+   "phi": 102.5,
+   "score": 0.604
+  }
+ ]
+}

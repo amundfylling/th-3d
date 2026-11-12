@@ -1,0 +1,43 @@
+{
+  "id": "lillstovelfinte",
+  "name": "Lillstøvelfinte",
+  "level": 5,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-lillstøvelfinte-c-29-43746e89.png",
+  "text": "Center performs a Lillstøvel, but places the puck in the right corner. Only works against a reacting goalie",
+  "index_id": "lillstvelfinte",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        308,
+        333
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        266,
+        317
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        328,
+        206
+      ]
+    }
+  ]
+}

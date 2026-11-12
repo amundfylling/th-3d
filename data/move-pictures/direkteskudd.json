@@ -1,0 +1,29 @@
+{
+  "id": "direkteskudd",
+  "name": "Direkteskudd",
+  "level": 3,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Right wing shoots directly into the goal, preferably lifting it into the top corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        474,
+        330
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "goal",
+      "picture_px": [
+        338,
+        212
+      ]
+    }
+  ]
+}
