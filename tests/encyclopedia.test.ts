@@ -7,6 +7,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { analysisFrame, resolveAnalysis, type AnalysisSpec } from "../src/model/analysis.ts";
 import { traceEvaluator, type ShotTrace } from "../src/model/trace.ts";
 import { spawnSync } from "node:child_process";
+import { testPython } from "../scripts/py.ts";
 
 const read = (p: string): string => readFileSync(p, "utf8");
 const json = (p: string) => JSON.parse(read(p));
@@ -53,7 +54,7 @@ for (const { dir, spec } of BUILT) {
     assert.equal(trace.status, spec.status);
     // the motion (move.json without presentation keys), engine and model files the trace was built from are today's
     // (scripts/shotlib/identity.py; story.json edits never require a rebuild)
-    const gate = spawnSync("python3", ["scripts/build-move.py", dir, "--check"], { encoding: "utf8" });
+    const gate = spawnSync(testPython(), ["scripts/build-move.py", dir, "--check"], { encoding: "utf8" });
     // a move without a story (moves/<id>/story.json) has no video yet, so only its motion is gated
     const problems = (JSON.parse(gate.stdout)[0].problems as string[]).filter((p) => existsSync(`moves/${dir}/story.json`) || !p.startsWith(`data/presentations/${dir}.analysis.json is missing`));
     assert.deepEqual(problems, [], "saved trace or presentation stale: rebuild / --presentation");

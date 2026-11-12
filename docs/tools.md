@@ -16,6 +16,27 @@ Inspected 2026-09-30 in the Claude Code cloud container (iteration 03).
 | Headless browser | Chromium 141.0.7390.37 at `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`; global Playwright 1.56.1. Verified: `chrome --headless=new --no-sandbox --disable-gpu --screenshot` renders the smoke SVG |
 | Network | npm registry reachable. STIGA, OTTO and ITHF hosts blocked by environment policy (see `docs/state.md`) |
 
+## Which Python runs a script (2026-11-11)
+
+Every `npm run` script that starts Python goes through `node scripts/py.ts <script.py> [args]`. It picks, first match:
+
+1. `$PYTHON`
+2. `$NM26_PY` (the rebuild runner's older variable, still honoured)
+3. `/root/venvs/blender/bin/python` if it exists: the pinned venv (docs/blender.md; bpy, NumPy 1.26, OpenCV 4.10).
+   Committed outputs were made with it, so in a container that has it nothing changes.
+4. `python3`
+
+`node scripts/py.ts --which` prints the choice. `scripts/pipeline/nm26_rebuild.py` follows the same order for its steps
+(its last fallback is the Python that runs the runner; the `rebuild:nm26*` scripts start the runner itself through the launcher, since it imports NumPy). The tests use `$PYTHON`, else `python3`, and never pick the venv
+by themselves (`testPython` in the same file), so `npm test` does not depend on whether the venv is installed.
+
+The launcher changes only the interpreter. A script that needs `bpy` or `torch` still needs a Python that has them and
+fails with Python's own `ModuleNotFoundError` otherwise. Outputs can differ between library versions (for example
+OpenCV 5 against the pinned 4.10), so regenerate committed outputs with the pinned venv.
+
+`tests/py-launcher.test.ts` checks the order, the exit code and arguments, the message for a missing interpreter, that
+`package.json` names no interpreter path, and that the runner agrees.
+
 ## Decisions
 
 - One root `package.json`, npm, committed `package-lock.json`.

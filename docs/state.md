@@ -36,6 +36,10 @@
   helmet, face, collar, gloves) and goalie (mask with painted skin gaps, pads, blocker, catcher), block-number
   lettering traced from the photos, calibrated plastic colours; matched-camera close-up sheets including
   held-out views (`validation/players/closeups-{skater,goalie}.png`). Still before iteration 21.
+- **One Python launcher (2026-11-11):** every Python `npm run` script starts through `node scripts/py.ts`, which picks
+  `$PYTHON`, else `$NM26_PY`, else the Blender venv if it exists, else `python3`; the rebuild runner uses the same order.
+  Before, 34 scripts named `/root/venvs/blender/bin/python` and failed outright where that venv is absent. `npm test`
+  now passes on a fresh checkout (the scene-cache test made its own copy of the scene). See docs/tools.md.
 - **Goalie measured (user, 2026-10-01):** height 54 mm, blade 26 x 5.5 mm recorded as `user_measurement`;
   goalie scale and blade set from them (k 1.142); skater scale unchanged (overhead-fitted) until measured.
 - **Track fix (user, 2026-10-01):** E-RW and W-RW followed a stick lying on the slot in the official

@@ -56,8 +56,9 @@ outputs; a step whose input or module is missing is skipped with the reason, nev
 | `npm run rebuild:nm26:from-zero` | fetch ... pages | Everything except the models and the Edwall stage, in one go (about 1.5 h, measured before the replays step was added). |
 
 Run one game with `--games g2`; `--keep-going` continues past a failed step, and any later step that reads a failed
-step's output is skipped (an old copy on disk is not used). The step interpreter is `$NM26_PY`, else the
-Blender venv, else the runner's own Python.
+step's output is skipped (an old copy on disk is not used). The step interpreter is `$PYTHON`, else `$NM26_PY`, else the
+Blender venv if it exists, else the runner's own Python: the same order as `scripts/py.ts`, which every Python
+`npm run` script goes through (docs/tools.md, "Which Python runs a script").
 
 ### Stages and steps
 
