@@ -1,0 +1,152 @@
+{
+  "status": "PROPOSED (beside the current goalie; contacts, footprints and traces unchanged)",
+  "scale_k_mm_per_mold_unit": 1.14219,
+  "warp": {
+    "description": "Smooth displacement field that bends the parametric goalie mold toward the user's photo silhouettes (scripts/goalie-silhouette-warp.py, docs/goalie-warp.md). x -> x + u(x), trilinear on the lattice, mold units; the tan stick moves rigidly in plan (best planar rigid fit of its warped vertices; heights unchanged).",
+    "fixed": "mount socket (no shift); vertices on the ice (z shift 0); mask top (z shift 0: height and scale k unchanged)",
+    "settings": {
+      "iters": 30,
+      "step_units": 0.6,
+      "max_px": 16.0,
+      "w_smooth": 0.4,
+      "w_size": 0.002,
+      "w_fix": 30.0,
+      "refit_every": 3,
+      "work_px": 420
+    },
+    "fit_views": {
+      "fit": [
+        "goalie-photo-front",
+        "goalie-photo-front-oblique",
+        "goalie-photo-back",
+        "goalie-photo-side",
+        "goalie-video-t00.50",
+        "goalie-video-t05.00",
+        "goalie-video-t07.75",
+        "goalie-video-t12.25"
+      ],
+      "heldout": [
+        "goalie-photo-top",
+        "goalie-video-t16.75",
+        "goalie-photo-lying-back",
+        "goalie-photo-lying-back-2",
+        "goalie-photo-underside"
+      ]
+    },
+    "result": {
+      "mean_iou_before": 0.8414,
+      "mean_iou_after": 0.9032,
+      "iou_before": {
+        "goalie-photo-front": 0.8793,
+        "goalie-photo-front-oblique": 0.8793,
+        "goalie-photo-back": 0.8416,
+        "goalie-photo-side": 0.8196,
+        "goalie-video-t00.50": 0.8902,
+        "goalie-video-t05.00": 0.8089,
+        "goalie-video-t07.75": 0.8617,
+        "goalie-video-t12.25": 0.8871,
+        "goalie-photo-top": 0.797,
+        "goalie-video-t16.75": 0.7902,
+        "goalie-photo-lying-back": 0.7916,
+        "goalie-photo-lying-back-2": 0.841,
+        "goalie-photo-underside": 0.8511
+      },
+      "iou_after": {
+        "goalie-photo-front": 0.9392,
+        "goalie-photo-front-oblique": 0.9094,
+        "goalie-photo-back": 0.9111,
+        "goalie-photo-side": 0.9016,
+        "goalie-video-t00.50": 0.9399,
+        "goalie-video-t05.00": 0.8971,
+        "goalie-video-t07.75": 0.9168,
+        "goalie-video-t12.25": 0.9321,
+        "goalie-photo-top": 0.8592,
+        "goalie-video-t16.75": 0.8566,
+        "goalie-photo-lying-back": 0.8945,
+        "goalie-photo-lying-back-2": 0.894,
+        "goalie-photo-underside": 0.8905
+      },
+      "shift_units": {
+        "max": 3.439,
+        "mean": 1.215
+      },
+      "note": "cameras refitted by this script for both shapes; fit-figure-views.py gives the reported scores"
+    }
+  },
+  "assets": {
+    "goalie_warp_SWE": {
+      "height_mm": 53.99,
+      "zmin_mm": -0.001,
+      "footprint_x_mm": [
+        -11.8,
+        12.3
+      ],
+      "footprint_y_mm": [
+        -15.2,
+        34.7
+      ],
+      "socket_bottom_diameter_mm": 12.35,
+      "stick_zmin_mm": 0.0,
+      "stick_y_extent_mm": [
+        -8.99,
+        34.69
+      ],
+      "stick_low_part_extent_along_blade_mm": 26.68,
+      "blade_toe_xy_mm": [
+        9.58,
+        34.69
+      ],
+      "triangles": 160776,
+      "decal_faces": 1470
+    },
+    "goalie_warp_FIN": {
+      "height_mm": 53.99,
+      "zmin_mm": -0.001,
+      "footprint_x_mm": [
+        -11.8,
+        12.3
+      ],
+      "footprint_y_mm": [
+        -15.2,
+        34.7
+      ],
+      "socket_bottom_diameter_mm": 12.35,
+      "stick_zmin_mm": 0.0,
+      "stick_y_extent_mm": [
+        -8.99,
+        34.69
+      ],
+      "stick_low_part_extent_along_blade_mm": 26.68,
+      "blade_toe_xy_mm": [
+        9.58,
+        34.69
+      ],
+      "triangles": 160776,
+      "decal_faces": 1470
+    }
+  },
+  "current_goalie_same_measures": {
+    "height_mm": 54.0,
+    "zmin_mm": 0.0,
+    "footprint_x_mm": [
+      -9.2,
+      11.5
+    ],
+    "footprint_y_mm": [
+      -14.5,
+      34.5
+    ],
+    "socket_bottom_diameter_mm": 12.34,
+    "stick_zmin_mm": 0.0,
+    "stick_y_extent_mm": [
+      -9.43,
+      34.45
+    ],
+    "stick_low_part_extent_along_blade_mm": 26.68,
+    "blade_toe_xy_mm": [
+      7.54,
+      34.45
+    ],
+    "triangles": 160776
+  }
+}
