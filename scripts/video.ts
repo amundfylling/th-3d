@@ -19,7 +19,9 @@
 //   --cache                 scene layer from the scene cache (misses rendered and verified first); default: direct WebGL
 //   --browser <path>        browser executable (else REMOTION_BROWSER_EXECUTABLE, else Remotion's own, else Playwright's)
 //   --gl <backend>          swangle (default, CPU) | angle | angle-egl | egl | vulkan | swiftshader
-//   --concurrency 2         browser tabs rendering in parallel
+//   --concurrency n         browser tabs rendering in parallel (default: 1 for WebGL on a software renderer, which
+//                           already uses every core; 2 on a GPU; one per core, at most 8, for cached composites)
+//   --plain-render          draw the scene with the plain single three.js call (the reference of remotion/scene-render.ts)
 //   --out <dir>             output directory (stills, draft, partial final)
 //   --cold                  delete the bundler cache first (benchmarks)    --report <file>   timings as JSON
 //
@@ -28,6 +30,7 @@ import { bundle } from "@remotion/bundler";
 import { openBrowser, renderFrames, renderMedia, renderStill, selectComposition } from "@remotion/renderer";
 import { execFileSync, spawnSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { availableParallelism } from "node:os";
 import path from "node:path";
 import { analysisFrame, resolveAnalysis, type AnalysisSpec } from "../src/model/analysis.ts";
 import { checkTraceCompatibility, shotTimeEvaluator, type AssetManifest } from "../src/model/shot-pose.ts";
@@ -50,11 +53,11 @@ const names: string[] = [];
 for (let i = 1; i < argv.length; i++) {
   const a = argv[i]!;
   if (!a.startsWith("--")) names.push(a);
-  else if (["--cache", "--cold", "--no-graphics"].includes(a)) opt[a.slice(2)] = true;
+  else if (["--cache", "--cold", "--no-graphics", "--plain-render"].includes(a)) opt[a.slice(2)] = true;
   else opt[a.slice(2)] = argv[++i] ?? "";
 }
 const str = (k: string): string | null => (typeof opt[k] === "string" ? (opt[k] as string) : null);
-const CONCURRENCY = Number(str("concurrency") ?? 2);
+const PLAIN_RENDER = opt["plain-render"] === true;
 const USE_CACHE = opt.cache === true;
 const GRAPHICS = opt["no-graphics"] !== true;
 
@@ -145,15 +148,19 @@ const camDiff = (L: Loaded, c: Cam): number => {
 /** Collects the page logs of a render: states, cameras, cached-frame mappings, the WebGL renderer, failed checks. */
 function logSink(tag: string) {
   const states = new Map<number, Logged>(), cams = new Map<number, Cam>(), cached = new Map<number, string>(), renderers = new Set<string>();
+  // how each live frame's scene was drawn (remotion/scene-render.ts): frame -> "reuse" | "plain"
+  const draws = new Map<number, string>();
   const onBrowserLog = (l: { text: string }) => {
     const x = l.text;
     if (x.startsWith(`[${tag}-state] `)) { const s = JSON.parse(x.slice(tag.length + 9)) as Logged; states.set(s.frame, s); }
     else if (x.startsWith(`[${tag}-camera] `)) { const c = JSON.parse(x.slice(tag.length + 10)) as Cam; cams.set(c.frame, c); }
     else if (x.startsWith(`[${tag}-cached] `)) { const c = JSON.parse(x.slice(tag.length + 10)) as { frame: number; src: string }; cached.set(c.frame, c.src); }
+    else if (x.startsWith(`[${tag}-draw] `)) { const d = JSON.parse(x.slice(tag.length + 8)) as { frame: number; mode: string }; draws.set(d.frame, d.mode); }
     else if (x.startsWith("[gl-renderer] ")) { const g = JSON.parse(x.slice(14)); renderers.add(`${g.renderer} (${g.vendor}; ${g.version})`); }
     else if (/FAIL|Error/.test(x)) console.error(x.slice(0, 400));
   };
-  return { states, cams, cached, renderers, onBrowserLog };
+  const drawModes = (): Record<string, number> => { const n: Record<string, number> = {}; for (const m of draws.values()) n[m] = (n[m] ?? 0) + 1; return n; };
+  return { states, cams, cached, renderers, drawModes, onBrowserLog };
 }
 
 /** Frames whose logged state differs from the pure evaluation, the worst camera difference and the worst readback. */
@@ -176,7 +183,7 @@ mkdirSync("out", { recursive: true });
 await timed("prepare_assets", prepareAssets);
 const gates = await timed("gates", () => Object.fromEntries(targets.map((t) => [t.name, gate(t)])));
 const env: RenderEnv = await timed("resolve_browser", () => resolveRenderEnv({ browser: str("browser"), gl: str("gl") }));
-console.error(`[video] browser ${env.browserExecutable} (${env.browserSource}, ${env.browserVersion}); --gl=${env.gl}; concurrency ${CONCURRENCY}`);
+console.error(`[video] browser ${env.browserExecutable} (${env.browserSource}, ${env.browserVersion}); --gl=${env.gl}`);
 if (opt.cold) for (const d of ["node_modules/.cache"]) rmSync(d, { recursive: true, force: true });
 const serveUrl = await timed("bundle", () => bundle({ entryPoint: path.resolve("remotion/index.ts") }));
 const browser = await timed("open_browser", () => openBrowser("chrome", { browserExecutable: env.browserExecutable, chromiumOptions: env.chromiumOptions }));
@@ -192,6 +199,12 @@ const probe = await timed("probe_renderer", async () => {
   return [...sink.renderers][0] ?? "unknown";
 });
 console.error(`[video] WebGL renderer: ${probe}`);
+// Tabs in parallel. A software WebGL renderer (SwiftShader, llvmpipe) rasterises on every core by itself: a second tab
+// only adds its own scene load (measured: 12 frames in 32 s with 1 tab, 36 s with 2, 44 s with 4). Composites over cached
+// scene images draw no WebGL and do scale with the cores.
+const SOFTWARE_GL = /swiftshader|llvmpipe|software/i.test(probe);
+const CONCURRENCY = { live: Number(str("concurrency") ?? (SOFTWARE_GL ? 1 : 2)), composite: Number(str("concurrency") ?? Math.max(1, Math.min(8, availableParallelism()))) };
+console.error(`[video] concurrency: ${CONCURRENCY.live} (WebGL), ${CONCURRENCY.composite} (cached composite)`);
 
 const results: Record<string, unknown>[] = [];
 let server: Awaited<ReturnType<typeof serveCache>> | null = null;
@@ -204,7 +217,7 @@ try {
     const scale = Number(str("scale") ?? (cmd === "final" ? 1 : 0.5));
     const ranges = selectRanges(L.analysis, str("frames"), str("segment"));
     const full = ranges.length === 1 && ranges[0]!.from === 0 && ranges[0]!.to === L.analysis.durationInFrames - 1;
-    const res: Record<string, unknown> = { target: t.name, composition: t.composition, command: cmd, gate: gates[t.name], scale, concurrency: CONCURRENCY, mode: USE_CACHE ? "cached" : "direct" };
+    const res: Record<string, unknown> = { target: t.name, composition: t.composition, command: cmd, gate: gates[t.name], scale, concurrency: CONCURRENCY, mode: USE_CACHE ? "cached" : "direct", scene_render: PLAIN_RENDER ? "plain" : "reuse" };
     const tt = Date.now();
     if (cmd === "stills") res.stills = await stills(L, scale);
     else if (cmd === "scene-cache") res.cache = await fillCache(L, framesOf(ranges), scale);
@@ -216,7 +229,7 @@ try {
   await browser.close({ silent: true });
   if (server) await (server as { close: () => Promise<void> }).close();
 }
-const summary = { command: cmd, targets: names, backend: backendLabel(env, [probe]), browser: { path: env.browserExecutable, source: env.browserSource, version: env.browserVersion }, gl: env.gl, webgl_renderer: probe, concurrency: CONCURRENCY, timings, total_seconds: Math.round((Date.now() - T0) / 100) / 10, results };
+const summary = { command: cmd, targets: names, backend: backendLabel(env, [probe]), browser: { path: env.browserExecutable, source: env.browserSource, version: env.browserVersion }, gl: env.gl, webgl_renderer: probe, concurrency: CONCURRENCY, scene_render: PLAIN_RENDER ? "plain" : "reuse", timings, total_seconds: Math.round((Date.now() - T0) / 100) / 10, results };
 if (str("report")) writeFileSync(str("report")!, JSON.stringify(summary, null, 1) + "\n");
 console.log(JSON.stringify(summary, null, 1));
 
@@ -227,11 +240,11 @@ async function composition(L: Loaded, inputProps: Record<string, unknown>) {
 
 /** Renders the given output frames as PNGs (one tab per concurrency slot); live WebGL or the cached scene layer. */
 async function renderPngs(L: Loaded, frames: number[], scale: number, outDir: string, graphics: boolean, sceneSrc: string[] | null) {
-  const inputProps = { graphics, frameMap: frames, sceneSrc };
+  const inputProps = { graphics, frameMap: frames, sceneSrc, plainRender: PLAIN_RENDER };
   const comp = await composition(L, inputProps);
   const sink = logSink(L.t.tag);
   const tmp = mkdtempSync(path.join("out", ".frames-"));
-  await renderFrames({ ...base, composition: comp, inputProps, imageFormat: "png", scale, concurrency: CONCURRENCY, outputDir: tmp, onStart: () => undefined, onFrameUpdate: () => undefined, onBrowserLog: sink.onBrowserLog });
+  await renderFrames({ ...base, composition: comp, inputProps, imageFormat: "png", scale, concurrency: sceneSrc ? CONCURRENCY.composite : CONCURRENCY.live, outputDir: tmp, onStart: () => undefined, onFrameUpdate: () => undefined, onBrowserLog: sink.onBrowserLog });
   const files = readdirSync(tmp).filter((f) => f.endsWith(".png")).sort((a, b) => Number(/(\d+)\.png$/.exec(a)![1]) - Number(/(\d+)\.png$/.exec(b)![1]));
   if (files.length !== frames.length) throw new Error(`rendered ${files.length} images for ${frames.length} frames`);
   mkdirSync(outDir, { recursive: true });
@@ -259,7 +272,7 @@ async function stills(L: Loaded, scale: number) {
   writeFileSync(path.join(dir, "index.json"), JSON.stringify({ target: L.t.name, composition: L.t.composition, scale, auto, mode: USE_CACHE ? "cached" : "direct", stills: index }, null, 1) + "\n");
   const sheet = path.join(dir, "contact-sheet.jpg");
   const py = spawnSync(process.env.PYTHON ?? "python3", ["scripts/video/contact-sheet.py", path.join(dir, "index.json"), sheet], { encoding: "utf8" });
-  return { dir, count: out.length, frames, contact_sheet: py.status === 0 ? sheet : `not made (${(py.stderr || String(py.error)).trim().split("\n").pop()})`, renderers: [...sink.renderers], checks: { live, mapping }, cache: src?.stats ?? null };
+  return { dir, count: out.length, frames, contact_sheet: py.status === 0 ? sheet : `not made (${(py.stderr || String(py.error)).trim().split("\n").pop()})`, renderers: [...sink.renderers], scene_draws: sink.drawModes(), checks: { live, mapping }, cache: src?.stats ?? null };
 }
 
 /** Draft or final clips: one mp4 per contiguous range, live WebGL or composited over the scene cache. */
@@ -273,12 +286,12 @@ async function clips(L: Loaded, ranges: Range[], scale: number, full: boolean) {
     const suffix = full ? "" : `-${r.from}-${r.to}`;
     const file = exportFull ? L.t.final.out : path.join(dir, `${L.t.name.replace(":", "-")}-${cmd}${suffix}${scale !== 1 ? `-x${scale}` : ""}.mp4`);
     const src = USE_CACHE ? await cachedSources(L, frames, scale) : null;
-    const inputProps = { graphics: GRAPHICS, sceneSrc: src?.urls ?? null };
+    const inputProps = { graphics: GRAPHICS, sceneSrc: src?.urls ?? null, plainRender: PLAIN_RENDER };
     const comp = await composition(L, inputProps);
     const sink = logSink(L.t.tag);
     const t0 = Date.now();
     await timed(`${L.t.name}:${cmd}${suffix}`, () => renderMedia({
-      ...base, composition: comp, inputProps, codec: "h264", crf: 20, pixelFormat: "yuv420p", outputLocation: file, scale, concurrency: CONCURRENCY,
+      ...base, composition: comp, inputProps, codec: "h264", crf: 20, pixelFormat: "yuv420p", outputLocation: file, scale, concurrency: src ? CONCURRENCY.composite : CONCURRENCY.live,
       frameRange: [r.from, r.to], onBrowserLog: sink.onBrowserLog,
       onProgress: ({ renderedFrames }) => { if (renderedFrames % 100 === 0 && renderedFrames) console.error(`${file}: ${renderedFrames}/${frames.length}`); },
     }));
@@ -294,7 +307,7 @@ async function clips(L: Loaded, ranges: Range[], scale: number, full: boolean) {
     const live = verifyLive(L, sink, src ? [] : frames);
     const mapping = src ? verifyMapping(L, sink, frames, src) : null;
     const bytes = statSync(file).size;
-    const row = { file, frames: [r.from, r.to], frames_count: frames.length, seconds, bytes, megabytes: Math.round(bytes / 1e4) / 100, accounting, accounting_ok: accountingOk, renderers: [...sink.renderers], live, mapping, cache: src?.stats ?? null };
+    const row = { file, frames: [r.from, r.to], frames_count: frames.length, seconds, bytes, megabytes: Math.round(bytes / 1e4) / 100, accounting, accounting_ok: accountingOk, renderers: [...sink.renderers], scene_draws: sink.drawModes(), live, mapping, cache: src?.stats ?? null };
     out.push(row);
     const failed = !accountingOk || live.differing.length || live.missing.length || live.camWorst > 0.02 || (mapping && mapping.errors.length) || (exportFull && bytes >= 25e6);
     if (exportFull) writeExportReport(L, file, comp, row, seconds);
@@ -330,7 +343,7 @@ function writeExportReport(L: Loaded, file: string, comp: { width: number; heigh
       camera_frames_logged: comp.durationInFrames - (mapping ? mapping.checked : 0), camera_max_diff_vs_track: mapping && mapping.checked === comp.durationInFrames ? null : live.camWorst,
       scene_cache: mapping ? { ...mapping, stats: row.cache } : null,
     },
-    render: { mode: USE_CACHE ? "cached" : "direct", concurrency: CONCURRENCY, scale: 1, browser: env.browserExecutable, gl_flag: env.gl, webgl_renderers: row.renderers, probe_renderer: probe },
+    render: { mode: USE_CACHE ? "cached" : "direct", scene_render: PLAIN_RENDER ? "plain" : "reuse", concurrency: USE_CACHE ? CONCURRENCY : CONCURRENCY.live, scale: 1, browser: env.browserExecutable, gl_flag: env.gl, webgl_renderers: row.renderers, probe_renderer: probe },
     render_seconds: Math.round(seconds),
   };
   writeFileSync(L.t.final.report, JSON.stringify(report, null, 1) + "\n");
@@ -340,7 +353,7 @@ function writeExportReport(L: Loaded, file: string, comp: { width: number; heigh
 // ---------------------------------------------------------------- scene cache
 async function openCache(L: Loaded, scale: number) {
   const background = sceneBackground(L);
-  const inputs = namespaceInputs({ browserVersion: env.browserVersion, gl: env.gl, webglRenderer: probe, width: L.analysis.spec.width, height: L.analysis.spec.height, scale, background });
+  const inputs = namespaceInputs({ browserVersion: env.browserVersion, gl: env.gl, webglRenderer: probe, width: L.analysis.spec.width, height: L.analysis.spec.height, scale, background, plainRender: PLAIN_RENDER });
   const ns = namespaceId(inputs);
   return new SceneCache(ns, inputs);
 }
@@ -370,6 +383,7 @@ async function fillCache(L: Loaded, frames: number[], scale: number) {
   }
   const missing = [...stateOf.keys()].filter((k) => !cache.entry(k));
   let renderSeconds = 0;
+  let drawModes: Record<string, number> = {};
   const renderers = new Set<string>();
   if (missing.length) {
     const reps = missing.map((k) => firstFrame.get(k)!);
@@ -378,6 +392,7 @@ async function fillCache(L: Loaded, frames: number[], scale: number) {
     const { out, sink } = await timed(`${L.t.name}:scene_renders(${reps.length})`, () => renderPngs(L, reps, scale, tmp, false, null));
     renderSeconds = Math.round((Date.now() - t0) / 100) / 10;
     sink.renderers.forEach((r) => renderers.add(r));
+    drawModes = sink.drawModes();
     // the namespace and every entry name the probe's renderer: the scene renders must report exactly that one
     if (!sink.renderers.size) throw new Error(`${L.t.name}: the scene renders logged no WebGL renderer; nothing cached`);
     for (const r of sink.renderers) if (r !== probe) throw new Error(`scene renders used ${r}, the probe said ${probe}: not caching`);
@@ -393,7 +408,7 @@ async function fillCache(L: Loaded, frames: number[], scale: number) {
     });
     rmSync(tmp, { recursive: true, force: true });
   }
-  return { cache, keyOf, stats: { namespace: cache.ns, frames: frames.length, unique_scene_states: stateOf.size, cache_hits: stateOf.size - missing.length, scene_renders: missing.length, scene_render_seconds: renderSeconds, frames_without_a_new_render: frames.length - missing.length, entries_in_namespace: cache.size() } };
+  return { cache, keyOf, stats: { namespace: cache.ns, frames: frames.length, unique_scene_states: stateOf.size, cache_hits: stateOf.size - missing.length, scene_renders: missing.length, scene_render_seconds: renderSeconds, scene_draws: drawModes, frames_without_a_new_render: frames.length - missing.length, entries_in_namespace: cache.size() } };
 }
 
 /** URLs of the cached scene image for each output frame (sparse array over the composition, filled for `frames`). */

@@ -1,0 +1,240 @@
+{
+ "note": "Measured 2026-11-10 in the cloud container (4 cores, no GPU, SwiftShader, Chromium 149.0.7790.0 headless shell found by the Playwright search). One run each, nothing extrapolated. previous_export_seconds are the render times recorded in the reports these exports replace (2026-10-06 to 2026-10-13, Chromium 141, the five hand-made videos direct with 2 tabs, Hjerpefinte cached cold: 2329.9 s scene renders + 140 s composite): another day and browser build, so a comparison across them is indicative only. The same-session comparison is frame_cost and clip_24_frames.",
+ "frame_cost_ms_per_frame_1080p_one_tab": {
+  "frames": "move:hjerpefinte 300-305, after the first frame",
+  "plain": [
+   4233,
+   4088,
+   4331,
+   4112,
+   4199
+  ],
+  "antialias_off": [
+   3519,
+   3127,
+   3293,
+   3088,
+   2988
+  ],
+  "screens_opaque": [
+   1885,
+   1924,
+   1947,
+   1977,
+   2057
+  ],
+  "screens_opaque_antialias_off": [
+   1048,
+   922,
+   926
+  ],
+  "figures_hidden": [
+   1950,
+   2025,
+   2119
+  ],
+  "figures_hidden_screens_opaque": [
+   976,
+   1038,
+   988
+  ],
+  "scale_0.5_before_pixel_ratio_fix": [
+   4405,
+   4759,
+   4602
+  ],
+  "new_renderer": [
+   2414,
+   2664,
+   2613,
+   2524,
+   2483,
+   2441
+  ]
+ },
+ "tabs_12_frames_seconds_screens_opaque": {
+  "1": 32.3,
+  "2": 35.7,
+  "4": 44.0
+ },
+ "clip_24_frames_300_323": {
+  "before_final_direct_2_tabs": 121.4,
+  "new_final_direct": 68.6,
+  "new_draft_scale_0.5": 41.6,
+  "plain_render_draft_scale_0.5_2_tabs": 77.9
+ },
+ "pixel_difference_vs_plain_render_1080p_no_overlays": {
+  "40": {
+   "differ": 6270,
+   "gt2": 1064,
+   "gt8": 21,
+   "max": 17
+  },
+  "300": {
+   "differ": 1201,
+   "gt2": 145,
+   "gt8": 7,
+   "max": 11
+  },
+  "480": {
+   "differ": 1254,
+   "gt2": 159,
+   "gt8": 8,
+   "max": 10
+  }
+ },
+ "full_exports_cold_cache": [
+  {
+   "target": "move:hjerpefinte",
+   "frames": 807,
+   "scene_states": 313,
+   "scene_render_seconds": 852.8,
+   "composite_seconds": 81.3,
+   "seconds": 937.5,
+   "megabytes": 10.58,
+   "scene_draws": {
+    "reuse": 313
+   },
+   "previous_export_seconds": 2470
+  },
+  {
+   "target": "shovel-17",
+   "frames": 748,
+   "scene_states": 405,
+   "scene_render_seconds": 1167.9,
+   "composite_seconds": 83.6,
+   "seconds": 1255.1,
+   "megabytes": 12.1,
+   "scene_draws": {
+    "reuse": 405
+   },
+   "previous_export_seconds": 3965
+  },
+  {
+   "target": "spjass",
+   "frames": 742,
+   "scene_states": 335,
+   "scene_render_seconds": 879.6,
+   "composite_seconds": 74.7,
+   "seconds": 957.5,
+   "megabytes": 10.35,
+   "scene_draws": {
+    "reuse": 335
+   },
+   "previous_export_seconds": 3571
+  },
+  {
+   "target": "ikv",
+   "frames": 900,
+   "scene_states": 509,
+   "scene_render_seconds": 1215.2,
+   "composite_seconds": 90.6,
+   "seconds": 1309.4,
+   "megabytes": 11.11,
+   "scene_draws": {
+    "reuse": 509
+   },
+   "previous_export_seconds": 4261
+  },
+  {
+   "target": "defence-lw",
+   "frames": 1061,
+   "scene_states": 154,
+   "scene_render_seconds": 328.7,
+   "composite_seconds": 95.3,
+   "seconds": 427.1,
+   "megabytes": 3.56,
+   "scene_draws": {
+    "reuse": 154
+   },
+   "previous_export_seconds": 4342
+  },
+  {
+   "target": "nacka",
+   "frames": 744,
+   "scene_states": 316,
+   "scene_render_seconds": 753.8,
+   "composite_seconds": 68.8,
+   "seconds": 825.6,
+   "megabytes": 9.64,
+   "scene_draws": {
+    "reuse": 316
+   },
+   "previous_export_seconds": 4482
+  }
+ ],
+ "runs": {
+  "hjerpefinte": {
+   "command": "final",
+   "targets": [
+    "move:hjerpefinte"
+   ],
+   "backend": "--gl=swangle; WebGL renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "browser": {
+    "path": "/home/user/th-3d/node_modules/.remotion/chrome-headless-shell/linux64/chrome-headless-shell-linux64/chrome-headless-shell",
+    "source": "remotion",
+    "version": "Chromium 149.0.7790.0"
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "concurrency": {
+    "live": 1,
+    "composite": 4
+   },
+   "scene_render": "reuse",
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0.1,
+    "resolve_browser": 0.2,
+    "bundle": 2.3,
+    "open_browser": 0.1,
+    "probe_renderer": 0.8,
+    "move:hjerpefinte:scene_renders(313)": 852.8,
+    "move:hjerpefinte:final": 81.3
+   },
+   "total_seconds": 941.1
+  },
+  "five_hand_made": {
+   "command": "final",
+   "targets": [
+    "shovel-17",
+    "spjass",
+    "ikv",
+    "defence-lw",
+    "nacka"
+   ],
+   "backend": "--gl=swangle; WebGL renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "browser": {
+    "path": "/home/user/th-3d/node_modules/.remotion/chrome-headless-shell/linux64/chrome-headless-shell-linux64/chrome-headless-shell",
+    "source": "remotion",
+    "version": "Chromium 149.0.7790.0"
+   },
+   "gl": "swangle",
+   "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))",
+   "concurrency": {
+    "live": 1,
+    "composite": 4
+   },
+   "scene_render": "reuse",
+   "timings": {
+    "prepare_assets": 0.1,
+    "gates": 0,
+    "resolve_browser": 0.2,
+    "bundle": 2.4,
+    "open_browser": 0.1,
+    "probe_renderer": 0.8,
+    "shovel-17:scene_renders(405)": 1167.9,
+    "shovel-17:final": 83.6,
+    "spjass:scene_renders(335)": 879.6,
+    "spjass:final": 74.6,
+    "ikv:scene_renders(509)": 1215.2,
+    "ikv:final": 90.6,
+    "defence-lw:scene_renders(154)": 328.7,
+    "defence-lw:final": 95.2,
+    "nacka:scene_renders(316)": 753.8,
+    "nacka:final": 68.8
+   },
+   "total_seconds": 4778.4
+  }
+ }
+}

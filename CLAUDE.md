@@ -36,7 +36,8 @@ own size, user decision 2026-10-12). Since 2026-10-12 the assets, contacts, foot
 A PROPOSED goalie bent toward the user's photo outlines (data/figures/goalie-warp.json, assets/figures/goalie_warp_*; no goalie 3D model exists online)
 sits beside the current goalie and is NOT in use; see docs/goalie-warp.md.
 All analysis videos share remotion/AnalysisVideo.tsx; preview, draft and export them with `scripts/video.ts` (docs/video-workflow.md;
-move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`).
+move text in `moves/<id>/story.json`, `build-move.py <id> --presentation`). The scene is drawn by `remotion/scene-render.ts`
+(the end screens reuse the drawn frame, about 1.7x faster per frame; `--plain-render` is the reference; docs/video-workflow.md section 8).
 Game mechanics: the ITHF rules (references/rules/ithf-game-rules.pdf) and one full recorded match (Fylling vs Moe,
 references/games/; handheld phone) are digested in docs/game-mechanics.md, with the user's answers. A first PROPOSED
 tracking pipeline (stabilisation, calibration, puck track, possession per skater by exclusive reach areas;
