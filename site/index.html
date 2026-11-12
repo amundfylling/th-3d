@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#0a1f42" />
+    <title>Table Hockey Combo Editor</title>
+    <meta name="description" content="Draw table hockey combinations on a 3D STIGA table: move and turn the players, draw the passes, export pictures, video and JSON." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e2a57'/%3E%3Cpath d='M7 22 L18 11' stroke='%2316be34' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M25 6 L23 16 L15 8 Z' fill='%2316be34'/%3E%3Ccircle cx='8' cy='23' r='4' fill='%23fff'/%3E%3C/svg%3E" />
+    <link rel="preload" href="./fonts/Geist-Variable-latin.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div id="app">
+      <header class="bar">
+        <div class="brand" title="Table Hockey Combo Editor">
+          <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#c8102e" /><path d="M7 22 L18 11" stroke="#fff" stroke-width="4" stroke-linecap="round" /><path d="M25 6 L23 16 L15 8 Z" fill="#fff" /><circle cx="8" cy="23" r="4" fill="#fff" /></svg>
+          <span>Combo Editor</span>
+        </div>
+        <input id="name" class="name" type="text" maxlength="80" spellcheck="false" aria-label="Name of the combination" />
+        <div class="spacer"></div>
+        <button id="btn-undo" class="icon" title="Undo (Ctrl+Z)" aria-label="Undo"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5" /><path d="M4 9h10a6 6 0 0 1 0 12h-3" /></svg></button>
+        <button id="btn-redo" class="icon" title="Redo (Ctrl+Shift+Z)" aria-label="Redo"><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5" /><path d="M20 9H10a6 6 0 0 0 0 12h3" /></svg></button>
+        <button id="btn-library" class="text"><svg viewBox="0 0 24 24"><path d="M4 5h6v14H4zM14 5h6v14h-6z" /></svg><span>Library</span></button>
+        <button id="btn-ai" class="text"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /></svg><span>AI</span></button>
+        <button id="btn-open" class="text"><svg viewBox="0 0 24 24"><path d="M4 19V6h6l2 2h8v11z" /></svg><span>Open</span></button>
+        <button id="btn-export" class="text primary"><svg viewBox="0 0 24 24"><path d="M12 4v11" /><path d="m7 10 5 5 5-5" /><path d="M5 20h14" /></svg><span>Export</span></button>
+        <button id="btn-help" class="icon" title="Help" aria-label="Help"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7" /><path d="M12 17h.01" /></svg></button>
+      </header>
+      <main>
+        <div id="viewport">
+          <canvas id="stage"></canvas>
+          <nav class="tools" aria-label="Tools">
+            <button data-tool="select" class="on" title="Move and turn (V)"><svg viewBox="0 0 24 24"><path d="M6 3l12 9-5.5 1.2L15 19l-2.6 1.2-2.5-5.6L6 18z" /></svg><span>Move</span></button>
+            <button data-tool="arrow" title="Pass or shot arrow (A)"><svg viewBox="0 0 24 24"><path d="M5 19 16 8" /><path d="M10 6h8v8" /></svg><span>Pass</span></button>
+            <button data-tool="move" title="Player movement arrow, dashed (D)"><svg viewBox="0 0 24 24"><path d="M5 19l2.5-2.5M10 14l2.5-2.5M15 9l1-1" /><path d="M10 6h8v8" /></svg><span>Run</span></button>
+            <button data-tool="marker" title="Numbered circle (N)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M10.5 9 12.5 8v8" /></svg><span>Number</span></button>
+            <button id="btn-delete" title="Delete the selected item (Del)"><svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13" /></svg><span>Delete</span></button>
+          </nav>
+          <div class="views" id="views"></div>
+          <div class="draftbar" id="draftbar" hidden>
+            <span id="draft-text">Tap the ice to add points</span>
+            <button id="draft-undo">Remove last</button>
+            <button id="draft-cancel">Cancel</button>
+            <button id="draft-done" class="primary">Done</button>
+          </div>
+          <div class="hint" id="hint"></div>
+          <aside id="inspector" aria-label="Properties"></aside>
+          <div id="toast" class="toast" hidden></div>
+        </div>
+      </main>
+    </div>
+
+    <div id="loading"><div class="loader"><div class="bar-outer"><div id="load-bar"></div></div><p id="load-text">Loading the table…</p></div></div>
+
+    <dialog id="dlg-library" class="wide">
+      <form method="dialog" class="dlg-head"><h2>Move library</h2><button class="icon" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg></button></form>
+      <p class="sub">121 moves from the Norwegian catalogue, drawn as in the move pictures. Pick one as a starting point; it replaces what is on the table (Undo brings it back).</p>
+      <div class="lib-filter"><input id="lib-search" type="search" placeholder="Search moves…" /><div id="lib-players" class="chips"></div></div>
+      <div id="lib-list" class="lib-list"></div>
+    </dialog>
+
+    <dialog id="dlg-export">
+      <form method="dialog" class="dlg-head"><h2>Export</h2><button class="icon" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg></button></form>
+      <section>
+        <h3>Picture</h3>
+        <div class="row"><label>Size<select id="ex-size"><option value="view">This view, sharp (2x)</option><option value="1920x1080">1920 x 1080 (16:9)</option><option value="3840x2160">3840 x 2160 (4K)</option><option value="1574x1100">1574 x 1100 (move picture)</option><option value="1080x1080">1080 x 1080 (square)</option><option value="1080x1920">1080 x 1920 (portrait)</option></select></label>
+          <label>Background<select id="ex-bg"><option value="current">As shown</option><option value="transparent">Transparent</option><option value="#ffffff">White</option></select></label></div>
+        <div class="row"><button id="ex-png" class="primary">Download PNG</button><button id="ex-copy-png">Copy picture</button></div>
+      </section>
+      <section>
+        <h3>Video</h3>
+        <p class="sub">The puck follows the arrows in order, 1920 x 1080. The players stand still.</p>
+        <div class="row"><button id="ex-video">Record and download video</button></div>
+      </section>
+      <section>
+        <h3>Data and link</h3>
+        <p class="sub">The JSON file opens again here and can be edited by hand or by an AI. The link holds the whole combination, so anyone who opens it sees the same table.</p>
+        <div class="row"><button id="ex-json">Download JSON</button><button id="ex-copy-json">Copy JSON</button><button id="ex-link">Copy share link</button></div>
+      </section>
+    </dialog>
+
+    <dialog id="dlg-open">
+      <form method="dialog" class="dlg-head"><h2>Open a combination</h2><button class="icon" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg></button></form>
+      <p class="sub">Choose a JSON file exported here (or drop it anywhere on the page), or paste JSON below.</p>
+      <div class="row"><button id="open-file" class="primary">Choose file…</button><input id="open-input" type="file" accept=".json,application/json" hidden /><button id="open-new">Start a new, empty table</button></div>
+      <textarea id="open-text" rows="7" placeholder='{"schema": "th-combo/1", …}' spellcheck="false"></textarea>
+      <div class="row"><button id="open-apply">Open pasted JSON</button></div>
+      <div id="open-notes" class="notes"></div>
+    </dialog>
+
+    <dialog id="dlg-ai" class="wide">
+      <form method="dialog" class="dlg-head"><h2>Change it with AI</h2><button class="icon" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg></button></form>
+      <label class="block">What should change?<textarea id="ai-request" rows="3" placeholder="For example: the centre passes to the left wing, who shoots into the far corner. Number the touches."></textarea></label>
+      <div class="ai-cols">
+        <section>
+          <h3>Ask Claude here</h3>
+          <p class="sub">Uses your own Anthropic API key. The key stays in this browser and is sent only to Anthropic. Each request costs a few cents on your account.</p>
+          <label class="block">API key<input id="ai-key" type="password" placeholder="sk-ant-…" autocomplete="off" /></label>
+          <label class="block">Model<select id="ai-model"></select></label>
+          <div class="row"><button id="ai-ask" class="primary">Ask Claude</button><button id="ai-stop" hidden>Stop</button><button id="ai-forget" class="quiet">Forget key</button></div>
+        </section>
+        <section>
+          <h3>Or use any AI, free</h3>
+          <p class="sub">Copy the prompt, paste it into ChatGPT, Claude, Gemini or another chat AI, then paste its answer here.</p>
+          <div class="row"><button id="ai-copy">1. Copy prompt</button></div>
+          <textarea id="ai-answer" rows="4" placeholder="2. Paste the AI's answer here" spellcheck="false"></textarea>
+          <div class="row"><button id="ai-apply">3. Apply answer</button></div>
+        </section>
+      </div>
+      <div id="ai-status" class="notes"></div>
+    </dialog>
+
+    <dialog id="dlg-help" class="wide">
+      <form method="dialog" class="dlg-head"><h2>How it works</h2><button class="icon" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg></button></form>
+      <div class="help">
+        <ul>
+          <li><b>Move a player:</b> drag its body. It slides along its own slot, as on the real table.</li>
+          <li><b>Turn a player:</b> drag its stick, or drag the yellow ring that appears when the player is selected. Hold Shift for steps of 5 degrees. The mouse wheel over a selected player and the arrow keys turn it too.</li>
+          <li><b>Puck:</b> drag it. Near a stick it snaps to the blade.</li>
+          <li><b>Pass and Run arrows:</b> pick the tool, tap the ice for each point, then Done (or double-tap, or Enter). Select an arrow to move its points, curve it or change its colour.</li>
+          <li><b>Numbers:</b> pick Number and tap where each touch happens.</li>
+          <li><b>View:</b> drag empty ice to orbit, scroll or pinch to zoom, right-drag or two fingers to pan.</li>
+          <li><b>Keys:</b> V move, A pass, D run, N number, Del delete, Ctrl+Z undo, Space play.</li>
+        </ul>
+        <h3>The JSON format</h3>
+        <p class="sub">Exports and share links use this format. It is plain enough to write by hand and is the text the AI helper sends along.</p>
+        <pre id="help-format"></pre>
+        <h3>About</h3>
+        <p class="sub">The table is a model of a STIGA Play Off 21 game built from photos and measurements; this site is a fan project and is not affiliated with STIGA. The skater figure is derived from “STIGA HOCKEY PLAYER” by MAVRIS (<a href="https://www.thingiverse.com/thing:6898521" target="_blank" rel="noopener">Thingiverse 6898521</a>), licensed CC BY-SA, and is shared under the same licence. The library moves are illustrations, not measured recordings. Nothing you draw leaves your browser unless you share it.</p>
+      </div>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

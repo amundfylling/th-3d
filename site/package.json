@@ -1,0 +1,30 @@
+{
+  "name": "th-combo-editor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static 3D combination editor for the STIGA Play Off 21 table (docs/combo-editor.md)",
+  "scripts": {
+    "assets": "node scripts/build-assets.mjs",
+    "dev": "npm run assets && vite",
+    "build": "npm run assets && tsc -p tsconfig.json && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && node scripts/deploy-cloudflare.mjs",
+    "test": "node scripts/build-assets.mjs && node --test \"tests/*.test.ts\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.8.0",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "@gltf-transform/functions": "4.5.1",
+    "@types/node": "22.20.4",
+    "@types/three": "0.186.0",
+    "meshoptimizer": "1.3.0",
+    "sharp": "0.35.5",
+    "typescript": "7.0.2",
+    "vite": "8.3.8"
+  }
+}
