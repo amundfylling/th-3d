@@ -1,0 +1,41 @@
+{
+  "id": "fakie-tomahawk",
+  "name": "Fakie Tomahawk",
+  "level": 6,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Right wing shoots via the left boards and into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        474,
+        340
+      ],
+      "pose": true
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        66,
+        250
+      ]
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": "goal",
+      "picture_px": [
+        258,
+        212
+      ]
+    }
+  ]
+}

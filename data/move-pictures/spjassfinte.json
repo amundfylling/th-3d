@@ -1,0 +1,42 @@
+{
+  "id": "spjassfinte",
+  "name": "Spjassfinte",
+  "level": 6,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-spjassfinte-067aa3e8.png",
+  "text": "Center performs a Spjass, but places the puck in the right corner. Only works against a reacting goalie",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        301,
+        333
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        272,
+        324
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        333,
+        209
+      ]
+    }
+  ]
+}

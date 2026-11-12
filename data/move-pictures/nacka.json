@@ -1,0 +1,42 @@
+{
+ "id": "nacka",
+ "name": "Näcka",
+ "level": 4,
+ "view": "half",
+ "puck_no_picture": "references/combinations/puck-no-pictures/trick-nacka-2e6af9fd.png",
+ "contacts": [
+  {
+   "n": 1,
+   "pid": "W-C",
+   "picture_px": [
+    303,
+    337
+   ],
+   "pose": true
+  },
+  {
+   "n": 2,
+   "pid": "W-C",
+   "picture_px": [
+    354,
+    317
+   ],
+   "pose": false
+  }
+ ],
+ "path": [
+  {
+   "from": 1,
+   "to": 2
+  },
+  {
+   "from": 2,
+   "to": "goal",
+   "picture_px": [
+    342,
+    212
+   ]
+  }
+ ],
+ "note": "Contacts and arrows read off the puck.no picture (2026-11-10, user: the puck.no pictures are correct). Until then this picture was drawn from the saved trace data/traces/nacka.trace.json (PROPOSED), whose pose and heel pass differ from the picture."
+}

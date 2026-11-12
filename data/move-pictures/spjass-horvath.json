@@ -1,0 +1,67 @@
+{
+  "id": "spjass-horvath",
+  "name": "Spjass-Horvath",
+  "level": 8,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-spjass-horvath-5e975a0d.png",
+  "text": "Center performs a Spjass, deliberately misses the goal and hits the left rounded boards, gets the rebound, and shoots into the right corner",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        306,
+        338
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-C",
+      "picture_px": [
+        268,
+        339
+      ],
+      "pose": false
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        114,
+        106
+      ]
+    },
+    {
+      "n": 3,
+      "pid": "W-C",
+      "picture_px": [
+        349,
+        342
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": 3
+    },
+    {
+      "from": 3,
+      "to": "goal",
+      "picture_px": [
+        338,
+        209
+      ]
+    }
+  ]
+}

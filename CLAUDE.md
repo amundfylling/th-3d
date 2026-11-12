@@ -30,6 +30,9 @@ A concept video of the three ways to defend when the opponent's left wing has th
 TikTok references/shots/defence-vs-left-wing-tiktok.mp4) uses the PROPOSED, DESIGNED trace data/traces/defence-left-wing.trace.json
 (video validation/analysis-defence-lw.mp4); its shots and passes are lanes drawn as graphics; see docs/defence-left-wing.md.
 All analysis videos share remotion/AnalysisVideo.tsx.
+Move pictures (still pictures of the NTHF moves, docs/move-pictures.md, PROPOSED): the 51 puck.no pictures are redrawn on our rink
+with every figure placed and turned as puck.no draws it (user rule 2026-11-10: the puck.no pictures are correct), read off the
+pictures by `scripts/move-pictures/detect.py`; 70 more moves are drawn from the NTHF text. `npm run pictures:moves`.
 The skater is built from a Thingiverse STL (thing:6898521 by MAVRIS, CC BY-SA, keep the attribution), 56.85 mm tall (the file's
 own size, user decision 2026-10-12). Since 2026-10-12 the assets, contacts, footprints, traces and videos all use it (user:
 "Switch now"); the parametric mold stays in data/figure-molds.json as the shape record; see docs/skater-stl.md.

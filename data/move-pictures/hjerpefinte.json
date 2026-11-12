@@ -1,0 +1,29 @@
+{
+  "id": "hjerpefinte",
+  "name": "Hjerpefinte",
+  "level": 2,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-hjerpefinte-f9523f5c.png",
+  "text": "Center starts with the puck out on the blade to the right of the slot, and shoots directly into the right corner. Only works against a goalie expecting a Hjerpe",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        348,
+        341
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "goal",
+      "picture_px": [
+        342,
+        213
+      ]
+    }
+  ]
+}

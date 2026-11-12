@@ -1,0 +1,42 @@
+{
+  "id": "fakie-senterkniv",
+  "name": "Fakie Senterkniv",
+  "level": 7,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-senterkniv-96970c00.png",
+  "text": "Pass from center to the right defenseman, who shoots one-timed into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        328,
+        377
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-RD",
+      "picture_px": [
+        398,
+        653
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        330,
+        206
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+ "id": "spjass",
+ "name": "Spjass",
+ "level": 5,
+ "view": "half",
+ "puck_no_picture": "references/combinations/puck-no-pictures/trick-spjass-6dadefbc.png",
+ "text": "Center starts with the puck in the heel groove, passes with the blade a few centimeters out to the left, spins all the way around and shoots with the blade into the left corner",
+ "contacts": [
+  {
+   "n": 1,
+   "pid": "W-C",
+   "picture_px": [
+    304,
+    334
+   ],
+   "pose": true
+  },
+  {
+   "n": 2,
+   "pid": "W-C",
+   "picture_px": [
+    248,
+    322
+   ],
+   "pose": false
+  }
+ ],
+ "path": [
+  {
+   "from": 1,
+   "to": 2
+  },
+  {
+   "from": 2,
+   "to": "goal",
+   "picture_px": [
+    254,
+    212
+   ]
+  }
+ ],
+ "note": "Contacts and arrows read off the puck.no picture (2026-11-10, user: the puck.no pictures are correct). Until then this picture was drawn from the saved trace data/traces/spjass.trace.json (PROPOSED), whose pose and heel pass differ from the picture."
+}

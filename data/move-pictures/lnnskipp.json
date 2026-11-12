@@ -1,0 +1,29 @@
+{
+  "id": "lnnskipp",
+  "name": "Lønnskipp",
+  "level": 5,
+  "view": "half",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "The puck lies near the right wing, who shoots directly into the top corner with lift",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        470,
+        330
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "goal",
+      "picture_px": [
+        334,
+        208
+      ]
+    }
+  ]
+}

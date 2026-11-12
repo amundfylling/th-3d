@@ -1,0 +1,64 @@
+{
+  "id": "jorda-rundt",
+  "name": "Jorda Rundt",
+  "level": 9,
+  "view": "full",
+  "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
+  "text": "Pass from right wing along the boards behind their own goal and all the way around back to the right wing, who shoots directly into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        360
+      ],
+      "pose": false,
+      "toward_px": [
+        520,
+        700
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-RW",
+      "picture_px": [
+        514,
+        270
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2,
+      "via": [
+        "boards",
+        [
+          300,
+          952
+        ],
+        "boards",
+        [
+          64,
+          520
+        ],
+        "boards",
+        [
+          300,
+          89
+        ],
+        "boards"
+      ]
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        338,
+        212
+      ]
+    }
+  ]
+}

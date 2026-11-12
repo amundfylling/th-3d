@@ -1,0 +1,54 @@
+{
+  "id": "fakie-invers-kano",
+  "name": "Fakie Invers Kano",
+  "level": 7,
+  "view": "full",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-fakie-invers-kano-6edf9a40.png",
+  "text": "Pass from center via the left boards to the left defenseman, who shoots one-timed into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        302,
+        336
+      ],
+      "pose": true
+    },
+    {
+      "id": "board",
+      "kind": "board",
+      "picture_px": [
+        69,
+        455
+      ]
+    },
+    {
+      "n": 2,
+      "pid": "W-LD",
+      "picture_px": [
+        196,
+        668
+      ],
+      "pose": true
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": "board"
+    },
+    {
+      "from": "board",
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": "goal",
+      "picture_px": [
+        261,
+        216
+      ]
+    }
+  ]
+}

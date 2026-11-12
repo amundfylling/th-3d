@@ -1,0 +1,42 @@
+{
+ "id": "holms-gretzky",
+ "picture": "references/combinations/puck-no-pictures/trick-holms-gretzky-0e16faa4.png",
+ "note": "sprite detections: peg (u, v) in px of the 600 px wide picture, phi deg counter-clockwise on screen (0 = the Agdur right wing sprite)",
+ "figures": [
+  {
+   "team": "yellow",
+   "u": 496,
+   "v": 308,
+   "phi": 0.0,
+   "score": 1.178
+  },
+  {
+   "team": "yellow",
+   "u": 299,
+   "v": 356,
+   "phi": 63.0,
+   "score": 0.752
+  },
+  {
+   "team": "yellow",
+   "u": 145,
+   "v": 140,
+   "phi": 207.5,
+   "score": 0.727
+  },
+  {
+   "team": "white",
+   "u": 195,
+   "v": 330,
+   "phi": 70.5,
+   "score": 0.704
+  },
+  {
+   "team": "white",
+   "u": 397,
+   "v": 384,
+   "phi": 102.5,
+   "score": 0.669
+  }
+ ]
+}

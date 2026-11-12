@@ -1,0 +1,75 @@
+{
+  "id": "senter-karusell",
+  "name": "Senter-Karusell",
+  "level": 7,
+  "view": "half",
+  "puck_no_picture": "references/combinations/puck-no-pictures/trick-senter-karusell-9eb56e04.png",
+  "text": "Center passes to the left wing, who sends the puck in a Velodrom over to the right wing and in to the center and into the goal",
+  "contacts": [
+    {
+      "n": 1,
+      "pid": "W-C",
+      "picture_px": [
+        312,
+        336
+      ],
+      "pose": true
+    },
+    {
+      "n": 2,
+      "pid": "W-LW",
+      "picture_px": [
+        69,
+        261
+      ],
+      "pose": true,
+      "toward_px": [
+        69,
+        200
+      ]
+    },
+    {
+      "n": 3,
+      "pid": "W-RW",
+      "picture_px": [
+        528,
+        283
+      ],
+      "pose": true
+    },
+    {
+      "n": 4,
+      "pid": "W-C",
+      "picture_px": [
+        284,
+        339
+      ],
+      "pose": false
+    }
+  ],
+  "path": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "via": [
+        "boards"
+      ]
+    },
+    {
+      "from": 3,
+      "to": 4
+    },
+    {
+      "from": 4,
+      "to": "goal",
+      "picture_px": [
+        257,
+        216
+      ]
+    }
+  ]
+}
