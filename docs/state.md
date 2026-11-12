@@ -2,6 +2,13 @@
 
 ## Current position
 
+- **Combo editor web page (user request, 2026-11-12, `docs/combo-editor.md`, PROPOSED):** a static page in `site/`
+  with the 3D table where the user moves and turns the figures on their slots, places the puck, draws pass/run arrows
+  and numbers, starts from the 121 move pictures, exports PNG, video, JSON and share links, and can let an AI change the
+  combination (own Claude API key in the browser, or a copy-paste prompt for any AI). Public at
+  https://table-hockey-combo.pages.dev (Cloudflare Pages, free; `npm run site:deploy`, not automatic). `npm run site:test`
+  8/8; browser-tested headless with mouse and touch. Not run: the Claude call with a real key, real phones, Safari.
+  Combos are illustrations, not traces (no contact or slide check).
 - **POV videos (2026-10-15, PROPOSED):** steps 1-8 of the plan on one Swedish Masters game (docs/pov-videos.md;
   outputs in /mnt/project-files/pov-videos/game-0002/). The broadcast models do not transfer (step 5); a POV figure
   model trained on synthetic POV frames finds 83-99% of figures on real frames (step 6, rotation not yet scored). The

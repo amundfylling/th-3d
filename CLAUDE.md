@@ -55,6 +55,10 @@ A synthetic-data pilot (goalie pose from Blender renders in the NM26 broadcast c
 docs/synthetic-goalie-pilot.md (PROPOSED).
 The figures stay with the table ends (white/blue left, yellow right): kit colour is an END, not a player (the players
 switch ends 2-2-1-1-1).
+A public combo editor (static web page in `site/`, PROPOSED): the 3D table with draggable, turnable figures, arrows and
+numbers, the 121 move pictures as a library, PNG / video / JSON / share-link export and an optional AI helper; live at
+https://table-hockey-combo.pages.dev (`npm run site:deploy`). Its combos (`th-combo/1`) are illustrations, never traces;
+see docs/combo-editor.md.
 Parallel batch 2026-10-10 (eight workstreams, all PROPOSED) is consolidated on branch
 `claude/consolidation-batch-2026-10-10` (not merged to main); summary and docs in docs/state.md. New tracks sit beside the
 old ones: `<game>/puck-track-synth.json` (x/y = puck centre, ~13 mm nearer the camera than `puck-track.json`) and
