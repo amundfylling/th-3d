@@ -21,6 +21,11 @@
   0.815 -> 0.833 on 10 unused frames (6 better, 4 worse). Height 54 mm, socket and blade size unchanged. Current goalie
   assets, contacts and traces untouched; a switch needs the user's go and a recheck of every trace. Details inside the
   outline (mask face, chest, pad fronts) are still hand-built: a real 3D scan of the goalie would beat this.
+- **Pipeline audit, refactor 1 (user request, 2026-11-11, `docs/trace-verification.md`):** one contact check for saved
+  traces that needs no generator (`scripts/shotlib/verify.py`, `python3 scripts/verify-trace.py`): all 12 figures, boards,
+  posts and cages every 0.25 ms from the trace file alone. All nine saved traces pass; the only overlap is the Shovel's
+  user-approved skate brush (2.051 mm). `npm test` runs it (`tests/trace-verify.test.ts`, 20 Python tests). No trace,
+  checks file, engine hash or video changed. The slide rule is not covered (it needs a simulation's contact events).
 - **Player figures (user request, done before 21, 2026-09-30):** the skater and goalie proxies and the ten
   placeholders are replaced by two rigid STIGA molds (skater shared by all ten skaters, goalie by both goalies)
   in Sweden/Finland kits, fitted to the user's photos/videos (`references/players_images`) and the official
