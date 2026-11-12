@@ -1,0 +1,182 @@
+{
+ "move": "shovel-17-v3",
+ "trace_id": "trace.shovel-17-v3.v1",
+ "rule": "the move must keep its outcome (goal, contact sequence) and the slide limits under every variant; variant sizes ASSUMED",
+ "variants_passed": "11/11",
+ "robust": true,
+ "goal_y_spread_mm": [
+  16.96,
+  20.33
+ ],
+ "rows": [
+  {
+   "variant": "nominal",
+   "goal": "E",
+   "goal_y_mm": 18.84,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 249.1,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "geometry +0.001 mm (numerical conditioning)",
+   "goal": "E",
+   "goal_y_mm": 18.14,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 259.0,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "geometry -0.001 mm (numerical conditioning)",
+   "goal": "E",
+   "goal_y_mm": 18.13,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 258.8,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint 2% larger (mold scale)",
+   "goal": "E",
+   "goal_y_mm": 20.33,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 232.9,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "figure footprint 2% smaller (mold scale)",
+   "goal": "E",
+   "goal_y_mm": 18.63,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 245.4,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start +0.2 mm x",
+   "goal": "E",
+   "goal_y_mm": 18.3,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 224.0,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "puck start +0.2 mm y",
+   "goal": "E",
+   "goal_y_mm": 18.12,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 239.6,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction +25%",
+   "goal": "E",
+   "goal_y_mm": 18.84,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 239.3,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "ice friction -25%",
+   "goal": "E",
+   "goal_y_mm": 18.57,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 265.1,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "restitution 0.3",
+   "goal": "E",
+   "goal_y_mm": 18.79,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 251.5,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  },
+  {
+   "variant": "restitution 0.7",
+   "goal": "E",
+   "goal_y_mm": 16.96,
+   "sequence_as_expected": true,
+   "sequence": [
+    "W-RW:stick/blade",
+    "W-C:skate/body",
+    "goal_net"
+   ],
+   "peak_figure_impact_mm_s": 238.5,
+   "peak_wall_impact_mm_s": 0.0,
+   "slide_ok": true,
+   "outcome_ok": true
+  }
+ ],
+ "move_file_sha256": "8569941bbf7aea3756f1d15692dfe1c91933801c206ded919bd926a2b923cfe9",
+ "move_variants_sha256": null,
+ "move_motion_sha256": "7dfb6ebef55284200da1a387d71a6329aec6f4145f3be2ce31ac6794efd75925",
+ "canonical": true
+}

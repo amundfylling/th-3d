@@ -5,6 +5,9 @@ import type { AnalysisTrace, ContactChecks } from "./AnalysisVideo.tsx";
 import m_hjerpefinte_trace from "../data/traces/hjerpefinte.trace.json" with { type: "json" };
 import m_hjerpefinte_checks from "../shots/hjerpefinte/checks.json" with { type: "json" };
 import m_hjerpefinte_spec from "../data/presentations/hjerpefinte.analysis.json" with { type: "json" };
+import m_shovel_17_v3_trace from "../data/traces/shovel-17-v3.trace.json" with { type: "json" };
+import m_shovel_17_v3_checks from "../shots/shovel-17-v3/checks.json" with { type: "json" };
+import m_shovel_17_v3_spec from "../data/presentations/shovel-17-v3.analysis.json" with { type: "json" };
 
 export interface EncyclopediaEntry {
   id: string;
@@ -17,4 +20,5 @@ export interface EncyclopediaEntry {
 
 export const ENCYCLOPEDIA: EncyclopediaEntry[] = [
   { id: "hjerpefinte", spec: m_hjerpefinte_spec as unknown as AnalysisSpec, trace: m_hjerpefinte_trace as unknown as AnalysisTrace, checks: m_hjerpefinte_checks, text: {"kicker": "SHOT ENCYCLOPEDIA", "title": "HJERPEFINTE", "subtitle": "Table hockey · centre feint · the goalie must expect a Hjerpe", "bug": "HJERPEFINTE", "endTitle": "HJERPEFINTE", "endSteps": ["HJERPE STANCE, PUCK ON THE BLADE", "GOALIE BITES, SLIDES LEFT", "STRAIGHT PUSH, RIGHT CORNER"]}, theme: "nbhf" },
+  { id: "shovel-17-v3", spec: m_shovel_17_v3_spec as unknown as AnalysisSpec, trace: m_shovel_17_v3_trace as unknown as AnalysisTrace, checks: m_shovel_17_v3_checks, text: {"kicker": "SHOT ENCYCLOPEDIA", "title": "SHOVEL", "subtitle": "Table hockey · right wing to centre · far corner", "bug": "SHOVEL #17", "endTitle": "SHOVEL", "endSteps": ["RIGHT WING: BACKHAND PASS ACROSS", "CENTRE GIVES WAY, PUCK ON ITS BACK", "SHOVEL UP THE SLOT, FAR CORNER"]}, theme: "nbhf" },
 ];

@@ -1,0 +1,105 @@
+{
+ "analysis": "shovel-17-v3 - shot encyclopedia video",
+ "composition": "move-shovel-17-v3",
+ "versions": {
+  "node": "v22.22.0",
+  "remotion": "4.0.531",
+  "@remotion/three": "4.0.531",
+  "three": "0.186.1",
+  "@react-three/fiber": "9.4.0",
+  "react": "19.2.0",
+  "browser": "Chromium 149.0.7790.0",
+  "gl": "--gl=swangle; WebGL renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
+ },
+ "model": {
+  "geometry_version": "0.6.0",
+  "scene_glb_sha256": "cf0449beee56dc5153eb0526cb1cac1d98e56aa0b2bad8a4367f56a6880b4720"
+ },
+ "trace": {
+  "trace_id": "trace.shovel-17-v3.v1",
+  "status": "proposed",
+  "sha256": "da4d43dfd288665f9eb73c23aa411b87f28b308ab21f1215802548de335d568b"
+ },
+ "analysis_spec": {
+  "analysis_id": "analysis.shovel-17-v3.v1",
+  "sha256": "bfaaef3a96040b27eda0e012f6c0ca752a15bdb47919f3a0e8ba8b2ac64b163d",
+  "composition_files": [
+   "remotion/EncyclopediaAnalysis.tsx",
+   "remotion/encyclopedia-registry.ts",
+   "remotion/AnalysisVideo.tsx",
+   "remotion/SceneLayer.tsx",
+   "remotion/ShotScene.tsx",
+   "remotion/theme.ts"
+  ],
+  "composition_sha256": "f86cad87256a44254986a23b38ac09babc4c2a0ed68f9436f98d80d17eb8c647"
+ },
+ "output": {
+  "path": "validation/moves/shovel-17-v3.mp4",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 880,
+  "duration_s": 29.333333333333332,
+  "codec": "h264",
+  "crf": 20,
+  "pixel_format": "yuv420p",
+  "ffprobe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuvj420p",
+     "r_frame_rate": "30/1",
+     "nb_frames": "880",
+     "side_data_list": [
+      {}
+     ]
+    }
+   ],
+   "format": {
+    "duration": "29.333333"
+   }
+  },
+  "bytes": 11425400,
+  "megabytes": 11.43,
+  "below_25_mb": true,
+  "sha256": "206ad2abff54c6d774983b2b84eb80b53ee288036d54ae669ed375326b3bf091"
+ },
+ "checks": {
+  "frames_logged": 0,
+  "frames_differing_from_pure": [],
+  "max_readback_diff": null,
+  "camera_frames_logged": 0,
+  "camera_max_diff_vs_track": null,
+  "scene_cache": {
+   "checked": 880,
+   "entries_used": 390,
+   "errors": [],
+   "entries_max_readback_diff": 1.14e-13,
+   "entries_camera_max_diff_mm": 0.005,
+   "stats": {
+    "namespace": "c0d11070b9f1fc6ea74c87a7",
+    "frames": 880,
+    "unique_scene_states": 390,
+    "cache_hits": 201,
+    "scene_renders": 189,
+    "scene_render_seconds": 861.6,
+    "frames_without_a_new_render": 691,
+    "entries_in_namespace": 579
+   }
+  }
+ },
+ "render": {
+  "mode": "cached",
+  "concurrency": 2,
+  "scale": 1,
+  "browser": "/home/user/th-3d/node_modules/.remotion/chrome-headless-shell/linux64/chrome-headless-shell-linux64/chrome-headless-shell",
+  "gl_flag": "swangle",
+  "webgl_renderers": [],
+  "probe_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (Google Inc. (Google); WebGL 2.0 (OpenGL ES 3.0 Chromium))"
+ },
+ "render_seconds": 86
+}
