@@ -32,6 +32,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from compose import compose, degrade, load_plates  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 A = sys.argv[1:]
 def opt(name, default):
     return A[A.index(name) + 1] if name in A else default
@@ -46,7 +48,7 @@ for D in DIRS:
         if Path(l["path"]).exists() and not ("--drop-ref-w" in A and l["end"] == "W" and l.get("kit", "ref") != "nm26"): L.append(l)
 VAL = [l for l in L if l["seed"] % 10 == 9]; TR = [l for l in L if l["seed"] % 10 != 9]
 PLATES = load_plates()
-HOME = {"W": 0.0, "E": 180.0}
+HOME = table_common.HOME
 
 
 def real_labelled():

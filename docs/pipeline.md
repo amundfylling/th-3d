@@ -154,6 +154,22 @@ reproduce the committed tracks bit for bit (random augmentation, thread scheduli
 | `test_smoothing.py` | `smooth-tracks.py`: rejection by slot distance and by the ±0.3 s median, interpolation (shorter arc for rotation), the 1 s gap limit, the 3-frame average on 30 fps windows, stats; and that every committed `figure-tracks-smooth.json` rebuilds exactly |
 | `test_blade_contact.py` | `blade` / `pivots` (nm26-figure-analysis.py): the (12, 33) mm mid-blade contact point, home headings, rotation sense, the 25 mm touch radius, same point as `defence-trace.py` |
 | `test_rebuild_steps.py` | The runner: scripts exist, inputs come before use, and every committed file under `data/games/nm26-semifinal/` is a step output or a listed source |
+| `test_table_common.py` | `scripts/table_common.py`: skater order (the models' one-hot order), home headings, slots, `arc_point` and `nearest_on_slot` bit for bit against the helpers the scripts used to carry, the reference camera; and that no tracking-side script defines its own copy again |
+
+**One table module (2026-11-11, pipeline audit, refactor 2).** `scripts/table_common.py` (pure NumPy) holds what the NM26,
+synthetic-data, replay and calibration scripts each spelled out before: the figure ids and the skater order, `HOME`, the
+slot centrelines with their arc lengths, slot position to point (`arc_point`, `slot_point`), point to slot position
+(`nearest_on_slot`) and the reference camera (`ref_camera`, `ref_project`, `ref_to_plane`). 34 scripts import it; the
+slot-position helper alone existed fourteen times. A new script takes these from the module; `test_table_common.py` fails
+when a copy comes back. Not included, on purpose: `scripts/shotlib/world.py` (its files are part of every engine-built
+trace's identity), `shot22-trace.py` and `spjass-trace.py` (kept as they produced the saved traces) and
+`own_video_common.py` (its own skater order).
+
+Checked in this container (python 3.13, NumPy 2.5, OpenCV 5.0): `rebuild:nm26:figures`, `rebuild:nm26:analysis`, the
+Edwall presentation steps and `calibrate` give the same bytes before and after the change (19 outputs identical to
+the committed files; the two board PNGs, `nm26-track-switch.json` and the calibration differ from the committed files
+by library version only, identically before and after). The render, training and tracking scripts need Blender,
+PyTorch or the video and were not run, and the replays (`nm26-replays.py`, 7 min) were not re-run: there the change replaces definitions by the same values (pinned by the test).
 
 **Finding from the tests (current behaviour, not changed here).** `smooth-tracks.py` needs at least 3 valid readings
 within ±0.3 s to call a reading an outlier. The full-game tracks are sampled at 5 fps, which gives only 2 neighbours in

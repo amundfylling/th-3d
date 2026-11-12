@@ -18,13 +18,15 @@ import cv2, numpy as np
 
 REPO = Path(__file__).resolve().parents[2]; D = REPO / "data/games/nm26-semifinal"
 sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+sys.path.insert(0, str(REPO / "scripts"))
 from nm26_tracks import figure_path, load_puck  # noqa: E402
 SMOOTH = "--smooth" in sys.argv; argv = [a for a in sys.argv[1:] if a != "--smooth"]
 gid = argv[0]; times = [float(x) for x in argv[1:]] or [-2.0, -1.2, -0.6, -0.3, -0.1, 0.0]
-G = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
+G = table_common.GEOMETRY
+SLOT = table_common.SLOT
 BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"])
-HOME = {"W": 0.0, "E": 180.0}
+HOME = table_common.HOME
 lab = {r["id"]: r for r in json.loads((D / "goal-labels.json").read_text())["labels"]}[gid]
 T = json.loads((figure_path(lab["game"]) if SMOOTH else (D / "rebuild" / f"{gid}-figures.json")).read_text())
 C = T["columns"]; rows = T["rows"]
@@ -37,10 +39,7 @@ S = 1.2; W, H = int(870 * S), int(470 * S)
 def px(p): return (int(round((p[0] + 435) * S)), int(round((235 - p[1]) * S)))  # +y (far board) up
 
 
-def arc_point(Pts, u):
-    seg = np.linalg.norm(np.diff(Pts, axis=0), axis=1); s = u * seg.sum(); acc = np.r_[0, np.cumsum(seg)]
-    k = min(np.searchsorted(acc, s, side="right") - 1, len(seg) - 1); f = (s - acc[k]) / seg[k]
-    return Pts[k] + f * (Pts[k + 1] - Pts[k])
+arc_point = table_common.arc_point
 
 
 tiles = []

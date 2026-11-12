@@ -40,6 +40,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import nm26_tracks  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 D = REPO / "data/games/nm26-semifinal"
 OUT = REPO / "validation/replays"
 FPS = 30
@@ -51,12 +53,12 @@ NO_CLIPS = "--no-clips" in sys.argv; PAGE_ONLY = "--page-only" in sys.argv
 TL = json.loads((D / "timeline.json").read_text())["games"]
 CFG = json.loads((D / "config.json").read_text())
 LABS = {r["id"]: r for r in json.loads((D / "goal-labels.json").read_text())["labels"]}
-G = json.loads((REPO / "data/geometry.json").read_text())
+G = table_common.GEOMETRY
 HW = json.loads((REPO / "validation/12-hardware-report.json").read_text())["goal"]
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in G["fixture_paths"]}
-ACC = {p: np.r_[0, np.cumsum(np.linalg.norm(np.diff(P, axis=0), axis=1))] for p, P in SLOT.items()}
+SLOT = table_common.SLOT
+ACC = table_common.ACC
 BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"], float)
-HOME = {"W": 0.0, "E": 180.0}
+HOME = table_common.HOME
 BLADE = np.array([12.0, 33.0])
 PUCK_R = 12.7  # catalog nominal 25.4 mm diameter
 NAME = {"nygard": "Nygård", "fjermestad": "Fjermestad"}
@@ -91,9 +93,7 @@ def goal_list():
 
 
 # ---------------------------------------------------------------- tracks
-def arc_point(pid, u):
-    P, acc = SLOT[pid], ACC[pid]; s = u * acc[-1]
-    return np.array([np.interp(s, acc, P[:, 0]), np.interp(s, acc, P[:, 1])])
+arc_point = table_common.slot_point
 
 
 _cache = {}

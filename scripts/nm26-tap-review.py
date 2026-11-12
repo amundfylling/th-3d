@@ -31,18 +31,20 @@ import numpy as np
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
+sys.path.insert(0, str(REPO / "scripts"))
 D = REPO / "data/games/nm26-semifinal"
 OUT = REPO / "validation/tap-review"
 CFG = json.loads((D / "config.json").read_text())
 TL = json.loads((D / "timeline.json").read_text())["games"]
 LABS = json.loads((D / "goal-labels.json").read_text())["labels"]
-CAM = json.loads((D / "camera-ref.json").read_text())
-K, R, T = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+CAM = table_common.REF_CAMERA
+K, R, T = table_common.ref_camera()
 X0, Y0 = CFG["roi_px"][:2]
-GEO = json.loads((REPO / "data/geometry.json").read_text())
-SLOT = {f["player_id"]: np.array(f["centreline"]["points_mm"], float) for f in GEO["fixture_paths"]}
-ACC = {p: np.r_[0, np.cumsum(np.linalg.norm(np.diff(P, axis=0), axis=1))] for p, P in SLOT.items()}
-SKATERS = ["W-LW", "E-LW", "W-RW", "E-RW", "W-C", "E-C", "W-LD", "E-LD", "W-RD", "E-RD"]
+GEO = table_common.GEOMETRY
+SLOT = table_common.SLOT
+ACC = table_common.ACC
+SKATERS = table_common.SKATERS
 GAMES = [f"g{k}" for k in range(1, 8)]
 BLOB_DV = 8.8  # stab px: old blob centre lies this far below the top-face centre (docs/synthetic-puck.md 2C)
 PUCK_Z, PUCK_OK_MM, FIG_OK_MM = 12.0, 15.0, 25.0
@@ -65,9 +67,7 @@ def from_stab(q, z):
     return w[:, :2] / w[:, 2:]
 
 
-def pivot(pid, u):
-    P, acc = SLOT[pid], ACC[pid]; s = u * acc[-1]
-    return np.array([np.interp(s, acc, P[:, 0]), np.interp(s, acc, P[:, 1])])
+pivot = table_common.slot_point
 
 
 def live(g, t):

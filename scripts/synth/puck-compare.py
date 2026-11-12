@@ -21,6 +21,8 @@ from pathlib import Path
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+import table_common  # noqa: E402
 D = REPO / "data/games/nm26-semifinal"
 A = sys.argv[1:]
 def arg(n, d): return A[A.index(n) + 1] if n in A else d
@@ -29,8 +31,8 @@ CFG = json.loads((D / "config.json").read_text()); TL = json.loads((D / "timelin
 LAB = json.loads((D / "goal-labels.json").read_text())["labels"]
 HW = json.loads((REPO / "validation/12-hardware-report.json").read_text())["goal"]
 X0, Y0 = CFG["roi_px"][:2]
-CAM = json.loads((D / "camera-ref.json").read_text())
-Kc, Rc, tc = np.array(CAM["K"]), np.array(CAM["R"]), np.array(CAM["t_mm"])
+CAM = table_common.REF_CAMERA
+Kc, Rc, tc = table_common.ref_camera()
 H_TOP = np.array([[1, 0, -X0], [0, 1, -Y0], [0, 0, 1.0]]) @ Kc @ np.c_[Rc[:, 0], Rc[:, 1], Rc[:, 2] * 12.0 + tc]
 HI = np.linalg.inv(H_TOP)
 OFF = np.array(json.loads((REPO / "out/synth/puck/blob-offset.json").read_text())["mean_px"]) if (REPO / "out/synth/puck/blob-offset.json").exists() else np.array([0.15, -8.81])

@@ -21,6 +21,7 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 from nm26_common import REPO, game_dir, ice_mask, load, proj, save
+import table_common
 
 GAME = sys.argv[1] if len(sys.argv) > 1 else "g1"
 G = load(REPO / "data/geometry.json")
@@ -29,7 +30,7 @@ M = np.array(G["image_to_world"][0]["matrix"]).reshape(3, 3)
 LM = {l["id"]: proj(M, [l["px"]])[0] for l in G["landmarks"] if l["source_image_id"] == "stiga_se_fi_overhead"}
 W = np.array([LM["lm.board." + k] for k in INP["line_points_stab_px"]])
 I = np.array(list(INP["line_points_stab_px"].values()), float)
-SL = {f["player_id"]: np.array(f["centreline"]["points_mm"]) for f in G["fixture_paths"]}
+SL = table_common.SLOT
 SP = []
 for pid, P in SL.items():
     if pid.endswith("-G"):
