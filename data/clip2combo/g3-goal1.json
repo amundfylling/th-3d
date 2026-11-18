@@ -1,0 +1,198 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g3-goal1",
+ "description": "Draft from clip g3 ending 1386.7 s: RW > C (shot aim assumed).",
+ "figures": {
+  "E-LW": {
+   "arc_mm": 203.6,
+   "theta_deg": -123.2
+  },
+  "W-LW": {
+   "arc_mm": 4.9,
+   "theta_deg": 176.6
+  },
+  "E-RW": {
+   "arc_mm": 6.7,
+   "theta_deg": -79.5
+  },
+  "W-RW": {
+   "arc_mm": 59.3,
+   "theta_deg": -146.4
+  },
+  "E-C": {
+   "arc_mm": 246.1,
+   "theta_deg": 128.1
+  },
+  "W-C": {
+   "arc_mm": 22.9,
+   "theta_deg": -31.1
+  },
+  "E-LD": {
+   "arc_mm": 65.9,
+   "theta_deg": -81.8
+  },
+  "W-LD": {
+   "arc_mm": 410.9,
+   "theta_deg": -116.6
+  },
+  "E-RD": {
+   "arc_mm": 23.0,
+   "theta_deg": 177.6
+  },
+  "W-RD": {
+   "arc_mm": 159.7,
+   "theta_deg": -99.3
+  },
+  "E-G": {
+   "arc_mm": 29.6,
+   "theta_deg": 34.6
+  },
+  "W-G": {
+   "arc_mm": 75.7,
+   "theta_deg": 1.2
+  }
+ },
+ "puck": {
+  "x_mm": 2.3,
+  "y_mm": -159.7
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     2.3,
+     -159.7
+    ],
+    [
+     -10.3,
+     -20.6
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a2",
+   "points_mm": [
+    [
+     -10.3,
+     -20.6
+    ],
+    [
+     282.8,
+     35.0
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": 2.3,
+   "y_mm": -159.7,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m2",
+   "label": "2",
+   "x_mm": -10.3,
+   "y_mm": -20.6,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g3",
+  "clip_end_s": 1386.7,
+  "scoring_end": "E",
+  "touches": [
+   "W-RW",
+   "W-C"
+  ],
+  "roles": [
+   "RW",
+   "C"
+  ],
+  "family": "shovel",
+  "scorer_source": "last receiver",
+  "inferred_pass": false,
+  "shot_seen": false,
+  "t_first_touch_s": 1386.333,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.0003333333331738686,
+  "pass_lines_attacker_frame": [
+   [
+    [
+     2.3,
+     -159.7
+    ],
+    [
+     -10.3,
+     -20.6
+    ]
+   ]
+  ],
+  "notes": [],
+  "goalie_y_attacker_frame": -3.685197793653811,
+  "scoring_end_inferred": "E",
+  "puck_seen_fraction_last_6s": 0.937,
+  "library_candidates": [
+   [
+    31.003588636661185,
+    "hagerup",
+    "Hagerup",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    31.297928785125105,
+    "spade",
+    "Spade",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    100.39102852142238,
+    "edwall-innspill",
+    "Edwall-innspill",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    123.56082849072169,
+    "lindahl-innspill",
+    "Lindahl-innspill",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    127.38015830874625,
+    "hlskyffel-kort",
+    "H\u00e6lskyffel kort",
+    [
+     "RW",
+     "C"
+    ]
+   ]
+  ]
+ }
+}

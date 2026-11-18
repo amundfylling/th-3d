@@ -1,0 +1,242 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g4-goal4",
+ "description": "Draft from clip g4 ending 2070.5 s: RD > LW > C (shot aim assumed).",
+ "figures": {
+  "E-LW": {
+   "arc_mm": 474.9,
+   "theta_deg": 147.3
+  },
+  "W-LW": {
+   "arc_mm": 416.3,
+   "theta_deg": 115.0
+  },
+  "E-RW": {
+   "arc_mm": 6.5,
+   "theta_deg": -83.6
+  },
+  "W-RW": {
+   "arc_mm": 16.4,
+   "theta_deg": -151.4
+  },
+  "E-C": {
+   "arc_mm": 247.7,
+   "theta_deg": -157.2
+  },
+  "W-C": {
+   "arc_mm": 242.6,
+   "theta_deg": 161.8
+  },
+  "E-LD": {
+   "arc_mm": 14.7,
+   "theta_deg": -143.3
+  },
+  "W-LD": {
+   "arc_mm": 191.9,
+   "theta_deg": 121.9
+  },
+  "E-RD": {
+   "arc_mm": 20.5,
+   "theta_deg": -154.3
+  },
+  "W-RD": {
+   "arc_mm": 128.4,
+   "theta_deg": -13.7
+  },
+  "E-G": {
+   "arc_mm": 79.1,
+   "theta_deg": -161.3
+  },
+  "W-G": {
+   "arc_mm": 65.9,
+   "theta_deg": 122.2
+  }
+ },
+ "puck": {
+  "x_mm": -153.9,
+  "y_mm": -51.0
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     -153.9,
+     -51.0
+    ],
+    [
+     230.4,
+     189.1
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a2",
+   "points_mm": [
+    [
+     230.4,
+     189.1
+    ],
+    [
+     162.6,
+     -29.8
+    ]
+   ],
+   "style": "dashed",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a3",
+   "points_mm": [
+    [
+     162.6,
+     -29.8
+    ],
+    [
+     282.8,
+     35.0
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": -153.9,
+   "y_mm": -51.0,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m2",
+   "label": "2",
+   "x_mm": 230.4,
+   "y_mm": 189.1,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m3",
+   "label": "3",
+   "x_mm": 162.6,
+   "y_mm": -29.8,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g4",
+  "clip_end_s": 2070.5,
+  "scoring_end": "E",
+  "touches": [
+   "W-RD",
+   "W-LW",
+   "W-C"
+  ],
+  "roles": [
+   "RD",
+   "LW",
+   "C"
+  ],
+  "family": "centrifuge",
+  "scorer_source": "last receiver",
+  "inferred_pass": true,
+  "shot_seen": false,
+  "t_first_touch_s": 2070.333,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.00033333333340124227,
+  "pass_lines_attacker_frame": [
+   [
+    [
+     -153.9,
+     -51.0
+    ],
+    [
+     230.4,
+     189.1
+    ]
+   ],
+   [
+    [
+     230.4,
+     189.1
+    ],
+    [
+     162.6,
+     -29.8
+    ]
+   ]
+  ],
+  "notes": [
+   "E-LW > E-C: pass not visible in the track; inferred (a winger's last touch, then the centre shoots)"
+  ],
+  "goalie_y_attacker_frame": -45.88994677377838,
+  "scoring_end_inferred": "E",
+  "puck_seen_fraction_last_6s": 0.873,
+  "library_candidates": [
+   [
+    9.750397382245307,
+    "fakie-karusell",
+    "Fakie Karusell",
+    [
+     "RW",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    16.374790320169797,
+    "invers-kryssar-med-innspill",
+    "Invers Kryssar med innspill",
+    [
+     "RW",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    19.246184134810278,
+    "mission-impossible-2",
+    "Mission Impossible 2",
+    [
+     "RW",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    43.25917986660046,
+    "agdur",
+    "Agdur",
+    [
+     "C",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    43.271081741524654,
+    "holms",
+    "Holms",
+    [
+     "C",
+     "LW",
+     "C"
+    ]
+   ]
+  ]
+ }
+}

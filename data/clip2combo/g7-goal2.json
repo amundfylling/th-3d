@@ -1,0 +1,325 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g7-goal2",
+ "description": "Draft from clip g7 ending 3392.3 s: RD > RW > C > RW > C (shot aim assumed).",
+ "figures": {
+  "E-LW": {
+   "arc_mm": 407.8,
+   "theta_deg": 147.0
+  },
+  "W-LW": {
+   "arc_mm": 399.6,
+   "theta_deg": -134.0
+  },
+  "E-RW": {
+   "arc_mm": 396.6,
+   "theta_deg": 49.3
+  },
+  "W-RW": {
+   "arc_mm": 431.3,
+   "theta_deg": 37.5
+  },
+  "E-C": {
+   "arc_mm": 244.8,
+   "theta_deg": -19.7
+  },
+  "W-C": {
+   "arc_mm": 20.4,
+   "theta_deg": 111.5
+  },
+  "E-LD": {
+   "arc_mm": 14.4,
+   "theta_deg": -155.1
+  },
+  "W-LD": {
+   "arc_mm": 214.8,
+   "theta_deg": 170.8
+  },
+  "E-RD": {
+   "arc_mm": 14.6,
+   "theta_deg": -146.9
+  },
+  "W-RD": {
+   "arc_mm": 75.7,
+   "theta_deg": -147.9
+  },
+  "E-G": {
+   "arc_mm": 78.9,
+   "theta_deg": -143.3
+  },
+  "W-G": {
+   "arc_mm": 67.2,
+   "theta_deg": 41.1
+  }
+ },
+ "puck": {
+  "x_mm": -208.5,
+  "y_mm": -66.5
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     -208.5,
+     -66.5
+    ],
+    [
+     96.4,
+     -205.8
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a2",
+   "points_mm": [
+    [
+     36.3,
+     -158.1
+    ],
+    [
+     51.7,
+     -29.9
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a3",
+   "points_mm": [
+    [
+     51.7,
+     -29.9
+    ],
+    [
+     110.2,
+     -100.2
+    ],
+    [
+     41.5,
+     -168.3
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a4",
+   "points_mm": [
+    [
+     45.7,
+     -193.7
+    ],
+    [
+     19.7,
+     -97.4
+    ],
+    [
+     -7.3,
+     -54.2
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a5",
+   "points_mm": [
+    [
+     -7.3,
+     -54.2
+    ],
+    [
+     282.8,
+     35.0
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": -208.5,
+   "y_mm": -66.5,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m2",
+   "label": "2",
+   "x_mm": 96.4,
+   "y_mm": -205.8,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m3",
+   "label": "3",
+   "x_mm": 51.7,
+   "y_mm": -29.9,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m4",
+   "label": "4",
+   "x_mm": 41.5,
+   "y_mm": -168.3,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m5",
+   "label": "5",
+   "x_mm": -7.3,
+   "y_mm": -54.2,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g7",
+  "clip_end_s": 3392.33,
+  "scoring_end": "E",
+  "touches": [
+   "W-RD",
+   "W-RW",
+   "W-C",
+   "W-RW",
+   "W-C"
+  ],
+  "roles": [
+   "RD",
+   "RW",
+   "C",
+   "RW",
+   "C"
+  ],
+  "family": "shovel",
+  "scorer_source": "last receiver",
+  "inferred_pass": false,
+  "shot_seen": false,
+  "t_first_touch_s": 3386.2,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.0,
+  "pass_lines_attacker_frame": [
+   [
+    [
+     -208.5,
+     -66.5
+    ],
+    [
+     96.4,
+     -205.8
+    ]
+   ],
+   [
+    [
+     36.3,
+     -158.1
+    ],
+    [
+     51.7,
+     -29.9
+    ]
+   ],
+   [
+    [
+     51.7,
+     -29.9
+    ],
+    [
+     110.2,
+     -100.2
+    ],
+    [
+     41.5,
+     -168.3
+    ]
+   ],
+   [
+    [
+     45.7,
+     -193.7
+    ],
+    [
+     19.7,
+     -97.4
+    ],
+    [
+     -7.3,
+     -54.2
+    ]
+   ]
+  ],
+  "notes": [],
+  "goalie_y_attacker_frame": -16.105399956874816,
+  "scoring_end_inferred": "E",
+  "puck_seen_fraction_last_6s": 0.937,
+  "library_candidates": [
+   [
+    53.85831261783618,
+    "hagerup",
+    "Hagerup",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    54.08495378105969,
+    "spade",
+    "Spade",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    62.833391316266386,
+    "edwall-innspill",
+    "Edwall-innspill",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    83.86309726679393,
+    "lindahl-innspill",
+    "Lindahl-innspill",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    98.94523976588385,
+    "gangsyskyffel-kort",
+    "Gangs\u00f8yskyffel kort",
+    [
+     "RW",
+     "C"
+    ]
+   ]
+  ]
+ }
+}

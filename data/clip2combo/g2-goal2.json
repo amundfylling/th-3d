@@ -1,0 +1,243 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g2-goal2",
+ "description": "Draft from clip g2 ending 924.1 s: LW > RW > C (shot aim assumed).",
+ "figures": {
+  "W-LW": {
+   "arc_mm": 157.5,
+   "theta_deg": 101.2
+  },
+  "E-LW": {
+   "arc_mm": 148.4,
+   "theta_deg": -160.0
+  },
+  "W-RW": {
+   "arc_mm": 366.6,
+   "theta_deg": -67.5
+  },
+  "E-RW": {
+   "arc_mm": 43.0,
+   "theta_deg": 35.5
+  },
+  "W-C": {
+   "arc_mm": 240.4,
+   "theta_deg": -68.1
+  },
+  "E-C": {
+   "arc_mm": 244.8,
+   "theta_deg": 123.6
+  },
+  "W-LD": {
+   "arc_mm": 419.1,
+   "theta_deg": -76.7
+  },
+  "E-LD": {
+   "arc_mm": 434.8,
+   "theta_deg": 88.1
+  },
+  "W-RD": {
+   "arc_mm": 224.1,
+   "theta_deg": -87.9
+  },
+  "E-RD": {
+   "arc_mm": 141.2,
+   "theta_deg": 74.7
+  },
+  "W-G": {
+   "arc_mm": 4.4,
+   "theta_deg": -170.5
+  },
+  "E-G": {
+   "arc_mm": 47.9,
+   "theta_deg": -135.8
+  }
+ },
+ "puck": {
+  "x_mm": 202.0,
+  "y_mm": 178.0
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     202.0,
+     178.0
+    ],
+    [
+     118.8,
+     -169.7
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a2",
+   "points_mm": [
+    [
+     16.9,
+     -178.0
+    ],
+    [
+     115.1,
+     -134.2
+    ],
+    [
+     156.4,
+     -18.5
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a3",
+   "points_mm": [
+    [
+     156.4,
+     -18.5
+    ],
+    [
+     282.8,
+     -33.9
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": 202.0,
+   "y_mm": 178.0,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m2",
+   "label": "2",
+   "x_mm": 118.8,
+   "y_mm": -169.7,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m3",
+   "label": "3",
+   "x_mm": 156.4,
+   "y_mm": -18.5,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g2",
+  "clip_end_s": 924.1,
+  "scoring_end": "W",
+  "touches": [
+   "W-LW",
+   "W-RW",
+   "W-C"
+  ],
+  "roles": [
+   "LW",
+   "RW",
+   "C"
+  ],
+  "family": "shovel",
+  "scorer_source": "last receiver",
+  "inferred_pass": false,
+  "shot_seen": false,
+  "t_first_touch_s": 920.733,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.00033333333340124227,
+  "pass_lines_attacker_frame": [
+   [
+    [
+     202.0,
+     178.0
+    ],
+    [
+     118.8,
+     -169.7
+    ]
+   ],
+   [
+    [
+     16.9,
+     -178.0
+    ],
+    [
+     115.1,
+     -134.2
+    ],
+    [
+     156.4,
+     -18.5
+    ]
+   ]
+  ],
+  "notes": [],
+  "goalie_y_attacker_frame": 3.3086764199496645,
+  "scoring_end_inferred": "W",
+  "puck_seen_fraction_last_6s": 0.582,
+  "library_candidates": [
+   [
+    20.744661752330842,
+    "hlskyffel-lang",
+    "H\u00e6lskyffel lang",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    20.817617292298586,
+    "hlskyffel-kort",
+    "H\u00e6lskyffel kort",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    23.922289244042837,
+    "truls",
+    "Truls",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    25.825899023408518,
+    "gangsyskyffel-lang",
+    "Gangs\u00f8yskyffel lang",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    25.868062796482377,
+    "gangsyskyffel-kort",
+    "Gangs\u00f8yskyffel kort",
+    [
+     "RW",
+     "C"
+    ]
+   ]
+  ]
+ }
+}

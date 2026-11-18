@@ -1,0 +1,1657 @@
+{
+ "summary": {
+  "goals": 25,
+  "auto_end": false,
+  "switches_on": [
+   "repair",
+   "end_by_holder",
+   "shot_aware",
+   "restart_at_carrier",
+   "unseen_pass"
+  ],
+  "editor_loads": 25,
+  "editor_clean_no_repairs": 25,
+  "unlabelled_goals": 15,
+  "unlabelled_load": 15,
+  "unlabelled_clean": 15,
+  "unlabelled_family_agrees_with_recognition": 12,
+  "unlabelled_end_ok": 15,
+  "mean_puck_seen_last6s": 0.749,
+  "inferred_pass_goals": 10,
+  "shot_seen_goals": 2,
+  "scoring_end_ok": 24,
+  "scorer_ok": 21,
+  "assist_ok": 22,
+  "scorer_and_assist_ok": 20,
+  "family_ok": 20,
+  "named_in_library": 11,
+  "name_top1": 0,
+  "name_top3": 3,
+  "name_top5": 3
+ },
+ "rows": [
+  {
+   "id": "g1-goal1",
+   "clip_end_s": 83.1,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "LD",
+    "LW",
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "shovel",
+   "label_family": "shovel",
+   "family_ok": true,
+   "label_combination": "Edwallskyffel lang",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.455,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "hlskyffel-kort",
+     21
+    ],
+    [
+     "hlskyffel-lang",
+     21
+    ],
+    [
+     "truls",
+     25
+    ],
+    [
+     "gangsyskyffel-kort",
+     26
+    ],
+    [
+     "gangsyskyffel-lang",
+     26
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": false,
+   "name_top5": false,
+   "editor": {
+    "file": "g1-goal1.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 4,
+    "markers": 4,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g1-goal2",
+   "clip_end_s": 91.9,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "LW",
+   "label_assist": "none",
+   "scorer_ok": false,
+   "assist_ok": false,
+   "family": "centrifuge",
+   "label_family": "wing",
+   "family_ok": false,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.767,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "gretzky",
+     29
+    ],
+    [
+     "mission-impossible-2",
+     44
+    ],
+    [
+     "holms-gretzky",
+     50
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     65
+    ],
+    [
+     "fakie-karusell",
+     73
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g1-goal2.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g1-goal3",
+   "clip_end_s": 177.7,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.804,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "invers-kryssar-med-innspill",
+     29
+    ],
+    [
+     "mission-impossible-2",
+     38
+    ],
+    [
+     "fakie-karusell",
+     38
+    ],
+    [
+     "agdur",
+     57
+    ],
+    [
+     "holms",
+     57
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g1-goal3.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g1-goal4",
+   "clip_end_s": 230.8,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.889,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "burkgurkskyffel",
+     25
+    ],
+    [
+     "invers-agduro",
+     51
+    ],
+    [
+     "holms",
+     56
+    ],
+    [
+     "agdur",
+     59
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     59
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g1-goal4.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g1-goal5",
+   "clip_end_s": 240.0,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.942,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "invers-agduro",
+     119
+    ],
+    [
+     "holms",
+     162
+    ],
+    [
+     "burkgurkskyffel",
+     162
+    ],
+    [
+     "holms-gretzky",
+     162
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     182
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g1-goal5.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g1-goal6",
+   "clip_end_s": 284.2,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.921,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "burkgurkskyffel",
+     34
+    ],
+    [
+     "invers-agduro",
+     37
+    ],
+    [
+     "agdur",
+     38
+    ],
+    [
+     "holms",
+     41
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     51
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g1-goal6.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g1-goal7",
+   "clip_end_s": 528.2,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "rebound",
+   "label_family": "shovel",
+   "family_ok": false,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.942,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "hlskyffel-kort",
+     33
+    ],
+    [
+     "hlskyffel-lang",
+     33
+    ],
+    [
+     "truls",
+     37
+    ],
+    [
+     "gangsyskyffel-kort",
+     39
+    ],
+    [
+     "gangsyskyffel-lang",
+     39
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g1-goal7.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g2-goal1",
+   "clip_end_s": 872.4,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": "Short centrifuge",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.968,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "gretzky",
+     28
+    ],
+    [
+     "mission-impossible-2",
+     41
+    ],
+    [
+     "holms-gretzky",
+     45
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     57
+    ],
+    [
+     "fakie-karusell",
+     67
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g2-goal1.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g2-goal2",
+   "clip_end_s": 924.1,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "LW",
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "shovel",
+   "label_family": "shovel",
+   "family_ok": true,
+   "label_combination": "Edwallskyffel lang",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.582,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "hlskyffel-lang",
+     21
+    ],
+    [
+     "hlskyffel-kort",
+     21
+    ],
+    [
+     "truls",
+     24
+    ],
+    [
+     "gangsyskyffel-lang",
+     26
+    ],
+    [
+     "gangsyskyffel-kort",
+     26
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": false,
+   "name_top5": false,
+   "editor": {
+    "file": "g2-goal2.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 3,
+    "markers": 3,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g2-goal3",
+   "clip_end_s": 944.9,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "shovel",
+   "label_family": "shovel",
+   "family_ok": true,
+   "label_combination": "Edwallskyffel lang",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.19,
+   "inferred_pass": false,
+   "shot_seen": true,
+   "library_top3": [
+    [
+     "hlskyffel-lang",
+     13
+    ],
+    [
+     "hlskyffel-kort",
+     13
+    ],
+    [
+     "truls",
+     15
+    ],
+    [
+     "gangsyskyffel-lang",
+     16
+    ],
+    [
+     "gangsyskyffel-kort",
+     16
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": false,
+   "name_top5": false,
+   "editor": {
+    "file": "g2-goal3.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g2-goal4",
+   "clip_end_s": 956.9,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "shovel",
+   "label_family": "shovel",
+   "family_ok": true,
+   "label_combination": "Edwallskyffel lang",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.762,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "snik",
+     14
+    ],
+    [
+     "fakie-jon-spesial",
+     30
+    ],
+    [
+     "wilkens",
+     32
+    ],
+    [
+     "fakie-harlem-shuffle",
+     33
+    ],
+    [
+     "lindahlskyffel-kort",
+     36
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": false,
+   "name_top5": false,
+   "editor": {
+    "file": "g2-goal4.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g3-goal1",
+   "clip_end_s": 1386.7,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "shovel",
+   "label_family": "shovel",
+   "family_ok": true,
+   "label_combination": "Spade",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.937,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "hagerup",
+     31
+    ],
+    [
+     "spade",
+     31
+    ],
+    [
+     "edwall-innspill",
+     100
+    ],
+    [
+     "lindahl-innspill",
+     124
+    ],
+    [
+     "hlskyffel-kort",
+     127
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": true,
+   "name_top5": true,
+   "editor": {
+    "file": "g3-goal1.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g3-goal2",
+   "clip_end_s": 1401.1,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "LD",
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.942,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "agdur",
+     35
+    ],
+    [
+     "invers-agduro",
+     36
+    ],
+    [
+     "holms",
+     39
+    ],
+    [
+     "burkgurkskyffel",
+     41
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     45
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g3-goal2.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 3,
+    "markers": 3,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g3-goal3",
+   "clip_end_s": 1418.9,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "RD",
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "shovel",
+   "label_family": "shovel",
+   "family_ok": true,
+   "label_combination": "Spade",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.46,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "hagerup",
+     29
+    ],
+    [
+     "spade",
+     30
+    ],
+    [
+     "edwall-innspill",
+     92
+    ],
+    [
+     "lindahl-innspill",
+     115
+    ],
+    [
+     "hlskyffel-kort",
+     117
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": true,
+   "name_top5": true,
+   "editor": {
+    "file": "g3-goal3.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 3,
+    "markers": 3,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g3-goal4",
+   "clip_end_s": 1501.9,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "shovel",
+   "label_family": "shovel",
+   "family_ok": true,
+   "label_combination": "Edwallskyffel lang",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.709,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "hlskyffel-lang",
+     24
+    ],
+    [
+     "hlskyffel-kort",
+     24
+    ],
+    [
+     "truls",
+     29
+    ],
+    [
+     "gangsyskyffel-lang",
+     32
+    ],
+    [
+     "gangsyskyffel-kort",
+     32
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": false,
+   "name_top5": false,
+   "editor": {
+    "file": "g3-goal4.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g3-goal5",
+   "clip_end_s": 1525.9,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RD",
+   "scorer_ok": true,
+   "assist_ok": false,
+   "family": "rebound",
+   "label_family": "centre",
+   "family_ok": false,
+   "label_combination": "Spjass",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.889,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "agdur",
+     1000
+    ],
+    [
+     "burkgurkskyffel",
+     1000
+    ],
+    [
+     "edwall-innspill",
+     1000
+    ],
+    [
+     "edwallskyffel-kort",
+     1000
+    ],
+    [
+     "edwallskyffel-lang",
+     1000
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": false,
+   "name_top5": false,
+   "editor": {
+    "file": "g3-goal5.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 1,
+    "markers": 1,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g3-goal6",
+   "clip_end_s": 1541.9,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": "Short centrifuge",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.899,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "invers-agduro",
+     111
+    ],
+    [
+     "burkgurkskyffel",
+     169
+    ],
+    [
+     "holms-gretzky",
+     221
+    ],
+    [
+     "holms",
+     221
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     227
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g3-goal6.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g3-goal7",
+   "clip_end_s": 1561.5,
+   "end_ok": false,
+   "scoring_end": "E",
+   "touches": [
+    "G"
+   ],
+   "label_scorer": "C",
+   "label_assist": "none",
+   "scorer_ok": false,
+   "assist_ok": true,
+   "family": "defence",
+   "label_family": "rebound",
+   "family_ok": false,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.894,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "fakie-gutshot",
+     1000
+    ],
+    [
+     "skalpell",
+     1000
+    ]
+   ],
+   "n_candidates_top5": 2,
+   "name_in_library": false,
+   "editor": {
+    "file": "g3-goal7.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 1,
+    "markers": 1,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g3-goal8",
+   "clip_end_s": 1630.2,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "RW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "RW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "shovel",
+   "label_family": "shovel",
+   "family_ok": true,
+   "label_combination": "Spade",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.497,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "hagerup",
+     54
+    ],
+    [
+     "spade",
+     54
+    ],
+    [
+     "edwall-innspill",
+     69
+    ],
+    [
+     "lindahl-innspill",
+     92
+    ],
+    [
+     "hlskyffel-kort",
+     105
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": true,
+   "name_top5": true,
+   "editor": {
+    "file": "g3-goal8.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g4-goal1",
+   "clip_end_s": 1856.1,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "none",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centre",
+   "label_family": "centre",
+   "family_ok": true,
+   "label_combination": "Spjass",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.81,
+   "inferred_pass": false,
+   "shot_seen": true,
+   "library_top3": [
+    [
+     "agdur",
+     1000
+    ],
+    [
+     "burkgurkskyffel",
+     1000
+    ],
+    [
+     "edwall-innspill",
+     1000
+    ],
+    [
+     "edwallskyffel-kort",
+     1000
+    ],
+    [
+     "edwallskyffel-lang",
+     1000
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": false,
+   "name_top5": false,
+   "editor": {
+    "file": "g4-goal1.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 1,
+    "markers": 1,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g4-goal2",
+   "clip_end_s": 2045.0,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": "Short centrifuge",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.91,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "invers-kryssar-med-innspill",
+     16
+    ],
+    [
+     "fakie-karusell",
+     17
+    ],
+    [
+     "mission-impossible-2",
+     18
+    ],
+    [
+     "holms",
+     48
+    ],
+    [
+     "agdur",
+     50
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g4-goal2.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g4-goal3",
+   "clip_end_s": 2054.7,
+   "end_ok": true,
+   "scoring_end": "W",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.466,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "agdur",
+     14
+    ],
+    [
+     "invers-agduro",
+     14
+    ],
+    [
+     "holms",
+     16
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     37
+    ],
+    [
+     "burkgurkskyffel",
+     43
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g4-goal3.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g4-goal4",
+   "clip_end_s": 2070.5,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "RD",
+    "LW",
+    "C"
+   ],
+   "label_scorer": "RD",
+   "label_assist": "none",
+   "scorer_ok": false,
+   "assist_ok": false,
+   "family": "centrifuge",
+   "label_family": "defence",
+   "family_ok": false,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.873,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "fakie-karusell",
+     10
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     16
+    ],
+    [
+     "mission-impossible-2",
+     19
+    ],
+    [
+     "agdur",
+     43
+    ],
+    [
+     "holms",
+     43
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g4-goal4.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 3,
+    "markers": 3,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g5-goal1",
+   "clip_end_s": 2342.4,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "label_scorer": "C",
+   "label_assist": "LW",
+   "scorer_ok": true,
+   "assist_ok": true,
+   "family": "centrifuge",
+   "label_family": "centrifuge",
+   "family_ok": true,
+   "label_combination": null,
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.392,
+   "inferred_pass": true,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "mission-impossible-2",
+     24
+    ],
+    [
+     "invers-kryssar-med-innspill",
+     30
+    ],
+    [
+     "fakie-karusell",
+     34
+    ],
+    [
+     "gretzky",
+     50
+    ],
+    [
+     "holms",
+     57
+    ]
+   ],
+   "n_candidates_top5": 5,
+   "name_in_library": false,
+   "editor": {
+    "file": "g5-goal1.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 2,
+    "markers": 2,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  },
+  {
+   "id": "g5-goal2",
+   "clip_end_s": 2385.7,
+   "end_ok": true,
+   "scoring_end": "E",
+   "touches": [
+    "G"
+   ],
+   "label_scorer": "RD",
+   "label_assist": "none",
+   "scorer_ok": false,
+   "assist_ok": true,
+   "family": "defence",
+   "label_family": "defence",
+   "family_ok": true,
+   "label_combination": "Ceuleman",
+   "figures_tracked": 12,
+   "puck_seen_last6s": 0.815,
+   "inferred_pass": false,
+   "shot_seen": false,
+   "library_top3": [
+    [
+     "fakie-gutshot",
+     1000
+    ],
+    [
+     "skalpell",
+     1000
+    ]
+   ],
+   "n_candidates_top5": 2,
+   "name_in_library": true,
+   "name_top1": false,
+   "name_top3": false,
+   "name_top5": false,
+   "editor": {
+    "file": "g5-goal2.json",
+    "loads": true,
+    "notes": [],
+    "stable": true,
+    "arrows": 1,
+    "markers": 1,
+    "pose_changed": 0,
+    "arrows_dropped": 0,
+    "puck_moved": false
+   }
+  }
+ ],
+ "unlabelled": [
+  {
+   "id": "g5-goal3",
+   "family": "defence",
+   "recognised_family": "defence",
+   "touches": [
+    "LD",
+    "RD",
+    "G",
+    "RD"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g5-goal4",
+   "family": "centre",
+   "recognised_family": "centre",
+   "touches": [
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g5-goal5",
+   "family": "shovel",
+   "recognised_family": "centre",
+   "touches": [
+    "RW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g5-goal6",
+   "family": "centrifuge",
+   "recognised_family": "shovel",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g5-goal7",
+   "family": "centrifuge",
+   "recognised_family": "centrifuge",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g6-goal1",
+   "family": "centrifuge",
+   "recognised_family": "centrifuge",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g6-goal2",
+   "family": "wing",
+   "recognised_family": "shovel",
+   "touches": [
+    "RW"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g6-goal3",
+   "family": "centrifuge",
+   "recognised_family": "centrifuge",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g6-goal4",
+   "family": "centrifuge",
+   "recognised_family": "centrifuge",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g6-goal5",
+   "family": "centre",
+   "recognised_family": "centre",
+   "touches": [
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g6-goal6",
+   "family": "centrifuge",
+   "recognised_family": "centrifuge",
+   "touches": [
+    "RD",
+    "G",
+    "LD",
+    "LW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g7-goal1",
+   "family": "shovel",
+   "recognised_family": "shovel",
+   "touches": [
+    "RW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g7-goal2",
+   "family": "shovel",
+   "recognised_family": "shovel",
+   "touches": [
+    "RD",
+    "RW",
+    "C",
+    "RW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g7-goal3",
+   "family": "centrifuge",
+   "recognised_family": "centrifuge",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  },
+  {
+   "id": "g7-goal4",
+   "family": "centrifuge",
+   "recognised_family": "centrifuge",
+   "touches": [
+    "LW",
+    "C"
+   ],
+   "end_ok": true,
+   "editor_loads": true,
+   "editor_clean": true
+  }
+ ]
+}

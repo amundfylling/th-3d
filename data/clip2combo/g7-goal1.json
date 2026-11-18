@@ -1,0 +1,206 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g7-goal1",
+ "description": "Draft from clip g7 ending 3372.4 s: RW > C (shot aim assumed).",
+ "figures": {
+  "W-LW": {
+   "arc_mm": 419.2,
+   "theta_deg": 148.2
+  },
+  "E-LW": {
+   "arc_mm": 147.3,
+   "theta_deg": -127.8
+  },
+  "W-RW": {
+   "arc_mm": 77.5,
+   "theta_deg": -122.6
+  },
+  "E-RW": {
+   "arc_mm": 401.4,
+   "theta_deg": 179.6
+  },
+  "W-C": {
+   "arc_mm": 12.1,
+   "theta_deg": -30.1
+  },
+  "E-C": {
+   "arc_mm": 248.6,
+   "theta_deg": -173.6
+  },
+  "W-LD": {
+   "arc_mm": 336.3,
+   "theta_deg": -95.9
+  },
+  "E-LD": {
+   "arc_mm": 75.9,
+   "theta_deg": -96.3
+  },
+  "W-RD": {
+   "arc_mm": 227.6,
+   "theta_deg": -166.8
+  },
+  "E-RD": {
+   "arc_mm": 8.4,
+   "theta_deg": 105.9
+  },
+  "W-G": {
+   "arc_mm": 68.6,
+   "theta_deg": -24.4
+  },
+  "E-G": {
+   "arc_mm": 32.4,
+   "theta_deg": 39.5
+  }
+ },
+ "puck": {
+  "x_mm": 11.7,
+  "y_mm": -178.0
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     11.7,
+     -178.0
+    ],
+    [
+     129.4,
+     -107.4
+    ],
+    [
+     180.8,
+     -0.8
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a2",
+   "points_mm": [
+    [
+     180.8,
+     -0.8
+    ],
+    [
+     282.8,
+     35.0
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": 11.7,
+   "y_mm": -178.0,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m2",
+   "label": "2",
+   "x_mm": 180.8,
+   "y_mm": -0.8,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g7",
+  "clip_end_s": 3372.43,
+  "scoring_end": "W",
+  "touches": [
+   "W-RW",
+   "W-C"
+  ],
+  "roles": [
+   "RW",
+   "C"
+  ],
+  "family": "shovel",
+  "scorer_source": "last receiver",
+  "inferred_pass": false,
+  "shot_seen": false,
+  "t_first_touch_s": 3372.233,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.0003333333329464949,
+  "pass_lines_attacker_frame": [
+   [
+    [
+     11.7,
+     -178.0
+    ],
+    [
+     129.4,
+     -107.4
+    ],
+    [
+     180.8,
+     -0.8
+    ]
+   ]
+  ],
+  "notes": [],
+  "goalie_y_attacker_frame": -28.66449333950907,
+  "scoring_end_inferred": "W",
+  "puck_seen_fraction_last_6s": 0.46,
+  "library_candidates": [
+   [
+    30.030910397608714,
+    "hlskyffel-lang",
+    "H\u00e6lskyffel lang",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    30.1045873972555,
+    "hlskyffel-kort",
+    "H\u00e6lskyffel kort",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    33.39138170329319,
+    "truls",
+    "Truls",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    35.25849587345929,
+    "gangsyskyffel-lang",
+    "Gangs\u00f8yskyffel lang",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    35.31525131462138,
+    "gangsyskyffel-kort",
+    "Gangs\u00f8yskyffel kort",
+    [
+     "RW",
+     "C"
+    ]
+   ]
+  ]
+ }
+}
