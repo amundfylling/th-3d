@@ -1,0 +1,18 @@
+{"params": [
+ {"name": "s0", "paths": ["figures.W-RW.arc.keys.3.0", "figures.W-RW.arc.moves.0.0"], "lo": 1.35, "hi": 1.6},
+ {"name": "sdur", "x0": 0.325, "paths": [], "lo": 0.25, "hi": 0.42},
+ {"name": "arc_mid", "paths": ["figures.W-RW.arc.moves.0.4", "figures.W-RW.arc.moves.1.2"], "lo": 80, "hi": 115},
+ {"name": "speed", "paths": ["figures.W-RW.arc.moves.0.5", "figures.W-RW.arc.moves.1.3"], "lo": -800, "hi": -350},
+ {"name": "shotdur", "paths": ["figures.W-RW.theta.turns.2.1"], "lo": 0.06, "hi": 0.2},
+ {"name": "th_hold", "paths": ["figures.W-RW.theta.turns.1.3", "figures.W-RW.theta.turns.2.2"], "lo": 170, "hi": 215},
+ {"name": "th_end", "paths": ["figures.W-RW.theta.turns.2.3"], "lo": 260, "hi": 320},
+ {"name": "lw_rec_dur", "paths": ["figures.W-LW.theta.turns.0.1"], "lo": 0.16, "hi": 0.34},
+ {"name": "lw_v1", "paths": ["figures.W-LW.arc.moves.0.5", "figures.W-LW.arc.moves.1.3"], "lo": 150, "hi": 400},
+ {"name": "lw_v2", "paths": ["figures.W-LW.arc.moves.1.5", "figures.W-LW.arc.moves.2.3"], "lo": 800, "hi": 1300},
+ {"name": "lw_t1", "paths": ["figures.W-LW.arc.moves.0.1", "figures.W-LW.arc.moves.1.0"], "lo": 0.82, "hi": 1.0}
+], "derived": [
+ {"path": "figures.W-RW.arc.moves.0.1", "expr": "s0 + sdur"},
+ {"path": "figures.W-RW.arc.moves.1.0", "expr": "s0 + sdur"},
+ {"path": "figures.W-RW.theta.turns.2.0", "expr": "s0 + sdur"},
+ {"path": "figures.W-RW.arc.moves.1.1", "expr": "s0 + sdur + shotdur"}
+]}

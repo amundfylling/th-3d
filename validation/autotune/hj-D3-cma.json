@@ -1,0 +1,141 @@
+{
+ "move": "hjerpefinte",
+ "method": "cma",
+ "seed": 1,
+ "variants": 18,
+ "target": 18,
+ "start": {
+  "values": {
+   "t0": 0.33,
+   "dur": 0.12,
+   "th_end": 225.0,
+   "mdur": 0.2,
+   "arc_end": 195.0
+  },
+  "passed": 0,
+  "cost": 31.5
+ },
+ "best": {
+  "n": 16,
+  "cost": 0.09319,
+  "passed": 18,
+  "vals": {
+   "t0": 0.33728155020288214,
+   "dur": 0.05679439811144542,
+   "th_end": 215.68951608536452,
+   "mdur": 0.3126830983111736,
+   "arc_end": 210.26229887102346
+  },
+  "failed": [],
+  "set": {
+   "figures.W-C.theta.turns.0.0": 0.337282,
+   "figures.W-C.arc.moves.0.0": 0.337282,
+   "figures.W-C.arc.keys.1.0": 0.337282,
+   "figures.W-C.theta.turns.0.1": 0.056794,
+   "figures.W-C.theta.turns.0.3": 215.689516,
+   "figures.W-C.arc.moves.0.4": 210.262299,
+   "figures.W-C.arc.moves.0.1": 0.649965
+  }
+ },
+ "evaluations": 16,
+ "wall_s": 52.3,
+ "reached_target": true,
+ "log": [
+  {
+   "n": 1,
+   "t": 2.6,
+   "cost": 1.29,
+   "passed": 17
+  },
+  {
+   "n": 2,
+   "t": 7.0,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 3,
+   "t": 9.2,
+   "cost": 27.0,
+   "passed": 0
+  },
+  {
+   "n": 4,
+   "t": 12.7,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 5,
+   "t": 16.6,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 6,
+   "t": 20.5,
+   "cost": 29.752,
+   "passed": 1
+  },
+  {
+   "n": 7,
+   "t": 24.0,
+   "cost": 29.752,
+   "passed": 1
+  },
+  {
+   "n": 8,
+   "t": 27.6,
+   "cost": 32.206,
+   "passed": 0
+  },
+  {
+   "n": 9,
+   "t": 31.8,
+   "cost": 20.002,
+   "passed": 2
+  },
+  {
+   "n": 10,
+   "t": 35.3,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 11,
+   "t": 37.8,
+   "cost": 21.253,
+   "passed": 1
+  },
+  {
+   "n": 12,
+   "t": 41.1,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 13,
+   "t": 43.0,
+   "cost": 0.28,
+   "passed": 18
+  },
+  {
+   "n": 14,
+   "t": 46.3,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 15,
+   "t": 49.9,
+   "cost": 31.0,
+   "passed": 0
+  },
+  {
+   "n": 16,
+   "t": 52.3,
+   "cost": 0.093,
+   "passed": 18
+  }
+ ]
+}
