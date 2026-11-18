@@ -1,0 +1,1040 @@
+{
+ "moves": 121,
+ "modified": 61,
+ "base_found": 29,
+ "distinct_base_slugs": 84,
+ "virtual_bases": [
+  "ceuleman",
+  "velodrom",
+  "karusell",
+  "backnacka",
+  "kano",
+  "rokkade",
+  "forulemping",
+  "jon-spesial",
+  "harlem-shuffle",
+  "kniv",
+  "kryssar",
+  "kryssar-med-innspill",
+  "kryssar-med-velodrom",
+  "kryssar-med-karusell",
+  "mors-kok",
+  "gutshot",
+  "gutshot-hansen",
+  "rookierokkade",
+  "zorro"
+ ],
+ "modifier_counts": {
+  "fakie": 29,
+  "finte": 7,
+  "senter": 9,
+  "halv": 4,
+  "invers": 12,
+  "kort": 5,
+  "lang": 7
+ },
+ "text_rule_exact": {
+  "fakie": [
+   2,
+   9
+  ],
+  "finte": [
+   3,
+   7
+  ],
+  "lang": [
+   5,
+   5
+  ]
+ },
+ "rows": [
+  {
+   "name": "Näcka",
+   "mods": [],
+   "base": "nacka",
+   "base_found": null
+  },
+  {
+   "name": "Spjass",
+   "mods": [],
+   "base": "spjass",
+   "base_found": null
+  },
+  {
+   "name": "Lillhæl",
+   "mods": [],
+   "base": "lillhael",
+   "base_found": null
+  },
+  {
+   "name": "Lillstøvel",
+   "mods": [],
+   "base": "lillstovel",
+   "base_found": null
+  },
+  {
+   "name": "Omvendspjass",
+   "mods": [],
+   "base": "omvendspjass",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Näcka",
+   "mods": [
+    "fakie"
+   ],
+   "base": "nacka",
+   "base_found": "Näcka"
+  },
+  {
+   "name": "Fakie Spjass",
+   "mods": [
+    "fakie"
+   ],
+   "base": "spjass",
+   "base_found": "Spjass"
+  },
+  {
+   "name": "Fakie Lillstøvel",
+   "mods": [
+    "fakie"
+   ],
+   "base": "lillstovel",
+   "base_found": "Lillstøvel"
+  },
+  {
+   "name": "Fakie Omvendspjass",
+   "mods": [
+    "fakie"
+   ],
+   "base": "omvendspjass",
+   "base_found": "Omvendspjass"
+  },
+  {
+   "name": "Hjerpe",
+   "mods": [],
+   "base": "hjerpe",
+   "base_found": null
+  },
+  {
+   "name": "Hjerpefinte",
+   "mods": [
+    "finte"
+   ],
+   "base": "hjerpe",
+   "base_found": "Hjerpe"
+  },
+  {
+   "name": "Søren",
+   "mods": [],
+   "base": "soren",
+   "base_found": null
+  },
+  {
+   "name": "Sørenfinte",
+   "mods": [
+    "finte"
+   ],
+   "base": "soren",
+   "base_found": "Søren"
+  },
+  {
+   "name": "Senterkiosk",
+   "mods": [],
+   "base": "senterkiosk",
+   "base_found": null
+  },
+  {
+   "name": "Näckafinte",
+   "mods": [
+    "finte"
+   ],
+   "base": "nacka",
+   "base_found": "Näcka"
+  },
+  {
+   "name": "Spjassfinte",
+   "mods": [
+    "finte"
+   ],
+   "base": "spjass",
+   "base_found": "Spjass"
+  },
+  {
+   "name": "Lillstøvelfinte / C 29",
+   "mods": [
+    "finte"
+   ],
+   "base": "lillstovel",
+   "base_found": "Lillstøvel"
+  },
+  {
+   "name": "Omvendspjassfinte",
+   "mods": [
+    "finte"
+   ],
+   "base": "omvendspjass",
+   "base_found": "Omvendspjass"
+  },
+  {
+   "name": "Senter-Ceuleman",
+   "mods": [
+    "senter"
+   ],
+   "base": "ceuleman",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Senter-Ceuleman",
+   "mods": [
+    "fakie",
+    "senter"
+   ],
+   "base": "ceuleman",
+   "base_found": null
+  },
+  {
+   "name": "Horvath",
+   "mods": [],
+   "base": "horvath",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Horvath",
+   "mods": [
+    "fakie"
+   ],
+   "base": "horvath",
+   "base_found": "Horvath"
+  },
+  {
+   "name": "Spjass-Horvath",
+   "mods": [],
+   "base": "spjass-horvath",
+   "base_found": null
+  },
+  {
+   "name": "Veggdyr",
+   "mods": [],
+   "base": "veggdyr",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Veggdyr",
+   "mods": [
+    "fakie"
+   ],
+   "base": "veggdyr",
+   "base_found": "Veggdyr"
+  },
+  {
+   "name": "Agdur",
+   "mods": [],
+   "base": "agdur",
+   "base_found": null
+  },
+  {
+   "name": "Halv-Agdur",
+   "mods": [
+    "halv"
+   ],
+   "base": "agdur",
+   "base_found": "Agdur"
+  },
+  {
+   "name": "Agduro",
+   "mods": [],
+   "base": "agduro",
+   "base_found": null
+  },
+  {
+   "name": "Invers Agduro",
+   "mods": [
+    "invers"
+   ],
+   "base": "agduro",
+   "base_found": "Agduro"
+  },
+  {
+   "name": "Invers Halv-Agduro",
+   "mods": [
+    "invers",
+    "halv"
+   ],
+   "base": "agduro",
+   "base_found": "Agduro"
+  },
+  {
+   "name": "Fakie Agdur",
+   "mods": [
+    "fakie"
+   ],
+   "base": "agdur",
+   "base_found": "Agdur"
+  },
+  {
+   "name": "Fakie Halv-Agdur",
+   "mods": [
+    "fakie",
+    "halv"
+   ],
+   "base": "agdur",
+   "base_found": "Agdur"
+  },
+  {
+   "name": "Fakie Invers Agduro",
+   "mods": [
+    "fakie",
+    "invers"
+   ],
+   "base": "agduro",
+   "base_found": "Agduro"
+  },
+  {
+   "name": "Fakie Invers Halv-Agduro",
+   "mods": [
+    "fakie",
+    "invers",
+    "halv"
+   ],
+   "base": "agduro",
+   "base_found": "Agduro"
+  },
+  {
+   "name": "Holmin",
+   "mods": [],
+   "base": "holmin",
+   "base_found": null
+  },
+  {
+   "name": "Holms",
+   "mods": [],
+   "base": "holms",
+   "base_found": null
+  },
+  {
+   "name": "Holms-Gretzky",
+   "mods": [],
+   "base": "holms-gretzky",
+   "base_found": null
+  },
+  {
+   "name": "Senter-Velodrom",
+   "mods": [
+    "senter"
+   ],
+   "base": "velodrom",
+   "base_found": null
+  },
+  {
+   "name": "Senter-Karusell",
+   "mods": [
+    "senter"
+   ],
+   "base": "karusell",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Senter-Velodrom",
+   "mods": [
+    "fakie",
+    "senter"
+   ],
+   "base": "velodrom",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Senter-Karusell",
+   "mods": [
+    "fakie",
+    "senter"
+   ],
+   "base": "karusell",
+   "base_found": null
+  },
+  {
+   "name": "Skalpell",
+   "mods": [],
+   "base": "skalpell",
+   "base_found": null
+  },
+  {
+   "name": "General Reiersen",
+   "mods": [],
+   "base": "general-reiersen",
+   "base_found": null
+  },
+  {
+   "name": "Senterkniv",
+   "mods": [],
+   "base": "senterkniv",
+   "base_found": null
+  },
+  {
+   "name": "Senterknivo",
+   "mods": [],
+   "base": "senterknivo",
+   "base_found": null
+  },
+  {
+   "name": "Rambokniv",
+   "mods": [],
+   "base": "rambokniv",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Senterkniv",
+   "mods": [
+    "fakie"
+   ],
+   "base": "senterkniv",
+   "base_found": "Senterkniv"
+  },
+  {
+   "name": "Senter-Backnäcka",
+   "mods": [
+    "senter"
+   ],
+   "base": "backnacka",
+   "base_found": null
+  },
+  {
+   "name": "Invers Kano",
+   "mods": [
+    "invers"
+   ],
+   "base": "kano",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Invers Kano",
+   "mods": [
+    "fakie",
+    "invers"
+   ],
+   "base": "kano",
+   "base_found": null
+  },
+  {
+   "name": "Senter-Rokkade",
+   "mods": [
+    "senter"
+   ],
+   "base": "rokkade",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Senter-Rokkade",
+   "mods": [
+    "fakie",
+    "senter"
+   ],
+   "base": "rokkade",
+   "base_found": null
+  },
+  {
+   "name": "Bacalao",
+   "mods": [],
+   "base": "bacalao",
+   "base_found": null
+  },
+  {
+   "name": "Newton",
+   "mods": [],
+   "base": "newton",
+   "base_found": null
+  },
+  {
+   "name": "Mission Impossible 3",
+   "mods": [],
+   "base": "mission-impossible-3",
+   "base_found": null
+  },
+  {
+   "name": "Direkteskudd",
+   "mods": [],
+   "base": "direkteskudd",
+   "base_found": null
+  },
+  {
+   "name": "Maltzev / Smygar",
+   "mods": [],
+   "base": "maltzev",
+   "base_found": null
+  },
+  {
+   "name": "Bedehus-Smygar / Tysk Smygar",
+   "mods": [],
+   "base": "bedehus-smygar",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Forulemping",
+   "mods": [
+    "fakie"
+   ],
+   "base": "forulemping",
+   "base_found": null
+  },
+  {
+   "name": "Nuttunenslegga",
+   "mods": [],
+   "base": "nuttunenslegga",
+   "base_found": null
+  },
+  {
+   "name": "Tønsbergslegga",
+   "mods": [],
+   "base": "tonsbergslegga",
+   "base_found": null
+  },
+  {
+   "name": "EMoe-smyger",
+   "mods": [],
+   "base": "emoe-smyger",
+   "base_found": null
+  },
+  {
+   "name": "Lønnskipp",
+   "mods": [],
+   "base": "lonnskipp",
+   "base_found": null
+  },
+  {
+   "name": "Tomahawk",
+   "mods": [],
+   "base": "tomahawk",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Tomahawk",
+   "mods": [
+    "fakie"
+   ],
+   "base": "tomahawk",
+   "base_found": "Tomahawk"
+  },
+  {
+   "name": "Brustadbu",
+   "mods": [],
+   "base": "brustadbu",
+   "base_found": null
+  },
+  {
+   "name": "Lille Trille",
+   "mods": [],
+   "base": "lille-trille",
+   "base_found": null
+  },
+  {
+   "name": "Smygero",
+   "mods": [],
+   "base": "smygero",
+   "base_found": null
+  },
+  {
+   "name": "Invers Smygero / Eidsneskølle",
+   "mods": [
+    "invers"
+   ],
+   "base": "smygero",
+   "base_found": "Smygero"
+  },
+  {
+   "name": "Fakie Jon Spesial / Korabel",
+   "mods": [
+    "fakie"
+   ],
+   "base": "jon-spesial",
+   "base_found": null
+  },
+  {
+   "name": "Hagerup",
+   "mods": [],
+   "base": "hagerup",
+   "base_found": null
+  },
+  {
+   "name": "Spade",
+   "mods": [],
+   "base": "spade",
+   "base_found": null
+  },
+  {
+   "name": "Lindahlskyffel kort",
+   "mods": [
+    "kort"
+   ],
+   "base": "lindahlskyffel",
+   "base_found": null
+  },
+  {
+   "name": "Lindahlskyffel lang",
+   "mods": [
+    "lang"
+   ],
+   "base": "lindahlskyffel",
+   "base_found": "Lindahlskyffel kort"
+  },
+  {
+   "name": "Edwallskyffel kort",
+   "mods": [
+    "kort"
+   ],
+   "base": "edwallskyffel",
+   "base_found": null
+  },
+  {
+   "name": "Edwallskyffel lang",
+   "mods": [
+    "lang"
+   ],
+   "base": "edwallskyffel",
+   "base_found": "Edwallskyffel kort"
+  },
+  {
+   "name": "Hælskyffel kort",
+   "mods": [
+    "kort"
+   ],
+   "base": "haelskyffel",
+   "base_found": null
+  },
+  {
+   "name": "Hælskyffel lang",
+   "mods": [
+    "lang"
+   ],
+   "base": "haelskyffel",
+   "base_found": "Hælskyffel kort"
+  },
+  {
+   "name": "Tryykari kort",
+   "mods": [
+    "kort"
+   ],
+   "base": "tryykari",
+   "base_found": null
+  },
+  {
+   "name": "Tryykari lang",
+   "mods": [
+    "lang"
+   ],
+   "base": "tryykari",
+   "base_found": "Tryykari kort"
+  },
+  {
+   "name": "Tryykarifinte",
+   "mods": [
+    "finte"
+   ],
+   "base": "tryykari",
+   "base_found": "Tryykari kort"
+  },
+  {
+   "name": "Gangsøyskyffel kort",
+   "mods": [
+    "kort"
+   ],
+   "base": "gangsoyskyffel",
+   "base_found": null
+  },
+  {
+   "name": "Gangsøyskyffel lang",
+   "mods": [
+    "lang"
+   ],
+   "base": "gangsoyskyffel",
+   "base_found": "Gangsøyskyffel kort"
+  },
+  {
+   "name": "Truls",
+   "mods": [],
+   "base": "truls",
+   "base_found": null
+  },
+  {
+   "name": "Wilkens",
+   "mods": [],
+   "base": "wilkens",
+   "base_found": null
+  },
+  {
+   "name": "Pettersonskyffel",
+   "mods": [],
+   "base": "pettersonskyffel",
+   "base_found": null
+  },
+  {
+   "name": "Furious G",
+   "mods": [],
+   "base": "furious-g",
+   "base_found": null
+  },
+  {
+   "name": "Marcus Andersson",
+   "mods": [],
+   "base": "marcus-andersson",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Harlem Shuffle",
+   "mods": [
+    "fakie"
+   ],
+   "base": "harlem-shuffle",
+   "base_found": null
+  },
+  {
+   "name": "Veggskyffel",
+   "mods": [],
+   "base": "veggskyffel",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Velodrom",
+   "mods": [
+    "fakie"
+   ],
+   "base": "velodrom",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Karusell",
+   "mods": [
+    "fakie"
+   ],
+   "base": "karusell",
+   "base_found": null
+  },
+  {
+   "name": "Snok / Mexikaner",
+   "mods": [],
+   "base": "snok",
+   "base_found": null
+  },
+  {
+   "name": "Snik",
+   "mods": [],
+   "base": "snik",
+   "base_found": null
+  },
+  {
+   "name": "Fakie kniv",
+   "mods": [
+    "fakie"
+   ],
+   "base": "kniv",
+   "base_found": null
+  },
+  {
+   "name": "Fakie lang-kniv",
+   "mods": [
+    "fakie",
+    "lang"
+   ],
+   "base": "kniv",
+   "base_found": null
+  },
+  {
+   "name": "Langorv",
+   "mods": [],
+   "base": "langorv",
+   "base_found": null
+  },
+  {
+   "name": "Invers Kryssar",
+   "mods": [
+    "invers"
+   ],
+   "base": "kryssar",
+   "base_found": null
+  },
+  {
+   "name": "Invers Kryssar med innspill",
+   "mods": [
+    "invers"
+   ],
+   "base": "kryssar-med-innspill",
+   "base_found": null
+  },
+  {
+   "name": "Invers Kryssar med Velodrom",
+   "mods": [
+    "invers"
+   ],
+   "base": "kryssar-med-velodrom",
+   "base_found": null
+  },
+  {
+   "name": "Invers Kryssar med Karusell",
+   "mods": [
+    "invers"
+   ],
+   "base": "kryssar-med-karusell",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Lang-Agdur",
+   "mods": [
+    "fakie",
+    "lang"
+   ],
+   "base": "agdur",
+   "base_found": "Agdur"
+  },
+  {
+   "name": "Nuttunen",
+   "mods": [],
+   "base": "nuttunen",
+   "base_found": null
+  },
+  {
+   "name": "Nuttunen goes useless",
+   "mods": [],
+   "base": "nuttunen-goes-useless",
+   "base_found": null
+  },
+  {
+   "name": "Reiersen",
+   "mods": [],
+   "base": "reiersen",
+   "base_found": null
+  },
+  {
+   "name": "Reiersen på bærtur",
+   "mods": [],
+   "base": "reiersen-pa-baertur",
+   "base_found": null
+  },
+  {
+   "name": "Gretzky",
+   "mods": [],
+   "base": "gretzky",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Mors Kök / Fars Kök",
+   "mods": [
+    "fakie"
+   ],
+   "base": "mors-kok",
+   "base_found": null
+  },
+  {
+   "name": "Burkgurk",
+   "mods": [],
+   "base": "burkgurk",
+   "base_found": null
+  },
+  {
+   "name": "Burkgurkskyffel",
+   "mods": [],
+   "base": "burkgurkskyffel",
+   "base_found": null
+  },
+  {
+   "name": "Jorda Rundt",
+   "mods": [],
+   "base": "jorda-rundt",
+   "base_found": null
+  },
+  {
+   "name": "Jorda Rundt-skyffel",
+   "mods": [],
+   "base": "jorda-rundt-skyffel",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Gutshot",
+   "mods": [
+    "fakie"
+   ],
+   "base": "gutshot",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Gutshot-Hansen",
+   "mods": [
+    "fakie"
+   ],
+   "base": "gutshot-hansen",
+   "base_found": null
+  },
+  {
+   "name": "Invers Rookierokkade",
+   "mods": [
+    "invers"
+   ],
+   "base": "rookierokkade",
+   "base_found": null
+  },
+  {
+   "name": "Fakie Zorro",
+   "mods": [
+    "fakie"
+   ],
+   "base": "zorro",
+   "base_found": null
+  },
+  {
+   "name": "Mission Impossible 2",
+   "mods": [],
+   "base": "mission-impossible-2",
+   "base_found": null
+  },
+  {
+   "name": "Edwall-innspill",
+   "mods": [],
+   "base": "edwall-innspill",
+   "base_found": null
+  },
+  {
+   "name": "Lindahl-innspill",
+   "mods": [],
+   "base": "lindahl-innspill",
+   "base_found": null
+  },
+  {
+   "name": "Østerman-innspill",
+   "mods": [],
+   "base": "osterman-innspill",
+   "base_found": null
+  },
+  {
+   "name": "Silis-innspill",
+   "mods": [],
+   "base": "silis-innspill",
+   "base_found": null
+  }
+ ],
+ "rule_scores": [
+  {
+   "name": "Fakie Näcka",
+   "mod": "fakie",
+   "exact": false,
+   "sim": 0.385
+  },
+  {
+   "name": "Fakie Spjass",
+   "mod": "fakie",
+   "exact": false,
+   "sim": 0.351
+  },
+  {
+   "name": "Fakie Lillstøvel",
+   "mod": "fakie",
+   "exact": false,
+   "sim": 0.29
+  },
+  {
+   "name": "Fakie Omvendspjass",
+   "mod": "fakie",
+   "exact": false,
+   "sim": 0.351
+  },
+  {
+   "name": "Hjerpefinte",
+   "mod": "finte",
+   "exact": false,
+   "sim": 0.458
+  },
+  {
+   "name": "Sørenfinte",
+   "mod": "finte",
+   "exact": false,
+   "sim": 0.458
+  },
+  {
+   "name": "Näckafinte",
+   "mod": "finte",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Spjassfinte",
+   "mod": "finte",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Lillstøvelfinte / C 29",
+   "mod": "finte",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Omvendspjassfinte",
+   "mod": "finte",
+   "exact": false,
+   "sim": 0.944
+  },
+  {
+   "name": "Fakie Horvath",
+   "mod": "fakie",
+   "exact": false,
+   "sim": 0.577
+  },
+  {
+   "name": "Fakie Veggdyr",
+   "mod": "fakie",
+   "exact": false,
+   "sim": 0.95
+  },
+  {
+   "name": "Fakie Agdur",
+   "mod": "fakie",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Fakie Senterkniv",
+   "mod": "fakie",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Fakie Tomahawk",
+   "mod": "fakie",
+   "exact": false,
+   "sim": 0.69
+  },
+  {
+   "name": "Lindahlskyffel lang",
+   "mod": "lang",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Edwallskyffel lang",
+   "mod": "lang",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Hælskyffel lang",
+   "mod": "lang",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Tryykari lang",
+   "mod": "lang",
+   "exact": true,
+   "sim": 1.0
+  },
+  {
+   "name": "Tryykarifinte",
+   "mod": "finte",
+   "exact": false,
+   "sim": 0.154
+  },
+  {
+   "name": "Gangsøyskyffel lang",
+   "mod": "lang",
+   "exact": true,
+   "sim": 1.0
+  }
+ ]
+}
