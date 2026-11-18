@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>STIGA move viewer</title>
+<style>
+:root{--bg:#0e1116;--panel:#171c24;--ink:#e8edf3;--mute:#8d99a8;--acc:#4fb3ff;--hot:#ffb020;--line:#2a323d}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.4 system-ui,sans-serif;overscroll-behavior:none}
+#app{display:grid;grid-template-columns:1fr 320px;grid-template-rows:1fr auto;height:100%}
+#stage{position:relative;grid-row:1;grid-column:1;min-height:0;touch-action:none}
+canvas{display:block;width:100%;height:100%}
+#hud{position:absolute;left:10px;top:8px;font-size:12px;color:var(--mute);pointer-events:none;text-shadow:0 1px 2px #000}
+#phase{position:absolute;left:10px;bottom:8px;font-weight:600;color:var(--hot);pointer-events:none;text-shadow:0 1px 3px #000;font-size:15px}
+#loading{position:absolute;inset:0;display:grid;place-items:center;background:var(--bg);font-size:16px}
+#side{grid-row:1/3;grid-column:2;background:var(--panel);border-left:1px solid var(--line);overflow:auto;padding:12px 14px}
+#bar{grid-row:2;grid-column:1;background:var(--panel);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:6px}
+.row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+button,select{background:#222a35;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:7px 11px;font:inherit;min-height:36px;cursor:pointer}
+button.on{background:var(--acc);color:#04121f;border-color:var(--acc)}
+button.hot.on{background:var(--hot);border-color:var(--hot)}
+input[type=range]{flex:1;min-width:120px;height:32px;accent-color:var(--acc)}
+#time{font-variant-numeric:tabular-nums;min-width:96px;text-align:right;color:var(--mute)}
+h1{font-size:16px;margin:0 0 2px}h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin:14px 0 6px}
+p{margin:4px 0;color:#c9d2dd}
+.ev{display:block;width:100%;text-align:left;margin:3px 0;min-height:32px;padding:5px 9px}
+.ev small{color:var(--mute)}
+.tag{display:inline-block;background:#222a35;border-radius:4px;padding:1px 6px;font-size:11px;color:var(--mute)}
+.ok{color:#5fd68a}
+#tl{position:relative;height:10px;background:#222a35;border-radius:5px;overflow:hidden}
+#tl i{position:absolute;top:0;bottom:0;opacity:.8;border-right:1px solid var(--bg)}
+@media (max-width:760px){
+ #app{grid-template-columns:1fr;grid-template-rows:minmax(220px,52vh) auto 1fr}
+ #stage{grid-row:1;grid-column:1}#bar{grid-row:2;grid-column:1}
+ #side{grid-row:3;grid-column:1;border-left:0;border-top:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<div id="app">
+ <div id="stage"><canvas id="c"></canvas><div id="hud"></div><div id="phase"></div><div id="loading">Loading scene…</div></div>
+ <div id="bar">
+  <div id="tl"></div>
+  <div class="row"><button id="play" aria-label="Play or pause">▶ Play</button><input id="scrub" type="range" min="0" max="1000" value="0" aria-label="Time"><span id="time">0.000 s</span></div>
+  <div class="row" id="speeds"></div>
+  <div class="row" id="views"></div>
+  <div class="row" id="opts"></div>
+ </div>
+ <aside id="side"></aside>
+</div>
+<script src="viewer.js" type="module"></script>
+</body>
+</html>

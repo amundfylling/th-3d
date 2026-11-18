@@ -11,3 +11,4 @@ public/*.glb
 *.blend1
 # Python bytecode
 __pycache__/
+viewer/dist/
