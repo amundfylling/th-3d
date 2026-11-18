@@ -13,6 +13,8 @@
     "validate": "node scripts/validate-geometry.ts",
     "test": "node --test \"tests/**/*.test.ts\"",
     "check": "npm run typecheck && npm run validate && npm test",
+    "viewer:build": "node scripts/viewer-build.ts",
+    "viewer:serve": "node scripts/viewer-serve.ts",
     "trace:board": "node scripts/trace-board.ts",
     "render:board": "node scripts/render-board-overlay.ts",
     "trace:slots": "node scripts/trace-slots.ts",
