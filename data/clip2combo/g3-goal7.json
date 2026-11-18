@@ -1,0 +1,133 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g3-goal7",
+ "description": "Draft from clip g3 ending 1561.5 s: G (shot aim assumed).",
+ "figures": {
+  "W-LW": {
+   "arc_mm": 278.3,
+   "theta_deg": 10.0
+  },
+  "E-LW": {
+   "arc_mm": 313.6,
+   "theta_deg": -75.5
+  },
+  "W-RW": {
+   "arc_mm": 42.7,
+   "theta_deg": -19.3
+  },
+  "E-RW": {
+   "arc_mm": 438.9,
+   "theta_deg": -130.5
+  },
+  "W-C": {
+   "arc_mm": 12.4,
+   "theta_deg": 132.0
+  },
+  "E-C": {
+   "arc_mm": 96.8,
+   "theta_deg": -137.0
+  },
+  "W-LD": {
+   "arc_mm": 6.5,
+   "theta_deg": 94.7
+  },
+  "E-LD": {
+   "arc_mm": 75.2,
+   "theta_deg": -179.0
+  },
+  "W-RD": {
+   "arc_mm": 139.6,
+   "theta_deg": -6.7
+  },
+  "E-RD": {
+   "arc_mm": 13.0,
+   "theta_deg": -139.0
+  },
+  "W-G": {
+   "arc_mm": 17.6,
+   "theta_deg": -131.6
+  },
+  "E-G": {
+   "arc_mm": 70.6,
+   "theta_deg": -109.9
+  }
+ },
+ "puck": {
+  "x_mm": -247.7,
+  "y_mm": -19.7
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     -285.6,
+     10.7
+    ],
+    [
+     282.8,
+     35.0
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": -247.7,
+   "y_mm": -19.7,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g3",
+  "clip_end_s": 1561.5,
+  "scoring_end": "W",
+  "touches": [
+   "W-G"
+  ],
+  "roles": [
+   "G"
+  ],
+  "family": "defence",
+  "scorer_source": "last receiver",
+  "inferred_pass": false,
+  "shot_seen": false,
+  "t_first_touch_s": 1561.333,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.0003333333331738686,
+  "pass_lines_attacker_frame": [],
+  "notes": [],
+  "goalie_y_attacker_frame": -37.38884570665028,
+  "scoring_end_inferred": "W",
+  "puck_seen_fraction_last_6s": 0.894,
+  "library_candidates": [
+   [
+    1000.0,
+    "fakie-gutshot",
+    "Fakie Gutshot",
+    [
+     "RW",
+     "G"
+    ]
+   ],
+   [
+    1000.0,
+    "skalpell",
+    "Skalpell",
+    [
+     "C",
+     "G"
+    ]
+   ]
+  ]
+ }
+}

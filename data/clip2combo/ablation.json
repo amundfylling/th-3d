@@ -1,0 +1,201 @@
+{
+ "description": "clip2combo switches turned on one by one, on the 25 marked NM26 goals (docs/clip2combo.md). Tuned on these same goals: in-sample.",
+ "rows": [
+  {
+   "switches_on": [],
+   "clip_end": "user mark",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 22,
+   "scorer_ok": 11,
+   "assist_ok": 11,
+   "scorer_and_assist_ok": 9,
+   "family_ok": 7,
+   "name_top1": 0,
+   "name_top3": 1
+  },
+  {
+   "switches_on": [],
+   "clip_end": "pipeline estimate",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 21,
+   "scorer_ok": 9,
+   "assist_ok": 9,
+   "scorer_and_assist_ok": 7,
+   "family_ok": 6,
+   "name_top1": 0,
+   "name_top3": 1
+  },
+  {
+   "switches_on": [
+    "repair"
+   ],
+   "clip_end": "user mark",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 22,
+   "scorer_ok": 13,
+   "assist_ok": 14,
+   "scorer_and_assist_ok": 12,
+   "family_ok": 10,
+   "name_top1": 0,
+   "name_top3": 3
+  },
+  {
+   "switches_on": [
+    "repair"
+   ],
+   "clip_end": "pipeline estimate",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 21,
+   "scorer_ok": 9,
+   "assist_ok": 10,
+   "scorer_and_assist_ok": 8,
+   "family_ok": 7,
+   "name_top1": 0,
+   "name_top3": 2
+  },
+  {
+   "switches_on": [
+    "repair",
+    "end_by_holder"
+   ],
+   "clip_end": "user mark",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 24,
+   "scorer_ok": 12,
+   "assist_ok": 13,
+   "scorer_and_assist_ok": 11,
+   "family_ok": 11,
+   "name_top1": 0,
+   "name_top3": 3
+  },
+  {
+   "switches_on": [
+    "repair",
+    "end_by_holder"
+   ],
+   "clip_end": "pipeline estimate",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 23,
+   "scorer_ok": 9,
+   "assist_ok": 9,
+   "scorer_and_assist_ok": 8,
+   "family_ok": 8,
+   "name_top1": 0,
+   "name_top3": 2
+  },
+  {
+   "switches_on": [
+    "repair",
+    "end_by_holder",
+    "shot_aware"
+   ],
+   "clip_end": "user mark",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 24,
+   "scorer_ok": 13,
+   "assist_ok": 14,
+   "scorer_and_assist_ok": 12,
+   "family_ok": 12,
+   "name_top1": 0,
+   "name_top3": 3
+  },
+  {
+   "switches_on": [
+    "repair",
+    "end_by_holder",
+    "shot_aware"
+   ],
+   "clip_end": "pipeline estimate",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 23,
+   "scorer_ok": 10,
+   "assist_ok": 10,
+   "scorer_and_assist_ok": 9,
+   "family_ok": 9,
+   "name_top1": 0,
+   "name_top3": 2
+  },
+  {
+   "switches_on": [
+    "repair",
+    "end_by_holder",
+    "shot_aware",
+    "restart_at_carrier"
+   ],
+   "clip_end": "user mark",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 24,
+   "scorer_ok": 14,
+   "assist_ok": 15,
+   "scorer_and_assist_ok": 13,
+   "family_ok": 13,
+   "name_top1": 0,
+   "name_top3": 3
+  },
+  {
+   "switches_on": [
+    "repair",
+    "end_by_holder",
+    "shot_aware",
+    "restart_at_carrier"
+   ],
+   "clip_end": "pipeline estimate",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 23,
+   "scorer_ok": 11,
+   "assist_ok": 11,
+   "scorer_and_assist_ok": 10,
+   "family_ok": 10,
+   "name_top1": 0,
+   "name_top3": 2
+  },
+  {
+   "switches_on": [
+    "repair",
+    "end_by_holder",
+    "shot_aware",
+    "restart_at_carrier",
+    "unseen_pass"
+   ],
+   "clip_end": "user mark",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 24,
+   "scorer_ok": 21,
+   "assist_ok": 22,
+   "scorer_and_assist_ok": 20,
+   "family_ok": 20,
+   "name_top1": 0,
+   "name_top3": 3
+  },
+  {
+   "switches_on": [
+    "repair",
+    "end_by_holder",
+    "shot_aware",
+    "restart_at_carrier",
+    "unseen_pass"
+   ],
+   "clip_end": "pipeline estimate",
+   "editor_loads": 25,
+   "editor_clean_no_repairs": 25,
+   "scoring_end_ok": 23,
+   "scorer_ok": 20,
+   "assist_ok": 18,
+   "scorer_and_assist_ok": 17,
+   "family_ok": 17,
+   "name_top1": 0,
+   "name_top3": 2
+  }
+ ]
+}

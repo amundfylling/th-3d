@@ -1,0 +1,200 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g2-goal4",
+ "description": "Draft from clip g2 ending 956.9 s: RW > C (shot aim assumed).",
+ "figures": {
+  "W-LW": {
+   "arc_mm": 361.5,
+   "theta_deg": -151.6
+  },
+  "E-LW": {
+   "arc_mm": 143.6,
+   "theta_deg": -169.4
+  },
+  "W-RW": {
+   "arc_mm": 141.1,
+   "theta_deg": -25.0
+  },
+  "E-RW": {
+   "arc_mm": 46.8,
+   "theta_deg": 35.0
+  },
+  "W-C": {
+   "arc_mm": 71.1,
+   "theta_deg": -45.2
+  },
+  "E-C": {
+   "arc_mm": 243.7,
+   "theta_deg": 98.8
+  },
+  "W-LD": {
+   "arc_mm": 423.9,
+   "theta_deg": 160.3
+  },
+  "E-LD": {
+   "arc_mm": 86.4,
+   "theta_deg": -90.5
+  },
+  "W-RD": {
+   "arc_mm": 222.3,
+   "theta_deg": -121.8
+  },
+  "E-RD": {
+   "arc_mm": 8.8,
+   "theta_deg": 96.5
+  },
+  "W-G": {
+   "arc_mm": 70.5,
+   "theta_deg": 17.9
+  },
+  "E-G": {
+   "arc_mm": 38.8,
+   "theta_deg": 45.0
+  }
+ },
+ "puck": {
+  "x_mm": 105.6,
+  "y_mm": -151.1
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     157.1,
+     -50.5
+    ],
+    [
+     205.5,
+     -4.2
+    ]
+   ],
+   "style": "dashed",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a2",
+   "points_mm": [
+    [
+     205.5,
+     -4.2
+    ],
+    [
+     282.8,
+     35.0
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": 105.6,
+   "y_mm": -151.1,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m2",
+   "label": "2",
+   "x_mm": 205.5,
+   "y_mm": -4.2,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g2",
+  "clip_end_s": 956.9,
+  "scoring_end": "W",
+  "touches": [
+   "W-RW",
+   "W-C"
+  ],
+  "roles": [
+   "RW",
+   "C"
+  ],
+  "family": "shovel",
+  "scorer_source": "last receiver",
+  "inferred_pass": true,
+  "shot_seen": false,
+  "t_first_touch_s": 956.733,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.00033333333340124227,
+  "pass_lines_attacker_frame": [
+   [
+    [
+     157.1,
+     -50.5
+    ],
+    [
+     205.5,
+     -4.2
+    ]
+   ]
+  ],
+  "notes": [
+   "W-RW > W-C: pass not visible in the track; inferred (a winger's last touch, then the centre shoots)"
+  ],
+  "goalie_y_attacker_frame": -22.992092945809944,
+  "scoring_end_inferred": "W",
+  "puck_seen_fraction_last_6s": 0.762,
+  "library_candidates": [
+   [
+    14.323768803537298,
+    "snik",
+    "Snik",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    30.358387690472536,
+    "fakie-jon-spesial",
+    "Fakie Jon Spesial / Korabel",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    31.52302367731666,
+    "wilkens",
+    "Wilkens",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    33.297018619643765,
+    "fakie-harlem-shuffle",
+    "Fakie Harlem Shuffle",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    35.91008766568426,
+    "lindahlskyffel-kort",
+    "Lindahlskyffel kort",
+    [
+     "RW",
+     "C"
+    ]
+   ]
+  ]
+ }
+}

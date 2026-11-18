@@ -1,0 +1,162 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g3-goal5",
+ "description": "Draft from clip g3 ending 1525.9 s: C (shot aim assumed).",
+ "figures": {
+  "E-LW": {
+   "arc_mm": 142.7,
+   "theta_deg": 175.7
+  },
+  "W-LW": {
+   "arc_mm": 12.3,
+   "theta_deg": -127.5
+  },
+  "E-RW": {
+   "arc_mm": 9.5,
+   "theta_deg": -88.7
+  },
+  "W-RW": {
+   "arc_mm": 11.2,
+   "theta_deg": -129.0
+  },
+  "E-C": {
+   "arc_mm": 13.2,
+   "theta_deg": 91.3
+  },
+  "W-C": {
+   "arc_mm": 212.9,
+   "theta_deg": -64.3
+  },
+  "E-LD": {
+   "arc_mm": 400.3,
+   "theta_deg": 162.0
+  },
+  "W-LD": {
+   "arc_mm": 424.9,
+   "theta_deg": -110.5
+  },
+  "E-RD": {
+   "arc_mm": 17.7,
+   "theta_deg": -127.6
+  },
+  "W-RD": {
+   "arc_mm": 222.6,
+   "theta_deg": 47.8
+  },
+  "E-G": {
+   "arc_mm": 30.4,
+   "theta_deg": 5.0
+  },
+  "W-G": {
+   "arc_mm": 68.5,
+   "theta_deg": 38.6
+  }
+ },
+ "puck": {
+  "x_mm": 177.2,
+  "y_mm": 34.0
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     251.9,
+     25.2
+    ],
+    [
+     282.8,
+     -33.9
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": 177.2,
+   "y_mm": 34.0,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g3",
+  "clip_end_s": 1525.9,
+  "scoring_end": "E",
+  "touches": [
+   "W-C"
+  ],
+  "roles": [
+   "C"
+  ],
+  "family": "rebound",
+  "scorer_source": "last receiver",
+  "inferred_pass": false,
+  "shot_seen": false,
+  "t_first_touch_s": 1525.9,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.0,
+  "pass_lines_attacker_frame": [],
+  "notes": [],
+  "goalie_y_attacker_frame": 0.5300092870124082,
+  "scoring_end_inferred": "E",
+  "puck_seen_fraction_last_6s": 0.889,
+  "library_candidates": [
+   [
+    1000.0,
+    "agdur",
+    "Agdur",
+    [
+     "C",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    1000.0,
+    "burkgurkskyffel",
+    "Burkgurkskyffel",
+    [
+     "RW",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    1000.0,
+    "edwall-innspill",
+    "Edwall-innspill",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    1000.0,
+    "edwallskyffel-kort",
+    "Edwallskyffel kort",
+    [
+     "RW",
+     "C"
+    ]
+   ],
+   [
+    1000.0,
+    "edwallskyffel-lang",
+    "Edwallskyffel lang",
+    [
+     "RW",
+     "C"
+    ]
+   ]
+  ]
+ }
+}

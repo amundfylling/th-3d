@@ -2,6 +2,7 @@
 
 ## Current position
 
+- **Goal clip -> combo draft (hypothesis experiment, 2026-11-18, PROPOSED, `docs/clip2combo.md`):** `scripts/clip2combo.py` turns a goal clip (game + end time) into a `th-combo/1` draft from the committed NM26 tracks. 25/25 marked goals open in the combo editor's own reader; scorer+assist 20/25, family 20/25 (in-sample), named combination 0/11 top 1. Starts at the tracks: the video and models cannot be fetched here. Needs PR #23 (`site/`) for the editor check.
 - **POV videos (2026-10-15, PROPOSED):** steps 1-8 of the plan on one Swedish Masters game (docs/pov-videos.md;
   outputs in /mnt/project-files/pov-videos/game-0002/). The broadcast models do not transfer (step 5); a POV figure
   model trained on synthetic POV frames finds 83-99% of figures on real frames (step 6, rotation not yet scored). The

@@ -1,0 +1,205 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g5-goal6",
+ "description": "Draft from clip g5 ending 2600.7 s: LW > C (shot aim assumed).",
+ "figures": {
+  "W-LW": {
+   "arc_mm": 196.7,
+   "theta_deg": 35.2
+  },
+  "E-LW": {
+   "arc_mm": 156.9,
+   "theta_deg": -129.5
+  },
+  "W-RW": {
+   "arc_mm": 362.4,
+   "theta_deg": -60.0
+  },
+  "E-RW": {
+   "arc_mm": 16.9,
+   "theta_deg": 40.1
+  },
+  "W-C": {
+   "arc_mm": 241.1,
+   "theta_deg": -97.7
+  },
+  "E-C": {
+   "arc_mm": 242.9,
+   "theta_deg": 119.3
+  },
+  "W-LD": {
+   "arc_mm": 422.4,
+   "theta_deg": -51.1
+  },
+  "E-LD": {
+   "arc_mm": 435.5,
+   "theta_deg": 121.6
+  },
+  "W-RD": {
+   "arc_mm": 224.1,
+   "theta_deg": 72.5
+  },
+  "E-RD": {
+   "arc_mm": 154.6,
+   "theta_deg": 112.8
+  },
+  "W-G": {
+   "arc_mm": 3.2,
+   "theta_deg": 121.9
+  },
+  "E-G": {
+   "arc_mm": 50.6,
+   "theta_deg": 171.5
+  }
+ },
+ "puck": {
+  "x_mm": 248.0,
+  "y_mm": 197.7
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     -235.2,
+     -186.1
+    ],
+    [
+     167.2,
+     -37.6
+    ]
+   ],
+   "style": "dashed",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  },
+  {
+   "id": "a2",
+   "points_mm": [
+    [
+     167.2,
+     -37.6
+    ],
+    [
+     282.8,
+     35.0
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": 248.0,
+   "y_mm": 197.7,
+   "color": "#0e2a57"
+  },
+  {
+   "id": "m2",
+   "label": "2",
+   "x_mm": 167.2,
+   "y_mm": -37.6,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g5",
+  "clip_end_s": 2600.7,
+  "scoring_end": "W",
+  "touches": [
+   "W-LW",
+   "W-C"
+  ],
+  "roles": [
+   "LW",
+   "C"
+  ],
+  "family": "centrifuge",
+  "scorer_source": "last receiver",
+  "inferred_pass": true,
+  "shot_seen": false,
+  "t_first_touch_s": 2599.633,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.00033333333340124227,
+  "pass_lines_attacker_frame": [
+   [
+    [
+     -235.2,
+     -186.1
+    ],
+    [
+     167.2,
+     -37.6
+    ]
+   ]
+  ],
+  "notes": [
+   "W-LW > W-C: pass not visible in the track; inferred (a winger's last touch, then the centre shoots)"
+  ],
+  "goalie_y_attacker_frame": -22.1154350025647,
+  "scoring_end_inferred": "W",
+  "puck_seen_fraction_last_6s": 0.921,
+  "library_candidates": [
+   [
+    112.36641740125327,
+    "invers-agduro",
+    "Invers Agduro",
+    [
+     "C",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    146.34017439421453,
+    "holms-gretzky",
+    "Holms-Gretzky",
+    [
+     "C",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    146.64159458983158,
+    "holms",
+    "Holms",
+    [
+     "C",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    163.49872460297453,
+    "invers-kryssar-med-innspill",
+    "Invers Kryssar med innspill",
+    [
+     "RW",
+     "LW",
+     "C"
+    ]
+   ],
+   [
+    164.32386032385574,
+    "burkgurkskyffel",
+    "Burkgurkskyffel",
+    [
+     "RW",
+     "LW",
+     "C"
+    ]
+   ]
+  ]
+ }
+}

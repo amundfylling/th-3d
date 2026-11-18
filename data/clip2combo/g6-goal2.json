@@ -1,0 +1,155 @@
+{
+ "schema": "th-combo/1",
+ "name": "Draft g6-goal2",
+ "description": "Draft from clip g6 ending 2896.0 s: RW (shot aim assumed).",
+ "figures": {
+  "E-LW": {
+   "arc_mm": 120.6,
+   "theta_deg": 88.9
+  },
+  "W-LW": {
+   "arc_mm": 246.7,
+   "theta_deg": -136.6
+  },
+  "E-RW": {
+   "arc_mm": 422.6,
+   "theta_deg": 61.2
+  },
+  "W-RW": {
+   "arc_mm": 58.7,
+   "theta_deg": -160.4
+  },
+  "E-C": {
+   "arc_mm": 245.7,
+   "theta_deg": 162.5
+  },
+  "W-C": {
+   "arc_mm": 11.3,
+   "theta_deg": 7.7
+  },
+  "E-LD": {
+   "arc_mm": 66.9,
+   "theta_deg": -96.6
+  },
+  "W-LD": {
+   "arc_mm": 339.3,
+   "theta_deg": 163.1
+  },
+  "E-RD": {
+   "arc_mm": 34.5,
+   "theta_deg": 121.5
+  },
+  "W-RD": {
+   "arc_mm": 230.0,
+   "theta_deg": 159.5
+  },
+  "E-G": {
+   "arc_mm": 26.9,
+   "theta_deg": 24.9
+  },
+  "W-G": {
+   "arc_mm": 75.7,
+   "theta_deg": -8.2
+  }
+ },
+ "puck": {
+  "x_mm": 6.2,
+  "y_mm": -185.0
+ },
+ "arrows": [
+  {
+   "id": "a1",
+   "points_mm": [
+    [
+     183.0,
+     -14.8
+    ],
+    [
+     282.8,
+     35.0
+    ]
+   ],
+   "style": "solid",
+   "curved": false,
+   "color": "#16be34",
+   "width_mm": 4.2,
+   "head": true
+  }
+ ],
+ "markers": [
+  {
+   "id": "m1",
+   "label": "1",
+   "x_mm": 6.2,
+   "y_mm": -185.0,
+   "color": "#0e2a57"
+  }
+ ],
+ "clip2combo": {
+  "status": "PROPOSED",
+  "source": "NM26 committed tracks (puck-track-synth-v2, figure-tracks-v3, passes-synth-v1); docs/clip2combo.md",
+  "game": "g6",
+  "clip_end_s": 2895.97,
+  "scoring_end": "E",
+  "touches": [
+   "W-RW"
+  ],
+  "roles": [
+   "RW"
+  ],
+  "family": "wing",
+  "scorer_source": "last receiver",
+  "inferred_pass": false,
+  "shot_seen": true,
+  "t_first_touch_s": 2895.967,
+  "figures_tracked": 12,
+  "pose_dt_max_s": 0.00033333333340124227,
+  "pass_lines_attacker_frame": [],
+  "notes": [],
+  "goalie_y_attacker_frame": -29.467140620550033,
+  "scoring_end_inferred": "E",
+  "puck_seen_fraction_last_6s": 0.921,
+  "library_candidates": [
+   [
+    1000.0,
+    "bedehus-smygar",
+    "Bedehus-Smygar / Tysk Smygar",
+    [
+     "RW"
+    ]
+   ],
+   [
+    1000.0,
+    "brustadbu",
+    "Brustadbu",
+    [
+     "RW"
+    ]
+   ],
+   [
+    1000.0,
+    "direkteskudd",
+    "Direkteskudd",
+    [
+     "RW"
+    ]
+   ],
+   [
+    1000.0,
+    "emoe-smyger",
+    "EMoe-smyger",
+    [
+     "RW"
+    ]
+   ],
+   [
+    1000.0,
+    "fakie-forulemping",
+    "Fakie Forulemping",
+    [
+     "RW"
+    ]
+   ]
+  ]
+ }
+}
