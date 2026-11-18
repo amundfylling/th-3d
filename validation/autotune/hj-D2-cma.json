@@ -1,0 +1,93 @@
+{
+ "move": "hjerpefinte",
+ "method": "cma",
+ "seed": 1,
+ "variants": 18,
+ "target": 18,
+ "start": {
+  "values": {
+   "t0": 0.18,
+   "dur": 0.04,
+   "th_end": 195.0,
+   "mdur": 0.06,
+   "arc_end": 225.0
+  },
+  "passed": 1,
+  "cost": 34.00622
+ },
+ "best": {
+  "n": 2,
+  "cost": 0.01674,
+  "passed": 18,
+  "vals": {
+   "t0": 0.2626154022660212,
+   "dur": 0.135941783646578,
+   "th_end": 190.40613396327007,
+   "mdur": 0.08687427150583146,
+   "arc_end": 222.19447105696582
+  },
+  "failed": [],
+  "set": {
+   "figures.W-C.theta.turns.0.0": 0.262615,
+   "figures.W-C.arc.moves.0.0": 0.262615,
+   "figures.W-C.arc.keys.1.0": 0.262615,
+   "figures.W-C.theta.turns.0.1": 0.135942,
+   "figures.W-C.theta.turns.0.3": 190.406134,
+   "figures.W-C.arc.moves.0.4": 222.194471,
+   "figures.W-C.arc.moves.0.1": 0.34949
+  }
+ },
+ "evaluations": 8,
+ "wall_s": 21.2,
+ "reached_target": true,
+ "log": [
+  {
+   "n": 1,
+   "t": 2.1,
+   "cost": 0.111,
+   "passed": 18
+  },
+  {
+   "n": 2,
+   "t": 4.3,
+   "cost": 0.017,
+   "passed": 18
+  },
+  {
+   "n": 3,
+   "t": 5.9,
+   "cost": 23.867,
+   "passed": 0
+  },
+  {
+   "n": 4,
+   "t": 8.9,
+   "cost": 34.005,
+   "passed": 1
+  },
+  {
+   "n": 5,
+   "t": 12.4,
+   "cost": 31.976,
+   "passed": 2
+  },
+  {
+   "n": 6,
+   "t": 15.8,
+   "cost": 36.0,
+   "passed": 0
+  },
+  {
+   "n": 7,
+   "t": 17.8,
+   "cost": 13.477,
+   "passed": 10
+  },
+  {
+   "n": 8,
+   "t": 21.2,
+   "cost": 3.151,
+   "passed": 16
+  }
+ ]
+}

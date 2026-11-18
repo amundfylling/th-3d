@@ -1,0 +1,7 @@
+{"params": [
+ {"name": "t0", "paths": ["figures.W-C.theta.turns.0.0", "figures.W-C.arc.moves.0.0", "figures.W-C.arc.keys.1.0"], "lo": 0.15, "hi": 0.45},
+ {"name": "dur", "paths": ["figures.W-C.theta.turns.0.1"], "lo": 0.03, "hi": 0.25},
+ {"name": "th_end", "paths": ["figures.W-C.theta.turns.0.3"], "lo": 190, "hi": 240},
+ {"name": "mdur", "x0": 0.1, "paths": [], "lo": 0.05, "hi": 0.4},
+ {"name": "arc_end", "paths": ["figures.W-C.arc.moves.0.4"], "lo": 190, "hi": 235}
+], "derived": [{"path": "figures.W-C.arc.moves.0.1", "expr": "t0 + mdur"}]}

@@ -1,0 +1,69 @@
+{
+ "move": "hjerpefinte",
+ "method": "random",
+ "seed": 1,
+ "variants": 18,
+ "target": 18,
+ "start": {
+  "values": {
+   "t0": 0.4,
+   "dur": 0.2,
+   "th_end": 215.0,
+   "mdur": 0.3,
+   "arc_end": 215.0
+  },
+  "passed": 0,
+  "cost": 31.5
+ },
+ "best": {
+  "n": 4,
+  "cost": 0.07763,
+  "passed": 18,
+  "vals": {
+   "t0": 0.28604936684419546,
+   "dur": 0.059489173394376246,
+   "th_end": 210.15564932235645,
+   "mdur": 0.12120933423665238,
+   "arc_end": 201.80410031988322
+  },
+  "failed": [],
+  "set": {
+   "figures.W-C.theta.turns.0.0": 0.286049,
+   "figures.W-C.arc.moves.0.0": 0.286049,
+   "figures.W-C.arc.keys.1.0": 0.286049,
+   "figures.W-C.theta.turns.0.1": 0.059489,
+   "figures.W-C.theta.turns.0.3": 210.155649,
+   "figures.W-C.arc.moves.0.4": 201.8041,
+   "figures.W-C.arc.moves.0.1": 0.407259
+  }
+ },
+ "evaluations": 4,
+ "wall_s": 19.9,
+ "reached_target": true,
+ "log": [
+  {
+   "n": 1,
+   "t": 9.1,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 2,
+   "t": 13.3,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 3,
+   "t": 17.6,
+   "cost": 31.5,
+   "passed": 0
+  },
+  {
+   "n": 4,
+   "t": 19.9,
+   "cost": 0.078,
+   "passed": 18
+  }
+ ]
+}
