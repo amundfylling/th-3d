@@ -58,6 +58,10 @@ sys.path.insert(0, str(REPO / "scripts"))
 import nm26_tracks  # noqa: E402
 PUCK = sys.argv[sys.argv.index("--puck") + 1] if "--puck" in sys.argv else nm26_tracks.PUCK_TRACK
 FIGS = nm26_tracks.FIGURE_TRACKS
+# --moments FILE: use goal moments from scripts/nm26-goal-moment-fusion.py ({"moments": {goal id: s}}) instead of the
+# built-in estimator; --out FILE: write the labels there instead of combo-labels.json (and skip the spots picture).
+MOMENTS = json.loads(Path(sys.argv[sys.argv.index("--moments") + 1]).read_text())["moments"] if "--moments" in sys.argv else None
+OUT = Path(sys.argv[sys.argv.index("--out") + 1]) if "--out" in sys.argv else None
 G = table_common.GEOMETRY
 SLOT = table_common.SLOT
 ACC = table_common.ACC
@@ -343,6 +347,7 @@ moment_report = {"constants": {k: round(v, 2) for k, v in PM.items()}, "replay_r
 
 for gl in goals:
     t_est, meth = estimate_moment(gl, cand[gl["id"]], PM)
+    if MOMENTS is not None and MOMENTS.get(gl["id"]) is not None: t_est, meth = MOMENTS[gl["id"]], "fusion"
     gl["moment_est_s"] = round(t_est, 2); gl["moment_method"] = meth; gl["replay"] = cand[gl["id"]]
     gl["moment_s"] = gl["label"]["goal_video_s"] if gl["label"] and gl["label"].get("goal_video_s") is not None else gl["moment_est_s"]
     gl["moment_source"] = "user" if gl["label"] else "estimated"
@@ -433,7 +438,7 @@ out = {"description": "Combination recognition for the NM26 goals (scripts/nm26-
 by_player = defaultdict(Counter)
 for r in labels_out: by_player[r["scoring_player"]][r["family"]] += 1
 out["families_by_player_all_goals"] = {k: dict(v.most_common()) for k, v in by_player.items()}
-(D / "combo-labels.json").write_text(json.dumps(out, indent=1, ensure_ascii=False, allow_nan=False) + "\n")
+(OUT or D / "combo-labels.json").write_text(json.dumps(out, indent=1, ensure_ascii=False, allow_nan=False) + "\n")
 
 print("goal moment:", json.dumps(moment_report["loo_abs_error_s"]), moment_report["constants"], moment_report["by_method"])
 for k in ("tree", "1nn", "rules", "vote"):
@@ -475,4 +480,4 @@ for fam, c in COL.items():
     n_u = sum(r["family"] == fam and r["status"] == "user_label" for r in labels_out); n_p = sum(r["family"] == fam and r["status"] != "user_label" for r in labels_out)
     dr.ellipse([W_ - 250, ly, W_ - 234, ly + 16], fill=c); dr.text((W_ - 226, ly - 1), f"{fam}  {n_u} + {n_p}", fill="#1f1e1b", font=F); ly += 26
 dr.text((W_ - 250, ly + 4), "count: user + proposed", fill="#55534c", font=FS)
-im.save(REPO / "validation/nm26-combo-spots.png")
+if OUT is None: im.save(REPO / "validation/nm26-combo-spots.png")
