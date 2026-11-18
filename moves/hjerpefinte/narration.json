@@ -1,0 +1,61 @@
+{
+ "schema": "move-narration/1",
+ "move": "hjerpefinte",
+ "note": "Norwegian voice-over. Each line is anchored to a trace event or a presentation segment edge; the start time is resolved from the saved trace and the presentation (scripts/video/narration.ts), so re-tuning the move or its slow-motion rates moves the narration with it. Not part of the story hash.",
+ "language": "nb-NO",
+ "voice": "no_NO-talesyntese-medium",
+ "lines": [
+  {
+   "id": "title",
+   "anchor": {
+    "segment": "intro",
+    "edge": "start",
+    "offset_s": 0.3
+   },
+   "text": "Hjerpefinte. En sentertriks i bordhockey."
+  },
+  {
+   "id": "setup",
+   "anchor": {
+    "segment": "setup_freeze",
+    "edge": "start",
+    "offset_s": 0.2
+   },
+   "beat": "setup",
+   "text": "Pucken ligger på staven, ut til høyre. Keeperen dekker høyre side."
+  },
+  {
+   "id": "feint",
+   "anchor": {
+    "event": "goalie.bites"
+   },
+   "beat": "feint",
+   "text": "Stillingen selger Hjerpen. Keeperen leser den og glir mot venstre stolpe."
+  },
+  {
+   "id": "shot",
+   "anchor": {
+    "event": "contact.shot"
+   },
+   "beat": "shot",
+   "text": "Skuddet. Keeperen går for venstre stolpe, og senteren skyver pucken rett i høyre hjørne."
+  },
+  {
+   "id": "goal",
+   "anchor": {
+    "segment": "goal_freeze",
+    "edge": "start"
+   },
+   "text": "Mål!"
+  },
+  {
+   "id": "replay",
+   "anchor": {
+    "segment": "replay",
+    "edge": "start",
+    "offset_s": 0.3
+   },
+   "text": "Her er hele skuddet igjen, i sakte film."
+  }
+ ]
+}
