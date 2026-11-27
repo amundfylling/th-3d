@@ -5,20 +5,10 @@
   "view": "half",
   "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
   "text": "Center starts with the puck in the heel groove, quickly shifts to having the puck in the toe groove, and performs an Omvendspjass",
-  "note": "User review 2026-10-14: the puck starts centred on the centre's slot line (same start as the normal move); the ghost is the centre at that start, behind the puck. User review 2026-11-11: start and trick swapped literally: the centre starts turned backwards (the old trick pose, puck on the blade) and plays the trick facing forward (the old start, puck in the toe groove).",
+  "note": "User review 2026-10-14: the puck starts centred on the centre's slot line (same start as the normal move); the ghost is the centre at that start, behind the puck. User review 2026-11-11: start and trick swapped literally: the centre starts turned backwards (the old trick pose, puck on the blade) and plays the trick facing forward (the old start, puck in the toe groove). User review 2026-11-27: the puck starts on the centre line of the slot (along it, not beside it): the start is the centre turned backwards with the puck in the heel groove, as in Fakie Lillstøvel. The start puck and the trick puck are the same spot (the centre turns around the puck), so only one numbered point is drawn.",
   "contacts": [
     {
       "n": 1,
-      "pid": "W-C",
-      "picture_px": [
-        340,
-        318
-      ],
-      "pose": false,
-      "snap": false
-    },
-    {
-      "n": 2,
       "pid": "W-C",
       "picture_px": [
         308,
@@ -39,10 +29,6 @@
   "path": [
     {
       "from": 1,
-      "to": 2
-    },
-    {
-      "from": 2,
       "to": "goal",
       "picture_px": [
         344,
@@ -53,13 +39,11 @@
   "ghost": {
     "pid": "W-C",
     "figure_px": [
-      303,
-      332
+      307,
+      367
     ],
-    "theta_deg": -131.7,
-    "puck_local_mm": [
-      17.1,
-      33.1
-    ]
+    "theta_deg": 180.0,
+    "grip": "heel",
+    "to": 1
   }
 }

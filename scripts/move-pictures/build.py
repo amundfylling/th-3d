@@ -27,6 +27,21 @@ OUT = REPO / "out/move-pictures"
 VAL = REPO / "validation/move-pictures"
 R = G["puck"]["diameter"]["value"] / 2
 BLADE_MID = np.array([2.8, 33.1])  # skater blade middle, local mm (scripts/ikv-sketch.py)
+# Named puck grips, puck centre in skater local mm (x forward, y to the stick side), checked against the skater footprint
+# (data/figures/contact-footprints.json, puck radius 12.7 mm): each touches the figure with at most 0.25 mm gap and no
+# overlap. User review 2026-11-27: the heel groove is the pocket between the skate and the heel of the stick, the puck
+# touching only those two (a puck through the stick is wrong); a pass from the right wing is caught on the figure's back.
+# Second review 2026-11-27: "heel" is the heel of the skate: the heel groove is the pocket between the left boot and the
+# heel of the right foot (pushed back), behind the figure; on a carry about 10% of the puck lies over the slot.
+GRIPS = {
+    "heel": [-20.0, -0.75],  # heel groove: touches the left boot and the heel of the right foot
+    "stick": [17.7, 18.0],  # stick groove: in front of the stick, next to the skate (ASSUMED)
+    "toe": [21.2, 0.0],     # toe groove: straight in front of the skate (ASSUMED)
+    "back": [-19.9, 0.0],   # back catch: straight behind the figure, touching the back of the skate
+}
+# Heel-groove carry (user review 2026-11-27): the figure is turned so the stick points about 45 deg forward toward the
+# right boards (theta -135 for the white end), the puck in front of it in the heel groove.
+HEEL_CARRY_THETA = -140.0  # puck centre 13.4 mm left of the slot line: about 2.5 mm of it over a ~7 mm wide slot
 HOME = {"W": 0.0, "E": 180.0}
 GX, GY = HW["goal"]["placement_mm"]["E"]
 BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"], float)
@@ -267,6 +282,31 @@ def build(spec):
         nxt = {seg["from"]: seg["to"] for seg in spec["path"]}
         for c in cs:
             k = key(c)
+            if "grip" in c:
+                c = {**c, "puck_local_mm": GRIPS[c["grip"]]}
+            if c.get("catch") == "back":  # the receiver turns its back to the passer (user review 2026-11-27)
+                prev = next(seg["from"] for seg in spec["path"] if seg["to"] == k)
+                src = points.get(prev, raw[prev])
+                slot = Slot(c["pid"])
+                a0, _ = slot.nearest(raw[k])
+                best = None
+                for arc in np.arange(max(0.5, a0 - 80), min(slot.length - 0.5, a0 + 80), 0.5):
+                    piv = slot.at(arc)
+                    d = np.asarray(src) - piv
+                    h = math.degrees(math.atan2(d[1], d[0])) + 180.0
+                    q = piv + rot(h) @ np.array(GRIPS["back"])
+                    miss = float(np.hypot(*(q - raw[k])))
+                    if best is None or miss < best[0]:
+                        best = (miss, arc, h, q)
+                miss, arc, h, q = best
+                th = (h - HOME[c["pid"][0]] + 180) % 360 - 180
+                points[k] = q
+                notes.append({"contact": k, "pid": c["pid"], "arc_mm": round(float(arc), 1), "theta_deg": round(th, 1), "catch": "back",
+                              "miss_mm": round(miss, 1), "drawn": c.get("pose", True)})
+                print(f"{spec['id']} contact {k} {c['pid']} arc {arc:.1f} theta {th:.1f} back to the passer, miss {miss:.1f} mm")
+                if c.get("pose", True):
+                    poses[c["pid"]] = {"arc_mm": round(float(arc), 1), "theta_deg": round(th, 1), "source": f"contact {k} (back catch)"}
+                continue
             if "puck_local_mm" in c:  # a set grip (the user's review): figure at figure_px facing theta_deg, puck in the groove
                 arc, d = Slot(c["pid"]).nearest(pic_to_world(*c["figure_px"]))
                 th = c.get("theta_deg", 0.0)
@@ -317,7 +357,8 @@ def build(spec):
         slot = Slot(g["pid"])
         arc, _ = slot.nearest(pic_to_world(*g["figure_px"]))
         th = g.get("theta_deg", 0.0)
-        gpuck = slot.at(arc) + rot(HOME[g["pid"][0]] + th) @ np.array(g["puck_local_mm"], float)
+        gl = GRIPS[g["grip"]] if "grip" in g else g["puck_local_mm"]
+        gpuck = slot.at(arc) + rot(HOME[g["pid"][0]] + th) @ np.array(gl, float)
         ghost = {"pid": g["pid"], "arc_mm": round(arc, 1), "theta_deg": th, "figure_mm": [round(float(c), 1) for c in slot.at(arc)],
                  "puck_mm": [round(float(c), 1) for c in gpuck], "to": str(g.get("to", key(spec["contacts"][0])))}
     cam = fit_camera(spec["view"])
@@ -556,6 +597,8 @@ def main():
         jobs += js
         (OUT / f"{i}-geometry.json").write_text(json.dumps(geo, indent=1, ensure_ascii=False) + "\n")
         for c in geo["contacts"]:
+            if c.get("catch"):
+                continue  # printed when solved
             print(i, "contact", c["contact"], c["pid"], "arc", c["arc_mm"], "theta", c["theta_deg"], c["face"], "turned", c["turned_from_push_deg"], "miss", c["miss_mm"], "mm")
     (OUT / "jobs.json").write_text(json.dumps(jobs, indent=1) + "\n")
     print("wrote", (OUT / "jobs.json").relative_to(REPO), len(jobs), "jobs")

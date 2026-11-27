@@ -10,7 +10,8 @@ import { resolveRenderEnv } from "../video/render-env.ts";
 
 // browser and GL backend: scripts/video/render-env.ts (REMOTION_BROWSER_EXECUTABLE / REMOTION_GL)
 const env = await resolveRenderEnv({ quiet: true });
-const jobs = JSON.parse(readFileSync("out/move-pictures/jobs.json", "utf8")) as Array<Record<string, unknown> & { id: string }>;
+// MOVE_PICTURES_JOBS picks another job list (scripts/move-pictures/terms.py writes out/move-pictures/terms-jobs.json)
+const jobs = JSON.parse(readFileSync(process.env.MOVE_PICTURES_JOBS ?? "out/move-pictures/jobs.json", "utf8")) as Array<Record<string, unknown> & { id: string }>;
 const only = process.argv.slice(2);
 const serveUrl = await bundle({ entryPoint: path.resolve("remotion/index.ts") });
 const browser = await openBrowser("chrome", { browserExecutable: env.browserExecutable, chromiumOptions: env.chromiumOptions });
