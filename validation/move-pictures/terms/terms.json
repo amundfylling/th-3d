@@ -4,14 +4,14 @@
   {
    "id": "heel-groove",
    "title": "Hælgrop / heel groove",
-   "line": "Pucken mellom skøyta og hælen på kølla, bak kølla",
+   "line": "Pucken bak figuren, mellom skøyta og hælen på bakre fot",
    "pid": "W-C",
    "arc_mm": 200.0,
    "theta_deg": 0.0,
    "grip": "heel",
    "puck_local_mm": [
-    -9.5,
-    17.2
+    -20.0,
+    -0.75
    ],
    "status": "user rule 2026-11-27"
   },
@@ -21,11 +21,11 @@
    "line": "Høyrewing: kølla ca. 45° mot høyre vant, pucken i hælgropa",
    "pid": "W-RW",
    "arc_mm": 150.0,
-   "theta_deg": -135.0,
+   "theta_deg": -140.0,
    "grip": "heel",
    "puck_local_mm": [
-    -9.5,
-    17.2
+    -20.0,
+    -0.75
    ],
    "status": "user rule 2026-11-27"
   },

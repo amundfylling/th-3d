@@ -25,7 +25,7 @@ SPAN_MM = 130.0  # width of the view
 
 # id, title, line under it, figure, arc mm, theta deg, grip, status
 TERMS = [
-    ("heel-groove", "Hælgrop / heel groove", "Pucken mellom skøyta og hælen på kølla, bak kølla",
+    ("heel-groove", "Hælgrop / heel groove", "Pucken bak figuren, mellom skøyta og hælen på bakre fot",
      "W-C", 200.0, 0.0, "heel", "user rule 2026-11-27"),
     ("heel-groove-carry", "Edwall-drag (hælgrop)", "Høyrewing: kølla ca. 45° mot høyre vant, pucken i hælgropa",
      "W-RW", 150.0, B.HEEL_CARRY_THETA, "heel", "user rule 2026-11-27"),

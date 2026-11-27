@@ -198,3 +198,17 @@ The user commented on three cards (Fakie Näcka marked good). Redrawn, PROPOSED,
 - **Term pictures** (user idea): `scripts/move-pictures/terms.py` renders close-ups of heel groove, Edwall drag, stick
   groove, toe groove and the back catch from the same `GRIPS` (validation/move-pictures/terms/). Stick and toe groove are
   ASSUMED (marked UTKAST) until the user checks them.
+
+Second round the same day (user's comments on the review page):
+
+- **Edwall-innspill:** the puck sat on the slot's centre line; it should lie slightly to the left with about 10% of it
+  over the slot. Read together with the first comment ("touch the foot and the heel only"), the heel is the heel of the
+  skate: the heel groove is now the pocket between the left boot and the heel of the right foot, behind the figure
+  (`GRIPS["heel"]` (-20.0, -0.75) mm, both touching, stick 13.9 mm away). `HEEL_CARRY_THETA` -140 puts the puck centre
+  13.4 mm left of the slot line. Applied to the six heel-groove carries, the start bubbles of Fakie Lillstøvel and
+  Fakie Omvendspjass (puck 4 mm nearer than before, now touching) and the term pictures.
+- **Fakie Omvendspjass:** the puck starts on the slot's centre line: the start is the centre turned backwards with the
+  puck in the heel groove (as in Fakie Lillstøvel). Start and trick share one puck spot, so one numbered point.
+- **Fakie Spjass:** exactly the normal Spjass (pose, points and arrows copied from the redrawn puck.no Spjass picture)
+  after the toe-groove start.
+- Lindahl-innspill and Fakie Lillstøvel are marked good.

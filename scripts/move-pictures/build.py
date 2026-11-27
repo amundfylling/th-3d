@@ -31,15 +31,17 @@ BLADE_MID = np.array([2.8, 33.1])  # skater blade middle, local mm (scripts/ikv-
 # (data/figures/contact-footprints.json, puck radius 12.7 mm): each touches the figure with at most 0.25 mm gap and no
 # overlap. User review 2026-11-27: the heel groove is the pocket between the skate and the heel of the stick, the puck
 # touching only those two (a puck through the stick is wrong); a pass from the right wing is caught on the figure's back.
+# Second review 2026-11-27: "heel" is the heel of the skate: the heel groove is the pocket between the left boot and the
+# heel of the right foot (pushed back), behind the figure; on a carry about 10% of the puck lies over the slot.
 GRIPS = {
-    "heel": [-9.5, 17.2],   # heel groove: touches the left skate and the stick heel, behind the stick
+    "heel": [-20.0, -0.75],  # heel groove: touches the left boot and the heel of the right foot
     "stick": [17.7, 18.0],  # stick groove: in front of the stick, next to the skate (ASSUMED)
     "toe": [21.2, 0.0],     # toe groove: straight in front of the skate (ASSUMED)
     "back": [-19.9, 0.0],   # back catch: straight behind the figure, touching the back of the skate
 }
 # Heel-groove carry (user review 2026-11-27): the figure is turned so the stick points about 45 deg forward toward the
 # right boards (theta -135 for the white end), the puck in front of it in the heel groove.
-HEEL_CARRY_THETA = -135.0
+HEEL_CARRY_THETA = -140.0  # puck centre 13.4 mm left of the slot line: about 2.5 mm of it over a ~7 mm wide slot
 HOME = {"W": 0.0, "E": 180.0}
 GX, GY = HW["goal"]["placement_mm"]["E"]
 BOARD = np.array(G["board"]["inner_boundary"]["world"]["points_mm"], float)
@@ -355,7 +357,8 @@ def build(spec):
         slot = Slot(g["pid"])
         arc, _ = slot.nearest(pic_to_world(*g["figure_px"]))
         th = g.get("theta_deg", 0.0)
-        gpuck = slot.at(arc) + rot(HOME[g["pid"][0]] + th) @ np.array(g["puck_local_mm"], float)
+        gl = GRIPS[g["grip"]] if "grip" in g else g["puck_local_mm"]
+        gpuck = slot.at(arc) + rot(HOME[g["pid"][0]] + th) @ np.array(gl, float)
         ghost = {"pid": g["pid"], "arc_mm": round(arc, 1), "theta_deg": th, "figure_mm": [round(float(c), 1) for c in slot.at(arc)],
                  "puck_mm": [round(float(c), 1) for c in gpuck], "to": str(g.get("to", key(spec["contacts"][0])))}
     cam = fit_camera(spec["view"])
