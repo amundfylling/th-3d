@@ -31,7 +31,8 @@
         318,
         380
       ],
-      "pose": true
+      "pose": true,
+      "catch": "back"
     }
   ],
   "path": [
@@ -43,5 +44,6 @@
       "from": 2,
       "to": 3
     }
-  ]
+  ],
+  "note": "User review 2026-11-27 (Lindahl-innspill, applied to every centre that takes a pass from the right wing): the centre receives with its back to the right wing, which gives the most area to catch the puck."
 }

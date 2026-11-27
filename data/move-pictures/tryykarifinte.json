@@ -13,7 +13,13 @@
         476,
         405
       ],
-      "pose": false
+      "pose": false,
+      "grip": "heel",
+      "theta_deg": -135.0,
+      "figure_px": [
+        476,
+        405
+      ]
     },
     {
       "n": 2,
@@ -22,7 +28,13 @@
         476,
         245
       ],
-      "pose": true
+      "pose": true,
+      "grip": "heel",
+      "theta_deg": -135.0,
+      "figure_px": [
+        476,
+        245
+      ]
     }
   ],
   "path": [
@@ -38,5 +50,6 @@
         212
       ]
     }
-  ]
+  ],
+  "note": "User review 2026-11-27 (Edwall-innspill, applied to every heel-groove carry): in the heel groove the figure is turned with the stick about 45 deg toward the right boards, the puck touching only the skate and the stick heel (never through the stick)."
 }

@@ -5,7 +5,7 @@
   "view": "deep",
   "source": "designed from the NTHF text (no puck.no picture); PROPOSED, for the user's review",
   "text": "Right wing carries the puck forward in the slot with the stick groove and sends it in to the center",
-  "note": "User review 2026-10-14: the wing starts further back in its slot, faces forward, puck between the stick and the skate (stick groove).",
+  "note": "User review 2026-10-14: the wing starts further back in its slot, faces forward, puck between the stick and the skate (stick groove). User review 2026-11-27 (Lindahl-innspill, applied to every centre that takes a pass from the right wing): the centre receives with its back to the right wing, which gives the most area to catch the puck.",
   "contacts": [
     {
       "n": 1,
@@ -50,7 +50,8 @@
         316,
         342
       ],
-      "pose": true
+      "pose": true,
+      "catch": "back"
     }
   ],
   "path": [

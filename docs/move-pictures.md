@@ -180,3 +180,21 @@ The user commented on three cards (Fakie Näcka marked good). Redrawn, PROPOSED,
   233.8, theta -177.9, puck on the back of the blade), shot to the left corner.
 
 `solve_contact` also takes a contact's `"face": "front"|"back"` to fix the blade side (not used by the final specs).
+
+### Review comments, 2026-11-27, applied to every similar move
+
+- **Heel groove** (Edwall-innspill: "the heel groove means that the player is placed with the stick around 45 degrees
+  pointing to the right wall; the puck should touch the foot and the heel only"; the old grip put the puck through the
+  stick). Named grips now live in `GRIPS` in build.py, checked against the skater footprint
+  (`data/figures/contact-footprints.json`, puck radius 12.7 mm, touch within 0.25 mm, no overlap): heel groove local
+  (-9.5, 17.2) mm. A heel-groove carry turns the right wing to theta -135 (`HEEL_CARRY_THETA`, stick forward toward the
+  right boards). Applied with `"grip": "heel"` to Edwall-innspill, Edwallskyffel kort/lang and Tryykari kort/lang/finte.
+  Silis-innspill (heel groove, carried backward) is not changed: the rule was given for a forward carry.
+- **Centre receives from the right wing with its back to it** (Lindahl-innspill). A contact with `"catch": "back"` turns
+  the receiver so its back faces the previous point and puts the puck on the back (`GRIPS["back"]`, local (-19.9, 0)),
+  choosing the slot position nearest the drawn point (misses 7-11 mm; Hagerup and Spade 38 mm and Nuttunen goes useless
+  22 mm, where the centre stands at the slot end). Applied to the 23 designed moves where the centre takes a direct pass
+  from the right wing (not Fakie Jon-spesial, a deflection off a still blade).
+- **Term pictures** (user idea): `scripts/move-pictures/terms.py` renders close-ups of heel groove, Edwall drag, stick
+  groove, toe groove and the back catch from the same `GRIPS` (validation/move-pictures/terms/). Stick and toe groove are
+  ASSUMED (marked UTKAST) until the user checks them.

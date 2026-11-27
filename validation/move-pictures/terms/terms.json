@@ -1,0 +1,75 @@
+{
+ "description": "term pictures (PROPOSED); puck positions from scripts/move-pictures/build.py GRIPS, skater local mm (x forward, y to the stick side)",
+ "terms": [
+  {
+   "id": "heel-groove",
+   "title": "Hælgrop / heel groove",
+   "line": "Pucken mellom skøyta og hælen på kølla, bak kølla",
+   "pid": "W-C",
+   "arc_mm": 200.0,
+   "theta_deg": 0.0,
+   "grip": "heel",
+   "puck_local_mm": [
+    -9.5,
+    17.2
+   ],
+   "status": "user rule 2026-11-27"
+  },
+  {
+   "id": "heel-groove-carry",
+   "title": "Edwall-drag (hælgrop)",
+   "line": "Høyrewing: kølla ca. 45° mot høyre vant, pucken i hælgropa",
+   "pid": "W-RW",
+   "arc_mm": 150.0,
+   "theta_deg": -135.0,
+   "grip": "heel",
+   "puck_local_mm": [
+    -9.5,
+    17.2
+   ],
+   "status": "user rule 2026-11-27"
+  },
+  {
+   "id": "stick-groove",
+   "title": "Køllegrop / stick groove",
+   "line": "Pucken foran kølla, inntil skøyta",
+   "pid": "W-C",
+   "arc_mm": 200.0,
+   "theta_deg": 0.0,
+   "grip": "stick",
+   "puck_local_mm": [
+    17.7,
+    18.0
+   ],
+   "status": "assumed, please check"
+  },
+  {
+   "id": "toe-groove",
+   "title": "Tågrop / toe groove",
+   "line": "Pucken rett foran skøytetuppen",
+   "pid": "W-C",
+   "arc_mm": 200.0,
+   "theta_deg": 0.0,
+   "grip": "toe",
+   "puck_local_mm": [
+    21.2,
+    0.0
+   ],
+   "status": "assumed, please check"
+  },
+  {
+   "id": "back-catch",
+   "title": "Mottak med ryggen",
+   "line": "Senteren tar imot med ryggen mot høyrewingen",
+   "pid": "W-C",
+   "arc_mm": 225.0,
+   "theta_deg": 100.0,
+   "grip": "back",
+   "puck_local_mm": [
+    -19.9,
+    0.0
+   ],
+   "status": "user rule 2026-11-27"
+  }
+ ]
+}

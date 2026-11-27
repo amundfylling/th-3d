@@ -586,7 +586,7 @@ Iteration 20 closed without repair cycles:
 - Catalog values imported as `catalog_nominal`: housing claims 960 x 500 and approx. 940 x 502 x 83 (unresolved
   conflict), playing area approx. 845 x 457, skater figure height approx. 57 (datum unknown; not applied to
   goalies), end screen approx. 70 x 622 (length datum unknown), puck diameter approx. 25.4. Everything else null.
-- No preview scale chosen in iteration 04. Iteration 05 added `map.overhead.preview`: ASSUMED uniform 0.179597 mm/px
+- No preview scale chosen in iteration 04. Iteration 05 added `map.overhead.preview`: ASSUMED uniform 0.179597 mm/px 2026-11-27: heel-groove and back-catch rules applied to 26 designed moves; term pictures in validation/move-pictures/terms/ (stick/toe groove assumed).
   (catalog approx. 845 mm = traced length 4705 px). Implied width 468.8 mm vs catalog approx. 457 mm - reported, not
   forced. The mm outline (`board.inner_boundary.world`) is `assumed`; corner radius and board length in mm stay unknown.
 - Board trace = ice side of the near-black strip at the board base (`assume.board_edge_is_ice_contact`); not the
